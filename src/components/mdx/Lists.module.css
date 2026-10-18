@@ -129,9 +129,7 @@
   line-height: 1.6;
   transition: color 0.3s ease;
   position: relative;
-  text-align: justify;
-  hyphens: auto;
-  -webkit-hyphens: auto;
+  text-align: left;
 }
 
 /* Espaciado adicional para listas ordenadas */
@@ -399,3 +397,4 @@
   .listContainer[data-level="3"] .orderedList .orderedList,
   .listContainer[data-level="4"] .orderedList              { padding-left: var(--spacing-md); }
 }
+.list, .orderedList { max-width: 75ch; }

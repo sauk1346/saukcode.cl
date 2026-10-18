@@ -1,0 +1,98 @@
+/* ============================================================
+   Tema de código propio sobre los tokens del sistema.
+   Reemplaza prism.css y prism-tomorrow: el análisis sintáctico
+   lo hace rehype-prism-plus en el build (clases .token.* por
+   lenguaje); aquí solo se colorean con la paleta papel/tinta,
+   que cambia sola entre modo claro y oscuro vía variables.
+   ============================================================ */
+
+pre[class*='language-'] {
+  background: var(--surface);
+  border: 2px solid var(--border-color);
+  color: var(--foreground);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  tab-size: 4;
+}
+
+/* Comentarios: en voz baja */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: var(--secondary);
+  font-style: italic;
+}
+
+/* Estructura del lenguaje */
+.token.keyword,
+.token.atrule,
+.token.tag,
+.token.property {
+  color: var(--primary);
+}
+
+/* Literales de texto */
+.token.string,
+.token.char,
+.token.attr-value,
+.token.inserted {
+  color: var(--success);
+}
+
+/* Literales numéricos y constantes */
+.token.number,
+.token.boolean,
+.token.constant,
+.token.symbol,
+.token.regex,
+.token.deleted {
+  color: var(--accent);
+}
+
+/* Funciones, clases y selectores */
+.token.function,
+.token.class-name,
+.token.selector,
+.token.attr-name,
+.token.builtin {
+  color: var(--warning);
+}
+
+/* Operadores y puntuación: casi tinta */
+.token.operator,
+.token.punctuation,
+.token.entity,
+.token.url {
+  color: var(--secondary);
+}
+
+.token.important,
+.token.variable {
+  color: var(--accent);
+}
+
+.token.bold {
+  font-weight: 700;
+}
+.token.italic {
+  font-style: italic;
+}
+
+/* Líneas destacadas y diff (rehype-prism-plus) */
+.code-line.highlight-line {
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+}
+.code-line.inserted {
+  background: color-mix(in srgb, var(--success) 10%, transparent);
+}
+.code-line.deleted {
+  background: color-mix(in srgb, var(--error) 10%, transparent);
+}
+
+/* Fórmulas KaTeX largas: scroll horizontal en vez de desborde */
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+}

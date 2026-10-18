@@ -16,14 +16,14 @@
   position: absolute;
   top: 0.6rem;
   right: 2.5rem;
-  color: white;
-  font-size: 0.75rem;
-  border-radius: var(--radius-sm);
+  color: var(--secondary);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  border-radius: 0;
   padding: var(--spacing-xs) var(--spacing-sm);
-  opacity: 0.6;
+  opacity: 0.85;
   transition: opacity 0.15s ease, background-color 0.15s ease;
   z-index: 10;
-  border: none;
   cursor: pointer;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
@@ -34,27 +34,30 @@
 }
 
 .buttonLight {
-  background-color: #374151;
+  background-color: var(--background-elevated);
+  border: 1px solid var(--border-color);
 }
 
 .buttonLight:hover {
-  background-color: #4B5563;
+  color: var(--foreground);
+  border-color: var(--primary);
 }
 
 .buttonDark {
-  background-color: #1f2937;
+  background-color: var(--background-elevated);
+  border: 1px solid var(--border-color);
 }
 
 .buttonDark:hover {
-  background-color: #374151;
+  color: var(--foreground);
+  border-color: var(--primary);
 }
 
 /* Ajustes para el contenedor de código */
 .pre {
-  border-radius: var(--radius-md);
+  border-radius: 0;
   padding: 0.75rem !important;
-  margin: 1.8rem !important;
-  margin-bottom: 1.75rem !important;
+  margin: 1.25rem 0 1.75rem !important;
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease !important;
   overflow-x: auto;
   overflow-y: hidden;

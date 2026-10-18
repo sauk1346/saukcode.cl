@@ -29,7 +29,7 @@
     margin-bottom: var(--spacing-md);
     font-size: 1.05rem;
     transition: color 0.3s ease;
-    text-align: justify;
-    hyphens: auto;
-    -webkit-hyphens: auto;
+    text-align: left;
   }
+/* Medida de lectura (~75 caracteres) */
+.paragraph { max-width: 75ch; }

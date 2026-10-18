@@ -2,46 +2,37 @@
 .h1 {
     font-size: 2.25rem;
     font-weight: 700;
-    color: #1e40af;
+    color: var(--foreground);
     margin-bottom: var(--spacing-xl);
     padding-bottom: 0.75rem;
-    border-bottom: 2px solid #e2e8f0;
+    border-bottom: 2px solid var(--border-color);
     transition: color 0.3s ease, border-color 0.3s ease;
   }
 
-  :global(html.dark-mode) .h1,
-  :global(html.dark-mode-override) .h1 {
-    color: #60a5fa;
-    border-bottom-color: #4b5563;
-  }
+
 
   .h2 {
     font-size: 1.75rem;
-    font-weight: 600;
-    margin-top: var(--spacing-xl);
-    margin-bottom: var(--spacing-md);
-    color: #1e3a8a;
+    font-weight: 700;
+    /* Proximidad: un título pertenece al contenido que abre */
+    margin-top: 2.75rem;
+    margin-bottom: 0.6rem;
+    color: var(--foreground);
     transition: color 0.3s ease;
   }
   
-  :global(html.dark-mode) .h2,
-  :global(html.dark-mode-override) .h2 {
-    color: #93c5fd;
-  }
+
   
   .h3 {
     font-size: 1.35rem;
-    font-weight: 600;
-    margin-top: 1.75rem;
-    margin-bottom: 0.75rem;
-    color: #2563eb;
+    font-weight: 700;
+    margin-top: 2.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--foreground);
     transition: color 0.3s ease;
   }
   
-  :global(html.dark-mode) .h3,
-  :global(html.dark-mode-override) .h3 {
-    color: #3b82f6;
-  }
+
   
   /* Responsive */
   @media (max-width: 768px) {
@@ -57,3 +48,5 @@
       font-size: 1.25rem;
     }
   }
+/* Medida de lectura */
+.h1, .h2, .h3 { max-width: 75ch; }
