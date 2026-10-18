@@ -5,5 +5,7 @@ import courseData from '../../data/inacap/ti3v12.js';
 ---
 
 <BaseLayout title={`${courseData.courseCode} | INACAP`} description={courseData.courseDescription}>
-  <Ti3v12Page />
+  <div style="--course-accent: var(--cat-database)">
+    <Ti3v12Page />
+  </div>
 </BaseLayout>

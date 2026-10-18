@@ -60,35 +60,35 @@
   
   /* Gradientes por categoría */
   .categoryBar.programming { 
-    background: var(--primary); 
+    background: var(--cat-programming); 
   }
   
   .categoryBar.database { 
-    background: var(--success); 
+    background: var(--cat-database); 
   }
   
   .categoryBar.security { 
-    background: var(--error); 
+    background: var(--cat-security); 
   }
   
   .categoryBar.systems { 
-    background: var(--accent); 
+    background: var(--cat-systems); 
   }
   
   .categoryBar.math { 
-    background: var(--warning); 
+    background: var(--cat-math); 
   }
   
   .categoryBar.business { 
-    background: #f97316; 
+    background: var(--cat-business); 
   }
   
   .categoryBar.methodology { 
-    background: #ec4899; 
+    background: var(--cat-methodology); 
   }
   
   .categoryBar.general { 
-    background: var(--secondary); 
+    background: var(--cat-general); 
   }
   
   /* ================================
@@ -131,35 +131,35 @@
   
   /* Gradientes por categoría para iconos */
   .categoryIcon.programming { 
-    background: var(--primary); 
+    background: var(--cat-programming); 
   }
   
   .categoryIcon.database { 
-    background: var(--success); 
+    background: var(--cat-database); 
   }
   
   .categoryIcon.security { 
-    background: var(--error); 
+    background: var(--cat-security); 
   }
   
   .categoryIcon.systems { 
-    background: var(--accent); 
+    background: var(--cat-systems); 
   }
   
   .categoryIcon.math { 
-    background: var(--warning); 
+    background: var(--cat-math); 
   }
   
   .categoryIcon.business { 
-    background: #f97316; 
+    background: var(--cat-business); 
   }
   
   .categoryIcon.methodology { 
-    background: #ec4899; 
+    background: var(--cat-methodology); 
   }
   
   .categoryIcon.general { 
-    background: var(--secondary); 
+    background: var(--cat-general); 
   }
   
   /* ================================

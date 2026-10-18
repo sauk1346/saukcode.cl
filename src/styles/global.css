@@ -77,6 +77,18 @@
   --warning: #8a6207;
   --info: #2a4fcb;
   /* Sombras duras (sin blur): la firma del sistema */
+  --cyan: #0e7490;
+  --orange: #b4470b;
+  /* Paleta de áreas: cada categoría de ramo tiene su tinte (etiqueta de
+     cartucho, barras del grid). Los alias apuntan a tokens por tema. */
+  --cat-programming: var(--primary);
+  --cat-database: var(--success);
+  --cat-security: var(--error);
+  --cat-systems: var(--cyan);
+  --cat-math: var(--warning);
+  --cat-business: var(--orange);
+  --cat-methodology: var(--accent);
+  --cat-general: var(--secondary);
   --shadow-hard: rgba(32, 40, 42, 0.22);
   --shadow-sm: 2px 2px 0 var(--shadow-hard);
   --shadow-md: 4px 4px 0 var(--shadow-hard);
@@ -125,6 +137,8 @@ html.dark {
   --error: #f08080;
   --warning: #f2c14e;
   --info: #7e96f2;
+  --cyan: #67c7db;
+  --orange: #efa15d;
   --shadow-hard: rgba(0, 0, 0, 0.55);
   --shadow-sm: 2px 2px 0 var(--shadow-hard);
   --shadow-md: 4px 4px 0 var(--shadow-hard);

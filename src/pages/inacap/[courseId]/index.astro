@@ -14,11 +14,17 @@ export function getStaticPaths() {
 const { courseId } = Astro.params;
 const courseData = getCourseData(courseId);
 const flashcardTopics = getTopicsByCourseId(courseId);
+
+// Tinte del área del ramo (etiqueta de cartucho, cuadros de unidad)
+const { subjects } = await import('../../../data/inacap/inacapData.js');
+const category = subjects.find((s) => s.href === `/inacap/${courseId}`)?.category ?? 'general';
 ---
 
 <BaseLayout
   title={`${courseData.courseCode} | INACAP`}
   description={courseData.courseDescription}
 >
-  <CourseDetails client:load {...courseData} flashcardTopics={flashcardTopics} courseId={courseId} />
+  <div style={`--course-accent: var(--cat-${category})`}>
+    <CourseDetails client:load {...courseData} flashcardTopics={flashcardTopics} courseId={courseId} />
+  </div>
 </BaseLayout>
