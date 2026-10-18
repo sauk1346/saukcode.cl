@@ -33,21 +33,11 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--spacing-lg);
-  background: var(--primary);
-  color: white;
+  background: var(--surface);
+  color: var(--foreground);
+  border-bottom: 2px solid var(--border-color);
   position: relative;
   overflow: hidden;
-}
-
-.calendarioHeader::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><pattern id="grain" width="100" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="20" fill="url(%23grain)"/></svg>');
-  pointer-events: none;
 }
 
 .calendarioTitle {
@@ -60,12 +50,12 @@
 }
 
 .calendarioNavButton {
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  color: white;
+  background: var(--background-elevated);
+  border: 2px solid var(--border-color);
+  color: var(--foreground);
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,17 +66,16 @@
   flex-shrink: 0;
   z-index: 1;
   position: relative;
-  backdrop-filter: blur(10px);
 }
 
 .calendarioNavButton:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.1);
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
-.calendarioNavButton:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+.calendarioNavButton:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
 }
 
 /* Días de la semana */
