@@ -1,5 +1,4 @@
 import React from 'react';
-import { User } from 'lucide-react';
 import { SmartLink } from '@/components/ui/SmartLink';
 import styles from './ProfessorCard.module.css';
 
@@ -7,10 +6,7 @@ const ProfessorCard = ({ professorData }) => {
   return (
     <div className={`pixel-box ${styles.card}`}>
       <div className={styles.cardHeader}>
-        <h2 className={styles.cardTitle}>
-          <User size={20} />
-          Profesor
-        </h2>
+        <h2 className={styles.cardTitle}>Profesor</h2>
       </div>
       
       <div className={styles.cardBody}>

@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { Calendar, Book, Monitor, Clock, Layers } from 'lucide-react';
 import { SmartLink } from '@/components/ui/SmartLink';
 import { buildCourseResourceLink } from '@/utils/linkBuilder';
 import Link from 'next/link';
@@ -208,10 +207,7 @@ const CourseDetails = ({
               {/* Vista general de unidades */}
               <div className={`pixel-box ${styles.card}`}>
                 <div className={styles.cardHeader}>
-                  <h2 className={styles.cardTitle}>
-                    <Book size={20} />
-                    Unidades
-                  </h2>
+                  <h2 className={styles.cardTitle}>Unidades</h2>
                 </div>
                 <div className={styles.cardBody}>
                   <ul className={styles.listNoStyle}>
@@ -309,10 +305,7 @@ const CourseDetails = ({
                 .map(([week, classes]) => (
                   <div key={week} className={`pixel-box ${styles.card}`}>
                     <div className={styles.cardHeader}>
-                      <h3 className={styles.cardTitle}>
-                        <Monitor size={20} />
-                        <span>Semana {week}</span>
-                      </h3>
+                      <h3 className={styles.cardTitle}>Semana {week}</h3>
                     </div>
                     <div className={styles.cardBody}>
                       <div className={styles.classList}>
@@ -320,12 +313,7 @@ const CourseDetails = ({
                           <div key={idx} className={styles.classItem}>
                             <div className={styles.classHeader}>
                               <span className={styles.classNumber}>Clase {classItem.class}:</span>
-                              <div className={styles.dateContainer}>
-                                <div className={styles.evaluationDateWrapper}>
-                                  <Clock size={14} />
-                                  <span className={styles.evaluationDate}>{classItem.date}</span>
-                                </div>
-                              </div>
+                              <span className={styles.itemDate}>{classItem.date}</span>
                             </div>
                             <div className={styles.classDescription}>
                               {renderContent(classItem.description)}
@@ -350,10 +338,7 @@ const CourseDetails = ({
                 .map(([week, lectures]) => (
                   <div key={week} className={`pixel-box ${styles.card}`}>
                     <div className={styles.cardHeader}>
-                      <h3 className={styles.cardTitle}>
-                        <Calendar size={20} />
-                        <span>Semana {week}</span>
-                      </h3>
+                      <h3 className={styles.cardTitle}>Semana {week}</h3>
                     </div>
                     <div className={styles.cardBody}>
                       <div className={styles.lectureList}>
@@ -361,12 +346,7 @@ const CourseDetails = ({
                           <div key={idx} className={styles.lectureItem}>
                             <div className={styles.lectureHeader}>
                               <span className={styles.lectureNumber}>Lectura {lecture.lecture}:</span>
-                              <div className={styles.dateContainer}>
-                                <div className={styles.evaluationDateWrapper}>
-                                  <Clock size={14} />
-                                  <span className={styles.evaluationDate}>{lecture.date}</span>
-                                </div>
-                              </div>
+                              <span className={styles.itemDate}>{lecture.date}</span>
                             </div>
                             <div className={styles.lectureDescription}>
                               {renderContent(lecture.description)}
@@ -392,9 +372,8 @@ const CourseDetails = ({
                     <Link
                       key={deck.id}
                       href={`/inacap/${courseId}/flashcards/${topic.slug}/${deck.number}`}
-                      className={styles.flashcardDeckCard}
+                      className={`pixel-press ${styles.flashcardDeckCard}`}
                     >
-                      <Layers size={18} />
                       <span>Mazo {deck.number}</span>
                       <span className={styles.flashcardDeckCount}>{deck.cardCount} cartas</span>
                     </Link>

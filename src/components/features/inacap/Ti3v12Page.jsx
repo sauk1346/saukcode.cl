@@ -1,5 +1,4 @@
 import React from 'react';
-import { FileText, Book } from 'lucide-react';
 import ProfessorCard from './ProfessorCard';
 import { SmartLink } from '../../ui/SmartLink';
 import courseData from '@/data/inacap/ti3v12';
@@ -30,10 +29,7 @@ export default function Ti3v12Page() {
 
                 <div className={`pixel-box ${styles.card}`}>
                     <div className={styles.cardHeader}>
-                        <h2 className={styles.cardTitle}>
-                            <FileText size={20} />
-                            Material de Clases
-                        </h2>
+                        <h2 className={styles.cardTitle}>Material de Clases</h2>
                     </div>
                     <div className={styles.cardBody}>
                         <div className={styles.pdfGrid}>
@@ -48,10 +44,7 @@ export default function Ti3v12Page() {
 
                 <div className={`pixel-box ${styles.card}`}>
                     <div className={styles.cardHeader}>
-                        <h2 className={styles.cardTitle}>
-                            <Book size={20} />
-                            Resumen
-                        </h2>
+                        <h2 className={styles.cardTitle}>Resumen</h2>
                     </div>
                     <div className={styles.cardBody}>
                         <SmartLink href="/inacap/ti3v12/guia">
