@@ -57,6 +57,12 @@
   vertical-align: 0.1em;
 }
 
+/* Al hover del enlace, el chip se aviva en su propio tinte */
+.link:hover .chip {
+  border-color: currentColor;
+  background-color: color-mix(in srgb, currentColor 10%, var(--card-bg));
+}
+
 /* Tinte por formato: refuerzo visual, el texto sigue diciendo qué es */
 .chipVideo {
   color: var(--error);
