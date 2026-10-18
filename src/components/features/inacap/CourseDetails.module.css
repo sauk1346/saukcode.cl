@@ -103,7 +103,8 @@
 
 /* ==================== ESTILOS PARA NAVEGACIÓN POR PESTAÑAS ==================== */
 
-/* Estilos para pestañas */
+/* Pestañas: selector estilo consola. Las inactivas van "levantadas"
+   (sombra dura); la activa, "presionada" (hundida, sin sombra). */
 .tabNavigation {
   width: 100%;
   margin-bottom: var(--spacing-xl);
@@ -111,53 +112,40 @@
 
 .tabButtons {
   display: flex;
+  flex-wrap: wrap; /* en móvil envuelve, no esconde con scroll */
   justify-content: center;
-  border-bottom: 1px solid var(--border-color);
-  margin-bottom: var(--spacing-lg);
-  overflow-x: auto; /* Para pantallas pequeñas */
-}
-
-/* Estilos para modo oscuro */
-:global(html.dark-mode) .tabButtons,
-:global(html.dark-mode-override) .tabButtons {
-  border-bottom: 1px solid var(--border-color);
+  gap: var(--spacing-sm) var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
 }
 
 .tabButton {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-sm) var(--spacing-md);
-  background: none;
-  border: none;
-  color: #4a4a4a;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--secondary);
+  background-color: var(--surface);
+  border: 2px solid var(--border-color);
+  padding: 0.45rem 0.9rem;
   cursor: pointer;
-  transition: color 0.3s ease, border-bottom 0.3s ease;
-  white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
-  font-size: 1.1rem; /* Tamaño de letra más grande */
-  font-weight: 500; /* Un poco más grueso para mejor visibilidad */
-}
-
-/* Modo oscuro para botones de pestañas */
-:global(html.dark-mode) .tabButton,
-:global(html.dark-mode-override) .tabButton {
-  color: var(--foreground);
+  box-shadow: var(--shadow-sm);
 }
 
 .tabButton:hover {
-  color: var(--primary);
+  color: var(--foreground);
 }
 
 .activeTab {
-  color: var(--primary);
-  border-bottom: 2px solid var(--primary);
+  color: var(--foreground);
+  background-color: var(--card-bg);
+  border-color: var(--foreground);
+  box-shadow: none;
+  translate: 2px 2px;
 }
 
-/* Modo oscuro para pestaña activa */
-:global(html.dark-mode) .activeTab,
-:global(html.dark-mode-override) .activeTab {
-  color: var(--primary);
-  border-bottom: 2px solid var(--primary);
+.tabMarker {
+  color: var(--course-accent, var(--primary));
+  margin-right: 0.4rem;
 }
 
 .tabContent {

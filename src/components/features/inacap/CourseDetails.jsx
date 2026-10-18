@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { Calendar, Book, CheckSquare, User, Grid3x3, Monitor, FileText, Clock, Percent, Layers } from 'lucide-react';
+import { Calendar, Book, Monitor, FileText, Clock, Percent, Layers } from 'lucide-react';
 import { SmartLink } from '@/components/ui/SmartLink';
 import { buildCourseResourceLink } from '@/utils/linkBuilder';
 import Link from 'next/link';
@@ -171,53 +171,30 @@ const CourseDetails = ({
         <p className={styles.description}>{courseDescription}</p>
       </header>
 
-      {/* Navegación por pestañas */}
+      {/* Navegación por pestañas: selector estilo consola (la activa va
+          "presionada", las inactivas levantadas con sombra dura) */}
       <div className={styles.tabNavigation}>
-        <div className={styles.tabButtons}>
-          <button 
-            className={`${styles.tabButton} ${activeTab === 'general' ? styles.activeTab : ''}`}
-            onClick={() => setActiveTab('general')}
-          >
-            <Grid3x3 size={18} />
-            <span>General</span>
-          </button>
-          <button 
-            className={`${styles.tabButton} ${activeTab === 'evaluaciones' ? styles.activeTab : ''}`}
-            onClick={() => setActiveTab('evaluaciones')}
-          >
-            <CheckSquare size={18} />
-            <span>Evaluaciones</span>
-          </button>
-          
-          {hasClasses && (
-            <button 
-              className={`${styles.tabButton} ${activeTab === 'clases' ? styles.activeTab : ''}`}
-              onClick={() => setActiveTab('clases')}
-            >
-              <Monitor size={18} />
-              <span>Clases</span>
-            </button>
-          )}
-          
-          {hasLectures && (
+        <div className={styles.tabButtons} role="tablist" aria-label="Secciones del ramo">
+          {[
+            { id: 'general', label: 'General' },
+            { id: 'evaluaciones', label: 'Evaluaciones' },
+            ...(hasClasses ? [{ id: 'clases', label: 'Clases' }] : []),
+            ...(hasLectures ? [{ id: 'lecturas', label: 'Lecturas' }] : []),
+            ...(hasFlashcards ? [{ id: 'flashcards', label: 'Flashcards' }] : []),
+          ].map((tab) => (
             <button
-              className={`${styles.tabButton} ${activeTab === 'lecturas' ? styles.activeTab : ''}`}
-              onClick={() => setActiveTab('lecturas')}
+              key={tab.id}
+              role="tab"
+              aria-selected={activeTab === tab.id}
+              className={`pixel-press ${styles.tabButton} ${activeTab === tab.id ? styles.activeTab : ''}`}
+              onClick={() => setActiveTab(tab.id)}
             >
-              <Book size={18} />
-              <span>Lecturas</span>
+              {activeTab === tab.id && (
+                <span aria-hidden="true" className={styles.tabMarker}>▸</span>
+              )}
+              {tab.label}
             </button>
-          )}
-
-          {hasFlashcards && (
-            <button
-              className={`${styles.tabButton} ${activeTab === 'flashcards' ? styles.activeTab : ''}`}
-              onClick={() => setActiveTab('flashcards')}
-            >
-              <Layers size={18} />
-              <span>Flashcards</span>
-            </button>
-          )}
+          ))}
         </div>
         
         {/* Pestaña General */}
