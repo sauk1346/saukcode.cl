@@ -262,8 +262,8 @@ const Calendar = ({ eventos = [] }) => {
                 <div className={styles.calendarioEvents}>
                   {dayEvents.slice(0, 2).map(evento => (
                     <div key={evento.id} className={styles.calendarioEvent}>
-                      {evento.hora && <span className={styles.eventTime}>{evento.hora}: </span>}
-                      {evento.titulo}
+                      {/* En la celda solo cabe el código; el detalle va al panel */}
+                      {evento.titulo.match(/^\[([^\]]+)\]/)?.[1] ?? evento.titulo}
                     </div>
                   ))}
                   

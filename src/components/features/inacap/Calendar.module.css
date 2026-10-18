@@ -99,22 +99,21 @@
 .calendarioDaysGrid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 1px;
+  gap: 2px;
   background: var(--border-color);
-  padding: 1px;
+  padding: 2px;
 }
 
 .calendarioDay {
-  aspect-ratio: 1;
   background: var(--background);
-  padding: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
   cursor: pointer;
-  transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  min-height: 100px;
+  gap: 2px;
+  min-height: 72px;
 }
 
 .calendarioDay:hover {
@@ -202,7 +201,7 @@
   background: var(--primary);
   width: 7px;
   height: 7px;
-  display: inline-block;
+  display: none; /* en desktop la pastilla ya lo dice */
 }
 
 .eventTime {
@@ -451,9 +450,13 @@
     gap: 2px;
   }
 
-  /* Ocultar texto de eventos en celda, el punto indicador es suficiente */
+  /* Ocultar texto de eventos en celda; vuelve el indicador cuadrado */
   .calendarioEvents {
     display: none;
+  }
+
+  .eventIndicator {
+    display: inline-block;
   }
 
   .calendarioDayOfWeek {
