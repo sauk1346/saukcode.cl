@@ -1,0 +1,42 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/layout/Navbar.astro';
+import Breadcrumb from '../components/layout/Breadcrumb.astro';
+import Footer from '../components/layout/Footer.astro';
+
+const {
+  title = 'SaukCode',
+  description = 'Plataforma personal de recopilación de contenido académico',
+} = Astro.props;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <!-- Anti-FOUC: aplica el tema antes del primer paint -->
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var dark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (dark) {
+            // 'dark' para Tailwind; 'dark-mode-override' para los CSS modules portados del sitio Next
+            document.documentElement.classList.add('dark', 'dark-mode-override');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <Navbar />
+    <Breadcrumb />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

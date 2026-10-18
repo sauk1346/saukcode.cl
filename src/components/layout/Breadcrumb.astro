@@ -1,0 +1,31 @@
+---
+// Breadcrumb server-rendered desde la URL — reemplaza el componente cliente
+// de Next (usePathname + lógica de compresión); el overflow se maneja con CSS.
+const parts = Astro.url.pathname.split('/').filter(Boolean);
+---
+
+{parts.length > 0 && (
+  <nav aria-label="Breadcrumb" class="mx-auto w-full max-w-6xl overflow-x-auto px-4 py-2">
+    <ol class="flex items-center gap-1 text-sm whitespace-nowrap">
+      <li>
+        <a href="/" class="text-(--secondary) hover:text-(--primary)">Home</a>
+      </li>
+      {parts.map((part, index) => {
+        const path = `/${parts.slice(0, index + 1).join('/')}`;
+        const isLast = index === parts.length - 1;
+        return (
+          <>
+            <li class="text-(--secondary)">/</li>
+            <li>
+              {isLast ? (
+                <span class="font-medium text-(--foreground)">{part}</span>
+              ) : (
+                <a href={path} class="text-(--secondary) hover:text-(--primary)">{part}</a>
+              )}
+            </li>
+          </>
+        );
+      })}
+    </ol>
+  </nav>
+)}

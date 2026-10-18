@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/ui/Card.astro';
+import { sectionsOrder } from '../data/homeData.js';
+---
+
+<BaseLayout title="SaukCode">
+  {sectionsOrder.map((section) => (
+    <section id={section.id} class="mx-auto max-w-6xl px-4 py-16">
+      <h1 class="mb-2 text-center text-3xl font-bold text-(--foreground)">{section.title}</h1>
+      <p class="mb-10 text-center text-(--secondary)">{section.description}</p>
+      <div class="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2">
+        {Object.entries(section.cardsData).map(([key, card]) => (
+          <Card title={card.name} description={card.description} image={card.image} link={card.link} />
+        ))}
+      </div>
+    </section>
+  ))}
+</BaseLayout>
