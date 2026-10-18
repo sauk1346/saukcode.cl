@@ -44,69 +44,33 @@
   }
 }
 
-/* Icono para enlaces externos */
-.externalIcon {
-  width: 14px;
-  height: 14px;
-  opacity: 0.6;
-  transition: opacity 0.2s ease;
+/* Chips de tipo de recurso: [video] [pdf] [audio], en el lenguaje de
+   los kbd del sitio. Van inline, nunca se separan de su enlace. */
+.chip {
+  font-family: var(--font-mono);
+  font-size: 0.68em;
+  line-height: 1;
+  padding: 0.2em 0.45em;
+  border: 1px solid var(--border-color);
+  background-color: var(--surface);
+  color: var(--secondary);
+  white-space: nowrap;
   flex-shrink: 0;
-  margin-left: 2px;
 }
 
-.link:hover .externalIcon {
-  opacity: 1;
+.link:hover .chip {
+  color: var(--foreground);
+  border-color: var(--secondary);
 }
 
-/* ✨ NUEVO: Icono para enlaces de YouTube */
-.youtubeIcon {
-  width: 18px;
-  height: 18px;
-  opacity: 0.9;
-  transition: opacity 0.2s ease;
-  flex-shrink: 0;
-  margin-left: 3px;
-}
-
-.youtubeBody {
-  fill: #ff0000; /* Caja roja YouTube */
-}
-
-.youtubePlay {
-  fill: #ffffff; /* Triángulo play blanco */
-}
-
-.link:hover .youtubeIcon {
-  opacity: 1;
-}
-
-/* Icono para archivos PDF */
-.pdfIcon {
-  width: 20px;
-  height: 20px;
+/* Flecha de enlace externo: carácter tipográfico, no icono */
+.externalArrow {
+  font-size: 0.85em;
   opacity: 0.7;
-  transition: opacity 0.2s ease;
   flex-shrink: 0;
-  margin-left: 2px;
-  color: var(--error);
 }
 
-.link:hover .pdfIcon {
-  opacity: 1;
-}
-
-/* ✨ NUEVO: Icono para archivos de música/audio */
-.musicIcon {
-  width: 18px;
-  height: 18px;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
-  flex-shrink: 0;
-  margin-left: 2px;
-  color: var(--accent); /* Púrpura para música */
-}
-
-.link:hover .musicIcon {
+.link:hover .externalArrow {
   opacity: 1;
 }
 
@@ -146,23 +110,6 @@
   100% {
     outline-color: transparent;
   }
-}
-
-:global(html.dark-mode) .pdfIcon,
-:global(html.dark-mode-override) .pdfIcon {
-  color: var(--error);
-}
-
-/* ✨ NUEVO: Icono de YouTube en modo oscuro (rojo un poco más luminoso; triángulo se mantiene blanco) */
-:global(html.dark-mode) .youtubeBody,
-:global(html.dark-mode-override) .youtubeBody {
-  fill: #ff3d3d;
-}
-
-/* ✨ NUEVO: Icono de música en modo oscuro */
-:global(html.dark-mode) .musicIcon,
-:global(html.dark-mode-override) .musicIcon {
-  color: var(--accent); /* Púrpura más claro para dark mode */
 }
 
 /* =================================================================
@@ -240,11 +187,7 @@
 
 /* Reducir movimiento para usuarios que lo prefieran */
 @media (prefers-reduced-motion: reduce) {
-  .link,
-  .externalIcon,
-  .pdfIcon,
-  .musicIcon,
-  .youtubeIcon {
+  .link {
     transition: none;
   }
   
@@ -258,16 +201,5 @@
   :global(html.dark-mode-override) .link:focus {
     animation: none;
     outline-color: var(--primary);
-  }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .externalIcon,
-  .pdfIcon,
-  .musicIcon,
-  .youtubeIcon {
-    width: 12px;
-    height: 12px;
   }
 }
