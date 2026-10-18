@@ -51,7 +51,7 @@
 .calendarioNavButton {
   background: var(--background-elevated);
   border: 2px solid var(--border-color);
-  color: var(--foreground);
+  color: var(--primary);
   width: 40px;
   height: 40px;
   border-radius: 0;
@@ -92,7 +92,10 @@
   font-weight: 700;
   font-size: 0.8rem;
   color: var(--secondary);
-  transition: color 0.3s ease;
+}
+
+.weekendName {
+  color: var(--accent);
 }
 
 /* Grid de días del mes */
@@ -131,6 +134,20 @@
 
 .currentMonth {
   color: var(--foreground);
+}
+
+/* Fin de semana: columna con lavado rosa (el ritmo de la semana) */
+.weekendDay {
+  background: color-mix(in srgb, var(--accent) 6%, var(--card-bg));
+}
+
+/* Día con eventos: lavado azul + número en primario */
+.hasEvents {
+  background: color-mix(in srgb, var(--primary) 9%, var(--card-bg));
+}
+
+.hasEvents .calendarioDayHeader {
+  color: var(--primary);
 }
 
 .otherMonth {
@@ -327,7 +344,8 @@
 }
 
 .noEventsIcon {
-  opacity: 0.6;
+  color: var(--primary);
+  opacity: 0.8;
 }
 
 /* Modal para móviles */
