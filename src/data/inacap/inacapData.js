@@ -351,10 +351,11 @@ export const subjects = [
     general: { name: 'Formación General', icon: '📚' }
   };
   
+  // Jerga arcade: nivel superado / en juego / bloqueado
   export const statusConfig = {
-    completed: { name: 'Completado', icon: '✅' },
-    current: { name: 'En Curso', icon: '⏳' },
-    pending: { name: 'Pendiente', icon: '⏸️' }
+    completed: { name: 'CLEAR' },
+    current: { name: 'PLAYING' },
+    pending: { name: 'LOCKED' }
   };
   
   export const semesters = [
