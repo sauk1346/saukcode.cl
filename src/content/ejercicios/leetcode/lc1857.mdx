@@ -1,0 +1,87 @@
+# Color de Mayor Valor en un Grafo Dirigido
+
+Hay un grafo dirigido de `n` nodos coloreados y `m` aristas. Los nodos están numerados del `0` al `n -1`.
+
+Se te proporciona un string `colors` donde `colors[i]` es una letra minúscula que representa el color del i-ésimo nodo en este grafo (**indexado desde 0**).
+
+También se te proporciona un arreglo 2D `edges` donde `edges[j] = [aj, bj]` indica que hay una **arista dirigida** desde el nodo $a_j$ hasta el nodo $b_j$.
+
+Una **ruta válida** en el grafo es una secuencia de nodos $x_1 \rightarrow x_2 \rightarrow x_3 \rightarrow ... \rightarrow x_k$ tal que hay una arista dirigida desde $x_i$ hasta $x_{i+1}$ para cada $1 \le i < k$.
+
+El **valor del color** de la ruta es el número de nodos que están coloreados con el color **que ocurre con mayor frecuencia** a lo largo de ese camino.
+
+Devuelve *el **color de mayor valor** de cualquier camino válido en el grado dado, o `-1` si el grafo contiene un ciclo*.
+
+## Ejemplos
+
+**Ejemplo 1:**
+
+<SmartFigure
+	id="grafo-de-cinco-nodos"
+	src="/leetcode/fig09.png"
+	alt="Grafo de 5 nodos"
+	caption="Grafo de 5 nodos"
+	size="large"
+/>
+
+> **Input:** colors = "abaca", edges = [[0,1],[0,2],[2,3],[3,4]]
+> **Output:** 3
+> **Explicación:** La ruta 0 -> 2 -> 3 -> 4 contiene 3 nodos que están coloreados con "a" (rojo en la imagen).
+
+**Ejemplo 2:**
+
+<SmartFigure
+	id="grafo-de-un-nodo"
+	src="/leetcode/fig10.png"
+	alt="Grafo de 1 nodos"
+	caption="Grafo de 1 nodo"
+	size="large"
+/>
+
+> **Input:** colors = "a", edges = [[0,0]]
+> **Output:** -1
+> **Explicación:** Hay un ciclo del 0 al 0.
+
+## Soluciones
+
+<Solution title="Python" icon="Python">   
+```python
+class Solution:
+    def largestPathValue(self, colors: str, edges: List[List[int]]) -> int:
+        
+        def dfs(curr, adj, visited, longest, colors):
+            if visited[curr] == 1:  
+                return float('inf')
+            
+            if visited[curr] == 0:  
+                visited[curr] = 1
+                for nbr in adj[curr]:
+                    res = dfs(nbr, adj, visited, longest, colors)
+                    if res == float('inf'):
+                        return float('inf')
+                    
+                    for i in range(26):
+                        longest[i][curr] = max(longest[i][curr], longest[i][nbr])
+                longest[ord(colors[curr]) - ord('a')][curr] += 1
+                visited[curr] = 2
+            return longest[ord(colors[curr]) - ord('a')][curr]
+
+        n = len(colors)
+        adj = [[] for _ in range(n)]
+        for edge in edges:
+            adj[edge[0]].append(edge[1])
+
+        longest = [[0] * n for _ in range(26)]
+        
+        max_color_length = 0
+        visited = [0] * n
+        
+        for i in range(n):
+            res = dfs(i, adj, visited, longest, colors)
+            if res == float('inf'):
+                return -1
+            max_color_length = max(max_color_length, res)
+        
+        return max_color_length
+```
+</Solution>

@@ -1,0 +1,36 @@
+# Detector de Vocales
+
+Escribe un programa en Java que reciba una palabra (`String palabra`) y cuente cuántas vocales (a, e, i, o, u) contiene, sin distinguir mayúsculas de minúsculas.
+
+### Ejemplo
+
+<TerminalOutput>
+{`Input:  palabra = "Programacion"
+Output: 5 vocales`}
+</TerminalOutput>
+
+## Solución
+
+<Solution title="Java" icon="Java">
+```java
+public class Main {
+    public static void main(String[] args) {
+        String palabra = "Programacion";
+        String vocales = "aeiouAEIOU";
+        int contador = 0;
+
+        for (char c : palabra.toCharArray()) {
+            if (vocales.indexOf(c) != -1) {
+                contador++;
+            }
+        }
+
+        System.out.println(contador + " vocales");
+    }
+}
+```
+
+- Se recorre la palabra carácter por carácter con `toCharArray()`.
+- `vocales.indexOf(c)` retorna `-1` si el carácter no está presente en el string `vocales`; si es distinto de `-1`, es una vocal.
+- Se cuentan tanto mayúsculas como minúsculas incluyendo ambos casos en el string `vocales`, sin necesidad de convertir la palabra.
+</Solution>

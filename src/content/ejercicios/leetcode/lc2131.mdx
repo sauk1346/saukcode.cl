@@ -1,0 +1,60 @@
+# Palíndromo Más Largo Contatenando Palabras de Dos Letras
+
+Se te proporciona un arreglo de strings `words`. Cada elemento de `words` consiste en dos letras minúsculas.
+
+Crea el **palíndromo más largo posible** seleccionando algunos elementos de `words` y concatenándolos en **cualquier orden**. Cada elemento puede ser seleccionado **a lo más una vez**.
+
+Devuelve *la **longitud** del palíndromo más largo que puedas crear. Si es imposible crear cualquier palíndromo, devuelve `0`*.
+
+Un **palíndromo** es una string que se lee igual hacia adelante y hacia atrás.*
+
+## Ejemplos
+
+**Ejemplo 1:**
+> **Input:** words = ["lc","cl","gg"]
+> **Output:** 6
+> **Explicación:** Uno de los palíndromos más largos es "lc" + "gg" + "cl" = "lcggcl", de longitud 6.
+> Nota: "clgglc" es otro palíndromo más largo que se puede crear.
+
+**Ejemplo 2:**
+> **Input:** words = ["ab","ty","yt","lc","cl","ab"]
+> **Output:** 8
+> **Explicación:** Uno de los palíndromos más largos es "ty" + "lc" + "cl" + "yt" = "tylcclyt", de longitud 8.
+> Nota: "lcyttycl" es otro palíndromo más largo que se puede crear.
+
+**Ejemplo 3:**
+> **Input:** words = ["cc","ll","xx"]
+> **Output:** 2
+> **Explicación:** Uno de los palíndromos más largos es "cc", de longitud 2.
+> Nota:"ll" es otro palíndromo más largo que se puede crear, y también "xx".
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+class Solution:
+    def longestPalindrome(self, words: List[str]) -> int:
+        freq = [[0] * 26 for _ in range(26)]
+        palindrome_count = 0
+        mid_count = 0
+        
+        for word in words:
+            a = ord(word[0]) - ord('a')
+            b = ord(word[1]) - ord('a')
+            
+            if freq[b][a] > 0:
+                palindrome_count += 4
+                freq[b][a] -= 1
+                if a == b:
+                    mid_count -= 1
+            else:
+                freq[a][b] += 1
+                if a == b:
+                    mid_count += 1
+        
+        if mid_count > 0:
+            palindrome_count += 2
+        
+        return palindrome_count
+```
+</Solution>

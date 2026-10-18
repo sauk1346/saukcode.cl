@@ -1,0 +1,73 @@
+# Número de materias únicas enseñadas por cada profesor
+
+**Tabla** `Teacher`
+
+<TerminalOutput>
+{`+-------------+------+
+| Column Name | Type |
++-------------+------+
+| teacher_id  | int  |
+| subject_id  | int  |
+| dept_id     | int  |
++-------------+------+
+
+- (subject_id, dept_id) es la clave primaria (combinaciones de columnas 
+    con valores únicos) de esta tabla.
+- Cada fila en esta tabla indica que el profesor con teacher_id enseña 
+    la materia subject_id en el departamento dept_id.`}
+</TerminalOutput>
+
+Escribe una solución para calcular el número de materias únicas que cada profesor enseña en la universidad.
+
+Devuelve la tabla de resultados en **cualquier orden**.
+
+## Ejemplo
+
+**Input**
+<TerminalOutput>
+{`Tabla Teacher:
++------------+------------+---------+
+| teacher_id | subject_id | dept_id |
++------------+------------+---------+
+| 1          | 2          | 3       |
+| 1          | 2          | 4       |
+| 1          | 3          | 3       |
+| 2          | 1          | 1       |
+| 2          | 2          | 1       |
+| 2          | 3          | 1       |
+| 2          | 4          | 1       |
++------------+------------+---------+`}
+</TerminalOutput>
+
+**Output**
+<TerminalOutput>
+{`+------------+-----+
+| teacher_id | cnt |
++------------+-----+
+| 1          | 2   |
+| 2          | 4   |
++------------+-----+
+
+Explicación:
+Profesor 1:
+ - Enseña la materia 2 en los departamentos 3 y 4.
+ - Enseña la materia 3 en el departamento 3.
+Profesor 2:
+ - Enseña la materia 1 en el departamento 1.
+ - Enseña la materia 2 en el departamento 1.
+ - Enseña la materia 3 en el departamento 1.
+ - Enseña la materia 4 en el departamento 1.`}
+</TerminalOutput>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+import pandas as pd
+
+def count_unique_subjects(teacher: pd.DataFrame) -> pd.DataFrame:
+    result = teacher.groupby('teacher_id')['subject_id'].nunique().reset_index()
+    result.columns = ['teacher_id', 'cnt']
+    return result
+```
+</Solution>

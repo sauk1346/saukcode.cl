@@ -1,0 +1,72 @@
+# Delivery de Comida Inmediata I
+
+**Tabla:** `Delivery`
+<TerminalOutput>
+{`+-----------------------------+---------+
+| Column Name                 | Type    |
++-----------------------------+---------+
+| delivery_id                 | int     |
+| customer_id                 | int     |
+| order_date                  | date    |
+| customer_pref_delivery_date | date    |
++-----------------------------+---------+
+
+- "delivery_id" es la clave primaria de esta tabla.
+
+- La tabla contiene información sobre entregas de comida a clientes 
+    que hacen pedidos en una fecha determinada (order_date) 
+    y especifican una fecha de entrega preferida (customer_pref_delivery_date)`}
+</TerminalOutput>
+
+
+Si la fecha de entrega preferida del cliente es la misma que la fecha del pediro, entonces el pedido se llama **inmediato (immediate)**, de lo contrario, se llama **programado (scheduled)** 
+
+Escribe una solución para encontrar el porcentaje de pedidos inmediatos en la tabla **redondeado a 2 decimales.**
+
+## Ejemplo
+
+**Input:**
+<TerminalOutput>
+{`tabla Delivery:
++-------------+-------------+------------+-----------------------------+
+| delivery_id | customer_id | order_date | customer_pref_delivery_date |
++-------------+-------------+------------+-----------------------------+
+| 1           | 1           | 2019-08-01 | 2019-08-02                  |
+| 2           | 5           | 2019-08-02 | 2019-08-02                  |
+| 3           | 1           | 2019-08-11 | 2019-08-11                  |
+| 4           | 3           | 2019-08-24 | 2019-08-26                  |
+| 5           | 4           | 2019-08-21 | 2019-08-22                  |
+| 6           | 2           | 2019-08-11 | 2019-08-13                  |
++-------------+-------------+------------+-----------------------------+`}
+</TerminalOutput>
+
+**Output:**
+<TerminalOutput>
+{`+----------------------+
+| immediate_percentage |
++----------------------+
+| 33.33                |
++----------------------+
+
+Explicación: Los pedidos con delivery_id 2 y 3 son inmediatos, mientras que 
+               los otros están programados.`}
+</TerminalOutput>
+
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+
+```python
+import pandas as pd
+
+def food_delivery(delivery: pd.DataFrame) -> pd.DataFrame:
+    
+    immediate_orders = (delivery['order_date'] == delivery['customer_pref_delivery_date']).sum()
+    total_orders = len(delivery)
+    
+    immediate_percentage = round((immediate_orders / total_orders) * 100, 2)
+    
+    return pd.DataFrame({'immediate_percentage': [immediate_percentage]})
+```
+</Solution>

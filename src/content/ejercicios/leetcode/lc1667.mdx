@@ -1,0 +1,53 @@
+# Corregir Nombres en una Tabla
+
+**Tabla:** `Users`
+<TerminalOutput>
+{`+----------------+---------+
+| Column Name    | Type    |
++----------------+---------+
+| user_id        | int     |
+| name           | varchar |
++----------------+---------+
+
+- "user_id" es la clave primaria para esta tabla.`}
+</TerminalOutput>
+
+Escribe una solución para corregir los nombres de manera que solo el primer carácter esté en mayúscula (el resto en minúscula).
+
+Devuelve una tabla resultado ordenada por `user_id`.
+
+## Ejemplo
+
+**Input:**
+<TerminalOutput>
+{`Tabla Users:
++---------+-------+
+| user_id | name  |
++---------+-------+
+| 1       | aLice |
+| 2       | bOB   |
++---------+-------+`}
+</TerminalOutput>
+
+**Output:**
+<TerminalOutput>
+{`+---------+-------+
+| user_id | name  |
++---------+-------+
+| 1       | Alice |
+| 2       | Bob   |
++---------+-------+`}
+</TerminalOutput>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+def fix_names(users: pd.DataFrame) -> pd.DataFrame:
+    
+    users['name'] = users['name'].str.capitalize()
+    
+    return users.sort_values(by='user_id')
+    
+```
+</Solution>

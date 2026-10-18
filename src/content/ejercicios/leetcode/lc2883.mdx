@@ -1,0 +1,56 @@
+# Eliminar Datos Faltantes
+
+**DataFrame** `students`
+<TerminalOutput>
+{`+-------------+--------+
+| Column Name | Type   |
++-------------+--------+
+| student_id  | int    |
+| name        | object |
+| age         | int    |
++-------------+--------+`}
+</TerminalOutput>
+
+Hay algunas filas que tienen valores faltantes en la columna `name`.
+
+Escribe una solución para eliminar las filas con valores faltantes.
+
+## Ejemplo
+
+**Input**
+<TerminalOutput>
+{`+------------+---------+-----+
+| student_id | name    | age |
++------------+---------+-----+
+| 32         | Piper   | 5   |
+| 217        | None    | 19  |
+| 779        | Georgia | 20  |
+| 849        | Willow  | 14  |
++------------+---------+-----+`}
+</TerminalOutput>
+
+**Output**
+<TerminalOutput>
+{`+------------+---------+-----+
+| student_id | name    | age |
++------------+---------+-----+
+| 32         | Piper   | 5   |
+| 779        | Georgia | 20  | 
+| 849        | Willow  | 14  | 
++------------+---------+-----+
+
+Explicación:
+El estudiante con id 217 tiene un valor vacío en la columna name, 
+por lo que será eliminado.`}
+</TerminalOutput>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+import pandas as pd
+
+def dropMissingData(students: pd.DataFrame) -> pd.DataFrame:
+     return students.dropna(subset=['name'])
+```
+</Solution>

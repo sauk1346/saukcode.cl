@@ -1,0 +1,102 @@
+# Pintando una Cuadrícula con Tres Colores Diferentes
+
+Se te dan dos enteros `m` y `n`. Considera una cuadrícula de `m x n` donde cada celda es inicialmente blanca. Puedes pintar cada celda de **rojo**, **verde** o **azul**. Todas las celdas **deben** ser pintadas.
+Devuelve *el número de formas de colorear la cuadrícula sin que **dos celdas adyacentes tengan el mismo color**. Como la respuesta puede ser muy grande, devuélvela **módulo** `10⁹ + 7`.*
+
+## Ejemplos
+
+**Ejemplo 1:**
+
+<SmartFigure
+	id="cuadricula-1x1"
+	src="/leetcode/fig02.png"
+	alt="Cuadrícula de 1x1"
+	caption="Cuadrícula de 1x1"
+	size="large"
+/>
+
+> **Input: m = 1, n = 1**
+> **Output: 3**
+> **Explicación:** Las tres posibles coloraciones se muestran en la imagen de arriba.
+
+**Ejemplo 2:**
+<SmartFigure
+	id="cuadricula-1x2"
+	src="/leetcode/fig03.png"
+	alt="Cuadrícula de 1x2"
+	caption="Cuadrícula de 1x2"
+	size="large"
+/>
+
+> **Input:** m = 1, n = 2
+> **Output:** 6
+> **Explicación:** Las seis posibles coloraciones se muestran en la imagen de arriba.
+
+**Ejemplo 3:**
+> **Input:** m = 5, n = 5
+> **Output:** 580986
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+class Solution:
+    def colorTheGrid(self, m: int, n: int) -> int:
+        MOD = 10**9 + 7
+        
+        # Inicializar la memorización
+        state_mem = [[-1] * (1 << (2*m)) for _ in range(n+1)]
+        
+        def count_ways(m, n, r, c, curr_state, prev_state):
+            # Caso base: completamos todas las columnas
+            if c == n:
+                return 1  # Combinación válida
+            
+            # Caso base: completamos una columna
+            if r == m:
+                return count_ways(m, n, 0, c+1, 0, curr_state)
+            
+            # Memorización (solo cuando r==0 - inicio de una nueva columna)
+            if r == 0 and state_mem[c][prev_state] != -1:
+                return state_mem[c][prev_state]
+            
+            # Color de la celda superior
+            up_color = 0
+            if r > 0:
+                up_color = curr_state & 3
+            
+            # Color de la celda izquierda
+            left_color = (prev_state >> ((m-r-1)*2)) & 3
+            
+            # Probar todos los colores
+            ways_to_color = 0
+            for color in range(1, 4):  # Colores: 1, 2, 3
+                if color != up_color and color != left_color:
+                    # CLAVE: Usar (curr_state<<2) + color en lugar de curr_state | (color << (r*2))
+                    ways_to_color = (ways_to_color + count_ways(m, n, r+1, c, (curr_state<<2) + color, prev_state)) % MOD
+            
+            # Guardar resultado solo al inicio de una columna
+            if r == 0:
+                state_mem[c][prev_state] = ways_to_color
+            
+            return ways_to_color
+        
+        return count_ways(m, n, 0, 0, 0, 0)
+```
+
+- **Bitmasking:** para encontrar todas las combinaciones posibles
+- **DP States:** Estados de Programación Dinámica. Configuraciones únicas que defienen un subproblema en un algoritmo de programación dinámica.
+
+En este caso **DP States** nos permite guardar situaciones parciales, como "fotografías", permitiendo que el algoritmo sea eficiente:
+
+1. **Posición actual `(r,c)`:** fila y columna donde estamos decidiendo el color
+2. **Estado de la columna actual:** representación de los colores ya asignados en la columna actual
+3. **Estado de la columna previa:** configuración completa de colores en la columna anterior 
+
+Para **Bitmasking**
+
+1. Cada color ocupa 2 bits (necesitamos representar 3 colores + vacío)
+2. Una columna completa se codifica en un solo entero
+3. Ej: para `m = 3` necesitamos 6 bits para representar una columna completa
+
+</Solution>

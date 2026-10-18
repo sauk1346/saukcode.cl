@@ -1,0 +1,76 @@
+# Encontrar el Nodo más Cercado a Dos Nodos
+
+Se te da un grafo **dirigido** de `n` nodos numerados del `0` al `n - 1`, donde cada nodo tiene **como máximo una** arista saliente.
+
+El grafo está representado con un arreglo **indexado desde 0** llamado `edges` de tamaño `n`, indicando que hay una arista dirigida del nodo `i` al nodo `edges[i]`. Si no hay arista saliente desde `i`, entonces `edges[i] == -1`.
+
+También se te dan dos enteros `node1` y `node2`.
+
+Devuelve *el **índice** del nodo que puede ser alcanzado desde ambos `node1` y `node2`, tal que el **máximo** entre la distancia de `node1` a ese nodo y de `node2` a ese nodo sea **minimizado**. Si hay múltiples respuestas, devuelve el nodo con el índice **más pequeño**, y si no existe una respuesta posible, devuelve `-1`.*
+
+**Nota** que `edges` puede contener ciclos.
+
+## Ejemplos
+
+**Ejemplo 1:**
+
+<img
+	src="/leetcode/fig15.png"
+	style={{ display: 'block', margin: '0 auto', width:'30%'}}
+/>
+<br/>
+
+> **Input:** edges = [2,2,3,-1], node1 = 0, node2 = 1
+> **Output:** 2
+> **Explicación:** La distancia del nodo 0 al nodo 2 es 1, y la distancia del nodo 1 al nodo 2 es 1.
+> El máximo de esas dos distancias es 1. Se puede probar que no podemos obtener un nodo con una distancia máxima menor que 1, así que devolvemos el nodo 2.
+
+
+**Ejemplo 2:**
+
+<img
+	src="/leetcode/fig16.png"
+	style={{ display: 'block', margin: '0 auto', width:'20%'}}
+/>
+<br/>
+
+> **Input:** edges = [1,2,-1], node1 = 0, node2 = 2
+> **Output:** 2
+> **Explicación:** La distancia del nodo 0 al nodo 2 es 2, y la distancia del nodo 2 a sí mismo es 0.
+> El máximo de esas dos distancias es 2. Se puede probar que no podemos obtener un nodo con una distancia máxima menor que 2, así que devolvemos el nodo 2.
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+from collections import deque
+
+class Solution:
+    def closestMeetingNode(self, edges: List[int], node1: int, node2: int) -> int:
+        n = len(edges)
+        dist = [[-1, -1] for _ in range(n)]
+        dist[node1][0] = 0
+        dist[node2][1] = 0
+        
+        q = deque()
+        q.append((node1, 0))
+        q.append((node2, 1))
+        
+        while q:
+            curr, typ = q.popleft()
+            neighbor = edges[curr]
+            if neighbor != -1 and dist[neighbor][typ] == -1:
+                dist[neighbor][typ] = dist[curr][typ] + 1
+                q.append((neighbor, typ))
+        
+        meeting_point = -1
+        min_distance = float('inf')
+        for i in range(n):
+            if dist[i][0] != -1 and dist[i][1] != -1:
+                curr_distance = max(dist[i][0], dist[i][1])
+                if curr_distance < min_distance:
+                    min_distance = curr_distance
+                    meeting_point = i
+        return meeting_point
+```
+</Solution>

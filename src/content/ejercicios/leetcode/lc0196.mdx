@@ -1,0 +1,70 @@
+# Eliminar Emails Duplicados
+
+**Tabla:** `Person`
+
+<TerminalOutput>
+{`+-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| email       | varchar |
++-------------+---------+
+
+- "id" es la clave primaria para esta tabla.
+- Cada fila de esta tabla contiene un email. 
+- Los emails no contienen letras mayúsculas.`}
+</TerminalOutput>
+
+
+Escribe una solución para **eliminar** todos los emails duplicados, manteniendo solo un email único con el `id` más pequeño.
+
+Para usuarios SQL, tener en cuenta que se debe escribir una declaración `DELETE` y no una `SELECT`.
+
+Para usuarios Pandas, tener en cuenta que se debe modificar la tabla `Person`.
+
+
+## Ejemplo
+<MultiColumn>
+<div>
+**Input:** 
+<TerminalOutput>
+{`tabla Person:
++----+------------------+
+| id | email            |
++----+------------------+
+| 1  | john@example.com |
+| 2  | bob@example.com  |
+| 3  | john@example.com |
++----+------------------+`}
+</TerminalOutput>
+</div>
+<div>
+**Output:**
+<TerminalOutput>
+{`+----+------------------+
+| id | email            |
++----+------------------+
+| 1  | john@example.com |
+| 2  | bob@example.com  |
++----+------------------+
+
+Explicación:
+john@example.com se repite dos veces. 
+Mantenemos la fila con id más pequeña = 1.`}
+</TerminalOutput>
+</div>
+</MultiColumn>
+
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+import pandas as pd
+
+def delete_duplicate_emails(person: pd.DataFrame) -> None:
+    
+    person.sort_values('id', inplace=True)
+    person.drop_duplicates(subset=['email'], keep='first', inplace=True)
+```
+</Solution>

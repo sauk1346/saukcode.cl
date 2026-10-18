@@ -1,0 +1,19 @@
+---
+// Como en Next: el índice de un topic redirige al detalle del ramo.
+// (No puede ir en config.redirects porque descarta el parámetro topicSlug.)
+import { getAllCourseIds } from '../../../../../utils/courseUtils.js';
+import { getTopicsByCourseId } from '../../../../../lib/flashcards.js';
+
+export function getStaticPaths() {
+  const paths = [];
+  for (const courseId of getAllCourseIds()) {
+    for (const topic of getTopicsByCourseId(courseId)) {
+      paths.push({ params: { courseId, topicSlug: topic.slug } });
+    }
+  }
+  return paths;
+}
+
+const { courseId } = Astro.params;
+return Astro.redirect(`/inacap/${courseId}`);
+---

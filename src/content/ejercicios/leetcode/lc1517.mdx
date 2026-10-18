@@ -1,0 +1,73 @@
+# Usuarios con Emails Válidos
+
+**Tabla:** `Users`
+<TerminalOutput>
+{`+---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| user_id       | int     |
+| name          | varchar |
+| mail          | varchar |
++---------------+---------+
+
+- "user_id" es la clave primaria para esta tabla.
+- Esta tabla contiene información de los usuarios registrados en un 
+    sitio web. Algunos e-mails son inválidos.`}
+</TerminalOutput>
+
+Escribe una solución para encontrar los usuarios que tienen **emails válidos**
+
+Un email válido tiene un nombre de prefijo y un dominio donde:
+- **El nombre de prefijo** es un string que puede contener letras (mayúsculas y minúsculas), dígitos, guión bajo `_` , punto `.` , y/o guión `-` . El nombre de prefijo **debe** comenzar con una letra.
+- **El dominio** es `@leetcode.com`
+
+Devuelve el resultado en **cualquier orden**.
+
+## Ejemplo
+
+**Input:** 
+<TerminalOutput>
+{`Tabla Users:
++---------+-----------+-------------------------+
+| user_id | name      | mail                    |
++---------+-----------+-------------------------+
+| 1       | Winston   | winston@leetcode.com    |
+| 2       | Jonathan  | jonathanisgreat         |
+| 3       | Annabelle | bella-@leetcode.com     |
+| 4       | Sally     | sally.come@leetcode.com |
+| 5       | Marwan    | quarz#2020@leetcode.com |
+| 6       | David     | david69@gmail.com       |
+| 7       | Shapiro   | .shapo@leetcode.com     |
++---------+-----------+-------------------------+`}
+</TerminalOutput>
+
+**Output:**
+<TerminalOutput>
+{`+---------+-----------+-------------------------+
+| user_id | name      | mail                    |
++---------+-----------+-------------------------+
+| 1       | Winston   | winston@leetcode.com    |
+| 3       | Annabelle | bella-@leetcode.com     |
+| 4       | Sally     | sally.come@leetcode.com |
++---------+-----------+-------------------------+
+
+Explicación:
+    - email del usuario 2 no tiene un dominio.
+    - email del usuario 5 tiene el símbolo "#" que no está permitido.
+    - email del usuario 6 no tiene el dominio leetcode.
+    - email del usuario 7 comienza con un punto.`}
+</TerminalOutput>
+
+
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+def valid_emails(users: pd.DataFrame) -> pd.DataFrame:
+    
+    regex = r'^[a-zA-Z][a-zA-Z0-9_.-]*@leetcode\.com$'    
+    
+    return users[users['mail'].str.match(regex)]
+```
+</Solution>

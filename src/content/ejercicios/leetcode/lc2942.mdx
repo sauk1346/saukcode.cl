@@ -1,0 +1,36 @@
+# Encuentra Palabras con un Carácter Específico
+
+Sea un arreglo de strings `words` **indexado desde 0** y un carácter `x`.
+
+Devuelve *un **arreglo de índices** que representen las palabras que contienen el carácter `x`*.
+
+**Nota:** el arreglo devuelto puede estar en **cualquier orden.**
+
+## Ejemplos
+
+**Ejemplo 1:**
+> **Input:** words = ["leet","code"], x = "e"
+> **Output:** [0,1]
+> **Explicación:** "e" aparece en ambas palabras: "leet", y "code". Por lo tanto, devolvemos los índices 0 y 1.
+
+**Ejemplo 2:**
+> **Input:** words = ["abc","bcd","aaaa","cbc"], x = "a"
+> **Output:** [0,2]
+> **Explicación:** "a" apararece en "abc", y "aaaa". Por lo tanto, devolvemos los índices 0 and 2.
+
+**Ejemplo 3:**
+> **Input:** words = ["abc","bcd","aaaa","cbc"], x = "z"
+> **Output:** []
+> **Explicación:** "z" no aparece en ninguna de las palabras. Por lo tanto, devolvemos un arreglo vacío.
+
+## Soluciones
+
+<details>
+    <summary>Python</summary>
+```python
+class Solution:
+    def findWordsContaining(self, words: List[str], x: str) -> List[int]:
+
+        return [i for i, word in enumerate(words) if x in word]
+```
+</details>

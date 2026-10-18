@@ -1,0 +1,58 @@
+# Modificar Columnas
+
+```text
+DataFrame employees
++-------------+--------+
+| Column Name | Type   |
++-------------+--------+
+| name        | object |
+| salary      | int    |
++-------------+--------+
+``` 
+
+Una empresa tiene la intención de dar un aumento salarial a sus empleados.
+
+Escribe una solución para modificar la columna `salary` multiplicando cada salario por 2.
+
+## Ejemplo
+
+```text
+Input:
+DataFrame employees
++---------+--------+
+| name    | salary |
++---------+--------+
+| Jack    | 19666  |
+| Piper   | 74754  |
+| Mia     | 62509  |
+| Ulysses | 54866  |
++---------+--------+
+
+Output:
++---------+--------+
+| name    | salary |
++---------+--------+
+| Jack    | 39332  |
+| Piper   | 149508 |
+| Mia     | 125018 |
+| Ulysses | 109732 |
++---------+--------+
+
+Explcación:
+Cada salario ha sido duplicado.
+```
+
+## Soluciones
+
+<details>
+    <summary>Python</summary>
+```python
+import pandas as pd
+
+def modifySalaryColumn(employees: pd.DataFrame) -> pd.DataFrame:
+    
+    employees['salary'] = employees['salary'] * 2
+    
+    return employees
+```
+</details>

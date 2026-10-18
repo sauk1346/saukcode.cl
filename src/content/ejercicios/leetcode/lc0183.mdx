@@ -1,0 +1,85 @@
+# Clientes que Nunca Ordenan
+
+**Tabla:** `Customers`
+
+<TerminalOutput>
+{`+-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| id          | int     |
+| name        | varchar |
++-------------+---------+
+
+- "id" es la clave primaria para esta tabla.
+- Cada fila de esta tabla indica el ID y nombre y un cliente.`}
+</TerminalOutput>
+
+**Tabla:** `Orders`
+
+<TerminalOutput>
+{`+-------------+------+
+| Column Name | Type |
++-------------+------+
+| id          | int  |
+| customerId  | int  |
++-------------+------+
+
+- "id" es la clave primaria de esta tabla.
+- "customerId" es una clave foránea del ID de la tabla Customers.
+- Cada fila de esta tabla indica el ID de un pedido y el ID del cliente que lo ordenó.`}
+</TerminalOutput>
+
+Escribe una solución para encontrar todos los cliente que nunca ordenan nada.
+
+Devuelve el resultado en **cualquier orden.**
+
+## Ejemplo
+
+<MultiColumn>
+<div>
+**Input**
+<TerminalOutput>
+{`Customers table:
++----+-------+
+| id | name  |
++----+-------+
+| 1  | Joe   |
+| 2  | Henry |
+| 3  | Sam   |
+| 4  | Max   |
++----+-------+
+
+Orders table:
++----+------------+
+| id | customerId |
++----+------------+
+| 1  | 3          |
+| 2  | 1          |
++----+------------+`}
+</TerminalOutput>
+</div>
+<div>
+**Output**
+<TerminalOutput>
+{`+-----------+
+| Customers |
++-----------+
+| Henry     |
+| Max       |
++-----------+`}
+</TerminalOutput>
+</div>
+</MultiColumn>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+def find_customers(customers: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
+
+    customer_ids_with_orders = orders['customerId'].unique()
+    customers_without_orders = customers[~customers['id'].isin(customer_ids_with_orders)]
+
+    return customers_without_orders[['name']].rename(columns={'name': 'Customers'})
+```
+</Solution>

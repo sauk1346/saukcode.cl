@@ -1,0 +1,76 @@
+# Reestructurar Datos: Concatenar
+
+<MultiColumn>
+<div>
+**DataFrame** `df1`
+<TerminalOutput>
+{`+-------------+--------+
+| Column Name | Type   |
++-------------+--------+
+| student_id  | int    |
+| name        | object |
+| age         | int    |
++-------------+--------+`}
+</TerminalOutput>
+</div>
+<div>
+**Dataframe** `df2`
+<TerminalOutput>
+{`+-------------+--------+
+| Column Name | Type   |
++-------------+--------+
+| student_id  | int    |
+| name        | object |
+| age         | int    |
++-------------+--------+`}
+</TerminalOutput>
+</div>
+</MultiColumn>
+
+Escribe una solución para concatenar estos dos DataFrames **verticalmente** en un solo DataFrame.
+
+## Ejemplo
+
+**Input**
+
+<TerminalOutput>
+{`df1                                df2
++------------+---------+-----+     +------------+------+-----+
+| student_id | name    | age |     | student_id | name | age |
++------------+---------+-----+     +------------+------+-----+
+| 1          | Mason   | 8   |     | 5          | Leo  | 7   |
+| 2          | Ava     | 6   |     | 6          | Alex | 7   |
+| 3          | Taylor  | 15  |     +------------+------+-----+
+| 4          | Georgia | 17  |
++------------+---------+-----+`}
+</TerminalOutput>
+
+**Output**
+
+<TerminalOutput>
+{`+------------+---------+-----+
+| student_id | name    | age |
++------------+---------+-----+
+| 1          | Mason   | 8   |
+| 2          | Ava     | 6   |
+| 3          | Taylor  | 15  |
+| 4          | Georgia | 17  |
+| 5          | Leo     | 7   |
+| 6          | Alex    | 7   |
++------------+---------+-----+
+
+Explicación:
+Los dos DataFrames se apilan verticalmente, y sus filas se combinan.`}
+</TerminalOutput>
+
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+import pandas as pd
+
+def concatenateTables(df1: pd.DataFrame, df2: pd.DataFrame) -> pd.DataFrame:
+    return pd.concat([df1,df2])
+```
+</Solution>

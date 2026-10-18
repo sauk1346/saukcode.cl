@@ -1,0 +1,110 @@
+# Primer Número Único
+
+Tienes una cola de enteros, necesitas recuperar el primero entero único en la cola.
+
+Implementa la clase `FirstUnique`:
+
+- `FirstUnique(int[] nums)` inicializa el objeto con los números en la cola.
+- `int showFirstUnique()` devuelve el valor del primer entero único de la cola, o `-1` si no existe tal entero.
+- `void add(int value)` inserta un valor en la cola.
+
+## Ejemplos
+
+**Ejemplo 1:**
+<TerminalOutput>
+{`Input: 
+    ["FirstUnique","showFirstUnique","add","showFirstUnique","add","showFirstUnique","add","showFirstUnique"]
+    [[[2,3,5]],[],[5],[],[2],[],[3],[]]
+
+Output: 
+    [null,2,null,2,null,3,null,-1]
+
+Explicación: 
+    FirstUnique firstUnique = new FirstUnique([2,3,5]);
+    firstUnique.showFirstUnique(); // devuelve 2
+    firstUnique.add(5);            // la cola es [2,3,5,5]
+    firstUnique.showFirstUnique(); // devuelve 2
+    firstUnique.add(2);            // la cola es [2,3,5,5,2]
+    firstUnique.showFirstUnique(); // devuelve 3
+    firstUnique.add(3);            // la cola es [2,3,5,5,2,3]
+    firstUnique.showFirstUnique(); // devuelve -1`}
+</TerminalOutput>
+
+**Ejemplo 2:**
+<TerminalOutput>
+{`Input: 
+    ["FirstUnique","showFirstUnique","add","add","add","add","add","showFirstUnique"]
+    [[[7,7,7,7,7,7]],[],[7],[3],[3],[7],[17],[]]
+
+Output: 
+    [null,-1,null,null,null,null,null,17]
+
+Explicación: 
+    FirstUnique firstUnique = new FirstUnique([7,7,7,7,7,7]);
+    firstUnique.showFirstUnique(); // devuelve -1
+    firstUnique.add(7);            // la cola es [7,7,7,7,7,7,7]
+    firstUnique.add(3);            // la cola es [7,7,7,7,7,7,7,3]
+    firstUnique.add(3);            // la cola es [7,7,7,7,7,7,7,3,3]
+    firstUnique.add(7);            // la cola es [7,7,7,7,7,7,7,3,3,7]
+    firstUnique.add(17);           // la cola es [7,7,7,7,7,7,7,3,3,7,17]
+    firstUnique.showFirstUnique(); // devuelve 17`}
+</TerminalOutput>
+
+**Ejemplo 3:**
+<TerminalOutput>
+{`Input:
+    ["FirstUnique","showFirstUnique","add","showFirstUnique"]
+    [[[809]],[],[809],[]]
+
+Output: 
+    [null,809,null,-1]
+
+Explicación: 
+    FirstUnique firstUnique = new FirstUnique([809]);
+    firstUnique.showFirstUnique(); // return 809
+    firstUnique.add(809);          // la cola es [809,809]
+    firstUnique.showFirstUnique(); // return -1`}
+</TerminalOutput>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+from collections import OrderedDict
+from typing import List
+
+class FirstUnique:
+
+    def __init__(self, nums: List[int]):
+        # Diccionario para contar frecuencias
+        self.count = {}
+        
+        # Diccionario ordenado para mantener elementos únicos en orden
+        self.unique = OrderedDict()
+        
+        # Procesar números iniciales
+        for num in nums:
+            self._add_number(num)
+    
+    def _add_number(self, num: int) -> None:
+        # Actualizar contador
+        if num in self.count:
+            self.count[num] += 1
+            # Si ya no es único, removerlo del diccionario de únicos
+            if num in self.unique:
+                del self.unique[num]
+        else:
+            self.count[num] = 1
+            # Como es la primera vez que aparece, es único
+            self.unique[num] = True
+
+    def showFirstUnique(self) -> int:
+        # El primer elemento del OrderedDict es el primer único
+        if self.unique:
+            return next(iter(self.unique))
+        return -1
+
+    def add(self, value: int) -> None:
+        self._add_number(value)
+``` 
+</Solution>

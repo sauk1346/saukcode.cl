@@ -1,0 +1,106 @@
+/* ================================
+   CONTENEDOR DE ESTADÍSTICAS
+   ================================ */
+   .statsContainer {
+    display: flex;
+    margin-bottom: var(--spacing-xl);
+    gap: var(--spacing-xl);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* ================================
+     ELEMENTO DE ESTADÍSTICA
+     ================================ */
+  .statItem {
+    text-align: center;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    box-shadow: var(--shadow-md);
+    min-width: 130px;
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+  }
+  
+  .statItem:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* ================================
+     NÚMERO DE ESTADÍSTICA
+     ================================ */
+  .statNumber {
+    display: block;
+    font-size: 2.25rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.25rem;
+    transition: all 0.3s ease;
+  }
+  
+  /* ================================
+     ETIQUETA DE ESTADÍSTICA
+     ================================ */
+  .statLabel {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+  }
+  
+  /* ================================
+     DARK MODE
+     ================================ */
+  :global(html.dark-mode) .statItem,
+  :global(html.dark-mode-override) .statItem {
+    background: linear-gradient(135deg, #1e1e1e 0%, #2d3748 100%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+    border-color: #4a5568;
+  }
+  
+  :global(html.dark-mode) .statItem:hover,
+  :global(html.dark-mode-override) .statItem:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  :global(html.dark-mode) .statNumber,
+  :global(html.dark-mode-override) .statNumber {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  :global(html.dark-mode) .statLabel,
+  :global(html.dark-mode-override) .statLabel {
+    color: #94a3b8;
+  }
+  
+  /* ================================
+     RESPONSIVE
+     ================================ */
+  @media (max-width: 768px) {
+    .statsContainer {
+      gap: var(--spacing-md);
+    }
+
+    .statItem {
+      min-width: 110px;
+      padding: var(--spacing-md);
+    }
+
+    .statNumber {
+      font-size: 1.875rem;
+    }
+
+    .statLabel {
+      font-size: 0.8rem;
+    }
+  }

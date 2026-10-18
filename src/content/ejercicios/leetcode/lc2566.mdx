@@ -1,0 +1,50 @@
+# Máxima Diferencia al Remapear un Dígito
+
+Se te da un entero `num`. Sabes que Bob astutamente **remapeará** uno de los `10` posibles dígitos (`0` al `9`) a otro dígito.
+
+Devuelve *la diferencia entre los valores máximo y mínimo que Bob puede hacer al remapear **exactamente un** dígito en `num`.*
+
+**Notas**
+
+- Cuando Bob remapea un dígito d1 a otro dígito d2, Bob reemplaza todas las ocurrencias de `d1` en `num` con `d2`.
+- Bob puede remapear un dígito a sí mismo, en cuyo caso `num` no cambia.
+- Bob puede remapear diferentes dígitos para obtener los valores mínimo y máximo respectivamente.
+- El número resultante después del remapeo puede contener ceros a la izquierda.
+
+## Ejemplos
+
+**Ejemplo 1:**
+> **Input:** num = 11891
+> **Output:** 99009
+> **Explicación:**
+> Para lograr el valor máximo, Bob puede remapear el dígito 1 al dígito 9 para obtener 99899.
+> Para lograr el valor mínimo, Bob puede remapear el dígito 1 al dígito 0, obteniendo 890.
+> La diferencia entre estos dos números es 99009.
+
+
+**Ejemplo 2:**
+> **Input:** num = 90
+> **Output:** 99
+> **Explicación:**
+> El valor máximo que puede devolver la función es 99 (si 0 se reemplaza por 9) y el valor mínimo que puede devolver la función es 0 (si 9 se reemplaza por 0).
+> Por lo tanto, devolvemos 99.
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+class Solution:
+    def minMaxDifference(self, num: int) -> int:
+        s = str(num)
+        
+        max_num = num
+        for digit in s:
+            if digit != '9':
+                max_num = int(s.replace(digit, '9'))
+                break
+        
+        min_num = int(s.replace(s[0], '0'))
+        
+        return max_num - min_num
+```
+</Solution>

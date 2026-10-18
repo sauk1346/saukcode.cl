@@ -1,0 +1,76 @@
+# Categorías de Salario
+
+**Tabla** `Accounts`
+<TerminalOutput>
+{`+-------------+------+
+| Column Name | Type |
++-------------+------+
+| account_id  | int  |
+| income      | int  |
++-------------+------+
+
+- "account_id" es la clave primaria para esta tabla.
+- Cada fila contiene información sobre el ingreso mensual de una cuenta bancaria.`}
+</TerminalOutput>
+
+Escribe una solución para calcular el número de cuentas bancarias para cada categoría de salario. Las categorías son:
+
+- **"Low Salary" (salario bajo):** Todos los salarios **estrictamente menores** que `$20000`.
+- **"Average Salary" (salario promedio):** Todos los salarios en el rango**inclusivo** `[$20000, $50000]`.
+- **"High Salary" (salario alto):** Todos los salarios **estrictamente mayores** que `$50000`.
+
+La tabla de resultados **debe contener** las tres categorías. Si no hay cuentas en una categoría, devuelve `0`.
+
+Devuelve la tabla resultado en **cualquier orden**.
+
+## Ejemplo
+
+**Input:**
+<TerminalOutput>
+{`Tabla Accounts:
++------------+--------+
+| account_id | income |
++------------+--------+
+| 3          | 108939 |
+| 2          | 12747  |
+| 8          | 87709  |
+| 6          | 91796  |
++------------+--------+`}
+</TerminalOutput>
+
+**Output:**
+<TerminalOutput>
+{`+----------------+----------------+
+| category       | accounts_count |
++----------------+----------------+
+| Low Salary     | 1              |
+| Average Salary | 0              |
+| High Salary    | 3              |
++----------------+----------------+
+
+Explicación:
+- Low Salary: Cuenta 2.
+- Average Salary: Ninguna cuenta.
+- High Salary: Cuentas 3, 6, y 8.`}
+</TerminalOutput>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+import pandas as pd
+
+def count_salary_categories(accounts: pd.DataFrame) -> pd.DataFrame:
+    
+    low_salary = (accounts['income'] < 20000).sum()
+    average_salary = ((accounts['income'] >= 20000) & (accounts['income'] <= 50000)).sum()
+    high_salary = (accounts['income'] > 50000).sum()
+    
+    result = pd.DataFrame({
+        'category': ['Low Salary', 'Average Salary', 'High Salary'],
+        'accounts_count': [low_salary, average_salary, high_salary]
+    })
+    
+    return result
+```
+</Solution>

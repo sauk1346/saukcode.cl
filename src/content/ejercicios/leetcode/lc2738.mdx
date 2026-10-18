@@ -1,0 +1,74 @@
+# Contar Ocurrencias en el Texto
+
+**Tabla:** `Files`
+<TerminalOutput>
+{`+-------------+---------+
+| Column Name | Type    |
++-- ----------+---------+
+| file_name   | varchar |
+| content     | text    |
++-------------+---------+
+
+- "file_name" es la columna con valores únicos de esta tabla. 
+- Cada fila contiene "file_name" y el contenido de ese archivo.`}
+</TerminalOutput>
+
+
+Escribe una solución para encontrar el número de archivos que tienen al menos una ocurrencia de las palabras **'bull'** y **'bear'** como **palabra independiente**, respectivamente, ignorando apariciones **dentro de otras palabras** (por ejemplo, 'bullet', 'bears').
+
+'bulls', o 'bear' al comienzo o final de una oración **no** serán considerados.
+
+Devuelve *la palabra 'bull' y 'bear' junto con el número correspondiente de ocurrencias en **cualquier orden***.
+
+## Ejemplo
+
+**Input:**
+<TerminalOutput>
+{`Tabla Files:
++------------+----------------------------------------------------------------------------------+
+| file_name  | content                                                                          | 
++------------+----------------------------------------------------------------------------------+
+| draft1.txt | The stock exchange predicts a bull market which would make many investors happy. | 
+| draft2.txt | The stock exchange predicts a bull market which would make many investors happy, |
+|            | but analysts warn of possibility of too much optimism and that in fact we are    |
+|            | awaiting a bear market.                                                          | 
+| draft3.txt | The stock exchange predicts a bull market which would make many investors happy, |
+|            | but analysts warn of possibility of too much optimism and that in fact we are    |
+|            | awaiting a bear market. As always predicting the future market is an uncertain   |
+|            | game and all investors should follow their instincts and best practices.         | 
++------------+----------------------------------------------------------------------------------+`}
+</TerminalOutput>
+
+
+**Output:**
+<TerminalOutput>
+{`+------+-------+
+| word | count |  
++------+-------+
+| bull | 3     | 
+| bear | 2     | 
++------+-------+
+
+Explicación:
+- La palabra "bull" aparece 1 vez en "draft1.txt", 1 vez en "draft2.txt" y 
+    1 vez en "draft3.txt". Por lo tanto, el número total de ocurrencias 
+    para la palabra "bull" es 3.
+- La palabra "bear" aparece 1 vez en "draft2.txt", y 1 vez en "draft3.txt". 
+    Por lo tanto, el número total de ocurrencias para la palabra "bear" es 2.`}
+</TerminalOutput>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+import pandas as pd
+
+def count_occurrences(files: pd.DataFrame) -> pd.DataFrame:
+    df = pd.DataFrame({
+        'word': ['bull', 'bear'],
+        'count':[files['content'].str.contains(' bull ').sum(), files['content'].str.contains(' bear ').sum()]
+
+    })
+    return df
+```
+</Solution>

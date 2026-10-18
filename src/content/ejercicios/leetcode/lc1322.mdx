@@ -1,0 +1,129 @@
+# Rendimiento de Anuncios
+
+**Tabla:** `Ads`
+<TerminalOutput>
+{`+---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| ad_id         | int     |
+| user_id       | int     |
+| action        | enum    |
++---------------+---------+
+
+- (ad_id, user_id) es la clave primaria (combination combinación de columnas 
+    con valores únicos) para esta tabla.
+- Cada fila de esta tabla contiene el ID para un Anuncio, el ID de un usuario, 
+    y la acción tomada por este usuario respecto a este Anuncio.
+- La columna "action" es un tipo ENUM (categoría) de ('Clicked', 'Viewed', 
+    'Ignored')`}
+</TerminalOutput>
+
+Una empresa está realizando Anuncios y quiere calcular el rendimiento de cada Anuncio. El rendimiento del Anuncio se mide usando la Tasa de Clics (CTR) donde
+
+$$
+CTR = \begin{cases}
+    0, & \text{si total clics anuncio + total vistas anuncio} = 0 \\
+    \frac{\text{total clics anuncio}}{\text{total clics anuncio + total vistas anuncio}} \times 100, & \text{en caso contrario}
+\end{cases}
+$$
+
+Escribe una solución para encontrar el `ctr` de cada anuncio. **Redondea** `ctr` a **dos decimales**.
+
+Devuelve la tabla de resultados ordenada por `ctr` en **orden descendente** y por `ad_id` en **orden ascendente** en caso de empate.
+
+## Ejemplo
+
+**Input:**
+<TerminalOutput>
+{`Tabla Ads:
++-------+---------+---------+
+| ad_id | user_id | action  |
++-------+---------+---------+
+| 1     | 1       | Clicked |
+| 2     | 2       | Clicked |
+| 3     | 3       | Viewed  |
+| 5     | 5       | Ignored |
+| 1     | 7       | Ignored |
+| 2     | 7       | Viewed  |
+| 3     | 5       | Clicked |
+| 1     | 4       | Viewed  |
+| 2     | 11      | Viewed  |
+| 1     | 2       | Clicked |
++-------+---------+---------+`}
+</TerminalOutput>
+
+**Output:**
+<TerminalOutput>
+{`+-------+-------+
+| ad_id | ctr   |
++-------+-------+
+| 1     | 66.67 |
+| 3     | 50.00 |
+| 2     | 33.33 |
+| 5     | 0.00  |
++-------+-------+
+
+Explicación:
+  - para ad_id = 1, ctr = (2/(2+1)) * 100 = 66.67
+  - para ad_id = 2, ctr = (1/(1+2)) * 100 = 33.33
+  - para ad_id = 3, ctr = (1/(1+1)) * 100 = 50.00
+  - para ad_id = 5, ctr = 0.00, Nota que ad_id = 5 no tiene clics o vistas.
+
+Nota: no nos importan los Anuncios Ignorados.`}
+</TerminalOutput>
+
+
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+import pandas as pd
+import numpy as np
+
+def ads_performance(ads: pd.DataFrame) -> pd.DataFrame:
+    
+    # Filtrar acciones 'Ignored' - solo nos importan 'Clicked' y 'Viewed'
+    relevant_ads = ads[ads['action'].isin(['Clicked', 'Viewed'])].copy()
+    
+    # Contar clics y vistas para cada ad_id
+    ad_stats = relevant_ads.groupby(['ad_id', 'action']).size().unstack(fill_value=0)
+    
+    # Asegurar que ambas columnas 'Clicked' y 'Viewed' existan
+    if 'Clicked' not in ad_stats.columns:
+        ad_stats['Clicked'] = 0
+    if 'Viewed' not in ad_stats.columns:
+        ad_stats['Viewed'] = 0
+    
+    # Calcular total de interacciones (clics + vistas)
+    ad_stats['total_interactions'] = ad_stats['Clicked'] + ad_stats['Viewed']
+    
+    # Calcular CTR usando la fórmula dada
+    ad_stats['ctr'] = np.where(
+        ad_stats['total_interactions'] == 0,
+        0.0,
+        (ad_stats['Clicked'] / ad_stats['total_interactions']) * 100
+    )
+    
+    # Redondear a 2 decimales
+    ad_stats['ctr'] = ad_stats['ctr'].round(2)
+    
+    # Obtener todos los ad_ids únicos de los datos originales para incluir anuncios sin clics/vistas
+    all_ads = pd.DataFrame({'ad_id': ads['ad_id'].unique()})
+    
+    # Hacer merge para incluir anuncios que podrían tener CTR = 0
+    result = all_ads.merge(
+        ad_stats[['ctr']].reset_index(), 
+        on='ad_id', 
+        how='left'
+    )
+    
+    # Llenar valores NaN con 0.00 (anuncios sin clics o vistas)
+    result['ctr'] = result['ctr'].fillna(0.00)
+    
+    # Ordenar por ctr descendente, luego por ad_id ascendente
+    result = result.sort_values(['ctr', 'ad_id'], ascending=[False, True])
+    
+    return result[['ad_id', 'ctr']]
+```
+</Solution>

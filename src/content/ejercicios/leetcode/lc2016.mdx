@@ -1,0 +1,46 @@
+# Diferencia Máxima entre Elementos Crecientes
+
+Dado un arreglo de enteros `nums` **indexado desde 0** de tamaño `n`, encuentra la **diferencia máxima** entre `nums[i]` y `nums[j]` (es decir, `nums[j] - nums[i]`), tal que `0 <= i < j < n` y `nums[i] < nums[j]`.
+
+Devuelve *la **diferencia máxima**. Si no existen tales `i` y `j`, devuelve `-1`.
+
+## Ejemplos 
+
+**Ejemplo 1:**
+> **Input:** nums = [7,1,5,4]
+> **Output:** 4
+> **Explicación:**
+> La diferencia máxima ocurre con i = 1 y j = 2, nums[j] - nums[i] = 5 - 1 = 4.
+> Nota que con i = 1 y j = 0, la diferencia nums[j] - nums[i] = 7 - 1 = 6, pero i > j, por lo que no es válido.
+
+**Ejemplo 2:**
+> **Input:** nums = [9,4,3,2]
+> **Output:** -1
+> **Explicación:**
+> No existe i y j tal que i < j y nums[i] < nums[j].
+
+**Ejemplo 3:**
+> **Input:** nums = [1,5,2,10]
+> **Output:** 9
+> **Explicación:**
+> La diferencia máxima ocurre con i = 0 y j = 3, nums[j] - nums[i] = 10 - 1 = 9.
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+class Solution:
+    def maximumDifference(self, nums: List[int]) -> int:
+        max_diff = float('-inf')
+
+        for j in range(len(nums)):
+            for i in range(j):
+                if nums[i] < nums[j] and (nums[j] - nums[i]) > max_diff:
+                    max_diff = nums[j] - nums[i]
+
+        if max_diff == float('-inf'):
+            return -1
+        else:
+            return max_diff
+```
+</Solution>

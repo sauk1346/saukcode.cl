@@ -1,0 +1,77 @@
+# Transformación a Arreglo-Cero III
+
+Dado un arreglo de enteros `nums` de longitud `n` y un arreglo 2D `queries` donde $queries[i] = [l_i, r_i]$
+
+Cada `queries[i]` representa la siguiente acción en `nums`:
+
+- Decrementa el valor en cada índice en el rango $[l_i,r_i]$ en `nums` en **máximo** 1.
+- La cantidad en que el valor es decrementado puede ser elegida **independientemente** para cada índice.
+
+Un **Arreglo-Cero** es un arreglo con todos sus elementos iguales a 0.
+
+Devuelve el número **máximo** de elementos que pueden ser removidos de `queries`, tal que `nums` aún pueda ser convertido a un **arreglo-cero** usando las *consultas restantes*. Si no es posible convertir `nums` a un **arreglo-cero**, devuelve -1.
+
+## Ejemplos
+
+**Ejemplo 1:**
+
+> **Input:** nums = [2,0,2], queries = [[0,2],[0,2],[1,1]]
+> **Output:** 1
+> **Explicación:**
+> Después de remover queries[2], nums aún puede ser convertido a arreglo-cero.
+> Usando queries[0], decrementa nums[0] y nums[2] en 1 y nums[1] en 0.
+> Usando queries[1], decrementa nums[0] y nums[2] en 1 y nums[1] en 0.
+
+**Ejemplo 2:**
+> **Input:** nums = [1,1,1,1], queries = [[1,3],[0,2],[1,3],[1,2]]
+> **Output:** 2
+> **Explicación:** Podemos remover queries[2] y queries[3].
+
+**Ejemplo 3:**
+> **Input:** nums = [1,2,3,4], queries = [[0,3]]
+> **Output:** -1
+> **Explicación:** nums no puede ser convertido a un arreglo-cero incluso después de usar todas las consultas.
+
+
+## Solución
+
+<details>
+    <summary>Python</summary>
+```python
+import heapq
+
+class Solution:
+    def maxRemoval(self, nums: List[int], queries: List[List[int]]) -> int:
+        n = len(nums)
+        used_query = []  
+        available_query = []
+        
+        queries.sort(key=lambda x: x[0])
+        
+        query_pos = 0
+        applied_count = 0
+        
+        for i in range(n):
+            
+            while query_pos < len(queries) and queries[query_pos][0] == i:
+                end = queries[query_pos][1]
+                heapq.heappush(available_query, -end)
+                query_pos += 1
+            
+            nums[i] -= len(used_query)
+            
+            while nums[i] > 0 and available_query and -available_query[0] >= i:
+                end = -heapq.heappop(available_query)
+                heapq.heappush(used_query, end)
+                nums[i] -= 1
+                applied_count += 1
+            
+            if nums[i] > 0:
+                return -1
+            
+            while used_query and used_query[0] == i:
+                heapq.heappop(used_query)
+        
+        return len(queries) - applied_count
+```
+</details>

@@ -1,0 +1,225 @@
+/* CompactPlatformGrid.module.css */
+
+/* Contenedor principal */
+.gridContainer {
+  width: 100%;
+  margin: var(--spacing-xl) 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* Grilla de plataformas - se adapta automáticamente */
+.platformGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 85px);
+  gap: var(--spacing-xl);
+  max-width: 600px;
+  width: 100%;
+  padding: var(--spacing-md);
+  justify-content: center;
+}
+
+/* Card individual de plataforma */
+.platformCard {
+  position: relative;
+  background: var(--card-bg, #ffffff);
+  border: 2px solid var(--border-color, #e2e8f0);
+  border-radius: var(--radius-lg);
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+}
+
+.platformCard:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: var(--primary, #3182ce);
+}
+
+/* Card seleccionada */
+.selectedCard {
+  border-color: var(--primary, #3182ce);
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.05) 0%, 
+    rgba(139, 92, 246, 0.05) 100%);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+}
+
+.selectedCard:hover {
+  transform: translateY(-2px) scale(1.01);
+}
+
+/* Contenido de la card */
+.cardContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+/* Contenedor de imagen */
+.imageContainer {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.platformCard:hover .imageContainer {
+  transform: scale(1.1);
+}
+
+/* Imagen de la plataforma */
+.platformImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: filter 0.3s ease;
+}
+
+/* Indicador de selección */
+.selectionIndicator {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  background: var(--primary, #3182ce);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: popIn 0.2s ease-out;
+}
+
+.checkmark {
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Animación de aparición del checkmark */
+@keyframes popIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* =================================================================
+ MODO OSCURO
+ ================================================================= */
+:global(html.dark-mode) .platformCard,
+:global(html.dark-mode-override) .platformCard {
+  background: var(--card-bg, #1e293b);
+  border-color: var(--border-color, #475569);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+:global(html.dark-mode) .platformCard:hover,
+:global(html.dark-mode-override) .platformCard:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  border-color: var(--primary, #60a5fa);
+}
+
+:global(html.dark-mode) .selectedCard,
+:global(html.dark-mode-override) .selectedCard {
+  background: linear-gradient(135deg, 
+    rgba(96, 165, 250, 0.1) 0%, 
+    rgba(168, 85, 247, 0.1) 100%);
+  border-color: var(--primary, #60a5fa);
+  box-shadow: 0 8px 25px rgba(96, 165, 250, 0.3);
+}
+
+/* =================================================================
+ RESPONSIVE DESIGN
+ ================================================================= */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .platformGrid {
+    grid-template-columns: repeat(auto-fit, 75px);
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm);
+  }
+  
+  .platformCard {
+    width: 75px;
+    height: 75px;
+    padding: var(--spacing-sm);
+  }
+  
+  .imageContainer {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+  .platformGrid {
+    grid-template-columns: repeat(auto-fit, 70px);
+    gap: 0.8rem;
+  }
+  
+  .platformCard {
+    width: 70px;
+    height: 70px;
+    padding: 0.4rem;
+    border-radius: 10px;
+  }
+  
+  .imageContainer {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .selectionIndicator {
+    width: 18px;
+    height: 18px;
+    top: 3px;
+    right: 3px;
+  }
+  
+  .checkmark {
+    font-size: 9px;
+  }
+}
+
+/* Pantallas grandes - limite máximo de columnas */
+@media (min-width: 1200px) {
+  .platformGrid {
+    grid-template-columns: repeat(auto-fit, 90px);
+    gap: var(--spacing-lg);
+    max-width: 650px;
+  }
+  
+  .platformCard {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .imageContainer {
+    width: 60px;
+    height: 60px;
+  }
+}

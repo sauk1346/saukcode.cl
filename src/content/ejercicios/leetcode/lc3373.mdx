@@ -1,0 +1,114 @@
+# Maximizar Cantidad de Nodos Objetivos al Unir Árboles II
+
+Existen dos árboles **no dirigidos** con `n` y `m` nodos, etiquetados desde `[0, n - 1]` y `[0, m - 1]`, respectivamente.
+
+Se te dan dos arreglos de enteros 2D `edges1` y `edges2` de longitudes `n - 1` y `m - 1`, respectivamente, donde $edges1[i] = [a_i, b_i]$ indica que hay una arista entre los nodos $a_i$ y $b_i$ en el primer árbol y $edges2[i] = [u_i, v_i]$ indica que hay una arista entre los nodos $u_i$ y $v_i$ en el segundo árbol.
+
+El nodo `u` es objetivo del nodo `v` si el número de aristas en la ruta de `u` a `v` es par. 
+
+**Nota** que un nodo es *siempre* **objetivo** de sí mismo.
+
+Devuelve un arreglo de `n` enteros `answer`, donde `answer[i]` es el número **máximo** posible de nodos que son **objetivo** del nodo `i` del primer árbol si tuvieras que conectar un nodo del primer árbol a otro nodo del segundo árbol.
+
+**Nota** que las consultas son independientes entre sí. Es decir, para cada consulta eliminarás la arista añadida antes de proceder a la siguiente consulta.
+
+## Ejemplos
+
+**Ejemplo 1**
+> **Input:** edges1 = [[0,1],[0,2],[2,3],[2,4]], edges2 = [[0,1],[0,2],[0,3],[2,7],[1,4],[4,5],[4,6]]
+> **Output:** [8,7,7,8,8]
+> **Explicación:**
+> Para i = 0, conectar el nodo 0 del primer árbol al nodo 0 del segundo árbol.
+> Para i = 1, conectar el nodo 1 del primer árbol al nodo 4 del segundo árbol.
+> Para i = 2, conectar el nodo 2 del primer árbol al nodo 7 del segundo árbol.
+> Para i = 3, conectar el nodo 3 del primer árbol al nodo 0 del segundo árbol.
+> Para i = 4, conectar el nodo 4 del primer árbol al nodo 4 del segundo árbol.
+
+<img
+	src="/leetcode/fig13.png"
+	style={{ display: 'block', margin: '0 auto', width:'90%'}}
+/>
+<br/>
+
+
+**Ejemplo 2:**
+> **Input:** edges1 = [[0,1],[0,2],[0,3],[0,4]], edges2 = [[0,1],[1,2],[2,3]]
+> **Output:** [3,6,6,6,6]
+> **Explicación:**
+> Para cada i, conectar el nodo i del primer árbol con cualquier nodo del segundo árbol.
+
+<img
+	src="/leetcode/fig14.png"
+	style={{ display: 'block', margin: '0 auto', width:'70%'}}
+/>
+<br/>
+
+
+## Soluciones
+
+<details>
+    <summary>Python</summary>
+```python
+from collections import deque
+from typing import List, Optional
+
+class Solution:
+   # Un solo BFS que:
+   # 1) devuelve el número de nodos en niveles pares, y
+   # 2) si `included` no es nulo, marca exactamente esos nodos en niveles pares
+   def bfs(self, start: int, adj: List[List[int]], included: Optional[List[bool]] = None) -> int:
+       q = deque()
+       q.append((start, -1))
+       count = 0
+       level = 0
+       while q:
+           size = len(q)
+           # en niveles pares tanto agregamos al conteo como (opcionalmente) registramos los nodos
+           if level % 2 == 0:
+               count += size
+           for _ in range(size):
+               curr, parent = q.popleft()
+               if included is not None and level % 2 == 0:
+                   # marcar este nodo como "incluido"
+                   included[curr] = True
+               for v in adj[curr]:
+                   if v == parent:
+                       continue
+                   q.append((v, curr))
+           level += 1
+       return count
+   
+   def maxTargetNodes(self, edges1: List[List[int]], edges2: List[List[int]]) -> List[int]:
+       # construir listas de adyacencia
+       n1 = len(edges1) + 1
+       n2 = len(edges2) + 1
+       adj1 = [[] for _ in range(n1 + 1)]
+       adj2 = [[] for _ in range(n2 + 1)]
+       for u, v in edges1:
+           adj1[u].append(v)
+           adj1[v].append(u)
+       for u, v in edges2:
+           adj2[u].append(v)
+           adj2[v].append(u)
+       
+       # Paso-1: Encontrar lo mejor que puedes hacer agregando la arista extra en el árbol-2
+       even_count2 = self.bfs(0, adj2) # conteo de nodos en nivel par
+       odd_count2 = n2 - even_count2 # el resto son de nivel impar
+       best2 = max(even_count2, odd_count2)
+       
+       # Paso-2: Ejecutar BFS en el árbol-1, y registrar nodos en niveles pares
+       included = [False] * n1
+       even_count1 = self.bfs(0, adj1, included)
+       
+       # Paso-3: Para cada i, si i estaba en nivel par en el árbol-1 lo conectamos al mejor nivel par del árbol-2
+       ans = [0] * n1
+       for i in range(n1):
+           if included[i]:
+               # contribuye even_count1 del árbol-1 más best2 del árbol-2
+               ans[i] = even_count1 + best2
+           else:
+               # sería impar en el árbol-1, así que obtienes (n1-even_count1) + best2
+               ans[i] = (n1 - even_count1) + best2
+       return ans
+```
+</details>

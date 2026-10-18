@@ -1,0 +1,63 @@
+# Encadenamiento de Métodos
+
+**DataFrame** `animals`
+
+<TerminalOutput>
+{`+-------------+--------+
+| Column Name | Type   |
++-------------+--------+
+| name        | object |
+| species     | object |
+| age         | int    |
+| weight      | int    |
++-------------+--------+`}
+</TerminalOutput>
+
+Escribe una solución para listar los nombres de animales que pesen **estrictamente más de** `100` kilogramos.
+
+Devuelve los animales ordenados por peso en **orden descendente**.
+
+## Ejemplo
+
+**Input:**
+<TerminalOutput>
+{`DataFrame animals:
++----------+---------+-----+--------+
+| name     | species | age | weight |
++----------+---------+-----+--------+
+| Tatiana  | Snake   | 98  | 464    |
+| Khaled   | Giraffe | 50  | 41     |
+| Alex     | Leopard | 6   | 328    |
+| Jonathan | Monkey  | 45  | 463    |
+| Stefan   | Bear    | 100 | 50     |
+| Tommy    | Panda   | 26  | 349    |
++----------+---------+-----+--------+`}
+</TerminalOutput>
+
+**Output:**
+<TerminalOutput>
+{`+----------+
+| name     |
++----------+
+| Tatiana  |
+| Jonathan |
+| Tommy    |
+| Alex     |
++----------+`}
+</TerminalOutput>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+import pandas as pd
+
+def findHeavyAnimals(animals: pd.DataFrame) -> pd.DataFrame:
+    return (
+        animals
+            .query("weight > 100")
+            .sort_values('weight', ascending=False)
+            [["name"]]
+    )
+```
+</Solution>

@@ -1,0 +1,39 @@
+# Calculadora de IMC
+
+Escribe un programa en Java que calcule el Índice de Masa Corporal (IMC) a partir del peso (`double kg`) y la estatura (`double metros`) de una persona.
+
+La fórmula es:
+
+$$
+IMC = \frac{peso}{estatura^2}
+$$
+
+Imprime el resultado con 2 decimales.
+
+### Ejemplo
+
+<TerminalOutput>
+{`Input:  peso = 70.0, estatura = 1.75
+Output: IMC = 22.86`}
+</TerminalOutput>
+
+## Solución
+
+<Solution title="Java" icon="Java">
+```java
+public class Main {
+    public static void main(String[] args) {
+        double peso = 70.0;
+        double estatura = 1.75;
+
+        double imc = peso / (estatura * estatura);
+
+        System.out.printf("IMC = %.2f%n", imc);
+    }
+}
+```
+
+- Se declaran `peso` y `estatura` como `double` porque el cálculo del IMC requiere precisión decimal.
+- La fórmula se implementa directamente: `peso / (estatura * estatura)`.
+- `System.out.printf("%.2f", imc)` formatea el resultado con exactamente 2 decimales.
+</Solution>

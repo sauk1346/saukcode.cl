@@ -1,0 +1,66 @@
+# Países Grandes
+
+**Tabla:** `World`
+
+<TerminalOutput>
+{`+-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| name        | varchar |
+| continent   | varchar |
+| area        | int     |
+| population  | int     |
+| gdp         | bigint  |
++-------------+---------+
+
+- "name" es la clave primaria para esta tabla.
+- Cada fila de esta tabla proporciona información sobre el nombre de
+    un país, el continente al que pertenece, área, población y valor gdp (PIB)`}
+</TerminalOutput>
+
+Un país es **grande** si:
+
+- tiene una área de al menos tres millones (`3000000 km²`) o,
+- tiene una población de al menos veinticinco millones (`25000000`)
+
+Escribe una solución para encontrar el nombre, población y área de los **países grandes**
+
+Devuelve la tabla de resultados en **cualquier orden.**
+
+## Ejemplo
+
+**Input:**
+<TerminalOutput>
+{`World table:
++-------------+-----------+---------+------------+--------------+
+| name        | continent | area    | population | gdp          |
++-------------+-----------+---------+------------+--------------+
+| Afghanistan | Asia      | 652230  | 25500100   | 20343000000  |
+| Albania     | Europe    | 28748   | 2831741    | 12960000000  |
+| Algeria     | Africa    | 2381741 | 37100000   | 188681000000 |
+| Andorra     | Europe    | 468     | 78115      | 3712000000   |
+| Angola      | Africa    | 1246700 | 20609294   | 100990000000 |
++-------------+-----------+---------+------------+--------------+`}
+</TerminalOutput>
+
+**Output:**
+<TerminalOutput>
+{`+-------------+------------+---------+
+| name        | population | area    |
++-------------+------------+---------+
+| Afghanistan | 25500100   | 652230  |
+| Algeria     | 37100000   | 2381741 |
++-------------+------------+---------+`}
+</TerminalOutput>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+def big_countries(world: pd.DataFrame) -> pd.DataFrame:
+    
+    filtered_df = world.loc[(world['area']>= 3000000) | (world['population'] >= 25000000)]
+
+    return filtered_df[['name','population','area']]
+```
+</Solution>

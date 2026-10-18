@@ -1,0 +1,154 @@
+/* =================================================================
+   PROBLEMTABLE - USANDO ESTILOS BASE COMPARTIDOS
+   ================================================================= */
+
+@import url('/src/shared/table-base.module.css');
+
+.section { composes: section from '/src/shared/table-base.module.css'; }
+.tableContainer { composes: tableContainer from '/src/shared/table-base.module.css'; min-height: 760px; display: flex; flex-direction: column; }
+.platformTitle { composes: platformTitle from '/src/shared/table-base.module.css'; text-align: center; }
+.platformTitle::after { left: 50%; transform: translateX(-50%); }
+.tableWrapper { overflow-x: auto; margin-bottom: var(--spacing-md); }
+.table { composes: table from '/src/shared/table-base.module.css'; }
+.code { composes: code from '/src/shared/table-base.module.css'; white-space: nowrap; }
+.problemLink { composes: problemLink from '/src/shared/table-base.module.css'; }
+.noCertificate { composes: noCertificate from '/src/shared/table-base.module.css'; }
+.easy { composes: easy from '/src/shared/table-base.module.css'; }
+.medium { composes: medium from '/src/shared/table-base.module.css'; }
+.hard { composes: hard from '/src/shared/table-base.module.css'; }
+
+/* Anchos de columnas específicos para problemas */
+.table th:nth-child(1), .table td:nth-child(1) { width: 120px; }
+.table th:nth-child(2), .table td:nth-child(2) { width: 40%; }
+.table th:nth-child(3), .table td:nth-child(3) { width: 35%; }
+.table th:nth-child(4), .table td:nth-child(4) { width: 110px; }
+
+.sortIndicator {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+/* Footer y paginación */
+.tableFooter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  padding: var(--spacing-md) 0;
+  height: 70px;
+  border-top: 1px solid #e5e7eb;
+  transition: border-color 0.3s ease;
+  flex-shrink: 0;
+}
+
+:global(html.dark-mode) .tableFooter,
+:global(html.dark-mode-override) .tableFooter {
+  border-top-color: #4b5563;
+}
+
+.tableInfo {
+  flex: 1;
+  color: #666;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+:global(html.dark-mode) .tableInfo,
+:global(html.dark-mode-override) .tableInfo {
+  color: #9ca3af;
+}
+
+.paginationControls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  justify-content: flex-end;
+  min-width: 300px;
+}
+
+.paginationButton {
+  padding: var(--spacing-sm) 0.75rem;
+  border: 1px solid #dee2e6;
+  background-color: #f8f9fa;
+  color: #495057;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  min-width: 40px;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.paginationButton:hover:not(:disabled) {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.paginationButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f8f9fa;
+  color: #6c757d;
+}
+
+.paginationButton:focus,
+.paginationButton:active {
+  outline: none;
+}
+
+.currentPage {
+  background-color: #2563eb;
+  color: white;
+  border-color: #2563eb;
+  font-weight: 600;
+}
+
+.currentPage:hover {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+:global(html.dark-mode) .paginationButton,
+:global(html.dark-mode-override) .paginationButton {
+  background-color: #374151;
+  color: #e5e7eb;
+  border-color: #4b5563;
+}
+
+:global(html.dark-mode) .paginationButton:hover:not(:disabled),
+:global(html.dark-mode-override) .paginationButton:hover:not(:disabled) {
+  background-color: #4b5563;
+  border-color: #6b7280;
+}
+
+:global(html.dark-mode) .paginationButton:disabled,
+:global(html.dark-mode-override) .paginationButton:disabled {
+  background-color: #374151;
+  color: #6b7280;
+}
+
+:global(html.dark-mode) .currentPage,
+:global(html.dark-mode-override) .currentPage {
+  background-color: #2563eb;
+  color: #f9fafb;
+  border-color: #1d4ed8;
+}
+
+:global(html.dark-mode) .currentPage:hover,
+:global(html.dark-mode-override) .currentPage:hover {
+  background-color: #1d4ed8;
+  border-color: #1e40af;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .table { font-size: 0.8rem; min-width: 650px; }
+  .tableFooter { flex-direction: column; gap: var(--spacing-md); text-align: center; height: auto; padding: var(--spacing-md) 0; }
+  .paginationControls { justify-content: center; min-width: auto; }
+  .paginationButton { min-width: 35px; padding: 0.4rem 0.6rem; font-size: 0.8rem; }
+  .tableInfo { text-align: center; }
+}

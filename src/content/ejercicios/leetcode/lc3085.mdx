@@ -1,0 +1,63 @@
+# Eliminaciones Mínimas para hacer un String K-especial
+
+Se te da una cadena `word` y un entero `k`.
+
+Consideramos que `word` es **k-especial** si `|freq(word[i]) - freq(word[j])| <= k` para todos los índices `i` y `j` en la cadena.
+
+Aquí, `freq(x)` denota la frecuencia del carácter `x` en word, y `|y|` denota el valor absoluto de `y`.
+
+Devuelve *el número **mínimo** de caracteres que necesitas eliminar para hacer `word` **k-especial**.*
+
+# Ejemplos
+
+**Ejemplo 1:**
+> **Input:** word = "aabcaba", k = 0
+> **Output:** 3
+> **Explicación:** Podemos hacer que word sea 0-especial eliminando 2 ocurrencias de "a" y 1 ocurrencia de "c". Por lo tanto, word se convierte en "baba" donde freq('a') == freq('b') == 2.
+
+**Ejemplo 2:**
+> **Input:** word = "dabdcbdcdcd", k = 2
+> **Output:** 2
+> **Explicación:** Podemos hacer que word sea 2-especial eliminando 1 ocurrencia de "a" y 1 ocurrencia de "d". Por lo tanto, word se convierte en "bdcbdcdcd" donde freq('b') == 2, freq('c') == 3, y freq('d') == 4.
+
+**Ejemplo 3:**
+> **Input:** word = "aaabaaa", k = 2
+> **Output:** 1
+> **Explicación:** Podemos hacer que word sea 2-especial eliminando 1 ocurrencia de "b". Por lo tanto, word se convierte en "aaaaaa" donde la frecuencia de cada letra es uniformemente 6.
+
+# Soluciones
+
+<details>
+    <summary>Python</summary>
+```python
+class Solution:
+    def minimumDeletions(self, word: str, k: int) -> int:
+        n = len(word)
+        freq = {}
+        
+        # Contar la frecuencia de cada carácter
+        for c in word:
+            freq[c] = freq.get(c, 0) + 1
+        
+        ans = n
+        
+        # Probar la frecuencia de cada carácter como frecuencia mínima
+        for min_char, f1 in freq.items():
+            deletions = 0
+            
+            # Para cada carácter, calcular las eliminaciones necesarias
+            for curr_char, f2 in freq.items():
+                diff = f2 - f1
+                
+                if f1 > f2:
+                    # Si la frecuencia actual es menor que la mínima, eliminar todos
+                    deletions += f2
+                elif diff > k:
+                    # Si la diferencia excede k, eliminar caracteres en exceso
+                    deletions += (f2 - f1 - k)
+            
+            ans = min(ans, deletions)
+        
+        return ans
+```
+</details>

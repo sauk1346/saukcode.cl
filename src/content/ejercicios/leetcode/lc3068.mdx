@@ -1,0 +1,101 @@
+# Encontrar la Suma Máxima de Valores de Nodos   
+
+Existe un árbol **no dirigido** con `n` nodos numerados del `0` al `n - 1`
+
+Se te proporciona un arreglo bidimensional de enteros `edges` **indexado desde 0** de longitud `n -1`, donde $edges[i] = [u_i, v_i]$ indica que hya una arista entre los nodos $u_i$ y $v_i$ en el árbol. 
+
+También se te proporciona un entero **positivo** `k`, y un arreglo **indexado desde 0** de enteros **no negativos** `nums` de longitud `n`, donde `nums[i]` representa el **valor** del nodo numerado `i`.
+
+Alicia quiere que la suma de los valores de los nodos del árbol sea **máxima**, por lo cual Alicia puede realizar la siguiente operación **cualquier** número de veces **(incluyendo cero)** en el árbol:
+
+- Elegir cualquier arista **[u, v]** que conecte los nodos `u` y `v`, y actualizar sus valores de la siguiente manera:
+
+    - `nums[u] =  nums[u] XOR k`
+    - `nums[v] =  nums[v] XOR k`
+
+Devuelve la ***máxima suma** posible de los **valores** que Alicia puede lograr realizando la operación **cualquier** número de veces.*
+
+## Ejemplos
+
+**Ejemplo 1:**
+
+<img
+	src="/leetcode/fig06.png"
+	style={{ display: 'block', margin: '0 auto', width:'17%'}}
+/>
+<br/>
+
+> **Input:** nums = [1,2,1], k = 3, edges = [[0,1],[0,2]]
+> **Output:** 6
+```markdown
+Explicación: 
+
+Alicia puede lograr la suma máxima de 6 usando una sola operación:
+
+- Elegir la arista [0,2]. nums[0] y nums[2] se convierten en: 
+    
+        1 XOR 3 = 2, y el arreglo nums se convierte en: [1,2,1] -> [2,2,2].
+
+La suma total de valores es 2 + 2 + 2 = 6.
+Se puede demostrar que 6 es la suma máxima alcanzable de valores.
+```
+
+**Ejemplo 2:**
+
+<img
+	src="/leetcode/fig07.png"
+	style={{ display: 'block', margin: '0 auto', width:'15%'}}
+/>
+<br/>
+
+> **Input:** nums = [2,3], k = 7, edges = [[0,1]]
+> **Output:** 9
+```markdown
+Explicación:
+
+Alicia puede lograr la suma máxima de 9 usando una sola operación:
+
+- Elegir la arista [0,1]. nums[0] se convierte en: 
+
+    2 XOR 7 = 5 y nums[1] se convierte en: 3 XOR 7 = 4, y el arreglo nums se convierte en: [2,3] -> [5,4].
+
+La suma total de valores es 5 + 4 = 9.
+Se puede demostrar que 9 es la suma máxima alcanzable de valores.
+```
+
+**Ejemplo 3:**
+
+<img
+	src="/leetcode/fig08.png"
+	style={{ display: 'block', margin: '0 auto', width:'50%'}}
+/>
+<br/>
+
+> **Input:** nums = [7,7,7,7,7,7], k = 3, edges = [[0,1],[0,2],[0,3],[0,4],[0,5]]
+> **Output:** 42
+```markdown
+Explicación: 
+
+La suma máxima alcanzable es 42, que puede ser lograda por Alice sin realizar ninguna operación.
+```
+
+## Soluciones
+
+<details>
+    <summary>Python</summary>
+```python
+class Solution:
+    def maximumValueSum(self, nums: List[int], k: int, edges: List[List[int]]) -> int:
+
+        ans = 0
+        count = 0
+        discarded_node = float('inf') 
+        
+        for num in nums:
+            ans += max(num, num ^ k)
+            count += 1 if (num ^ k) > num else 0
+            discarded_node = min(discarded_node, abs(num - (num ^ k)))
+        
+        return ans if count % 2 == 0 else (ans - discarded_node)
+```
+</details>

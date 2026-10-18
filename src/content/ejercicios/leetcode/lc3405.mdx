@@ -1,0 +1,81 @@
+# Contar el Número de Arreglos con K Elementos Adyacentes Coincidentes
+
+Se te dan tres enteros `n`, `m`, `k`. Un **arreglo bueno** `arr` de tamaño `n` se define de la siguiente manera:
+
+- Cada elemento en `arr` está en el **rango inclusivo** `[1, m]`.
+- Exactamente `k` índices `i` (donde `1 <= i < n`) satisfacen la condición `arr[i - 1] == arr[i]`.
+
+Devuelve el número de **arreglos buenos** que se pueden formar.
+
+Como la respuesta puede ser muy grande, devuélvela **módulo** `10⁹ + 7`.
+
+## Ejemplos
+
+**Ejemplo 1:**
+> **Input:** n = 3, m = 2, k = 1
+> **Output:** 4
+> **Explicación:**
+> Hay 4 arreglos buenos. Son [1, 1, 2], [1, 2, 2], [2, 1, 1] y [2, 2, 1].
+> Por lo tanto, la respuesta es 4.
+
+**Ejemplo 2:**
+> **Input:** n = 4, m = 2, k = 2
+> **Output:** 6
+> **Explicación:**
+> Los arreglos buenos son [1, 1, 1, 2], [1, 1, 2, 2], [1, 2, 2, 2], [2, 1, 1, 1], [2, 2, 1, 1] y [2, 2, 2, 1].
+> Por lo tanto, la respuesta es 6.
+
+**Ejemplo 3:**
+> **Input:** n = 5, m = 2, k = 0
+> **Output:** 2
+> **Explicación:**
+> Los arreglos buenos son [1, 2, 1, 2, 1] y [2, 1, 2, 1, 2]. Por lo tanto, la respuesta es 2.
+
+## Soluciones
+
+<details>
+    <summary>Python</summary>
+```python
+MOD = 10**9 + 7
+
+class Solution:
+    def __init__(self):
+        self.fact = None
+        self.inv_fact = None
+
+    def binary_exp(self, a, b):
+        res = 1
+        a = a % MOD
+        while b > 0:
+            if b & 1:
+                res = (res * a) % MOD
+            a = (a * a) % MOD
+            b >>= 1
+        return res
+
+    def mmi(self, val):
+        return self.binary_exp(val, MOD - 2)
+
+    def inverse_fact(self, n):
+        self.inv_fact = [0] * (n + 1)
+        self.inv_fact[n] = self.mmi(self.fact[n])
+        for i in range(n, 0, -1):
+            self.inv_fact[i - 1] = (self.inv_fact[i] * i) % MOD
+
+    def factorial(self, n):
+        self.fact = [1] * (n + 1)
+        for i in range(1, n + 1):
+            self.fact[i] = (self.fact[i - 1] * i) % MOD
+
+    def precompute(self, n):
+        self.factorial(n)
+        self.inverse_fact(n)
+
+    def countGoodArrays(self, n, m, k):
+        self.precompute(n)
+
+        run_ways = (self.fact[n - 1] * self.inv_fact[n - k - 1] % MOD) * self.inv_fact[k] % MOD
+        ways_to_assign = m * self.binary_exp(m - 1, n - k - 1) % MOD
+        return run_ways * ways_to_assign % MOD
+```
+</details>

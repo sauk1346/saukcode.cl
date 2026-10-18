@@ -1,0 +1,161 @@
+# Total de Caracteres en String después de Transformaciones II
+
+Se te da un string `s` que consiste en letras minúsculas del inglés, un entero `t` que representa el número de **transformaciones** a realizar, y un array `nums` de tamaño 26. En una **transformación**, cada carácter en `s` se reemplaza según las siguientes reglas:
+
+- Reemplaza `s[i]` con los siguientes `nums[s[i]-'a']` caracteres consecutivos en el alfabeto. Por ejemplo, si `s[i] = 'a'` y `nums[0] = 3`, el carácter `'a'` se transforma en los siguientes 3 caracteres consecutivos después de él, lo que resulta en `"bcd"`.
+- La transformación **se reinicia** en el alfabeto si excede `z`. Por ejemplo, si `s[i] = 'y'` y `nums[24] = 3`, el carácter `'y'` se transforma en los siguientes 3 caracteres consecutivos después de él, lo que resulta en `"zab"`.
+
+Devuelve la longitud de la cadena resultante después de **exactamente** `t` transformaciones.
+
+Dado que la respuesta puede ser muy grande, devuélvela **módulo** `10⁹ + 7`
+
+## Ejemplos
+
+**Ejemplo 1**
+```text
+Input: s = "abcyy", t = 2, nums = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]
+
+Output: 7
+
+Explicación:
+
+- Primera Transformación (t = 1):
+  - 'a' se convierte en 'b' ya que nums[0] == 1
+  - 'b' se convierte en 'c' ya que nums[1] == 1
+  - 'c' se convierte en 'd' ya que nums[2] == 1
+  - 'y' se convierte en 'z' ya que nums[24] == 1
+  - 'y' se convierte en 'z' ya que nums[24] == 1
+  - Cadena después de la primera transformación: "bcdzz"
+
+- Segunda Transformación (t = 2):
+  - 'b' se convierte en 'c' ya que nums[1] == 1
+  - 'c' se convierte en 'd' ya que nums[2] == 1
+  - 'd' se convierte en 'e' ya que nums[3] == 1
+  - 'z' se convierte en 'ab' ya que nums[25] == 2
+  - 'z' se convierte en 'ab' ya que nums[25] == 2
+  - Cadena después de la segunda transformación: "cdeabab"
+
+- Longitud Final de la cadena: La cadena es "cdeabab", que tiene 7 caracteres.
+```
+
+**Ejemplo 2**
+```text
+Input: s = "azbk", t = 1, nums = [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
+
+Output: 8
+
+Explicación:
+
+- Primera Transformación (t = 1):
+  - 'a' se convierte en 'bc' ya que nums[0] == 2
+  - 'z' se convierte en 'ab' ya que nums[25] == 2
+  - 'b' se convierte en 'cd' ya que nums[1] == 2
+  - 'k' se convierte en 'lm' ya que nums[10] == 2
+  - Cadena después de la primera transformación: "bcabcdlm"
+
+- Longitud Final de la cadena: La cadena es "bcabcdlm", que tiene 8 caracteres.
+```
+
+## Soluciones
+
+<details>
+    <summary>Python</summary>
+```python
+MOD = 10**9 + 7
+
+class Solution:
+    def lengthAfterTransformations(self, s: str, t: int, nums: List[int]) -> int:
+ 
+        T = self.getTransformationMatrix(nums)
+        poweredT = self.matrixPow(T, t)
+
+        count = [0] * 26
+        lengths = [0] * 26
+
+        for c in s:
+            count[ord(c) - ord('a')] += 1
+
+        for i in range(26):
+            for j in range(26):
+                lengths[j] = (lengths[j] + count[i] * poweredT[i][j]) % MOD
+
+        return sum(lengths) % MOD
+
+    def getTransformationMatrix(self, nums):
+        T = [[0] * 26 for _ in range(26)]
+        for i in range(len(nums)):
+            for step in range(1, nums[i] + 1):
+                T[i][(i + step) % 26] += 1
+        return T
+
+    def getIdentityMatrix(self, size):
+        I = [[0] * size for _ in range(size)]
+        for i in range(size):
+            I[i][i] = 1
+        return I
+
+    def matrixMult(self, A, B):
+        size = len(A)
+        C = [[0] * size for _ in range(size)]
+        for i in range(size):
+            for j in range(size):
+                for k in range(size):
+                    C[i][j] = (C[i][j] + A[i][k] * B[k][j]) % MOD
+        return C
+
+    def matrixPow(self, M, n):
+        if n == 0:
+            return self.getIdentityMatrix(len(M))
+        if n % 2 == 1:
+            return self.matrixMult(M, self.matrixPow(M, n - 1))
+        half = self.matrixPow(M, n // 2)
+        return self.matrixMult(half, half)
+```
+
+Se puede modelar el problema como un sistema linear utilizando una matriz de transición $T$ de tamaño $26\times 26$, donde cada elemento $T[i][j]$ representa cuántas veces el carácter $a+i$ genera el carácter $a+j$ en una tranformación.
+
+|||
+|---|---|
+|`getTransformationMatrix(nums)`|Crea una matriz 26x26 mostranto cómo los pasos se mueven de índice a índice según `nums`|
+|`getIdentityMatrix(size)`|Genera una matriz de identidad de dimensión `size`|
+|`matrixMult(A,B)`|Multiplica 2 matrices modulo `MOD`|
+|`MatrixPor(M,n)`|Eleva una matriz `M` a la potencia  `n`|
+
+
+<h3>Tips</h3>
+
+1. **Conocer el funcionamiento del algoritmo "exponenciación binaria"**
+
+    - Permite reducir los pasos para encontrar un número $a^b$ ($a$ elevado a la potencia de $b$)
+
+```python
+# algoritmo exponenciación binaria: a^b
+res = 1
+while (b > 0):
+    if (b%2 == 1):
+        res *= a
+    
+    a = a * a
+    b = b / 2
+
+return res
+```
+
+2. **Replicar la "exponenciación binaria" a "matrices exponenciales"**
+
+    - Se utiliza la misma idea para así reducir los pasos de ejecución en la resolución de $A^N$ (matriz $A$ elevado a la potencia $N$)
+
+```python
+# matriz exponencial
+matrix_res = I
+while (N):
+    if (N%2 == 1):
+        res = MatrixMultiply(A,res)
+
+    A = MatrixMultiply(A,A)
+    N = N / 2
+
+return matrix_res
+```
+
+</details>

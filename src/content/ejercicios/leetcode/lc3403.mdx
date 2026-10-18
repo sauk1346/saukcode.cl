@@ -1,0 +1,53 @@
+# Encontrar la Cadena Lexicográficamente más Grande de la Caja I
+
+Se te da un string `word` y un entero `numFriends`.
+
+Alicia está organizando un juego para sus `numFriends` amigos. Hay múltiples rondas en el juego, donde en cada ronda:
+- `word` se divide en `numFriends` cadenas no vacías, de tal manera que ninguna ronda anterior haya tenido exactamente la misma división.
+- Todas las palabras divididas se ponen en una caja.
+
+Encuentra la cadena lexicográficamente más grande de la caja después de que todas las rondas hayan terminado.
+
+## Ejemplos
+
+**Ejemplo 1:**
+> **Input:** word = "dbca", numFriends = 2
+> **Output:** "dbc"
+> **Explicación:** Todas las divisiones posibles son:
+> "d" y "bca".
+> "db" y "ca".
+> "dbc" y "a".
+
+**Ejemplo 2:**
+> **Input:** word = "gggg", numFriends = 4
+> **Output:** "g"
+> **Explicación:**
+> La única división posible es: "g", "g", "g", y "g".
+
+## Soluciones
+<details>
+    <summary>Python</summary>
+```python
+class Solution:
+   def answerString(self, word: str, numFriends: int) -> str:
+       n = len(word)
+       if numFriends == 1:
+           return word
+       i = 0
+       j = 1
+       gap = 0
+       # Encontrar el sufijo más grande
+       while j + gap < n:
+           if word[i + gap] == word[j + gap]:
+               gap += 1
+           elif word[i + gap] < word[j + gap]:
+               save = i
+               i = j
+               j = max(j + 1, save + gap + 1)
+               gap = 0
+           else:
+               j = j + gap + 1
+               gap = 0
+       return word[i:i + n - numFriends + 1]
+```
+</details>

@@ -1,0 +1,65 @@
+# Productos Reciclables y Bajos en Grasa
+
+**Tabla:** `Products`
+<TerminalOutput>
+{`+-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| product_id  | int     |
+| low_fats    | enum    |
+| recyclable  | enum    |
++-------------+---------+
+
+- "product_id" es la clave primaria para esta tabla.
+- "low_fats" es un ENUM (categoría) de tipo ('Y', 'N') donde 'Y' significa 
+    que es un producto bajo en grasas, y 'N' significa que no lo es.
+- "recyclable" es un ENUM (categoría) de tipos ('Y', 'N') donde 'Y' significa
+    que este producto es reciclable y 'N' significa que no lo es.`}
+</TerminalOutput>
+
+Escribe una solución para encontrar los ids de productos que sean tanto bajos en grasa como reciclables.
+
+Devuelve la tabla resultado en **cualquier orden**.
+
+
+## Ejemplos
+
+**Input:**
+<TerminalOutput>
+{`Tabla Products:
++-------------+----------+------------+
+| product_id  | low_fats | recyclable |
++-------------+----------+------------+
+| 0           | Y        | N          |
+| 1           | Y        | Y          |
+| 2           | N        | Y          |
+| 3           | Y        | Y          |
+| 4           | N        | N          |
++-------------+----------+------------+`}
+</TerminalOutput>
+
+**Output:**
+<TerminalOutput>
+{`+-------------+
+| product_id  |
++-------------+
+| 1           |
+| 3           |
++-------------+
+
+Explicación:
+- solo los productos 1 y 3 son tanto bajos en grasa como reciclables.`}
+</TerminalOutput>
+
+## Solución
+
+<Solution title="Python" icon="Python">
+```python
+import pandas as pd
+
+def find_products(products: pd.DataFrame) -> pd.DataFrame:
+    filtered_df = products.loc[ (products['low_fats']=='Y') & (products['recyclable']=='Y')]
+    
+    return filtered_df[['product_id']]
+```
+</Solution>

@@ -1,0 +1,66 @@
+# Usando un Robot para Imprimir la Cadena Lexicográficamente más Pequeña
+
+Se te da una cadena `s` y un robot que contiene una cadena vacía `t`. Aplica una de las siguientes operaciones hasta que `s` y `t` estén ambas vacías:
+
+- Remover el **primer** carácter de la cadena `s` y dárselo al robot. El robot añadirá este carácter al final de la cadena `t`.
+- Remover el **último** carácter de la cadena `t` y dárselo al robot. El robot escribirá este carácter en papel.
+
+Devuelve *la cadena lexicográficamente más pequeña que se puede escribir en el papel.*
+
+## Ejemplos
+
+**Ejemplo 1:**
+> **Input:** s = "zza"
+> **Output:** "azz"
+> **Explicación:** Sea p la cadena escrita.
+> Inicialmente p="", s="zza", t="".
+> Realizar la primera operación tres veces p="", s="", t="zza".
+> Realizar la segunda operación tres veces p="azz", s="", t="".
+
+**Ejemplo 2:**
+> **Input:** s = "bac"
+> **Output:** "abc"
+> **Explicación:** Sea p la cadena escrita.
+> Realizar la primera operación dos veces p="", s="c", t="ba".
+> Realizar la segunda operación dos veces p="ab", s="c", t="".
+> Realizar la primera operación p="ab", s="", t="c".
+> Realizar la segunda operación p="abc", s="", t="".
+
+**Ejemplo 3:**
+> **Input:** s = "bdda"
+> **Output:** "addb"
+> **Explicación:** Sea p la cadena escrita.
+> Inicialmente p="", s="bdda", t="".
+> Realizar la primera operación cuatro veces p="", s="", t="bdda".
+> Realizar la segunda operación cuatro veces p="addb", s="", t="".
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+class Solution:
+    def smallest(self, right_freq):
+        for i in range(26):
+            if right_freq[i] > 0:
+                return chr(97 + i)
+        return 'z'
+
+    def robotWithString(self, s: str) -> str:
+        n = len(s)
+        right_freq = [0] * 26
+        for c in s:
+            right_freq[ord(c) - ord('a')] += 1
+
+        t = []
+        res = []
+        pos = 0
+        while pos < n:
+            t.append(s[pos])
+            right_freq[ord(s[pos]) - ord('a')] -= 1
+
+            while t and ord(t[-1]) <= ord(self.smallest(right_freq)):
+                res.append(t.pop())
+            pos += 1
+        return ''.join(res)
+```
+</Solution>

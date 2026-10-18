@@ -1,0 +1,46 @@
+# Números Lexicográficos
+
+Dado un entero `n`, devuelve todos los números en el rango `[1, n]` ordenados en orden lexicográfico.
+
+Debes escribir un algoritmo que se ejecute en tiempo `O(n)` y use `O(1)` espacio extra.
+
+## Ejemplos
+
+**Ejemplo 1:**
+<TerminalOutput>
+{`Input:  n = 13
+Output: [1,10,11,12,13,2,3,4,5,6,7,8,9]`}
+</TerminalOutput>
+
+**Ejemplo 2:**
+<TerminalOutput>
+{`Input:  n = 2
+Output: [1,2]`}
+</TerminalOutput>
+
+
+## Solución 
+
+<Solution title="Python" icon="Python">
+```python
+class Solution:
+   def lexicalOrder(self, n: int) -> List[int]:
+       result = []
+       current_number = 1
+       
+       for _ in range(n):
+           result.append(current_number)
+           
+           # Intentar ir más profundo agregando un dígito (multiplicar por 10)
+           if current_number * 10 <= n:
+               current_number *= 10
+           else:
+               # No se puede ir más profundo, así que pasar al siguiente número
+               # Manejar el acarreo cuando llegamos a 9 o excedemos n
+               while current_number % 10 == 9 or current_number + 1 > n:
+                   current_number //= 10  # Retroceder un nivel
+               current_number += 1  # Pasar al siguiente número en el nivel actual
+       
+       return result
+```
+</Solution>

@@ -1,0 +1,64 @@
+# Cliente con mayor número de pedidos realizados
+
+**Tabla `Orders`**
+<TerminalOutput>
+{`+-----------------+----------+
+| Column Name     | Type     |
++-----------------+----------+
+| order_number    | int      |
+| customer_number | int      |
++-----------------+----------+
+
+- order_number es la clave primaria (columna con valores únicos) para esta tabla.
+- Esta tabla contiene información sobre el ID del pedido y el ID del cliente`}
+</TerminalOutput>
+
+Escribe una solución para encontrar el `customer_number` del cliente que ha realizado el mayor número de pedidos.
+
+Los casos de prueba están generados de tal manera que exactamente un cliente habrá realizado más pedidos que cualquier otro cliente.
+
+
+## Ejemplo
+
+**Input**
+<TerminalOutput>
+{`Orders table:
++--------------+-----------------+
+| order_number | customer_number |
++--------------+-----------------+
+| 1            | 1               |
+| 2            | 2               |
+| 3            | 3               |
+| 4            | 3               |
++--------------+-----------------+`}
+</TerminalOutput>
+
+**Output**
+<TerminalOutput>
+{`+-----------------+
+| customer_number |
++-----------------+
+| 3               |
++-----------------+
+
+Explicación:
+- El cliente con número 3 tiene dos pedidos, lo cual es mayor que el cliente 
+    1 o 2, ya que cada uno de ellos solo tiene un pedido.
+- Por lo tanto, el resultado es customer_number 3.`}
+</TerminalOutput>
+
+## Solution
+
+<Solution title="Python" icon="Python" >
+```python
+import pandas as pd
+
+def largest_orders(orders: pd.DataFrame) -> pd.DataFrame:
+    return (orders
+            .groupby('customer_number')['order_number']
+            .count()
+            .reset_index(name='count')
+            .nlargest(1,'count')[['customer_number']]
+        )
+```
+</Solution>

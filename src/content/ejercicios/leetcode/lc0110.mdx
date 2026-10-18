@@ -1,0 +1,67 @@
+# Árbol Binario Balanceado
+
+Dado un árbol binario, determina si está **balanceado en altura**.
+
+Un árbol binario balanceado en altura es un árbol binario en el cual la profundidad de los dos subárboles de cada nodo nunca difiere por más de uno.
+
+## Ejemplos
+
+**Ejemplo 1:**
+<SmartFigure
+	id="arbol-binario-1"
+	src="/leetcode/fig21.jpg"
+	alt="Árbol binario 1"
+	caption="Árbol binario 1"
+	size="large"
+/>
+
+<TerminalOutput>
+{`Input:  root = [3,9,20,null,null,15,7]
+Output: true`}
+</TerminalOutput>
+
+**Ejemplo 2:**
+<SmartFigure
+	id="arbol-binario-2"
+	src="/leetcode/fig22.jpg"
+	alt="Árbol binario 2"
+	caption="Árbol binario 2"
+	size="large"
+/>
+
+<TerminalOutput>
+{`Input:  root = [1,2,2,3,3,null,null,4,4]
+Output: false`}
+</TerminalOutput>
+
+**Example 3:**
+<TerminalOutput>
+{`Input:  root = []
+Output: true`}
+</TerminalOutput>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        
+        def dfs(root):
+            if not root:
+                return [True, 0]
+
+            left, right = dfs(root.left), dfs(root.right)
+            balanced = (left[0] and right[0] and abs(left[1] - right[1]) <= 1)
+
+            return [balanced, 1 + max(left[1], right[1])]
+
+        return dfs(root)[0]
+``` 
+</Solution>

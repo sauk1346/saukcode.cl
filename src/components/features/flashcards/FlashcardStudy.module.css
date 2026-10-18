@@ -1,0 +1,334 @@
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Cabecera */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.topicName {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.deckLabel {
+  font-size: 0.8rem;
+  color: var(--secondary);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.shuffleBtn {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0.35rem 0.6rem;
+  cursor: pointer;
+  color: var(--secondary);
+  display: flex;
+  align-items: center;
+  transition: all 0.15s;
+}
+
+.shuffleBtn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.shuffleActive {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+}
+
+.progress {
+  font-size: 0.9rem;
+  color: var(--secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Barra de progreso */
+.progressBar {
+  height: 4px;
+  background: var(--border-color, #e0e0e0);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* Carta con flip */
+.cardWrapper {
+  perspective: 1200px;
+  cursor: pointer;
+  min-height: 340px;
+}
+
+.cardInner {
+  position: relative;
+  width: 100%;
+  min-height: 340px;
+  transform-style: preserve-3d;
+  transition: transform 0.45s ease;
+  will-change: transform;
+}
+
+.flipped .cardInner {
+  transform: rotateY(180deg);
+}
+
+@keyframes flipToNext {
+  from { transform: rotateY(180deg); }
+  to   { transform: rotateY(360deg); }
+}
+
+.transitioning .cardInner {
+  animation: flipToNext 0.45s ease forwards;
+  transition: none;
+}
+
+.cardFront,
+.cardBack {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* fuerza la promoción a su propia capa GPU desde el inicio, para que el
+     navegador no tenga que promover/degradar la capa a mitad de la
+     transición (fuente típica de que la cara trasera se filtre un instante) */
+  transform: translateZ(0);
+  background: var(--card-bg);
+  color: var(--foreground);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.cardBack {
+  transform: rotateY(180deg) translateZ(0);
+  background: var(--surface);
+}
+
+/* El scroll vive en un contenedor interno, no en la capa que tiene
+   backface-visibility + transform 3D: overflow no-visible ahí rompe el
+   ocultamiento de la cara trasera en varios navegadores y hace que ambas
+   caras (con sus propios botones "Copiar") queden visibles superpuestas. */
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.cardSideLabel {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary, #aaa);
+  font-weight: 600;
+}
+
+.flipHint {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-secondary, #aaa);
+  margin: 0;
+}
+
+/* Botones correcto/incorrecto */
+.answerButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.answerBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  flex: 1;
+  max-width: 200px;
+  justify-content: center;
+}
+
+.correctBtn {
+  background: var(--success);
+  color: #fff;
+}
+
+.correctBtn:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--success) 85%, #000);
+}
+
+.incorrectBtn {
+  background: var(--error);
+  color: #fff;
+}
+
+.incorrectBtn:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--error) 85%, #000);
+}
+
+
+
+/* Pantalla final */
+.finished {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 2rem 1rem;
+}
+
+.finishedCard {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 20px;
+  padding: 2.5rem 3rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  max-width: 380px;
+  width: 100%;
+}
+
+.finishedTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.score {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.scoreNumber {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--primary);
+}
+
+.scoreTotal {
+  font-size: 2rem;
+  color: var(--secondary);
+}
+
+.scorePct {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+.scoreSummary {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.correctCount {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--success);
+  font-weight: 600;
+}
+
+.incorrectCount {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--error);
+  font-weight: 600;
+}
+
+.retryBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 2rem;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-top: 0.5rem;
+}
+
+.retryBtn:hover {
+  background: color-mix(in srgb, var(--primary) 85%, #000);
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .cardWrapper,
+  .cardInner {
+    min-height: 260px;
+  }
+
+  .cardFront,
+  .cardBack {
+    padding: 1rem;
+  }
+
+  .answerButtons {
+    flex-direction: column;
+  }
+
+  .answerBtn {
+    max-width: 100%;
+  }
+
+  .finishedCard {
+    padding: 2rem 1.5rem;
+  }
+}

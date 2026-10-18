@@ -1,0 +1,46 @@
+# Verificar Secuencia de Preorden en Árbol de Búsqueda Binaria 
+
+Dado un arreglo de enteros **únicos** `preorder`, devuelve `true` *si es la secuencia correcta de recorrido en preorden de un árbol de búsqueda binaria.*
+
+## Ejemplos
+<SmartFigure
+	id="arbol-binario"
+	src="/leetcode/fig18.jpg"
+	alt="Árbol binario 1"
+	caption="Árbol binario"
+	size="large"
+/>
+
+**Ejemplo 1:**
+<TerminalOutput>
+{`Input:  preorder = [5,2,1,3,6]
+Output: true`}
+</TerminalOutput>
+
+
+**Ejemplo 2:**
+<TerminalOutput>
+{`Input:  preorder = [5,2,6,1,3]
+Output: false`}
+</TerminalOutput>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+class Solution:
+    def verifyPreorder(self, preorder: List[int]) -> bool:
+        low = float('-inf')
+        stack = []
+
+        for p in preorder:
+            if p < low:
+                return False
+            while stack and stack[-1] < p:
+                low = stack.pop()
+
+            stack.append(p)
+
+        return True
+```
+</Solution>

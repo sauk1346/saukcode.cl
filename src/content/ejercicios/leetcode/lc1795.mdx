@@ -1,0 +1,76 @@
+# Reordenar Tabla de Productos
+
+**Tabla:** `Products`
+<TerminalOutput>
+{`+-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| product_id  | int     |
+| store1      | int     |
+| store2      | int     |
+| store3      | int     |
++-------------+---------+
+
+- "product_id" es la clave primaria para esta tabla.
+- Cada fila indica el precio del producto en 3 tiendas diferentes 
+    (store1, store2, store3).
+- Si el producto no está disponible, el precio será null`}
+</TerminalOutput>
+
+Escribe una solución para reorganizar la tabla `Products` de manera que cada fila tenga `(product_id, store, price)`.
+
+Si un producto no está disponible en una tienda, **no** incluír esa tienda.
+
+Devuelve la tabla de resultado en **cualquier orden**.
+
+## Ejemplo
+
+**Input:**
+<TerminalOutput>
+{`tabla Products:
++------------+--------+--------+--------+
+| product_id | store1 | store2 | store3 |
++------------+--------+--------+--------+
+| 0          | 95     | 100    | 105    |
+| 1          | 70     | null   | 80     |
++------------+--------+--------+--------+`}
+</TerminalOutput>
+
+**Output:**
+<TerminalOutput>
+{`+------------+--------+-------+
+| product_id | store  | price |
++------------+--------+-------+
+| 0          | store1 | 95    |
+| 0          | store2 | 100   |
+| 0          | store3 | 105   |
+| 1          | store1 | 70    |
+| 1          | store3 | 80    |
++------------+--------+-------+
+
+Explicación:
+- El producto 0 está disponible en las 3 tiendas con precios 95, 100 y 105.
+- El producto 1 está disponible en store1 a 70, y en store3 a 80, pero no está 
+    disponible en store2.`}
+</TerminalOutput>
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+import pandas as pd
+
+def rearrange_products_table(products: pd.DataFrame) -> pd.DataFrame:
+    
+    result = pd.melt(
+        products, 
+        id_vars=['product_id'],           
+        value_vars=['store1', 'store2', 'store3'],  
+        var_name='store',                 
+        value_name='price'
+    )
+    
+    result = result[result['price'].notna()]
+    
+    return result
+```
+</Solution>

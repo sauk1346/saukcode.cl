@@ -1,0 +1,121 @@
+# Suma de Dos
+
+Dado un arreglo de enteros `nums` y un entero `target`, retorna *los índices de los dos números que suman el valor `target`*.
+
+Asume que cada entrada tendría **exactamente una solución**, y no puedes usar el *mismo* dos veces.
+
+Devuelve la respuesta en cualquier orden.
+
+### Ejemplos
+**Ejemplo 1:**
+
+<TerminalOutput>
+{`Input:       nums = [2, 7, 11, 15], target = 9
+Output:      [0,1]
+Explicación: como nums[0] + nums[1] == 9, se retorna [0,1]`}
+</TerminalOutput>
+
+**Ejemplo 2:**
+<TerminalOutput>
+{`Input:  nums = [3, 2, 4], target = 6
+Output: [1,2]`}
+</TerminalOutput>
+
+**Example 3:**
+<TerminalOutput>
+{`Input:  nums =[3, 3], target = 6
+Output: [0, 1]`}
+</TerminalOutput>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        seen = {}        
+        for i, num in enumerate(nums):
+            complement = target - num
+            
+            if complement in seen:
+                return [seen[complement], i]
+            
+            seen[num] = i
+``` 
+
+- Se utiliza un diccionario `seen` para recorrer la lista solo una vez y reducir la complejidad de tiempo a $O(n)$ 
+- Se guarda el índice y valor del número recorrido utilizando la el método `enumerate`
+- Calculamos el complemento de `num` y los buscamos en `seen`, si no está entonces guardamos `num`
+- Se continúa el ciclo hasta que uno de los números guardados sea el complemento del número actual, entonces se retorna el índice del complemento y el  índice del número actual
+</Solution>
+
+<Solution title="JavaScript" icon="JavaScript">
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+   const seen = new Map();
+    
+    for (let i = 0; i < nums.length; i++) {
+        const complement = target - nums[i];
+        
+        if (seen.has(complement)) {
+            return [seen.get(complement), i];
+        }
+        
+        seen.set(nums[i], i);
+    } 
+};
+``` 
+</Solution>
+
+<Solution title="Java" icon="Java">
+```java
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        
+        Map<Integer, Integer> seen = new HashMap<>();
+        
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            
+            if (seen.containsKey(complement)) {
+                return new int[] {seen.get(complement), i};
+            }
+            seen.put(nums[i], i);
+        }
+        return null;
+    }
+}
+```
+
+- Se utiliza un HashMap para almacenar los números vistos y sus índices
+- Si no encuentra los índices retorna null
+</Solution>
+
+<Solution title="C++" icon="C++">
+```cpp
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        
+        unordered_map<int, int> seen;
+        
+        for (int i = 0; i < nums.size(); i++) {
+            int complement = target - nums[i];
+            
+            if (seen.find(complement) != seen.end()) {
+                return {seen[complement], i};
+            }
+            seen[nums[i]] = i;
+        }
+        return {};
+    }
+};
+```
+
+- La función twoSum devuelve un vector de enteros con los índices de los números que cumplen con la condición del problema.
+</Solution>

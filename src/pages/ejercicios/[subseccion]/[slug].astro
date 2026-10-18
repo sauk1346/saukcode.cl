@@ -1,0 +1,56 @@
+---
+import { getCollection, render } from 'astro:content';
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+import { reactMdxComponents } from '../../../components/mdx/components.js';
+import { getAllExercisePaths, getExerciseData } from '../../../utils/ejerciciosUtils.js';
+
+// Wrappers .astro — importados aquí para conservar el renderer de Astro
+import Solution from '../../../components/mdx/Solution.astro';
+import Tabs from '../../../components/mdx/Tabs.astro';
+import Tab from '../../../components/mdx/Tab.astro';
+import SmartFigureIsland from '../../../components/mdx/SmartFigureIsland.astro';
+import ImgFigure from '../../../components/mdx/ImgFigure.astro';
+import QuizIsland from '../../../components/mdx/QuizIsland.astro';
+import GridQuizIsland from '../../../components/mdx/GridQuizIsland.astro';
+import RevealIsland from '../../../components/mdx/RevealIsland.astro';
+import AudioPlayerIsland from '../../../components/mdx/AudioPlayerIsland.astro';
+
+export async function getStaticPaths() {
+  // Replica Next: solo ejercicios registrados en problems.js
+  const entries = await getCollection('ejercicios');
+  const byId = new Map(entries.map((e) => [e.id.replace(/\.mdx$/, ''), e]));
+
+  const paths = [];
+  for (const { subseccion, slug } of getAllExercisePaths()) {
+    const entry = byId.get(`${subseccion}/${slug}`);
+    if (!entry) continue;
+    paths.push({ params: { subseccion, slug }, props: { entry } });
+  }
+  return paths;
+}
+
+const { subseccion, slug } = Astro.params;
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const exerciseData = getExerciseData(subseccion, slug);
+
+const mdxComponents = {
+  ...reactMdxComponents,
+  img: ImgFigure,
+  Solution,
+  Tabs,
+  Tab,
+  Reveal: RevealIsland,
+  Quiz: QuizIsland,
+  GridQuiz: GridQuizIsland,
+  SmartFigure: SmartFigureIsland,
+  AudioPlayer: AudioPlayerIsland,
+};
+---
+
+<LessonLayout
+  title={`${slug.toUpperCase()} - ${exerciseData?.title || 'Ejercicio'}`}
+  description={`${exerciseData?.difficulty || ''} - ${exerciseData?.topics?.join(', ') || ''}`}
+>
+  <Content components={mdxComponents} />
+</LessonLayout>

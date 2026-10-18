@@ -1,0 +1,71 @@
+# Clases con al menos 5 Estudiantes
+
+Tabla `Courses`
+<TerminalOutput>
+{`+-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| student     | varchar |
+| class       | varchar |
++-------------+---------+
+
+- (student, class) es la clave primaria (combinación de columnas con valores únicos) 
+    para esta tabla.
+- Cada fila de esta tabla indica el nombre de un estudiantes y la clase en la que 
+    está inscrito.`}
+</TerminalOutput>
+
+Escribe una solución para encontrar todas las clases que tienen **al menos cinco estudiantes.**
+
+Devuelve la tabla de resultados en **cualquier orden**.
+
+
+## Ejemplo
+
+**Input**
+<TerminalOutput>
+{`tabla Courses:
++---------+----------+
+| student | class    |
++---------+----------+
+| A       | Math     |
+| B       | English  |
+| C       | Math     |
+| D       | Biology  |
+| E       | Math     |
+| F       | Computer |
+| G       | Math     |
+| H       | Math     |
+| I       | Math     |
++---------+----------+`}
+</TerminalOutput>
+
+
+**Output**
+<TerminalOutput>
+{`+---------+
+| class   |
++---------+
+| Math    |
++---------+
+
+Explicación:
+- La clase de Matemáticas tiene 6 estudiantes (A, C, E, G, H, I), por lo que se 
+    incluye en la salida.
+- La clase de Inglés tiene 1 estudiante (B), por lo que no se incluye.
+- La clase de Biología tiene 1 estudiante (D), por lo que no se incluye
+- La clase de Computación tiene 1 estudiante (F), por lo que no se incluye.`}
+</TerminalOutput>
+
+<Solution title="Python" icon="Python">
+```python
+import pandas as pd
+
+def find_classes(courses: pd.DataFrame) -> pd.DataFrame:
+    return (courses
+            .groupby('class')['student']
+            .count()
+            .reset_index(name='count')
+            .query('count >= 5')[['class']])
+```
+</Solution>

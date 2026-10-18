@@ -1,0 +1,45 @@
+# Subsecuencia de Grupos Adyacentes Desiguales más Larga I
+
+Se te da un arreglo de cadenas `words` y un arreglo **binario** `groups`, ambos de longitud `n`.
+
+Una subsecuencia de `words` es **alternante** si para cualquier dos cadenas **consecutivas** en la secuencia, sus elementos correspondientes en los *mismos* índices en `groups` son **diferentes** (es decir, *no puede* haber 0 o 1 consecutivos).
+
+Tu tarea es seleccionar la **subsecuencia alternante más larga** de `words`.
+
+Devuelve *la subsecuencia seleccionada. Si hay múltiples respuestas, devuelve **cualquiera** de ellas.**
+
+Nota: Los elementos en `words` son distintos.
+
+## Ejemplos
+
+**Ejemplo 1:**
+
+> **Input:** words = ["e","a","b"], groups = [0,0,1]
+> **Output:** ["e","b"]
+> **Explicación:** Una subsecuencia que puede ser seleccionada es ["e","b"] porque groups[0] != groups[2]. Otra subsecuencia que puede ser seleccionada es ["a","b"] porque groups[1] != groups[2]. Se puede demostrar que la longitud de la subsecuencia más larga de índices que satisface la condición es 2.
+
+**Ejemplo 2:**
+> **Input:** words = ["a","b","c","d"], groups = [1,0,1,1]
+> **Output:** ["a","b","c"]
+> **Explicación:** Una subsecuencia que puede ser seleccionada es ["a","b","c"] porque groups[0] != groups[1] y groups[1] != groups[2]. Otra subsecuencia que puede ser seleccionada es ["a","b","d"] porque groups[0] != groups[1] y groups[1] != groups[3]. Se puede mostrar que la longitud de la subsecuencia más larga de índices que satisface la condición es 3.
+
+## Soluciones
+
+<details>
+    <summary>Python</summary>
+```python
+class Solution:
+    def getLongestSubsequence(self, words: List[str], groups: List[int]) -> List[str]:
+        
+        result = []
+        last_elem = -1
+        for index, elem in enumerate(groups):
+            if elem == last_elem:
+                continue
+            else:
+                result.append(words[index])
+                last_elem = elem
+
+        return result
+```
+</details>

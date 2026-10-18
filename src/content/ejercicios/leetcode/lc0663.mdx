@@ -1,0 +1,68 @@
+# Partición Igualitaria de Árbol
+
+Dado la `raíz` de un árbol binario, devuelve `true` *si puedes particionar el árbol en dos árboles con sumas iguales de valores después de eliminar exactamente una arista del árbol original.*
+
+## Ejemplos
+
+**Ejemplo 1:**
+
+<SmartFigure
+	id="particion-arbol-binario"
+	src="/leetcode/fig19.jpg"
+	alt="Partición de árbol binario"
+	caption="Partición de árbol binario"
+	size="large"
+/>
+
+<TerminalOutput>
+{`Input:  root = [5,10,10,null,null,2,3]
+Output: true`}
+</TerminalOutput>
+
+**Ejemplo 2:**
+
+<SmartFigure
+	id="no-particion-arbol-binario"
+	src="/leetcode/fig20.jpg"
+	alt="No es posible particionar el árbol binario"
+	caption="No es posible particionar el árbol binario"
+	size="large"
+/>
+
+<TerminalOutput>
+{`Input:  root = [1,2,10,null,null,2,20]
+Output: false
+
+Explicación: No puedes dividir el árbol en dos árboles con sumas iguales 
+               después de eliminar exactamente una arista del árbol.`}
+</TerminalOutput>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+class Solution:
+    def checkEqualTree(self, root: Optional[TreeNode]) -> bool:
+        subtree_sums = []
+        
+        def dfs(node):
+            if not node:
+                return 0
+            
+            left_sum = dfs(node.left)
+            right_sum = dfs(node.right)
+            current_sum = node.val + left_sum + right_sum
+            
+            # Guardar suma de todos los subárboles excepto la raíz
+            if node != root:
+                subtree_sums.append(current_sum)
+            
+            return current_sum
+        
+        total_sum = dfs(root)
+        
+        # Si es impar, imposible dividir en partes iguales
+        if total_sum % 2 != 0:
+            return False
+```
+</Solution>

@@ -1,0 +1,70 @@
+# Análisis de Juego I
+
+**Tabla:** `Activity`
+<TerminalOutput>
+{`+--------------+---------+
+| Column Name  | Type    |
++--------------+---------+
+| player_id    | int     |
+| device_id    | int     |
+| event_date   | date    |
+| games_played | int     |
++--------------+---------+
+
+- (player_id, eventa_date) es la clave primaria (combinación de columnas 
+    con valores únicos) de esta tabla.
+
+- Esta tabla muestra la actividad de jugadores de algunos juegos.
+
+- Cada fila es un registro de un jugador que inició sesión y jugó un 
+    número de juegos (posiblemente 0) antes de cerras sesión en algún 
+    día usando algún dispositivo`}
+</TerminalOutput>
+
+Escribe una solución para encontrar la **fecha del primer inicio de sesión** para cada jugador.
+
+Devuelve la tabla resultado en **cualquier orden**.
+
+## Ejemplo
+
+**Input**
+<TerminalOutput>
+{`Activity table:
++-----------+-----------+------------+--------------+
+| player_id | device_id | event_date | games_played |
++-----------+-----------+------------+--------------+
+| 1         | 2         | 2016-03-01 | 5            |
+| 1         | 2         | 2016-05-02 | 6            |
+| 2         | 3         | 2017-06-25 | 1            |
+| 3         | 1         | 2016-03-02 | 0            |
+| 3         | 4         | 2018-07-03 | 5            |
++-----------+-----------+------------+--------------+`}
+</TerminalOutput>
+
+**Output**
+<TerminalOutput>
+{`+-----------+-------------+
+| player_id | first_login |
++-----------+-------------+
+| 1         | 2016-03-01  |
+| 2         | 2017-06-25  |
+| 3         | 2016-03-02  |
++-----------+-------------+`}
+</TerminalOutput>
+
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+import pandas as pd
+
+def game_analysis(activity: pd.DataFrame) -> pd.DataFrame:
+    
+    return( activity
+                .groupby(['player_id'], as_index=False)['event_date']
+                .min()
+                .rename(columns={'event_date': 'first_login'})
+    )
+```
+</Solution>

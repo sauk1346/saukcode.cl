@@ -12,6 +12,10 @@ import remarkAutoNumber from './src/plugins/remark-auto-number.mjs';
 // https://astro.build/config
 export default defineConfig({
   integrations: [react(), mdx()],
+  redirects: {
+    // Como en Next: el índice de flashcards redirige al detalle del ramo
+    '/inacap/[courseId]/flashcards': '/inacap/[courseId]',
+  },
   markdown: {
     remarkPlugins: [remarkAutoNumber, remarkMath],
     // rehype-prism-plus resalta el código en build (mismos tokens/clases que

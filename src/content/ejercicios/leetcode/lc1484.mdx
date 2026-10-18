@@ -1,0 +1,77 @@
+# Agrupar productos vendidos por fecha
+
+**Tabla** `Activities`
+
+<TerminalOutput>
+{`+-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| sell_date   | date    |
+| product     | varchar |
++-------------+---------+
+
+- No hay clave primaria (columna con valores únicos) para esta tabla. Puede 
+    contener duplicados.
+- Cada fila de esta tabla contiene el npmbre del producto y la fecha en que 
+    fue vendido en un mercado.`}
+</TerminalOutput>
+
+Escribe una solución para encontrar para cada fecha el número de productos diferentes vendidos y sus nombres.
+
+Los nombres de los productos vendidos para cada fecha deben estar ordenados lexicográficamente.
+
+Devuelve la tabla de resultados ordenada por `sell_date`.
+
+## Ejemplo
+
+**Input**
+<TerminalOutput>
+Tabla Activities:
+{`+------------+------------+
+| sell_date  | product     |
++------------+------------+
+| 2020-05-30 | Headphone  |
+| 2020-06-01 | Pencil     |
+| 2020-06-02 | Mask       |
+| 2020-05-30 | Basketball |
+| 2020-06-01 | Bible      |
+| 2020-06-02 | Mask       |
+| 2020-05-30 | T-Shirt    |
++------------+------------+`}
+</TerminalOutput>
+
+**Output**
+<TerminalOutput>
+{`+------------+----------+------------------------------+
+| sell_date  | num_sold | products                     |
++------------+----------+------------------------------+
+| 2020-05-30 | 3        | Basketball,Headphone,T-shirt |
+| 2020-06-01 | 2        | Bible,Pencil                 |
+| 2020-06-02 | 1        | Mask                         |
++------------+----------+------------------------------+
+
+Explicación: 
+- Para 2020-05-30, los artículos vendidos fueron (Headphone, Basketball, T-shirt),
+    los ordenamos lexicográficamente y los separamos por coma.
+- Para 2020-06-01, los artículos vendidos fueron (Pencil, Bible), los ordenamos 
+    lexicográficamente y los separamos por coma.
+- Para 2020-06-02, el artículo vendido es (Mask), simplemente lo devolvemos.`}
+</TerminalOutput>
+
+## Solution
+
+<Solution title="Python" icon="Python">
+```Python
+import pandas as pd
+
+def categorize_products(activities: pd.DataFrame) -> pd.DataFrame:
+    return (activities
+            .drop_duplicates()
+            .sort_values(by=['sell_date', 'product'])
+            .groupby('sell_date')['product']
+            .agg(['count', lambda x: ','.join(x)])
+            .rename(columns={'count': 'num_sold', '<lambda_0>': 'products'})            
+            .reset_index()
+    )
+```
+</Solution>

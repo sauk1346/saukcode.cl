@@ -1,0 +1,93 @@
+# Cadena Equivalente Lexicográficamente más Pequeña
+
+Se te dan dos cadenas de la misma longitud `s1` y `s2` y una cadena `baseStr`.
+
+Decimos que `s1[i]` y `s2[i]` son caracteres equivalentes.
+
+- Por ejemplo, si `s1 = "abc"` y `s2 = "cde"`, entonces tenemos `'a' == 'c'`, `'b' == 'd'` y `'c' == 'e'`.
+
+Los caracteres equivalentes siguen las reglas usuales de cualquier relación de equivalencia:
+
+- **Reflexividad:** `'a' == 'a'`
+- **Simetría:** `'a' == 'b'` implica `'b' == 'a'`
+- **Transitividad:** `'a' == 'b'` y `'b' == 'c'` implica `'a' == 'c'`
+
+Por ejemplo, dada la información de equivalencia de `s1 = "abc"` y `s2 = "cde"`, `"acd"` y `"aab"` son cadenas equivalentes de `baseStr = "eed"`, y `"aab"` es la cadena equivalente lexicográficamente más pequeña de `baseStr`.
+
+Devuelve *la cadena equivalente lexicográficamente más pequeña de `baseStr` usando la información de equivalencia de `s1` y `s2`.*
+
+## Ejemplos
+
+
+**Ejemplo 1:**
+<TerminalOutput>
+{`Input:  s1 = "parker", s2 = "morris", baseStr = "parser"
+Output: "makkek"
+
+Explicación:
+- Basándose en la información de equivalencia en s1 y s2, podemos agrupar 
+    sus caracteres como [m,p], [a,o], [k,r,s], [e,i].
+- Los caracteres en cada grupo son equivalentes y están ordenados 
+    lexicográficamente.
+- Por lo tanto, la respuesta es "makkek".`}
+</TerminalOutput>
+
+**Ejemplo 2:**
+<TerminalOutput>
+{`Input:  s1 = "hello", s2 = "world", baseStr = "hold"
+Output: "hdld"
+
+Explicación:
+- Basándose en la información de equivalencia en s1 y s2, podemos agrupar 
+    sus caracteres como [h,w], [d,e,o], [l,r].
+- Por lo tanto, solo la segunda letra 'o' en baseStr se cambia a 'd', 
+    la respuesta es "hdld".`}
+</TerminalOutput>
+
+**Ejemplo 3:**
+<TerminalOutput>
+{`Input:  s1 = "leetcode", s2 = "programs", baseStr = "sourcecode"
+Output: "aauaaaaada"
+
+Explicación:
+- Agrupamos los caracteres equivalentes en s1 y s2 como [a,o,e,r,s,c],
+    [l,p], [g,t] y [d,m].
+- Por lo tanto, todas las letras en baseStr excepto 'u' y 'd' se 
+    transforman en 'a', la respuesta es "aauaaaaada".`}
+</TerminalOutput>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+class Solution:
+   def find(self, dsuf, v):
+       if dsuf[v] == -1:
+           return v
+       dsuf[v] = self.find(dsuf, dsuf[v])
+       return dsuf[v]
+   
+   def smallestEquivalentString(self, s1: str, s2: str, baseStr: str) -> str:
+       dsuf = [-1] * 26
+       # Paso-1: Construir conjuntos equivalentes disjuntos (con el más pequeño en cada conjunto como padre absoluto)
+       for i in range(len(s1)):
+           if s1[i] == s2[i]:
+               continue
+           px = self.find(dsuf, ord(s1[i]) - ord('a'))
+           py = self.find(dsuf, ord(s2[i]) - ord('a'))
+           if px == py:
+               continue
+           # Unión por el carácter más pequeño como padre absoluto
+           if px > py:
+               dsuf[px] = py
+           else:
+               dsuf[py] = px
+       
+       # Paso-2: Iterar por baseStr y encontrar la cadena equivalente lexicográficamente más pequeña
+       res = []
+       for c in baseStr:
+           parent = self.find(dsuf, ord(c) - ord('a'))
+           res.append(chr(parent + ord('a')))
+       return ''.join(res)
+```
+</Solution>

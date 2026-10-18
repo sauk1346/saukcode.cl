@@ -1,0 +1,52 @@
+# Cadena Lexicográficamente Mínima después de Eliminar Estrellas
+
+Se te da una cadena `s`. Puede contener cualquier número de caracteres `'*'`. Tu tarea es eliminar todos los caracteres `'*'`.
+
+Mientras haya un `'*'`, realiza la siguiente operación:
+
+- Elimina el `'*'` más a la izquierda y el carácter no-'*' **más pequeño** a su *izquierda*. Si hay varios caracteres más pequeños, puedes eliminar cualquiera de ellos.
+
+Devuelve la cadena lexicográficamente más pequeña resultante después de eliminar todos los caracteres `'*'`.
+
+## Ejemplos
+
+**Ejemplo 1:**
+> **Input:** s = "aaba*"
+> **Output:** "aab"
+> **Explicación:**
+> Deberíamos eliminar uno de los caracteres 'a' con '*'. Si elegimos s[3], s se convierte en la lexicográficamente más pequeña.
+
+**Ejemplo 2:**
+> **Input:** s = "abc"
+> **Output:** "abc"
+> **Explicación:**
+> No hay '*' en la cadena.
+
+## Soluciones
+
+<details>
+    <summary>Python</summary>
+```python
+class Solution:
+    def clearStars(self, s: str) -> str:
+        char_pos = [[] for _ in range(26)]
+        s_list = list(s)
+        
+        for i, c in enumerate(s_list):
+            if c == '*':
+                for j in range(26):
+                    if char_pos[j]:
+                        pos = char_pos[j].pop()
+                        s_list[pos] = '*'
+                        break
+            else:
+                char_pos[ord(c) - ord('a')].append(i)
+        
+        res = []
+        for c in s_list:
+            if c != '*':
+                res.append(c)
+        
+        return ''.join(res)
+```
+</details>

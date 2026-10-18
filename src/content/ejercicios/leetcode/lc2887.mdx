@@ -1,0 +1,63 @@
+# Llenar Datos Faltantes
+
+**DataFrame** `products`
+<TerminalOutput>
+{`+-------------+--------+
+| Column Name | Type   |
++-------------+--------+
+| name        | object |
+| quantity    | int    |
+| price       | int    |
++-------------+--------+`}
+</TerminalOutput>
+
+Escribe una solución para llenar los valores faltantes con `0` en la columna `quantity`.
+
+## Ejemplo
+
+<MultiColumn>
+<div>
+**Input:**
+<TerminalOutput>
+{`+-----------------+----------+-------+
+| name            | quantity | price |
++-----------------+----------+-------+
+| Wristwatch      | None     | 135   |
+| WirelessEarbuds | None     | 821   |
+| GolfClubs       | 779      | 9319  |
+| Printer         | 849      | 3051  |
++-----------------+----------+-------+`}
+</TerminalOutput>
+</div>
+<div>
+**Output:**
+<TerminalOutput>
+{`+-----------------+----------+-------+
+| name            | quantity | price |
++-----------------+----------+-------+
+| Wristwatch      | 0        | 135   |
+| WirelessEarbuds | 0        | 821   |
+| GolfClubs       | 779      | 9319  |
+| Printer         | 849      | 3051  |
++-----------------+----------+-------+
+
+Explicación: 
+La cantidad para Wristwatch y 
+WirelessEarbuds se reemplaza con 0.`}
+</TerminalOutput>
+</div>
+</MultiColumn>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+import pandas as pd
+
+def fillMissingValues(products: pd.DataFrame) -> pd.DataFrame:
+    
+    products['quantity'] = products['quantity'].fillna(0)
+    
+    return products
+```
+</Solution>

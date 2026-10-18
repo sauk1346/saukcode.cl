@@ -1,0 +1,42 @@
+# Distribuir Dulces entre Niños III
+
+Se te dan dos enteros positivos `n` y `limit`.
+
+Devuelve *el **número total** de formas de distribuir `n` dulces entre `3` niños de tal manera que ningún niño reciba más de `limit` dulces.*
+
+## Ejemplos
+
+**Ejemplo 1:**
+> **Input:** n = 5, limit = 2
+> **Output:** 3
+> **Explicación:** Hay 3 formas de distribuir 5 dulces de tal manera que ningún niño reciba más de 2 dulces: (1, 2, 2), (2, 1, 2) y (2, 2, 1).
+
+**Ejemplo 2:**
+> **Input:** n = 3, limit = 3
+> **Output:** 10
+> **Explicación:** Hay 10 formas de distribuir 3 dulces de tal manera que ningún niño reciba más de 3 dulces: (0, 0, 3), (0, 1, 2), (0, 2, 1), (0, 3, 0), (1, 0, 2), (1, 1, 1), (1, 2, 0), (2, 0, 1), (2, 1, 0) y (3, 0, 0).
+
+## Soluciones
+
+<details>
+    <summary>Python</summary>
+```python
+class Solution:
+    def combinations(self, n: int) -> int:
+        if n < 0:
+            return 0
+        return (n + 1) * (n + 2) // 2
+
+    def distributeCandies(self, n: int, limit: int) -> int:
+        all_combinations = self.combinations(n)
+        one_above_limit_combinations = 3 * self.combinations(n - (limit + 1))
+        two_above_limit_combinations = 3 * self.combinations(n - 2 * (limit + 1))
+        three_above_limit_combinations = self.combinations(n - 3 * (limit + 1))
+
+        invalid_combinations = (one_above_limit_combinations - 
+                               two_above_limit_combinations + 
+                               three_above_limit_combinations)
+        valid_combinations = all_combinations - invalid_combinations
+        return valid_combinations
+```
+</details>

@@ -1,0 +1,81 @@
+# Clientes Potenciales y Socios Diarios
+
+**Tabla** `DailySales`
+<TerminalOutput>
+{`+-------------+---------+
+| Nombre Col  | Tipo    |
++-------------+---------+
+| date_id     | date    |
+| make_name   | varchar |
+| lead_id     | int     |
+| partner_id  | int     |
++-------------+---------+
+
+- No hay clave primaria (columna con valores únicos) para esta tabla. Puede 
+    contener duplicados.
+- Esta tabla contiene la fecha y el nombre del producto vendido y los IDs
+    del cliente potencial y socio a quien se vendió.
+- El nombre consiste solo de letras minúsculas en inglés.`}
+</TerminalOutput>
+
+Para cada `date_id` y `make_name`, encontrar el número de `lead_id` distintos y `partner_id` distintos.
+
+Devuelve la tabla de resultados en cualquier orden
+
+## Ejemplo
+
+**Input**
+<TerminalOutput>
+{`Tabla DailySales:
++-----------+-----------+---------+------------+
+| date_id   | make_name | lead_id | partner_id |
++-----------+-----------+---------+------------+
+| 2020-12-8 | toyota    | 0       | 1          |
+| 2020-12-8 | toyota    | 1       | 0          |
+| 2020-12-8 | toyota    | 1       | 2          |
+| 2020-12-7 | toyota    | 0       | 2          |
+| 2020-12-7 | toyota    | 0       | 1          |
+| 2020-12-8 | honda     | 1       | 2          |
+| 2020-12-8 | honda     | 2       | 1          |
+| 2020-12-7 | honda     | 0       | 1          |
+| 2020-12-7 | honda     | 1       | 2          |
+| 2020-12-7 | honda     | 2       | 1          |
++-----------+-----------+---------+------------+`}
+</TerminalOutput>
+
+**Output**
+<TerminalOutput>
+{`+-----------+-----------+------------------+-------------------+
+| date_id   | make_name | unique_leads     | unique_partners   |
++-----------+-----------+------------------+-------------------+
+| 2020-12-8 | toyota    | 2                | 3                 |
+| 2020-12-7 | toyota    | 1                | 2                 |
+| 2020-12-8 | honda     | 2                | 2                 |
+| 2020-12-7 | honda     | 3                | 2                 |
++-----------+-----------+------------------+-------------------+
+
+Explicación:
+- Para 2020-12-8, toyota obtiene clientes potenciales = [0, 1] y 
+    socios = [0, 1, 2], mientras que honda obtiene 
+    clientes potenciales = [1, 2] y socios = [1, 2].
+
+- Para 2020-12-7, toyota obtiene clientes potenciales = [0] y
+    socios = [1, 2], mientras que honda obtiene 
+    clientes potenciales = [0, 1, 2] y socios = [1, 2].`}
+</TerminalOutput>
+
+## Solución
+<Solution title="Python" icon="Python">
+```python
+import pandas as pd
+
+def daily_leads_and_partners(daily_sales: pd.DataFrame) -> pd.DataFrame:
+    return (daily_sales
+                .groupby(['date_id', 'make_name'])
+                .agg(
+                    unique_leads=('lead_id', 'nunique'),
+                    unique_partners=('partner_id', 'nunique'))
+                .reset_index()
+    )
+```
+</Solution>

@@ -1,0 +1,57 @@
+# Dulces
+
+Hay `n` niños haciendo una fila. Cada niño tiene una calificación según el arreglo de enteros `ratings`.
+
+Le das dulces a estos niños según los siguientes requisitos:
+
+- Cada niño debe tener al menos un dulce.
+- Los niños con una calificación más alta obtienen más dulces que sus vecinos.
+
+Devuelve *el número mínimo de dulces que necesitas tener para distribuir los dulces a los niños.*
+
+## Ejemplos
+
+**Ejemplo 1:**
+
+<TerminalOutput>
+{`Input:       ratings = [1,0,2]
+Output:      5
+Explicación: Puedes asignar al primer, segundo y tercer niño 
+               con 2, 1, 2 dulces respectivamente.`}
+</TerminalOutput>
+
+**Ejemplo 2:**
+<TerminalOutput>
+{`Input:       ratings = [1,2,2]
+Output:      4
+Explicación: Puedes asignar al primer, segundo y tercer niño 
+               con 1, 2, 1 dulces respectivamente.
+               El tercer niño obtiene 1 dulce porque satisface 
+               las dos condiciones anteriores.`}
+</TerminalOutput>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+class Solution:
+   def candy(self, ratings: List[int]) -> int:
+       n = len(ratings)
+       candies = [1] * n
+       
+       # Paso 1: Asignar curva creciente con dulces crecientes
+       for i in range(1, n):
+           if ratings[i] > ratings[i-1]:
+               candies[i] = 1 + candies[i-1]
+       
+       # Paso 2: Asignar curva decreciente con dulces crecientes
+       total = candies[-1]
+       for i in range(n-1, 0, -1):
+           if ratings[i-1] > ratings[i]:
+               candies[i-1] = max(candies[i-1], 1 + candies[i])
+           total += candies[i-1]
+       
+       return total
+```
+</Solution>
+

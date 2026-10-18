@@ -1,0 +1,56 @@
+# Tipo de Triángulo
+
+Se te da un array de enteros **indexado en 0** `nums` de tamaño `3` que puede formar los lados de un triángulo.
+
+- Un triángulo se llama **equilátero (equilateral)** si tiene todos los lados de igual longitud.
+- Un triángulo se llama **isósceles (isosceles)** si tiene exactamente dos lados de igual longitud.
+- Un triángulo se llama **escaleno (scalene)** si sus lados son de diferentes longitudes.
+
+Devuelve *un string que represente el tipo de triángulo que se puede formar o `"none"` si **no puede** formar un triángulo*
+
+## Ejemplos
+
+**Ejemplo 1:**
+> **Input:** nums = [3,3,3]
+> **Output:** "equilateral"
+> **Explicación:** Como todos los lados son de igual longitud, por lo tanto, formará un triángulo equilátero.
+
+**Ejemplo 2:**
+> **Input:** nums = [3,4,5]
+> **Output:** "scalene"
+> **Explicación:**
+> nums[0] + nums[1] = 3 + 4 = 7, que es mayor que nums[2] = 5.
+> nums[0] + nums[2] = 3 + 5 = 8, que es mayor que nums[1] = 4.
+> nums[1] + nums[2] = 4 + 5 = 9, que es mayor que nums[0] = 3.
+> Como la suma de dos lados es mayor que el tercer lado para
+> los tres casos, por lo tanto, puede formar un triángulo.
+> Como todos los lados son de diferentes longitudes, formará un
+> triángulo escaleno.
+
+## Soluciones
+
+<details>
+    <summary>Python</summary>
+```python
+class Solution:
+    def triangleType(self, nums: List[int]) -> str:
+        
+        a,b,c = nums
+
+        # Verificar triangulo valido 
+        if (a +b <= c) or (b + c <= a) or (a + c <= b):
+            return "none"
+        
+        # Verificar lados
+        if a == 0 or b == 0 or c == 0:
+            return "none"
+        
+        # Verificar tipo de triangulo
+        if a == b == c:
+            return "equilateral"
+        elif a == b or b == c or a == c:
+            return "isosceles"
+        else:
+            return "scalene"
+```
+</details>

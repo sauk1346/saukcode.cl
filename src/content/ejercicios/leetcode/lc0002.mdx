@@ -1,0 +1,83 @@
+# Suma de Dos Números
+
+Te dan dos listas enlazadas **no vacías** que representan dos enteros negativos. Los dígitos se almacenan en **orden inverso**, y cada uno de sus nodos contiene un solo dígito. Suma los dos números y devuelve la suma como una lista enlazada.
+
+Asume que los dos números no contienen ningún cero inicial, excepto el número 0 en sí mismo
+
+<SmartFigure
+	id="listas-enlazadas-no-vacias"
+	src="/leetcode/fig01.png"
+	alt="Dos listas enlazadas no vacías"
+	caption="Suma de 2 listas enlazadas no vacías"
+	size="large"
+/>
+
+## Ejemplos
+
+**Ejemplo 1:**
+
+<TerminalOutput>
+{`Input:       l1 = [2,4,3], l2 = [5,6,4]
+Output:      [7,0,8]
+Explicación: 342 + 465 = 807`}
+</TerminalOutput>
+
+
+**Ejemplo 2:**
+<TerminalOutput>
+{`Input:  l1 = [0], l2 = [0]
+Output: [0]`}
+</TerminalOutput>
+
+**Ejemplo 3:**
+<TerminalOutput>
+{`Input:  l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]
+Output: [8,9,9,9,0,0,0,1]`}
+</TerminalOutput>
+
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+import pandas as pd
+
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        
+        dummy = ListNode()
+        curr = dummy
+
+        carry = 0
+        while l1 or l2 or carry:
+            v1 = l1.val if l1 else 0
+            v2 = l2.val if l2 else 0
+
+            #new digit
+            val = v1 + v2 + carry
+            carry = val // 10
+            val = val % 10
+            curr.next = ListNode(val)
+
+            #update pointers
+            curr = curr.next
+            l1 = l1.next if l1 else None
+            l2 = l2.next if l2 else None
+
+        return dummy.next
+```
+
+- Se reciben como parámetros de entradas 2 listas de nodos `l1` y `l2`
+- Se crea un nodo ficticio que sirve como punto de partida
+- Los punteros `curr` y `dummy` apuntan al nodo ficticio 
+- Se crea un bucle `while` que continuará mientras quede algún nodo en las listas `l1` o `l2` o quede un valor en `carry`
+- El puntero `curr` va recorriendo  y uniendo los nodos con los valores generados
+- Al terminar, el puntero `dummy` avanza un nodo y obtiene la lista de nodos resultante
+- Finalmente se retorna `dummy.next`
+</Solution>

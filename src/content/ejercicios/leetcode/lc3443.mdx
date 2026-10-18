@@ -1,0 +1,85 @@
+# Máxima Distancia Manhattan después de K cambios
+
+Se te da una cadena `s` que consiste en los caracteres `'N'`, `'S'`, `'E'` y `'W'`, donde `s[i]` indica movimientos en una cuadrícula infinita:
+
+- `'N'` : Moverse hacia el norte 1 unidad.
+- `'S'` : Moverse hacia el sur 1 unidad.
+- `'E'` : Moverse hacia el este 1 unidad.
+- `'W'` : Moverse hacia el oeste 1 unidad.
+
+Inicialmente, estás en el origen `(0, 0)`. Puedes cambiar **como máximo** `k` caracteres a cualquiera de las cuatro direcciones.
+
+Encuentra la **máxima distancia de Manhattan** desde el origen que se puede lograr en **cualquier momento** mientras realizas los movimientos **en orden**.
+
+**La Distancia de Manhattan** entre dos celdas $(x_i, y_i)$ y $(x_j, y_j)$ es $|x_i - x_j| + |y_i - y_j|$.
+
+## Ejemplos
+
+**Ejemplo 1:**
+```text
+Input: s = "NWSE", k = 1
+
+Output: 3
+
+Explicación:
+Change s[2] from 'S' to 'N'. The string s becomes "NWNE".
+
+|Movimiento   |Posición (x, y)|Distancia de Manhattan|Máximo|
+|-------------|---------------|----------------------|------|
+| s[0] == 'N' |  (0, 1)       |  0 + 1 = 1           |  1   |
+| s[1] == 'W' |  (-1, 1)      |  1 + 1 = 2           |  2   |
+| s[2] == 'N' |  (-1, 2)      |  1 + 2 = 3           |  3   |
+| s[3] == 'E' |  (0, 2)       |  0 + 2 = 2           |  3   |
+
+La máxima distancia de Manhattan desde el origen que se puede lograr es 3. Por lo tanto, 3 es la salida.
+```
+
+**Ejemplo 2:**
+```text
+Input: s = "NSWWEW", k = 3
+
+Output: 6
+
+Explicación:
+Cambiar s[1] de 'S' a 'N', y s[4] de 'E' a 'W'. La cadena s se convierte en "NNWWWW".
+
+La máxima distancia de Manhattan desde el origen que se puede lograr es 6. Por lo tanto, 6 es la salida.
+```
+
+## Soluciones
+
+<details>
+    <summary>Python</summary>
+```python
+class Solution:
+    def maxDistance(self, s: str, k: int) -> int:
+        max_md = 0
+        east = 0
+        west = 0
+        north = 0
+        south = 0
+        
+        for i in range(len(s)):
+            if s[i] == 'E':
+                east += 1
+            elif s[i] == 'W':
+                west += 1
+            elif s[i] == 'N':
+                north += 1
+            elif s[i] == 'S':
+                south += 1
+            
+            curr_md = abs(east - west) + abs(north - south)
+            steps = i + 1
+            wasted = steps - curr_md
+            extra = 0
+            
+            if wasted != 0:  
+                extra = min(2 * k, wasted)
+            
+            final_current_md = curr_md + extra
+            max_md = max(max_md, final_current_md)
+        
+        return max_md
+```
+</details>

@@ -1,0 +1,79 @@
+# Máxima Diferencia al Cambiar un Entero
+
+Se te da un entero `num`. Aplicarás los siguientes pasos a `num` dos veces por separado:
+
+- Elige un dígito `x (0 <= x <= 9)`.
+- Elige otro dígito `y (0 <= y <= 9)`. Nota que `y` puede ser igual a `x`.
+- Reemplaza todas las ocurrencias de `x` en la representación decimal de `num` por `y`.
+
+Sean `a` y `b` los dos resultados de aplicar la operación a `num` *independientemente.*
+
+Devuelve *la máxima diferencia entre `a` y `b`.*
+
+Nota que ni `a` ni `b` pueden tener ceros a la izquierda, y **no deben** ser 0.
+
+## Ejemplos
+
+**Ejemplo 1:**
+<TerminalOutput>
+{`Input: num = 555
+Output: 888
+
+Explicación: 
+    - La primera vez elige x = 5 e y = 9 y almacena el nuevo entero en a.
+    - La segunda vez elige x = 5 e y = 1 y almacena el nuevo entero en b.
+    - Ahora tenemos a = 999 y b = 111 y la máxima diferencia = 888`}
+</TerminalOutput>
+
+**Ejemplo 2:**
+<TerminalOutput>
+{`Input: num = 9
+Output: 8
+
+Explicación:
+    - La primera vez elige x = 9 e y = 9 y almacena el nuevo entero en a.
+    - La segunda vez elige x = 9 e y = 1 y almacena el nuevo entero en b.
+    - Ahora tenemos a = 9 y b = 1 y la máxima diferencia = 8`}
+</TerminalOutput>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+class Solution:
+   def maxDiff(self, num: int) -> int:
+       s = str(num)
+       max_s = list(s)
+       min_s = list(s)
+       n = len(s)
+
+       # Maximizar número: El primer dígito < '9' debe convertirse en '9'
+       for i in range(n):
+           if max_s[i] != '9':
+               target = max_s[i]
+               for j in range(n):
+                   if max_s[j] == target:
+                       max_s[j] = '9'
+               break
+
+       # Minimizar número
+       if min_s[0] > '1':
+           target = min_s[0]
+           for i in range(n):
+               if min_s[i] == target:
+                   min_s[i] = '1'
+       else:
+           # Encontrar el primer dígito > '0' desde el índice 1 hasta (n-1)
+           for i in range(1, n):
+               if min_s[i] > '1':
+                   target = min_s[i]
+                   for j in range(i, n):
+                       if min_s[j] == target:
+                           min_s[j] = '0'
+                   break
+
+       max_num = int(''.join(max_s))
+       min_num = int(''.join(min_s))
+       return max_num - min_num
+```
+</Solution>

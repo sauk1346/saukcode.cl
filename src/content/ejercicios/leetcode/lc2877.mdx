@@ -1,0 +1,51 @@
+# Crear un DataFrame desde una Lista
+
+Escribe una solución para **crear** un DataFrame a partir de una lista 2D llamada `student_data`. Esta lista 2D contiene los IDs y edades de algunos estudiantes.
+
+El DataFrame debe tener dos columnas, `student_id` y `age`, y estar en el mismo orden que la lista 2D original.
+
+## Ejemplo
+
+**Input**
+<TerminalOutput>
+{`student_data:
+[
+  [1, 15],
+  [2, 11],
+  [3, 11],
+  [4, 20]
+]`}
+</TerminalOutput>
+
+
+**Output**
+<TerminalOutput>
+{`+------------+-----+
+| student_id | age |
++------------+-----+
+| 1          | 15  |
+| 2          | 11  |
+| 3          | 11  |
+| 4          | 20  |
++------------+-----+
+
+Explicación:
+Se creó un DataFrame basado en student_data, con dos columnas llamadas student_id 
+y age.`}
+</TerminalOutput>
+
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+import pandas as pd
+
+def createDataframe(student_data: List[List[int]]) -> pd.DataFrame:
+    df = pd.DataFrame(
+        student_data, 
+        columns=["student_id","age"])
+    
+    return df
+```
+</Solution>

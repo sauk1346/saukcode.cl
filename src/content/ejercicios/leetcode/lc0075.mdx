@@ -1,0 +1,49 @@
+# Ordenar Colores
+
+Dado un arreglo `nums` con `n` objetos coloreados de rojo, blanco, o azul, ordénalos **directamente sobre el mismo arreglo**, de modo que los objetos del mismo color estén adyacentes con los colores en el orden rojo, blanco y azul.
+
+Se usarán los enteros `0`, `1`, y `2` para representar los colores rojo, blanco y azul respectivamente.
+
+Resuelve este problema sin usar la función de ordenamiento de la biblioteca.
+
+## Ejemplos
+
+**Ejemplo 1:**
+<TerminalOutput>
+{`Input:  nums = [2,0,2,1,1,0]
+Output: [0,0,1,1,2,2]`}
+</TerminalOutput>
+
+**Ejemplo 2:**
+<TerminalOutput>
+{`Input:  nums = [2,0,1]
+Output: [0,1,2]`}
+</TerminalOutput>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        
+        RED = 0
+        WHITE = 1
+        BLUE = 2
+        
+        mid = 0
+        low = 0
+        high = len(nums) - 1
+        
+        while mid <= high:
+            if nums[mid] == RED:
+                nums[low], nums[mid] = nums[mid], nums[low]
+                low += 1
+                mid += 1
+            elif nums[mid] == BLUE:
+                nums[mid], nums[high] = nums[high], nums[mid]
+                high -= 1
+            else:
+                mid += 1
+```
+</Solution>

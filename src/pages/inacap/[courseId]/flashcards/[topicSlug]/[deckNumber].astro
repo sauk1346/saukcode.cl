@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import FlashcardStudy from '../../../../../components/features/flashcards/FlashcardStudy.jsx';
+import { getAllCourseIds } from '../../../../../utils/courseUtils.js';
+import {
+  getTopicsByCourseId,
+  getDeckByTopicAndNumber,
+  getCardsByDeckId,
+} from '../../../../../lib/flashcards.js';
+import { renderMdxCards } from '../../../../../lib/renderMdxCards.jsx';
+
+export function getStaticPaths() {
+  const paths = [];
+  for (const courseId of getAllCourseIds()) {
+    for (const topic of getTopicsByCourseId(courseId)) {
+      for (const deck of topic.decks) {
+        paths.push({
+          params: { courseId, topicSlug: topic.slug, deckNumber: String(deck.number) },
+        });
+      }
+    }
+  }
+  return paths;
+}
+
+const { topicSlug, deckNumber } = Astro.params;
+const result = getDeckByTopicAndNumber(topicSlug, Number(deckNumber));
+const { topic, deck } = result;
+const rawCards = getCardsByDeckId(deck.id);
+const cards = await renderMdxCards(rawCards);
+---
+
+<BaseLayout title={`${topic.name} — Mazo ${deckNumber}`}>
+  <FlashcardStudy
+    client:load
+    cards={cards}
+    topicName={topic.name}
+    deckNumber={deck.number}
+    layout={topic.layout}
+  />
+</BaseLayout>

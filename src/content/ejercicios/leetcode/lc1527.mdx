@@ -1,0 +1,59 @@
+# Pacientes con una Condición
+
+**Tabla:** `Patients`
+<TerminalOutput>
+{`+--------------+---------+
+| Column Name  | Type    |
++--------------+---------+
+| patient_id   | int     |
+| patient_name | varchar |
+| conditions   | varchar |
++--------------+---------+
+
+- "patient_id" es la clave primaria (columna con valores únicos) para esta tabla.
+- "conditions" contiene 0 o más códigos separados por espacios.`}
+</TerminalOutput>
+
+Escribe una solución para encontrar `patient_id`, `patient_name` y `conditions` de los pacientes que tienen "Diabetes Tipo I", que siempre comienza con el prefijo `DIAB1`.
+
+Devuelve la tabla de resultados en **cualquier orden**.
+
+## Ejemplo
+
+**Input:**
+<TerminalOutput>
+{`Tabla Patients:
++------------+--------------+--------------+
+| patient_id | patient_name | conditions   |
++------------+--------------+--------------+
+| 1          | Daniel       | YFEV COUGH   |
+| 2          | Alice        |              |
+| 3          | Bob          | DIAB100 MYOP |
+| 4          | George       | ACNE DIAB100 |
+| 5          | Alain        | DIAB201      |
++------------+--------------+--------------+`}
+</TerminalOutput>
+
+**Output:** 
+<TerminalOutput>
+{`+------------+--------------+--------------+
+| patient_id | patient_name | conditions   |
++------------+--------------+--------------+
+| 3          | Bob          | DIAB100 MYOP |
+| 4          | George       | ACNE DIAB100 |
++------------+--------------+--------------+
+
+Explicación: Bob y George ambos tienen una condición que comienza con DIAB1.`}
+</TerminalOutput>
+
+## Solución
+
+<Solution title="Python" icon="Python">
+```python
+def find_patients(patients: pd.DataFrame) -> pd.DataFrame:
+    
+    regex = r' DIAB1.*|^DIAB1.*'
+
+    return patients[patients['conditions'].str.contains(regex, na=False)]
+```
+</Solution>

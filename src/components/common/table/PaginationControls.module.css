@@ -1,0 +1,231 @@
+/* ================================
+   CONTENEDOR PRINCIPAL
+   ================================ */
+   .tableFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) 0;
+    height: 70px;
+    border-top: 1px solid #e5e7eb;
+    transition: border-color 0.3s ease;
+    flex-shrink: 0;
+    background-color: var(--card-bg, white);
+  }
+  
+  /* ================================
+     INFORMACIÓN DE LA TABLA
+     ================================ */
+  .tableInfo {
+    flex: 1;
+    color: #666;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+    font-weight: 500;
+  }
+  
+  /* ================================
+     CONTROLES DE PAGINACIÓN
+     ================================ */
+  .paginationControls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    justify-content: flex-end;
+    min-width: 300px;
+  }
+  
+  /* ================================
+     BOTONES DE PAGINACIÓN
+     ================================ */
+  .paginationButton {
+    padding: var(--spacing-sm) 0.75rem;
+    border: 1px solid #dee2e6;
+    background-color: #f8f9fa;
+    color: #495057;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+    min-width: 40px;
+    text-align: center;
+    font-size: 0.875rem;
+    line-height: 1;
+    font-weight: 500;
+    user-select: none;
+  }
+  
+  .paginationButton:hover:not(:disabled) {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .paginationButton:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .paginationButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f8f9fa;
+    color: #6c757d;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  /* ================================
+     PÁGINA ACTUAL
+     ================================ */
+  .currentPage {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+  }
+  
+  .currentPage:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
+  }
+  
+  /* ================================
+     VARIANTES DE TAMAÑO
+     ================================ */
+  .small .paginationButton {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.8rem;
+    min-width: 32px;
+  }
+  
+  .large .paginationButton {
+    padding: 0.75rem var(--spacing-md);
+    font-size: 1rem;
+    min-width: 48px;
+  }
+  
+  /* ================================
+     VARIANTES DE ESTILO
+     ================================ */
+  .minimal .paginationButton {
+    border: none;
+    background-color: transparent;
+    color: #007bff;
+  }
+  
+  .minimal .paginationButton:hover:not(:disabled) {
+    background-color: #e9ecef;
+    color: #0056b3;
+  }
+  
+  .minimal .currentPage {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  /* ================================
+     DARK MODE
+     ================================ */
+  :global(html.dark-mode) .tableFooter,
+  :global(html.dark-mode-override) .tableFooter {
+    border-top-color: #4b5563;
+    background-color: var(--card-bg-dark, #1e1e1e);
+  }
+  
+  :global(html.dark-mode) .tableInfo,
+  :global(html.dark-mode-override) .tableInfo {
+    color: #9ca3af;
+  }
+  
+  :global(html.dark-mode) .paginationButton,
+  :global(html.dark-mode-override) .paginationButton {
+    background-color: #374151;
+    color: #e5e7eb;
+    border-color: #4b5563;
+  }
+  
+  :global(html.dark-mode) .paginationButton:hover:not(:disabled),
+  :global(html.dark-mode-override) .paginationButton:hover:not(:disabled) {
+    background-color: #4b5563;
+    border-color: #6b7280;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  :global(html.dark-mode) .paginationButton:disabled,
+  :global(html.dark-mode-override) .paginationButton:disabled {
+    background-color: #374151;
+    color: #6b7280;
+  }
+  
+  :global(html.dark-mode) .currentPage,
+  :global(html.dark-mode-override) .currentPage {
+    background-color: #3b82f6;
+    color: #f9fafb;
+    border-color: #2563eb;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.4);
+  }
+  
+  :global(html.dark-mode) .currentPage:hover,
+  :global(html.dark-mode-override) .currentPage:hover {
+    background-color: #2563eb;
+    border-color: #1d4ed8;
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.5);
+  }
+  
+  :global(html.dark-mode) .minimal .paginationButton,
+  :global(html.dark-mode-override) .minimal .paginationButton {
+    color: #60a5fa;
+    background-color: transparent;
+  }
+  
+  :global(html.dark-mode) .minimal .paginationButton:hover:not(:disabled),
+  :global(html.dark-mode-override) .minimal .paginationButton:hover:not(:disabled) {
+    background-color: #374151;
+    color: #93c5fd;
+  }
+  
+  /* ================================
+     RESPONSIVE
+     ================================ */
+  @media (max-width: 768px) {
+    .tableFooter {
+      flex-direction: column;
+      gap: var(--spacing-md);
+      text-align: center;
+      height: auto;
+      padding: var(--spacing-md) 0;
+    }
+    
+    .paginationControls {
+      justify-content: center;
+      min-width: auto;
+      flex-wrap: wrap;
+    }
+    
+    .paginationButton {
+      min-width: 35px;
+      padding: 0.4rem 0.6rem;
+      font-size: 0.8rem;
+    }
+    
+    .tableInfo {
+      text-align: center;
+      font-size: 0.8rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .paginationControls {
+      gap: var(--spacing-xs);
+    }
+    
+    .paginationButton {
+      min-width: 32px;
+      padding: 0.3rem 0.5rem;
+      font-size: 0.75rem;
+    }
+  }

@@ -1,0 +1,89 @@
+# Encontrar el Tiempo Total empleado por cada empleado
+
+**Table** `Employees`
+
+<TerminalOutput>
+{`+-------------+------+
+| Column Name | Type |
++-------------+------+
+| emp_id      | int  |
+| event_day   | date |
+| in_time     | int  |
+| out_time    | int  |
++-------------+------+
+
+- (emp_id, event_day, in_time) es la clave primaria (combinaciones de columnas 
+    con valores únicos) de esta tabla.
+
+- La tabla muestra las entradas y salidas de los empleados en una oficina.
+
+- "event_day" es el día en que ocurrió este evento, "in_time" es el minuto en 
+    que el empleado entró a la oficina, y "out_time" es el minuto en que salió 
+    de la oficina.
+
+- "in_time" y "out_time" están entre 1 y 1440.
+
+- Se garantiza que no hay dos eventos el mismo día que se intersecten en tiempo,
+    y "in_time" < "out_time".`}
+</TerminalOutput>
+
+Escribe una solución para calcular el tiempo total **en minutos** empleado por cada empleado cada día en la oficina. Ten en cuenta que dentro de un día, un empleado puede entrar y salir más de una vez. El tiempo empleado en la oficina para una sola entrada es `out_time - in_time`. 
+
+Devuelve la tabla resultado en **cualquier orden**.
+
+## Ejemplo
+
+**Input**
+<TerminalOutput>
+{`Employees table:
++--------+------------+---------+----------+
+| emp_id | event_day  | in_time | out_time |
++--------+------------+---------+----------+
+| 1      | 2020-11-28 | 4       | 32       |
+| 1      | 2020-11-28 | 55      | 200      |
+| 1      | 2020-12-03 | 1       | 42       |
+| 2      | 2020-11-28 | 3       | 33       |
+| 2      | 2020-12-09 | 47      | 74       |
++--------+------------+---------+----------+`}
+</TerminalOutput>
+
+**Output**
+<TerminalOutput>
+{`+------------+--------+------------+
+| day        | emp_id | total_time |
++------------+--------+------------+
+| 2020-11-28 | 1      | 173        |
+| 2020-11-28 | 2      | 30         |
+| 2020-12-03 | 1      | 41         |
+| 2020-12-09 | 2      | 27         |
++------------+--------+------------+
+
+Explicación: 
+
+- Empleado 1 tiene tres eventos: 
+    - dos el día 2020-11-28 con un total de (32 - 4) + (200 - 55) = 173
+    - uno el día 2020-12-03 con un total de (42 - 1) = 41.
+
+- Empleado 2 tiene dos eventos: 
+    - uno el día 2020-11-28 con un total de (33 - 3) = 30
+    - uno el día 2020-12-09 con un total de (74 - 47) = 27.`}
+</TerminalOutput>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+import pandas as pd
+
+def total_time(employees: pd.DataFrame) -> pd.DataFrame:
+    
+    employees['total_time'] = employees['out_time'] - employees ['in_time']
+
+    return (employees
+                .groupby(['event_day', 'emp_id'], as_index=False)['total_time']
+                .sum()
+                .rename(columns={'event_day': 'day'})
+    )
+
+```
+</Solution>

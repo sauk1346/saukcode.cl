@@ -1,0 +1,87 @@
+# Máximo de Dulces a Sacar por Cajas
+
+Tienes `n` cajas etiquetadas desde `0` hasta `n - 1`. Se te dan cuatro arreglos: `status`, `candies`, `keys`, y `containedBoxes` donde:
+
+- `status[i]` es 1 si la i-ésima caja está abierta y 0 si la i-ésima caja está cerrada.
+- `candies[i]` es el número de dulces en la i-ésima caja.
+- `keys[i]` es una lista de las etiquetas de las cajas que puedes abrir después de abrir la i-ésima caja.
+- `containedBoxes[i]` es una lista de las cajas que encontraste dentro de la i-ésima caja.
+
+Se te da un arreglo de enteros `initialBoxes` que contiene las etiquetas de las cajas que tienes inicialmente. Puedes tomar todos los dulces de **cualquier caja abierta** y puedes usar las llaves que contiene para abrir nuevas cajas y también puedes usar las cajas que encuentres dentro de ella.
+
+Devuelve *el número máximo de dulces que puedes obtener siguiendo las reglas anteriores.*
+
+## Ejemplos
+
+**Ejemplo 1:**
+<TerminalOutput>
+{`Input: status = [1,0,1,0], 
+         candies = [7,5,4,100],
+         keys = [[],[],[1],[]],
+         containedBoxes = [[1,2],[3],[],[]],
+         initialBoxes = [0]
+
+Output: 16
+
+Explicación: Inicialmente se te dará la caja 0. Encontrarás 7 dulces en ella
+               y las cajas 1 y 2.
+               
+               La caja 1 está cerrada y no tienes una llave para ella, así que
+               abrirás la caja 2. Encontrarás 4 dulces y una llave para la caja 1
+               en la caja 2.
+               
+               En la caja 1, encontrarás 5 dulces y la caja 3, pero no encontrarás
+               una llave para la caja 3, así que la caja 3 permanecerá cerrada.
+               Número total de dulces recolectados = 7 + 4 + 5 = 16 dulces.`}
+</TerminalOutput>
+
+**Ejemplo 2:**
+<TerminalOutput>
+{`Input: status = [1,0,0,0,0,0],
+         candies = [1,1,1,1,1,1],
+         keys = [[1,2,3,4,5],[],[],[],[],[]],
+         containedBoxes = [[1,2,3,4,5],[],[],[],[],[]],
+         initialBoxes = [0]
+
+Output: 6
+
+Explicación: Inicialmente tienes la caja 0. Al abrirla puedes encontrar las cajas
+               1,2,3,4 y 5 y sus llaves.
+               
+               El número total de dulces será 6.`}
+</TerminalOutput>
+
+## Soluciones
+
+<Solution title="Python" icon="Python">
+```python
+from collections import deque
+
+class Solution:
+    def maxCandies(self, status: List[int], candies: List[int], keys: List[List[int]], containedBoxes: List[List[int]], initialBoxes: List[int]) -> int:
+        n = len(status)
+        
+        q = deque(initialBoxes)
+        closed = set()
+        total = 0
+        
+        while q:
+            curr = q.popleft()
+            
+            if status[curr] == 0:
+                closed.add(curr)
+                continue
+            
+            for open in keys[curr]:
+                status[open] = 1
+                if open in closed:
+                    q.append(open)
+                    closed.remove(open)
+            
+            total += candies[curr]
+            for nbr in containedBoxes[curr]:
+                q.append(nbr)
+        
+        return total
+```
+</Solution>

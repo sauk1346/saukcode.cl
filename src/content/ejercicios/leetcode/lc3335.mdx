@@ -1,0 +1,89 @@
+# Total de Caracteres en String después de Transformaciones I
+
+Se te da un string `s` y un entero `t`, que representa el número de **transformaciones** a realizar. En una **transformación**, cada carácter en `s` se reemplaza según las siguientes reglas:
+
+- Si el carácter es `z`, reemplázalo con el string `"ab"`
+- De lo contrario, reemplázalo con el **siguiente** carácter en el alfabeto. Por ejemplo, `'a'` se reemplaza con `'b'`, `'b'` se reemplaza con `'c'` y así sucesivamente.
+
+Devuelve la **longitud** del string resultante después de **exactamente** `t` transformaciones.
+
+Dado que la respuesta puede ser muy grande, devuélvela **módulo** `10⁹ + 7`
+
+## Ejemplos
+
+**Ejemplo 1**
+```text
+Input: s = "abcyy", t = 2
+
+Output: 7
+
+Explicación:
+
+- Primera Transformación (t=1):
+  - 'a' se convierte en 'b'
+  - 'b' se convierte en 'c'
+  - 'c' se convierte en 'd'
+  - 'y' se convierte en 'z'
+  - 'y' se convierte en 'z'
+  - String después de la primera transformación: "bcdzz"
+
+- Segunda Transformación (t = 2):
+
+  - 'b' se convierte en 'c'
+  - 'c' se convierte en 'd'
+  - 'd' se convierte en 'e'
+  - 'z' se convierte en "ab"
+  - 'z' se convierte en "ab"
+  - String después de la segunda transformación: "cdeabab"
+
+Longitud Final del string: "cdeabab", que tiene 7 caracteres.
+```
+
+**Ejemplo 2:**
+```text
+Input: s = "azbk", t = 1
+
+Output: 5
+
+Explicación:
+
+- Primera Transformación (t = 1):
+  - 'a' se convierte en 'b'
+  - 'z' se convierte en "ab"
+  - 'b' se convierte en 'c'
+  - 'k' se convierte en 'l'
+  - Cadena después de la primera transformación: "babcl"
+
+- Longitud Final del string: "babcl", que tiene 5 caracteres.
+```
+
+## Soluciones
+
+<details>
+    <summary>Python</summary>
+```python
+class Solution:
+    def lengthAfterTransformations(self, s: str, t: int) -> int:
+        MOD = 10**9 + 7
+        
+        current_s = list(s)
+        for _ in range(t):
+            new_s = []
+            for letter in current_s:
+                if letter == 'z':
+                    new_s.append('a')
+                    new_s.append('b')
+                else:
+                    new_s.append(chr(ord(letter) + 1))
+            
+            current_s = new_s
+        
+        return len(current_s) % MOD
+```
+
+- Se crea una lista `current_s` a partir del string `s`
+- Se crea una lista vacía  `new_s` para realizar los cambios
+- Se recorre la lista `current_s` y se guardan los cambios en `new_s`
+- Se actualiza la lista `current_s` con los cambios de `new_s` por cada transformación completada
+- Se retorna el largo de `current_s`, acotado por MOD
+</details>

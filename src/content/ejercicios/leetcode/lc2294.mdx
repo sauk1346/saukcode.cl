@@ -1,0 +1,55 @@
+# Particionar Array tal que la Diferencia Máxima sea K
+
+Se te da un array de enteros `nums` y un entero `k`. Puedes particionar `nums` en una o más **subsecuencias** de tal manera que cada elemento en `nums` aparezca en **exactamente** una de las subsecuencias.
+
+Devuelve *el **mínimo** número de subsecuencias necesarias tal que la diferencia entre los valores máximo y mínimo en cada subsecuencia sea **como máximo** `k`.*
+
+Una **subsecuencia** es una secuencia que puede derivarse de otra secuencia eliminando algunos elementos o ninguno sin cambiar el orden de los elementos restantes.
+
+## Ejemplos
+
+**Ejemplo 1:**
+> **Input:** nums = [3,6,1,2,5], k = 2
+> **Output:** 2
+> **Explicación:**
+> Podemos particionar nums en las dos subsecuencias [3,1,2] y [6,5].
+> La diferencia entre el valor máximo y mínimo en la primera subsecuencia es 3 - 1 = 2.
+> La diferencia entre el valor máximo y mínimo en la segunda subsecuencia es 6 - 5 = 1.
+> Como se crearon dos subsecuencias, devolvemos 2. Se puede demostrar que 2 es el número mínimo de subsecuencias necesarias.
+
+**Ejemplo 2:**
+> **Input:** nums = [1,2,3], k = 1
+> **Output:** 2
+> **Explicación:**
+> Podemos particionar nums en las dos subsecuencias [1,2] y [3].
+> La diferencia entre el valor máximo y mínimo en la primera subsecuencia es 2 - 1 = 1.
+> La diferencia entre el valor máximo y mínimo en la segunda subsecuencia es 3 - 3 = 0.
+> Como se crearon dos subsecuencias, devolvemos 2. Nota que otra solución óptima es particionar nums en las dos subsecuencias [1] y [2,3].
+
+**Ejemplo 3:**
+> **Input:** nums = [2,2,4,5], k = 0
+> **Output:** 3
+> **Explicación:**
+> Podemos particionar nums en las tres subsecuencias [2,2], [4], y [5].
+> La diferencia entre el valor máximo y mínimo en la primera subsecuencia es 2 - 2 = 0.
+> La diferencia entre el valor máximo y mínimo en la segunda subsecuencia es 4 - 4 = 0.
+> La diferencia entre el valor máximo y mínimo en la tercera subsecuencia es 5 - 5 = 0.
+> Como se crearon tres subsecuencias, devolvemos 3. Se puede demostrar que 3 es el número mínimo de subsecuencias necesarias.
+
+## Soluciones
+<Solution title="Python" icon="Python">
+```python
+class Solution:
+    def partitionArray(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        n = len(nums)
+        
+        subsequences = 1
+        min_val = nums[0]
+        for i in range(1, n):
+            if nums[i] - min_val > k:
+                min_val = nums[i]
+                subsequences += 1
+        return subsequences
+```
+</Solution>
