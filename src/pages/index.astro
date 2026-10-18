@@ -4,6 +4,7 @@
 // con datos reales calculados en el build.
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PixelIcon from '../components/ui/PixelIcon.astro';
 import { getAllInacapLessonPaths } from '../utils/courseUtils.js';
 import { subjects } from '../data/inacap/inacapData.js';
 import { problems as leetcodeProblems } from '../data/ejercicios/leetcode/problems.js';
@@ -76,7 +77,10 @@ const totalJava = Object.keys(javaProblems).length;
 
     <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
       <a href="/inacap" class="pixel-press pixel-box group block bg-(--card-bg) p-5">
-        <span class="font-mono text-xs text-(--primary)">INACAP</span>
+        <span class="flex items-center gap-2 text-(--primary)">
+          <PixelIcon name="birrete" />
+          <span class="font-mono text-xs">INACAP</span>
+        </span>
         <span class="mt-1 block text-lg font-bold text-(--foreground) group-hover:text-(--primary)">
           Ingeniería en Informática
         </span>
@@ -87,7 +91,10 @@ const totalJava = Object.keys(javaProblems).length;
       </a>
 
       <a href="/ejercicios" class="pixel-press pixel-box group block bg-(--card-bg) p-5">
-        <span class="font-mono text-xs text-(--primary)">EJERCICIOS</span>
+        <span class="flex items-center gap-2 text-(--primary)">
+          <PixelIcon name="codigo" />
+          <span class="font-mono text-xs">EJERCICIOS</span>
+        </span>
         <span class="mt-1 block text-lg font-bold text-(--foreground) group-hover:text-(--primary)">
           Programación resuelta
         </span>

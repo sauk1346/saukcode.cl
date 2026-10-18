@@ -1,0 +1,58 @@
+---
+// Iconos sprite propios: dibujados en grilla de 16×16 como segmentos
+// horizontales [x, y, ancho] de 1px de alto, renderizados con crispEdges.
+// Usan currentColor, así que se tiñen con el texto que los rodea.
+const { name, size = 28, class: cls = '' } = Astro.props;
+
+const icons = {
+  // Birrete de graduación (INACAP / estudios)
+  birrete: [
+    [7, 2, 2],
+    [5, 3, 6],
+    [3, 4, 10],
+    [1, 5, 14],
+    [5, 6, 6], [13, 6, 1],
+    [5, 7, 6], [13, 7, 1],
+    [6, 8, 4], [12, 8, 2],
+  ],
+  // Llaves de código { } (ejercicios de programación)
+  codigo: [
+    [4, 4, 3], [9, 4, 3],
+    [3, 5, 2], [11, 5, 2],
+    [3, 6, 2], [11, 6, 2],
+    [2, 7, 2], [12, 7, 2],
+    [2, 8, 2], [12, 8, 2],
+    [3, 9, 2], [11, 9, 2],
+    [3, 10, 2], [11, 10, 2],
+    [4, 11, 3], [9, 11, 3],
+  ],
+  // Calendario (planificación académica)
+  calendario: [
+    [4, 1, 2], [10, 1, 2],
+    [2, 3, 12],
+    [2, 4, 12],
+    [2, 6, 12],
+    [2, 7, 1], [13, 7, 1],
+    [2, 8, 1], [4, 8, 2], [7, 8, 2], [10, 8, 2], [13, 8, 1],
+    [2, 9, 1], [13, 9, 1],
+    [2, 10, 1], [4, 10, 2], [7, 10, 2], [13, 10, 1],
+    [2, 11, 1], [13, 11, 1],
+    [2, 12, 12],
+  ],
+};
+
+const segs = icons[name] ?? [];
+const d = segs.map(([x, y, w]) => `M${x} ${y}h${w}v1H${x}z`).join('');
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 16 16"
+  fill="currentColor"
+  shape-rendering="crispEdges"
+  aria-hidden="true"
+  class={cls}
+>
+  <path d={d}></path>
+</svg>
