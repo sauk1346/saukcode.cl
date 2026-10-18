@@ -41,6 +41,19 @@ const links = [
       ))}
       <li>
         <button
+          class="js-open-search flex items-center gap-2 rounded-md border border-(--border-color) px-3 py-1.5 text-sm text-(--secondary) hover:bg-(--surface)"
+          aria-label="Buscar en el sitio"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
+          </svg>
+          Buscar
+          <kbd class="rounded border border-(--border-color) bg-(--surface) px-1 text-[10px]">Ctrl K</kbd>
+        </button>
+      </li>
+      <li>
+        <button
           class="theme-toggle rounded-md border border-(--border-color) p-2 hover:bg-(--surface)"
           aria-label="Cambiar tema"
         >
@@ -59,9 +72,19 @@ const links = [
       </li>
     </ul>
 
-    <!-- Toggle de tema en móvil (fuera del panel para acceso rápido) -->
+    <!-- Buscar + toggle de tema en móvil (fuera del panel para acceso rápido) -->
+    <div class="flex items-center gap-2 md:hidden">
     <button
-      class="theme-toggle rounded-md border border-(--border-color) p-2 hover:bg-(--surface) md:hidden"
+      class="js-open-search rounded-md border border-(--border-color) p-2 hover:bg-(--surface)"
+      aria-label="Buscar en el sitio"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
+      </svg>
+    </button>
+    <button
+      class="theme-toggle rounded-md border border-(--border-color) p-2 hover:bg-(--surface)"
       aria-label="Cambiar tema"
     >
       <svg class="hidden size-4 dark:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
@@ -74,6 +97,7 @@ const links = [
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
       </svg>
     </button>
+    </div>
   </nav>
 
   <!-- Panel menú móvil -->

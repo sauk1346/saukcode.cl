@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Navbar from '../components/layout/Navbar.astro';
 import Breadcrumb from '../components/layout/Breadcrumb.astro';
 import Footer from '../components/layout/Footer.astro';
+import SearchModal from '../components/layout/SearchModal.astro';
 
 const {
   title = 'SaukCode',
@@ -16,6 +17,11 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
     <title>{title}</title>
     <!-- Anti-FOUC: aplica el tema antes del primer paint -->
     <script is:inline>
@@ -34,9 +40,10 @@ const {
   <body class="flex min-h-screen flex-col">
     <Navbar />
     <Breadcrumb />
-    <main class="flex-1">
+    <main class="flex-1" data-pagefind-body>
       <slot />
     </main>
     <Footer />
+    <SearchModal />
   </body>
 </html>

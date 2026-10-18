@@ -1,0 +1,92 @@
+---
+// Búsqueda del sitio con Pagefind: el índice se genera en postbuild sobre
+// dist/, así que en `npm run dev` no existe (el modal lo avisa). La UI se
+// carga perezosamente la primera vez que se abre el modal.
+---
+
+<dialog
+  id="search-modal"
+  class="m-auto w-[min(640px,92vw)] rounded-lg border border-(--border-color) bg-(--background-elevated) p-4 text-(--foreground) shadow-(--shadow-lg) backdrop:bg-black/50"
+>
+  <div class="mb-2 flex items-center justify-between">
+    <span class="text-sm font-semibold">Buscar en SaukCode</span>
+    <button id="search-close" class="rounded-md px-2 py-1 text-sm text-(--secondary) hover:bg-(--surface)" aria-label="Cerrar búsqueda">
+      Esc ✕
+    </button>
+  </div>
+  <div id="search-container"></div>
+  <p id="search-dev-note" class="hidden text-sm text-(--secondary)">
+    El índice de búsqueda se genera con <code>npm run build</code>; no está disponible en el servidor de desarrollo.
+  </p>
+</dialog>
+
+<script is:inline>
+  (function () {
+    var modal = document.getElementById('search-modal');
+    var loaded = false;
+
+    async function openSearch() {
+      modal.showModal();
+      if (loaded) return;
+      loaded = true;
+      try {
+        var css = document.createElement('link');
+        css.rel = 'stylesheet';
+        css.href = '/pagefind/pagefind-ui.css';
+        document.head.appendChild(css);
+        // pagefind-ui.js es un script clásico que define window.PagefindUI
+        await new Promise(function (resolve, reject) {
+          var s = document.createElement('script');
+          s.src = '/pagefind/pagefind-ui.js';
+          s.onload = resolve;
+          s.onerror = reject;
+          document.head.appendChild(s);
+        });
+        new window.PagefindUI({
+          element: '#search-container',
+          showSubResults: true,
+          showImages: false,
+          translations: {
+            placeholder: 'Buscar apuntes, ejercicios, ramos…',
+            zero_results: 'Sin resultados para [SEARCH_TERM]',
+          },
+        });
+        setTimeout(function () {
+          var input = modal.querySelector('input');
+          if (input) input.focus();
+        }, 50);
+      } catch (e) {
+        document.getElementById('search-dev-note').classList.remove('hidden');
+      }
+    }
+
+    document.querySelectorAll('.js-open-search').forEach(function (btn) {
+      btn.addEventListener('click', openSearch);
+    });
+    document.getElementById('search-close').addEventListener('click', function () {
+      modal.close();
+    });
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) modal.close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        if (modal.open) modal.close();
+        else openSearch();
+      }
+    });
+  })();
+</script>
+
+<style is:global>
+  /* Adaptar la UI de Pagefind a los tokens del sitio (claro/oscuro) */
+  #search-modal {
+    --pagefind-ui-primary: var(--primary);
+    --pagefind-ui-text: var(--foreground);
+    --pagefind-ui-background: var(--background-elevated);
+    --pagefind-ui-border: var(--border-color);
+    --pagefind-ui-tag: var(--surface);
+    --pagefind-ui-scale: 0.9;
+  }
+</style>

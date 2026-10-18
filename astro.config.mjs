@@ -9,9 +9,12 @@ import rehypeKatex from 'rehype-katex';
 import rehypePrism from 'rehype-prism-plus';
 import remarkAutoNumber from './src/plugins/remark-auto-number.mjs';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), mdx()],
+  site: 'https://saukcode.cl',
+  integrations: [react(), mdx(), sitemap()],
   redirects: {
     // Como en Next: el índice de flashcards redirige al detalle del ramo
     '/inacap/[courseId]/flashcards': '/inacap/[courseId]',

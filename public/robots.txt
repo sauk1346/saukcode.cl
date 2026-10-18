@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://saukcode.cl/sitemap-index.xml
