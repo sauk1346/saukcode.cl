@@ -168,6 +168,7 @@
 .selected .calendarioEvent {
   background: color-mix(in srgb, var(--background) 25%, transparent);
   color: var(--background);
+  border-color: transparent;
 }
 
 /* CASO ESPECIAL: Si un día es HOY Y ESTÁ SELECCIONADO */
@@ -186,15 +187,24 @@
   gap: 2px;
 }
 
+/* Pastilla de evento: chip pixel teñido con el área del ramo */
 .calendarioEvent {
-  background: var(--primary);
-  color: var(--background);
-  padding: var(--spacing-xs) var(--spacing-sm);
+  background: color-mix(in srgb, var(--event-accent, var(--primary)) 14%, var(--background));
+  color: var(--event-accent, var(--primary));
+  border: 1px solid color-mix(in srgb, var(--event-accent, var(--primary)) 50%, var(--border-color));
+  padding: 1px var(--spacing-xs);
   font-family: var(--font-mono);
   font-size: 0.7rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* Dentro de "hoy" o "seleccionado" (fondos de color pleno), el chip se neutraliza */
+.today .calendarioEvent {
+  background: color-mix(in srgb, var(--background) 25%, transparent);
+  color: var(--background);
+  border-color: transparent;
 }
 
 .eventIndicator {

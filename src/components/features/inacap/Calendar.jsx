@@ -2,7 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import PixelGlyph from '../../ui/PixelGlyph.jsx';
+import { subjects } from '@/data/inacap/inacapData';
 import styles from './Calendar.module.css';
+
+// Código de ramo → categoría, para teñir las pastillas con su área
+const categoryByCode = Object.fromEntries(subjects.map((s) => [s.code, s.category]));
 
 const Calendar = ({ eventos = [] }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -260,12 +264,20 @@ const Calendar = ({ eventos = [] }) => {
                   )}
                 </div>
                 <div className={styles.calendarioEvents}>
-                  {dayEvents.slice(0, 2).map(evento => (
-                    <div key={evento.id} className={styles.calendarioEvent}>
-                      {/* En la celda solo cabe el código; el detalle va al panel */}
-                      {evento.titulo.match(/^\[([^\]]+)\]/)?.[1] ?? evento.titulo}
-                    </div>
-                  ))}
+                  {dayEvents.slice(0, 2).map(evento => {
+                    // En la celda solo cabe el código; el detalle va al panel
+                    const code = evento.titulo.match(/^\[([^\]]+)\]/)?.[1];
+                    const cat = (code && categoryByCode[code]) || 'general';
+                    return (
+                      <div
+                        key={evento.id}
+                        className={styles.calendarioEvent}
+                        style={{ '--event-accent': `var(--cat-${cat})` }}
+                      >
+                        {code ?? evento.titulo}
+                      </div>
+                    );
+                  })}
                   
                   {dayEvents.length > 2 && (
                     <div className={styles.calendarioEvent}>
