@@ -28,11 +28,14 @@ const courses = subjects
   .filter((s) => s.lessons > 0);
 
 const semesters = [...new Set(courses.map((s) => s.semester))].sort((a, b) => b - a);
-const bySemester = semesters.map((n) => ({
-  n,
-  year: courses.find((s) => s.semester === n)?.year,
-  courses: courses.filter((s) => s.semester === n),
-}));
+// El semestre más reciente es el que está en curso: acceso rápido desde la home
+const currentSemester = semesters.length
+  ? {
+      n: semesters[0],
+      year: courses.find((s) => s.semester === semesters[0])?.year,
+      courses: courses.filter((s) => s.semester === semesters[0]),
+    }
+  : null;
 
 const totalLessons = lessonPaths.length;
 const totalLeetcode = Object.keys(leetcodeProblems).length;
@@ -66,43 +69,53 @@ const totalJava = Object.keys(javaProblems).length;
     </a>
   </section>
 
-  <!-- Ramos por semestre -->
+  <!-- Secciones: la home es un hub, cada ficha entra a su sección completa -->
   <section id="programacion" class="mx-auto max-w-5xl px-4 py-10">
-    <h2 class="font-pixel text-xl text-(--foreground)">INACAP</h2>
-    <p class="mt-1 mb-8 text-sm text-(--secondary)">Ingeniería en Informática, mención Ciberseguridad</p>
+    <h2 class="font-pixel text-xl text-(--foreground)">Secciones</h2>
+    <p class="mt-1 mb-8 text-sm text-(--secondary)">Todo el contenido, por área</p>
 
-    {bySemester.map(({ n, year, courses }) => (
-      <div class="mb-8">
-        <h3 class="font-mono mb-3 text-sm text-(--secondary)">Semestre {n} ({year})</h3>
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {courses.map((c) => (
-            <a href={c.href} class="pixel-press pixel-box group block bg-(--card-bg) p-4">
-              <span class="font-mono text-xs text-(--primary)">{c.code}</span>
-              <span class="mt-1 block font-bold text-(--foreground) group-hover:text-(--primary)">{c.name}</span>
-              <span class="mt-2 block text-sm text-(--secondary)">{c.lessons} {c.lessons === 1 ? 'clase' : 'clases'}</span>
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+      <a href="/inacap" class="pixel-press pixel-box group block bg-(--card-bg) p-5">
+        <span class="font-mono text-xs text-(--primary)">INACAP</span>
+        <span class="mt-1 block text-lg font-bold text-(--foreground) group-hover:text-(--primary)">
+          Ingeniería en Informática
+        </span>
+        <span class="mt-2 block text-sm text-(--secondary)">
+          {courses.length} ramos con apuntes en {semesters.length} semestres,
+          {totalLessons} clases. Incluye el calendario académico y las flashcards.
+        </span>
+      </a>
+
+      <a href="/ejercicios" class="pixel-press pixel-box group block bg-(--card-bg) p-5">
+        <span class="font-mono text-xs text-(--primary)">EJERCICIOS</span>
+        <span class="mt-1 block text-lg font-bold text-(--foreground) group-hover:text-(--primary)">
+          Programación resuelta
+        </span>
+        <span class="mt-2 block text-sm text-(--secondary)">
+          {totalLeetcode} problemas de LeetCode y {totalJava} ejercicios de Java,
+          con solución comentada.
+        </span>
+      </a>
+    </div>
+
+    <!-- Acceso rápido al semestre en curso (lo que se estudia hoy) -->
+    {currentSemester && (
+      <div class="mt-8">
+        <h3 class="font-mono mb-3 text-sm text-(--secondary)">
+          Semestre {currentSemester.n} ({currentSemester.year}) — en curso
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          {currentSemester.courses.map((c) => (
+            <a
+              href={c.href}
+              class="pixel-press border-2 border-(--border-color) bg-(--background-elevated) px-3 py-1.5 text-sm font-bold text-(--foreground) shadow-(--shadow-sm) hover:text-(--primary)"
+            >
+              {c.name}
             </a>
           ))}
         </div>
       </div>
-    ))}
-  </section>
-
-  <!-- Ejercicios -->
-  <section class="mx-auto max-w-5xl px-4 py-10">
-    <h2 class="font-pixel text-xl text-(--foreground)">Ejercicios</h2>
-    <p class="mt-1 mb-8 text-sm text-(--secondary)">Problemas resueltos y comentados</p>
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      <a href="/ejercicios" class="pixel-press pixel-box group block bg-(--card-bg) p-4">
-        <span class="font-mono text-xs text-(--primary)">LEETCODE</span>
-        <span class="mt-1 block font-bold text-(--foreground) group-hover:text-(--primary)">Estructuras y algoritmos</span>
-        <span class="mt-2 block text-sm text-(--secondary)">{totalLeetcode} problemas</span>
-      </a>
-      <a href="/ejercicios" class="pixel-press pixel-box group block bg-(--card-bg) p-4">
-        <span class="font-mono text-xs text-(--primary)">JAVA</span>
-        <span class="mt-1 block font-bold text-(--foreground) group-hover:text-(--primary)">Ejercicios del lenguaje</span>
-        <span class="mt-2 block text-sm text-(--secondary)">{totalJava} ejercicios</span>
-      </a>
-    </div>
+    )}
   </section>
 </BaseLayout>
 
