@@ -1,0 +1,150 @@
+# Fundamentos del Desarrollo de Videojuegos 2D y 3D
+
+Los videojuegos 2D y 3D se diferencian por su estructura espacial, tipo de componentes visuales, complejidad técnica y requerimientos de desarrollo. Comprender estas diferencias permite elegir el enfoque adecuado según los objetivos del proyecto y las
+capacidades de la plataforma.
+
+## 1. Definición y entorno de desarrollo
+
+Un videojuego 2D se visualiza en dos dimensiones (eje X e Y), utilizando sprites y animaciones cuadro a cuadro. Aunque el entorno de desarrollo en Unreal Engine es tridimensional, la jugabilidad se limita a movimientos horizontales y verticales.
+
+Por otro lado, los videojuegos 3D se desarrollan en tres ejes (X, Y, Z), utilizando objetos tridimensionales llamados sprites, que permiten movimientos en múltiples direcciones.
+
+### Dimensión y Espacio
+La principal diferencia entre videojuegos 2D y 3D radica en la profundidad. En los juegos 2D no existe el eje Z, lo que limita la percepción espacial. Sin embargo, mediante técnicas visuales y de jugabilidad, es posible simular profundidad, dando lugar al estilo conocido como 2.5D.
+
+### Texturas y Materiales
+En 2D se utilizan imágenes planas como PNG y atlas de sprites, con texturización simple. En 3D, se requieren modelos tridimensionales y materiales PBR (*physically based rendering*), que simulan cómo la luz interactúa con las superficies, generando efectos más realistas.
+
+### Estilos visuales y narrativos
+Además de las diferencias técnicas, los videojuegos 2D y 3D presentan estilos visuales y narrativos distintos. El 2D suele utilizar pixel art, dibujo vectorial o animaciones cuadro a cuadro, lo que permite generar una estética retro o minimalista. En cambio, el 3D ofrece entornos más inmersivos y realistas, ideales para narrativas complejas y mundos abiertos.
+
+- Por ejemplo, juegos en 2D como Celeste (2018), destacan por su precisión de jugabilidad en el género de plataformas y por su sencillo, pero efectivo, estilo artístico, mientras que juegos 3D como Hellblade: Senua's Sacrifice (2017) aprovechan la profundidad visual para transmitir emociones intensas y realismo.
+
+### Estilo 2.5D: Un enfoque híbrido
+El estilo 2.5D combina elementos visuales tridimensionales con jugabilidad bidimensional. En Unreal Engine, esto se logra utilizando meshes 3D con movimiento restringido a los ejes X e Y. Este enfoque permite enriquecer la estética sin aumentar demasiado la complejidad técnica.
+
+- Juegos como Trine (2009) o Little Nightmares (2017) utilizan esta técnica para ofrecer profundidad visual sin perder la simplicidad del control lateral.
+
+### Accesibilidad y curva de aprendizaje
+Para desarrolladores principiantes, el entorno 2D ofrece una curva de aprendizaje más accesible, Las herramientas como Title Maps y FlipBooks permiten crear niveles y animaciones sin necesidad de un modelado complejo. En cambio, el desarrollo 3D requiere conocimientos en modelado, iluminación, físicas avanzadas y cámaras con perspectiva.
+
+En este sentido, Unreal Engine 4.27 incluye plantilla específicas para proyectos 2D y 3D, facilitando la iniciación en este cmapo seǵun el nivel de experiencia del usuario.
+
+
+## 2. Aspectos técnicos y funcionales
+Las diferencias entre videojuegos 2D y 3D afectan directamente la forma en que se aplican físicas, se configuran cámaras, se programa la lógica del juego y se optimiza el rendimiento. Estos elementos determinan la complejidad del desarrollo y la experiencia final del usuario.
+
+### Físicas y colisiones
+Las físicas en videojuegos 3D están limitadas por la ausencia de una dimensión, lo que simplifica las interacciones. En 3D, se deben considerar múltiples vectores, gravedad y colisiones volumétricas, lo que aumenta la complejidad del desarrollo.
+
+### Cámaras y perspectiva
+En 2D se utiliza la cámara ortográfica, que ofrece una vista laterar o superior, En 3D, se emplean cámaras con perspectiva, como primera o tercera persona, e incluso cámaras libres, que permiten mayor control sobre la narrativa visual.
+
+### Programación y complejidad
+La programación en videojuegos 2D es más sencilla debido a la menor cantidad de variables espaciales. En 3D, el desarrollo requiere mayor capacidad técnica, lo que implica un proceso más complejo y detallado.
+
+### Rendimiento y requerimientos
+Los videojuegos 2D demandan menos recursos de hardware, como memoria RAM y tarjeta gráfica. En cambio, los videojuegos 3D pueden requerir especificaciones más altas, lo que limita su ejecución en ciertas plataformas si no se cumplen los requisitos mínimos.
+
+### Blueprints vs C++: lenguajes de programación en Unreal Engine
+Unreal Engine permite desarrollar videojuegos tanto en Blueprints (programación visual) como en C++ (programación textual). En videojuegos 2D, los Blueprints son suficientes para manejar lógica básica, animaciones y colisiones. En videojuegos 3D, el uso de C++ se vuelve más común para gestionar sistemas complejos como inteligencia artificial, físicas avanzadas y renderizado.
+
+BlueprintsUE es una plataforma útil para explorar y compartir ejemplos de Blueprints aplicados a proyectos 2D y 3D.
+
+### Optimización del rendimiento en entornos 3D
+Los videojuegos 3D requieren técnicas específicas para mantener un rendimiento óptimo. Unreal Engine ofrece herramientas como:
+
+- **Level of Detail (LOD):** reduce la complejidad de los modelos según la distancia a la cámara
+- **Occlusion Culling:** evita renderizar objetos que no están visibles
+- **Instanced Static Meshes:** permite reutilizar modelos sin duplicar recursos
+
+Estas técnicas son clave para evitar caídas de rendimiento en dispositivos con recursos limitados
+
+### Configuración de físicas avanzadas
+En videojuegos 3D, las físicas incluyen gravedad, fricción, masa, y colisiones volumétricas. Unreal Engine permite configurar estas propiedades mediante el sistema de Physics Bodies y Constrainsts, lo que permite simular comportamientos realistas como caídas, rebotes o interacciones entre objetos.
+
+En 2D, las físicas se simplifican a colisiones planas y movimientos en dos ejes, lo que facilita el desarrollo, pero limita la simulación de entornos complejos.
+
+### Cámaras dinámicas y narrativa visual
+Las cámaras en videojuegos 3D pueden ser:
+
+- **Primera persona:** inmersión directa del jugador
+- **Tercera persona:** seguimiento del personaje
+- **Cámara libre:** exploración del entorno
+
+# Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "¿Qué elemento define la profundidad en videojuegos 3D?",
+		options: [
+			"Animaciones cuadro a cuadro",
+			"Uso del eje Z",
+			"Uso de sprites",
+			"Cámara ortográfica"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "Una cámara ortográfica permite vista en perspectiva",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Cuál de las siguientes afirmaciones describe mejor el estilo 2.5D en videojuegos?",
+		options: [
+			"Animaciones cuadro a cuadro en entornos tridimensionales",
+			"Uso de sprites 2D con cámara en primera persona",
+			"Modelado 3D con movimiento libre en todos los ejes",
+			"Uso de gráficos 3D con jugabilidad en dos dimensiones"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "Los videojuegos 2D son más adecuados para dispositivos móviles debido a su menor demanda de recursos",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "Cámaras dinámicas y narrativa visual",
+		options: [
+			"Materiales PBR",
+			"Atlas de sprites",
+			"FlipBooks",
+			"PNG transparente"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "Los videojuegos 2D requieren más recursos gráficos que los 3D",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Cuál de las siguientes técnicas mejora el rendimiento en videojuegos 3D?",
+		options: [
+			"Uso de sprites PNG",
+			"Level of Detail (LOD)",
+			"Animaciones cuadro a cuadro",
+			"Cámara ortográfica"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "Los videojuegos 3D requieren mayor complejidad en la programación que los vieojuegos 2D",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+]} />

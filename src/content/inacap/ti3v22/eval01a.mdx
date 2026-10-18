@@ -1,0 +1,191 @@
+# Evaluación 01-A
+
+## Sección 1: Selección Múltiple (40 ptos.)
+
+<Quiz questions={[
+  {
+    question: "¿Qué tipo de objeto de esquema es utilizado para almacenar datos en filas y columnas?",
+    options: [
+      "Vista",
+      "Tabla",
+      "Índice",
+      "Secuencia"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de las siguientes funciones SQL convierte un dato a otro tipo?",
+    options: [
+      "UPPER",
+      "ROUND",
+      "CAST",
+      "GETDATE"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué comando se utiliza para modificar una tabla existente en SQL?",
+    options: [
+      "ALTER TABLE",
+      "MODIFY TABLE",
+      "UPDATE TABLE",
+      "CHANGE TABLE"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué cláusula se utiliza para filtrar los grupos de resultados en una consulta SQL con agrupamiento?",
+    options: [
+      "WHERE",
+      "FILTER",
+      "GROUP BY",
+      "HAVING"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál de las siguiente opciones describe mejor una vista en SQL?",
+    options: [
+      "Una copia física de datos",
+      "Un índice para acelerar consultas",
+      "Una consulta almacenada que puede ser tratada como una tabla",
+      "Un procedimiento almacenado"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué tipo de índice en SQL permite acelerar las búsquedas en una columna específica?",
+    options: [
+      "Índice Primario",
+      "Índice Compuesto",
+      "Índice No Agrupado",
+      "Índice Clúster"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué comando SQL se utiliza para crear un procedimiento almacenado?",
+    options: [
+      "CREATE FUNCTION",
+      "CREATE TRIGGER",
+      "CREATE PROCEDURE",
+      "CREATE SEQUENCE"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es el resultado de la siguiente consulta SQL? \"SELECT ROUND(123.456, 2);\"",
+    options: [
+      "123.45",
+      "123.46",
+      "123.5",
+      "123.4"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es la función de un trigger en SQL?",
+    options: [
+      "Ejecutar una consulta programada",
+      "Monitorear cambios en la base de datos y ejecutar código en respuesta a esos cambios",
+      "Almacenar procedimientos SQL",
+      "Proteger la base de datos contra accesos no autorizados"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué tipo de operación puede activar un trigger en SQL?",
+    options: [
+      "SELECT",
+      "INSERT",
+      "DESCRIBE",
+      "GRANT"
+    ],
+    correctIndex: 1
+  }
+]} />
+
+
+## Sección 2: Ejercicios de Desarrollo (60 ptos.)
+
+### Ejercicio 1: Creación y Gestión de Tablas
+
+**Enunciado:** Crea una tabla llamada `Products` con las siguientes columnas:
+
+- `ProductID`: Número entero, clave primaria, autoincremental.
+- `ProductName`: Cadena de caracteres, no puede ser nulo.
+- `Price`: Decimal con dos decimales. 
+- `CategoryID`: Número entero, debe referenciar a `CategoryID` en una tabla `Categories`.
+
+<Solution>
+```sql
+CREATE DATABASE EVAL01A;
+
+USE EVAL01A;
+
+SET DATEFORMAT 'YMD';
+
+CREATE TABLE Categories(
+	CategoryID INT IDENTITY,
+	PRIMARY KEY(CategoryID)
+);
+
+CREATE TABLE Products(
+	ProductID INT IDENTITY,
+	ProductName NVARCHAR(100) NOT NULL,
+	Price DECIMAL(10,2),
+	CategoryID INT,
+	PRIMARY KEY(ProductID),
+	FOREIGN KEY(CategoryID) REFERENCES Categories(CategoryID)
+);
+```
+</Solution>
+
+### Ejercicio 2: Creación de Vistas
+
+**Enunciado:** Crea una vista llamada `VistaProductosCaros` que muestre el nombre del producto y su precio para aquellos productos cuyo precio sea mayor a $100.
+
+<Solution>
+```sql
+CREATE VIEW VistaProductosCaros AS
+	SELECT ProductName, Price
+	FROM Products
+	WHERE Price < 100;
+```
+</Solution>
+
+### Ejercicio 3: Creación de Índice
+
+**Enunciado:** Crea un índice compuesto en las columnas `LastName` y `FirstName` de la tabla `Customers` para optimizar las búsquedas por nombre completo.
+
+<Solution>
+```sql
+CREATE TABLE Customers(
+	CustomerID INT IDENTITY,
+	FirstName NVARCHAR(100),
+	LastName NVARCHAR(100),
+	PRIMARY KEY(CustomerID)
+);
+
+CREATE INDEX idx_LastNameFirstName
+ON Customers(LastName, FirstName);
+```
+</Solution>
+
+### Ejercicio 4: Procedimientos Almacenados
+
+**Enunciado:** Crea un procedimiento almacenado `sp_ActualizarPrecio` que permita actualizar el precio de un producto dado su ID.
+
+<Solution>
+```sql
+CREATE PROCEDURE sp_ActualizarPrecio
+	@productoID INT,
+	@nuevoPrecio DECIMAL(10,2)
+AS
+BEGIN
+	UPDATE Products
+	SET Price = @nuevoPrecio
+	WHERE ProductID = @productoID;
+END;
+```
+</Solution>

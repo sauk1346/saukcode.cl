@@ -1,0 +1,107 @@
+# Modelado y Texturizado de Personajes Jugable y no Jugables
+
+## 1. Organización del Proyecto 2D
+
+La correcta estructuración de un proyecto en Unreal Engine es esencial para garantizar un flujo de trabajo eficiente y ordenado. Se verá cómo iniciar un proyecto desde cero, establecer una jerarquía de carpetas y preparar los recursos necesarios para la creación de animaciones tipo FlipBook.
+
+
+### Creación de carpeta de personaje
+
+Para comenzar, se recomienda crear una carpeta específica para el personaje dentro del proyecto. Esta práctica permite mantener una organización clara, especialmente cuando se trabaja con múltiples personajes o animaciones. Dentro de esta carpeta se deben importar los assets del personaje, ya sea que estos estén descargados desde plataformas como [itch.io](https://itch.io/) o diseñados previamente.
+
+Es fundamental guardar los cambios realizados en cada paso, ya que algunos procesos posteriores pueden depender de la correcta actualización del proyecto. Esta carpeta será el punto de partida para la creación de la animación tipo FlipBook.
+
+### Importación de recursos gráficos
+Una vez creada la carpeta del personaje, se procede a importar los recursos gráficos que conformarán la animación. Estos pueden incluir sprites individuales o secuencias completas de movimiento. Es recomendable separar cada tipo de animación (idle, caminar, correr, etc.) en subcarpetas para facilitar su identificación y edición posterior.
+
+La calidad de los assets influye directamente en el resultado final de la animación. Por ello, se sugiere revisar cada imagen antes de integrarla al proyecto, asegurándose de que no haya erroes de resolución, formato o alineación.
+
+## 2. Preparación de la animación idle
+La animación idle representa el estado de reposo de un personaje en un videojuego. Su correcta configuración es esencial para transmitir naturalidad y coherencia en el comportamiento del personaje. En esta sección, aprenderás a extraer los sprites necesarios y a organizarlos para construir esta animación base.
+
+### Extracción del sprite desde el recurso
+Una vez importado el recurso de animación idle, el siguiente paso consiste en extraer los sprites individuales que componen la animación. Para ello, se debe hacer click derecho sobre el recurso y seleccionar la opción correspondiente en el menú contextual. Este procedimiento permite acceder a cada imagen que forma parte del FlipBook.
+
+Es recomendable crear una carpeta específica para almacenar los sprites extraídos, lo que facilita su edición y reutilización en futuras animaciones. Esta organización también permite mantener una estructura clara dentro del proyecto.
+
+## 3. Creación del FlipBook
+La construcción de un FlipBook en Unreal Engine permite transformar una secuencia de sprites en una animación funcional. Este proceso es esencial para dar vida a los personajes dentro del entorno del videojuego, facilitando su integración en mecánicas interactivas.
+
+### Selección y agrupación de sprites
+Una vez extraídos los sprites, se deben seleccionar todos los elementos que conforman la animación deseada. Al hacer click derecho sobre la selección, se accede a la opción de creación de FlipBook. Este procedimiento genera un recurso animado que puede ser nombrado según su función, por ejemplo "Idle".
+
+Es importante verificar que los sprites estén en el orden correcto y que no falten ni sobren imágenes, Esto garantiza una animación fluida y coherente con el comportamiento esperado del personaje.
+
+### Edición y ajustes del FlipBook
+Una vez creado el FlipBook, es posible realizar ajustes que mejoren la calidad visual y la fluidez de la animación. Unreal Engine permite editar tanto los parámetros gráficos como la velocidad de reproducción, lo que resulta fundamental para lograr una experiencia de usuario más inmersiva y profesional.
+
+### Modificación de brillo y contraste
+Antes de extraer los sprites, es posible editar el recursos original haciendo doble click sobre él. Esto abre el editor de Unreal Engine, donde se pueden modificar propiedades como el brillo, el contraste y otros aspectos visuales. Esta etapa es útil para corregir imperfecciones o adaptar el estilo gráfico a las necesidades del proyecto.
+
+### Ajuste de fotogramas por segundo (FPS)
+Una vez creada la animación, se puede modificar la cantidad de fotogramas por segund (FPS) para controlar la velocidad del movimiento. Este ajuste debe realizarse con precaución, ya que una velocidad inadecuada puede afectar negativamente la percepción del jugador. Unreal Engina permite configurar este parámetro directamente en el FlipBook.
+
+
+## 3. Recomendaciones para la animación
+Durante el proceso de creación de animaciones en Unreal Engine, es común enfrentar desafíos relacionados con la calidad de los assets, la coherencia visual y la fluidez del movimiento. Esta sección presenta recomendaciones clave para optimizar los resultados y evitar errores frecuentes en el desarrollo de FlipBooks.
+
+### Revisión de calidad de los assets
+Antes de crear una animación, es fundamental revisar que los sprites estén completos y correctamente alineados. En muchos casos, los recursos descargados pueden contener imágenes faltantes o duplicadas, lo que afecta la continuidad del movimiento. Se recomienda editar los sprites previamente en el editor de Unreal para ajustar brillo, contraste y otros parámetros visuales.
+
+### Refinamiento de la animación final
+Una vez creada la animación, es posible realizar ajustes adicionales para mejorar su presentación. Esto incluye la edición individual de cada sprite, la eliminación de elementos innecesarios o la incorporación de detalles que enriquezcan el movimiento. Unreal Engina permite modificar cada componente del FlipBook, lo que brinda flexibilidad para lograr resultados más precisos y personalizados.
+
+### Integración del FlipBook al personaje
+Una vez que la animación FlipBook ha sido creada y refinada, el siguiente paso consiste en vincularla al personaje jugable dentro del entorno del videojuego. Esta integración permite que el personaje adopte comportamientos animados en función de las acciones del jugador, como estar en reposo, caminar o correr.
+
+### Asignación de la animación al personaje
+Para asociar el FlipBook al personaje, se debe acceder al Blueprint correspondiente y configurar el componente de animación. Unreal Engine permite seleccionar el FlipBook deseado y asignarlo como animación por defecto o como parte de un conjunto de estados animados. Este paso es esencial para que el personaje reaccione visualmente a las condiciones del juego.
+
+
+
+
+
+# Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es el propósito de crear carpetas específicas en Unreal Engine?",
+		options: [
+			"Evitar que se borren los archivos al cerrar",
+			"Permitir que el motor genere animaciones automáticas",
+			"Aumentar la velocidad de carga del proyecto",
+			"Organizar los recursos y facilitar su gestión"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Qué permite la extracción de sprites desde una animación idle?",
+		options: [
+			"Eliminar automáticamente los frames duplicados",
+			"Aplicar efectos visuales sin usar el editor",
+			"Convertir la animación en un modelo 3D",
+			"Acceder a cada imagen para editarla o animarla"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Qué se debe verificar antes de crear un FlipBook?",
+		options: [
+			"Que el personaje tenga un fondo transparente",
+			"Que los sprites estén completos y ordenados",
+			"Que el proyecto esté en modo 3D",
+			"Que los sprites tengan nombres idénticos"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Cómo se vincula un FlipBook al personaje jugable?",
+		options: [
+			"Importándolo como textura en el mapa",
+			"Creando una carpeta con el nombre del personaje",
+			"Editando el sprite en Photoshop",
+			"Asignándolo en el Blueprint del personaje"
+		],
+		correctIndex: 3
+	},
+]} />

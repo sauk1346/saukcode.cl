@@ -1,0 +1,314 @@
+# DRF: Introducción APIs
+
+- **DRF:** Django REST Framework
+- **API:** Interfaz de programación de aplicaciones
+- **REST:** *Representational State Transfer*
+
+La mecánica es: Se crean **APIs** en el **backend**, para que así el **frontend** las pueda consumir
+
+## 1. Consumo de APIs
+
+Se utilizará la página [reqres.in](https://reqres.in/) para consumir APIs
+
+### Arquitectura
+<TerminalOutput>
+{`Frontend → Tu API (DRF) → API Externa (reqres.in) → Base de datos
+              ↓
+          Procesa
+              ↓
+Frontend ← Tu API (DRF)`}
+</TerminalOutput>
+
+
+### Pasos
+
+1. **API (DRF) envía solicitud:** backend consulta la API externa para obtener datos
+    ```sh
+    GET https://reqres.in/api/users?page=2
+    ```
+
+2. **API externa responde:** **request.in** devuelve el siguiente JSON
+    ```json
+    {
+    "page": 2,
+    "per_page": 6,
+    "total": 12,
+    "total_pages": 2,
+    "data": [
+        {
+        "id": 7,
+        "email": "michael.lawson@reqres.in",
+        "first_name": "Michael",
+        "last_name": "Lawson",
+        "avatar": "https://reqres.in/img/faces/7-image.jpg"
+        },
+        {
+        "id": 8,
+        "email": "lindsay.ferguson@reqres.in",
+        "first_name": "Lindsay",
+        "last_name": "Ferguson",
+        "avatar": "https://reqres.in/img/faces/8-image.jpg"
+        },
+        {
+        "id": 9,
+        "email": "tobias.funke@reqres.in",
+        "first_name": "Tobias",
+        "last_name": "Funke",
+        "avatar": "https://reqres.in/img/faces/9-image.jpg"
+        },
+        {
+        "id": 10,
+        "email": "byron.fields@reqres.in",
+        "first_name": "Byron",
+        "last_name": "Fields",
+        "avatar": "https://reqres.in/img/faces/10-image.jpg"
+        },
+        {
+        "id": 11,
+        "email": "george.edwards@reqres.in",
+        "first_name": "George",
+        "last_name": "Edwards",
+        "avatar": "https://reqres.in/img/faces/11-image.jpg"
+        },
+        {
+        "id": 12,
+        "email": "rachel.howell@reqres.in",
+        "first_name": "Rachel",
+        "last_name": "Howell",
+        "avatar": "https://reqres.in/img/faces/12-image.jpg"
+        }
+    ],
+    "support": {
+        "url": "https://contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral",
+        "text": "Tired of writing endless social media content? Let Content Caddy generate it for you."
+    },
+    "_meta": {
+        "powered_by": "🚀 ReqRes - Deploy backends in 30 seconds",
+        "upgrade_url": "https://app.reqres.in/upgrade",
+        "docs_url": "https://reqres.in",
+        "template_gallery": "https://app.reqres.in/templates",
+        "message": "This API is powered by ReqRes. Deploy your own backend in 30 seconds!",
+        "features": [
+        "30 Second Backend Templates",
+        "Custom API Endpoints",
+        "Data Persistence",
+        "Real-time Analytics"
+        ],
+        "upgrade_cta": "Upgrade to Pro for unlimited requests, custom endpoints, and data persistence"
+    }
+    }
+    ```
+
+3. **API (DRF) procesa:** backend recibe el JSON y lo filtra/transforma según la lógica de negocio (ej: solo devolver nombre y emails)
+
+4. **API (DRF) responde:** backend devuelve los datos procesados al frontend
+
+## 2. Módulos Necesarios
+
+1. `requests` Para poder consumir APIs
+    ```sh
+    pip install requests
+    ```
+
+## 3. Nuevo Proyecto
+
+1. **Crear Proyecto**: Llamado `proyectoapi`
+    ```sh
+    django-admin startproject proyectoapi
+    cd proyectoapi
+    ```
+
+2. **Crear App:** Llamada `api`
+    ```sh
+    python manage.py startapp api
+    ```
+
+3. **Configuración Inicial:** Agregar `api` a `proyectoapi` en `settings.py`
+    ```python
+    #./proyectoapi/settings.py
+    from pathlib import Path
+    ...
+    ...
+    INSTALLED_APPS = [
+        ...
+        ...
+        "api",
+    ]
+    ...
+    ...
+    ```
+
+4. **Consumir API:** Crear el archivo `service.py` y el método `get_users()` que permita consumir la API
+    ```python
+    #./api/service.py
+    import requests
+
+    def get_users(params={}):
+        try:
+            # Se define el endpoint o URL a consumir
+            url = "https://reqres.in/api/users"
+            
+            # Consumir la API
+            respuesta = requests.get(url, params=params)
+            
+            #Se realiza check del código de status de HTTP (200)
+            if respuesta.status_code == 200:
+                return respuesta.json().get('data')
+            else:
+                return ''
+            
+        except requests.exceptions.RequestExceptions as e:
+            return f"Error: {e}"
+    ```
+
+5. **Configurar Templates:** Crear directorio templates, y templates `base.html`, `index.html`,  `usuarios.html`
+    ```sh
+    mkdir -p ./api/templates/api
+    ```
+
+    ```html
+    <!-- ./api/templates/base.html-->
+    <!DOCTYPE html>
+    <html lang="en">
+    {% load static %}
+    <head>
+        {% block title %}<title>Tienda de Productos</title>{% endblock title %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <!-- Iconografía -->
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+        <!-- Add additional CSS in static file -->
+        <!--link rel="stylesheet" href="{% static 'tienda/css/styles.css' %}"-->
+    </head>
+    <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3">
+            {% block sidebar %}
+            <ul class="sidebar-nav">
+                <li><a href="">Proyectos</a></li>
+                <li><a href="{% url 'usuarios' %}">Usuarios</a></li>
+            </ul>
+            {% endblock sidebar %}
+        </div>
+        <div class="col-sm-9 ">
+            {% block content %}
+            {% endblock content %}
+        </div>
+      </div>
+    </div>
+    </body>
+    ```
+    ```html
+    <!-- ./api/templates/api/index.html-->
+    {% extends "base.html" %}
+    {% block title %}
+    <title>Proyecto Información - Index</title>
+    {% endblock title %}
+    {% block content %} 
+    <div class="container-fluid p-2 bg-primary text-white text-center">     
+    <h1>Información de Proyectos y Usuarios.</h1>
+    </div>
+    <div class="container mt-5">
+    </div>
+    {% endblock content %}
+    ```
+    ```html
+    <!-- ./api/templates/api/usuarios.html-->
+    {% extends "base.html" %}
+    {% block title %}
+      <title>Tienda de Productos - Index</title>
+    {% endblock title %}
+    {% block content %} 
+    <div class="container-fluid p-2 bg-primary text-white text-center">     
+      <h1>Listado de Usuario desde API ReqRes</h1>
+    </div>
+    <div class="container mt-5">
+        {% if  usuarios %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Email</td>
+                    <td>Nombre</td>
+                    <td>Apellido</td>
+                    <td>Avatar</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in usuarios  %}
+                    <tr>
+                        <td>{{user.id}}</td>
+    					<td>{{user.email}}</td>
+    					<td>{{user.first_name}}</td>
+    					<td>{{user.last_name}}</td>
+                        <td><img src="{{user.avatar}}" alt="Foto de {user.first_name}"/></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p>No se obtiene información del servicio.</p>
+        {% endif %}  
+    </div>
+    {% endblock content %}
+    ```
+
+
+6. **Configurar Vistas:** agregar las vistas para `index` y `usuarios` 
+    ```python
+    #./api/views.py
+    from django.shortcuts import render
+    from .service import get_users
+
+    # Create your views here.
+    def index(request):
+        return render(request, 'api/index.html')
+
+    def usuarios(request):
+        params = {
+            'page':'2'
+        }
+        context = {
+            'usuarios': get_users(params)
+        }
+        return render(request, 'api/usuarios.html', context)
+    ```
+
+7. **Configurar Enrutamiento:** crear `./api/urls.py` y agregarlo a `./proyectoapi/urls.py`
+    ```python
+    #./api/urls.py
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path("", views.index, name='index'),
+        path("usuarios/", views.usuarios, name='usuarios'),
+    ]
+    ```
+    ```python
+    #./proyectoapi/urls.py
+    from django.contrib import admin
+    from django.urls import path, include
+
+    urlpatterns = [
+        path("admin/", admin.site.urls),
+        path("", include("api.urls"))
+    ]
+    ```
+
+8. **Realizar Pruebas:** Levantar servidor y verificar ruta
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/usuarios/
+    ```
+    <SmartFigure
+        id="consumo-api-usuarios"
+        src="/inacap/ti3v41/images/fig24.png"
+        alt="Consumo de API para usuarios"
+        caption="Consumo de API para usuarios"
+        size="large"
+    />

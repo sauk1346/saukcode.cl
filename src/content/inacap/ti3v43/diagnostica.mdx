@@ -1,0 +1,154 @@
+# Evaluación Diagnóstica
+
+<Quiz questions={[
+	{
+		question: "Necesitas diseñar el flujo de trabajo para una nueva funcionalidad de la aplicación. Para esto, ¿cuál sería el orden correcto de los pasos en un diagrama de flujo para el proceso de registro de nuevos usuarios en la aplicación?",
+		options: [
+			"Validación -> Ingreso de datos -> Confirmación -> Creación de cuenta",
+			"Confirmación -> Creación de cuenta -> Validación -> Ingreso de datos",
+			"Ingreso de datos -> Validación -> Creación de cuenta -> Confirmación",
+			"Creación de cuenta -> Confirmación -> Validación -> Ingreso de datos"
+		],
+		correctIndex: 2
+	},
+	{
+		question: "Debes explicar a un nuevo integrante del equipo cómo se relacionan los componentes del sistema. ¿Qué enfoque de la teoría general de sistemas es más útil en este contexto?",
+		options: [
+			"Enfoque sistémico, que considera entradas, procesos, salidas y retroalimentación.",
+			"Enfoque tradicional, que analiza elementos por separado sin considerar su interacción.",
+			"Enfoque centrado en el hardware, que privilegia el funcionamiento del servidor.",
+			"Enfoque de gestión del cambio, que busca adaptar el equipo a nuevos roles."
+		],
+		correctIndex: 0
+	},
+	{
+		question: "Debes documentar cómo los usuarios interactuarán con una nueva funcionalidad. Para esto, ¿cuál sería un caso de uso adecuado para la funcionalidad de gestión de tareas en la aplicación?",
+		options: [
+			"Un usuario no puede interactuar con las tareas, solo visualizarlas.",
+			"Un usuario crea una nueva tarea, asigna una fecha límite y marca la tarea como completada.",
+			"Un usuario solo puede ver las tareas, sin posibilidad de editarlas.",
+			"Un usuario completa todas las tareas sin confirmación para agilizar el proceso."
+		],
+		correctIndex: 1
+	},
+	{
+		question: "Durante el desarrollo, es fundamental asegurar que el software cumpla con los estándares de calidad. En este sentido, ¿qué técnicas utilizarías para asegurar la calidad del software durante el desarrollo?",
+		options: [
+			"Pruebas unitarias, revisiones de código y pruebas de integración.",
+			"Pruebas de código solo al final del desarrollo, para ahorrar tiempo.",
+			"Ignorar las pruebas y centrarse en la implementación rápida del software.",
+			"Solo pruebas unitarias, sin realizar revisiones de código"
+		],
+		correctIndex: 0
+	},
+	{
+		question: "Se está implementando un sistema de integración continua para el proyecto. El equipo necesita entender su importancia y cómo aplicarlo correctamente. En este sentido, ¿qué es la integración continua y por qué es importante en el desarrollo de software?",
+		options: [
+			"Es una técnica para diseñar bases de datos, asegurando la integridad de los datos.",
+			"Es una metodología de gestión de proyectos, enfocada en la planificación, ejecución, reduciendo el tiempo de entrega.",
+			"Es una herramienta para la gestión de versiones, facilitando el control de cambios.",
+			"Es una práctica que permite integrar y probar cambios de código, mejorando la calidad y reduciendo el tiempo de entrega."
+		],
+		correctIndex: 3
+	},
+	{
+		question: "El equipo está utilizando un sistema de control de versiones para gestionar el código. Es importante entender cómo funciona y qué herramientas se utilizan. En este sentido, ¿qué es la gestión de versiones y qué herramientas se utilizan comúnmente para esto?",
+		options: [
+			"Es una técnica para diseñar bases de datos, facilitando la organización de datos.",
+			"Es una metodología de pruebas de software, enfocada en la calidad.",
+			"Es el proceso de gestionar cambios en el código fuente, y herramientas como Git y SVN.",
+			"Es el proceso de gestionar la documentación del proyecto, asegurando su integridad."
+		],
+		correctIndex: 2
+	},
+	{
+		question: "El equipo está discutiendo la importancia de la documentación en el proyecto. Algunos miembros del equipo no están convencidos de su necesidad y creen que es una pérdida de tiempo. En este contexto, ¿cuál la importancia de la documentación en el desarrollo de software?",
+		options: [
+			"La documentación solo es útil al final del proyecto, y se utiliza únicamente para registrar los resultados.",
+			"La documentación no es necesaria, ya que el equipo puede comunicarse verbalmente.",
+			"La documentación facilita la comunicación, el mantenimiento y la transferencia de conocimiento.",
+			"La documentación solo es útil para los desarrolladores, no para otros interesados."
+		],
+		correctIndex: 2
+	},
+	{
+		question: "Estás creando un producto mínimo viable (MVP) para validar una idea con el cliente. ¿Cuál es el objetivo principal de esta estrategia?",
+		options: [
+			"Validar rápidamente funcionalidades clave con el cliente y obtener retroalimentación temprana.",
+			"Asegurar el cumplimiento estricto de todos los requisitos técnicos antes del primer lanzamiento.",
+			"Lanzar el producto final sin etapas intermedias para reducir costos.",
+			"Documentar exhaustivamente el proyecto antes de comenzar cualquier desarrollo."
+		],
+		correctIndex: 0
+	},
+	{
+		question: "Durante el desarrollo, los requisitos del cliente han cambiado. Teniendo en cuenta lo anterior, ¿cómo manejarías los cambios en los requisitos durante el desarrollo del proyecto?",
+		options: [
+			"Deteniendo el proyecto hasta que se definan todos los cambios, para evitar confusiones y luego comunicándolo.",
+			"Implementando los cambios sin evaluar su impacto, para avanzar rápidamente.",
+			"Ignorando los cambios y siguiendo con el plan original, para no retrasar el proyecto.",
+			"Evaluando el impacto del cambio, actualizando la documentación y comunicándolo al equipo."
+		],
+		correctIndex: 3
+	},
+	{
+		question: "El equipo está evaluando diferentes metodologías de desarrollo para el proyecto. En este contexto, ¿qué es la metodología ágil y cómo se diferencia de la metodología en cascada?",
+		options: [
+			"La metodología ágil es iterativa y flexible, mientras que la metodología en cascada es secuencial y rígida.",
+			"La metodología ágil es secuencial y rígida, mientras que la metodología en cascada es iterativa y flexible.",
+			"Ambas metodologías son iguales, y se utilizan de la misma manera en todos los proyectos.",
+			"La metodología ágil no se utiliza en el desarrollo de software, solo en la gestión de proyectos."
+		],
+		correctIndex: 0
+	},
+	{
+		question: "Necesitas modelar la arquitectura del sistema antes de comenzar el desarrollo. ¿Cuál de los siguientes diagramas UML sería el más adecuado para representar la estructura estática del sistema?",
+		options: [
+			"Diagrama de actividades, ya que modela el flujo de trabajo de una operación.",
+			"Diagrama de clases, ya que muestra las clases, atributos, métodos y relaciones entre ellas.",
+			"Diagrama de casos de uso, ya que describe la interacción entre usuarios y el sistema.",
+			"Diagrama de secuencia, ya que representa la interacción temporal entre objetos."
+		],
+		correctIndex: 1
+	},
+	{
+		question: "Antes de integrar el código, se debe realizar una revisión de este. El equipo necesita saber cómo llevar a cabo esta revisión de manera efectiva. ¿Qué aspectos considerarías al realizar una revisión de código?",
+		options: [
+			"Revisar la legibilidad, la adherencia a la codificación y la ausencia de errores.",
+			"Ignorar la revisión y proceder con la integración para ahorrar tiempo.",
+			"Revisar solo la documentación para asegurar que esté completa.",
+			"Verificar solo la funcionalidad para asegurar que el código cumpla con los requisitos."
+		],
+		correctIndex: 0
+	},
+	{
+		question: "Tu equipo necesita definir claramente lo que el cliente espera del nuevo sistema. En este contexto, ¿cómo realizarías un análisis de requisitos para la nueva aplicación?",
+		options: [
+			"Implementando directamente las ideas del equipo de desarrollo sin consultar al cliente.",
+			"Ignorando las necesidades del cliente y centrándose en la tecnología más avanzada.",
+			"Reuniendo información de los interesados, documentar los requisitos y validar con el cliente.",
+			"Realizando pruebas de software antes de definir los requisitos, para identificar posibles problemas."
+		],
+		correctIndex: 2
+	},
+	{
+		question: "Un cliente ha solicitado que el sistema cumpla con la Ley de Delitos Informáticos y los estándares OWASP. ¿Qué implica esta solicitud para el desarrollo del prototipo?",
+		options: [
+			"Incorporar prácticas seguras de codificación, validación de entradas y autenticación robusta.",
+			"Usar software libre exclusivamente para evitar problemas legales.",
+			"Aplicar pruebas solo al final del desarrollo para reducir esfuerzo.",
+			"Enfocarse solo en funcionalidades visibles sin considerar aspectos de seguridad."
+		],
+		correctIndex: 0
+	},
+	{
+		question: "El equipo está planificando las pruebas del software. En este contexto, ¿cuál es la diferencia entre pruebas unitarias, de integración y de sistema?",
+		options: [
+			"Pruebas unitarias, pruebas de integración y pruebas de sistema completo.",
+			"Pruebas unitarias, revisiones de código y pruebas de integración.",
+			"Pruebas unitarias y de integración son lo mismo, y se realizan al final del desarrollo.",
+			"Todas las pruebas son iguales y se realizan al final del desarrollo para asegurar la calidad."
+		],
+		correctIndex: 0
+	}
+]} />

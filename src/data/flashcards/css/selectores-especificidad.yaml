@@ -1,0 +1,142 @@
+topic: Selectores y Especificidad
+slug: css-selectores-especificidad
+section: css
+layout: default
+cards:
+  - front: |
+      ¿Qué selecciona el selector universal?
+
+      ```css
+      *
+      ```
+    back: |
+      Selecciona **todos** los elementos del documento.
+
+      ```css
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      ```
+
+  - front: |
+      ¿Cómo se escribe un selector de tipo (elemento)?
+    back: |
+      Se usa el nombre de la etiqueta HTML directamente.
+
+      ```css
+      p {
+        color: #333;
+      }
+      /* selecciona todos los <p> del documento */
+      ```
+
+  - front: |
+      ¿Cómo se escribe un selector de clase y qué lo distingue del selector de ID?
+    back: |
+      A diferencia del ID, una clase puede repetirse en varios elementos.
+
+      ```css
+      .card {
+        padding: 1rem;
+      }
+      /* el punto (.) indica selector de clase */
+      ```
+
+  - front: |
+      ¿Cómo se escribe un selector de ID y qué restricción tiene?
+    back: |
+      Debe ser **único** en el documento (un solo elemento por ID).
+
+      ```css
+      #header {
+        background: black;
+      }
+      /* el símbolo # indica selector de id */
+      ```
+
+  - front: |
+      ¿Qué hace este selector de atributo?
+
+      ```css
+      [attr]
+      ```
+    back: |
+      Selecciona elementos que **tienen** ese atributo, sin importar su valor.
+
+      ```css
+      [disabled] {
+        opacity: 0.5;
+      }
+      ```
+
+  - front: |
+      ¿Qué hace este selector de atributo?
+
+      ```css
+      [attr="valor"]
+      ```
+    back: |
+      Selecciona elementos donde el atributo tiene **exactamente** ese valor.
+
+      ```css
+      [type="checkbox"] {
+        accent-color: purple;
+      }
+      ```
+
+  - front: |
+      ¿Qué hace este selector de atributo?
+
+      ```css
+      [attr^="valor"]
+      ```
+    back: |
+      Selecciona elementos cuyo atributo **empieza con** ese valor.
+
+      ```css
+      [href^="https://"] {
+        color: green;
+      }
+      ```
+
+  - front: |
+      ¿Qué hace este selector de atributo?
+
+      ```css
+      [attr$="valor"]
+      ```
+    back: |
+      Selecciona elementos cuyo atributo **termina con** ese valor.
+
+      ```css
+      [href$=".pdf"] {
+        color: red;
+      }
+      ```
+
+  - front: |
+      ¿Qué hace este selector de atributo?
+
+      ```css
+      [attr*="valor"]
+      ```
+    back: |
+      Selecciona elementos cuyo atributo **contiene** ese valor en cualquier parte.
+
+      ```css
+      [class*="col-"] {
+        float: left;
+      }
+      ```
+
+  - front: |
+      ¿Cómo se agrupan varios selectores para aplicar el mismo estilo?
+    back: |
+      Se separan con una coma.
+
+      ```css
+      h1, h2, h3 {
+        font-family: sans-serif;
+      }
+      ```

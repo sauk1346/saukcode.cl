@@ -1,0 +1,66 @@
+/* ================================
+   BARRA DE ESTADÍSTICAS SIMPLE
+   ================================ */
+.statsBar {
+  text-align: center;
+  padding: var(--spacing-xs) 0;
+}
+
+.statsText {
+  font-size: 0.9rem;
+  color: var(--secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.highlight {
+  font-weight: 700;
+  color: var(--success);
+  font-size: 1rem;
+}
+
+.separator {
+  color: var(--secondary);
+  opacity: 0.5;
+}
+
+.label {
+  margin-left: 0.25rem;
+}
+
+.percentage {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ================================
+   DARK MODE
+   ================================ */
+:global(html.dark-mode) .statsText,
+:global(html.dark-mode-override) .statsText {
+  color: var(--secondary-dark, #9ca3af);
+}
+
+:global(html.dark-mode) .highlight,
+:global(html.dark-mode-override) .highlight {
+  color: var(--success-light, #4ade80);
+}
+
+:global(html.dark-mode) .percentage,
+:global(html.dark-mode-override) .percentage {
+  color: var(--accent-light, #a78bfa);
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+@media (max-width: 480px) {
+  .statsText {
+    font-size: 0.8rem;
+  }
+
+  .highlight {
+    font-size: 0.9rem;
+  }
+}

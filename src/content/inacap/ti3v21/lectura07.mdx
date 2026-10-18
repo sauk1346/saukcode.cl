@@ -1,0 +1,85 @@
+# Librerías de Python con conexión a base de datos
+
+## PyPI
+- [PyPI](https://pypi.org/) es un repositorio centralizado de paquetes para Python
+- Permite a los desarrolladores compartir sus bibliotecas y aplicaciones de manera fácil y accesible
+
+## Conectores a Bases de Datos
+
+- Python posee librerías que actúan como puentes entre la aplicación y la base de datos
+- Esto permite ejecutar consultas, recuperar datos y realizar actualizaciones 
+
+<SmartFigure
+	id="conectores-bd"
+	src="/inacap/ti3v21/images/fig33.png"
+	alt="Librerías Python conectoras a distintas Bases de Datos"
+	caption="Librerías Python conectoras a distintas Bases de Datos"
+	size="large"
+/>
+
+## PyMySQL
+
+Es una de las opciones más populares para utilizar bases de datos MySQL desde Python
+
+### Instalación
+
+Desde la terminal, ejecutar el comando:
+
+```sh
+pip install pymysql
+```
+
+# Actividad de Práctica 07
+
+<Quiz questions={[
+  {
+    question: "¿Cuál es el propósito principal de PyPI en el contexto de librerías Python para conexión a bases de datos?",
+    options: [
+      "Servir como repositorio oficial para compartir, distribuir y descargar librerías Python",
+      "Proporcionar tutoriales de programación en Python",
+      "Albergar únicamente librerías para desarrollo web",
+      "Ser un foro de discusión para desarrolladores"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cómo se instala una librería desde PyPI utilizando pip?",
+    options: [
+      "pip load nombre_de_la_libreria",
+      "pip download nombre_de_la_libreria",
+      "pip install nombre_de_la_libreria",
+      "pip get nombre_de_la_libreria"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Por qué es importante considerar la pertinencia con el sistema gestor de bases de datos al elegir una librería de conexión?",
+    options: [
+      "PyPI sólo admite librerías compatibles con sistemas gestores específicos",
+      "Sólo las librerías oficiales de Python son pertinentes",
+      "Hay que asegurar que la librería sea compatible con el sistema de control de versiones",
+      "Garantizar que la librería pueda comunicarse efectivamente con el sistema de gestión de bases de datos que estás utilizando"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué componente esencial proporciona PyPI para facilitar la comprensión y utilización efectiva de una librería?",
+    options: [
+      "Número de descargas",
+      "Documentación detallada",
+      "Nivel de popularidad",
+      "Número de issues en GitHub"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es el propósito principal al especificar la versión de una librería al instalarla desde PyPI?",
+    options: [
+      "Controlar la velocidad de descarga",
+      "Proporcionar información adicional a la librería",
+      "Mantener la coherencia y prevenir conflictos de dependencias",
+      "Hay que asegurar que la librería sea compatible con el sistema operativo"
+    ],
+    correctIndex: 2
+  }
+]} />

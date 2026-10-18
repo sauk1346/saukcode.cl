@@ -1,0 +1,377 @@
+# (Proyecto Tienda) Formularios
+
+En la clase anterior, al agregar un producto se genera un formulario, que permite ingresar los distintos campos del producto.
+
+- El framework general un formulario automático, pero simple, sin diseño
+- Se genera un nuevo `producto_form.html` con un diseño mejor
+
+## 1. Formularios
+- Si bien existen formularios, estos se generan a partir de la vista genérica de de edición.
+- Es posible crear nuestros propios formularios personalizados, por ejemplo, que realice validación previa de los productos, que la categoría pertenezca a cierto rango, etc.
+- Para esto se utiliza `APIForms`
+
+### Manejo de formularios
+
+- Los formularios pueden estar vinculados o no a una fuente de datos
+- Si está vinculado a un conjunto de datos, es capaz de validar esos datos y representar el formulario como HTML, mostrando los datos en éste
+- Si no está vinculado, no puede realizar la validación (¡porque no hay datos para validad!), pero aún puede representar el formulario en blanco como HTML
+- API form de Django provee de "servicios que permite el manejo de formularios de manera más sencilla"
+
+### Ejemplo
+
+- `forms.py`, se crea la clase con los campos que incluirá el formulario, con sus respectivos tipos
+    ```python
+    class NameForm(forms.Form):
+        your_name = forms.CharField(label='Your name', max_length=100)
+    ```
+- `views.py`, se debe generar la vista respectiva para el tratamiento de la información del formulario
+    ```python
+    from django.shortcuts import render
+    from django.http import HttpResponseRedirect
+
+    def get_name(request):
+        # if this is a POST request we need to process the form data
+        if request.method == 'POST':
+            # create a form instance and populate it with data from the request:
+            form = NameForm(request.POST)
+            # check whether it's valid:
+            if form.is_valid():
+                # process the data in form.cleaned_data as required
+                # ...
+                # redirect to a new URL:
+                return HttpResponseRedirect('/thanks/')
+        # if a GET (or any other method) we'll create a blank form
+        else:
+            form = NameForm()
+        return render(request, 'name.html', {'form': form})
+    ```
+
+- `Formcontacto.html`
+    ```html
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Enviar" />
+    </form>
+    ```
+
+## 2. Continuación Proyecto
+
+### Creación Formulario Personalizado
+
+1. **Configurar módulo para formulario:** Crear `forms.py` en la app tienda
+    ```python
+    # ./tienda/forms.py
+    from django import forms
+
+    class FormularioContacto(forms.Form):
+        asunto = forms.CharField(max_length=50, required=True)
+        email = forms.EmailField()
+        mensaje = forms.CharField(widget=forms.Textarea)
+        cc_ami = forms.BooleanField(required=False)
+    ```
+
+2. **Configurar templates (1):** Crear el template `formcontacto.html`
+    ```html
+    <!-- .tienda/templates/tienda/formcontacto.html -->
+    {% extends "tienda/base.html" %}
+    
+    {% block title %}{% endblock %}
+    
+    {% block content %}
+    <div class="row text-center my-5 ">
+      <div class="col-sm-6 shadow-lg rounded mb-5">
+          <h2 class="bg-primary bg-gradient text-white p-5 text-center rounded ">Formulario de Contacto</h2>
+          <form action="" method="post" class="col-12 bg-light bg-gradient">
+              {% csrf_token %}
+              {%for campo in form %}
+                {% if campo.field.widget.input_type == "checkbox" %}
+                  <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="check_cc" name="{{campo.name}}">
+                    <label class="form-check-label" for="check_cc">CC a Mi</label>
+                  </div>           
+                {% else %}
+                  <div class="mb-3">
+                    <label for="" class="form-label">{{campo.label}}</label>
+                    <input type="{{ campo.field.widget.input_type}}"
+                      class="form-control" 
+                      name="{{campo.name}}"
+                      aria-describedby="{{campo.name}}Help"
+                      placeholder="Ingrese {{campo.label}}"
+                      value =""/>                  
+                  </div>
+                  <div class ="col-12 help-text">{{campo.errors}}</div>
+    
+                {% endif %}
+              {% endfor %}
+              <button type="submit" class="btn btn-primary my-5">Submit</button>
+          </form>
+          {% if messages %}
+            <ul>
+              {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                  {{ message }}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+     </div>
+    </div>
+    
+    {% endblock %}
+    ```
+
+3. **Configurar Vistas:** crear vistas para manejo de formulario en módulo `views.py`
+    ```python
+    from django.shortcuts import render
+    from .models import Cliente, Producto, Categoria
+    from django.views import generic
+    from django.views.generic.edit import CreateView, UpdateView, DeleteView
+    from django.urls import reverse_lazy
+    from .forms import FormularioContacto
+    from django.http import HttpResponseRedirect
+    from django.core.mail import send_mail, BadHeaderError
+    from django.contrib import messages
+    ...
+    ...
+    # Vistas para manejo de formularios
+    def formcontacto(request):
+        if request.method == 'POST':
+            # Se crea el objeto del formulario con los datos ingresados
+            form = FormularioContacto(request.POST) 
+        else:
+            # Se crea formulario vacio
+            form = FormularioContacto()
+
+        return render(request, 'tienda/formcontacto.html', {'form':form})      
+    ```
+
+4. **Configurar enrutamiento:** agregar rutas para formularios en módulo `urls.py`
+    ```python
+    # ./tienda/urls.py
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path("index/", views.index, name="index"),
+
+        ## Urls de formularios
+        path('contacto/', views.formcontacto, name="contacto"),
+        ...
+        ...
+    ]
+    ```
+
+5. **Configurar Templates (2):** Modificar el template `base.html`, agregando la opción para Contacto
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        ...
+        ...
+    </head>
+    <body>
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+        {% block sidebar %} 
+        <ul class="sidebar-nav">
+            ...
+            ...
+            <li><a href="{% url 'contacto' %}">Formulario Contacto</a></li>
+        </ul>
+        {% endblock sidebar %}
+        </div>
+        <div class="col-sm-9 ">
+            ...
+            ...
+        </div>
+    </div>
+    </div>
+    </body>
+    ```
+
+6. **Realizar Pruebas:** Levantar servidor y verificar rutas.
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/tienda/contacto/
+    ```
+    
+    <SmartFigure
+    	id="formulario-contacto-personalizado"
+    	src="/inacap/ti3v41/images/fig055.png"
+    	alt="Formulario de contacto personalizado"
+    	caption="Formulario de contacto personalizado"
+    	size="large"
+    />
+
+### Manipulación de datos
+- Si bien ahora existe el formulario personalizado, actualmente no hace nada con los datos ingresados
+- Para esto se trabajará en el módulo `views.py`
+
+1. **Configuración Vistas (1):** Utilizar `cleaned_data` para trabajar los datos, en el módulo `views.py`
+    ```python
+    # ./tienda/views.py
+    from django.shortcuts import render
+    from .models import Cliente, Producto, Categoria
+    from django.views import generic
+    from django.views.generic.edit import CreateView, UpdateView, DeleteView
+    from django.urls import reverse_lazy
+    from .forms import FormularioContacto
+    from django.http import HttpResponseRedirect
+    from django.core.mail import send_mail, BadHeaderError
+    from django.contrib import messages
+    ...
+    ...    
+    # Vistas para manejo de formularios
+    def formcontacto(request):
+        if request.method == 'POST':
+            # Se crea el objeto del formulario con los datos ingresados
+            form = FormularioContacto(request.POST)
+
+            # Lista "cleaned_data" permite trabajar con los campos del formulario
+            if form.is_valid():
+                asuntof = form.cleaned_data['asunto']
+                emailf = form.cleaned_data['email']
+                mensajef = form.cleaned_data['mensaje']
+                cc_amif = form.cleaned_data['cc_ami']
+
+                # Se agrega una lista de destinatarios
+                destinatarios = ['miempresa@gmail.cl']
+                if cc_amif:
+                    destinatarios.append(emailf)
+                try:
+                    # Se envía el correo
+                    # fail_silently=False, permite que la funcion lance
+                    # una excepción si el correo falla
+                    send_mail(asuntof, mensajef, emailf, destinatarios,
+                              fail_silently=False)
+                    # Guardar información del contacto
+
+                    # Se rediredciona a la página de agradecimiento
+                    return HttpResponseRedirect('/tienda/gracias')
+                except BadHeaderError:
+                    messages.error(request, "Encabezado inválido en el correo")
+                except Exception as e:
+                    messages.error(request, f"Error al enviar el correo. {e}")
+        else:
+            # Se crea formulario vacio
+            form = FormularioContacto()
+
+        return render(request, 'tienda/formcontacto.html', {'form':form})
+    ```
+
+2. **Configuración Templates:** agregar el template `gracias.html`, que se activa al enviar los datos de contacto
+    ```html
+    <!-- .tienda/templates/tienda/gracias.html -->
+    {% extends "tienda/base.html" %}
+
+    {% block title %}
+    <title>Tienda de Productos - Gracias</title>
+    {% endblock title%}
+
+    {% block content %}
+    <h1>Tienda de Productos - Gracias por tu contacto</h1>
+    <p>Agradecemos tu contacto y vuelve pronto :'( </p>
+
+    {% endblock content%}
+    ```
+3. **Configuración Vistas (2):** crear una vista `gracias()` para redireccionar al template `gracias.html`
+    ```python
+    # ./tienda/views.py
+    from django.shortcuts import render
+    from .models import Cliente, Producto, Categoria
+    from django.views import generic
+    from django.views.generic.edit import CreateView, UpdateView, DeleteView
+    from django.urls import reverse_lazy
+    from .forms import FormularioContacto
+    from django.http import HttpResponseRedirect
+    from django.core.mail import send_mail, BadHeaderError
+    from django.contrib import messages
+    ...
+    ...
+    # Vistas para manejo de formularios
+    def gracias(request):
+        return render(request, 'tienda/gracias.html')
+
+    def formcontacto(request):
+        ...
+        ...    
+    ```
+
+4. **Configurar enrutamiento:** Agregar ruta para el template `gracias.html`, en el módulo `urls.py`
+    ```python
+    # ./tienda/urls.py
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path("index/", views.index, name="index"),
+
+        ## Urls de formularios
+        path('contacto/', views.formcontacto, name="contacto"),
+        path('gracias/', views.gracias),
+        ...
+        ...
+    ]
+    ```
+
+5. **Realizar pruebas:** Levantar servidor y verificar ruta
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/tienda/contacto/
+    ```
+    <SmartFigure
+    	id="ingreso-datos-formulario-contacto"
+    	src="/inacap/ti3v41/images/fig056.png"
+    	alt="Ingreso de datos en formulario contacto"
+    	caption="Ingreso de datos en formulario contacto"
+    	size="large"
+    />
+    - Aparece un **mensaje de error**. Esto es normal, ya que **aún no está configurado** la lógica del correo
+    
+    <SmartFigure
+    	id="mensaje-error"
+    	src="/inacap/ti3v41/images/fig057.png"
+    	alt="Mensaje de error"
+    	caption="Mensaje de error"
+    	size="large"
+    />
+
+    - Para poder ver el template `gracias.html` luego de ingresar los datos, hay que comentar (por el momento) la función `send_mail()` en el módulo `views.py` y enviar nuevamente los datos de contacto
+
+    <SmartFigure
+    	id="datos-contacto-enviados"
+    	src="/inacap/ti3v41/images/fig058.png"
+    	alt="Datos de contacto enviados, haciendo bypass a la función send_mail()"
+    	caption="Datos de contacto enviados, haciendo bypass a la función send_mail()"
+    	lightbox={true}
+        size="large"
+    />
+
+## 3. Verificación de 2 pasos (Google)
+Se utilizará para generar una **contraseña de aplicación**, la cual se utilizará para la **configuración de correo** (envío de correos)
+
+- Cuenta -> Seguridad -> Verificación en 2 pasos -> Click
+- Contraseña de applicaciones -> nombre de la app -> \*genera clave\*
+
+### Envío de correos
+
+- **SMTP Backend:** Este el es el backend predeterminado para enviar correos. El correo electrónico se enviará a través de un servidor SMTP.
+- Si desea especificar datos personalizados para el envío de correo, se debe configurar la siguiente constante en el archivo `setiings.py`
+    ```python
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    ```
+- También se deben definir los argumentos para configurar el correo
+    ```python
+    EMAIL_USE_TLS = True # Protocolo a utilizar
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = 'micorreo@gmail.com'
+    # Password generada con segunda autenticación de gmail (2 pasos)
+    EMAIL_HOST_PASSWORD = 'vsgmfomglkqzfctw' #ejemplo
+    EMAIL_PORT = 587
+    ```

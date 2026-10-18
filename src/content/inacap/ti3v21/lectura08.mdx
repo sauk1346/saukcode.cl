@@ -1,0 +1,128 @@
+# Manipulación de registros
+Se utilizará la librería PyMySql para la manipulación de registros de datos en bases de datos. Esto mediante operaciones CRUD (crear, leer, actualizar, eliminar)
+
+## Métodos clave de la librería PyMySql
+
+<SmartTable
+ layoutTable="auto"
+ headers={["Nombre Método","Descripción"]}
+ rows={[
+ ["execute()","Comando de consulta para ejecutar una base de datos"],
+ ["fetchone()","recupera una sola fila del resultado de una consulta"],
+ ["fetchmany(size)","recupera una cantidad `size` de filas del resultado de una consulta"],
+ ["fetchall()","recupera todas las filas del resultado de una consultas"],
+ ["rowcount","obtiene el número de filas de la última operación"],
+ ["close()","cierra la conexión"],
+ ]}
+/>
+
+## Conexión a Base de datos
+
+```python
+import pymysql
+
+# 1. Establecer conexión
+conn = pymysql.connect(
+	host = "localhost",
+	user = "root",
+	passwd = "",
+	db = "bdd_nombre"
+)
+print("Conexión exitosa")
+
+# 2. Creación cursor, para leer BD
+cursor = conn.cursor()
+
+# 3. Operaciones CRUD
+# ...
+# ...
+# ...
+
+# 4. Cerrar conexión
+conn.close()
+```
+
+## Operaciones CRUD
+
+### CREATE (crear)
+
+```python
+cursor.execute("INSERT INTO usuarios (nombre, edad) VALUES (%s, %s)", ('Juan', 25))
+conn.commit()
+```
+
+### READ (leer)
+
+```python
+cursor.execute("SELECT * FROM usuarios WHERE edad > %s", (18,))
+resultados = cursor.fetchall()
+```
+
+### UPDATE (actualizar)
+
+```python
+cursor.execute("UPDATE usuarios SET edad = %s WHERE nombre = %s", (26, 'Juan'))
+connection.commit()
+```
+
+### DELETE (eliminar)
+
+```python
+cursor.execute("DELETE FROM usuarios WHERE nombre = %s", ('Juan',))
+connection.commit()
+```
+
+# Actividad de Práctica 08
+
+<Quiz questions={[
+  {
+    question: "¿Por qué es beneficioso encapsular la lógica de conexión y manipulación de la base de datos en una clase?",
+    options: [
+      "Facilita la reutilización de código y simplifica el mantenimiento",
+      "Reduce la velocidad de conexión",
+      "Permite que la aplicación sea menos segura",
+      "Complica la gestión de parámetros de conexión"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál es uno de los beneficios clave al contar con una clase de conexión en una aplicación?",
+    options: [
+      "Solo es útil para aplicaciones pequeñas",
+      "Aumenta la complejidad de la aplicación",
+      "Promueve la consistencia y simplifica el mantenimiento",
+      "Facilita la repetición de la lógica de conexión en diferentes partes del código"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es el propósito principal de la encapsulación en una clase de conexión?",
+    options: [
+      "Aumentar la complejidad del código",
+      "Permitir que la aplicación sea menos segura",
+      "Facilitar la repetición de código",
+      "Ocultar la lógica interna y proporcionar una interfaz controlada"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Por qué es esencial gestionar de manera segura el ciclo de vida de la conexión a la base de datos?",
+    options: [
+      "Porque facilita la gestión de múltiples conexiones simultáneas",
+      "Porque garantiza que los recursos de la base de datos se utilicen de manera eficiente y se liberen adecuadamente",
+      "Porque permite que la aplicación sea más vulnerable",
+      "Porque permite aumentar la complejidad del código"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Por qué es importante utilizar un usuario específico de base de datos en una aplicación en lugar de utilizar credenciales de administrador?",
+    options: [
+      "Porque facilita la gestión de contraseñas",
+      "Porque los usuarios específicos no pueden realizar operaciones en la base de datos",
+      "Porque aumenta la seguridad al restringir los privilegios según las necesidades de la aplicación",
+      "Porque los usuarios específicos sólo son necesarios para aplicaciones web"
+    ],
+    correctIndex: 2
+  }
+]} />

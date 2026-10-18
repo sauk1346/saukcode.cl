@@ -1,0 +1,96 @@
+# Integración y resolución de problemas de enrutamiento IPv4 e IPv6
+
+## 1. Integración de enrutamiento estático y dinámico en entornos IPv4 e IPv6
+
+Las rutas estáticas y dinámicas, como OSPFv2 y OSPFv3, conviven armónicamente en la tabla de enrutamiento. La selección de ruta sigue reglas claras: el prefijo más largo y la menor distancia administrativa, donde las rutas estáticas prevalecen por defecto. Esta coexistencia asegura flexibilidad y respaldo en entornos de rede dual stack.
+
+<SmartTable
+    id="tabla01"
+    caption="Características coexistencia enrutamiento"
+    tableLayout="auto"
+    headers={["Característica", "Descripción"]}
+    rows={[
+        [
+            "**Prefijo más largo prioritario**",
+            "el router selecciona la ruta con el prefijo más específico, asegurando una coincidencia precisa con la dirección de destino"
+        ],
+        [
+            "**Distancia administrativa más baja**",
+            "si dos rutas tienen igual especificidad, se elige la que tenga la menor distancia administrativa, como rutas estáticas sobre OSPF"
+        ],
+        [
+            "**Uso de rutas estáticas flotantes**",
+            "las rutas estáticas pueden configurarse con una distancia administrativa mayor para actuar como respaldo en caso de fallos"
+        ],
+        [
+            "**Importancia de rutas de retorno**",
+            "las rutas de retorno son esenciales para garantizar conectividad bidireccional y evitar problemas como tráfico asimétrico o pérdida de conectividad"
+        ],
+    ]}
+/>
+
+## 2. Elección de router
+La seleccción de rutas en redes IPv4 e IPv6 sigue un conjunto de criterios bien definidos que garantizan la eficiencia y la estabilidad de la comunicación. Este proceso asegura que las rutas más adecuadas sean seleccionadas según las reglas de coincidencia de prefijo y distancia administrativa.
+
+### PASO 1: Coincidencia de prefijo más largo
+
+El criterio de coincidencia de prefijo más largo es fundamental para determinar la ruta más específica hacia un destino. El router analiza todas las rutas disponibles y selecciona aquella cuyo prefijo coincida más estrechamente con la dirección de destino.
+
+Este enfoque garantiza que el tráfico sea dirigido de manera precisa, minimizando la posibilidad de errores en el enrutamiento. Es una regla aplicable tanto en redes IPv4 como IPv6, asegurando consistencia en entornos dual stack.
+
+### PASO 2: Evaluación de distancia administrativa
+
+Cuando dos rutas tienen el mismo nivel de especificidad, entra en juego la distancia administrativa (AD). Este valor determina la confiabilidad de una ruta, siendo menor el valor, mayor la preferencia.
+
+Por ejemplo, una ruta estática con AD 1 siempre prevalecerá sobre una ruta OSPF con AD 110. Este criterio permite priorizar rutas según su origen y confiabilidad, asegurando una selección óptima.
+
+### PASO 3: Comparación Estática vs OSPF
+
+Las rutas estáticas y las dinámicas, como las aprendidas por OSPF, pueden coexistir en la tabla de enrutamiento. Las rutas estáticas son configuradas manualmente, mientras que OSPF actualiza automáticamente las rutas según los cambios en la topología.
+
+En caso de conflicto, las rutas estáticas prevalecen debido a su menor AD, a menos que se manipule este valor. Esta coexistencia asegura flexibilidad y control en la gestión de rutas.
+
+### PASO 4: Uso de rutas estáticas flotantes
+
+Las rutas estáticas flotantes son una heramienta útil para proporcionar respaldo en caso de fallos. Estas rutas se configuran con una AD mayor que la de las rutas dinámicas, permitiendo que actúen como alternativas en caso de que las rutas principales desaparezcan.
+
+Por ejemplo, una ruta estática con AD 120 puede servir como respaldo para una ruta OSPF con AD 110. Este enfoque mejora la resiliencia de la red y asegura la continuidad del tráfico.
+
+### Reglas esenciales para selección de rutas
+La selección de rutas en redes IPv4 e IPv6 se basa en principios claros como la coincidencia de prefijo más largo y la evaluación de distancia administrativa. Estos criterios, junto con el uso de rutas estáticas flotantes, garantizan una comunicación eficiente y confiable en entornos de rede complejos.
+
+## 3. Estrategias de respaldo: Floating Static Routes
+
+<SmartTable
+    id="tabla02"
+    caption="Estrategias de respaldo"
+    tableLayout="auto"
+    headers={["Estrategias", "Descripción"]}
+    rows={[
+        [
+            "**Distancia Administrativa (AD)**",
+            "Es un valor que determina la preferencia de una ruta. Menor AD tiene mayor prioridad en la selección"
+        ],
+        [
+            "**Rutas Estáticas vs OSPF**",
+            "Las rutas estáticas tienen AD 1, mientras que OSPF tiene AD 110. Estáticas prevalecen salvo que se manipule la AD"
+        ],
+        [
+            "**Floating Static Routes**",
+            "Son rutas estáticas configuradas con AD mayor que OSPF, para actuar como respaldo si OSPF falla"
+        ],
+        [
+            "**Coexistencia de rutas**",
+            "Rutas estáticas y OSPF pueden coexistir en la tabla de enrutamiento, aplicando las mismas reglas de selección"
+        ],
+        [
+            "**Reglas de Selección de Rutas**",
+            "La selección se basa en prefijo más largo y menor AD. Floating static routes permiten respaldo eficiente"
+        ],
+        [
+            "**Importancia de Rutas de Retorno**",
+            "Son esenciales para conectividad bidireccional. Sin ellas, puede haber pérdida de conectividad o tráfico asimétrico"
+        ],
+    ]}
+/>
+

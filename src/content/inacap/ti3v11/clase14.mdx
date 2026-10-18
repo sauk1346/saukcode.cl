@@ -1,0 +1,134 @@
+# Ejercicios
+**Material Clase:** [clase14.pdf](/inacap/ti3v11/docs/clase14.pdf)
+
+## Ejercicio 01
+
+Crear un algoritmo que permita al usuario: 
+- **Ingresar:** los nombres de los estudiantes de la asignatura Programación y almacenarlos en una lista llama ESTUDIANTES
+
+<Solution>
+**Opción 1:** Ingreso manual
+```python
+estudiantes = []
+
+nombre = input('ingrese nombre: ')
+estudiantes.append(nombre)
+
+nombre = input('ingrese nombre: ')
+estudiantes.append(nombre)
+
+nombre = input('ingrese nombre: ')
+estudiantes.append(nombre)
+
+nombre = input('ingrese nombre: ')
+estudiantes.append(nombre)
+
+nombre = input('ingrese nombre: ')
+estudiantes.append(nombre)
+
+print()
+print(f'estudiantes = {estudiantes}')
+```
+
+**Opción 2:** utilizando "for()"
+
+```python
+estudiantes = []
+
+for i in range(5):
+	nombre = input('ingrese nombre: ')
+	estudiantes.append(nombre)
+
+print()
+print(f'estudiantes = {estudiantes}')
+```
+
+**Opción 3:** utilizando "compresión de listas"
+```python
+estudiantes = [input('ingrese nombre: ') for i in range(5)]
+
+print()
+print(f'estudiantes = {estudiantes}')
+```
+</Solution>
+
+## Ejercicio 02
+
+Después de finalizar el ingreso de datos a la lista debe:
+
+- **Buscar:** Permite al usuario ingresar un nombre y buscarlo en lista, indicando si existe o no. Si existe debe indicar en qué posición de la lista se encuentra.
+
+<Solution>
+**Opción 1:** utilizando if-else
+
+```python
+# ingresar nombre de estudiantes
+estudiantes = [input('ingrese nombre: ') for i in range(5)]
+
+# buscar nombre
+nombreBuscar = input("ingrese nombre a buscar: ")
+
+if (nombreBuscar in estudiantes):
+    print(f'Sí está, en la posición {estudiantes.index(nombreBuscar)}')
+else:
+    print('No está')
+```
+
+**Opción 2:** utilizando "if-ternario"
+```python
+# ingresar nombre de estudiantes
+estudiantes = [input('ingrese nombre: ') for i in range(5)]
+
+# buscar nombre
+nombreBuscar = input("ingrese nombre a buscar: ")
+
+print(f'Si está, en la posición {estudiantes.index(nombreBuscar)}') if (nombreBuscar in estudiantes) else print('No está')
+```
+</Solution>
+
+## Ejercicio 03
+
+Ordenar la lista y mostrarla.
+
+<Solution>
+**Opción 1:** utilizando "sort()"
+```python
+# ingresar nombre de estudiantes
+estudiantes = [input('ingrese nombre: ') for i in range(5)]
+
+# ordenar lista y mostrarla
+estudiantes.sort()
+print(estudiantes)
+```
+
+**Opción 2:** utilizando "sorted()"
+```python
+# ingresar nombre de estudiantes
+estudiantes = [input('ingrese nombre: ') for i in range(5)]
+
+# ordenar lista y mostrarla
+print(sorted(estudiantes))
+```
+</Solution>
+
+## Ejercicio 04
+
+Pedir el usuario el ingreso de un nombre y eliminarlo de la lista. Mostrar la lista.
+
+<Solution>
+```python
+# ingresar nombre de estudiantes
+estudiantes = [input('ingrese nombre: ') for i in range(5)]
+
+# eliminar nombre y mostrar lista
+eliminarNombre = input('Ingrese nombre para eliminar: ')
+
+if (eliminarNombre in estudiantes):
+    estudiantes.remove(eliminarNombre)
+    print(f'se ha eliminado el nombre: {eliminarNombre}')
+else:
+    print('el nombre no está en la lista')
+
+print(estudiantes)
+```
+</Solution>

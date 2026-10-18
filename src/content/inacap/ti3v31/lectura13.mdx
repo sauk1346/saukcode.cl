@@ -1,0 +1,128 @@
+# Elementos esenciales de los frameworks de JS
+
+### 1. Instalar Node.js y NPM
+
+- Asegúrate de tener Node.js y npm instalados en tu máquina.
+- Puedes descargarlo desde https://nodejs.org
+
+### 2. Crear un proyecto React con Vite
+
+1. Abre tu terminal y ejecuta el siguiente comando
+
+```sh
+npm create vite@latest mi-app --template react
+```
+
+2. Navega al directorio del proyecto (mi-app)
+
+```sh
+cd mi-app
+```
+
+### 3. Instalar dependencias
+Ejecuta el siguiente comando para instalar las dependencias necesarias:
+
+```sh
+npm install
+```
+
+### 4. Iniciar el serviror de desarrollo
+Ejecuta el siguiente comando para iniciar el servidor de desarrollo:
+
+```sh
+npm run dev
+```
+
+La aplicación estará disponible en http://localhost:3000
+
+## Componentes de React
+
+### 1. Propiedades (props)
+Los props son argumentos que se pasan a los componentes, con el fin de personalizar su funcionamiento y apariencia. Es importante tener en cuenta que:
+
+- Los props son **solo de lectura**, lo que significa que **no se pueden modificar** dentro del componente.
+
+Esto garantiza la consistencia y la integridad de los datos que se pasan a través de los props, asegurando un flujo de información eficiente y seguro en la aplicación.
+
+### 2. Estado (state)
+Es un objeto que representa la información local del componente. El estado puede cambiar con el tiempo y afectar la renderización del componente. En componentes funcionales, se maneja usando el hook useState. El estado es esencial en la programación de componentes, ya que:
+
+- Representa la información local y puede cambiar con el tiempo, lo cual afecta directamente la renderización del componente.
+- En el caso de los componentes funcionales, el estado se gestiona a través del hook `useState` , permitiendo así la actualización dinámica de la información y la interacción fluida con el usuario. 
+
+### 3. Hooks
+Son funciones especiales de React que permiten usar características de React, como el estado y el ciclo de vida, en componentes funcionales. El hook `useState` de React permite:
+
+- Agregar y gestionar estados dentro de un componente funcional, lo que da la posibilidad de actualizar y mostrar información dinámica en nuestra aplicación.
+- Realizar acciones secundarias en componentes funcionales, como, por ejemplo, gestionar el ciclo de vida de un componente. Esto brinda la posibilidad de llevar a cabo operaciones como peticiones a servidores, suscripciones a eventos, actualizaciones de estado, entre otras tareas, de manera más controlada y eficiente en la aplicación.
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Hooks Principales","Descripción"]}
+  rows={[
+    ["`useState`","Manejo de estado en componentes funcionales"],
+    ["`useEffect`","Manejo de efectos secundarios (similar a los métodos de ciclo de vida en componentes de clase)"],
+    ["`useContext`","Manejo de contexto para pasar datos a través del árbol de componentes sin tener que pasar props manualmente en cada nivel"],
+    ["`useReducer`","Manejo de estado complejo mediante un reductor (similar a Redux)"]
+  ]}
+/>
+
+## JSX
+Es una poderosa extensión de JavaScript que permite a los desarrolladores escribir código de una manera que se asemeja a HTML, pero dentro de JavaScript.
+
+Facilita la creación de interfaces de usuario de forma más intuitiva y legible, ya que combina la familiaridad de HTML con la potencia y flexibilidad de JavaScript. 
+
+# Actividad de Práctica 06
+
+<Quiz questions={[
+	{
+		question: "¿Qué es un componente en React?",
+		options: [
+			"Un elemento HTML que se utiliza para mostrar imágenes.",
+			"Una función que se ejecuta al cargar la página.",
+			"Un archivo de estilo que se utiliza para dar formato a la página.",
+			"Un bloque de construcción reutilizable que encapsula su propia lógica y presentación."
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Cuál es la función del hook useState en React?",
+		options: [
+			"Manejar efectos secundarios en un componente.",
+			"Realizar una petición HTTP.",
+			"Pasar datos entre componentes sin usar props.",
+			"Agregar estado a un componente funcional."
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Cómo se pasan datos a un componente en React?",
+		options: [
+			"Mediante el uso de hooks.",
+			"A través de las propiedades (props).",
+			"Utilizando el estado.",
+			"Usando contextos."
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Qué comando se utiliza para crear un nuevo proyecto de React con Vite?",
+		options: [
+			"npx init vite@latest mi-app --template react",
+			"npm create vite@latest mi-app --template react",
+			"npm init react-app mi-app",
+			"npx create-react-app mi-app"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Qué es JSX en React?",
+		options: [
+			"Es un tipo de archivo de hoja de estilo.",
+			"Una función de React para manejar eventos.",
+			"Un método de React para gestionar el estado.",
+			"Una extensión de JS que permite escribir código que se parece a HTML dentro de JS."
+		],
+		correctIndex: 3
+	},
+]} />

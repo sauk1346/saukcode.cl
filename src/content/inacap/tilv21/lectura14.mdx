@@ -1,0 +1,124 @@
+# Procesos de seguimiento en el monitoreo
+
+Llevar a cabo un seguimiento efectivo de fallos, errores y defectos durante el desarrollo de software es de vital importancia para garantizar la calidad y la integridad del producto final. 
+
+Este proceso no solo implica la identificación y documentación detallada de los problemas encontrados, sino también la implementación de medidas correctivas adecuadas. 
+
+El monitoreo constante según el plan de pruebas establecido permite una gestión proactiva de los riesgos, facilitando así la toma de decisiones informadas para mantener el proyecto en línea con los estándares de calidad y los objetivos del negocio.
+
+## Seguimiento de fallos, errores y defectos
+El seguimiento de fallos, errores y defectos durante el desarrollo de software es un proceso estructurado y continuo para garantizar la calidad del producto final. Este proceso se realiza según el plan de pruebas establecido e implica la identificación, documentación y resolución de problemas.
+
+### Etapas Clave
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Etapa', 'Descripción']}
+	rows={[
+		[
+			'**Identificación de fallos y defectos**',
+			'Inicialmente, se identifican y registran todos los fallos y defectos encontrados durante las pruebas. Esto puede incluir problemas de funcionamiento, comportamientos inesperados o incumplimientos de los requisitos especificados'
+		],
+		[
+			'**Documentación detallada**',
+			'Cada fallo o defecto identificado se documenta de manera detallada, incluyendo información relevante como la descripción del problema, el contexto en el que ocurrió, los pasos para reproducirlo, la severidad y la prioridad asignada para su corrección'
+		],
+		[
+			'**Clasificación y priorización**',
+			'Los fallos y defectos se clasifican según su gravedad y su impacto en el sistema, para priorizar los problemas que deben ser resueltos primero. Se debe considerar el impacto en la funcionalidad, la criticidad del componente afectado y los plazos de entrega del proyecto'
+		],
+		[
+			'**Análisis de causa raíz**',
+			'Un análisis de causa raíz investiga las razones subyacentes del problema. Ejemplo: un fallo podría deberse a errores de programación, integración deficiente entre módulos o malinterpretación de requisitos'
+		],
+		[
+			'**Implementación de soluciones**',
+			'Una vez identificada la causa raíz, se diseñan y aplican soluciones correctivas. Puede incluir modificar el código, ajustar la configuración del sistema, actualizar documentación o cambiar los procedimientos de prueba'
+		],
+		[
+			'**Pruebas de verificación**',
+			'Después de implementar las soluciones, se realizan pruebas de verificación para asegurarse de que los fallos y defectos han sido corregidos correctamente y que no se han introducido nuevos problemas en el proceso'
+		],
+		[
+			'**Seguimiento y monitoreo**',
+			'Durante todo este proceso, se realiza un seguimiento continuo y monitoreo de los fallos corregidos y de cualquier nueva incidencia que pueda surgir. Esto ayuda a asegurar que el sistema se mantenga estable y funcional a lo largo del tiempo'
+		]
+	]}
+/>
+
+## Establecimiento de métricas
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Métricas', 'Descripción']}
+	rows={[
+		[
+			'**Tasa de defectos**',
+			'Número de defectos encontrados en relación con el tamaño del software'
+		],
+		[
+			'**Tiempo de resolución**',
+			'Tiempo promedio para resolver defectos'
+		],
+		[
+			'**Frecuencia de fallos**',
+			'Cuántas veces se repiten los mismos fallos en un período determinado'
+		],
+		[
+			'**Severidad de los incidentes**',
+			'Distribución de los defectos según su severidad (crítico, alto, medio, bajo) para priorizar la atención'
+		],
+		[
+			'**Cumplimiento de plazos**',
+			'Porcentaje de incidencias resueltas dentro de los plazos establecidos en el plan de acción'
+		]
+	]}
+/>
+
+## Herramientas de monitoreo
+- **Sistemas de seguimiento de errores (bug trackers):** Permiten registrar y gestionar fallos y errores
+- **Herramientas de monitoreo de rendimiento:** Ayudan a identificar problemas de rendimiento en tiempo real
+- **Dashboards de métricas:** Permiten visualizar información clave sobre el estado del software y los problemas detectados
+
+## Ejemplo del proceso completo
+
+1. Supongamos que durante las pruebas de un sistema de gestión de inventario se encuentra un fallo en el módulo de generación de informes, donde ciertos datos no se muestran correctamente en el reporte final. 
+2. Tras identificar el fallo, se documenta detalladamente con capturas de pantalla y pasos para reproducirlo.
+3. Luego, se prioriza su corrección debido a su impacto en la precisión de los informes financieros del cliente.
+4. A partir de un análisis, se descubre que el problema radica en un error de lógica en el cálculo de ciertos datos, y se implementa una solución que implica una actualización del algoritmo de generación de informes.
+5. Después de las pruebas de verificación, se confirma que el fallo ha sido corregido y se sigue monitoreando para asegurar que no vuelva a ocurrir.
+
+# Actividad de Práctica 14
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es el objetivo principal de las pruebas exploratorias en el proceso de testing de software?",
+		options: [
+			"Descubrir defectos no específicos",
+			"Validar requerimientos del usuario",
+			"Evaluar la usabilidad del sistema",
+			"Medir el rendimiento del software"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Qué fase del ciclo de vida del software se enfoca en la identificación y documentación de defectos?",
+		options: [
+			"Mantenimiento",
+			"Gestión de configuración",
+			"Desarrollo",
+			"Pruebas"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Qué término se refiere a un problema en el código que aún no ha sido identificado?",
+		options: [
+			"Incidente",
+			"Defecto",
+			"Error",
+			"Fallo"
+		],
+		correctIndex: 2
+	}
+]} />

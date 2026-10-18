@@ -1,0 +1,311 @@
+# Explorando el mundo del IoT: dispositivos y seguridad
+
+El IoT se refiere a la interconexión de objetos físicos a través de internet, permitiéndoles recopilar, enviar y recibir datos sin intervención humana directa. Estos objetos pueden ser desde sensores simples hasta dispositivos complejos como vehículos autónomos o maquinaria industrial.
+
+## 1. Características Clave
+<SmartTable
+    tableLayout="auto"
+    headers={["Características", "Descripción"]}
+    rows={[
+        [
+            "**Conectividad**",
+            "Usa protocolos como Wifi, Bluetooth, LoRaWan o 5G"
+        ],
+        [
+            "**Sensores y actuadores**",
+            "Miden variables (temperatura, humedad) y realizan acciones (encender un motor)"
+        ],
+        [
+            "**Procesamiento de datos**",
+            "En una nube (cloud) o en el borde (edge computing)"
+        ],
+    ]}
+/>
+
+## 2. Evolución del IoT
+El IoT ha recorrido un largo camino desde sus inicios. Entre 1980 y 2000 surgieron los primeros dispositivos conectados en entornos industriales, como los sistemas SCADA, aunque limitados por el alto costo de los sensores y la ausencia de estándares.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Evolución", "Descripción"]}
+    lists={{
+        R1: [
+            "**Primeros dispositivos:** máquinas conectadas en entornos industriales (por ejemplo, sistemas Scada)",
+            "**Limitaciones:** alto costo de sensores y falta de estándares"
+        ],
+        R2: [
+            "Sensores más baratos y pequeños (ESP8266)",
+            "Protocolos estandarizados (MQTT, CoAP)",
+            "Plataformas en la nube (AWS IoT, Google Cloud IoT)"
+        ],
+        R3: [
+            "**AI + IoT:** análisis predictivo (por ejemplo, mantenimiento de maquinaria)",
+            "**5G:** Baja latencia para aplicaciones críticas (cirugía remota)"
+        ]
+    }}
+    rows={[
+        [
+            "**1980-2000: orígenes**",
+            "@R1"
+        ],
+        [
+            "**2010-2019: expansión**",
+            "@R2"
+        ],
+        [
+            "**2020 a la actualidad**",
+            "@R3"
+        ],
+    ]}
+/>
+
+## 3. Aplicaciones del IoT
+
+**Entornos Industriales (IIoT)**
+<SmartTable
+    tableLayout="auto"
+    headers={["Ejemplo", "Descripción"]}
+    lists={{
+        R1: [
+            "Sensores en máquinas que predicen fallos (*predictive maintence*)",
+            "Robots colaborativos (cobots) en líneas de producción"
+        ],
+        R2: [
+            "Rastro de GPS de flotas y monitoreo de condiciones de transporte (por ejemplo, temperatura en camiones de alimentos)"
+        ]
+    }}
+    rows={[
+        [
+            "**Fabricación Inteligente**",
+            "@R1"
+        ],
+        [
+            "**Logística**",
+            "@R2"
+        ],
+    ]}
+/> 
+
+## 4. Impacto y desafíos del IoT
+El IoT ha transformado radicalmente el panorama industrial y empresarial, permitiendo optimizar procesos, mejorar la toma de decisiones y habilitar nuevas formas de generar valor.  
+
+A través de la conectividad de dispositivos, las organizaciones pueden alcanzar niveles inéditos de eficiencia operativa y ofrecer servicios innovadores basados en el uso inteligente de datos; sin embargo, esta evolución también conlleva importantes desafíos que deben ser atendidos, especialmente en lo que respecta a la seguridad, la interoperabilidad entre los sistemas heterogéneos y la protección de la privacidad de la información.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Característica", "Descripción"]}
+    lists={{
+        R1: [
+            "**Eficiencia:** Reduce costos energéticos y operativos",
+            "**Nuevos modelos de negocio:** Servicios por suscripción (por ejemplo, maquinaria as-a-service)"
+        ],
+        R2: [
+            "**Seguridad:** Dispositivos vulnerables a ciberataques (por ejemplo, Botnets Mirai)",
+            "**Interoperabilidad:** Diferentes fabricantes usan estándares incompatibles",
+            "**Privacidad:** Riesgo de recolección masiva de datos personales"
+        ]
+    }}
+    rows={[
+        [
+            "**Ventajas**",
+            "@R1"
+        ],
+        [
+            "**Retos**",
+            "@R2"
+        ],
+    ]}
+/>
+
+### Caso 01: Ciberataque a infraestructura crítica urbana
+
+**Alarma de emergencia hackeada en Dallas (2017)**
+
+Durante la madrugada del 7 de abril de 2017, más de 150 sirenas de alerta de tornado en Dallas, EEUU, fueron activadas simultáneamente por actores no autorizados. Aunque inicialmente se temió que fuera una emergencia climática, las autoridades confirmaron que se trataba de un hackeo de emergencia 911, lo que obligó a desactivar manualmente todo el sistema hasta resolver la vulnerabilidad.
+
+Si bien no afectó semáforos, este ataque reveló lo fácil que es comprometer sistemas urbanos mal protegidos. La infraestructura fue vulnerada a través de acceso remoto a una interfaz de control sin las medidas adecuadaas de autenticación ni cifrado.
+
+## 5. Estándares de la industria OT
+La tecnología operacional (OT, según sus siglas en inglés) se refiere al conjunto de hardware y software utilizado para monitorear y controlar sistemas físicos en entornos industriales, como fábricas, redes eléctricas y sistemas de agua. Con la convergencia entre OT e IIoT, los estándares de la industria han evolucionado para garantizar seguridad, interoperabilidad y eficiencia. En este texto, explorarás los principales estándares OT y su relevancia en sistemas IIoT.
+
+### Por qué son necesarios los estándares OT
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Característica", "Descripción"]}
+    rows={[
+        [
+            "**Interoparabilidad**",
+            "Permitir que dispositivos de diferentes fabricantes se comuniquen sin problemas"
+        ],
+        [
+            "**Seguridad**",
+            "Proteger infraestructuras críticas contra ciberataques (por ejemplo, *ransomware* en plantas energéticos)"
+        ],
+        [
+            "**Eficiencia**",
+            "Optimizar procesos industriales mediante protocolos estandarizados"
+        ],
+        [
+            "**Cumplimiento normativo**",
+            "Cumplir con regulaciones como NERC CIP (energía) o IEC 62443 (seguridad industrial)"
+        ],
+    ]}
+/>
+
+### Principales estándares en OT e IoT
+
+#### Estándares de Comunicación industrial
+<SmartTable
+    tableLayout="auto"
+    headers={["Estándar", "Aplicación", "Relevancia en IoT"]}
+    rows={[
+        [
+            "**Modbus(TCP/RTU)**",
+            "Monitoreo de sensores y PLC",
+            "Usado en sistemas SCADA e IIoT legacy"
+        ],
+        [
+            "**OPC UA**",
+            "Intercambio seguro de datos industriales",
+            "Base para la industria 4.0 (encriptación integrada)"
+        ],
+        [
+            "**DNP3**",
+            "Sistemas de energía y utilities",
+            "Clave en redes eléctricas inteligentes"
+        ],
+        [
+            "**MQTTSparkplug**",
+            "IoT industrial (mínimo ancho de banda)",
+            "Usado en edge computing y dispositivos low-power"
+        ],
+    ]}
+/>
+
+#### Estándares de seguridad industrial
+<SmartTable
+    tableLayout="auto"
+    headers={["Estándar", "Descripción"]}
+    lists={{
+        R1: [
+            "Define requisitos para proteger los sistemas de control industrial",
+            "Incluye segmentación de redes (zones/conduits) y una autenticación robusta"
+        ],
+        R2: [
+            "Guía de seguridad para ICS (*Industrial Control Systems*)",
+            "Recomienda firewalls específicos para OT y monitoreo continuo"
+        ]
+    }}
+    rows={[
+        [
+            "**IEC 62443**",
+            "@R1"
+        ],
+        [
+            "**NIST SP 800-82**",
+            "@R2"
+        ],
+    ]}
+/>
+
+#### Protocolos para industria 4.0
+<SmartTable
+    tableLayout="auto"
+    headers={["Protocolo", "Descripción"]}
+    rows={[
+        [
+            "**Time-Sensitive Networking (TSN)**",
+            "Comunicación en tiempo real (crítico para robótica y automatización)"
+        ],
+        [
+            "**5G Ultra-Reliable Low Latency (URLLC)**",
+            "Soporta aplicaciones del IIoT con latencia <1ms (por ejemplo, control remoto de maquinaria)"
+        ],
+    ]}
+/>
+
+#### Desafíos en la adopción de estándares de OT
+<SmartTable
+    tableLayout="auto"
+    headers={["Desafío", "Descripción"]}
+    rows={[
+        [
+            "**Legacy Systems**",
+            "Equipos antiguos sin soporte para protocolos modernos (por ejemplo, dispositivos que solo usan Modbus RTU)"
+        ],
+        [
+            "**Falta de expertise**",
+            "Escasez de profesionales en ciberseguridad de OT"
+        ],
+        [
+            "**Costos**",
+            "Migrar a infraestructuras estandarizadas requiere de inversión inicial alta"
+        ],
+    ]}
+/>
+
+# Actividad de Práctica 01
+
+<Quiz questions={[
+	{
+		question: "¿Qué tecnología permite la interconexión de objetos físicos para recopilar y compartir datos sin intervención humana directa?",
+		options: [
+			"Blockchain",
+			"Realidad virtual",
+			"IoT",
+			"Inteligencia artificial"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Cuál fue uno de los primeros usos industriales de tecnología precursoras del IoT en el período de 1980-2000?",
+		options: [
+			"Computación en la nube",
+			"Teléfonos inteligentes",
+			"Redes sociales",
+			"Sistemas SCADA"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Qué protocolo de comunicación ligero es ampliamente usado en el IoT por su eficiencia energética?",
+		options: [
+			"MQTT",
+			"HTTP",
+			"FTP",
+			"TCP/IP"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Qué característica del 5G es crucial para aplicaciones del IIoT como la cirugía remota?",
+		options: [
+			"Bajo costo",
+			"Baja latencia (URLLC)",
+			"Cobertura amplia",
+			"Alto ancho de banda"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Qué estándar de seguridad es específico para sistemas de control industrial?",
+		options: [
+			"GDPR",
+			"IEC 62443",
+			"PCI-DSS",
+			"ISO 9001"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Qué tipo de comunicación serial permite distancias de hasta 1200m en entornos industriales?",
+		options: [
+			"USB",
+			"HDMI",
+			"RS-485",
+			"Bluetooth"
+		],
+		correctIndex: 2
+	},
+]} />

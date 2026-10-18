@@ -1,0 +1,61 @@
+---
+// Reemplazo de Solution.jsx (React + ResizeObserver) por <details> nativo:
+// cero JS, el navegador maneja abrir/cerrar y la altura del contenido.
+import styles from './Solution.module.css';
+
+const {
+  title = 'Solución',
+  defaultOpen = false,
+  variant = 'default', // "default", "hint", "warning", "info"
+} = Astro.props;
+
+const variantClass = {
+  hint: styles.solutionHint,
+  warning: styles.solutionWarning,
+  info: styles.solutionInfo,
+  default: styles.solutionDefault,
+}[variant] ?? styles.solutionDefault;
+---
+
+<details class={`${styles.solution} ${variantClass} spike-solution`} open={defaultOpen}>
+  <summary class={styles.solutionHeader}>
+    <span class={styles.headerContent}>
+      <span class={styles.iconContainer}>
+        <!-- Lightbulb (lucide) -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class={styles.ideaIcon}>
+          <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
+          <path d="M9 18h6" /><path d="M10 22h4" />
+        </svg>
+        <!-- Chevron: rota con CSS según open -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class={`${styles.chevron} spike-chevron`}>
+          <path d="m9 18 6-6-6-6" />
+        </svg>
+      </span>
+      <span class={styles.title}>{title}</span>
+    </span>
+  </summary>
+  <div class={styles.content}>
+    <slot />
+  </div>
+</details>
+
+<style is:global>
+  details.spike-solution > summary {
+    list-style: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  details.spike-solution > summary::-webkit-details-marker {
+    display: none;
+  }
+  details.spike-solution .spike-chevron {
+    transition: transform 0.2s ease;
+  }
+  details.spike-solution[open] .spike-chevron {
+    transform: rotate(90deg);
+  }
+</style>

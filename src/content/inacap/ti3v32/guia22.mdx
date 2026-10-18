@@ -1,0 +1,178 @@
+# Guía Práctica MongoDB Shell 02
+
+## ¿Qué es $expr?
+Permite usar expresiones de agregación directamente dentro de una consulta `find()`
+
+- Comparar dos campos del mismo documento
+- Usar operadores como `$gt`, `$add`, `$multiply`, `$size`, `$eq`
+- Evaluar condiciones más complejas que no se permiten normalmente en `find()`
+
+## Ejemplos
+
+1. **Comparar campos:** Busca a todos los usuarios cuya edad sea mayor al año de nacimiento
+
+```js
+db.usuarios.find({
+  $expr: { $gt: ["$edad", "$anioNacimiento"] }
+})
+```
+
+2. **Condición con $add:** Busca todas las ventas donde el total sea igual a la suma del subtotal más el iva 
+
+```js
+db.ventas.find({
+  $expr: {
+    $eq: ["$total", { $add: ["$subtotal", "$iva"] }]
+  }
+})
+```
+
+3. **Tamaño de array:** Busca a todos los usuarios cuyo array de etiquetas tenga un tamaño mayor a 1
+
+```js
+db.usuarios.find({
+  $expr: { $gt: [ { $size: "$etiquetas" }, 1 ] }
+})
+```
+
+4. **Edad calculada desde año de nacimiento:** Busca a todos los usuarios que tengan una edad mayor o igual a 18 años
+
+```js
+db.usuarios.find({
+  $expr: {
+    $gte: [ { $subtract: [2025, "$anioNacimiento"] }, 18 ]
+  }
+})
+```
+
+# Ejercicios
+- **Base de datos:** evaluacionMongo
+- **Colecciones:** usuarios
+- **JSON:** [usuarios.json](/inacap/ti3v32/data/usuarios02.json)
+
+## Ejercicio 01
+Buscar usuarios cuya edad sea mayor que el número de compras que ha realizado
+
+<Solution>
+```js
+db.usuarios.find({
+  $expr: { $gt: ["$edad", { $size: "$compras" }] }
+})
+```
+</Solution>
+
+
+## Ejercicio 02
+Filtrar usuarios con más de dos etiquetas usando $size
+
+<Solution>
+```js
+db.usuarios.find({
+  $expr: { $gt: [{ $size: "$etiquetas" }, 2] }
+})
+```
+</Solution>
+
+## Ejercicio 03
+Mostrar usuarios con edad igual a 2025 menos año de nacimiento
+
+<Solution>
+```js
+db.usuarios.find({
+  $expr: {
+    $eq: [
+      "$edad",
+      { $subtract: [2025, { $subtract: [2025, "$edad"] }] }
+    ]
+  }
+})
+```
+</Solution>
+
+## Ejercicio 04
+Mostrar usuarios con más de una compra de productos
+
+<Solution>
+```js
+db.usuarios.find({
+  $expr: { $gt: [{ $size: "$compras" }, 1] }
+})
+```
+</Solution>
+
+## Ejercicio 05
+Mostrar usuarios registrados en 2023 o después, usando `$expr` y comparación de fechas
+
+<Solution>
+```js
+db.usuarios.find({
+  $expr: {
+    $gte: [
+      { $year: { $dateFromString: { dateString: "$fechaRegistro" } } },
+      2023
+    ]
+  }
+})
+```
+</Solution>
+
+## Ejercicio 06
+Filtrar usuarios cuya región sea distinta de su comuna
+
+<Solution>
+```js
+db.usuarios.find({
+  $expr: { $ne: ["$direccion.region", "$direccion.ciudad"] }
+})
+```
+</Solution>
+
+## Ejercicio 07
+Mostrar usuarios donde el total de precios de sus compras supere los \$800.000
+
+<Solution>
+```js
+db.usuarios.find({
+  $expr: {
+    $gt: [ { $sum: "$compras.precio" }, 800000 ]
+  }
+})
+```
+</Solution>
+
+## Ejercicio 08
+Buscar usuarios que tengan el mismo número de compras que de etiquetas
+
+<Solution>
+```js
+db.usuarios.find({
+  $expr: {
+    $eq: [ { $size: "$compras" }, { $size: "$etiquetas" } ]
+  }
+})
+```
+</Solution>
+
+## Ejercicio 09
+Mostrar usuarios que hayan comprado un "Notebook" y tengan más de 1 etiqueta
+
+<Solution>
+```js
+db.usuarios.find({
+  "compras.producto": "Notebook",
+  $expr: { $gt: [{ $size: "$etiquetas" }, 1] }
+})
+```
+</Solution>
+
+## Ejercicio 10
+Filtrar usuarios que tengan menos de 3 productos y edad mayor a 30
+
+<Solution>
+```js
+db.usuarios.find({
+  $expr: { $lt: [{ $size: "$compras" }, 3] },
+  "edad": { $gt: 30 }
+})
+```
+</Solution>

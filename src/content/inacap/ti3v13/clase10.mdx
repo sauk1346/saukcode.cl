@@ -1,0 +1,96 @@
+# VirtualBox e Instalación Windows 10
+**Material Clase:** [instrucciones.pdf](/inacap/ti3v13/docs/instrucciones.pdf)
+
+## Configurar VirtualBox
+1. Click en ícono "Nueva"
+2. Ingresar
+    1. **Nombre:** Windows 10
+    2. **Imagen ISO:** \<ruta ISO\>
+    3. **Edición:** WINDOWS 10 HOME
+    4. **Verificar:** "Omitir instalación desatendida"
+3. Ingresar
+    1. **Nombre de máquina:** WINDOWS10
+4. Configurar hardware
+    1. **RAM:** 4GB (4096MB), 8GB (8192MB)
+    2. **CPU:** 1 CPU
+5. Disco duro virtual
+    1. **Tamaño de disco:** 100GB
+
+## Instalar Windows 10
+1. Ingresar
+    1. **Idioma que se va a instalar:** Español (España, internacional)
+    2. **Formato de hora y moneda:** Español (España, internacional)
+    3. **Teclado o método de entrada:** Español
+2. Ingresar
+    1. clave de producto
+3. Seleccionar
+    1. **Tipo Instalación:** Personalizada (para crear particiones)
+4. Crear particiones
+    1. Click en "Nuevo"
+    2. Ingresar  40960 (40GB, además 1ra partición será principal)
+5. Esperar instalación. Luego de reinicio, llenar campos solicitados
+
+## Llenar campos
+1. Región
+2. Distribución de teclado
+3. Click en "Uniser a un dominio"
+4. Ingresar nombre usuario
+5. Ingresar
+    1. **Contraseña:** 123abc
+    2. Confirmar contraseña
+    3. Generar preguntas de seguridad
+6. En privacidad, deshabilitar todas las opciones
+7. Instalación completa. Verificar conxión a internet
+
+## Activar NAT
+*Network Adress Translation*. Modo de red. Permite a las máquinas virtuales acceder a recursos de red e internet por medio de un host en el que VirtualBox está instalado.
+
+En *VirtualBox* viene activado por defecto, pero es bueno verificar por si esto ha cambiado en versiones posteriores.
+
+1. Click derecho en maquina virtual "WINDOWS10" (apagada para evitar problemas)
+2. Selecciones "Configuración"
+3. En "Red" \> "Adaptador 1"
+    1. Verificar: "Habilitar adaptador de red"
+    2. Conectado a: NAT
+
+## Activar Partición
+1. Click derecho en ícono windows (barra tareas). Seleccionar "Administrador de discos"
+2. Seleccionar bloque de 60GB. Click derecho en "Nuevo volumen simple"
+3. Seleccionar máximo espacio disponible (60GB = 61440MB) 
+4. Seleccionar
+    1. **Sistema de Archivos:** NTFS
+    2. **Etiqueta de volumen:** Datos
+    3. Dar formato rápido
+
+## Redirecccionar Carpeta
+1. Ingresar "explorador de archivos" en "buscar"
+2. Seleccionar la carpeta deseada. Click-derecho \> Propiedades
+3. Seleccionar
+    1. **Pestaña:** "Ubicación"
+    2. **Botón:** "Mover"
+4. Seleccionar partición "Discos" y crear carpeta deseada
+
+
+## Crear cuenta de usuario local
+1. Click-derecho en ícono windows (barra tareas). Seleccionar "Configuración"
+2. Seleccionar
+    1. "Cuentas" \> "Familia y otros usuarios" \> "Agregar a otra persona a este equipo"
+3. Click en "No tengo los datos de inicio de sesión de esta persona"
+4. Click en "Agregar un usuario sin cuenta Microsoft"
+5. Agregar el nombre de nuevo usuario y rellenar datos
+
+## Añadir cuenta a grupo Administradores
+1. Click-derecho en ícono windows (barra tareas). Seleccionar "Administración de equipos"
+2. Seleccionar
+    "Usuarios y grupos locales" \> "Grupos" \> "Agregar a grupo..."
+3. "Agregar" \> "nombre_usuario" \> "Aceptar"
+4. "Aplicar" \> "Aceptar"
+
+Alternativamente es posible añadir una cuenta al grupo 'Administradores' mediante una instrucción en 'cmd'
+
+- Abrir cmd como **administrador**
+- ejecutar la siguiente línea
+
+```sh
+net localgroup Administradores [NombreUsuario] /add
+```

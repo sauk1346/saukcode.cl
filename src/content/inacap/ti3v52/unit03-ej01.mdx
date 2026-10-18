@@ -1,0 +1,337 @@
+# Ejercicio 01: configuración OSPF
+
+<SmartFigure
+	id="fig121"
+	src="/inacap/ti3v52/images/fig121.png"
+	alt="Topología de red"
+	caption="Topología de red"
+	size="large"
+/>
+
+<SmartTable
+  id="tabla01"
+  caption="Tabla de asignación de direcciones"
+  tableLayout="auto"
+  headers={["Dispositivo", "Interfaz", "Dirección IP", "Máscara de subred"]}
+  rows={[
+    ["R1", "G0/0/0", "192.168.10.1", "/24"],
+    ["R1", "S0/1/0", "10.1.1.1", "/30"],
+    ["R1", "S0/1/1", "10.1.1.5", "/30"],
+    ["R2", "G0/0/0", "192.168.20.1", "/24"],
+    ["R2", "S0/1/0", "10.1.1.2", "/30"],
+    ["R2", "S0/1/1", "10.1.1.9", "/30"],
+    ["R3", "G0/0/0", "192.168.30.1", "/24"],
+    ["R3", "S0/1/0", "10.1.1.10", "/30"],
+    ["R3", "S0/1/1", "10.1.1.6", "/30"],
+    ["PC1", "NIC", "192.168.10.10", "/24"],
+    ["PC2", "NIC", "192.168.20.10", "/24"],
+    ["PC3", "NIC", "192.168.30.10", "/24"],
+  ]}
+/>
+
+## Parte 1: Configurar ID del router
+
+1. Inicie el proceso de enrutamiento OSPF en los 3 routers. Usar ID de proceso **10**
+
+```bash
+Router(config)# router ospf process-id
+```
+
+2. Utilice el comando `router-id` para establecer los identificadores OSFP de los 3 routers de la siguiente manera
+    - R1: 1.1.1.1
+    - R2: 2.2.2.2
+    - R3: 3.3.3.3
+
+    Use el comando
+```bash
+Router(config-router)# router-id rid
+```
+
+<Solution title="Solución Parte 1">
+
+<SmartFigure
+	id="fig122"
+	src="/inacap/ti3v52/images/fig122.png"
+	alt="Configuración en R1"
+	caption="Configuración en R1"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig123"
+	src="/inacap/ti3v52/images/fig123.png"
+	alt="Configuración en R2"
+	caption="Configuración en R2"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig124"
+	src="/inacap/ti3v52/images/fig124.png"
+	alt="Configuración en R3"
+	caption="Configuración en R3"
+	size="large"
+/>
+
+</Solution>
+
+## Parte 2: Configurar redes para enrutamiento OSPF
+
+### Paso 1: Configurar redes para enrutamiento OSPF mediante comandos de red y máscaras comodín
+- ¿Cuántas instrucciones se requieren para configurar OSFP para enrutar todas las redes conectadas al router R1?
+- La LAN conectada al router R1 tiene una máscara /24. ¿Cuál es el equivalente de esta máscara en la representación decimal de puntos?
+- Reste la máscara de subred decimal punteada de 255.255.255.255. ¿Cuál es el resultado?
+- ¿Cuál es el equivalente decimal punteado de la máscara de subred /30?
+- Resta la represetntación decimal con puntos de la máscara /30 de 255.255.255.255. ¿Cuál es el resultado?
+
+1. Configure el proceso de enrutamiento de R1 con las instrucciones de red y las máscaras comodín necesarias para activar el enrutamiento OSPF para todas las redes conectadas. Los valores de instrucción de red deben ser las direcciones de red o subred de las redes configuradas.
+
+```bash
+Router (config-router)# network <máscara comodín> area <area id>
+```
+
+2. Compruebe que OSPF se ha configurado correctamente mostrando la configuración en ejecución. Si encuentra un error, elimine la sentencia network utilizando el comando `no` y vuelva a configurarla.
+
+<Solution title="Solución Parte 2 (Paso 1)">
+
+- **¿Cuántas instrucciones se requieren para configurar OSFP para enrutar todas las redes conectadas al router R1?**
+<P indent={3}>
+**Resp:** 3 instrucciones, una por cada red conectada: la LAN y las 2 seriales
+</P>
+- **La LAN conectada al router R1 tiene una máscara /24. ¿Cuál es el equivalente de esta máscara en la representación decimal de puntos?**
+<P indent={3}>
+**Resp:** 255.255.255.0
+</P>
+- **Reste la máscara de subred decimal punteada de 255.255.255.255. ¿Cuál es el resultado?**
+<P indent={3}>
+**Resp:** 0.0.0.255
+</P>
+- **¿Cuál es el equivalente decimal punteado de la máscara de subred /30?**
+<P indent={3}>
+**Resp:** 255.255.255.252
+</P>
+- **Resta la represetntación decimal con puntos de la máscara /30 de 255.255.255.255. ¿Cuál es el resultado?**
+<P indent={3}>
+**Resp:** 0.0.0.3
+</P>
+---
+
+1. **Configure el proceso de enrutamiento de R1 con las instrucciones de red y las máscaras comodín necesarias para activar el enrutamiento OSPF para todas las redes conectadas. Los valores de instrucción de red deben ser las direcciones de red o subred de las redes configuradas.**
+
+<SmartFigure
+	id="fig125"
+	src="/inacap/ti3v52/images/fig125.png"
+	alt="Configuración en R1"
+	caption="Configuración en R1"
+	size="large"
+/>
+---
+
+2. **Compruebe que OSPF se ha configurado correctamente mostrando la configuración en ejecución. Si encuentra un error, elimine la sentencia network utilizando el comando `no` y vuelva a configurarla.**
+
+<SmartFigure
+	id="fig126"
+	src="/inacap/ti3v52/images/fig126.png"
+	alt="Verificación de configuración OSFP en R1"
+	caption="Verificación de configuración OSFP en R1"
+	size="large"
+/>
+
+</Solution>
+
+### Paso 2: Configure las redes para el enrutamiento OSFP mediante direcciones IP de interfaz y máscaras cuádruple cero
+
+En el router R2, configure OSFP mediante comandos de red con las direcciones IP de las interfaces y máscaras cuádruple cero. La sintaxis del comando network es la misma que se utilizó anteriormente
+
+<Solution title="Solución Parte 2 (Paso 2)">
+
+<SmartFigure
+	id="fig127"
+	src="/inacap/ti3v52/images/fig127.png"
+	alt="Configuración R2"
+	caption="Configuración R2"
+	size="large"
+/>
+
+</Solution>
+
+### Paso 3: Configurar el enrutamiento OSPF en las interfaces del router
+
+En el router R3, configure las interfaces necesarias con OSFP.
+
+¿Qué interfaces en R3? deben configurarse con OSFP?
+
+Configure cada interfaz usando la sintaxis de comandos que se muestra a continuación:
+
+```bash
+router (config-if)# ip ospf process-id area area area id
+```
+
+<Solution title="Solución Paso 2 (Parte 3)">
+
+- **¿Qué interfaces en R3? deben configurarse con OSFP?**
+<P indent={3}>
+**Resp:** Las 3 interfaces conectadas: g0/0/0, s0/1/0 y s0/1/1
+</P>
+---
+
+<SmartFigure
+	id="fig128"
+	src="/inacap/ti3v52/images/fig128.png"
+	alt="Configuración R3"
+	caption="Configuración R3"
+	size="large"
+/>
+
+</Solution>
+
+
+## Parte 3: Configure las interfaces Pasivas
+
+OSPF enviará su tráfico de protocolo fuera de todas las interfaces que participan en el proceso OSPF. En los vinculos que no están para otras redes, como LAN, este tráfico innecesario consume recursos. El comando `passive-interface` evitará que el proceso OSPF envíe tráfico de protocolo de enrutamiento inncesario fuera de interfaces LAN.
+
+¿Qué interfaces en R1, R2 y R3 son interfaces LAN?
+
+Configure el proceso OSPF en cada u no de los 3 routers con el comando `passive-interface`
+
+```bash
+Router(config-router)# passive-interface interface
+```
+
+<Solution title="Solución Parte 3">
+
+- **¿Qué interfaces en R1, R2 y R3 son interfaces LAN?**
+<P indent={3}>
+**Resp:** R1->g0/0/0, R2->g0/0/0, R3->g0/0/0
+</P>
+---
+
+<SmartFigure
+	id="fig129"
+	src="/inacap/ti3v52/images/fig129.png"
+	alt="Configuración pasiva en R1"
+	caption="Configuración pasiva en R1"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig130"
+	src="/inacap/ti3v52/images/fig130.png"
+	alt="Configuración pasiva en R2"
+	caption="Configuración pasiva en R2"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig131"
+	src="/inacap/ti3v52/images/fig131.png"
+	alt="Configuración pasiva en R3"
+	caption="Configuración pasiva en R3"
+	size="large"
+/>
+
+</Solution>
+
+## Parte 4: Verificar la configuración de OSPF
+
+Utilice los comandos `show` para verificar la configuración de la red y la interfaz pasiva del proceso OSPF para cada router
+
+<Solution title="Solución Parte 4">
+
+<SmartFigure
+	id="fig132"
+	src="/inacap/ti3v52/images/fig132.png"
+	alt="Salida de show ip protocols en R1"
+	caption="Salida de show ip protocols en R1"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig133"
+	src="/inacap/ti3v52/images/fig133.png"
+	alt="Vecinos OSPF de R1"
+	caption="Vecinos OSPF de R1"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig134"
+	src="/inacap/ti3v52/images/fig134.png"
+	alt="Interfaces OSPF de R1"
+	caption="Interfaces OSPF de R1"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig135"
+	src="/inacap/ti3v52/images/fig135.png"
+	alt="Rutas OSPF aprendidas por R1"
+	caption="Rutas OSPF aprendidas por R1"
+	size="large"
+/>
+---
+<SmartFigure
+	id="fig136"
+	src="/inacap/ti3v52/images/fig136.png"
+	alt="Salida de show ip protocols en R2"
+	caption="Salida de show ip protocols en R2"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig137"
+	src="/inacap/ti3v52/images/fig137.png"
+	alt="Vecinos OSPF de R2"
+	caption="Vecinos OSPF de R2"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig138"
+	src="/inacap/ti3v52/images/fig138.png"
+	alt="Interfaces OSPF de R2"
+	caption="Interfaces OSPF de R2"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig139"
+	src="/inacap/ti3v52/images/fig139.png"
+	alt="Rutas OSPF aprendidas por R2"
+	caption="Rutas OSPF aprendidas por R2"
+	size="large"
+/>
+---
+<SmartFigure
+	id="fig140"
+	src="/inacap/ti3v52/images/fig140.png"
+	alt="Salida de show ip protocols en R3"
+	caption="Salida de show ip protocols en R3"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig141"
+	src="/inacap/ti3v52/images/fig141.png"
+	alt="Vecinos OSPF de R3"
+	caption="Vecinos OSPF de R3"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig142"
+	src="/inacap/ti3v52/images/fig142.png"
+	alt="Interfaces OSPF de R3"
+	caption="Interfaces OSPF de R3"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig143"
+	src="/inacap/ti3v52/images/fig143.png"
+	alt="Rutas OSPF aprendidas por R3"
+	caption="Rutas OSPF aprendidas por R3"
+	size="large"
+/>
+
+</Solution>

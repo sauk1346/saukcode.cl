@@ -1,0 +1,62 @@
+# Tipos de Vulnerabilidades (1)
+
+**Material Clase:** [tipo-vulnerabilidades.pdf](/inacap/ti3v34/docs/ppt31.pdf)
+
+## Networking
+
+### Vulnerabilidades de Protocolo
+- **MitM:** *Man in the Middle*. Intercepción  posible alteraicón de la comunicación entre dos partes
+- **Inyección de paquetes:** Introducción de datos falsificados en la red
+
+### Vulnerabilidades de Configuración
+- **Configuración insegura:** Configuraciones po defecto mala prácticas que dejan abiertas puertas a ataques
+
+### Vulnerabilidades Wifi
+- **Creackeo de claves Wifi:** Explotación de vulnerabilidades en protocolos de seguridad inalámbricos
+
+## Base de datos
+- **Exposición de datos:** Configuración o erroes que permiten el acceso no autorizado a los datos
+- **Pérdida de integridad de datos:** Ataques que alteran los datos de manera no autorizada
+- **Fuga de datos:** Extracción no autorizada de datos sensibles o privados
+
+## Identificación de activos/software
+- **Activos:** Inventrio de aplicaciones, sistemas operativos, y heramientas. Evaluación de la criticidad basada en la función y los datos que manejan
+
+### Los Fierros
+Registros de servidores, equipos de red, dispositivos de almacenamiento. Evaluación del valor en función de la operación y datos almacenados
+
+### Networking
+Mapeo de dispositivos de red, segmentos de red, y configuraciones. Identificación de putnos críticos y nodos vulnerables
+
+## Indentificación de activos/BD
+- Inventario de base de datos, sistemas de gestión de base de datos (DBMS)
+- Clasificación según la sensibilidad y el volumen de datos
+
+## Identificación de activos/humanos
+- Listado de usuarios, roles y permisos
+- Evaluación de la criticidad basada en acceso y roles desempeñados
+
+## Clasificación de los Activos
+Implica categorizar los recursos de una organización según su importancia y el impacto potencial de su pérdida o compromiso
+
+Ayuda a determinar las prioridades de protección
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Tipo', 'Descripción']}
+	rows={[
+		['**Críticos**', 'que son esenciales para la operación continua de la organización'],
+		['**Activos sensibles**', 'que manejan la información condidencial o personal'],
+		['**Activos no críticos**', 'cuya pérdida no afectaría severamente las operaciones']
+	]}
+/>
+
+## Misceláneo
+**comentarios y tópicos extras dentro de la clase**
+
+- **Recomendación:** red cableada con conexión aparte de la red wifi. Esto implica 2 proveedores de internet
+- **aplicación de kali-linux:** permite escanear redes y wifis
+- **Inventario de aplicaciones y OS:** sirve para registrar la caducidad de apps y os
+- **curso:** administración de activos
+- **third party:** permite realizar un inventario completo de un pc (espacio, componentes, etc)
+- **ip-scan:** herramienta para escaneo de redes

@@ -1,0 +1,194 @@
+# Introducción a los ciclos de vida y Metodologías de desarrollo de software
+
+## 1. Ciclos de vida de un proyecto de software
+Es un marco que describe las fases y actividades involucradas en la creación de un sistema de software.
+
+### Fases comunes
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Fase", "Descripción"]}
+    rows = {[
+        ["**Requisitos**", "Es la recopilación y análisis de las necesidades del cliente"],
+        ["**Diseño**", "Es la planificación de la estrucura del software"],
+        ["**Implementación**", "Es la codificación del software"],
+        ["**Pruebas**", "Es la verificación y validación del software"],
+        ["**Despliegue**", "Es la implementación del software en el entorno de producción"],
+        ["**Mantenimiento**", "Es la actualización y mejora continua del software"],
+    ]}
+/>
+
+## 2. Ciclo de vida del producto de software
+Los ciclos de vida de un "producto" y "proyecto" se encuentra estrechamente relacionados
+
+- Cualquier idea vinculada con un producto de software tiene que ser conducida por un proyecto asociado
+
+### 3. Metodologías de desarrollo de software
+
+### Método cascada
+
+- Investigación y especificaciones
+- Diseño
+- desarrollo
+- Testeo final
+
+Inicialmente se hace una toma de requisitos del proyecto completa y se establece una **secuencia de trabajo**, esto se lleva a cabo **una única vez** y al principio del proyecto
+
+Las metodologías tradicionales son ideales para proyectos sobre los cuales se tiene mucha experiencia os e **desarrollan bajo unas condiciones predecibles y estables**.
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Concepto", "Descripción"]}
+    lists = {{
+        ventajas: [
+            "Seguimiento más preciso y detallado en cada una de las fases",
+            "Ponen foco, concentración y recursos en cada una de las fases",
+            "Es un proceso de trabajo más perfeccionista"
+        ],
+        desventajas: [
+            "Complejidad en la toma de requisitos iniciales",
+            "Falta de flexibilidad",
+            "Demoras en el desarrollo, la a naturaleza secuencial de las metodologías en cascada puede llevar a retrasos, especialmente si surgen problemas"
+        ]
+    }}
+    rows = {[
+        ["**Ventajas**","@ventajas"],
+        ["**Desventajas**","@desventajas"]
+    ]}
+/>
+
+## 3. Metodologías ágiles
+- Cada una de las fases, se dividen en fases aún más pequeñas llamadas sprints.
+- Cada uno de estos sprints se puede completar de manera independiente a la fase que se encuentra, y abrirá las puertas a comenzar con otras fases, aunque la suya propia no esté terminada de forma completa.
+
+Las metodologías ágiles o scrum, se caracterizan por ser **ser adaptativas y flexibles**, lo cual significa que **permite evolucionar el proyecto de una manera más ágil en función de nuestras necesidades**.
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Concepto", "Descripción"]}
+    lists = {{
+        ventajas: [
+            "Fragmenta y organiza en sprints con diferentes prioridades",
+            "Antepone el valor que aporta al producto que se está desarrollando",
+            "Genera un producto final en menor tiempo"
+        ],
+    }}
+    rows = {[
+        ["**Ventajas**","@ventajas"],
+        [
+            "**Desventajas**",
+            "Requiere de una involucración importante por parte del cliente y además contar con un equipo muy cohesionado en todo momento, donde los miembros se complementan unos a otros"
+        ]
+    ]}
+/>
+
+## 4. ¿Cuál es la diferencia entre metodología tradicional y ágil?
+
+<SmartTable
+    tableLayout = "fixed"
+    headers = {["Concepto", "Ágiles", "Tradicionales"]}
+    rows = {[
+        [
+            "**Flexibilidad**",
+            "Son altamente flexibles y adaptables a cambios",
+            "Son menos flexibles, con un enfoque más rígido y estructurado"
+        ],
+        [
+            "**Enfoque en el cliente**",
+            "Tienen un fuerte enfoque en la colaboración con el cliente y la entrega continua de valor",
+            "Tienen un enfoque en cumplir con los requisitos iniciales definidos"
+        ],
+        [
+            "**Gestión del riesto**",
+            "Se centran en la identificación y mitigación continua de riesgos",
+            "Se centran en la gestión de riesgos en fases específicas del proyecto"
+        ]
+    ]}
+/>
+
+## 5. Selección de una metodología y ciclo de vida
+Implica analizar diversos factores:
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Necesidades", "Descripción"]}
+    rows = {[
+        [
+            "**Tamaño del proyecto**",
+            "Es para proyectos grander que pueden beneficiarse de metodologías tradicionales, mientras que para proyectos pequeños y medianes pueden ser más adecuados para metodologías ágiles"
+        ],
+        [
+            "**Recursos Disponibles**",
+            "Se requiere considerar la experiencia del equipo y las herramientas disponibles"
+        ],
+        [
+            "**Requisitos del cliente**",
+            "Se deben determinar si los requisitos son claros y estables o si es probables que cambien"
+        ],
+        [
+            "**Plazos y presupuesto**",
+            "Se requiere evaluar la urgencia y las restricciones financieras del proyecto"
+        ]
+    ]}
+/>
+
+
+
+# Actividad de Práctica 05
+
+<Quiz questions={[
+	{
+		question: "el modelo en cascada es ideal para proyectos en los que los requisitos pueden cambiar frecuentemente durante el desarrollo",
+		options: [
+			"Falso",
+			"Verdadero",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "Las metodologías ágiles permiten una mayor colaboración con el cliente y entregas continuas de valor",
+		options: [
+			"Falso",
+			"Verdadero",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "En las metodologías ágiles, los requisitos del proyecto se definen completamente al inicio y no cambian durante el desarrollo",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "",
+		options: [
+			"",
+			"",
+			"",
+			""
+		],
+		correctIndex: ""
+	},
+    {
+		question: "",
+		options: [
+			"",
+			"",
+			"",
+			""
+		],
+		correctIndex: ""
+	},
+    {
+		question: "",
+		options: [
+			"",
+			"",
+			"",
+			""
+		],
+		correctIndex: ""
+	},
+]} />

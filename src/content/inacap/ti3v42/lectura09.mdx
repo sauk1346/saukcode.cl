@@ -1,0 +1,260 @@
+# Conexión Inalámbrica y Estándares de Seguridad
+
+## 1. Conexión inalámbrica en IoT
+La conexión inalámbrica es un pilar esencial en el funcionamiento de los ecosistemas IoT, ya que permite que millones de dispositivos se comuniquen sin necesidad de cables físicos. Gracias a tecnologías como Bluetooth y sus versiones optimizadas para bajo consumo, es posible establecer redes flexibles, móviles y escalables.
+
+### Fundamentos de la comunicación inalámbrica
+La comunicación inalámbrica en el contexto IoT se basa en la transmisión de datos sin necesidad de cables físicos, utilizando ondas electromagnéticas en diversas frecuencias del espectro radioeléctrico. Sus características son las siguientes: 
+
+<SmartTable
+    tableLayout="auto"
+    headers={['Característica', 'Descripción']}
+    rows={[
+        [
+            "**Movilidad**",
+            "Los dispositivos pueden comunicarse independientemente de su ubicación física"
+        ],
+        [
+            "**Escalabilidad**",
+            "Facilita la adición de nuevos dispositivos a la red"
+        ],
+        [
+            "**Flexibilidad**",
+            "Permite configuraciones dinámicas según las necesidades del sistema"
+        ],
+        [
+            "**Eficiencia energética**",
+            "Optimizada para dispositivos con recursos limitados"
+        ],
+    ]}      
+/>
+
+### Tecnología Bluetooth en IoT
+Bluetooth es una tecnología de comunicación inalámbrica de corto alcance que opera en la banda ISM de 2.4 GHz. Su evolución hacia Bluetooth Low Energy (BLE) la ha convertido en una opción preferida para aplicaciones IoT debido a su bajo consumo energético y facilidad de implementación.
+
+<SmartTable
+    tableLayout="auto"
+    headers={['Versión Bluetooth', 'Consumo energético', 'Alcance', 'Velocidad', 'Características adicionales']}
+    rows={[
+        [
+            "**4.0** (BLE/Bluetooth Smart)",
+            "Ultra bajo",
+            "10-50 metros",
+            "1 Mbps",
+            "Ideal para sensores y dispositivos alimentados por batería"
+        ],
+        [
+            "**5.0 y superiores**",
+            "",
+            "Hasta 200 metros",
+            "Hasta 2 Mbps",
+            "Mejor coexistencia con wifi, soporte para *mesh networking*"
+        ]
+    ]}
+/>
+
+## 2. Estándares de seguridad en IoT
+En un entorno donde millones de dispositivos están constantemente conectados e intercambiando datos, la seguridad en IoT se vuelve una prioridad ineludible. Los estándares internacionales como ISO/IEC 27400 ofrecen marcos de referencia sólidos para proteger la información y garantizar el funcionamiento confiable de estos sistemas.
+
+### Marco regulatorio de seguridad
+La seguridad en IoT requiere un enfoque integral que abarque desde el diseño del hardware hasta la implementación de software y la gestión de datos. Los estándares internacionales proporcionan marcos estructurados para implementar medidas de seguridad efectivas.
+
+### Desafíos de seguridad específicos de IoT
+<SmartTable
+    tableLayout="auto"
+    headers={['Desafío', 'Descripción']}
+    lists={{
+        R1: [
+            "**Procesamiento limitado:** Capacidad computacional restringida",
+            "**Memoria reducida:** Limitaciones en almacenamiento de claves y certificados",
+            "**Energía limitada:** Imposibilidad de usar algoritmos criptográficos complejos debido al alto consumo energético"
+        ],
+        R2: [
+            "**Gestión masiva de dispositivos:** Millones de dispositivos en una sola red",
+            "**Actualización de firmware:** Distribución segura de actualizaciones",
+            "**Gestión de identidades:** Administración de credenciales a gran escala"   
+        ],
+        R3: [
+            "**Diversos protocolos:** Múltiples estándares de comunicación",
+            "**Diferentes fabricantes:** Variabilidad en implementaciones de seguridad",
+            "**Ciclos de vida variables:** Dispositivos con diferentes períodos de soporte"
+        ]
+    }}
+    rows={[
+        [
+            "**Limitaciones de recursos**",
+            "@R1"
+        ],
+        [
+            "**Escalabilidad**",
+            "@R2"
+        ],
+        [
+            "**Heterogeneidad**",
+            "@R3"
+        ]
+    ]}
+/>
+
+## 3. Norma ISO 27400: fundamentos y aplicación
+La norma ISO/IEC 27400 "Cybersecurity — IoT security and privacy — Guidelines" representa un marco comprensivo para abordar los desafíos de seguridad y privacidad específicos del ecosistema IoT. Publicada como parte de la familia ISO 27000, esta norma proporciona directrices prácticas para implementar medidas de seguridad efectivas en sistemas IoT. 
+
+Sus objetivos principales:
+<SmartTable
+    tableLayout="auto"
+    headers={['Objetivo', 'Descripción']}
+    lists={{
+        R1: [
+            "Definición de arquitecturas de seguridad para IoT",
+            "Identificación de amenazas específicas del ecosistema",
+            "Establecimiento de controles de seguridad apropiados"
+        ],
+        R2: [
+            "Metodologías para evaluación de riesgos en IoT",
+            "Estrategias de mitigación adaptadas al contexto",
+            "Monitoreo continuo de amenazas emergentes"
+        ],
+        R3: [
+            "Principios de privacidad por diseño",
+            "Minimización de recolección de datos",
+            "Transparencia en el procesamiento de información"
+        ]
+
+    }}
+    rows={[
+        [
+            "**Establecimiento de marco de seguridad**",
+            "@R1"
+        ],
+        [
+            "**Gestión de riesgos**",
+            "@R2"
+        ],
+        [
+            "**Protección de privacidad**",
+            "@R3"
+        ]
+    ]}
+/>
+
+### Estructura y componentes de la norma
+
+#### 1. Alcance y aplicación
+La norma define su aplicabilidad a sistemas IoT que incluyen dispositivos conectados con capacidades de procesamiento limitadas; redes de comunicación heterogéneas; sistemas de procesamiento de datos distribuidos y aplicaciones y servicios basados en IoT.
+
+#### 2. Arquitectura de seguridad IoT
+
+<SmartTable
+    tableLayout="auto"
+    headers={['Capa', 'Componentes']}
+    rows={[
+        [
+            "**Capa de aplicación**",
+            "Interfaces se usuario, Lógica de negocio, Servicios en la nube"
+        ],,
+        [
+            "**Capa de red**",
+            "Protocolos de comunicación, gestión de conectividad, enrutamiento y switching"
+        ],
+        [
+            "**Capa de percepción**",
+            "Sensores y actuadores, interfaces de hardware, dispositivos de borde"
+        ]
+    ]}
+/>
+
+#### 3. Controles de seguridad
+Los controles de seguridad en IoT se agrupan en tres grandes categorías. 
+
+<SmartTable
+    tableLayout="auto"
+    headers={['Categoría de control', 'Descripción']}
+    rows={[
+        [
+            "**Controles técnicos**",
+            "Medidas como la criptografía, autenticación y seguridad en comunicaciones"
+        ],
+        [
+            "**Controles organizacionales**",
+            "Políticas de seguridad, gestión de incidentes, capacitación y auditorías"
+        ],
+        [
+            "**Controles físicos**",
+            "Protección del hardware, seguridad de instalaciones y control de acceso físico"
+        ]
+    ]}
+/>
+
+## 4. Gestión de riesgos según ISO 27400
+
+### Identificación de activos
+Una adecuada gestión de riesgos en entornos IoT comienza con la **identificación de activos**, lo cual implica mantener un **inventario actualizado de dispositivos**, realizar una **clasificación precisa de los datos que se procesan**, efectuar un **mapeo detallado de los flujos de información** y reconocer las **dependencias críticas del sistema.**
+
+### Análisis de amenazas
+Posteriormente, se procede con el **análisis de amenazas**, donde se consideran las **amenazas específicas asociadas a IoT**, los **vectores de ataque más comunes**, la **superficie de ataque expuesta**, así como la **evaluación de las capacidades potenciales de los atacantes**.
+
+### Evaluación de vulnerabilidades
+Finalmente, se debe llevar a cabo una **evaluación de vulnerabilidades**, incluyendo la detección de **debilidades en los protocolos de comunicación**, **fallas en el firmware**, **configuraciones inseguras** y **deficiencias en los controles de acceso**, todo lo cual permite priorizar acciones preventivas y de mitigación eficaces.
+
+## 5. Controles de mitigación
+Las estrategias de mitigación en entornos IoT se estructuran en torno a tres tipos de controles fundamentales.
+
+### Controles preventivos
+Los **controles preventivos** buscan anticiparse a posibles amenazas mediante la **implementación de autenticación fuerte**, el **cifrado de las comunicaciones**, la **segmentación de redes** y la **aplicación de actualizaciones automáticas de seguridad**. 
+
+### Controles detectivos
+Por su parte, los **controles detectivos** se enfocan en identificar comportamientos inusuales a través del **monitoreo de actividad anómala**, el uso de **sistemas de detección de intrusiones** y el **análisis de logs de seguridad**.
+
+### Controles correctivos
+Finalmente, los **controles correctivos** permiten reaccionar ante incidentes mediante procedimientos documentados de respuesta, capacidades de aislamiento de dispositivos comprometidos, **mecanismos eficaces de recuperación** y una **comunicación clara** con los stakeholders involucrados.
+
+## 5. Impato de ISO 27400 en la seguridad IoT
+La implementación de la norma ISO 27400 representa una mejora sustancial en la postura de seguridad de las organizaciones que adoptan IoT. Esta norma contribuye a la reducción de la superficie de ataque mediante la identificación y eliminación de vulnerabilidades, la aplicación de controles de acceso específicos y la segmentación eficaz de redes.
+
+La norma ISO 27400 aporta beneficios clave a la seguridad en IoT al mejorar la detección de amenazas mediante monitoreo continuo, análisis de comportamientos y correlación de eventos. También fortalece la respuesta a incidentes a través de protocolos claros, reducción de tiempos de reacción y una mejor coordinación operativa. Desde el ámbito normativo, facilita el cumplimiento de regulaciones como el GDPR, HIPAA y PCI-DSS, gracias a la incorporación de principios de privacidad desde el diseño, consentimiento informado y protección de derechos.
+
+Además, esta alineación normativa genera ventajas competitivas como mayor confianza del cliente, diferenciación en el mercado y reducción de costos asociados a seguros cibernéticos. En el plano técnico, impulsa arquitecturas seguras con segmentación de redes, cifrado de datos y gestión centralizada de credenciales, junto con un monitoreo robusto apoyado en SIEM, UEBA e inteligencia de amenazas. Su implementación ya es visible en sectores como smart cities, industria IoT y salud digital, donde la seguridad de los dispositivos y la protección de datos son críticas
+
+# Actividad de Práctica
+<Quiz questions={[
+	{
+		question: "Un fabricante desea lanzar al mercado miles de dispositivos IoT conectados a una misma red. ¿Qué desafío de seguridad es más probable que enfrente?",
+		options: [
+			"Escalabilidad en la gestión y actualización de dispositivos",
+			"Falta de conectividad inalámbrica",
+			"Baja velocidad de transmisión",
+			"Ausencia de sensores físicos"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Qué principio fundamental de seguridad en IoT se enfoca en proteger los datos sensibles tanto durante la transmisión como en el almacenamiento?",
+		options: [
+			"Autenticación",
+			"Integridad",
+			"Disponibilidad",
+			"Confidencialidad"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Cuál de los siguientes aspectos es uno de los objetivos principales de la norma ISO 27400?",
+		options: [
+			"Crear hardware especializado para redes 5G",
+			"Establecer arquitecturas de seguridad específicas para IoT",
+			"Estandarizar protocolos de comunicación industrial",
+			"Facilitar la gestión de firmware de dispositivos"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Qué tipo de controles propone la norma ISO 27400 como parte de las estrategias de mitigación?",
+		options: [
+			"Controles contables, financieros y legales",
+			"Controles internos, operativos y judiciales",
+			"Controles analíticos, digitales y remotos",
+			"Controles preventivos, detectivos y correctivos"
+		],
+		correctIndex: 3
+	},
+]} />

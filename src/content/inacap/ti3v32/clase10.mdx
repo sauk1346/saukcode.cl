@@ -1,0 +1,316 @@
+# Repaso NoSql
+**Material Clase:** [clase06.pdf](/inacap/ti3v32/docs/clase06.pdf)
+
+- **Estructura flexible:** el doc1 puede tener una estructura diferente del doc2 aún si pertenecen a la misma colección
+
+- desventajas
+    - datos no fiables
+    - normalización de datos
+
+## Operadores relacionales de comparación
+
+<SmartTable
+  tableLayout="fixed"
+  headers={["Operador","Descripción","Ejemplo"]}
+  rows={[
+    ["`$eq`","Igual a","`{ edad: { $eq:25 } }`"],
+    ["`$ne`","Distinto de","`{ edad: {$ne:18 } }`"],
+    ["`$gt`","Mayor que","`{ precio: {$gt:1000 } }`"],
+    ["`$gte`","Mayor o igual que","`{ edad: { $gte:18 } }`"],
+    ["`$lt`","Menor que","`{ stock: {$lt:5 } }`"],
+    ["`$lte`","Menor o igual que","`{ stock: {$lte:10 } }`"]
+  ]}
+/>
+
+**Ejemplo:** Buscar todos los productos cuyo precio es mayor o igual a 30000
+
+```js
+db.productos.find( {"precio":{ $gte: 30000 } } )
+```
+
+## Operadores lógicos
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Operador","Descripción","Ejemplo"]}
+  rows={[
+    ["`$and`","Todas la condiciones deben cumplirse","`{ $and:[ { edad:{$gt:18} },{ ciudad:\"Osorno } ] }`"],
+    ["`$or`","Al menos una condición debe cumplirse","`{ $or:[ {stock:0},{categoria:\"Obsoletos} ] }`"],
+    ["`$not`","Niega una condicion","`{ stock:{ $not:{$gt:0} } }`"],
+    ["`$nor`","Ninguna condición debe cumplirse","`{ $nor:[ {ciudad:\"Temuco\"}, {ciudad:\"Valdivia\"} ] }`"]
+  ]}
+/>
+
+**Ejemplo:** Encontrar todos los clientes que tengan una edad mayor a 18 o sean de Puerto Montt
+
+```js
+db.clientes.find({
+    $or:[
+        {edad:{$lt:18}},
+        {ciudad:"Puerto Montt"}
+    ]
+})
+```
+
+## Arrays
+
+**Ejemplo:** Sea el siguiente documento:
+
+```json
+{
+    "nombre": "Carlos",
+    "etiquetas": ["activo", "vip", "newsletter"]
+}
+```
+
+Buscar los documentos donde el array etiquetas contenga "vip"
+
+```js
+db.usuarios.find({ etiquetas:"vip" })
+```
+
+## Subdocumentos
+Es un objeto dentro de otro documento
+
+**Ejemplo:** Sea el siguiente documento:
+
+```json
+{
+    "nombre": "Sofía",
+    "direccion":{
+        "ciudad":"Osorno",
+        "region":"Los Lagos"
+    }
+}
+```
+
+Buscar a todos los usuarios cuya que sean de Osorno
+
+```js
+db.usuarios.find({"direccion.ciudad":"Osorno"})
+```
+
+## Consultas sobre Arrays
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Operador","Qué hace","Ejemplo"]}
+  rows={[
+    ["`$in`","Coincide si el campo tiene alguno de los valores","`{ categoria: {$in:[\"Electrónica\", Audio\" ] } } `"],
+    ["`$all`","Coincide si el array contiene todos los elementos","`{etiquetas: {$all: [\"nuevo\", \"oferta\"]}}`"],
+    ["`$size`","Coincide con la cantidad exacta de elementos del array","`{ etiquetas: { $size:3 } }`"],
+    ["`$elemMAtch`","Coincide con al menos un elemento que cumpla múltiples condiciones","`{compras: {$elemMatch:{producto:\"Notebook\",precio:{$lt:500000}}}}`"]
+  ]}
+/>
+
+## Manejo de fechas
+
+1. **Insertar una fecha:**
+```js
+{fechaRegistro: ISODate("2024-03-30")}
+```
+
+2. **Comparar fechas:**
+```js
+db.registros.find({ 
+    fechaRegistro: { 
+        $gte: ISODate("2024-01-01") 
+    } 
+})
+```
+
+3. **Filtrar por rango:**
+```js
+db.eventos.find({ 
+    fecha: { 
+        $gte: ISODate("2024-05-01"), 
+        $lte: ISODate("2024-05-31") 
+    } 
+})
+```
+
+## Filtro y búsquedas anidadas
+
+```js
+db.alumnos.find({ 
+    "contacto.email":{$ne:null}
+})
+```
+
+> También se puede usar condiciones combinadas en subdocumentos
+
+```js
+db.alumnos.find({
+    "direccion.region":"Los Lagos",
+    "direccion.comuna":"Puerto Montt"
+})
+```
+
+## Estructuras jerárquicas (array de subdocumentos)
+
+```json
+{
+    "nombre": "Pablo",
+    "compras": [
+        {
+            "producto": "Monitor",
+            "precio": "120000"
+        },
+        {
+            "producto": "Teclado",
+            "precio": 30000
+        }
+    ]
+}
+```
+
+Luego consulta con $elemMAtch (busca aunque tenga un solo registro)
+
+```js
+db.usuarios.find({
+    compras: {
+        $elmMatch: {
+            producto:"Teclado", 
+            precio:{$lt:40000}
+        }
+    }
+})
+```
+
+# Ejercicios
+
+## Ejercicio 01
+Mostrar todos los usuarios que tengan más de 30 años
+
+<Solution>
+```js
+db.usuarios.find({
+    edad:{$gt:30}
+})
+```
+</Solution>
+
+## Ejercicio 02
+Mostrar los usuarios cuya ciudad sea Valdivia
+
+<Solution>
+```js
+db.usuarios.find({
+    "direccion.ciudad":"Valdivia"
+})
+```
+</Solution>
+
+## Ejercicio 03
+Mostrar usuarios con la etiqueta "vip" en su campo etiquetas
+
+<Solution>
+```js
+db.usuarios.find({
+    etiquetas:"vip"
+})
+```
+</Solution>
+
+## Ejercicio 04
+Mostrar los usuarios que se registraron después del 1 de febrero del 2024
+
+<Solution>
+```js
+db.usuarios.find({
+    fechaRegistro:{
+        $gt:ISODate("2024-02-01")
+    }
+})
+```
+</Solution>
+
+## Ejercicio 05
+Mostrar usuarios con edad entre 25 y 35 años
+
+<Solution>
+```js
+db.usuarios.find({
+    edad:{
+        $gte:25,
+        $lte:35
+    }
+})
+```
+
+- opcional
+```js
+db.usuarios.find({
+    $and: [ 
+        {edad: {$gte:25}},
+        {edad: {$lte:35}}
+    ]
+})
+```
+</Solution>
+
+## Ejercicio 06
+Mostrar usuarios que no tengan compras registradas
+
+<Solution>
+```js
+db.usuarios.find({
+    "compras": {$size:0}
+})
+```
+</Solution>
+
+## Ejercicio 07
+Buscar usuarios que hayan comprado un producto llamado "Notebook"
+
+<Solution>
+```js
+db.usuarios.find({
+    compras:{
+        $elemMatch:{
+            producto:"Notebook"
+        }
+    }
+})
+```
+</Solution>
+
+## Ejercicio 08
+Mostrar los ususarios que viven en la región "Los Lagos" y tienen etiqueta "newsletter"
+
+<Solution>
+```js
+db.usuarios.find({
+    "direccion.region":"Los Lagos", 
+    etiqueta: "newsletter"
+})
+```
+</Solution>
+
+## Ejercicio 09
+Mostrar los usuario ue tienen más de una etiqueda
+
+<Solution>
+```js
+db.usuarios.find({
+    etiquetas: {$exists: true},
+    $expr: {$gt: [ { $size: "$etiquetas"}, 1 ]}
+})
+```
+</Solution>
+
+## Ejercicio 10
+Mostrar usuarios que hayan comprado algún producto con precio mayor a 100000
+
+<Solution>
+```js
+db.usuarios.find({
+    compras:{
+        $elemMatch:{
+            precio:{$gt:10000}
+        }
+    }
+})
+```
+</Solution>
+

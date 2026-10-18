@@ -1,0 +1,7 @@
+---
+// Wrapper Astro: permite hidratar SmartFigure (lightbox) cuando llega por el
+// mapping de <Content components={...}>, donde no se pueden usar directivas client:.
+import SmartFigure from './SmartFigure.jsx';
+const props = Astro.props;
+---
+<SmartFigure client:visible {...props} />

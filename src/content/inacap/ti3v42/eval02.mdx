@@ -1,0 +1,29 @@
+# Evaluación 02
+
+La empresa de respuestos "Sito Man Boy" necesita una aplicación móvil que permita ingresar un repuesto y ver los stocks disponibles en las distintas sucursales que los tenga, al inicio de la app debemos tener botones con las siguientes opciones:
+
+- Crear repuesto
+- Crear sucursal
+- Ingresar producto a sucursal
+- Buscar stock de repuestos
+
+**Clases**
+- Repuesto \{id, serie, descripción, stock\}
+- Sucursal \{codigo, nombre, direccion\}
+
+**Importante:** La clase Sucursal debe tener una lista de objetos(Repuesto), con esto logramos determinar el stock de repuestos que tiene cada sucursal (cardinalidad 0..\*), utilice encapsulamiento para implementar métodos que agreguen, eliminen o retornen elementos de la lista(privada).
+
+## Requerimientos
+
+1. La opción **Crear repuesto** nos llevará a una pantalla para ingresar los datos de un repuestos y al aceptar lo grabaremos en una lista de objetos (Repuesto)
+2. La opción **Crear sucursal** nos enviará a una actividad con los datos necesarios para agregar una sucursal, al aceptar la guardaremos en una lista de objetos(Sucursal)
+3. La opción **Ingresar productos a sucursal** permite ingresar, modificar el stock o eliminar un producto de una sucursal
+4. La opción **Buscar** nos permite ingresar la serie o nombre del repuestos y nos mostrará el stock en cada sucursal, puede utilizar Text() para mostrar la información
+
+## Requerimientos obligatorios
+
+1. Trabajar con viewmodel
+2. Crear clase Sucursal y Respuesto
+3. Enviar objetos complejos mediante Intent a otras actividades(pantalla)
+4. La aplicación debe tener al menos 2 idiomas
+

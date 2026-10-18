@@ -1,0 +1,92 @@
+# ARPA 03: Eliminación de fármacos
+
+## Material
+
+- [ARPA3.pdf](/inacap/mvfm01/docs/ARPA13.pdf)
+- [ARPA3_Extension.pdf](/inacap/mvfm01/docs/ARPA13_Extension.pdf)
+
+## Ejercicio 01
+La dosis recomendada de analgésicos es una pastilla de 1000 mg al día. Se sabe que la eliminación de este medicamento en el organismo es de 10% cada hora respecto de la cantidad , en miligramos, que queda en el cuerpo en la hora anterior. **¿Aproximadamente en qué tiempo la dosis inicial se reduce a la mitad?**
+
+<Solution>
+- Como cada hora se elimina un 10%, es equivalente a decir que cada hora queda un 90% del medicamento
+- Se resume los siguientes datos:
+- El modelo a utilizar es una función exponencial.
+
+$$
+\begin{aligned}
+    f(t) = f_0 \cdot k^{-t}
+\end{aligned}
+$$
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Variables","Descripción"]}
+  rows={[
+    ["$t$","tiempo (horas)"],
+    ["$f_0$","dosis (mg) analgésico inicial"],
+    ["$k$","constante de decaimiento"],
+    ["$f(x)$","dosis (mg) analgésico restante"]
+  ]}
+/>
+
+El modelo a utilizar es el siguiente:
+
+$$
+\begin{aligned}
+    f(t) = 1000 \cdot 0,9^t
+\end{aligned}
+$$
+
+Donde:
+
+- $t$: tiempo transcurrido (hrs).
+- $f(x)$: cantidad de analgésico en el organismo (mg).
+
+Se desea encontrar el tiempo donde la dosis inicial se reduce a la mitad
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig32.png"
+	alt="tiempo donde la dosis baja a la mitad"
+	caption="tiempo donde la dosis baja a la mitad"
+	size="large"
+/>
+
+Sea $t = t_h:t:m:t_s = 6,58$
+
+- $t_h$: horas
+$$
+\begin{aligned}
+    t_h = 6
+\end{aligned}
+$$
+
+- $t_m$: minutos
+$$
+\begin{aligned}
+    t_m &= 0,58 \cdot 60\\[5pt]
+    t_m &= 34,8\\[5pt]
+    t_m &= 34
+\end{aligned}
+$$
+
+- $t_s$: segundos
+
+$$
+\begin{aligned}
+    t_s &= 0,8 \cdot 60\\[5pt]
+    t_s &= 48
+\end{aligned}
+$$
+
+Finalmente, la dosis inicial se reduce a la mitad transcurrido un tiempo $t = 06:34:48$ (6 hrs, 34min, 48 seg).
+</Solution>
+
+## Ejercicio 02
+
+**¿Cuál es la razón de cambio en la situación propuesta?**
+
+<Solution>
+- La razón de cambio (o factor de decaimiento) es el factor por el cual se multiplica la cantidad actual en cada intervalo de tiempo.
+- El factor de cambio en la situación propuesta es `0.9`. Esto es, por cada unidad de tiempo $t$ la cantidad $f(t)$ se reduce al 90% de su valor anterior.
+</Solution>

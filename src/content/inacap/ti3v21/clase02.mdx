@@ -1,0 +1,118 @@
+# Ejercicios Python (2)
+
+## Ejercicio 01
+Realice un programa para saber si un número es primo. Utilizar bucle "while"
+
+- **Número Primo:** Un número es primo si solo se divide por 1 y por él mismo (solo tiene 2 divisores)
+- Ejemplo: 2 es primo, solo se divide por 1 y por 2
+
+<Solution>
+```python
+num = 0
+contDiv = 0
+
+num = int(input("Ingrese número: "))
+
+x = 1
+while x <= num:
+    if num % x == 0:
+	    contDiv = contDiv + 1
+    x = x + 1
+
+if contDiv == 2:
+    print("Es primo")
+else:
+    print("No es primo")
+```
+</Solution>
+
+## Ejercicio 02
+Calcular si un número es perfecto. Utilizar bucle "for"
+
+- **Número perfecto:** Un número es perfecto si la suma de sus divisores da el mismo número
+- Ejemplo: 6 es un número perfecto, sus divisores son 1, 2 y 3. La suma de sus divisores da 6
+
+<Solution>
+```python
+num = 0
+sumaDiv = 0
+
+num = int(input("Ingrese Número: "))
+
+for i in range(1,num):
+	if num % i == 0:
+		sumaDiv = sumaDiv + i
+
+if sumaDiv == num:
+	print("Es perfecto")
+else:
+	print("No es perfecto")
+```
+</Solution>
+
+## Ejercicio 03
+Modificar el Ejercicio 02:
+
+- Debe ser una función llamada `es_perfecto()`
+- Debe retornar un valor booleano
+
+<Solution>
+```python
+def es_perfecto(numero):
+	sumaDiv = 0
+	for i in range(1, numero):
+		if numero % i == 0:
+			sumaDiv = sumaDiv + i
+	
+	return sumaDiv == numero
+```
+</Solution>
+
+## Ejercicio 04
+Utilice la función `es_perfecto()` del Ejercicio 03 para encontrar números perfectos desde el 1 al 10000
+
+<Solution>
+```python
+def es_perfecto(numero):
+	sumaDiv = 0
+	for i in range(1, numero):
+		if numero % i == 0:
+			sumaDiv = sumaDiv + i
+	
+	return sumaDiv == numero
+
+for i in range(1, 10000+1):
+	if(es_perfecto(i)):
+		print(i)
+```
+<TerminalOutput withBg>
+{`6
+28
+496
+8128`}
+</TerminalOutput>
+</Solution>
+
+## Ejercicio 05
+Desarrolle una función que:
+
+- Retorne un valor booleano
+- Reciba un parámetro numérico, si es primo retorne verdadero, sino retorne falso
+- La función se debe llamar `es_primo()`
+
+<Solution>
+```python
+def es_primo(num):
+	contDiv = 0
+	for i in range(1, num+1):
+		if num % i == 0:
+			contDiv = contDiv + 1
+	return contDiv == 2
+
+#prueba
+print(es_primo(11))
+```
+<TerminalOutput withBg>
+{`True`}
+</TerminalOutput>
+</Solution>

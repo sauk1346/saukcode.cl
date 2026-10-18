@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import CourseDetails from '../../../components/features/inacap/CourseDetails.jsx';
+import { getCourseData, getAllCourseIds } from '../../../utils/courseUtils.js';
+import { getTopicsByCourseId } from '../../../lib/flashcards.js';
+
+export function getStaticPaths() {
+  // ti3v12 tiene página custom (ti3v12.astro), igual que en Next
+  return getAllCourseIds()
+    .filter((courseId) => courseId !== 'ti3v12')
+    .map((courseId) => ({ params: { courseId } }));
+}
+
+const { courseId } = Astro.params;
+const courseData = getCourseData(courseId);
+const flashcardTopics = getTopicsByCourseId(courseId);
+---
+
+<BaseLayout
+  title={`${courseData.courseCode} | INACAP`}
+  description={courseData.courseDescription}
+>
+  <CourseDetails client:load {...courseData} flashcardTopics={flashcardTopics} courseId={courseId} />
+</BaseLayout>

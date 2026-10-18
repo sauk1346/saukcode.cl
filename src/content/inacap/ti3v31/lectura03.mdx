@@ -1,0 +1,70 @@
+# Tutorial interactivo de HTML
+**Identificación de elementos a través de un template**
+
+## HTML
+*HyperText Markup Language*. Es el lenguaje esencial y estándar que se utiliza para crear y estructurar contenido en la web.
+
+- Utiliza una serie de elementos y etiquetas que actúan como bloques de contrucción, definiendo diferentes partes de la página y su función dentro del documento.
+
+```html
+<h1>Título</h1>
+<p>hola, este es una frase de contenido</p>
+```
+
+### Etiquetas comúnes
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Etiquetas","Sintáxis","Descripción"]}
+  rows={[
+    ["**Encabezado**","`<h1>` , `<h2>` , `<h3>` , `<h4>` , `<h5>` , `<h6>`","Se utilizan para definir títulos y subtítulos"],
+    ["**Párrafos**","`<p>`","Para definir párrafos"],
+    ["**Enlaces**","`<a href=\"sitioWeb\">`","Permite agregar URLs mediante el atributo `href`"],
+    ["**Imágenes**","`<img src=\"rutaImagen\">`","Permite insertar imágenes con los atributos `src` y `alt` para texto alternativo"],
+    ["**Listas**","`<ol>` , `<ul>`","Para listas ordenadas y no-ordenadas respectivamente"],
+    ["**Tablas**","`<table>`, `<tr>` , `<th>`","tabla, fila de la tabla, encabezado de la tabla, respectivamente"],
+    ["**Formularios**","`<form>` , `<input>` , `<textarea>` , `<button>`","Distintas etiquetas para ingresar datos"],
+    ["**Divisiones y spans**","`<div>` , `<span>`","Se utilizan para agrupar elementos y aplicar estilos o scripts"]
+  ]}
+/>
+
+### Ejemplo de web simple
+
+```html
+<!DOCTYPE html>
+<html>
+<!--cabecera de la página -->
+<head>
+    <title>Página Simple</title>
+</head>
+<!--cuerpo de la página -->
+<body>
+    <h1>Bienvenido a mi Página</h1>
+    <p>Esta es una página web simple con varios elementos HTML</p>
+    <a href="https://www.example.com">Visita Example</a>
+    <img src="imagen.jpg" alt="Descripción de la imágen" />
+    <!--lista no-ordenada-->
+    <ul>
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+    </ul>
+    <!--tabla de 2 filas y 2 columnas-->
+    <table>
+        <tr>
+            <th>Encabezado 1</th>
+            <th>Encabezado 2</th>
+        </tr>
+        <tr>
+            <td>Celda 1</td>
+            <td>Celda 2</td>
+        </tr>
+    </table>
+    <!--formulario-->
+    <form action="/submit" method="post">
+        <label for="nombre">Nombre: </label>
+        <input type="text" id="nombre" name="nombre">
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
+```

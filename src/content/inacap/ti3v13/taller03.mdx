@@ -1,0 +1,77 @@
+# Armado de Red  Inalámbrica
+
+## Cisco Packet Tracer
+Es una herramienta de simulación de redes. Permite crear, configurar y simular redes informáticas de manera virtual, sin la necesidad de hardware físico real.
+
+## Conexión inalámbrica
+
+1. Agregar 3 laptops 
+    <TerminalOutput>
+        {`[End devices] > Laptop-PT`}
+    </TerminalOutput>
+
+2. Agregar 1 router
+    <TerminalOutput>
+        {`[Network devices] > [Wireless devices] > HomeRouter-PT-AC`}
+    </TerminalOutput>
+
+3. Establecer conexión entre dispositivos
+    <TerminalOutput>
+        {`[Connections] > Automatically Choose Connection Type`}
+    </TerminalOutput>
+
+<SmartFigure
+	id="conexion-dispositivos"
+	src="/inacap/ti3v13/images/fig08.png"
+	alt="Conexión Dispositivos"
+	caption="Conexión Dispositivos"
+	size="medium"
+/>
+<br/>
+
+4. Cambiar tarjeta ethernet por tarjeta wireless en los 3 laptops.
+
+<SmartFigure
+	id="tarjeta-wireless"
+	src="/inacap/ti3v13/images/fig09.png"
+	alt="Tarjeta Wireless"
+	caption="Tarjeta Wireless"
+	size="auto"
+/>
+<br/>
+
+5. Configurar router
+
+    <TerminalOutput>
+        {`router > GUI > Setup`}
+    </TerminalOutput>
+    1. IP address
+    2. Start IP address
+    3. Maximun number of users
+
+<SmartFigure
+	id="configurar-router"
+	src="/inacap/ti3v13/images/fig10.png"
+	alt="Configuración Router"
+	caption="Configuración Router"
+	size="auto"
+/>
+<br/>
+
+6. Verificar conexión entre dispositivos mediante instrucción `ping`
+
+    <TerminalOutput>
+        {`laptop > desktop > Command Prompt`}
+    </TerminalOutput>
+    
+```sh
+ping <device_ip_address>
+```
+
+<SmartFigure
+	id="verificar-conexion"
+	src="/inacap/ti3v13/images/fig11.png"
+	alt="Verificar Conexión"
+	caption="Verificar Conexión"
+	size="auto"
+/>

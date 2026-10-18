@@ -1,0 +1,123 @@
+# Relaciones entre Clases
+
+## Diagrama de Clases
+
+- Describe el modelo estático del sistema de entidades
+- La clase es su entidad fundamental
+
+## Herencia de Clases
+
+<SmartFigure
+	id="herencia-clases-uml"
+	src="/inacap/ti3v21/images/fig19.png"
+	alt="Herencia de Clases en Diagrama UML"
+	caption="Herencia de Clases en Diagrama UML"
+	size="medium"
+/>
+
+- **Superclase:** es la clase base, de la cual las otras clases heredan
+- **Subclase:** hereda de la superclase. Puede tener sus propios atributos y métodos
+- **Relación:** flecha sólida que apunta desde la subclase hacia la superclase
+
+## Asociaciones entre Clases
+
+<SmartFigure
+	id="asociacion-clases-uml"
+	src="/inacap/ti3v21/images/fig20.png"
+	alt="Asociación de Clases en Diagrama UML"
+	caption="Asociación de Clases en Diagrama UML"
+	size="large"
+/>
+
+## Agregación y Composición
+
+### Agregación
+- *objeto1* contiene o agrupa con *objeto2*, pero ambos pueden existir de forma independiente.
+- Si *objeto1* se destruye, *objeto2* puede seguir existiendo.
+- **Ejemplo:** El contenido se puede impartir en una asignatura. Si la asignatura deja de existir, el contenido aún existe (reutilizable).
+
+<SmartFigure
+	id="agregacion-clases-uml"
+	src="/inacap/ti3v21/images/fig21.png"
+	alt="Agregación de Clases en Diagrama UML"
+	caption="Agregación de Clases en Diagrama UML"
+	size="large"
+/>
+
+### Composición
+- *objeto1* depende de *objeto2* de forma inseparable
+- Si *objeto1* se destruye, *objeto2* también
+- **Ejemplo:** La sección permite organizar la asignatura. Si la asignatura deja de existir, también lo hace la sección (no tienen propósito fuera de ella).
+
+<SmartFigure
+	id="composicion-clases-uml"
+	src="/inacap/ti3v21/images/fig22.png"
+	alt="Composición de Clases en Diagrama UML"
+	caption="Composición de Clases en Diagrama UML"
+	size="large"
+/>
+
+## Dependencia
+
+<SmartFigure
+	id="dependencia-clases-uml"
+	src="/inacap/ti3v21/images/fig23.png"
+	alt="Dependencia de Clases en Diagrama UML"
+	caption="Dependencia de Clases en Diagrama UML"
+	size="large"
+/>
+
+# Actividad de Práctica 03
+
+<Quiz questions={[
+  {
+    question: "¿Qué tipo de relación entre clases es más probable encontrar al analizar un problema de suministro y demanda en un mercado?",
+    options: [
+      "Relación de herencia",
+      "Relación de agregación",
+      "Relación de composición",
+      "Relación de asociación"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál es el símbolo que indica una asociación entre dos clases en un diagrama de clases UML?",
+    options: [
+      "Línea punteada",
+      "Flecha hacia adelante",
+      "Línea sólida",
+      "Flecha doble"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué símbolo se utiliza para indicar la herencia entre dos clases en un diagrama de clases UML?",
+    options: [
+      "Línea punteada",
+      "Triángulo vacío",
+      "Flecha doble",
+      "Línea sólida con una flecha"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué símbolo se emplea para mostrar una relación de composición entre dos clases en un diagrama de clases UML?",
+    options: [
+      "Flecha doble",
+      "Línea sólida con un diamante pintado de negro",
+      "Línea punteada",
+      "Rombo lleno"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué símbolo se emplea para mostrar una relación de agregación entre dos clases en un diagrama de clases UML?",
+    options: [
+      "Línea punteada con flecha",
+      "Rombo lleno",
+      "Línea sólida con un diamante pintado de blanco",
+      "Flecha doble"
+    ],
+    correctIndex: 2
+  }
+]} />

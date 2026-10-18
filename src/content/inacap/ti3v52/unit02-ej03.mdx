@@ -1,0 +1,182 @@
+# Ejercicio 03: VLSM
+
+<SmartFigure
+	id="fig93"
+	src="/inacap/ti3v52/images/fig93.png"
+	alt="Topología de red"
+	caption="Topología de red"
+    lightbox={true}
+	size="large"
+/>
+
+1. Utilice Plantilla VLSM para determinal las IPs de la Red
+2. Configure las rutas estáticas por IP del próximo salto (*next-hop*)
+
+<Solution title="Solución Ejercicio 03">
+
+<P indent={2}>
+**Paso 01: Cálculo de direcciones IPs para redes**
+
+- De la figura 1, se identifican 5 redes, nombrándolas de la siguiente manera:
+    - **red LAN 1:** contiene al host PC0 y PC1
+    - **red LAN 2:** contiene al hosta PC2 y PC3
+    - **red LAN 3:** contiene al host PC4 y PC5
+    - **red LAN 4:** contiene al host PC6 y PC7
+    - **red WAN 1:** establece comunicación entre los routers ENTEL y VTR
+- Se utiliza la Plantilla VLSM vista en clases, de donde se obtienen los siguientes rangos de IP:
+</P>
+
+<SmartFigure
+	id="fig94"
+	src="/inacap/ti3v52/images/fig94.png"
+	alt="Rango IPs para red LAN 1 (binario y decimal)"
+	caption="Rango IPs para red LAN 1 (binario y decimal)"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig95"
+	src="/inacap/ti3v52/images/fig95.png"
+	alt="Rango IPs para red LAN 2 (binario y decimal)"
+	caption="Rango IPs para red LAN 2 (binario y decimal)"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig96"
+	src="/inacap/ti3v52/images/fig96.png"
+	alt="Rango IPs para red LAN 3 (binario y decimal)"
+	caption="Rango IPs para red LAN 3 (binario y decimal)"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig97"
+	src="/inacap/ti3v52/images/fig97.png"
+	alt="Rango IPs para red LAN 4 (binario y decimal)"
+	caption="Rango IPs para red LAN 4 (binario y decimal)"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig98"
+	src="/inacap/ti3v52/images/fig98.png"
+	alt="Rango IPs para red WAN 1 (binario y decimal)"
+	caption="Rango IPs para red WAN 1 (binario y decimal)"
+	size="large"
+/>
+
+---
+
+<P indent={2}>
+**Paso 02: Configuración interfaces routers ENTEL y VTR**
+
+Por convención, cada interfaz tiene la 1ra IP de la red anexa. Entonces:
+- **Interfaz g0/0 (ENTEL):** 1ra IP de red LAN 1
+- **Interfaz g0/1 (ENTEL):** 1ra IP de red LAN 2
+- **Interfaz s0/0/0 (ENTEL):** 1ra IP de red WAN 1
+- **Interfaz g0/0 (VTR):** 1ra IP de red LAN 3
+- **Interfaz g0/1 (VTR):** 1ra IP de red LAN 4
+- **Interfaz s0/0/1 (VTR):** 2da IP de red WAN 1
+</P>
+
+<SmartFigure
+	id="fig99"
+	src="/inacap/ti3v52/images/fig99.png"
+	alt="Resumen de cálculos realizados (interfaces routers)"
+	caption="Resumen de cálculos realizados (interfaces routers)"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig100"
+	src="/inacap/ti3v52/images/fig100.png"
+	alt="Configuración router ENTEL"
+	caption="Configuración router ENTEL"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig101"
+	src="/inacap/ti3v52/images/fig101.png"
+	alt="Configuración router VTR"
+	caption="Configuración router VTR"
+	size="large"
+/>
+
+---
+
+<P indent={2}>
+**Paso 03: Configuración Hosts**
+- Se configura cada host con la IP específica solicitada
+- El parámetro *Default Gateway* corresponde a la interfaz de salida del router correspondiente
+- Dado a que la topología de red no tiene servidor, el parametro *DNS Server* se deja en default
+</P>
+
+<SmartFigure
+	id="fig102"
+	src="/inacap/ti3v52/images/fig102.png"
+	alt="Resumen de cálculos realizados (hosts)"
+	caption="Resumen de cálculos realizados (hosts)"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig103"
+	src="/inacap/ti3v52/images/fig103.png"
+	alt="Configuración PC0, PC1, PC2, PC3"
+	caption="Configuración PC0, PC1, PC2, PC3, PC4, PC5, PC6, PC7"
+    lightbox={true}
+	size="large"
+/>
+
+---
+<P indent={2}>
+**Paso 04: Rutas estáticas**
+
+- Se crean tablas de rutas estáticas, para que los routers puedan *ver* las redes más lejanas
+- Router ENTEL solo ve LAN 1 y LAN 2. Con ruta estática podrá ver las redes LAN 3 y LAN 4
+- Router VTR solo ve LAN 3 y LAN 4. Con ruta estática podrá ver las redes LAN 1 y LAN 2
+</P>
+
+<SmartFigure
+	id="fig104"
+	src="/inacap/ti3v52/images/fig104.png"
+	alt="Resumen de cálculos realizados (rutas estáticas)"
+	caption="Resumen de cálculos realizados (rutas estáticas)"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig105"
+	src="/inacap/ti3v52/images/fig105.png"
+	alt="Ruta estática para router ENTEL"
+	caption="Ruta estática para router ENTEL"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig106"
+	src="/inacap/ti3v52/images/fig106.png"
+	alt="Ruta estática para router VTR"
+	caption="Ruta estática para router VTR"
+	size="large"
+/>
+
+---
+
+<P indente={2}>
+**Paso 5: Comunicación entre hosts**
+
+- Se verifica la comunicación mediante *Simple PDU*
+</P>
+
+<SmartFigure
+	id="fig107"
+	src="/inacap/ti3v52/images/fig107.png"
+	alt="Comunicación entre hosts mediante PDU"
+	caption="Comunicación entre hosts mediante PDU"
+	size="large"
+/>
+
+</Solution>

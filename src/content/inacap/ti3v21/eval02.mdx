@@ -1,0 +1,269 @@
+# Evaluación 02
+
+- **Instrucciones:** [prueba02.pdf](/inacap/ti3v21/docs/prueba02.pdf)
+
+## Enunciado
+Se desea crear una empresa cuyo servicio es gestión de estacionamientos, para ello se ha modelado el siguiente diagrama de clases:
+
+<SmartFigure
+	id="diagrama-clases"
+	src="/inacap/ti3v21/images/fig02.png"
+	alt="Diagrama de Clases"
+	caption="Diagrama de Clases"
+	size="large"
+/>
+
+## Requerimientos
+
+1. El tipo de vehículo y valor por minutos dependerá de la cantidad de ruedas en la clase `Tipo`
+	1. 2 ruedas = Motocicles (\$300 x min)
+	2. 3 ruedas = Trimoto (\$600 x min)
+	3. 4 ruedas = Automóvil (\$900 x min)
+	4. +4 ruedas = Camión (\$1500 x min)
+2. El método `entradaVehiculo()` de la clase `Estacionamiento` no puede dejar ingresar un vehículo con la misma patente, tampoco puede entrar si está al máximo de capacidad.
+3. El método `salidaVehiculo()` recibe la patente y los minutos que ha estado estacionado el vehículo para que la clase `Estacionamiento` elimine el vehículo de la Lista y retorna la cantidad que debe pagar según el método `totalPagar()` del objeto `Vehiculo`.
+4. Método `obtenerPorTipo()` retorna una lista de Vehículos de un tipo específico.
+5. Métodos `disponibles()` y `ocupados()` retorna la cantidad de aparcamientos disponibles y ocupados en el estacionamiento.
+
+## Solución
+
+<Solution title='Código'>
+```python
+class Tipo:
+    def __init__(self, ruedas):
+        
+        if ruedas == 2:
+            self.__ruedas = ruedas
+            self.__tipoVehiculo = "Motocicleta"
+            self.__valorMinuto = 300
+        elif ruedas == 3:
+            self.__ruedas = ruedas
+            self.__tipoVehiculo = "Trimoto"
+            self.__valorMinuto = 600
+        elif ruedas == 4:
+            self.__ruedas = ruedas
+            self.__tipoVehiculo = "Automovil"
+            self.__valorMinuto = 900
+        elif ruedas > 4:
+            self.__ruedas = ruedas
+            self.__tipoVehiculo = "Camion"
+            self.__valorMinuto = 1500
+        else:
+            raise ValueError("Error. Cantidad de ruedas no válido")
+
+    @property
+    def ruedas(self):
+        return self.__ruedas
+    
+    @ruedas.setter
+    def ruedas(self, ruedas):
+        self.__ruedas = ruedas
+    
+    @property
+    def tipoVehiculo(self):
+        return self.__tipoVehiculo
+    
+    @property
+    def valorMinuto(self):
+        return self.__valorMinuto
+    
+class Vehiculo:
+    def __init__(self, patente, ruedas):
+        self.__patente = patente
+        self.__tipoVehiculo = Tipo(ruedas)
+        self.__minutosEstacionado = 0
+    
+    @property
+    def patente(self):
+        return self.__patente
+    
+    @property
+    def minutosEstacionado(self):
+        return self.__minutosEstacionado
+    
+    @minutosEstacionado.setter
+    def minutosEstacionado(self, minutos):
+        self.__minutosEstacionado = minutos
+    
+    def totalPagar(self):
+        return self.__tipoVehiculo.valorMinuto * self.minutosEstacionado
+        # atributo "valorMinuto" del objeto "tipoVehiculo"
+    
+    def tipoVehiculo(self):
+        return self.__tipoVehiculo.tipoVehiculo
+        # atributo "tipoVehiculo" del objeto "tipoVehiculo"
+
+class Estacionamiento:
+    def __init__(self, codigo, capacidad):
+        self.__codigo = codigo
+        self.__direccion = None
+        self.__capacidad = capacidad
+        self.__vehiculos = [] # atributo implicito por asociación
+    
+    @property
+    def codigo(self):
+        return self.__codigo
+    
+    @property
+    def direccion(self):
+        return self.__direccion
+    
+    @direccion.setter
+    def direccion(self, nueva_direccion):
+        self.__direccion = nueva_direccion
+    
+    @property
+    def capacidad(self):
+        return self.__capacidad
+    
+    @capacidad.setter
+    def capacidad(self, nueva_capacidad):
+        self.__capacidad = nueva_capacidad
+    
+    def entradaVehiculo(self, patente, ruedas):
+        if len(self.__vehiculos) >= self.__capacidad: # si el estacionamiento está a capacidad máxima
+            return False
+        else:
+            for vehiculo in self.__vehiculos:
+                if vehiculo.patente == patente: # si ya existe un vehiculo con la misma patente
+                    return False
+            nuevo_vehiculo = Vehiculo(patente, ruedas)
+            self.__vehiculos.append(nuevo_vehiculo)
+            return True
+    
+    def salidaVehiculo(self, patente, minutos):
+        vehiculo_a_salir = None
+        indice = 0
+        for vehiculo in self.__vehiculos:
+            if vehiculo.patente == patente:
+                vehiculo_a_salir = vehiculo
+                break
+            indice += 1
+    
+        if vehiculo_a_salir is None:
+            return 0 # no cobro a un auto que no existe
+    
+        vehiculo_a_salir.minutosEstacionado = minutos
+        total = vehiculo_a_salir.totalPagar()
+        del self.__vehiculos[indice]
+        print(f"Vehiculo patente {patente} ha salido. Total a pagar: {total} pesos.")
+        return total
+    
+    def obtenerPorTipo(self, tipo):
+        lista_tipo = []
+        for vehiculo in self.__vehiculos:
+            if vehiculo.tipoVehiculo() == tipo:
+                lista_tipo.append(vehiculo)
+        return lista_tipo
+    
+    def disponibles(self):
+        return self.capacidad - len(self.__vehiculos)
+    
+    def ocupados(self):
+        return len(self.__vehiculos)
+```
+</Solution>
+
+<Solution title='Pruebas'>
+```python
+# 1. Crear un estacionamiento con capacidad para 3 vehículos
+estacionamiento = Estacionamiento("Central", 3)
+print(f"Codigo: {estacionamiento.codigo}")
+print(f"Direccion: {estacionamiento.direccion}")
+print(f"Capacidad: {estacionamiento.capacidad}")
+```
+<TerminalOutput withBg>
+{`Codigo: Central
+Direccion: None
+Capacidad: 3`}
+</TerminalOutput>
+
+```python
+# 2. agregar dirección con setter
+estacionamiento.direccion = "A4"
+print(f"Direccion: {estacionamiento.direccion}")
+```
+<TerminalOutput withBg>
+{`Direccion: A4`}
+</TerminalOutput>
+
+```python
+# 3. Ingreso de vehículos
+estacionamiento.entradaVehiculo("JKL123", 4) # Automóvil
+estacionamiento.entradaVehiculo("MNO456", 2) # Motocicleta
+estacionamiento.entradaVehiculo("PQR789", 3) # Trimoto
+```
+
+```python
+# 4. Intentar ingresar un vehículo cuando el estacionamiento está lleno
+if not estacionamiento.entradaVehiculo("STU000", 4):
+    print("\nError, máxima capacidad.")
+```
+<TerminalOutput withBg>
+{`Error, máxima capacidad.`}
+</TerminalOutput>
+
+```python
+# 5. Ver el estado actual del estacionamiento
+print(f"\nEstacionamiento: {estacionamiento.codigo}")
+print(f"Capacidad total: {estacionamiento.capacidad}")
+print(f"Ocupados: {estacionamiento.ocupados()}")
+print(f"Disponibles: {estacionamiento.disponibles()}")
+```
+<TerminalOutput withBg>
+{`Estacionamiento: Central
+Capacidad total: 3
+Ocupados: 3
+Disponibles: 0`}
+</TerminalOutput>
+
+```python
+# 6. Intentar ingresar un vehículo con patente duplicada
+if not estacionamiento.entradaVehiculo("MNO456", 2):
+    print("\nError, patente duplicada.")
+```
+<TerminalOutput withBg>
+{`Error, patente duplicada.`}
+</TerminalOutput>
+
+```python
+# 7. Salida de un vehículo con cálculo de total a pagar
+total_pago = estacionamiento.salidaVehiculo("MNO456", 90)
+print(f"\nTotal pagado por MNO456: {total_pago} pesos.")
+```
+<TerminalOutput withBg>
+{`Vehiculo patente MNO456 ha salido. Total a pagar: 27000 pesos.
+
+Total pagado por MNO456: 27000 pesos.`}
+</TerminalOutput>
+
+```python
+# 8. Intentar sacar un vehículo que no está en el estacionamiento
+if estacionamiento.salidaVehiculo("XYZ999", 60) == 0:
+    print("\nError, el vehículo no se encuentra en el estacionamiento.")
+```
+<TerminalOutput withBg>
+{`Error, el vehículo no se encuentra en el estacionamiento.`}
+</TerminalOutput>
+
+```python
+# 9. Ingresar un nuevo vehículo ahora que hay espacio
+if estacionamiento.entradaVehiculo("VWX888", 6):
+    print("\nVehiculo ingresado exitosamente.")
+```
+<TerminalOutput withBg>
+{`Vehiculo ingresado exitosamente.`}
+</TerminalOutput>
+
+```python
+# 10. Ver vehículos de un tipo específico (Automóviles)
+autos = estacionamiento.obtenerPorTipo("Automovil")
+print("\nAutomóviles en el estacionamiento:")
+for auto in autos:
+    print(f"Patente: {auto.patente}, Tipo: {auto.tipoVehiculo()}")
+```
+<TerminalOutput withBg>
+{`Automóviles en el estacionamiento:
+Patente: JKL123, Tipo: Automovil`}
+</TerminalOutput>
+</Solution>

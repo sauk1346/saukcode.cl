@@ -1,0 +1,73 @@
+# Configuración y verificación de enrutamiento estático redes de datos
+
+## 1. El rol del router y conectividad
+
+La capacidad de comunicar dispositivos que pertenecen a redes distintias
+
+- Separa dominios de broadcast (evita que el tráfico inunde toda la red)
+- Actúa como punto de control para seguridad y políticas de tráfico
+- Realiza la interconexión de subredes dispares
+
+## 2. La tabla de enrutamiento
+El router no "adivina". Consulta una base de datos precisa (la tabla de enrutamiento) para decidir el siguiente salto o la interfaz de salida.
+
+<SmartTable
+    id="tabla01"
+    caption="Siglas"
+    tableLayout="auto"
+    headers={["Término", "Sigla", "Descripción"]}
+    rows={[
+        [
+            "**Rutas conectadas**",
+            "**C**",
+            "Aparecen automáticamente cuando una interfaz está activa y configurada con una IP. Son la base operativa"
+        ],
+        [
+            "**Rutas estáticas**",
+            "**S**",
+            "Configuradas manualmente por el administrador. Ofrecen control estricto"
+        ],
+        [
+            "**Protocolos Dinámicos**",
+            "**O, D, R**",
+            "Rutas aprendidas automáticamente (OSPF, EIGRP, RIP)"
+        ],
+    ]}
+/>
+
+<Callout type="info" title="Lógica de reenvío">
+El router selecciona el camino basándose en la "coincidencia de prefijo más largo" (*Longest Prefix Match*)
+</Callout>
+## 3. Precisión Manual: ¿por qué elegir rutas estáticas?
+
+Una ruta estática es un camino configurado manualmente hacia una red remota. No se ajusta automáticamente ante fallas, pero ofrece un control total.
+
+- **Estabilidad de Topología:** Ideal cuando la red cambia poco
+- **Simplicidad Operacional:** Para redes pequeñas (*stub networks*), donde un protocolo dinámico sería excesivo
+- **Control del flujo:** Cuando el ingeniero necesita forzar el tráfico por un camino específico, por seguridad o ancho de banda
+
+<Callout type="warning" title="Desventaja crítica">
+Mantenimiento administrativo alto. Si un enlace falla, la ruta estática permanece en la tabla hasta ser removida manualmente.
+</Callout>
+
+## 4. El principio de reciprocidad: La ruta de retorno
+
+El error más común en enrutamiento estático es configurar la ida y olvidad la vuelta. El router remoto debe saber cómo responder
+
+<SmartFigure
+	id="fig154"
+	src="/inacap/ti3v52/images/fig154.png"
+	alt="Principio de reciprocidad"
+	caption="Principio de reciprocidad"
+	size="large"
+/>
+
+## 5. Auditoría de lógica: interpretando show ip route
+
+<SmartFigure
+	id="fig155"
+	src="/inacap/ti3v52/images/fig155.png"
+	alt="Comando show ip route"
+	caption="Comando show ip route"
+	size="large"
+/>

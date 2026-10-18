@@ -1,0 +1,256 @@
+# Ejercicio 03
+
+Armar la siguiente red en Cisco Packet Tracer:
+
+<SmartFigure
+	id="diagrama-de-red"
+	src="/inacap/ti3v52/images/fig09.png"
+	alt="Diagrama de red"
+	caption="Diagrama de red "
+    lightbox={true}
+	size="large"
+/>
+
+<Solution>
+
+**Paso 1: Agregar dispositivos**
+
+<SmartTable
+	id="tabla01"
+	caption="Lista de dispositivos y ubicación"
+	tableLayout="auto"
+	headers={['Dispositivo', 'Modelo', 'Ubicación en Packet Tracer']}
+	rows={[
+		['**Router STGO-CENTRO**', 'Cisco 1941', '`Network Devices` >> `Routers` >> `1941`'],
+		['**Switch0**', 'Cisco 2960-24TT', '`Network Devices` >> `Switches` >> `2960`'],
+		['**Switch1**', 'Cisco 2960-24TT', '`Network Devices` >> `Switches` >> `2960`'],
+		['**PC0**', 'PC-PT', '`End Devices` >> `PC`'],
+		['**PC1**', 'PC-PT', '`End Devices` >> `PC`'],
+		['**IP Phone0**', 'IP 7960', '`End Devices` >> `IP Phone`'],
+		['**Printer0**', 'Printer-PT', '`End Devices` >> `Printer`'],
+		['**Server0**', 'Server-PT', '`End Devices` >> `Server`'],
+		['**Wireless Router0**', 'WRT300N', '`Network Devices` >> `Wireless Devices` >> `WRT300N`'],
+		['**Laptop0**', 'Laptop-PT', '`End Devices` >> `Laptop`'],
+		['**Laptop1**', 'Laptop-PT', '`End Devices` >> `Laptop`'],
+	]}
+/>
+
+<SmartFigure
+	id="dispositivos-para-red"
+	src="/inacap/ti3v52/images/fig10.png"
+	alt="Dispositivos necesarios para la red"
+	caption="Dispositivos necesarios para la red"
+	size="large"
+/>
+
+---
+**Paso 2: Instalar módulo inalámbrico y conectar Laptops al WiFi**
+
+Repetir en cada laptop:
+    - Click en laptop >> pestaña `Physical`
+    - Apagar el laptop (botón de encendido)
+    - Retirar el módulo `PT-LAPTOP-NM-1W` fuera del slot
+    - Arrastrar el módulo `WPC300N` al slot vacío
+    - Encender el laptop
+    - Ir a pestaña `Desktop` >> `Connect`
+
+<SmartFigure
+	id="fig11"
+	src="/inacap/ti3v52/images/fig11.png"
+	alt="Instalación del módulo inalámbrico WPC300N"
+	caption="Instalación del módulo inalámbrico WPC300N"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig12"
+	src="/inacap/ti3v52/images/fig12.png"
+	alt="Activación del módulo inalámbrico WPC300N"
+	caption="Activación del módulo inalámbrico WPC300N"
+	size="large"
+/>
+---
+**Paso 3: Conectar dispositivos**
+
+<SmartTable
+	id="tabla02"
+	caption="Cableado de dispositivos"
+	tableLayout="auto"
+	headers={['Dispositivo A', 'Interfaz', 'Dispositivo B', 'Interfaz', 'Cable']}
+	rows={[
+		['**STGO-CENTRO**', 'GigabitEthernet0/0', '**Switch0**', 'GigabitEthernet0/1', 'Directo'],
+		['**STGO-CENTRO**', 'GigabitEthernet0/1', '**Switch1**', 'GigabitEthernet0/1', 'Directo'],
+		['**Switch0**', 'FastEthernet0/1', '**IP Phone0**', 'Switch', 'Directo'],
+		['**Switch0**', 'FastEthernet0/2', '**Printer0**', 'FastEthernet0', 'Directo'],
+		['**IP Phone0**', 'PC', '**PC0**', 'FastEthernet0', 'Directo'],
+		['**Switch1**', 'FastEthernet0/1', '**PC1**', 'FastEthernet0', 'Directo'],
+		['**Switch1**', 'FastEthernet0/2', '**Server0**', 'FastEthernet0', 'Directo'],
+		['**Switch1**', 'FastEthernet0/3', '**Wireless Router0**', 'Internet', 'Directo'],
+		['**Laptop0**', 'WiFi', '**Wireless Router0**', 'WiFi', 'Inalámbrico'],
+		['**Laptop1**', 'WiFi', '**Wireless Router0**', 'WiFi', 'Inalámbrico'],
+	]}
+/>
+
+<SmartFigure
+	id="fig13"
+	src="/inacap/ti3v52/images/fig13.png"
+	alt="Agregar cargador a teléfono para encendido"
+	caption="Agregar cargador a teléfono para encendido"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig14"
+	src="/inacap/ti3v52/images/fig14.png"
+	alt="Dispositivos conectados"
+	caption="Dispositivos conectados"
+	size="large"
+/>
+---
+**Paso 4: Configurar IPs de dispositivos finales**
+
+<SmartTable
+	id="tabla03"
+	caption="Configuración IP de dispositivos"
+	tableLayout="auto"
+	lists={{}}
+	headers={['Dispositivo', 'IPv4 Address', 'Subnet Mask', 'Default Gateway']}
+	rows={[
+		['**PC0**', '172.16.15.254', '255.255.240.0', '172.16.0.1'],
+		['**Printer0**', '172.16.0.3', '255.255.240.0', '172.16.0.1'],
+		['**PC1**', '172.16.31.254', '255.255.240.0', '172.16.16.1'],
+		['**Server0**', '172.16.16.3', '255.255.240.0', '172.16.16.1'],
+		['**Wireless Router0**', '172.16.16.4', '255.255.240.0', '172.16.16.1'],
+		['**Laptop0**', 'DHCP', '—', '—'],
+		['**Laptop1**', 'DHCP', '—', '—'],
+	]}
+/>
+
+<Callout type="warning" title="Consideración">
+- Los dispositivos `Laptop0` y `Laptop1` obtienen su IP automáticamente mediante DHCP
+desde el Wireless Router0.
+- El `IP Phone0` no cuenta con configuración IP en el enunciado.
+En un escenario real obtendría su IP mediante DHCP configurado en el router.
+</Callout>
+
+<SmartFigure
+	id="fig15"
+	src="/inacap/ti3v52/images/fig15.png"
+	alt="Agregar IP a impresora"
+	caption="Agregar IP a impresora"
+	size="large"
+/>
+
+---
+**Paso 5: Configurar `Switch0`**
+
+<TerminalOutput withBg>
+{`# entrar al modo privilegiado
+enable
+
+# entrar al modo de configuración global
+configure terminal
+
+# entrar a la interfaz virtual de administración
+interface vlan 1
+
+# asignar IP y máscara a la interfaz VLAN 1
+ip address 172.16.0.2 255.255.240.0
+
+# activar la interfaz
+no shutdown
+
+# salir de la interfaz
+exit
+
+# definir la puerta de enlace
+ip default-gateway 172.16.0.1`}
+</TerminalOutput>
+
+<SmartFigure
+	id="fig16"
+	src="/inacap/ti3v52/images/fig16.png"
+	alt="Configuración Switch0"
+	caption="Configuración Switch0"
+	size="large"
+/>
+
+---
+**Paso 6: Configurar `Switch1`**
+
+<TerminalOutput withBg>
+{`# entrar al modo privilegiado
+enable
+
+# entrar al modo de configuración global
+configure terminal
+
+# entrar a la interfaz virtual de administración
+interface vlan 1
+
+# asignar IP y máscara a la interfaz VLAN 1
+ip address 172.16.16.2 255.255.240.0
+
+# activar la interfaz
+no shutdown
+
+# salir de la interfaz
+exit
+
+# definir la puerta de enlace
+ip default-gateway 172.16.16.1`}
+</TerminalOutput>
+
+<SmartFigure
+	id="fig17"
+	src="/inacap/ti3v52/images/fig17.png"
+	alt="Configuración Switch1"
+	caption="Configuración Switch1"
+	size="large"
+/>
+---
+**Paso 7: Configurar Router `STGO-CENTRO`**
+
+<TerminalOutput withBg>
+{`# entrar al modo privilegiado
+enable
+
+# entrar al modo de configuración global
+configure terminal
+
+# 1. asignar nombre al router
+hostname STGO-CENTRO
+
+# 2. configuración interfaz G0/0 (red izquierda)
+interface GigabitEthernet0/0
+ip address 172.16.0.1 255.255.240.0
+# activar la interfaz
+no shutdown
+# salir de la interfaz
+exit
+
+# 3. configuración interfaz G0/1 (red derecha)
+interface GigabitEthernet0/1
+ip address 172.16.16.1 255.255.240.0
+# activar la interfaz
+no shutdown
+# salir de la interfaz
+exit`}
+</TerminalOutput>
+
+<SmartFigure
+	id="fig18"
+	src="/inacap/ti3v52/images/fig18.png"
+	alt="Configuración Router STGO-CENTRO"
+	caption="Configuración Router STGO-CENTRO"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig19"
+	src="/inacap/ti3v52/images/fig19.png"
+	alt="Topología final de red con conectividad establecida"
+	caption="Topología final de red con conectividad establecida"
+	size="large"
+/>
+</Solution>

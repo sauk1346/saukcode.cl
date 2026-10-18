@@ -1,0 +1,302 @@
+# Evaluación 02-A
+
+## Sección 1: Selección Múltiple
+
+<Quiz questions={[
+  {
+    question: "¿Cuál de las siguientes opciones representa una unión interna en SQL?",
+    options: [
+      "SELECT * FROM A LEFT JOIN B ON A.id = B.id;",
+      "SELECT * FROM A RIGHT JOIN B ON A.id = B.id;",
+      "SELECT * FROM A INNER JOIN B ON A.id = B.id;",
+      "SELECT * FROM A FULL OUTER JOIN B ON A.id = B.id;"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál de los siguientes operadores se utiliza para realizar una conversión explícita de tipos en Oracle?",
+    options: [
+      "CONVERT",
+      "CAST",
+      "TO_DATE",
+      "FORMAT"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué función matemática se utiliza para calcular el promedio en SQL?",
+    options: [
+      "SUM",
+      "AVG",
+      "MAX",
+      "MIN"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de las siguientes estructuras de control se utiliza para evaluar múltiples condiciones en SQL?",
+    options: [
+      "IF",
+      "WHILE",
+      "CASE",
+      "FOR"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué tipo de JOIN devuelve todas las filas de la tabla izquierda y solo las filas coincidentes de la tabla derecha?",
+    options: [
+      "INNER JOIN",
+      "LEFT JOIN",
+      "RIGHT JOIN",
+      "FULL OUTER JOIN"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es la salida de la siguiente subconsulta si la tabla Productos tiene los valores [1, 2, 3] en la columna Precio? SELECT Precio FROM Productos WHERE Precio > (SELECT AVG(Precio) FROM Productos);",
+    options: [
+      "2, 3",
+      "3",
+      "1, 2",
+      "1, 3"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de los siguientes operadores se utiliza para verificar si un valor es igual a cualquiera de los valores en un conjunto?",
+    options: [
+      "IN",
+      "BETWEEN",
+      "ALL",
+      "ANY"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué función de conversión se utiliza en SQL Server para convertir un valor a un tipo de datos específico?",
+    options: [
+      "CAST",
+      "CONVERT",
+      "FORMAT",
+      "TO_NUMBER"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es la estructura correcta de un procedimiento almacenado en Oracle?",
+    options: [
+      "CREATE PROCEDURE nombre AS ...",
+      "CREATE PROCEDURE nombre BEGIN ...",
+      "CREATE PROCEDURE nombre IS ...",
+      "CREATE PROCEDURE nombre FUNCTION ..."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué función se utiliza para devolver el número más pequeño de un conjunto de valores?",
+    options: [
+      "MAX",
+      "SUM",
+      "MIN",
+      "COUNT"
+    ],
+    correctIndex: 2
+  }
+]} />
+
+
+## Sección 2: Desarrollo en Base de Datos
+
+**script sql-server**
+
+```sql
+-- Crear tabla Clientes
+CREATE TABLE Clientes (
+ClienteID INT IDENTITY(1,1) PRIMARY KEY,
+Nombre NVARCHAR(50),
+Apellido NVARCHAR(50),
+Email NVARCHAR(100),
+Telefono NVARCHAR(20),
+FechaRegistro DATE
+);
+-- Crear tabla Productos
+CREATE TABLE Productos (
+ProductoID INT IDENTITY(1,1) PRIMARY KEY,
+NombreProducto NVARCHAR(100),
+Categoria NVARCHAR(50),
+Precio DECIMAL(10, 2),
+Stock INT
+);
+-- Crear tabla Ventas
+CREATE TABLE Ventas (
+VentaID INT IDENTITY(1,1) PRIMARY KEY,
+FechaVenta DATE,
+ClienteID INT,
+TotalVenta DECIMAL(10, 2),
+FOREIGN KEY (ClienteID) REFERENCES Clientes(ClienteID)
+);
+-- Crear tabla DetallesVentas
+CREATE TABLE DetallesVentas (
+DetalleID INT IDENTITY(1,1) PRIMARY KEY,
+VentaID INT,
+ProductoID INT,
+Cantidad INT,
+TotalLinea DECIMAL(10, 2),
+FOREIGN KEY (VentaID) REFERENCES Ventas(VentaID),
+FOREIGN KEY (ProductoID) REFERENCES Productos(ProductoID)
+);
+-- Insertar datos ficticios en la tabla Clientes
+INSERT INTO Clientes (Nombre, Apellido, Email, Telefono, FechaRegistro) VALUES ('Juan',
+'Pérez', 'juan.perez@example.com', '123456789', GETDATE());
+INSERT INTO Clientes (Nombre, Apellido, Email, Telefono, FechaRegistro) VALUES ('Ana',
+'López', 'ana.lopez@example.com', '987654321', GETDATE());
+INSERT INTO Clientes (Nombre, Apellido, Email, Telefono, FechaRegistro) VALUES ('Carlos',
+'Ramírez', 'carlos.ramirez@example.com', '555111222', GETDATE());
+INSERT INTO Clientes (Nombre, Apellido, Email, Telefono, FechaRegistro) VALUES ('María',
+'Fernández', 'maria.fernandez@example.com', '666333444', GETDATE());
+INSERT INTO Clientes (Nombre, Apellido, Email, Telefono, FechaRegistro) VALUES ('Elena',
+'Martínez', 'elena.martinez@example.com', '777888999', GETDATE());
+INSERT INTO Clientes (Nombre, Apellido, Email, Telefono, FechaRegistro) VALUES ('Luis',
+'González', 'luis.gonzalez@example.com', '444555666', GETDATE());
+-- Insertar datos ficticios en la tabla Productos
+INSERT INTO Productos (NombreProducto, Categoria, Precio, Stock) VALUES ('Laptop',
+'Electrónica', 1500, 10);
+INSERT INTO Productos (NombreProducto, Categoria, Precio, Stock) VALUES ('Smartphone',
+'Electrónica', 1000, 5);
+INSERT INTO Productos (NombreProducto, Categoria, Precio, Stock) VALUES ('Lavadora',
+'Electrodomésticos', 800, 4);
+INSERT INTO Productos (NombreProducto, Categoria, Precio, Stock) VALUES ('Refrigerador',
+'Electrodomésticos', 1200, 3);
+INSERT INTO Productos (NombreProducto, Categoria, Precio, Stock) VALUES ('Sofá',
+'Muebles', 600, 7);
+INSERT INTO Productos (NombreProducto, Categoria, Precio, Stock) VALUES ('Mesa de
+comedor', 'Muebles', 300, 6);
+-- Insertar datos ficticios en la tabla Ventas
+INSERT INTO Ventas (FechaVenta, ClienteID, TotalVenta) VALUES (GETDATE(), 1, 1500);
+INSERT INTO Ventas (FechaVenta, ClienteID, TotalVenta) VALUES (GETDATE(), 2, 1000);
+INSERT INTO Ventas (FechaVenta, ClienteID, TotalVenta) VALUES (GETDATE(), 3, 2400);
+INSERT INTO Ventas (FechaVenta, ClienteID, TotalVenta) VALUES (GETDATE(), 4, 1800);
+INSERT INTO Ventas (FechaVenta, ClienteID, TotalVenta) VALUES (GETDATE(), 5, 600);
+INSERT INTO Ventas (FechaVenta, ClienteID, TotalVenta) VALUES (GETDATE(), 6, 300);
+-- Insertar datos ficticios en la tabla DetallesVentas
+INSERT INTO DetallesVentas (VentaID, ProductoID, Cantidad, TotalLinea) VALUES (1, 1, 1,
+1500);
+INSERT INTO DetallesVentas (VentaID, ProductoID, Cantidad, TotalLinea) VALUES (2, 2, 1,
+1000);
+INSERT INTO DetallesVentas (VentaID, ProductoID, Cantidad, TotalLinea) VALUES (3, 3, 1,
+800);
+INSERT INTO DetallesVentas (VentaID, ProductoID, Cantidad, TotalLinea) VALUES (3, 4, 1,
+1200);
+INSERT INTO DetallesVentas (VentaID, ProductoID, Cantidad, TotalLinea) VALUES (4, 5, 2,
+1200);
+INSERT INTO DetallesVentas (VentaID, ProductoID, Cantidad, TotalLinea) VALUES (5, 6, 2,
+600);
+INSERT INTO DetallesVentas (VentaID, ProductoID, Cantidad, TotalLinea) VALUES (6, 1, 1,
+300);
+```
+
+### Ejercicio 1
+**Procedimiento Almacenado para Insertar Productos**
+
+Crea un procedimiento almacenado llamado sp_InsertarProducto que reciba el nombre del producto, la categoría y el precio. Este procedimiento debe insertar el producto en la tabla Productos y devolver un mensaje indicando que el producto ha sido insertado correctamente.
+
+<Solution>
+```sql
+CREATE PROCEDURE sp_InsertarProducto
+	@NombreProducto NVARCHAR(100),
+	@Categoria NVARCHAR(50),
+	@Precio DECIMAL(10, 2),
+	@Stock INT
+AS
+BEGIN
+    -- Inserta el nuevo producto en la tabla Productos
+    INSERT INTO Productos (NombreProducto, Categoria, Precio, Stock)
+    VALUES (@NombreProducto, @Categoria, @Precio, @Stock);
+
+    -- Muestra un mensaje de confirmación
+    PRINT 'El producto ha sido insertado correctamente.';
+END;
+```
+</Solution>
+
+### Ejercicio 02
+
+#### Consulta 1
+Muestra el nombre del cliente, la fecha de la venta, el nombre del producto, la cantidad vendida y el total de la línea de la venta. Ordena el resultado por nombre del cliente y fecha de la venta. Si un cliente no ha realizado ninguna venta, muestra igualmente su nombre y un valor nulo en las columnas relacionadas con las ventas.
+
+<Solution>
+```sql
+SELECT c.Nombre AS NombreCliente, v.FechaVenta, p.NombreProducto, dv.Cantidad, dv.TotalLinea
+FROM Clientes c
+LEFT JOIN Ventas v ON c.ClienteID = v.ClienteID
+LEFT JOIN DetallesVentas dv ON v.VentaID = dv.VentaID
+LEFT JOIN Productos p ON dv.ProductoID = p.ProductoID
+ORDER BY c.Nombre, v.FechaVenta;
+```
+</Solution>
+
+#### Consulta 2
+Muestra el nombre del cliente, el total de ventas que ha realizado y el número de productos distintos que ha comprado. Incluye solo a los clientes que han comprado al menos 3 productos diferentes.
+
+<Solution>
+```sql
+SELECT
+	c.Nombre AS NombreCliente,
+	SUM(v.TotalVenta) AS TotalVentas,
+	COUNT(DISTINCT dv.ProductoID) AS ProductosDistintos
+FROM Clientes c
+JOIN Ventas v ON c.ClienteID = v.ClienteID
+JOIN DetallesVentas dv ON v.VentaID = dv.VentaID
+GROUP BY c.Nombre
+HAVING COUNT(DISTINCT dv.ProductoID) >= 3;
+```
+</Solution>
+
+#### Consulta 3
+Muestra el nombre del producto, la cantidad total vendida y el total de ventas para cada producto. Solo incluye productos que se hayan vendido en más de 5 transacciones diferentes. Ordena los resultados por cantidad total vendida en orden descendente.
+
+<Solution>
+```sql
+SELECT 
+    p.NombreProducto, 
+    SUM(dv.Cantidad) AS CantidadTotalVendida, 
+    SUM(dv.TotalLinea) AS TotalVentas
+FROM DetallesVentas dv
+JOIN Productos p ON dv.ProductoID = p.ProductoID
+GROUP BY p.NombreProducto
+HAVING COUNT(DISTINCT dv.VentaID) > 5
+ORDER BY CantidadTotalVendida DESC;
+```
+</Solution>
+
+## Ejercicio 03: Subconsultas
+
+#### Subconsulta 1
+Encuentra todos los productos cuyo precio es superior al precio promedio de todos los productos.
+
+<Solution>
+```sql
+SELECT NombreProducto, Precio
+FROM Productos
+WHERE Precio > (SELECT AVG(Precio) FROM Productos);
+```
+</Solution>
+
+
+#### Subconsulta 2
+Encuentra todos los clientes que han realizado ventas superiores al total de ventas realizadas por el cliente con ClienteID = 2.
+
+<Solution>
+```sql
+SELECT c.Nombre, SUM(v.TotalVenta) AS TotalVentas
+FROM Clientes c
+JOIN Ventas v ON c.ClienteID = v.ClienteID
+GROUP BY c.ClienteID, c.Nombre
+HAVING SUM(v.TotalVenta) > (
+	SELECT SUM(TotalVenta)
+	FROM Ventas
+	WHERE ClienteID = 2
+);
+```
+</Solution>

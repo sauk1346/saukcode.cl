@@ -1,0 +1,259 @@
+# API RESTful en acción: Seguridad y ejecución
+
+## 1. Django y Rest: manejo de sesiones
+En aplicaciones web tradicionales basadas en HTML (como las que usan `render()` en Django), el sistema de autenticación utiliza cookies **de sesión** para mantener a los usuarios conectados entre solicitud y solicitud.
+
+Cada usuario que inicia sesión obtiene un **ID de sesión** almacenado en una cookie, que se envía automáticamente al servidor en cada nueva petición.
+
+### ¿Por qué no usar sesiones en REST?
+Porque su uso en API REST presenta limitaciones importantes.
+
+- REST exige que las solicitudes sean *stateless* (sin estado)
+- Las *cookies* no son ideales para clientes como aplicaciones móviles o SPA
+- Las API RESTful generalmente usan **tokens** (como JWT) porque son más portables y seguras en ambientes distribuidos
+
+## 2. Permisos en Django REST Framework
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Clase de permisos", "Descripción"]}
+    rows={[
+        [
+            "`AllowAny`",
+            "Cualquiera puede acceder al endpoint (público)"
+        ],
+        [
+            "`IsAuthenticated`",
+            "Solo usuarios autenticados pueden acceder"
+        ],
+        [
+            "`IsAdminUser`",
+            "Solo administradores (`is_staff=True`) pueden acceder"
+        ],
+        [
+            "`IsAuthenicatedOrReadOnly`",
+            "Lectura para todos, modificación solo para autenticados"
+        ],
+    ]}
+/>
+
+### Uso en vistas o ViewSets
+Cada vista o ViewSet puede protegerse mediante clases de permisos. Estas determinan quién puede acceder a los endpoints y qué acciones están autorizadas.
+
+**Ejemplo**
+
+```python
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
+from .models import Producto
+from .serializers import ProductoSerializer
+
+class ProductoViewSet(viewsets.ModelViewSet):
+    queryset = Producto.objects.all()
+    serializer_class = ProductoSerializer
+    # Solo usuarios autenticados pueden acceder
+    permission_classes = [IsAuthenticated]
+```
+
+Este código permite:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Características", "Descripción"]}
+    rows={[
+        [
+            "**Importar permisos**",
+            "Se trae la clase `IsAuthenticated` desde `rest_framework.permissions`"
+        ],
+        [
+            "**Definir el ViewSet**",
+            "Se crea un `ModelViewSet` llamado `ProductoViewSet`, que gestiona los objetos del modelo `Producto` y utiliza `ProductoSerializar` para transformar los datos"
+        ],
+        [
+            "**Restringir el acceso**",
+            "Con `permission_classese=[IsAuthenticated]`, se establece que solo los usuarios autenticados puedan acceder a los endpoints de este Viewset"
+        ],
+    ]}
+/>
+
+## 3. Permisos personalizados
+ Django REST Framework permite definir clases de permisos adaptadas a necesidades específicas. Por ejemplo, restringir la edición de un objeto únicamente al usuario que lo creó.
+
+### Ejemplo: EsCreador
+Este código define una clase de permiso personalizada que permite que solo el creador de un objeto pueda acceder o modificar ese objeto en la API.
+
+1. **Importación de la base de permisos**
+
+    ```python
+    from rest_framework.permissions import BasePermission
+    ```
+    - Se importa `BasePermissions`, la clase base para crear permisos personalizados en DRF
+
+2. **Definición del permiso**
+
+    ```python
+     class EsCreador(BasePermission):
+        def has_object_permission(self, request, view, obj):
+            return obj.creador == request.user
+    ```
+    - `has_objetc_permission` se ejecuta cuando se comprueba el acceso a un **objeto específico**
+    - Retorna `True` solo si el **usuario que hace la solicitud** (`request.user`) es el mismo que figura como **creador del objeto** (`obj.creador`)
+    - Si no es el creador, devuelve `False` y se deniega el acceso (por ejemplo, un `403 Forbidden`)
+
+3. **Uso práctico**
+
+    - Se aplica a un ViewSet o vista de DRF agregando la clase a `permission_classes`:
+
+    ```python
+    permission_classes = [EsCreador]
+    ```
+    - Garantiza que cada usuario solo pueda **modificar o eliminar los objetos que él mismo creó**, manteniendo la integridad y seguridad de los datos
+
+## 4. Diferencias entre autenticación y autorización
+**Autenticación** y **autorización** son pilares de la seguridad en aplicaciones web, pero tienen roles distintos dentro del flujo de protección de datos y control de acceso.
+
+### Autenticación
+Es el proceso mediante el cual una aplicación **verifica la identidad del usuario**.
+
+> Responde a la pregunta: **¿Quién eres?**
+
+**Ejemplo**
+
+- Un usuario accede a `/api/token/` y envía su usuario y contraseña
+- El servidor valida que las credenciales sean correctas y responde con un **token de acceso**
+- El usuario incluye el token en cada solicitud para probar su identidad
+
+### Autorización
+Ocurre **después** de la autenticación. Una vez que el sistema sabe quién eres, debe determinar si tienes permiso para **hacer lo que estás intentando hacer**.
+
+> Responde a la pregunta: **¿Qué puedes hacer?**
+
+**Ejemplo**
+
+- Un usuario autenticado puede tener permisos para ver una lista de productos, pero no para eliminarlos
+- Otro usuario, con rol de administrador, puede acceder a todos los datos del sistema
+
+
+## 5. JWT y permisos
+El uso de JSON Web Tokens (JWT) junto con un sistema adecuado de permisos es fundamental para garantizar la seguridad en una API. 
+
+Implementar prácticas sólidas desde el inicio protege los datos sensibles y asegura que cada recurso esté accesible solo a los usuarios autorizados.
+
+<SmartTable
+    tableLayout="fixed"
+    headers={["Prácticas", "Descripción"]}
+    rows={[
+        [
+            "**Usa HTTPS siempre**",
+            "Incluso en desarrollo, para proteger datos sensibles"
+        ],
+        [
+            "**Protege todos los endpoints sensibles**",
+            "Utilizar permisos, como `IsAuthenticated`, etc."
+        ],
+        [
+            "**Evita exponer más campos de los necesarios**",
+            "En los serializers"
+        ],
+        [
+            "**Valida siempre los datos entrantes**",
+            "Para evitar inyecciones o corrupción de datos"
+        ],
+        [
+            "**Limita métodos permitidos**",
+            "En cada vista o recurso (`GET`, `POST`, etc.)"
+        ],
+        [
+            "**Utiliza paginación y filtros controlados**",
+            "Para evitar sobrecarga o exposición masiva de datos"
+        ],
+    ]}
+/>
+
+### Otras herramientas y middleware de seguridad
+Además de la autenticación y permisos, Django ofrece capas de seguridad integradas que fortalecen la protección de la aplicación. Estas herramientas, aunque no todas aplican a REST, son esenciales en proyectos que combinan APIs con vistas tradicionales basadas en HTML.
+
+- **CSRF** *protection* (no usada en REST, pero importante en vistas tradicionales).
+- **Clickjacking** *protection* con X-Frame-Options.
+- *Middleware* **para restringir cabeceras HTTP inseguras**.
+- **Autenticación basada en sesiones** para sitios administrativos.
+
+### Seguridad en endpoint sensibles
+No todos los usuarios deben acceder a la misma información ni ejecutar las mismas acciones. En este contexto, aplicar filtros y controles en los endpoints sensibles garantiza que cada perfil interactúe únicamente con los datos que le corresponden, manteniendo la integridad y confidencialidad del sistema.
+
+- Un estudiante puede ver solo sus notas, pero no las de sus compañeros.
+- Un vendedor puede listar solo sus propios pedidos.
+- Un administrador puede acceder a todos los usuarios.
+
+Esto se controla con:
+
+```python
+#queryset filtrado por request.user
+
+def get_queryset(self):
+    if self.request.user.is_staff:
+        return Producto.objects.all()
+    return Producto.objects.filter(creador=self.request.user)
+```
+
+
+# Actividad de Práctica 09
+
+<Quiz questions={[
+	{
+		question: "En REST, las solicitudes deben ser stateless, por eso no se recomienda usar sesiones",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "En Django REST Framework, permission_classes=[IsAuthenticated] permite solo a usuarios autenticados acceder a endpoints",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "Cuando llegas a la estación Usuarios, ¿qué método HTTP utilizas para consultar la información sin realizar cambios?",
+		options: [
+			"POST",
+			"DELETE",
+			"PUT",
+			"GET"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "En la sala Seguridad, tu token no es válido. ¿Qué código de respuesta HTTP lo indica?",
+		options: [
+			"402",
+			"200",
+			"500",
+			"401"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "En la biblioteca de endpoints, ¿cuál es la función de la documentación interactiva de la API?",
+		options: [
+			"Almacenar datos del servidor",
+			"Controlar la seguridad del servidor",
+			"Guiar el uso correcto de endpoint",
+			"Ejecutar automáticamente solicitudes"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "En el módulo de pruebas, al realizar llamadas simuladas, ¿qué es lo principal que se verifica?",
+		options: [
+			"La velocidad de conexión a internet",
+			"Respuesta y comportamiento esperado del endpoint",
+			"La cantidad de usuarios autenticados",
+			"El sistema operativo del cliente"
+		],
+		correctIndex: 1
+	},
+]} />

@@ -1,0 +1,228 @@
+/* QuizComponent.module.css */
+
+.quizContainer {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .questionContainer {
+    background-color: rgba(127, 127, 127, 0.12);
+    border-radius: var(--radius-md, 8px);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    border: 1px solid var(--border-color, #e5e7eb);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* Nuevas clases para mejorar la sangría */
+  .questionTitleWrapper {
+    display: flex;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .questionNumber {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: var(--foreground, #111111);
+    margin-right: 6px;
+    flex-shrink: 0;
+  }
+  
+  .questionText {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: var(--foreground, #111111);
+    transition: color 0.3s ease;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .questionText p {
+    margin: 0 0 0.4rem 0;
+  }
+
+  .questionList {
+    list-style-type: decimal;
+    margin: 0.4rem 0 0.4rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .questionList li {
+    display: list-item;
+    margin-bottom: 0.25rem;
+  }
+  
+  /* Mantener esta clase para compatibilidad, pero no se usará para el texto */
+  .questionTitle {
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--foreground, #111111);
+    transition: color 0.3s ease;
+  }
+
+  .optionsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .optionButton {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-align: left;
+    padding: 10px;
+    border-radius: var(--radius-md, 6px);
+    border: 1px solid var(--input-border, #e2e8f0);
+    background-color: rgba(127, 127, 127, 0.08);
+    color: var(--foreground, #111111);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+  }
+
+  .optionContent {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .optionLetter {
+    margin-right: 6px;
+    flex-shrink: 0;
+  }
+
+  .optionText {
+    flex: 1;
+    white-space: pre-wrap;
+    text-align: justify;
+    hyphens: auto;
+  }
+  
+  .optionButton:hover {
+    background-color: rgba(127, 127, 127, 0.18);
+  }
+  
+  .correctOption {
+    background-color: rgba(52, 211, 153, 0.15);
+    border-color: var(--success, #10b981);
+    color: #065f46;
+  }
+  
+  .incorrectOption {
+    background-color: rgba(239, 68, 68, 0.15);
+    border-color: var(--error, #ef4444);
+    color: #991b1b;
+  }
+  
+  .iconContainer {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  
+  .correctIcon {
+    width: 24px;
+    height: 24px;
+    color: var(--success, #047857);
+  }
+  
+  .incorrectIcon {
+    width: 24px;
+    height: 24px;
+    color: var(--error, #dc2626);
+  }
+  
+  .feedback {
+    margin-top: var(--spacing-md);
+    padding: 10px;
+    border-radius: var(--radius-md, 6px);
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .correctFeedback {
+    background-color: rgba(52, 211, 153, 0.15);
+    color: #065f46;
+  }
+  
+  .incorrectFeedback {
+    background-color: rgba(239, 68, 68, 0.15);
+    color: #991b1b;
+  }
+  
+  .confettiCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+  }
+  
+  /* Soporte para modo oscuro - siguiendo el patrón de CardSystem.module.css */
+  :global(html.dark-mode) .questionTitle,
+  :global(html.dark-mode) .questionNumber,
+  :global(html.dark-mode) .questionText,
+  :global(html.dark-mode-override) .questionTitle,
+  :global(html.dark-mode-override) .questionNumber,
+  :global(html.dark-mode-override) .questionText {
+    color: var(--foreground, #f3f4f6);
+  }
+  
+  /* Ajustar los colores de los estados para modo oscuro */
+  :global(html.dark-mode) .correctOption,
+  :global(html.dark-mode-override) .correctOption {
+    background-color: rgba(52, 211, 153, 0.2);
+    border-color: var(--success, #34d399);
+    color: #d1fae5;
+  }
+  
+  :global(html.dark-mode) .incorrectOption,
+  :global(html.dark-mode-override) .incorrectOption {
+    background-color: rgba(248, 113, 113, 0.2);
+    border-color: var(--error, #f87171);
+    color: #fee2e2;
+  }
+  
+  :global(html.dark-mode) .correctIcon,
+  :global(html.dark-mode-override) .correctIcon {
+    color: var(--success, #34d399);
+  }
+  
+  :global(html.dark-mode) .incorrectIcon,
+  :global(html.dark-mode-override) .incorrectIcon {
+    color: var(--error, #f87171);
+  }
+  
+  :global(html.dark-mode) .correctFeedback,
+  :global(html.dark-mode-override) .correctFeedback {
+    background-color: rgba(52, 211, 153, 0.2);
+    color: #d1fae5;
+  }
+  
+  :global(html.dark-mode) .incorrectFeedback,
+  :global(html.dark-mode-override) .incorrectFeedback {
+    background-color: rgba(248, 113, 113, 0.2);
+    color: #fee2e2;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .questionContainer {
+      padding: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .optionButton {
+      padding: 8px;
+    }
+    
+    .feedback {
+      padding: 8px;
+    }
+  }

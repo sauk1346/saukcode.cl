@@ -1,0 +1,189 @@
+# Evaluación 1
+
+**75 puntos. Cada pregunta vale 5 ptos.**
+
+<Quiz questions={[
+  {
+    question: "La junta directiva de GlobalCorp está estructurando su migración utilizando el Marco de adopción de la nube de AWS (CAF de AWS). Tienen dos requerimientos corporativos inmediatos que deben delegar a sus respectivos equipos. Primero, exigen garantizar que las habilidades y los procesos internos ajusten la estrategia de TI con la estrategia empresarial, con el objetivo de maximizar el valor de negocio de la inversión y minimizar los riesgos comerciales. Segundo, necesitan que sus líderes técnicos definan cómo se realizarán los negocios diarios y asuman el control de la 'Administración de versiones y cambios'. Según el CAF de AWS, ¿Qué perspectivas específicas abordan de forma exacta estos dos requerimientos, respectivamente?",
+    options: [
+      "Perspectiva de Gobernanza y Perspectiva de Operaciones.",
+      "Perspectiva de Gobernanza y Perspectiva del Personal.",
+      "Perspectiva de Negocios y Perspectiva de Operaciones.",
+      "Perspectiva de Negocios y Perspectiva de Plataforma."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "ACR Informática ha decidido reestructurar todo su entorno en la nube tras una fusión corporativa. El equipo directivo propone un plan de tres fases. Primero, crearán una jerarquía centralizada en AWS Organizations con 6 niveles de anidación de Unidades Organizativas (OU) debajo de la raíz (es decir: Raíz -> OU Nivel 1 -> OU Nivel 2 -> ... -> OU Nivel 6) para reflejar su nuevo organigrama. Segundo, el equipo de Gobernanza planea aplicar un único documento de Política de control de servicios (SCP) de 25,000 bytes en el nivel de la raíz para establecer las restricciones globales de seguridad de la empresa. Tercero, para alojar sus bases de datos operativas 24/7 sin afectar su flujo de caja actual, el departamento financiero exige comprometerse a largo plazo sin realizar ningún pago inicial, asumiendo firmemente en su presupuesto que el modelo de 'Instancias reservadas sin pago anticipado (NURI)' les otorgará el descuento más alto posible disponible en AWS. Como Arquitecto de Nube Principal, ¿Cuál es su evaluación técnica sobre la viabilidad de este plan?",
+    options: [
+      "El plan es completamente inviable. AWS Organizations limita la anidación a un máximo de 5 niveles de OU bajo una raíz y restringe el tamaño del documento de las SCP a 5,120 bytes. Además, el modelo NURI proporciona el menor descuento de las opciones de reserva.",
+      "La estructura de OUs es inviable por el límite de 5 niveles, pero el tamaño de la política de 25,000 bytes está permitido si se utiliza una SCP administrada por AWS. Financieramente, NURI sí brinda el mayor descuento posible por el compromiso a largo plazo.",
+      "El plan es parcialmente viable. Las OUs pueden anidarse en 6 niveles sin problemas y la estrategia de usar NURI protege la liquidez, pero el tamaño de la SCP debe reducirse o dividirse para no superar el límite de 10,240 bytes.",
+      "El plan es viable a nivel estructural ya que AWS Organizations permite gestionar hasta 1,000 OUs y políticas ilimitadas, pero fracasa financieramente porque el modelo NURI exige obligatoriamente un pago parcial inicial."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "La startup MegaTech está diseñando su primera arquitectura en la nube con un presupuesto muy ajustado. Necesitan crear una red virtual aislada, orquestar el despliegue de su aplicación web y asegurar que la infraestructura crezca dinámicamente según la demanda. Al revisar la facturación, descubren que hay ciertos servicios que AWS proporciona sin cargo adicional, por lo que solo deberán pagar por los recursos informáticos subyacentes que estos consuman. De las siguientes opciones, ¿qué conjunto de servicios son completamente gratuitos en AWS?",
+    options: [
+      "Amazon EC2 y Amazon S3.",
+      "AWS Artifact y el Informe de uso y costo de AWS.",
+      "Amazon Relational Database Service (RDS) y Amazon CloudFront.",
+      "Amazon VPC, AWS Elastic Beanstalk y Escalado automático."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "El equipo de seguridad de ACR Informática ha detectado que los nuevos desarrolladores están aprovisionando recursos informáticos y de bases de datos que no cumplen con los estándares normativos de la empresa. Para solucionar este problema de gobernanza de forma automatizada, se le exige implementar una arquitectura que cumpla dos objetivos exactos:",
+    questionItems: [
+      "Permitir a los empleados descubrir e implementar de forma autónoma únicamente servicios y componentes de TI que hayan sido previamente aprobados por la organización.",
+      "Establecer un límite inquebrantable a nivel global que defina los permisos máximos disponibles para cualquier cuenta dentro de la organización, de modo que nadie pueda eludir estas directrices, independientemente de los permisos individuales que tenga asignados."
+    ],
+    questionSuffix: "¿Qué combinación de características de AWS resuelve de forma nativa este requerimiento?",
+    options: [
+      "Implementar AWS Trusted Advisor para auditar y aprobar automáticamente las infraestructuras de TI, y utilizar Amazon Cognito para establecer y gestionar los límites de acceso de identidad a nivel organizacional.",
+      "Configurar plantillas de AWS CloudFormation para el despliegue de recursos, y aplicar políticas de permisos de IAM estándar asociadas a la raíz organizativa para limitar las acciones globales de los desarrolladores.",
+      "Utilizar AWS Elastic Beanstalk para crear plantillas que estandaricen la infraestructura de los desarrolladores, y configurar políticas insertadas (inline) de IAM en cada grupo de usuarios para establecer los límites máximos de permisos.",
+      "Utilizar AWS Service Catalog para agrupar y proporcionar acceso únicamente a los servicios de TI aprobados, e implementar Políticas de Control de Servicios (SCP) mediante AWS Organizations para dictar el límite de permisos máximos en las cuentas."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "Finanzas Internacionales Corp está migrando su arquitectura local a AWS. Como parte de su estrategia, han implementado una aplicación personalizada en instancias de Amazon EC2 (un modelo de Infraestructura como Servicio o IaaS) y han migrado su base de datos principal a Amazon RDS (un modelo de Plataforma como Servicio o PaaS). Durante una auditoría de seguridad, se le pide al equipo de TI documentar quién tiene la responsabilidad operativa de realizar dos tareas críticas en ambos entornos:",
+    questionItems: [
+      "La implementación de parches en el sistema operativo",
+      "La configuración del firewall"
+    ],
+    questionSuffix: "Según el Modelo de Responsabilidad Compartida de AWS, ¿cómo se distribuyen exactamente estas tareas específicas entre el cliente y AWS para cada servicio?",
+    options: [
+      "Para Amazon EC2, el cliente es responsable de los parches del sistema operativo y de la configuración del firewall. Para Amazon RDS, AWS es responsable de los parches del sistema operativo y de la configuración del firewall.",
+      "Para Amazon EC2 y Amazon RDS, el cliente es responsable de la configuración del firewall, mientras que AWS es responsable exclusivo de los parches del sistema operativo en ambos entornos.",
+      "Para Amazon EC2, AWS gestiona los parches del sistema operativo y el cliente configura el firewall. Para Amazon RDS, el cliente debe gestionar tanto los parches del sistema operativo como el firewall.",
+      "AWS es responsable de los parches del sistema operativo y la configuración del firewall en ambos entornos, ya que tanto EC2 como RDS residen en la infraestructura global protegida de AWS."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "ACR Informática acaba de crear su cuenta principal de producción en AWS. El Arquitecto de Seguridad sigue el procedimiento recomendado para proteger la cuenta nueva: deja de utilizar el usuario raíz para operaciones diarias, crea un grupo de IAM con permisos totales de administrador, añade su usuario IAM individual a este grupo, habilita la autenticación multifactor (MFA) en todos los niveles y elimina cualquier clave de acceso asociada al usuario raíz. Semanas después, la junta directiva aprueba el presupuesto para actualizar el plan de asistencia técnica a 'Enterprise Support' (para garantizar respuestas en menos de 15 minutos ante incidentes críticos). Además, exigen modificar la configuración global de la cuenta para limitar las regiones permitidas por cuestiones de soberanía de datos. El Arquitecto de Seguridad, conectado con su usuario IAM de administrador total, intenta realizar ambos cambios, pero la consola de AWS le deniega la acción en ambos casos. Según los principios de gestión de identidad y acceso de AWS, ¿Cuál es la razón arquitectónica exacta de este bloqueo y qué procedimiento debe seguir el arquitecto para completar las tareas?",
+    options: [
+      "El bloqueo ocurre porque el usuario de IAM no ha asumido un 'Rol de IAM' específico para la gestión de facturación. El arquitecto debe crear una política de confianza, asumir dicho rol temporal, y solo entonces AWS habilitará los menús de soporte y regiones.",
+      "El Arquitecto de Seguridad eliminó prematuramente las claves de acceso del usuario raíz. Para realizar configuraciones a nivel de cuenta (como las regiones o el soporte), el usuario de IAM requiere firmar programáticamente la solicitud (mediante la CLI) invocando dichas claves de acceso eliminadas.",
+      "El sistema funciona correctamente. Cambiar el plan de soporte y alterar la configuración global de la cuenta (como las regiones permitidas) son tareas que solo se pueden realizar con el usuario raíz de la cuenta. El arquitecto debe iniciar sesión de forma segura usando el correo, contraseña y token MFA del usuario raíz para ejecutar los cambios.",
+      "El bloqueo se debe a una 'Denegación implícita' en las políticas de control de servicios (SCP) heredadas de AWS Organizations. El arquitecto debe modificar temporalmente la SCP en el nivel de la raíz organizativa para permitir los cambios, y luego volver a aplicar la restricción."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "La empresa Delaware North, una compañía global en crecimiento con más de 200 sedes, decidió trasladar su centro de datos local a la nube de AWS para mejorar su eficiencia operativa y rapidez de comercialización. Al realizar esta migración, eliminaron el 90% de sus servidores físicos, lo que significa que ya no necesitan realizar grandes gastos iniciales en hardware. En su lugar, ahora aprovechan un modelo en el que 'solo pagan por los servicios individuales que necesitan, en la medida en que los utilicen'. ¿Cómo se denomina este principio o modelo financiero fundamental de la informática en la nube de AWS?",
+    options: [
+      "Descuentos por volumen.",
+      "Modelo de precios de pago por uso.",
+      "Instancias reservadas con pago total anticipado (AURI).",
+      "Precios personalizados."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "El Director de Seguridad de la Información (CISO) de ACR Informática está diseñando una arquitectura de ciberseguridad integral para sus nuevas cargas de trabajo críticas en AWS. El CISO exige implementar soluciones nativas que cubran tres frentes operativos de manera automatizada:",
+    questionItems: [
+      "Monitoreo continuo y detección inteligente de amenazas para proteger las cuentas de AWS y las cargas de trabajo frente a comportamientos maliciosos o actividad de red inusual.",
+      "Descubrimiento y protección proactiva de Información de Identificación Personal (PII) que los empleados puedan alojar por error en los diferentes buckets de Amazon S3.",
+      "Evaluación automatizada de las aplicaciones alojadas en las instancias Amazon EC2 para validar de forma estructurada su conformidad con las prácticas recomendadas de seguridad y estándares del sector."
+    ],
+    questionSuffix: "Como Arquitecto de Seguridad, ¿Qué combinación de servicios de AWS debe integrar para cumplir exactamente con estos tres requerimientos?",
+    options: [
+      "AWS CloudTrail para la detección inteligente de amenazas, AWS KMS para cifrar y descubrir la PII, y AWS Trusted Advisor para la evaluación de vulnerabilidades de la aplicación.",
+      "Amazon Inspector para la detección de amenazas continuas en la cuenta, AWS Shield para la protección de PII, y Amazon GuardDuty para evaluar la conformidad de las aplicaciones.",
+      "AWS Config para el monitoreo de intrusiones, Amazon S3 Block Public Access para la protección proactiva de PII, y AWS Artifact para la validación de estándares en EC2.",
+      "Amazon GuardDuty para la detección de amenazas, Amazon Macie para proteger la PII, y Amazon Inspector para la evaluación de vulnerabilidades."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "ACR Informática migró su sistema transaccional a instancias Amazon EC2. Una nueva auditoría regulatoria les exige documentar quién es el responsable de ejecutar dos controles críticos:",
+    questionItems: [
+      "Garantizar el aislamiento de red de sus instancias frente a los datos de otros clientes alojados en el mismo hardware.",
+      "Configurar la protección, integridad y cifrado del tráfico de red de sus aplicaciones."
+    ],
+    questionSuffix: "Según el Modelo de Responsabilidad Compartida de AWS, ¿a quién le corresponden estas tareas específicas?",
+    options: [
+      "El aislamiento de red corresponde a ACR Informática; la protección y cifrado del tráfico corresponde a AWS.",
+      "Ambas tareas son responsabilidad de ACR Informática, al ser los administradores de la Amazon VPC.",
+      "El aislamiento de red corresponde a AWS; la protección y cifrado del tráfico corresponde a ACR Informática.",
+      "Ambas tareas son responsabilidad exclusiva de AWS, ya que controla la infraestructura de red subyacente."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "ACR Informática está expandiendo su plataforma web a nuevos mercados internacionales y necesita ofrecer un rendimiento de red de alta calidad. Para mejorar la experiencia de sus clientes, el equipo de arquitectura decide utilizar Amazon CloudFront. ¿Qué componente específico de la infraestructura global de AWS utiliza este servicio para garantizar una entrega de contenido con baja latencia a sus usuarios finales en todo el mundo?",
+    options: [
+      "Las Regiones de AWS.",
+      "Las ubicaciones de borde (Edge locations) de AWS.",
+      "Las Zonas de disponibilidad (Availability Zones) de AWS.",
+      "Las Amazon Virtual Private Cloud (Amazon VPC)."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "El Director de Seguridad de la Información (CISO) de ACR Informática está definiendo la arquitectura de identidad y acceso para el próximo despliegue global de la compañía en la nube de AWS. En su documento de diseño oficial, el CISO establece tres directivas técnicas obligatorias que el equipo debe implementar:",
+    questionItems: [
+      "Crear una jerarquía de grupos de IAM donde los grupos de cada departamento interno estén 'anidados' dentro de grupos divisionales mayores, reflejando así el organigrama exacto de la empresa.",
+      "Aplicar estas configuraciones y permisos de IAM de forma exclusiva a la región de Londres (eu-west-2) para cumplir primero con leyes locales de soberanía de datos, limitando su existencia en otras partes del mundo.",
+      "Utilizar políticas administradas (managed policies) de AWS para estructurar las políticas basadas en recursos que se asociarán a los buckets de Amazon S3, buscando estandarizar las reglas de acceso al almacenamiento a gran escala."
+    ],
+    questionSuffix: "Como Arquitecto de Nube Principal al mando de revisar este diseño, ¿Cuál es su evaluación sobre la viabilidad técnica de estas tres directivas basándose en el funcionamiento nativo de AWS Identity and Access Management (IAM)?",
+    options: [
+      "La directiva 1 es inviable porque IAM no admite la anidación de grupos; sin embargo, las directivas 2 y 3 son correctas ya que IAM permite aislar los permisos a nivel regional y S3 admite de forma nativa políticas de recursos administradas centralmente.",
+      "La directiva 3 es la única viable porque los buckets de Amazon S3 requieren políticas administradas para su control a gran escala; no obstante, el alcance de IAM es global y la estructura de identidades no admite jerarquías de grupos anidados.",
+      "Las tres directivas son inviables debido a que los grupos de IAM no pueden anidarse, el alcance de las configuraciones de IAM es estrictamente global en todas las regiones, y las políticas basadas en recursos son únicamente insertadas (inline), no administradas.",
+      "La directiva 2 es la única viable, dado que IAM permite aplicar configuraciones a nivel de región de forma independiente para aislar el cumplimiento normativo, pero los grupos de IAM no pueden anidarse y las políticas de recursos son estrictamente insertadas."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "La corporación global ACR Informática está estructurando una migración masiva a la nube de AWS. Para asegurar el éxito y el control a largo plazo, el comité ejecutivo ha dividido el proyecto en tres iniciativas estratégicas que deben ejecutarse en paralelo:",
+    questionItems: [
+      "Los directores de recursos humanos y personal están rediseñando los esquemas de 'Administración de los incentivos' y la 'Administración de los cambios en la organización' para promover una cultura técnica ágil.",
+      "Los directores de operaciones de TI están definiendo centralizadamente el 'Catálogo de servicios de TI' y actualizando todos los protocolos de 'Continuidad empresarial / Recuperación de desastres'.",
+      "Los arquitectos de soluciones están diseñando la consolidación de cuentas mediante AWS Organizations. Para reflejar su compleja matriz global, su diseño arquitectónico exige establecer una jerarquía de 7 niveles anidados de Unidades Organizativas (OU) debajo de la cuenta raíz, y han configurado un script automatizado que enviará 35 invitaciones por día para incorporar velozmente todas las cuentas departamentales existentes."
+    ],
+    questionSuffix: "Considerando los principios del Marco de Adopción de la Nube de AWS (CAF de AWS) y las restricciones nativas de los servicios de administración, ¿Cuál de las siguientes opciones es la evaluación técnica correcta de esta estrategia corporativa?",
+    options: [
+      "La iniciativa 1 pertenece a la Perspectiva de Negocios; la iniciativa 2 a la Perspectiva de Plataforma; y la iniciativa 3 es totalmente viable porque AWS Organizations permite agrupar hasta 1,000 OUs y el envío ilimitado de invitaciones diarias.",
+      "La iniciativa 1 pertenece a la Perspectiva del personal; la iniciativa 2 a la Perspectiva de las operaciones; y la iniciativa 3 es inviable debido a que se violan de forma crítica los límites estrictos tanto de niveles de anidación máximos de OU (límite de 5 niveles) como de la cuota diaria de invitaciones (límite de 20 por día).",
+      "La iniciativa 1 pertenece a la Perspectiva del personal; la iniciativa 2 a la Perspectiva de Gobernanza; y la iniciativa 3 es inviable estrictamente porque el límite total global de OUs permitidas en cualquier organización de AWS es de 5, independientemente de su estructura de anidación.",
+      "La iniciativa 1 pertenece a la Perspectiva de Gobernanza; la iniciativa 2 a la Perspectiva de las operaciones; y la iniciativa 3 es viable únicamente si se contacta a AWS Support para aumentar el límite flexible de anidación de OUs a 7 niveles."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "El Director Financiero de ACR Informática está evaluando el cierre definitivo de su centro de datos local para migrar a la nube. Aunque los reportes iniciales muestran un ahorro evidente al dejar de comprar hardware, la junta directiva exige una evaluación financiera completa antes de aprobar el presupuesto. Como Arquitecto, usted presenta un análisis de Costo Total de Propiedad (TCO) y argumenta que la evaluación no debe basarse únicamente en la reducción de costos directos, sino que debe incluir de forma obligatoria los 'beneficios blandos' (indirectos) que impulsarán a la empresa a largo plazo. Según los principios económicos de AWS, ¿Cuál de las siguientes opciones describe correctamente estos 'beneficios blandos'?",
+    options: [
+      "El ahorro financiero de hasta un 75% en el gasto informático al aplicar una estrategia de Instancias Reservadas con pago total anticipado (AURI).",
+      "La eliminación inmediata de los gastos directos de energía eléctrica, enfriamiento físico, paisajería y mantenimiento de los servidores físicos tradicionales.",
+      "La mejora en la productividad de los desarrolladores, el aumento del alcance global y la agilidad de los procesos para aprovechar nuevas oportunidades de mercado.",
+      "El rastreo detallado de la facturación por horas utilizando los Informes de uso y costo en combinación con las alertas de AWS Budgets."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "El equipo de arquitectura de una empresa multinacional está diseñando una plataforma con presencia en múltiples regiones geográficas para asegurar una alta disponibilidad. Durante la planificación, necesitan agrupar sus recursos de AWS para identificar qué componentes pueden administrarse centralmente porque operan a nivel global, y cuáles deberían configurarse de forma independiente en cada región específica. Según la infraestructura de AWS, ¿Cuál de los siguientes pares de servicios se considera de alcance global en lugar de regional?",
+    options: [
+      "Amazon Route 53 y AWS Lambda.",
+      "AWS Identity and Access Management (IAM) y Amazon Route 53.",
+      "Amazon EC2 y AWS Lambda.",
+      "AWS Identity and Access Management (IAM) y Amazon EC2."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "El comité directivo de ACR Informática está descentralizando su área de TI, permitiendo que múltiples departamentos operen sus propias cuentas de AWS de forma autónoma. Sin embargo, para no perder el control, la junta impone tres requisitos estrictos y no negociables. Primero, necesitan una solución que les permita consolidar todas las cuentas independientes para administrar la facturación de manera unificada y centralizada. Segundo, el equipo de Finanzas requiere que los datos de uso y los cargos estimados se entreguen automáticamente y con un nivel de detalle máximo (desglosados por hora o por día) directamente en un bucket de Amazon S3, para luego procesarlos con su propio software de inteligencia de negocios. Tercero, debido a que ACR Informática alojará cargas de trabajo críticas para la continuidad de la empresa, exigen contar con asistencia técnica que garantice un tiempo de respuesta de 15 minutos o menos ante incidentes calificados como críticos. Como Arquitecto de Nube Principal, ¿Qué combinación de servicios y planes debe implementar?",
+    options: [
+      "AWS Trusted Advisor para consolidar la información de las cuentas y reducir el costo total de propiedad (TCO); la Calculadora de precios de AWS para enviar el reporte de uso a S3; y el plan Developer Support con la extensión de soporte crítico.",
+      "AWS Organizations para la administración centralizada de las cuentas; el Informe de uso y costo de AWS (AWS Cost and Usage Report) para entregar los datos diarios o por hora en el bucket de S3; y el plan Enterprise Support para garantizar la respuesta técnica en 15 minutos o menos.",
+      "AWS Organizations para consolidar las cuentas; AWS Cost Explorer para exportar los gráficos de gastos por hora directamente a Amazon S3 y el plan Business Support, que ofrece un tiempo de respuesta crítico de 15 minutos.",
+      "Consolidación de Facturación nativa a través de políticas de AWS Identity and Access Management (IAM); AWS Budgets para alertar sobre el uso por hora y guardar el registro en S3; y el plan Enterprise Support para garantizar el SLA de 15 minutos."
+    ],
+    correctIndex: 1
+  }
+]} />

@@ -1,0 +1,505 @@
+# Guía 02
+## Preguntas con alternativas
+
+<Quiz questions={[
+  {
+    question: "¿Qué comando en PL/SQL se usa para imprimir salida en la consola?",
+    options: [
+      "PRINT",
+      "OUTPUT",
+      "DBMS_OUTPUT.PUT_LINE",
+      "SHOW"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué estructura de control se usa para manejar excepciones en PL/SQL?",
+    options: [
+      "TRY-CATCH",
+      "EXCEPTION",
+      "ERROR HANDLER",
+      "THROW"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cómo se declara una variable en PL/SQL?",
+    options: [
+      "int x",
+      "x NUMBER;",
+      "VARIABLE x AS NUMBER",
+      "LET x NUMBER;"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué palabra clave se utiliza para iniciar un bloque en PL/SQL?",
+    options: [
+      "BEGIN",
+      "START",
+      "OPEN",
+      "INIT"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cómo finalizas un bloque en PL/SQL?",
+    options: [
+      "TERMINATE;",
+      "STOP;",
+      "END;",
+      "CLOSE;"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cómo puedes asignar un valor a una variable en PL/SQL?",
+    options: [
+      "x = 5;",
+      "x := 5;",
+      "x -> 5;",
+      "x SET 5;"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es el tipo de datos adecuado para almacenar un número entero en PL/SQL?",
+    options: [
+      "NUMBER",
+      "INTEGER",
+      "CHAR",
+      "STRING"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál de los siguientes es un bloque anónimo en PL/SQL?",
+    options: [
+      "FUNCTION",
+      "BEGIN-END",
+      "PROCEDURE",
+      "PACKAGE"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué comando se utiliza para iniciar una transacción en PL/SQL?",
+    options: [
+      "START TRANSACTION",
+      "INIT",
+      "BEGIN",
+      "START TRANSACTION;"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué tipo de bucle en PL/SQL se ejecuta mientras una condición sea verdadera?",
+    options: [
+      "REPEAT",
+      "UNTIL",
+      "WHILE",
+      "LOOP"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cómo se manejan los cursores en PL/SQL?",
+    options: [
+      "DECLARE CURSOR",
+      "OPEN-FETCH-CLOSE",
+      "INIT CURSOR",
+      "CURSOR FETCH"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué comando se usa para salir de un bucle en PL/SQL?",
+    options: [
+      "EXIT",
+      "BREAK",
+      "CONTINUE",
+      "RETURN"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál es la palabra clave para definir una función en PL/SQL?",
+    options: [
+      "PROCEDURE",
+      "FUNCTION",
+      "METHOD",
+      "OPERATION"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué operador se utiliza para concatenar cadenas en PL/SQL?",
+    options: [
+      "+",
+      "CONCAT",
+      "||",
+      "&"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué componente en PL/SQL se utiliza para manejar múltiples líneas de SQL?",
+    options: [
+      "FUNCTION",
+      "TRIGGER",
+      "PROCEDURE",
+      "VIEW"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué se utiliza para declarar una excepción predefinida en PL/SQL?",
+    options: [
+      "DEFINE",
+      "EXCEPTION",
+      "SET EXCEPTION",
+      "ASSIGN EXCEPTION"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué palabra clave se usa para declarar una variable local en PL/SQL?",
+    options: [
+      "LET",
+      "DECLARE",
+      "INIT",
+      "DEF"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué comando se utiliza para confirmar una transacción?",
+    options: [
+      "COMMIT",
+      "SAVE",
+      "EXECUTE",
+      "FINALIZE"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué comando se utiliza para deshacer una transacción?",
+    options: [
+      "ROLLBACK",
+      "UNDO",
+      "CANCEL",
+      "ABORT"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué palabra clave se usa para crear un procedimiento almacenado en PL/SQL?",
+    options: [
+      "CREATE PROCEDURE",
+      "DEFINE PROCEDURE",
+      "BUILD PROCEDURE",
+      "INIT PROCEDURE"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cómo se declara una constante en PL/SQL?",
+    options: [
+      "CONSTANT x NUMBER := 10;",
+      "LET x CONSTANT := 10;",
+      "x CONSTANT NUMBER := 10;",
+      "SET CONSTANT x := 10;"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué palabra clave se utiliza para capturar una excepción en PL/SQL?",
+    options: [
+      "THROW",
+      "CATCH",
+      "EXCEPTION",
+      "ERROR"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué comando permite saltar a la siguiente iteración de un bucle en PL/SQL?",
+    options: [
+      "BREAK",
+      "NULL;",
+      "RETURN",
+      "EXIT"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué se utiliza para declarar un cursor explícito en PL/SQL?",
+    options: [
+      "CURSOR",
+      "FETCH",
+      "QUERY",
+      "DECLARE"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué tipo de bloque se usa para definir una transacción en PL/SQL?",
+    options: [
+      "PROCEDURE",
+      "FUNCTION",
+      "ANONYMOUS BLOCK",
+      "PACKAGE"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué tipo de variable se puede usar para retornar valores en un procedimiento?",
+    options: [
+      "CONSTANT",
+      "OUT",
+      "IN",
+      "CURSOR"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué se usa para recorrer un conjunto de resultados en PL/SQL?",
+    options: [
+      "LOOP",
+      "REPEAT",
+      "FOR",
+      "UNTIL"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cómo se captura una excepción en PL/SQL?",
+    options: [
+      "ON ERROR DO",
+      "CATCH EXCEPTION",
+      "BEGIN...EXCEPTION",
+      "HANDLE EXCEPTION"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué comando se usa para eliminar un procedimiento almacenado en PL/SQL?",
+    options: [
+      "DROP PROCEDURE",
+      "REMOVE PROCEDURE",
+      "DELETE PROCEDURE",
+      "UNDEF PROCEDURE"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál es la función de DBMS_OUTPUT.PUT_LINE en PL/SQL?",
+    options: [
+      "Para agregar datos a la tabla",
+      "Para imprimir un mensaje en la consola",
+      "Para realizar cálculos",
+      "Para crear un cursor"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es la manera correcta de crear una tabla en PL/SQL?",
+    options: [
+      "CREATE TABLE nombre_tabla (columna tipo);",
+      "TABLE nombre_tabla (columna tipo);",
+      "DEFINE TABLE nombre_tabla (columna tipo);",
+      "CREATE nombre_tabla (columna tipo);"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué función se utiliza para convertir una cadena a número en PL/SQL?",
+    options: [
+      "TO_NUM",
+      "TO_NUMBER",
+      "CONVERT_NUM",
+      "CAST_TO_NUM"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué se utiliza para realizar un commit en una transacción?",
+    options: [
+      "COMMIT;",
+      "SAVE;",
+      "FINALIZE;",
+      "END;"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál es el operador de igualdad en PL/SQL?",
+    options: [
+      "=",
+      "==",
+      "EQUALS",
+      "EQUAL"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué comando se usa para declarar una excepción en PL/SQL?",
+    options: [
+      "DECLARE",
+      "DEFINE EXCEPTION",
+      "CREATE EXCEPTION",
+      "NEW EXCEPTION"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cómo se usa la función COUNT en una consulta SQL?",
+    options: [
+      "SELECT COUNT(*) FROM tabla;",
+      "SELECT TOTAL FROM tabla;",
+      "SELECT SUM() FROM tabla;",
+      "COUNT ALL FROM tabla;"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál es la forma correcta de definir un cursor en PL/SQL?",
+    options: [
+      "CURSOR nombre_cursor IS SELECT ...;",
+      "DEFINE CURSOR nombre_cursor SELECT ...;",
+      "DECLARE CURSOR nombre_cursor SELECT ...;",
+      "CREATE CURSOR nombre_cursor SELECT ...;"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué se usa para manejar múltiples excepciones en PL/SQL?",
+    options: [
+      "WHEN ... THEN ...",
+      "CASE",
+      "IF ... ELSE",
+      "SELECT CASE"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué comando se utiliza para crear un índice en PL/SQL?",
+    options: [
+      "CREATE INDEX nombre_indice ON tabla(columna);",
+      "DEFINE INDEX nombre_indice ON tabla(columna);",
+      "ADD INDEX nombre_indice ON tabla(columna);",
+      "INDEX nombre_indice ON tabla(columna);"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cómo puedes retornar un valor de una función en PL/SQL?",
+    options: [
+      "RETURN valor;",
+      "SEND valor;",
+      "OUTPUT valor;",
+      "RESULT valor;"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué palabra clave se usa para definir un tipo de dato personalizado en PL/SQL?",
+    options: [
+      "TYPE",
+      "CREATE TYPE",
+      "DEFINE TYPE",
+      "CUSTOM TYPE"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué comando se utiliza para crear un desencadenador (trigger) en PL/SQL?",
+    options: [
+      "CREATE TRIGGER",
+      "DEFINE TRIGGER",
+      "ADD TRIGGER",
+      "INIT TRIGGER"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué se utiliza para obtener la fecha y hora actual en PL/SQL?",
+    options: [
+      "NOW()",
+      "SYSDATE",
+      "GETDATE()",
+      "CURRENT_DATE"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es la manera de obtener el total de filas de una tabla en PL/SQL?",
+    options: [
+      "SELECT COUNT(*) FROM tabla;",
+      "GET TOTAL ROWS FROM tabla;",
+      "SELECT TOTAL FROM tabla;",
+      "COUNT ROWS FROM tabla;"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué comando se utiliza para eliminar datos de una tabla en PL/SQL?",
+    options: [
+      "DELETE FROM tabla;",
+      "REMOVE FROM tabla;",
+      "DROP FROM tabla;",
+      "ERASE FROM tabla;"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál es la forma correcta de usar la función SUBSTR en PL/SQL?",
+    options: [
+      "SUBSTR(cadena, inicio, longitud)",
+      "SUBSTR(cadena, inicio, longitud);",
+      "GETSUB(cadena, inicio, longitud);",
+      "STRSUB(cadena, inicio, longitud);"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué comando se usa para eliminar una tabla en PL/SQL?",
+    options: [
+      "DROP TABLE nombre_tabla;",
+      "REMOVE TABLE nombre_tabla;",
+      "DELETE TABLE nombre_tabla;",
+      "ERASE TABLE nombre_tabla;"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cómo se usa la cláusula WHERE en una consulta en PL/SQL?",
+    options: [
+      "SELECT * FROM tabla WHERE condición;",
+      "GET * FROM tabla WHERE condición;",
+      "FIND * FROM tabla WHERE condición;",
+      "SELECT * WHERE condición FROM tabla;"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué se usa para convertir un número a una cadena en PL/SQL?",
+    options: [
+      "TO_STRING",
+      "TO_CHAR",
+      "CONVERT_STRING",
+      "STRINGIFY"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué comando se usa para crear un sinónimo en PL/SQL?",
+    options: [
+      "CREATE SYNONYM nombre_sinonimo FOR nombre_objeto;",
+      "DEFINE SYNONYM nombre_sinonimo FOR nombre_objeto;",
+      "ADD SYNONYM nombre_sinonimo FOR nombre_objeto;",
+      "INIT SYNONYM nombre_sinonimo FOR nombre_objeto;"
+    ],
+    correctIndex: 0
+  }
+]} />

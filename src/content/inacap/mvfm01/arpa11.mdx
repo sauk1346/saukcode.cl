@@ -1,0 +1,96 @@
+# ARPA 01: Consumo de energía
+
+## Material
+
+- [ARPA1.pdf](/inacap/mvfm01/docs/ARPA11.pdf)
+- [ARPA1_Extension.pdf](/inacap/mvfm01/docs/ARPA11_Extension.pdf)
+
+## Ejercicio 01
+Considera la siguiente infografía del valor total a pagar en un mes determinado según el consumo de energía:
+
+<SmartFigure
+	id="ejercicio-01"
+	src="/inacap/mvfm01/images/fig01.png"
+	alt="Consumo de energía"
+	caption="Consumo de energía"
+	size="medium"
+/>
+
+**¿Cuántos Kwh de energía consumió un cliente si el valor total a pagar fue $8300?**
+
+<Solution>
+1. Se convierte el infograma a tabla, y se determinan los puntos a graficar.
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Cantidad Kwh","Costo mensual","Coordenadas"]}
+  rows={[
+    ["1","1100","A = (1, 1100)"],
+    ["2","1300","B = (2, 1300)"],
+    ["3","1500","C = (3, 1500)"]
+  ]}
+/>
+
+2. Se genera la función $f(x)$ mediante el comando `AjustePolinómico(l1,n)`
+3. Se encuentra el valor de $x$ para $f(x) = 8300$ mediante el comando `Resuelve(f(x) = a)`
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig03.png"
+	alt="Gráfica consumo de energia"
+	caption="Gráfica consumo de energia"
+	lightbox={true}
+	size="large"
+/>
+
+
+$\therefore$ Si el valor total a pagar fue de \$$8300$ , el cliente consumió $37$ Kwh.
+</Solution>
+
+## Ejercicio 02
+Considera la siguiente infografía del valor total a pagar en un mes determinado según el consumo de energía:
+
+<SmartFigure
+	id="ejercicio-02"
+	src="/inacap/mvfm01/images/fig02.png"
+	alt="Consumo de energía"
+	caption="Consumo de energía"
+	size="large"
+/>
+
+**De acuerdo a esta información, y considerando una regularidad lineal, ¿cuál es la expresión algebraica que permite escribir el valor total a pagar en función de los Kwh de energía consumidos?**
+
+<Solution>
+1. Se convierte el infograma a tabla, y se determinan los puntos a graficar.
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Cantidad Kwh","Costo mensual","Coordenadas"]}
+  rows={[
+    ["2","1400","A = (2, 1400)"],
+    ["5","1800","B = (5, 1800)"]
+  ]}
+/>
+
+2. Se genera la función $f(x)$ mediante el comando `AjustePolinómico(l1,n)`
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig04.png"
+	alt="Gráfica consumo de energía"
+	caption="Gráfica consumo de energía"
+	lightbox={true}
+	size="large"
+/>
+
+$\therefore$ La expresión algebraica que permite escribir el valor total a pagar en función de los Kwh consumidos es:
+
+$$
+\begin{aligned}
+    f(x) \approx 133,33 \cdot x + 1133,33
+\end{aligned}
+$$
+
+Donde:
+
+- $f(x)$ es el valor total mensual a pagar.
+- $x$ es la cantidad de Kwh consumida al mes.
+</Solution>

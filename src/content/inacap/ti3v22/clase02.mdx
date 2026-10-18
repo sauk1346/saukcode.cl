@@ -1,0 +1,298 @@
+# Funciones y Procedimientos
+- [Github TI3V22](https://github.com/ebravo930/Inacap_2024_Bases-de-Datos-Estructuradas)
+
+## Funciones
+Existen 2 tipos de funciones: Escalares y con valores de tabla.
+- En SQL Server se utiliza el comando  `FUNCTION`.
+
+### Funciones escalares
+- Devuelven un valor único (número, texto, fecha).
+- Requieren el uso de de `BEGIN...END` para la lógica de la función.
+
+**Ejemplo:** Crear una función que devuelva el cuadrado de un número
+
+```sql
+CREATE FUNCTION Cuadrado(@Numero INT)
+RETURNS INT
+AS
+BEGIN
+    RETURN @Numero * @Numero;
+END;
+```
+1. Se crea una función llamada `Cuadrado`.
+2. La función acepta un parámetro de nombre `@Numero` de tipo `INT`.
+3. La función devuelve el tipo de dato `INT`. Para esto se utiliza la instrucción `RETURNS`.
+4. Se utiliza un alias `AS` para definir la lógica de la función `Cuadrado` (qué hace).
+
+- `RETURNS` especifíca el tipo de dato que la función devolverá.
+- `RETURN` especifica el valor que la función devolverá.
+
+### Funciones con valores de tabla
+- Devuelven un conjunto de datos (una tabla).
+- Se pueden consultar como si fueran tablas normales.
+- Existen 2 categorías.
+
+### Funciones con Valor de Tabla en Línea
+- *Inline Table-Valued Functions*.
+- Son muy eficientes porque son casi como una consulta directa.
+
+#### Características
+- **Simplicidad:** El cuerpo de la función contiene una sola expresión `SELECT`.
+- **No requiere `BEGIN...END`**: Como solo hay una expresión `SELECT`, no se necesita el bloque `BEGIN...SELECT`.
+
+**Ejemplo:** Crear una función que devuelva una tabla con todos los empleados que pertenecen a un departemento específico.
+
+```sql
+CREATE FUNCTION ObtenerEmpleadosPorDepartamento(@DepartamentoID INT)
+RETURNS TABLE
+AS
+RETURN 
+(
+    SELECT Nombre, Cargo
+    FROM Empleados
+    WHERE Departamento_ID = @DepartamentoID
+);
+```
+
+### Funciones con Valor de Tabla de Tipo de Tabla
+- *Multi-Statement Table-Valued Functions*.
+- Son más complejas y flexibles que las funciones en línea.
+- Permiten múltiples operaciones antesd de devolver el conjunto de resultados.
+- Se utilizan cuando es necesario realizar cálculos complejos, insertar una tabla temporal, o cualquier otro tipo de procesamiento de datos.
+
+#### Características
+- **Flexibilidad:** Permiten múltiples sentencias dentro de la función.
+- **Uso de Variables de Tabla:** Se utiliza una tabla como variable temporal, para almacenar y manipular datos antes de devolverlos.
+- **Requiere `BEGIN...END`:** Al tener múltiples sentencias SQL, el cuerpo de la función debe estar dentro de un bloque `BEGIN...END`.
+- **Menor eficiencia:** Pueden ser menos eficientes en términos de rendimiento.
+
+**Ejemplo:** Crear una función que devuelva una tabla con todos los empleados que pertenecen a un departemento específico.
+
+```sql
+CREATE FUNCTION ObtenerEmpleadosPorDepartamento(@DepartamentoID INT)
+RETURNS @Resultado TABLE
+(
+    Nombre NVARCHAR(100),
+    Cargo NVARCHAR(100)
+)
+AS
+BEGIN
+    INSERT INTO @Resultado
+    SELECT Nombre, Cargo
+    FROM Empleados
+    WHERE DepartamentoID = @DepartamentoID;
+    
+    RETURN;
+END;
+```
+- Es el mismo ejemplo, pero ahora implementada en una 'funcion de tipo de tabla'.
+
+## Procedimientos
+- Son un conjuntos de instrucciones que se pueden almacenar para ejecutar reiteradas veces posteriores.
+- Esto permite reutilizar código, mejorar rendimiento y la seguridad en la base de datos.
+- En SQL Server se utiliza el comando `PROCEDURE`.
+
+**Ejemplo1:** 
+
+- Sea la tabla *Empleado* con los atributos *Nombre*, *Cargo*, *Departamento_ID*, *FechaContratacion*.
+- Crear un procedimiento que permita ingresar un nuevo registro y devuelva el ID del empreado recién registrado.
+
+```sql
+CREATE PROCEDURE InsertarEmpleado
+	@Nombre NVARCHAR(100),
+	@Cargo NVARCHAR(50),
+	@DepartamentoID INT,
+	@FechaContratacion DATE
+AS
+BEGIN
+	-- Insertar un nuevo registro
+	INSERT INTO Empleados (Nombre, Cargo, DepartamentoID, FechaContratacion)
+	VALUES (@Nombre, @Cargo, @DepartamentoID, @FechaContratacion);
+
+	-- Devolver el ID del nuevo empleado
+	DECLARE @NuevoEmpleadoID INT;
+	SET @NuevoEmpleadoID = SCOPE_IDENTITY();
+
+	SELECT @NuevoEmpleadoID AS EmpleadoID;
+END;
+```
+
+**Ejemplo2:** Ejecutar el procedimiento creado para ingresar al nuevo empleado:
+- Juan Perez, Desarrollador, Departamento ID 3, 2024-08-16.
+
+```sql
+DECLARE @NuevoID INT;
+
+EXEC dbo.InsertarEmpleado 
+	@Nombre = 'Juan Pérez', 
+	@Cargo = 'Desarrollador',
+	@DepartamentoID = 3, 
+	@FechaContratacion = '2024-08-16';
+
+SELECT @NuevoID;
+```
+
+### Características
+
+- **Reutilización de código:**
+- **Uso de parámetros:** Similar a las funciones, aceptan parámetros de entrada y salida. Esto permite recibir valores al ejecutarse y devolver resultados.
+- **Seguridad:** Es posible controlar los permisos para ejecutar un procedimiento, limitando el acceso a las tablas. Solo el código pre-aprobado será ejecutado.
+- **Mejora del rendimiento:** 
+
+# Ejercicios
+
+Crear la base de datos `Clase02_Ejercicios` utilizando el siguiente script:
+
+```sql
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = N'Clase02_Ejercicios')
+BEGIN
+	CREATE DATABASE Clase02_Ejercicios;
+END;
+
+USE Clase02_Ejercicios;
+
+CREATE TABLE Estudiantes (
+	ID INT IDENTITY PRIMARY KEY,
+	Nombre VARCHAR(100) NOT NULL,
+	Edad INT,
+	FechaIngreso DATE
+);
+
+INSERT INTO Estudiantes (Nombre, Edad, FechaIngreso) VALUES
+	('Juan Pérez', 20, '2022-03-15'),
+	('Ana López', 22, '2022-05-21'),
+	('Luis Martínez', 17, '2022-01-11'),
+	('Carmen Ríos', 19, '2022-02-07'),
+	('Carlos Sánchez', 23, '2022-08-25'),
+	('Lucía Fernández', 21, '2022-09-30'),
+	('Diego Alonso', 18, '2022-04-14'),
+	('Isabel Mora', 25, '2022-07-19');
+```
+
+## Ejercicio 01
+**Creación de una función:** Crea una función `fn_CantidadEstudiantes` que devuelva el número total de estudiantes.
+
+<Solution>
+```sql
+CREATE FUNCTION fn_CantidadEstudiantes()
+RETURNS INT
+AS
+BEGIN
+	DECLARE @numEstudiantes INT;
+	SELECT @numEstudiantes = COUNT(*) FROM Estudiantes;
+	RETURN @numEstudiantes;
+END;
+```
+</Solution>
+
+## Ejercicio 02
+**Uso de la función:** Utiliza la función creada para mostrar el total de estudiantes.
+
+<Solution>
+```sql
+SELECT dbo.fn_CantidadEstudiantes() AS TotalEstudiantes;
+```
+</Solution>
+
+## Ejercicio 03
+**Creación de un procedimiento almacenado para actualizar edad:** Crea un procedimiento almacenado `sp_ActualizarEdad` que permita actualizar la edad de un estudiante dado su ID.
+
+<Solution>
+```sql
+CREATE PROCEDURE sp_ActualizarEdad
+	@EstudianteID INT, 
+	@NuevaEdad INT
+AS
+BEGIN
+	UPDATE Estudiantes 
+	SET Edad = @NuevaEdad 
+	WHERE ID = @EstudianteID;
+END;
+```
+</Solution>
+
+## Ejercicio 04
+**Uso del procedicimiento almacenado para actualizar edad:** Actualiza la edad del estudiante con ID 1, a 22 años usando el procedimiento `sp_ActualizarEdad`.
+
+<Solution>
+```sql
+EXEC sp_ActualizarEdad 
+	@EstudianteID = 1,
+	@NuevaEdad = 22;
+```
+</Solution>
+
+## Ejercicio 05
+**Creación de índices sobre múltiples columnas:** Crea un índice compuesto en las columnas `Nombre` y `FechaIngreso` para optimizar las consultas que usan estos campos.
+
+<Solution>
+```sql
+CREATE NONCLUSTERED INDEX ix_NombreFechaIngreso
+ON Estudiantes(Nombre, FechaIngreso);
+```
+</Solution>
+
+## Ejercicio 06
+**Consulta avanzada de estudiantes:** Escribe una consulta SQL que liste todos los estudiantes menores de 25 años, ordenados por fecha de ingreso de manera ascendente.
+
+<Solution>
+```sql
+SELECT *
+FROM Estudiantes
+WHERE Edad < 25
+ORDER BY FechaIngreso ASC;
+```
+</Solution>
+
+## Ejercicio 07
+**Actualización de información:** Actualiza el registro de los estudiantes para incrementar su edad en un año si han ingresado antes del año 2023.
+
+<Solution>
+```sql
+UPDATE Estudiantes
+SET Edad = Edad + 1
+WHERE YEAR(FechaIngreso) < 2023;
+```
+</Solution>
+
+## Ejercicio 08
+**Eliminar estudiantes:** Elimina de la tabla `Estudiantes` aquellos que tienen más de 30 años.
+
+<Solution>
+```sql
+DELETE FROM Estudiantes
+WHERE Edad > 30;
+```
+</Solution>
+
+## Ejercicio 09
+**Creación de vistas complejas:** Crea una vista llamada `VistaEstudiantesActivos` que muestre solamente los estudiantes que tienen menos de 30 años y ordena los resultados por edad de manera descendente.
+
+<Solution>
+```sql
+CREATE VIEW VistaEstudiantesActivos AS
+	SELECT *
+	FROM Estudiantes
+	WHERE Edad < 30;
+
+SELECT *
+FROM VistaEstudiantesActivos
+ORDER BY Edad DESC;
+```
+</Solution>
+
+## Ejercicio 10
+**Función para calcular la edad mínima:** Desarrolla una función llamada `fn_EdadMinimaEstudiantes` que devuelva la edad mínima de los estudiantes.
+
+<Solution>
+```sql
+CREATE FUNCTION fn_EdadMinimaEstudiantes()
+RETURNS INT
+AS
+BEGIN
+	DECLARE @minEdad
+	SELECT @minEdad = MIN(Edad) FROM Estudiantes
+	RETURN @minEdad;
+END;
+```
+</Solution>

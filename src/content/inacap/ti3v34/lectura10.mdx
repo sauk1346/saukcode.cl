@@ -1,0 +1,260 @@
+# Matriz de Riesgo y políticas de prevención de riesgos
+
+## Matriz de Riesgo
+Es una herramienta clave para gestionar y priorizar los riesgos de seguridad de una organización.
+
+### Creación
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Paso de Creación', 'Descripción']}
+	rows={[
+		[
+			'**Identificación de activos**',
+			'Listar los activos: identificar todos los activos relevantes, como software, hardware, datos, y personal'
+		],
+		[
+			'**Clasificación de activos**',
+			'Agrupar los activos por categoría y criticidad (ej: críticos, sensibles, no críticos)'
+		],
+		[
+			'**Identificación de vulnerabilidades**',
+			'Determinar las vulnerabilidades existentes en cada activo. Utilizar bases de datos de vulnerabilidades como CVE, NVD, OWASP'
+		],
+		[
+			'**Evaluación de impacto**',
+			'[Impacto alto: compromiso de la operación crítica pérdida significativa de datos,Impacto medio: afecta la operación pero no es catastrófico,Impacto bajo: Efecto menor en la operación y datos]'
+		],
+		[
+			'**Evaluación de probabilidad**',
+			'[Probabilidad alta: vulnerabilidad es fácil de explotar y tiene una alta probabilidad de ocurrencia,Probabilidad media: vulnerabilidad es explotable bajo ciertas condiciones,Probabilidad baja: vulnerabilidad es difícil de explotar]'
+		],
+		[
+			'**Generación de la matriz de riesgo**',
+			'[Crear una tabla que cruce la probabilidad y el impacto para cada activo,Asignar un nivel de riesgo (bajo medio alto) según la intersección de probabilidad e impacto]'
+		]
+	]}
+/>
+
+### Ejemplo Matriz de riesgo terminada
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Activo', 'Vulnerabilidad', 'Impacto', 'Probabilidad', 'Nivel de riesgo']}
+	rows={[
+		[
+			'**Servidor de base de datos**',
+			'Inyección SQL',
+			'Alto',
+			'Alta',
+			'Alto'
+		],
+		[
+			'**Red corporativa**',
+			'Ataque Man-in-the-Middle',
+			'Medio',
+			'Media',
+			'Medio'
+		],
+		[
+			'**Aplicación web**',
+			'XSS',
+			'Alto',
+			'Media',
+			'Alto'
+		],
+		[
+			'**Dispositivo de red**',
+			'Configuración insegura',
+			'Bajo',
+			'Alta',
+			'Medio'
+		],
+		[
+			'**Usuarios**',
+			'Phishing',
+			'Medio',
+			'Alta',
+			'Alto'
+		],
+		[
+			'**Sistemas de control**',
+			'Escalada de privilegios',
+			'Alto',
+			'Baja',
+			'Medio'
+		]
+	]}
+/>
+
+### ¿Cómo se intepreta una matriz de riesgo?
+
+1. **Riesgo alto:** Requiere acciones inmediatas, como parches, actualizaciones o medidas de mitigación urgentes
+2. **Riesgo medio:** Necesita un plan de acción a corto plazo, incluyendo posibles cambios en la configuración o mejoras en la seguridad
+3. **Riesgo bajo:** Puede ser monitorizado y abordado en el ciclo de mantenimiento regular
+
+### ¿Cuáles son las acciones posteriores?
+
+1. **Mitigación:** Se deben implementar soluciones para reducir el riesgo (parches, firewalls, etc.)
+2. **Monitoreo:** Requiere establecer sistemas de monitoreo continuo para detectar y responder a incidentes
+3. **Revisión regular:** Implica actualizar la matriz de riesgo periódicamente para reflejar nuevos activos, vulnerabilidades y cambios en el entorno
+
+## Identificación y evaluación de vulnerabilidades mediante CVSS
+
+*Common Vulnerability Scoring System* (CVSS) es una herramienta estándar para evaluar la gravedad de las vulnerabilidades de seguridad. Utilizarla hace posible desarrollar políticas de prevención de riesgos efectivas para minimizar el impacto de estas vulnerabilidades.
+
+### Fundamentos de CVSS
+
+1. **Métricas Base:** Representan las características intrínsecas de una vulnerabilidad que no cambian con el tiempo ni con el entorno de implementación
+    - **Vectores de Ataque:** cómo una vulnerabilidad puede ser explotada
+    - **Complejidad del Ataque:** dificultad de explotar la vulnerabilidad
+    - **Privilegios Requeridos:** nivel de acceso necesario para explotar la vulnerabilidad
+    - **Interacción del Usuario:** indica si es necesaria la interacción del usuario para que la vulnerabilidad sea explotada
+    - **Alcance:** describe si la vulnerabilidad puede afectar componentes más alla de su propio entorno de seguridad
+    - **Impacto:** evalua si el impacto potencial en la confidencialidad, integridad y disponibilidad
+2. **Métricas Temporales:** Reflejan las características de una vulnerabilidad que pueden cambiar con el tiempo, tales como la disponibilidad de parches o soluciones alternativas
+    - **Exploit Code Maturity:** evalúa la disponibilidad de código de explotación (disponible, teórico, funcional)
+    - **Remediation Level:** indica el nivel de correción disponible para la vulnerabilidad (ninguna, solución temporal, parche oficial)
+    - **Report Confidence:** mide la confianza en la existencia y detalles técnicos de la vulnerabilidad (desconocido, razonable, confirmado)
+3. **Métricas Ambientales:** permiten personalizar la puntuación CVSS según las características específicas del entorno de la organización
+    - **Confidentiality Requirement:** la importancia de la confidencialidad en el entorno específico (bajo, medio, alto)
+    - **Integrity Requirement:** la importancia de la integridad en el entorno específico (bajo, medio, alto)
+    - **Availability Requirement:** la importancia de la disponibilidad en el entorno específico (bajo, medio, alto)
+    - **Modified Base Metrics:** permite ajustar las métricas en función de las condiciones específicas del entorno
+4. **Vectores y fórmulas:** CVSS utiliza un vercto de cadena que representa una combinación de todas las métricas mencionadas anteriormente. Este vector se utiliza para calcular una puntuación numérica que indica la severidad de la vulnerabilidad. La puntuación CVSS se expresa en una escala 0 (baja severidad) a 10 (máxima severidad) 
+5. **Consistencia y comparabilidad:** CVSS proporciona una metodología estándar que asegura consistencia en la evaluación de vulnerabilidades, lo cual facilita la comparación entre diferentes vulnerabilidades y contextos
+
+### Puntuaciones CVSS
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Nivel', 'Rango']}
+	rows={[
+		['**Bajo**', '0.1 - 3.9'],
+		['**Medio**', '4.0 - 6.9'],
+		['**Alto**', '7.0 - 8.9'],
+		['**Crítico**', '9.0 - 10.0']
+	]}
+/>
+
+## Políticas de Prevención de Riesgos
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Políticas', 'Descripción']}
+	rows={[
+		[
+			'**Gestión de Vulnerabilidades**',
+			'[Escaneo regular,Actualizaciones y parches,Monitoreo de CVE]'
+		],
+		[
+			'**Control de Acceso**',
+			'[Principio de menor privilegio,Autenticación multifactor (MFA),Revisión de acceso]'
+		],
+		[
+			'**Resiliencia del Sistema**',
+			'[Backups regulares,Segmentación de redes]'
+		]
+	]}
+/>
+
+## Políticas basadas en CVSS
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Nivel', 'Políticas']}
+	rows={[
+		[
+			'Crítico (9.0 - 10.0)',
+			'[**Parcheo Inmediato:** Implementar parches y actualizaciones dentro de 24 horas,**Aislamiento de Sistemas:** Aislar sistemas afectados si no es posible parchear de inmediato,**Implementación de Mitigaciones:** Aplicar medidas temporales de mitigación hasta que los parches estén disponibles]'
+		],
+		[
+			'Alto (7.0 - 8.9)',
+			'[**Parcheo Rápido:** Aplicar parches en un plazo de 72 horas,**Evaluación de Impacto:** Realizar una evaluación de impacto para determinar las posibles consecuencias de la explotación,**Restricciones de Acceso:** Limitar el acceso a sistemas y servicios vulnerables]'
+		],
+		[
+			'Medio (4.0 - 6.9)',
+			'[**Parcheo Programado:** Incluir en el ciclo de parcheo regular dentro de un período de 1 a 2 semanas,**Monitoreo:** Aumentar la vigilancia en los sistemas afectados hasta que se apliquen los parches]'
+		],
+		[
+			'Bajo (1.0 - 3.9)',
+			'[**Parcheo en Mantenimiento Regular:** Abordar durante el mantenimiento regular del sistema,**Documentación y Seguimiento:** Documentar las vulnerabilidades para futuras referencias y revisiones]'
+		]
+	]}
+/>
+
+## Políticas Complementarias
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Políticas', 'Descripción']}
+	rows={[
+		[
+			'**Capacitación y conciencia**',
+			'[**Formación continua:** Ofrecer capacitación regular en seguridad para el personal,**Simulaciones de phishing:** Realizar simulaciones para concienciar sobre técnicas de ingeniería social]'
+		],
+		[
+			'**Plan de respuesta a incidentes**',
+			'[**Protocolos claros:** Definir procedimientos claros para la respuesta a incidentes de seguridad,**Equipos de respuesta:** Establecer un equipo dedicado para la gestión de incidentes]'
+		],
+		[
+			'**Auditorías y revisiones**',
+			'[**Revisiones periódicas:** Realizar auditorías de seguridad regulares para identificar y mitigar riesgos emergentes,**Mejora continua:** Adaptar políticas basadas en los resultados de auditorías y análisis de vulnerabilidades]'
+		]
+	]}
+/>
+
+# Actividad de Práctica 07
+
+<Quiz questions={[
+    {
+        question: "¿Cuál es el primer paso para generar una matriz de riesgo?",
+        options: [
+            "Evaluar el impacto de las vulnerabilidades",
+            "Identificar los activos",
+            "Evaluar la probabilidad de las vulnerabilidades",
+            "Implementar las medidas de mitigación"
+        ],
+        correctIndex: 1
+    },
+        {
+        question: "¿Qué nivel de riesgo corresponde a una vulnerabilidad con impacto alto y probabilidad alta?",
+        options: [
+            "Bajo",
+            "Medio",
+            "Alto",
+            "Crítico"
+        ],
+        correctIndex: 3
+    },
+        {
+        question: "Según CVSS, una vulnerabilidad con una puntuación de 8.5 se clasifica como:",
+        options: [
+            "Baja",
+            "Media",
+            "Alta",
+            "Crítica"
+        ],
+        correctIndex: 2
+    },
+        {
+        question: "¿Qué acción se debe tomar para una vulnerabilidad crítica (CVSS 9.0 - 10.0)?",
+        options: [
+            "Parchear en el ciclo de mantenimiento regular",
+            "Implementar parches dentro de 24 horas",
+            "Realizar una evaluación de impacto",
+            "Limitar el acceso a sistemas vulnerables"
+        ],
+        correctIndex: 1
+    },
+        {
+        question: "¿Qué herramienta estándar se utiliza para evaluar la gravedad de las vulnerabilidades de seguridad?",
+        options: [
+            "OWASP",
+            "CVE",
+            "NVD",
+            "CVSS"
+        ],
+        correctIndex: 3
+    }
+]} />

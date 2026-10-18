@@ -1,0 +1,119 @@
+# ARPA 01
+
+**Material**
+- [ARPA 1: De rectas secantes a recta tangente](docs/unit02-arpa01.pdf)
+
+## De rectas secantes a recta tangente
+
+En la siguiente gráfica se muestra la función cuadrática:
+
+$$
+f(x) = -0.1x^2+2x+0.4
+$$
+
+de color azul, y varias rectas que pasan por el punto $A$.
+
+<SmartFigure
+    id="fig169"
+    src="/inacap/cvcd01/images/fig169.png"
+	alt="Gráfica"
+	caption="Gráfica"
+	size="large"
+/>
+
+¿Cuál es la pendiente de la recta tangente $L$ que pasa por el punto $A$?
+
+<Solution title="Solución ARPA 1">
+
+**Paso 1: Modelo f(x)**
+- Se grafica el modelo $f(x)=-0.1x^2+2x+0.4$
+
+<SmartFigure
+    id="fig170"
+    src="/inacap/cvcd01/images/fig170.png"
+	alt="Gráfico f(x)"
+	caption="Gráfico f(x)"
+	lightbox={true}
+    size="large"
+/>
+---
+
+**Paso 2: Punto $A$**
+- Utilizando el modelo $f(x)$ y el valor de $x=2$ (figura 1), se grafica el punto $A=(2, f(2))$
+
+<SmartFigure
+    id="fig171"
+    src="/inacap/cvcd01/images/fig171.png"
+	alt="Valor de punto A"
+	caption="Valor de punto A"
+    size="large"
+/>
+
+<SmartFigure
+    id="fig172"
+    src="/inacap/cvcd01/images/fig172.png"
+	alt="Gráfico f(x) y punto A"
+	caption="Gráfico f(x) y punto A"
+	lightbox={true}
+    size="large"
+/>
+
+---
+
+**Paso 3: recta tangente $L$**
+- Se obtiene la recta $L$, la cual es tangente a $f(x)$ en el punto A, utilizando la instrucción `Tangente(<punto>, <función>)`
+
+<SmartFigure
+    id="fig173"
+    src="/inacap/cvcd01/images/fig173.png"
+	alt="Recta tangente L"
+	caption="Recta tangente L"
+    size="large"
+/>
+
+<SmartFigure
+    id="fig174"
+    src="/inacap/cvcd01/images/fig174.png"
+	alt="Gráfico recta tangente L"
+	caption="Gráfico recta tangente L"
+	lightbox={true}
+    size="large"
+/>
+
+---
+
+**Paso 4: Pendiente de recta L**
+- Se puede obtener la pendiente de 2 formas:
+    - Cualitativa (observando el modelo de la recta L)
+    - Utilizando el comando de GeoGebra `Pendiente(<recta>)`
+
+<P indent={2}>
+a. **Forma cualitativa**
+</P>
+$$
+recta: y = m\cdot x + n
+$$
+<P indent={3}>
+donde $m$ es la pendiente. Entonces:
+</P>
+$$
+L: y=1.6x+0.8
+$$
+<P indent={3}>
+La pendiente de la recta $L$ es $1.6$
+</P>
+<P indent={2}>
+b. **Comando de Geogebra**
+</P>
+<SmartFigure
+    id="fig175"
+    src="/inacap/cvcd01/images/fig175.png"
+	alt="Pendiente de la recta L"
+	caption="Pendiente de la recta L"
+    size="large"
+/>
+
+<P indent={2}>
+$\therefore$ La pendiente de la recta tangente $L$ que pasa por el punto $A$ es $\boxed{1.6}$
+</P>
+</Solution>

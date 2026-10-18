@@ -1,0 +1,149 @@
+# Patrones de diseño de software
+
+Los patrones de diseño son soluciones reutilizables para problemas comunes en el desarrollo de software.
+
+## 1. Patrón Singleton
+Restringe la creación a un único objeto de la creación de objetos pertenecientes a una clase y asegura que solo haya esta instancia única
+
+Además de garantizar que una clase solo tenga una instancia, proporciona un punto de acceso global a ella.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Característica", "Descripción"]}
+    rows={[
+        [
+            "**Qué hace**",
+            "Garantiza que una clase tenga solo una instancia y proporciona un punto global de acceso a ella"
+        ],
+        [
+            "**Cuando usarlo**",
+            "Cuando se necesita exactamente una instancia global de una clase, como en manejadores de configuración o logging"
+        ],
+        [
+            "**Ventajas**",
+            "Fácil acceso a la instancia: controla el acceso centralizado"
+        ],
+        [
+            "**Desventajas**",
+            "Puede dificultar las pruebas unitarias y romper el principio de responsabilidad única"
+        ]
+    ]}
+/>
+
+## 2. Patrón Factory
+Consiste en utilizar una clase constructora con unos cuantos métodos definidos y otros abstractos.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Característica", "Descripción"]}
+    rows={[
+        [
+            "**Qué hace**",
+            "Proporciona una interfaz para crear objetos sin especificar las clases concretas que se instanciarán"
+        ],
+        [
+            "**Cuando usarlo**",
+            "Cuando el proceso de creación de objetos es complejo o depende de condiciones que varían en tiempo de ejecución"
+        ],
+        [
+            "**Ventajas**",
+            "Facilita la extensiblidad y abstrae el proceso de creación"
+        ],
+        [
+            "**Desventajas**",
+            "Puede aumentar la complejidad del código debido a las múltiples subclases o métodos de fábrica"
+        ]
+    ]}
+/>
+
+## 3. Patrón Observer
+Permite definir un mecanismo de suscripción para notificar a varios objetos sobre cualquier evento que le suceda al objeto que están observando
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Característica", "Descripción"]}
+    rows={[
+        [
+            "**Qué hace**",
+            "Define una relación de dependencia 1 a muchos, notificando a todos los dependientes cuando cambia un estado"
+        ],
+        [
+            "**Cuando usarlo**",
+            "Cuando varioa objetos necesitan estar informados de cambios en el estado de otro objeto, como sistema de eventos"
+        ],
+        [
+            "**Ventajas**",
+            "Desacopla emisores y receptores; Simplifica la comunicación entre objetos"
+        ],
+        [
+            "**Desventajas**",
+            "Puede generar problemas de rendimiento si hay demasiados observadores o si no se gestionan adecuadamente"
+        ]
+    ]}
+/>
+
+## 4. Patrón Adapter
+Es un patrón de diseño estructural que permite la colaboración entre objetos con interfaces incompatibles.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Característica", "Descripción"]}
+    rows={[
+        [
+            "**Qué hace**",
+            "Permite que dos intefaces incompatibles trabajen juntas al envolver una clase en otra"
+        ],
+        [
+            "**Cuando usarlo**",
+            "Cuando necesitas usar una clase existente cuya interfaz no coincide con la requerida por el cliente"
+        ],
+        [
+            "**Ventajas**",
+            "Facilita la reutilización de códico existente sin modificarlo; Mejora la interoperabilidad requerida por el cliente"
+        ],
+        [
+            "**Desventajas**",
+            "Puede aumentar la complejidad si se abusa o si hay múltiples adaptadores necesarios"
+        ]
+    ]}
+/>
+
+## 5. Ejemplos de casos prácticos
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Pratrón", "Ejemplo"]}
+    rows={[
+        [
+            "**Singleton**",
+            "Controladore de base de datos único en una aplicación"
+        ],
+        [
+            "**Factory**",
+            "Creación de diferentes tipos de documentos \\(PDF, WORD\\) seǵun las necesidades del usuario"
+        ],
+        [
+            "**Observer**",
+            "Implementación de un sistema de notificaciones en una aplicación de mensajería"
+        ],
+        [
+            "**Adapter**",
+            "Integrar una biblioteca de terceros con una API que usa un formato diferente"
+        ]
+    ]}
+/>
+
+# Actividad de Práctica 07
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es la principal ventaja del patrón singleton?",
+		options: [
+			"Control centralizado de recursos compartidos",
+			"Incrementa la complejidad del código",
+			"Facilida la implementación de sistemas en tiempo real",
+			"Traduce la interfaz de una clase a otra esperada por el cliente"
+		],
+		correctIndex: 0
+	},
+]} />

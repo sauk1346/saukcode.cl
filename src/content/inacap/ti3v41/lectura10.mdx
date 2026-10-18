@@ -1,0 +1,266 @@
+# Seguridad ante todo: Autenticación JWT
+
+En una aplicación web moderna, no basta con implementar funcionalidades. Si los datos pueden ser accedidos, modificados o eliminados sin restricciones, todo el sistema queda expuesto a vulneraciones. La mayoría de las aplicaciones actuales desde redes sociales y sistemas de compras hasta *app* de reservas dependen de API RESTful para intercambiar información entre cliente y servidor.
+
+Estas API exponen funcionalidades del servidor mediante URL públicas, lo que significa que cualquier usuario que conozca la dirección podría intentar interactuar con los recursos sin autorización. Esto hace que **el control de accesos** sea esencial para proteger la integridad de la información y la confianza del usuario.
+
+## 1. El desafío stateless de REST
+
+REST impone un desafío particular: al ser *stateless*, el servidor no mantiene sesiones activas entre solicitudes. No se puede confiar en la “memoria” del servidor para identificar a los usuarios. Cada solicitud debe ser **autónoma**, incluyendo su propia “prueba de identidad”.
+
+Este diseño aumenta la escalabilidad y flexibilidad de las aplicaciones, pero también exige implementar estrategias sólidas de seguridad para evitar accesos indebidos.
+
+## 2. Arquitectura REST y stateless
+
+- REST (Representational State Transfer) propone una forma estandarizada de crear servicios web basados en recursos y operaciones HTTP.
+- A diferencia de las aplicaciones tradicionales que dependen de sesiones y cookies, las API RESTful no mantienen estado.
+- Esto significa que cada solicitud del cliente debe contener toda la información necesaria para que el servidor pueda procesarla de manera independiente, haciendo que cada interacción sea autónoma y segura si se implementan los mecanismos correctos.
+
+### Entornos Ideales para REST
+
+<SmartTable
+    tableLayout="fixed"
+    headers={["Entornos", "Descripción"]}
+    rows={[
+        [
+            "**Aplicaciones móviles**",
+            "Que generalmente no usan cookies"
+        ],
+        [
+            "**Aplicaciones de una sola página (SPA)**",
+            "Como las desarrolladoras con React o Angular"
+        ],
+        [
+            "**Sistemas distribuidos o basados en microservicios**",
+            "Donde la escalabilidad y la independencia de componentes son críticas"
+        ],
+    ]}
+/>
+
+### Seguridad en REST: el papel de JWT
+Para que REST funcione de manera segura, se necesitan mecanismos de autenticación y autorización portables y reutilizables. Aquí es donde entra **JWT (JSON Web Token)**
+
+- Permite que cada solicitud incluya un token firmado que el servidor puede verificar sin mantener sesiones activas.
+- Facilita la autenticación en entornos distribuidos, microservicios y aplicaciones móviles.
+- Permite implementar control de accesos granular, asegurando que cada usuario pueda realizar únicamente las acciones autorizadas.
+
+
+## 3. JSON Web Tokens
+Es un **estándar abierto (RFC 7519)** diseñado para la transmisión segura de información entre dos partes como un objeto JSON compacto, codificado y firmado digitalmente.
+
+### ¿Qué contiene un JWT?
+Está compuesto por tres secciones, separadas por puntos (.)
+
+<TerminalOutput>
+{`<HEADER>.<PAYLOAD>.<SIGNATURE>`}
+</TerminalOutput>
+
+1. **Header (Encabezado):** Indica el tipo de token y el algoritmo de firma que se usa para protegerlo, por ejemplo:
+    ```json
+    { 
+      "alg": "HS256", 
+      "typ": "JWT" 
+    } 
+    ```
+
+    - **alg:** algoritmo de firma (HS256, RS256, etc)
+    - **typ:** tipo de token (siempre JWT)
+
+2. **Payload (Carga últil):** Contiene la información que se requiere transmitir, como:
+
+    - Identificador de usuario (`user_id`)
+    - Nombre de usuario (`username`)
+    - Tiempo de expiración (`exp`)
+    - Roles o permisos
+
+    ```json
+    { 
+        "user_id": 3, 
+        "username": "carlos", 
+        "exp": 1724500000 
+    } 
+    ```
+
+3. **Signature (firma):** Garantiza que el token no ha sido alterado. Se genera usando:
+
+    - El contenido del header y payload.
+    - Una **clave secreta del servidor**.
+    - El algoritmo definido en el header.
+
+    El servidor utliza esta firma para verificar la integridad del token antes de autorizar cualquier solicitud.
+
+### ¿Cómo se usa un JWT?
+
+- El usuario se autentica enviando su **nombre de usuario y contraseña**.
+- El servidor valida las credenciales y responde con un **token JWT**.
+- El token se almacena en el *frontend* (por ejemplo, `localStorage` o `sessionStorage`)
+- El servidor verifica la **firma** del token y autoriza o rechaza el acceso según la información del *payload*.
+
+## 4. Autenticación JWT paso a paso
+Django REST framework (DRF) no incluye JWT de forma nativa, pero existen **extensiones populares**, como `djangorestframework-simplejwt`, que facilitan su integración. 
+
+### Paso 1: Instalación
+Instala la librería con pip
+
+```sh
+pip install djangorestframework-simplejwt
+```
+
+### Paso 2: Condiguración en settings.py
+Agrega la clase de autenticación JWT con la configuración de DRF:
+
+```python
+REST_FRAMEWORK = { 
+    'DEFAULT_AUTHENTICATION_CLASSES': ( 
+       'rest_framework_simplejwt.authentication.JWTAuthentication', 
+    ) 
+} 
+```
+
+Esto indica que todas las solicitudes a la API deben usar JWT para autenticación.
+
+### Paso 3: Configuración de rutas en urls.py
+Importa las vistas de SimpleJWT y define las rutas necesarias:
+
+```python
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView 
+from django.urls import path 
+
+urlpatterns = [ 
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'), 
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'), 
+] 
+```
+
+- `/api/token/`: permite obtener un token enviando usuario y contraseña.
+- `/api/token/refresh/`: permite refrescar un token antes de que expire.
+
+### Paso 4: Flujo de uso de JWT
+
+- El usuario envía sus credenciales a `/api/token/` y recibe un **token de acceso** y un **token de refresco**
+- El **token de acceso** se usa en el encabezado `Authorization` para autenticar solicitudes a la API
+- Antes de que expire el token de acceso, se puede usar el **token de refresco** en `/api/token/refresh/` para obtener uno nuevo sin necesidad de que el usuario vuelva a autenticarse
+
+## 5. Protegiendo recursos con permisos en DRF
+Una vez que la **autenticación con JWT** está implementada, es fundamental controlar **quién puede acceder a cada recurso**. Para ello, DRF permite definir **clases de permisos** en tus vistas o `ViewSets`. 
+
+### Uso de IsAuthenticated
+La clase de permisos más común es `IsAuthenticated`, que garantiza que solo **usuarios autenticados** puedan acceder a la vista:
+
+```python
+from rest_framework.permissions import IsAuthenticated 
+from rest_framework import viewsets 
+from .models import Producto 
+from .serializers import ProductoSerializer 
+
+class ProductoViewSet(viewsets.ModelViewSet): 
+    queryset = Producto.objects.all() 
+    serializer_class = ProductoSerializer 
+    permission_classes = [IsAuthenticated]
+```
+
+- Cualquier intento de acceder a la vista **sin un token válido** será rechazado.
+- El servidor devolverá un **error 401 Unauthorized** para solicitudes no autenticadas.
+
+### Beneficios
+
+- Protege los datos sensibles de la API
+- Funciona de manera combinada con JWT: el token valida la identidad del usuario, y el permiso valida que tenga acceso al recurso.
+- Permite escalar la seguridad usando otras clases de permisos más avanzadas. Por ejemplo, `IsAdminUser`, `DjangoModelPermissions` o permisos personalizados.
+
+### Buenas prácticas en el uso de JWT
+
+<SmartTable
+    tableLayout="fixed"
+    headers={["Prácticas", "Descripción"]}
+    rows={[
+        [
+            "**Usar HTTP siempre**",
+            "Aunque el toke esté firmado, puede ser interceptado si la conexión no es segura"
+        ],
+        [
+            "**No almacenar tokens en cookies sin protección**",
+            "Para evitar ataques de tipo CSRF"
+        ],
+        [
+            "**Mantener el access token con vida útil corta**",
+            "Por ejemplo 5 a 15 minutos"
+        ],
+        [
+            "**Reutilizar el refresh token**",
+            "Para extender la sesión sin tener que veolver a iniciar sesión"
+        ],
+        [
+            "**Evitar incluir datos sensibles en el payload del JWT**",
+            "Ya que es descifrable por cualquiera que tenga el token (aunque no puede modificarlos sin invalidarlo)"
+        ],
+        [
+            "**Revocar manualmente tokens si es necesario**",
+            "Por ejemplo, al cerrar sesión o detectar actividad sospechosa"
+        ],
+    ]}
+/>
+
+### Ventajas de JWT sobre sesiones tradicionales
+
+- JWT son stateless, es decir, cada token contiene toda la información necesaria para autenticar al usuario y no requiere que el servidor almacene información de sesión. Esto los hace **altamente escalables**, ideales para arquitecturas basadas en microservicios, donde cada microservicio puede validar el token de manera independiente.
+- En un sistema JWT, el **cliente mantiene el token**, almacenándolo en el frontend (por ejemplo, en `localStorage`). Así, múltiples servicios o aplicaciones consuimen la API sin depender de la sesión del servidor. Esto los hace especialmente adecuados para **aplicaciones de una sola página (SPA)** o móviles, donde las sesiones tradicionales basadas en cookies no son prácticas.
+
+La principal **desventaja** de los JWT es que la **revocación** de un token antes de su expiración requiere lógica adicional, como listas de tokens revocados o expiraciones cortas. En contraste, las sesiones tradicionales permiten invalidar fácilmente el acceso borrando la sesión en el servidor, pero son menos escalables y dependen del almacenamiento centralizado del estado. 
+
+# Actividad de Práctica 07
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es la función principal de un JWT en una API RESTful?",
+		options: [
+			"Aumentar la velocidad de carga del frontend",
+			"Almacenar la sesión del usuario en el servidor",
+			"Encriptar todos los datos de la base de datos",
+			"Transmitir información de autenticación de forma segura y sin estados"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Qué sección de un JWT contiene los permisos del usuario?",
+		options: [
+			"Signature",
+			"Authorization",
+			"Payload",
+			"Header"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "En una prueba de login con JWT, si las credenciales son correctas, el servidor devuelve un access token y, opcionalmente, un refresh token",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "En la validación de un token, si esta ha expirado, el servidor responde con un código 401 Unauthorized",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "Para validar un token JWT, el cliente debe enviarlo en el cuerpo de la solicitud (body) como campo token",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "En una prueba de validación, si el token es válido, el servidor permite el acceso al recurso solicitado",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+]} />

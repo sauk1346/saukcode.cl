@@ -1,0 +1,200 @@
+# Manipulación del DOM con JavaScript
+
+## Material Adicional
+
+- [manipulacionDOM.pdf](/inacap/ti3v31/docs/manipulacionDOM.pdf)
+
+El *Document Object Model* (DOM) es una representación estructurada del documento HTML que permite a los desarrolladores manipular su contenido y estructura mediante JavaScript.
+
+La capacidad de modificar el DOM es esencial para crear páginas web dinámicas e interactivas.
+
+## Selección de elementos del DOM
+Para manipular el DOM, primero necesitas seleccionar los elementos que quieres cambiar.
+
+### 1. Selección de elemento
+
+- `getElementById` selecciona un elemento por su ID.
+
+```js
+let elemento = document.getElementById('miElemento');
+```
+
+### 2. Elemento de clase específica
+
+- `getElementByClassName` : selecciona todos los elementos con una clase específica.
+
+```js
+let elementos = document.getElementsByClassName('miClase');
+```
+
+### 3. Elemento por nombre
+
+- `getElementByName` : esta función permite seleccionar elementos por su nombre, devolviendo una lista de todos los items con el nombre específico.
+
+```js
+let camposUsuario = document.getElementsByName('usename')
+```
+
+### 4. Elemento que coincide
+
+- `querySelector` y `querySelectorAll` : selecciona el primero elemento que coincide con un selector CSS(`querySelector`) o todos los elementos que coinciden (`querySelectorAll`)
+
+```js
+let elemento = document.querySelector('.miClase');
+
+let elementos = document.querySelectorAll('.miClase');
+```
+
+## Modificación de los elementos del DOM
+
+### 1. Modificar el contenido
+Una vez que has seleccionado un elemento, puedes modificarlo con las siguientes funciones:
+
+- `innerHTML` : permite obtener o establecer el contenido HTML de  un elemento, esto incluye no solo el texto, sino también cualquier elemento HTML dentro del elemento.
+- `textContent` : permite obtener o establecer el texto dentro de un elemento. Esta propiedad no interpreta ni incluye etiquetas HTML, solo el texto plano.
+
+```js
+elemento.innerHTML = '<h1>Nuevo Contenido</h1>';
+
+elemento.textContent = 'Nuevo texto';
+```
+
+**Comparación**
+
+- **Contenido HTML:** `innerHTML` permite la inclusión y manipulación de etiquetas HTMLdentro del contenido del elemento, mientras que textContent solo maneja texto plano.
+- **Seguridad:** `innerHTML` puede ser vulnerable a ataques de Cross-Site Scripting (XSS) si se manipula con datos no confiables, ya que puede interpretar y ejecutar código HTML y JavaScript malicioso. textContent, por otro lado, se considera más seguro porque no interpreta el contenido como HTML.  
+- **Rendimiento:** `textContent` suele ser más rápido y eficiente cuando se trabaja únicamente con texto, ya que no necesita analizar y renderizar el contenido HTML.
+
+### 2. Modificar atributos
+De igual manera, puedes cambiar los atributos de cualquier etiqueta HTML, por ejemplo, modificar la imagen de una etiqueta `<img>` reemplazando el atributo src.
+
+```js
+elemento.setAttribute('src','nuevaImagen.jpg');
+let valor = elemento.getAttribute('src');
+elemento.removeAttribute('src');
+```
+
+### 3. Modificar estilos
+
+```js
+elemento.style.color = 'red';
+elemento.style.backgroundColor = 'blue';
+```
+
+## Manejo de Eventos
+Son acciones que ocurren en el navegador, como clics, movimientos del ratón y envíos de formularios.
+
+Para ello, puedes usar JavaScript para escuchar estos eventos y responder a ellos.
+
+### 1. Agregar un evento
+
+```js
+elemento.addEventListener('click',function() {alert('Elemento clickeado')});
+```
+
+### 2. Eliminar un evento
+
+```js
+function miFuncion() {
+    alert('Evento eliminado');
+}
+
+elemento.removeEventListener('click', miFuncion);
+```
+
+**Tabla resumen de eventos comunes en JS**
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Evento","Descripción"]}
+  rows={[
+    ["`click`","Ocurre cuando un elemento es clicleado"],
+    ["`dblclick`","Ocurre cuando un elemento es doble clicleado"],
+    ["`mouseover`","Ocurre cuando el puntero del ratón se coloca sobre un elemento"],
+    ["`mouseout`","Ocurre cuando el puntero del ratón se aleja de un elemento"],
+    ["`keydown`","Ocurre cuando una tecla es presionada"],
+    ["`keyup`","Ocurre cuando una tecla es liberada"],
+    ["`change`","Ocurre cuando el valor de un elemento de formulario cambia"],
+    ["`submit`","Ocurre cuando un formulario es enviado"],
+    ["`focus`","Ocurre cuando un elemento gana el foco"],
+    ["`blur`","Ocurre cuando un elemento pierde el foco"],
+    ["`input`","Ocurre cuando un valor de entrada es modificado"]
+  ]}
+/>
+
+## Ejemplos Prácticos
+
+### 1. cambiar el contenido de un elemento
+
+```html
+<div id="miDiv">Contenido original</div> 
+
+<button onclick="cambiarContenido()">Cambiar Contenido</button>
+```
+
+```js
+function cambiarContenido() { 
+    let div = document.getElementById('miDiv'); 
+    div.innerHTML = 'Contenido cambiado';
+} 
+```
+
+### 2. cambiar estilos con un evento
+
+```html
+<div id="miDiv" style="width: 100px; height: 100px; background-color: yellow;"></div> 
+
+<button id="miBoton">Cambiar Color</button>
+```
+
+```js
+document.getElementById('miBoton').addEventListener('click', function() { 
+    document.getElementById('miDiv').style.backgroundColor = 'blue'; 
+    }
+); 
+```
+
+# Actividad de Práctica 02
+
+<Quiz questions={[
+	{
+		question: "¿Qué evento se debe usar para ejecutar una función cuando un usuario hace clic en un botón?",
+		options: [
+			"mouseover",
+			"click",
+			"submit",
+			"keydown"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Qué método se utiliza para seleccionar un elemento por su ID en el DOM?",
+		options: [
+			"getElementById",
+			"querySelectorAll",
+			"getElementsByTagName",
+			"getElementByClassName"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Cuál es la diferencia principal entre innerHTML y textContent?",
+		options: [
+			"textContext permite incluir etiquetas HTML, innerHTML solo maneja texto plano.",
+			"No hay diferencia entre innerHTML y textContent.",
+			"innerHTML es más seguro que textContent.",
+			"innerHTML permite incluir etiquetas HTML, textContent solo maneja texto plano"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Qué es el DOM en el contexto de desarrollo web?",
+		options: [
+			"Una herramienta de depuración para JavaScript.",
+			"Un lenguaje de programación web.",
+			"Una representación estructurada del documento HTML",
+			"Una hoja de estilos para documentos web."
+		],
+		correctIndex: 2
+	},
+]} />

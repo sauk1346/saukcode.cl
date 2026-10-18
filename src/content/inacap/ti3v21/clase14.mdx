@@ -1,0 +1,87 @@
+# Bases de Datos con Python
+
+## SQLite
+
+- No requiere un servidor independiente para operar, ya que almacena los datos directamente en un archivo de disco duro
+- Ideal para aplicaciones locales, móviles y de escritorio que necesitan una base de datos simple y eficiente
+
+
+### Tipos de Datos
+1. **TEXT:** cadenas de texto
+2. **NUMERIC:** cualquier tipo de número incluyendo enteros y reales
+3. **INTEGER:** valores enteros
+4. **REAL:** números flotantes (decimales)
+5. **NONE:** no hay preferencia de tipo, los datos se almacenan exactamente como se ingresan
+6. **NULL:** valor nulo (sin datos)
+7. **BLOB:** representa datos binarios, almacenados exactamente como se ingresaron
+
+# Ejercicios
+
+## Ejercicio 01
+
+```python
+import sqlite3
+
+try:
+    cnn = sqlite3.connect("BDPruebaPOO.db")
+    cnn.execute("Create table if not exists Usuarios(id integer primary key , nombre text)")
+
+    #cnn.execute("Insert into Usuarios (id, nombre) values(?,?)", (11,"Juanito"))
+
+    for x in range(20, 3000):
+        cnn.execute("Insert into Usuarios (id, nombre) values(?,?)", (x,"Usuario " + str(x)))
+
+
+    cnn.commit()
+
+    cnn.close()
+except sqlite3.IntegrityError as ex:
+    print("Usuario ya existe ", ex)
+except sqlite3.OperationalError as ex:
+    print("Error de sintaxis en la query ", ex)
+except Exception as ex:
+    print("Error en base de datos ", type(ex))
+finally:
+    print("Terminó el programa")
+```
+
+## Ejercicio 02
+
+```python
+# ocupar una variable , cursor
+# por convencion se llama "cursor"
+
+import sqlite3
+
+class Usuario:
+    def __init__(self,id,nombre):
+        self.id = id
+        self.nombre = nombre
+
+try:
+    cnn = sqlite3.connect("BDPruebaPOO.db")
+    cnn.execute("Create table if not exists Usuarios(id integer primary key , nombre text)")
+
+    # retorna la información del select en un cursor
+    cursor = cnn.execute("Select * from Usuarios where id < ?", (15))
+
+    #obtener todos los registros del cursor
+    registros = cursor.fetchall()
+    
+    if len(registros) > 0:
+        for r in registros:
+            print("Id -> ", r[0], ", Nombre -> ", r[1])
+    else:
+        print("No hay usuarios en la tabla")
+
+
+    cnn.close()
+except sqlite3.IntegrityError as ex:
+    print("Usuario ya existe ", ex)
+except sqlite3.OperationalError as ex:
+    print("Error de sintaxis en la query ", ex)
+except Exception as ex:
+    print("Error en base de datos ", type(ex))
+finally:
+    print("Terminó el programa")
+```

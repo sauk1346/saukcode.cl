@@ -1,0 +1,464 @@
+# Situación de Modelación 2: Viaje en globo aerostático
+
+## Material
+- [sm22.pdf](/inacap/mvfm01/docs/sm22.pdf)
+
+Un grupo de estudiantes de un instituto profesional ha decidio emprender una aventura en globo aerostático como parte de un proyecto de investigación. El objetivo es observar distintos paisajes y documentar los cambios en la altitud y en la distancia recorrida en diferentes direcciones. A lo largo del viaje, deberán realizar varios cálculos utilizando trigonometría para asegurarse de que el globo se mantenga en una trayectoria segura y para analizar los datos recopilados
+
+## Actividad 01
+Durante la primera hora de vuelo, el globo se eleva gradualmente hasta llegar a  una altitud de 500 metros y recorre una distancia horizontal de 800 metros ¿cuál es la medida del ángulo de elevación del globo respecto del punto de partida?
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig181.svg"
+	alt="Distancia recorrida por el globo"
+	caption="Distancia recorrida por el globo"
+	size="large"
+/>
+
+Sea el ángulo de elevación $ang1$:
+
+$$
+\begin{aligned}
+    \tan(ang1) &= \frac{500}{800}\\[15pt] 
+    ang1 &= \arctan\left(\frac{500}{800}\right) 
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig182.png"
+	alt="Cálculo ángulo de elevación"
+	caption="Cálculo ángulo de elevación"
+	size="large"
+/>
+
+$\therefore$ El ángulo de elevación es de `32.01` grados
+</Solution>
+
+## Actividad 02
+El globo continúa su viaje y, al iniciar su segundo tramo, gira hacia el noreste, recorriendo 600 metros en esa dirección y formando un ángulo de 30° con dirección este.
+
+1. **¿Cuál es la distancia horizontal recorrida por el globo en el segundo tramo del viaje?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig183.svg"
+	alt="Distancia recorrida por el globo en el segundo tramo"
+	caption="Distancia recorrida por el globo en el segundo tramo"
+	size="large"
+/>
+
+Sea el segmento $\overline{BE}$, la distancia horizontal recorrida por el globo en el segundo tramo del viaje:
+
+$$
+\begin{aligned}
+    \cos(30) &= \frac{\overline{BE}}{600}\\[15pt]
+    \overline{BE} &= 600 \cdot cos(30)
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig184.png"
+	alt="Cálculo de segmento BE"
+	caption="Cálculo de segmento BE"
+	size="large"
+/>
+
+$\therefore$ La distancia horizontal que recorre el globo en el segundo tramo del viaje es de `519.62` metros
+</Solution>
+
+2. **¿Cuál es la altura alcanzada por el globo en este segundo viaje?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig183.svg"
+	alt="Distancia recorrida por el globo en el segundo tramo"
+	caption="Distancia recorrida por el globo en el segundo tramo"
+	size="large"
+/>
+
+Sea $h$ la altura alcanzada por el globo en este segundo viaje:
+
+$$
+\begin{aligned}
+    h &= \overline{BC} + \overline{DE}\\[10pt]
+    &= 500 + 600 \cdot \sin(30)
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig185.png"
+	alt="Cálculo altura globo"
+	caption="Cálculo altura globo"
+	size="large"
+/>
+
+$\therefore$ La altura alcanzada por el globo en este 2do viaje es de `800` metros
+</Solution>
+
+3. **¿Cuál sería la distancia total que el globo habría recorrido en diagonal si hubiera volado directamente desde el punto de partida hasta su posición actual?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig186.svg"
+	alt="Recorrido directo desde punto inicial a punto actual"
+	caption="Recorrido directo desde punto inicial a punto actual"
+	size="large"
+/>
+
+Sea el segmento $\overline{AD}$, la distancia total que el globo habría recorrido en diagonal si hubiera volado directamente desde el punto de partida hasta su posición actual:
+
+$$
+\begin{aligned}
+    \overline{AD}^2 &= \overline{AQ}^2 + \overline{DQ}^2\\[10pt]
+    \overline{AD} &= \sqrt{\overline{AQ}^2 + \overline{DQ}^2}
+\end{aligned}
+$$
+
+Se calculan los catetos del triángulo $\triangle ADQ$
+
+$$
+\begin{aligned}
+    \overline{AQ} &= \overline{AC} + \overline{BE}\\[5pt]
+    &= 800 + 600\cdot cos(30)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+    \overline{DQ} &= \overline{BC} + \overline{DE}\\[5pt]
+    &= 500 + 600 \cdot \sin(30) 
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig187.png"
+	alt="Cálculo segmento AD"
+	caption="Cálculo segmento AD"
+	size="large"
+/>
+
+$\therefore$ La distancia total que el globo habría recorrido en diagonal si hubiera volado directemente desde el pto. de partida hasta su posición actual sería de `1543.17` metros
+</Solution>
+
+## Actividad 03
+En un determinado punto del tercer tramo del viaje, el globo se sitúa a una altura de 1000 metros sobre el nivel del suelo. Los estudiantes observan una montaña que se encuentra al norte del globo. La línea de visión desde el globo hasta la cima de la montaña forma un ángulo que mide 45° con la horizontal, y la distancia en línea recta desde el globo hasta la cima de la montaña es de 1.5km
+
+1. **¿Cuál es la altura de la montaña?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig188.svg"
+	alt="Globo en punto A, a 1km sobre el mar"
+	caption="Globo en punto A, a 1km sobre el mar"
+	size="large"
+/>
+
+Sea el segmento $\overline{BD}$, la altura de la montaña:
+
+$$
+\begin{aligned}
+    \overline{BD} &= \overline{BC} + \overline{CD}\\[10pt]
+    &= 1.5 \cdot \sin(45) + 1\\[5pt]
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig189.png"
+	alt="Cálculo segmento BD"
+	caption="Cálculo segmento BD"
+	size="large"
+/>
+
+$\therefore$ La altura de la montaña es de `2.06` km
+</Solution>
+
+2. **¿Cuál es la altura adicional que el globo debe alcanzar para sobrevolar la montaña?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig188.svg"
+	alt="Globo en punto A, a 1km sobre el mar"
+	caption="Globo en punto A, a 1km sobre el mar"
+	size="large"
+/>
+
+Sea el segmento $\overline{BC}$, la altura adicional que el globo debe alcanzar para sobrevolar la montaña:
+
+$$
+\begin{aligned}
+    \overline{BC} &= 1.5 \cdot \sin(45)
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig190.png"
+	alt="Cálculo segmento BC"
+	caption="Cálculo segmento BC"
+	size="large"
+/>
+
+$\therefore$ El globo debe alcanzar una altura adicional mayor a `1.06` km para sobrevolar la montaña
+</Solution>
+
+## Actividad 04
+Cuando el globo se disponía a iniciar su trayectoria hacia la cima de la montaña (en la actividad anterior, cuando se encontraba a 1000 metros de altura), un viento inesperado lo desvía 10° hacia el norte respecto del rumbo previamente fijado (ver esquema). Después de recorrer 1.96 km en esta nueva dirección y alcanzar una altura total de 2.7 km, según la lectura de sus instrumentos, los estudiantes deciden retomar su rumbo hacia la cima de la montaña.
+
+<SmartFigure
+	id="globo-desviado"
+	src="/inacap/mvfm01/images/fig191.png"
+	alt="Globo desviado por viento inesperado"
+	caption="Globo desviado por viento inesperado"
+	size="large"
+/>
+
+1. **¿Cuál es la distancia horizontal recorrida por el globo entre la posición anterior y la actual?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig192.png"
+	alt="Gráfico con datos iniciales"
+	caption="Gráfico con datos iniciales"
+	size="large"
+/>
+
+Sea el segmento $\overline{HQ}$, la distancia horizontal recorrida por el globo entre la posición anterior y la actual:
+
+$$
+\begin{aligned}
+    \overline{HQ} = 1.96 \cdot \cos(15+45)
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig193.png"
+	alt="Cálculo segmento HQ"
+	caption="Cálculo segmento HQ"
+	size="large"
+/>
+
+$\therefore$ La distancia horizontal recorrida por el globo entre la posición anterior y la actual es de `0.98` km
+</Solution>
+
+2. **¿Cuál es la nueva distancia en línea recta entre el globo y la cima de la montaña?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig192.png"
+	alt="Gráfico con datos iniciales"
+	caption="Gráfico con datos iniciales"
+	size="large"
+/>
+
+Sea el segmento $\overline{LI}$, la nueva distancia en línea recta entre el globo y la cima de la montaña
+
+Utilizando la ley de cosenos:
+
+$$
+\begin{aligned}
+    \overline{LI}^2 &= 1.96^2 + 1.5^2 - 2 \cdot 1.96 \cdot 1.5 \cdot cos(15)\\[10pt] 
+    \overline{LI} &= \sqrt{1.96^2 + 1.5^2 - 2 \cdot 1.96 \cdot 1.5 \cdot cos(15)} 
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig194.png"
+	alt="Cálculo Segmento LI"
+	caption="Cálculo Segmento LI"
+	size="large"
+/>
+
+$\therefore$ La nueva distancia en línea recta entre el globo y la cima de la montaña es de `0.64` km
+</Solution>
+
+3. **¿Cuál es la medida del ángulo que el globo debería formar con la nueva dirección para aterrizar en la cima de la montaña?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig192.png"
+	alt="Gráfico con datos iniciales"
+	caption="Gráfico con datos iniciales"
+	size="large"
+/>
+
+Sea $\angle ang1$ el ángulo que el globo debería formar con la nueva dirección para aterrizar en la cima de la montaña
+
+Utilizando la ley de los senos:
+
+$$
+\begin{aligned}
+    \frac{\overline{HI}}{\sin(ang1)} &= \frac{\overline{LI}}{\sin(15)}\\[15pt]
+    \sin(ang1) &= \frac{\overline{HI} \cdot \sin(15)}{LI}\\[15pt]
+    ang1 &= \arcsin\left(\frac{\overline{HI} \cdot \sin(15)}{LI}\right)
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig195.png"
+	alt="Cálculo de ángulo ang1"
+	caption="Cálculo de ángulo ang1"
+	size="large"
+/>
+
+$\therefore$ El ángulo que el globo debería formar con la nueva dirección para aterrizar en la cima de la montaña es de `37.22` grados
+</Solution>
+
+## Actividad 05
+En su intento por retomar el rumbo hacia la cima de la montaña, un fuerte viento vuelve a sorprenderlos, desorientándolos por completo. Una vez que logran recuperar el control del globo, observan con sus instrumentos que están a 2 km en línea recta de la cima de la montaña.
+
+También localizan el punto de aterrizaje, situado a 1 km al este de la base de la montaña. Sin embargo, debido a una interferencia electrónica en esa dirección, no pueden medir directamente la distancia a dicho punto. Además, logran determinar que el ángulo en el punto N (ver el esquema) es aproximadamente 54.68°
+
+<SmartFigure
+	id="globo-y-punto-aterrizaje"
+	src="/inacap/mvfm01/images/fig196.png"
+	alt="Globo en punto N y zona aterrizaje en punto O"
+	caption="Globo en punto N y zona aterrizaje en punto O"
+	size="large"
+/>
+
+1. **¿Cuál es la distancia que el globo debe recorrer en línea recta desde su posición actual hasta el punto de aterrizaje?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig197.png"
+	alt="Gráfico con angulos definidos"
+	caption="Gráfico con angulos definidos"
+	size="large"
+/>
+
+Sea el segmento $\overline{NO}$, la distancia que debe recorrer el globo en línea recta desde su posición actual hasta el punto de aterrizaje
+
+1. De las actividades anteriores calculamos la altura de la montaña $h = 2.06\;km$. Se utiliza para calcular el segmento $\overline{IO}$:
+
+$$
+\begin{aligned}
+    \overline{IO}^2 = IK^2 + KO^2\\[10pt]
+    \overline{IO} = \sqrt{IK^2 + KO^2}
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig198.png"
+	alt="Cálculo segmento IO"
+	caption="Cálculo segmento IO"
+	size="large"
+/>
+
+2. Se utiliza la ley de los senos para calcular el ángulo $\angle ang1$ del triángulo $\triangle INO$:
+
+$$
+\begin{aligned}
+    \frac{\overline{IN}}{\sin(ang1)} &= \frac{\overline{IO}}{\sin(54.68)}\\[15pt]
+    {\sin(ang1)} &= \frac{\overline{IN} \cdot \sin(54.68)}{\overline{IO}}\\[15pt]
+    ang1 &= \arcsin\left(\frac{\overline{IN} \cdot \sin(54.68)}{\overline{IO}}\right)
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig199.png"
+	alt="Cálculo ángulo ang1"
+	caption="Cálculo ángulo ang1"
+	size="large"
+/>
+
+3. Se calcula el ángulo $\angle ang2$ conociendo los otros 2 ángulos del triángulo $\triangle INO$
+
+$$
+\begin{aligned}
+    180° &= ang2 + ang1 + 54.68°\\[10pt]
+    ang2 &= 180° - ang1 - 54.68°
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig200.png"
+	alt="Cálculo ángulo ang2"
+	caption="Cálculo ángulo ang2"
+	size="large"
+/>
+
+4. Finalmente, se utiliza nuevamente la ley de los senos para calcular el segmento $\overline{NO}$
+
+$$
+\begin{aligned}
+    \frac{\overline{IO}}{\sin(54.68)} &= \frac{\overline{NO}}{\sin(ang2)}\\[15pt]
+    \overline{NO} &= \frac{IO \cdot \sin(ang2)}{\sin(54.68)}
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig201.png"
+	alt="Cálculo segmento NO"
+	caption="Cálculo segmento NO"
+	size="large"
+/>
+
+$\therefore$ La distancia que debe recorrer el globo desde su posición actual hasta el punto de aterrizaje es de `2.76` km
+</Solution>
+
+2. **¿Cuál es la medida del ángulo de descenso que el piloto debe mantener para aterrizar en el punto deseado?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig202.png"
+	alt="Relación de ángulos en líneas paralelas"
+	caption="Relación de ángulos en líneas paralelas"
+	size="large"
+/>
+
+Sea $\angle \alpha$ el ángulo de descenso que el piloto debe mantener para aterrizar en el punto deseado.
+
+Mediante la propiedad de ángulos internos y externos, el ángulo de descenso tiene el mismo valor que el ángulo de ascenso.
+
+1. Se utiliza la siguiente relación de ángulo extendido:
+
+$$
+\begin{aligned}
+    180° = \gamma + \beta + \alpha
+\end{aligned}
+$$
+
+2. Se calcula el ángulo $\angle \gamma$
+
+$$
+\begin{aligned}
+    \tan(\gamma) &= \frac{\overline{IK}}{KO}\\[15pt]
+    \gamma &= \arctan\left(\frac{\overline{IK}}{KO}\right)
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig203.png"
+	alt="Cálculo ángulo gamma"
+	caption="Cálculo ángulo gamma"
+	size="large"
+/>
+
+3. Se calcula el ángulo $\angle \alpha$
+
+$$
+\begin{aligned}
+    \alpha = 180° - \gamma - \beta
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig204.png"
+	alt="Cálculo ángulo alfa"
+	caption="Cálculo ángulo alfa"
+	size="large"
+/>
+
+$\therefore$ El ángulo de descenso que el piloto debe mantener para aterrizar en el punto deseado es de `70.44` grados
+</Solution>

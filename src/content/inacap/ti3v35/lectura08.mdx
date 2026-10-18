@@ -1,0 +1,99 @@
+# Políticas GPO en los objetos de dominio
+
+## Profundización de Active Directory
+El elemento principal de AD es el directorio, que almacena información sobre los recursos de la red y los servicios que hacen disponible la información. Se denominan objetos a los recursos almacenados en el directorio, como:
+
+- Datos de usuario
+- Impresoras
+- Servidores
+- Bases de datos
+- Grupos
+- Computadoras
+- Políticas de sistema
+
+> AD organiza los objetos en dominios de manera jerárquica
+
+1. Un dominio es una agrupación lógica de servidores y otros recursos de red bajo un mismo nombre de dominio.
+2. Cada dominio incluye uno o más controladores de dominio (*domain controllers*), que son máquinas que almacenan una réplica de un directorio de dominio.
+3. Cada vez que se hace algún cambio en alguno de los controladores, el resto se actualiza automáticamente.
+
+### Unidades Organizaciones (UO)
+Son contenedores que se usan para reunir objetos de un dominio en grupos administrativos lógicos. Cada UO puede contener distintos objetos y cada dominio puede tener su propia lógica de agrupación en UOs.
+
+### Dominio
+La unidad central de la estructura lógica de AD es el dominio. Agrupando los objetos en uno o más dominios es posible representar la propia organización de la empresa. Todos los objetos de la red existen en un dominio. Es posible albergar millones de objetos.
+
+## Aproximación a las GPO
+*Group Policy Object*. Es un objeto que almacena uno o más valores de configuración aplicables a usuarios o equipos. Estos valores pueden implementarse en grupos de incluyan múltiples usuarios o equipos.
+
+- Configurar un equipo implica configurar numerosos parámetros y opciones
+
+    - Accesos de usuarios
+    - Permisos para carpetas
+    - Usos de impresoras
+    - Programas permitidos
+    - Páginas de inicio
+    - Configuración de firewall
+    - etc
+
+Cuando son miles de dispositivos (empresa), se torna un trabajo muy tedioso. Para esto, las GPO permiten definir y desplegar configuraciones centralizadas en estaciones de trabajo y servidores.
+
+### Ventajas
+- La interacción del administrador con los equipos finales es mínima (ahorro de tiempo)
+- Elimina fallos de implementación (menos posibilidad de fallo al aplicarlo 1 vez vs 100 veces)
+- Las modificaciones posteriores se realizan una sola vez y se propaga a todos los equipos requeridos
+
+# Actividad de Práctica 06
+
+<Quiz questions={[
+	{
+		question: "Es un objeto tipo contenedor que proporciona un framework para delegar derechos administrativos y vincular objetos de directivas de grupos ( GPO), además de organizar equipos y usuarios.",
+		options: [
+			"Unidades organizativas",
+			"Dominios",
+			"Carpetas",
+			"Bosques"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "Es el término que utiliza Microsoft para referirse a su implementación de servicios de directorios en una red distribuida de computadores.",
+		options: [
+			"DNS",
+			"Active Directory",
+			"DHCP",
+			"GPS"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "Es un servidor que responde a las solicitudes de autentificación y verificación a los usuarios en las redes de computadores.",
+		options: [
+			"File Server",
+			"Domain Controller",
+			"Windows Server",
+			"UO"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "Se utiliza como nombre genérico para referirnos a cualquier tipo de componentes que forman parte del directorio como, por ejemplo, una impresora o un usuario.",
+		options: [
+			"Server manager",
+			"Objetos",
+			"Carpetas",
+			"UO"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "Es un conjunto de cuenta de usuarios y de equipos, contactos y otros que se pueden administrar como una sola unidad.",
+		options: [
+			"Unidad Organizacional",
+			"Domain Controller",
+			"Grupos",
+			"Carpetas"
+		],
+		correctIndex: 0
+	},
+]} />

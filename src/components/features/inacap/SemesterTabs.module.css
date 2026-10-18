@@ -1,0 +1,253 @@
+/* ================================
+   CONTENEDOR PRINCIPAL
+   ================================ */
+.semesterTabs {
+  width: 100%;
+  margin-bottom: var(--spacing-lg);
+}
+
+/* ================================
+   CONTENEDOR DE PESTAÑAS
+   ================================ */
+.tabsContainer {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  width: 100%;
+  justify-content: space-between;
+}
+
+/* ================================
+   PESTAÑA INDIVIDUAL
+   ================================ */
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: none;
+  border: none;
+  color: var(--secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  font-size: 1rem;
+  font-weight: 500;
+  position: relative;
+  flex: 1;
+}
+
+.tab::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+  transition: background-color 0.2s ease;
+}
+
+.tab:hover {
+  color: var(--primary);
+}
+
+.tab:hover::after {
+  background: color-mix(in srgb, var(--primary) 30%, transparent);
+}
+
+/* ================================
+   PESTAÑA ACTIVA
+   ================================ */
+.activeTab {
+  color: var(--primary);
+}
+
+.activeTab::after {
+  background: var(--primary) !important;
+}
+
+/* ================================
+   ESTADOS DE SEMESTRE
+   ================================ */
+.tab.completed {
+  color: var(--success);
+}
+
+.tab.completed:hover {
+  color: var(--success);
+}
+
+.tab.completed.activeTab::after {
+  background: var(--success) !important;
+}
+
+.tab.current {
+  color: var(--primary);
+}
+
+.tab.pending {
+  color: var(--secondary);
+}
+
+.tab.pending:hover {
+  color: var(--primary);
+}
+
+/* ================================
+   NÚMERO DEL SEMESTRE
+   ================================ */
+.tabNumber {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.fullText {
+  display: inline;
+}
+
+.shortText {
+  display: none;
+}
+
+/* ================================
+   INDICADOR DE PROGRESO
+   ================================ */
+.progressIndicator {
+  width: 100%;
+  height: 3px;
+  background: var(--card-bg);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: currentColor;
+  border-radius: var(--radius-full);
+  opacity: 0.6;
+}
+
+.activeTab .progressFill {
+  opacity: 1;
+}
+
+/* ================================
+   DARK MODE
+   ================================ */
+:global(html.dark-mode) .tabsContainer,
+:global(html.dark-mode-override) .tabsContainer {
+  border-bottom-color: var(--border-color-dark, #374151);
+}
+
+:global(html.dark-mode) .tab,
+:global(html.dark-mode-override) .tab {
+  color: var(--secondary-dark, #9ca3af);
+}
+
+:global(html.dark-mode) .tab:hover,
+:global(html.dark-mode-override) .tab:hover {
+  color: var(--primary-light, #60a5fa);
+}
+
+:global(html.dark-mode) .activeTab,
+:global(html.dark-mode-override) .activeTab {
+  color: var(--primary-light, #60a5fa);
+}
+
+:global(html.dark-mode) .activeTab::after,
+:global(html.dark-mode-override) .activeTab::after {
+  background: var(--primary-light, #60a5fa) !important;
+}
+
+:global(html.dark-mode) .tab.completed,
+:global(html.dark-mode-override) .tab.completed {
+  color: var(--success-dark, #34d399);
+}
+
+:global(html.dark-mode) .tab.completed.activeTab::after,
+:global(html.dark-mode-override) .tab.completed.activeTab::after {
+  background: var(--success-dark, #34d399) !important;
+}
+
+:global(html.dark-mode) .progressIndicator,
+:global(html.dark-mode-override) .progressIndicator {
+  background: var(--card-bg-dark, #374151);
+}
+
+/* ================================
+   RESPONSIVE
+   ================================ */
+@media (max-width: 900px) {
+  .tab {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .tabNumber {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .tab {
+    padding: var(--spacing-xs);
+  }
+
+  .tabNumber {
+    font-size: 0.8rem;
+  }
+
+  .fullText {
+    display: none;
+  }
+
+  .shortText {
+    display: inline;
+  }
+
+  .progressIndicator {
+    height: 2px;
+  }
+}
+
+@media (max-width: 600px) {
+  .tabNumber {
+    font-size: 0.75rem;
+  }
+
+  .tab {
+    padding: 6px 4px;
+    gap: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tabNumber {
+    font-size: 0.68rem;
+  }
+
+  .tab {
+    padding: 4px 2px;
+    gap: 2px;
+  }
+}
+
+@media (max-width: 380px) {
+  .tabNumber {
+    font-size: 0.6rem;
+  }
+
+  .tab {
+    padding: 4px 1px;
+  }
+}
+
+/* ================================
+   ACCESSIBILITY
+   ================================ */
+.tab:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}

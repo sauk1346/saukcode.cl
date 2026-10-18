@@ -1,0 +1,146 @@
+/* ================================
+   LAYOUT DE LA PÁGINA PRINCIPAL
+   ================================ */
+   .pageWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--background);
+    color: var(--foreground, #1f2937);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    background-color: var(--card-bg);
+    color: var(--foreground, #1f2937);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  /* ================================
+     TÍTULO PRINCIPAL
+     ================================ */
+  .title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--foreground, #1f2937);
+    margin-bottom: 2rem;
+    text-align: center;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+  
+  .title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary, #3b82f6), var(--accent, #8b5cf6));
+    margin: 0.75rem auto 0;
+    border-radius: 2px;
+  }
+  
+  /* ================================
+     SECCIÓN DEL CALENDARIO
+     ================================ */
+  .calendarPlaceholder {
+    background: var(--background);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+    color: var(--secondary);
+    text-align: center;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 2rem;
+  }
+  
+  .calendarPlaceholder:hover {
+    box-shadow: var(--shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04));
+    transform: translateY(-2px);
+  }
+  
+  /* ================================
+     ESPACIADO ENTRE SECCIONES
+     ================================ */
+  .section {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  
+  .section:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* ================================
+     DARK MODE
+     ================================ */
+  :global(html.dark-mode) .pageWrapper,
+  :global(html.dark-mode-override) .pageWrapper {
+    background-color: var(--background);
+    color: var(--foreground-dark, #e5e7eb);
+  }
+
+  :global(html.dark-mode) .container,
+  :global(html.dark-mode-override) .container {
+    background-color: var(--card-bg);
+    color: var(--foreground-dark, #e5e7eb);
+  }
+  
+  :global(html.dark-mode) .title,
+  :global(html.dark-mode-override) .title {
+    color: var(--foreground-dark, #e5e7eb);
+  }
+  
+  :global(html.dark-mode) .calendarPlaceholder,
+  :global(html.dark-mode-override) .calendarPlaceholder {
+    background: var(--background-dark, #1e1e1e);
+    color: var(--secondary-dark, #9ca3af);
+    border-color: var(--border-color-dark, #4a5568);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* ================================
+     RESPONSIVE
+     ================================ */
+  @media (max-width: 768px) {
+    .container {
+      padding: 1rem;
+    }
+    
+    .title {
+      font-size: 2rem;
+    }
+    
+    .calendarPlaceholder {
+      padding: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .title {
+      font-size: 1.75rem;
+    }
+    
+    .title::after {
+      width: 60px;
+      height: 3px;
+    }
+    
+    .calendarPlaceholder {
+      padding: 1rem;
+    }
+  }

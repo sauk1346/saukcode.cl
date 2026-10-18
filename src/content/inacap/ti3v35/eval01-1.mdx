@@ -1,0 +1,161 @@
+# Evaluación 01 Parte 1: FLSM
+
+Sea la red base `192.168.6.0/24`. Crear 6 subredes
+
+1. **Encontrar el número de bits `n` para las subredes**
+
+<Solution>
+Se utiliza la fórmula:
+
+$$
+\begin{aligned}
+    2^n \ge número\, de\, subredes
+\end{aligned}
+$$
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['n', '', 'cumple?']}
+	rows={[
+		['1', '$2^1 = 2 \\ge 6\\, ?$', 'no'],
+		['2', '$2^2 = 4 \\ge 6\\, ?$', 'no'],
+		['3', '$2^3 = 8 \\ge 6\\, ?$', 'si']
+	]}
+/>
+
+$\therefore$ El número de bits para las subredes es `n = 3`. 
+</Solution>
+
+2. **Encontrar el número de bits `m` para los hosts**
+
+<Solution>
+
+Se utiliza la fórmula:
+
+$$
+\begin{aligned}
+    bits\, para\, hosts &= 32 - (bits\, máscara)\\[10pt]
+    &= 32 - (24 + 3)\\[10pt]
+    &= 32 - 27\\[10pt]
+    &= 5
+\end{aligned}
+$$
+
+$\therefore$ El número de bits para los hosts es `m = 5`. 
+</Solution>
+
+3. **Encontrar el número de hosts útiles por subred**
+
+<Solution>
+Se utliza la fórmula:
+
+$$
+\begin{aligned}
+    host\, útiles &= 2^m - 2\\[10pt]
+    &= 2^5 - 2\\[10pt]
+    &= 32 - 2\\[10pt]
+    &= 30
+\end{aligned}
+$$
+
+$\therefore$ El número de hosts útiles por subred es `30`.
+</Solution>
+
+4. **Encontrar el salto entre subredes (número mágico)**
+
+<Solution>
+Se utiliza la fórmula:
+
+$$
+\begin{aligned}
+    salto\, subred &= 256 - octeto\, subred\\[10pt]
+    &= 256 - 224\\[10pt]
+    &= 32\\[10pt]
+\end{aligned}
+$$
+
+$\therefore$ El salto entre subredes (número mágico) es `32`.
+</Solution>
+
+5. **Crear una tabla con los rangos de IP para cada subred**
+
+<Solution>
+
+1. Se arma la tabla con sus columnas
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Número Subred', 'Dirección Red', '1ra IP Útil', 'Última IP Útil', 'Broadcast']}
+	rows={[
+		['1', '', '', '', ''],
+		['2', '', '', '', ''],
+		['3', '', '', '', ''],
+		['4', '', '', '', ''],
+		['5', '', '', '', ''],
+		['6', '', '', '', '']
+	]}
+/>
+
+2. Se completa la columna **Dirección Red** utilizando el "número mágico"
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Número Subred', 'Dirección Red', '1ra IP Útil', 'Última IP Útil', 'Broadcast']}
+	rows={[
+		['1', '192.168.6.0', '', '', ''],
+		['2', '192.168.6.32', '', '', ''],
+		['3', '192.168.6.64', '', '', ''],
+		['4', '192.168.6.96', '', '', ''],
+		['5', '192.168.6.128', '', '', ''],
+		['6', '192.168.6.160', '', '', '']
+	]}
+/>
+
+3. Se completa la columna **1ra IP Útil** (Dirección de Red + 1)
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Número Subred', 'Dirección Red', '1ra IP Útil', 'Última IP Útil', 'Broadcast']}
+	rows={[
+		['1', '192.168.6.0', '192.168.6.1', '', ''],
+		['2', '192.168.6.32', '192.168.6.33', '', ''],
+		['3', '192.168.6.64', '192.168.6.65', '', ''],
+		['4', '192.168.6.96', '192.168.6.97', '', ''],
+		['5', '192.168.6.128', '192.168.6.129', '', ''],
+		['6', '192.168.6.160', '192.168.6.161', '', '']
+	]}
+/>
+
+4. Se completa la columna **Broadcast** (Dirección de Red siguiente - 1)
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Número Subred', 'Dirección Red', '1ra IP Útil', 'Última IP Útil', 'Broadcast']}
+	rows={[
+		['1', '192.168.6.0', '192.168.6.1', '', '192.168.6.31'],
+		['2', '192.168.6.32', '192.168.6.33', '', '192.168.6.63'],
+		['3', '192.168.6.64', '192.168.6.65', '', '192.168.6.95'],
+		['4', '192.168.6.96', '192.168.6.97', '', '192.168.6.127'],
+		['5', '192.168.6.128', '192.168.6.129', '', '192.168.6.159'],
+		['6', '192.168.6.160', '192.168.6.161', '', '192.168.6.191']
+	]}
+/>
+
+5. Se completa la columna **Última IP Útil** (Broadcast - 1)
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Número Subred', 'Dirección Red', '1ra IP Útil', 'Última IP Útil', 'Broadcast']}
+	rows={[
+		['1', '192.168.6.0', '192.168.6.1', '192.168.6.30', '192.168.6.31'],
+		['2', '192.168.6.32', '192.168.6.33', '192.168.6.62', '192.168.6.63'],
+		['3', '192.168.6.64', '192.168.6.65', '192.168.6.94', '192.168.6.95'],
+		['4', '192.168.6.96', '192.168.6.97', '192.168.6.126', '192.168.6.127'],
+		['5', '192.168.6.128', '192.168.6.129', '192.168.6.158', '192.168.6.159'],
+		['6', '192.168.6.160', '192.168.6.161', '192.168.6.190', '192.168.6.191']
+	]}
+/>
+</Solution>
+
+
+

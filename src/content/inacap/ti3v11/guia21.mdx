@@ -1,0 +1,768 @@
+# Guía Teórica
+
+## Tipos de Datos
+
+### int
+Para números enteros.
+```python
+var = 5
+print('var es de tipo:',type(var))
+```
+<TerminalOutput withBg>
+{`var es de tipo: <class 'int'>`}
+</TerminalOutput>
+
+
+### float
+Para números decimales.
+```python
+var = 3.14
+print('var es de tipo:',type(var))
+```
+<TerminalOutput withBg>
+{`var es de tipo: <class 'float'>`}
+</TerminalOutput>
+
+
+### str
+Para texto.
+```python
+var = 'saukCode'
+print('var es de tipo:',type(var))
+```
+<TerminalOutput withBg>
+{`var es de tipo: <class 'str'>`}
+</TerminalOutput>
+
+### bool
+Para valores booleanos `True` y `False`.
+```python
+var1 = True
+var2 = False
+print('var1 es de tipo:',type(var1))
+print('var2 es de tipo:',type(var2))
+```
+<TerminalOutput withBg>
+{`var1 es de tipo: <class 'bool'>
+var2 es de tipo: <class 'bool'>`}
+</TerminalOutput>
+
+
+### list
+Para objeto de tipo lista.
+```python
+var = [1,2,'texto',3.14,True,None]
+print('var es de tipo:',type(var))
+```
+<TerminalOutput withBg>
+{`var es de tipo: <class 'list'>`}
+</TerminalOutput>
+
+### tuple
+Para objeto de tipo tupla.
+```python
+var = (1,2,'texto',3.14,True,None)
+print('var es de tipo:',type(var))
+```
+<TerminalOutput withBg>
+{`var es de tipo: <class 'tuple'>`}
+</TerminalOutput>
+
+### dict
+Para objeto de tipo diccionario.
+```python
+var = {'primero':10,'segundo':20,'tercero':30}
+print('var es de tipo:',type(var))
+```
+<TerminalOutput withBg>
+{`var es de tipo: <class 'dict'>`}
+</TerminalOutput>
+
+## Estructuras de Control
+- Las estructuras de control terminan con 2 puntos **(:)**
+- Todo el contenido dentro de las estructuras de control debe respetar la **indentación**.
+
+### if()
+Es posible utilizarlo en conjunto con las palabras claves `else`, `elif`, pero no son estrictamente necesarios. Depende de la solución del problema.
+
+**Ejemplo 01:** Verificar si el dato es entero o decimal
+```python
+var = 2.7182818
+if type(var) == int:
+	print('var es entero')
+else:
+	print('var es decimal')
+```
+<TerminalOutput withBg>
+{`var es decimal`}
+</TerminalOutput>
+
+**Ejemplo 02:** Verificar si el dato es entero, booleano, texto o decimal
+```python
+var = 'LuisYanez'
+if type(var) == int:
+	print('var es entero')
+elif type(var) == bool:
+	print('var es booleano')
+elif type(var) == str:
+	print('var es texto')
+elif type(var) == float:
+	print('var es decimal')
+```
+<TerminalOutput withBg>
+{`var es texto`}
+</TerminalOutput>
+
+### while()
+Permite repetir indefinidamente un bloque de código mientras la condición sea *Verdadera*. Al utilizar contadores hay que verificar que éstos se actualicen, de lo contrario el bucle puede seguir indefinidamente.
+
+**Ejemplo:** contador de número
+```python
+cont = 0
+while (cont <= 5):
+	print('contador vale:',cont)
+	cont = cont + 1
+print('fin while')
+```
+<TerminalOutput withBg>
+{`contador vale: 0
+contador vale: 1
+contador vale: 2
+contador vale: 3
+contador vale: 4
+contador vale: 5
+fin while`}
+</TerminalOutput>
+
+
+### for()
+Similar a `while()`. Su ventaja es que además puede iterar sobre una secuencia (lista, tupla, diccionario).
+
+**Ejemplo 01:** contar números
+```python
+for i in range(4):
+	print('número:',i)
+```
+<TerminalOutput withBg>
+{`número: 0
+número: 1
+número: 2
+número: 3`}
+</TerminalOutput>
+
+**Ejemplo 02:** recorrer lista
+```python
+var = [1,2,3,'cuatro',True]
+for i in var:
+	print('valor:',i)
+```
+<TerminalOutput withBg>
+{`valor: 1
+valor: 2
+valor: 3
+valor: cuatro
+valor: True`}
+</TerminalOutput>
+
+**Ejemplo 03:** recorrer tupla
+```python
+var = (1,2,3,'cuatro',True)
+for i in var:
+	print('valor:',i)
+```
+<TerminalOutput withBg>
+{`valor: 1
+valor: 2
+valor: 3
+valor: cuatro
+valor: True`}
+</TerminalOutput>
+
+**Ejemplo 04:** recorrer diccionario
+```python
+var = {'primero':10,'segundo':20,'tercero':30,'cuarto':40}
+for i,j in var.items():
+	print('clave:',i,' **** ','valor:',j)
+```
+<TerminalOutput withBg>
+{`clave: primero  ****  valor: 10
+clave: segundo  ****  valor: 20
+clave: tercero  ****  valor: 30
+clave: cuarto  ****  valor: 40`}
+</TerminalOutput>
+
+
+## Listas
+
+- **Mutables:** se pueden cambiar el valor de sus elementos después de habarlos creados.
+- **Ordenadas:** sus elementos están ordenados en una posición específica (índice).
+- **Heterogéneos:** sus elementos pueden ser de cualquier tipo de datos, y dentro de la misma lista.
+
+## Tuplas
+
+- **Inmutables:** *Contrario a las listas*. Una vez creados los elementos, no se pueden modificar.
+- **Ordenadas:** *Como las listas*. Cada elemento tiene una posición específica (índice).
+- **Heterogénea:** *Como las listas*. Pueden contener diferentes tipos de datos.
+
+## Diccionarios
+Almecenan datos mediantes pares clave-valor.
+
+- **Mutables:** Se pueden modificar sus elementos una vez creados
+- **No ordenados:** Las *claves* vendrían siendo algo similar a un índice. Dado a que son personalizados, no existe un orden por defecto. 
+- **Claves únicas:** Cada clave debe ser distinta a la anterior. Si se repite, la última sobreescribirá el valor antiguo.
+
+## Métodos para Listas
+
+### .append()
+Agrega un elemento al final de la lista
+```python
+lista = [1,'dos',3,'cuatro']
+lista.append(5)
+
+print(lista)
+```
+<TerminalOutput withBg>
+{`[1, 'dos', 3, 'cuatro', 5]`}
+</TerminalOutput>
+
+
+### .extend()
+Une 2 listas
+```python
+lista1 = [1,2,3,4,5]
+lista2 = [10,20,30,40,50]
+lista1.extend(lista2)
+
+print(lista1)
+```
+<TerminalOutput withBg>
+{`[1, 2, 3, 4, 5, 10, 20, 30, 40, 50]`}
+</TerminalOutput>
+
+
+### .insert(x,y)
+Inserta en la posición-x un elemento-y
+```python
+lista = [1,2,3,4,5]
+lista.insert(3,'tomate')
+
+print(lista)
+```
+<TerminalOutput withBg>
+{`[1, 2, 3, 'tomate', 4, 5]`}
+</TerminalOutput>
+
+### .remove(x)
+Elimina el elemento-x
+```python
+lista =['uno',2,'tres',4,'cinco']
+lista.remove('tres')
+
+print(lista)
+```
+<TerminalOutput withBg>
+{`['uno', 2, 4, 'cinco']`}
+</TerminalOutput>
+
+### .pop(x)
+Devuelve y elimina el elemento en la posición-x
+```python
+lista =['uno',2,'tres',4,'cinco']
+elemento = lista.pop(2)
+
+print('elemento:',elemento)
+print('lista:',lista)
+```
+<TerminalOutput withBg>
+{`elemento: tres
+lista: ['uno', 2, 4, 'cinco']`}
+</TerminalOutput>
+
+### .clear()
+Elimina todos los elementos
+```python
+lista =['uno',2,'tres',4,'cinco']
+lista.clear()
+
+print('lista:',lista)
+```
+<TerminalOutput withBg>
+{`lista: []`}
+</TerminalOutput>
+
+### index(x)
+Devuelve el índice del primer elemento-x encontrado
+
+```python
+lista =['uno',2,'tres',4,'cinco']
+indice = lista.index('cinco')
+
+print('indice:',indice)
+```
+<TerminalOutput withBg>
+{`indice: 4`}
+</TerminalOutput>
+
+### .count(x)
+Devuelve el número de veces que aparece el elemento-x
+```python
+lista = [1,1,2,3,4,5,6,6,6]
+cont = lista.count(6)
+
+print('núm 6 se repite:',cont, 'veces')
+
+```
+<TerminalOutput withBg>
+{`núm 6 se repite: 3 veces`}
+</TerminalOutput>
+
+### .sort()
+Ordena los elementos de menor a mayor. Para invertir el orden se puede utilizar el argumento `reverse=True`
+
+**Ejemplo 01:** ordenar números de menor a mayor
+```python
+lista = [30,25,31,15,0,39,22]
+lista.sort()
+
+print('lista:',lista)
+```
+<TerminalOutput withBg>
+{`lista: [0, 15, 22, 25, 30, 31, 39]`}
+</TerminalOutput>
+
+**Ejemplo 02:** ordenar números de mayor a menor
+```python
+lista = [30,25,31,15,0,39,22]
+lista.sort(reverse=True)
+
+print('lista:',lista)
+```
+<TerminalOutput withBg>
+{`lista: [39, 31, 30, 25, 22, 15, 0]`}
+</TerminalOutput>
+
+### .reverse()
+Invierte la posición de los elementos
+```python
+lista = ['la prueba','es sobre','python']
+lista.reverse()
+
+print('lista:',lista)
+```
+<TerminalOutput withBg>
+{`lista: ['python', 'es sobre', 'la prueba']`}
+</TerminalOutput>
+
+### .copy()
+Copia los elementos de una lista a una nueva
+
+```python
+lista = [10,20,30,40]
+copia = lista.copy()
+
+print('copia:',copia)
+copia.clear()
+
+print('copia:',copia)
+print('lista:',lista)
+```
+<TerminalOutput withBg>
+{`copia: [10, 20, 30, 40]
+copia: []
+lista: [10, 20, 30, 40]`}
+</TerminalOutput>
+
+## Métodos para Tuplas
+Como las tuplas no se pueden modificar, no existen muchos métodos para su manipulación.
+
+### .count(x)
+Cuenta el número de veces que se repite el elemento-x
+```python
+tupla = (1,2,2,2,3,4,5)
+cont = tupla.count(2)
+
+print('num 2 se repite:',cont, 'veces')
+```
+<TerminalOutput withBg>
+{`num 2 se repite: 3 veces`}
+</TerminalOutput>
+
+### .index(x)
+Devuelve el índice del primer elemento-x encontrado
+```python
+tupla = ('pan','arroz','fideo','queso')
+indice = tupla.index('arroz')
+
+print('índice:',indice)
+```
+<TerminalOutput withBg>
+{`índice: 1`}
+</TerminalOutput>
+
+## Métodos para diccionarios
+
+### .clear()
+Elimina todos los elementos del diccionario
+
+```python
+dic = {
+	'nombre': 'jose',
+	'direccion': 'miDireccion123',
+	'telefono': 123456
+}
+
+dic.clear()
+
+print('dic:',dic)
+```
+<TerminalOutput withBg>
+{`dic: {}`}
+</TerminalOutput>
+
+### .copy()
+Copia los elementos a un nuevo diccionario
+
+```python
+dic1 = {
+	'nombre': 'jose',
+	'direccion': 'miDireccion123',
+	'telefono': 123456
+}
+
+dic2 = dic1.copy()
+
+print('dic2:',dic2)
+```
+<TerminalOutput withBg>
+{`dic2: {'nombre': 'jose', 'direccion': 'miDireccion123', 'telefono': 123456}`}
+</TerminalOutput>
+
+### .fromkeys(x,y)
+Asigna a la lista/tupla de claves-x el valor-y
+
+**Ejemplo 01:** tupla con claves
+```python
+claves = ('a','b','c')
+newDic = dict.fromkeys(claves,10)
+
+print('newDic:',newDic)
+```
+<TerminalOutput withBg>
+{`newDic: {'a': 10, 'b': 10, 'c': 10}`}
+</TerminalOutput>
+
+**Ejemplo 02:** lista con claves
+```python
+claves = ['a','b','c']
+valores = 9
+newDic = dict.fromkeys(claves,valores)
+
+print('newDic:',newDic)
+```
+<TerminalOutput withBg>
+{`newDic: {'a': 9, 'b': 9, 'c': 9}`}
+</TerminalOutput>
+
+### .get(x)
+Devuelve el valor de la clave-x
+```python
+dic = {
+	'nombre': 'jose',
+	'direccion': 'miDireccion123',
+	'telefono': 123456
+}
+
+valor = dic.get('direccion')
+
+print('valor:',valor)
+```
+<TerminalOutput withBg>
+{`valor: miDireccion123`}
+</TerminalOutput>
+
+### .items()
+Devuelve el diccionario como una lista de pares de tuplas clave-valor
+
+```python
+dic = {
+	'nombre': 'jose',
+	'direccion': 'miDireccion123',
+	'telefono': 123456
+}
+
+listaTuplas = dic.items()
+for i in listaTuplas:
+	print('tupla:',i)
+```
+<TerminalOutput withBg>
+{`tupla: ('nombre', 'jose')
+tupla: ('direccion', 'miDireccion123')
+tupla: ('telefono', 123456)`}
+</TerminalOutput>
+
+### .keys()
+Devuelve una lista con todas las claves
+
+```python
+dic = {
+	'nombre': 'jose',
+	'direccion': 'miDireccion123',
+	'telefono': 123456
+}
+
+claves = dic.keys()
+for i in claves:
+	print('clave:',i)
+```
+<TerminalOutput withBg>
+{`clave: nombre
+clave: direccion
+clave: telefono`}
+</TerminalOutput>
+
+### .values()
+Devuelve una lista con todos los valores
+```python
+dic = {
+	'nombre': 'jose',
+	'direccion': 'miDireccion123',
+	'telefono': 123456
+}
+
+valores = dic.values()
+for i in valores:
+	print('valor:',i)
+```
+<TerminalOutput withBg>
+{`valor: jose
+valor: miDireccion123
+valor: 123456`}
+</TerminalOutput>
+
+### .pop(x)
+Devuelve y elimina el valor de la clave-x  
+
+```python
+dic = {
+	'nombre': 'jose',
+	'direccion': 'miDireccion123',
+	'telefono': 123456
+}
+
+direccion = dic.pop('direccion')
+
+print('direccion:',direccion)
+print('dic:',dic)
+```
+<TerminalOutput withBg>
+{`direccion: miDireccion123
+dic: {'nombre': 'jose', 'telefono': 123456}`}
+</TerminalOutput>
+
+### .setdefault(x,y)
+1. Devuelve el valor de la clave-x
+2. Inserta la clave-x con el valor-y
+
+**Ejemplo 01:** Devuelve valor
+```python
+dic = {
+	'nombre': 'jose',
+	'direccion': 'miDireccion123',
+	'telefono': 123456
+}
+
+telefono = dic.setdefault('telefono')
+
+print('telefono:', telefono)
+```
+<TerminalOutput withBg>
+{`telefono: 123456`}
+</TerminalOutput>
+
+**Ejemplo 02:** inserta par clave-valor
+```python
+dic = {
+	'nombre': 'jose',
+	'direccion': 'miDireccion123',
+	'telefono': 123456
+}
+
+dic.setdefault('correo','mi@correo.cl')
+
+print('dic:',dic)
+```
+<TerminalOutput withBg>
+{`dic: {'nombre': 'jose', 'direccion': 'miDireccion123', 'telefono': 123456, 'correo': 'mi@correo.cl'}`}
+</TerminalOutput>
+
+### .update(x)
+1. Actualiza un diccionario 1 con un diccionario-x
+2. Inserta par clave-valor
+
+**Ejemplo 01:** actualizar diccionario
+```python
+dic1 = {
+	'nombre': 'jose',
+	'direccion': 'miDireccion123',
+	'telefono': 123456
+}
+
+dic2 = {
+	'nombre': 'jose',
+	'direccion': 'nuevaDireccion666',
+	'telefono': 123456
+}
+
+dic1.update(dic2)
+
+print('dic1:',dic1)
+```
+<TerminalOutput withBg>
+{`dic1: {'nombre': 'jose', 'direccion': 'nuevaDireccion666', 'telefono': 123456}`}
+</TerminalOutput>
+
+**Ejemplo 02:** insertar par clave-valor
+```python
+dic1 = {
+	'nombre': 'jose',
+	'direccion': 'miDireccion123',
+	'telefono': 123456
+}
+
+dic1.update({'profesion':'ing. informatico'})
+
+print('dic1:',dic1)
+```
+<TerminalOutput withBg>
+{`dic1: {'nombre': 'jose', 'direccion': 'miDireccion123', 'telefono': 123456, 'profesion': 'ing. informatico'}`}
+</TerminalOutput>
+
+## Algoritmos
+
+### El mayor de 2 números
+```python
+num1 = 5
+num2 = 10
+
+if (num1 > num2):
+	mayor = num1
+else:
+	mayor = num2
+
+print(f'el núm mayor es: {mayor}')
+```
+<TerminalOutput withBg>
+{`el núm mayor es: 10`}
+</TerminalOutput>
+
+> Si a = b, pasa al `else`.
+
+### Verificar si un núm es par o impar
+
+**Ejemplo 1:** 1ra forma
+```python
+num1 = 3
+
+if num1%2 == 0:
+	print(f'{num1} es par')
+else:
+	print(f'{num1} es impar')
+```
+<TerminalOutput withBg>
+{`3 es impar`}
+</TerminalOutput>
+
+**Ejemplo 2:** 2da forma
+```python
+num1 = 6
+if num1%2 > 0:
+	print(f'{num1} es impar')
+else:
+	print(f'{num1} es par')
+```
+<TerminalOutput withBg>
+{`6 es par`}
+</TerminalOutput>
+
+### Suma de 2 números
+```python
+num1 = 4
+num2 = 7
+
+suma = num1 + num2
+
+print(f'la suma de {num1} y {num2} es {suma}')
+```
+<TerminalOutput withBg>
+{`la suma de 4 y 7 es 11`}
+</TerminalOutput>
+
+### Suma de una lista
+
+**Ejemplo 1:** 1ra forma
+
+```python
+lista = [1,2,3,4,5,6,7]
+suma = 0
+for i in lista:
+	suma = suma + i
+
+print(f'la suma de {lista} es: {suma}')
+```
+<TerminalOutput withBg>
+{`la suma de [1, 2, 3, 4, 5, 6, 7] es: 28`}
+</TerminalOutput>
+
+**Ejemplo 2:** 2da forma
+```python
+lista = [1,2,3,4,5,6,7]
+suma = sum(lista)
+
+print(f'la suma de {lista} es: {suma}')
+```
+<TerminalOutput withBg>
+{`la suma de [1, 2, 3, 4, 5, 6, 7] es: 28`}
+</TerminalOutput>
+
+### Factorial de un número
+
+```python
+numero = 7
+mult = 1
+for i in range(1,numero+1):
+	mult = mult * i
+
+print(f'el factorial de {numero} es: {mult}')
+```
+<TerminalOutput withBg>
+{`el factorial de 7 es: 5040`}
+</TerminalOutput>
+
+### Promedio de una lista numérica
+
+**Ejemplo 01:** 1ra forma
+```python
+lista = [10, 30, 50, 80, 95]
+
+suma = 0
+for i in lista:
+	suma = suma + i
+
+promedio = suma / len(lista)
+
+print(f'el promedio de {lista} es: {promedio}')
+```
+<TerminalOutput withBg>
+{`el promedio de [10, 30, 50, 80, 95] es: 53.0`}
+</TerminalOutput>
+
+**Ejemplo 02:** 2da forma
+```python
+lista = [10, 30, 50, 80, 95]
+promedio = sum(lista) / len(lista)
+
+print(f'el promedio de {lista} es: {promedio}')
+```
+<TerminalOutput withBg>
+{`el promedio de [10, 30, 50, 80, 95] es: 53.0`}
+</TerminalOutput>

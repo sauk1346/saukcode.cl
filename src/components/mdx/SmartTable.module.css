@@ -1,0 +1,572 @@
+/* ================================
+   CONTENEDOR DE TABLA
+   ================================ */
+   .tableWrapper {
+    overflow-x: auto;
+    width: 100%;
+  }
+  
+  /* ================================
+     ESTILOS BASE DE LA TABLA
+     ================================ */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    table-layout: fixed;
+    margin-bottom: 1.75rem;
+  }
+  
+  /* LAYOUTS ESPECÍFICOS */
+  .table.tableLayoutAuto {
+    table-layout: auto;
+  }
+  
+  .table.tableLayoutMixed {
+    table-layout: fixed;
+  }
+  
+  .table thead {
+    background: linear-gradient(135deg, #2563eb 0%, #1f2937 100%);
+  }
+  
+  .table th, .table td {
+    padding: var(--spacing-md) 0.75rem;
+    text-align: left;
+    border: 1px solid white;
+    transition: border-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .table thead th {
+    font-weight: 600;
+    color: white;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-color: transparent;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
+  
+  .table tbody tr {
+    transition: background-color 0.2s ease;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #edf2f7;
+    cursor: pointer;
+  }
+  
+  .table tbody td {
+    color: #1f2937;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-color: white;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    vertical-align: top;
+  }
+  
+  /* ================================
+     ROW HEADERS - primera columna destacada
+     ================================ */
+  .table.rowHeaders tbody th[scope="row"] {
+    background-color: #f3f4f6;
+    font-weight: 600;
+    color: #1f2937;
+    border-right: 2px solid #e2e8f0;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+
+  :global(html.dark-mode) .table.rowHeaders tbody th[scope="row"],
+  :global(html.dark-mode-override) .table.rowHeaders tbody th[scope="row"] {
+    background-color: #374151;
+    color: #f9fafb;
+    border-right-color: #4b5563;
+  }
+
+  /* ================================
+     FILAS DESTACADAS (highlight)
+     ================================ */
+  .rowHighlightYellow td,
+  .rowHighlightYellow th[scope="row"] {
+    font-weight: 600;
+  }
+  .rowHighlightYellow {
+    background-color: rgba(250, 204, 21, 0.35);
+  }
+
+  .rowHighlightGreen td,
+  .rowHighlightGreen th[scope="row"] {
+    font-weight: 600;
+  }
+  .rowHighlightGreen {
+    background-color: rgba(34, 197, 94, 0.18);
+  }
+
+  .rowHighlightBlue td,
+  .rowHighlightBlue th[scope="row"] {
+    font-weight: 600;
+  }
+  .rowHighlightBlue {
+    background-color: rgba(59, 130, 246, 0.16);
+  }
+
+  .rowHighlightRed td,
+  .rowHighlightRed th[scope="row"] {
+    font-weight: 600;
+  }
+  .rowHighlightRed {
+    background-color: rgba(239, 68, 68, 0.16);
+  }
+
+  .rowHighlightGray td,
+  .rowHighlightGray th[scope="row"] {
+    font-weight: 600;
+  }
+  .rowHighlightGray {
+    background-color: rgba(107, 114, 128, 0.16);
+  }
+
+  .table tbody tr.rowHighlightYellow:hover,
+  .table tbody tr.rowHighlightGreen:hover,
+  .table tbody tr.rowHighlightBlue:hover,
+  .table tbody tr.rowHighlightRed:hover,
+  .table tbody tr.rowHighlightGray:hover {
+    filter: brightness(0.96);
+  }
+
+  :global(html.dark-mode) .rowHighlightYellow,
+  :global(html.dark-mode-override) .rowHighlightYellow {
+    background-color: rgba(250, 204, 21, 0.22);
+  }
+
+  :global(html.dark-mode) .rowHighlightGreen,
+  :global(html.dark-mode-override) .rowHighlightGreen {
+    background-color: rgba(34, 197, 94, 0.22);
+  }
+
+  :global(html.dark-mode) .rowHighlightBlue,
+  :global(html.dark-mode-override) .rowHighlightBlue {
+    background-color: rgba(59, 130, 246, 0.22);
+  }
+
+  :global(html.dark-mode) .rowHighlightRed,
+  :global(html.dark-mode-override) .rowHighlightRed {
+    background-color: rgba(239, 68, 68, 0.22);
+  }
+
+  :global(html.dark-mode) .rowHighlightGray,
+  :global(html.dark-mode-override) .rowHighlightGray {
+    background-color: rgba(107, 114, 128, 0.22);
+  }
+
+  /* ================================
+     FILA DE SECCIÓN (ej: INGRESOS / EGRESOS)
+     Se distingue a propósito del thead (fondo azul, bloque sólido) para
+     que se lea como un separador dentro de la tabla y no como un segundo
+     encabezado o dos tablas distintas fusionadas.
+     ================================ */
+  .sectionCell {
+    background-color: transparent;
+    color: #6b7280;
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    padding: 0.35rem 0.75rem;
+  }
+
+  :global(html.dark-mode) .sectionCell,
+  :global(html.dark-mode-override) .sectionCell {
+    color: #9ca3af;
+  }
+
+  /* ================================
+     CAPTION DE TABLA
+     ================================ */
+  .caption {
+    caption-side: top;
+    padding-bottom: 0.75rem;
+    font-size: 0.875rem;
+    font-style: italic;
+    color: #6b7280;
+    text-align: left;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+  }
+
+  /* TableRef — referencia cruzada */
+  .tableRef {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .tableRef:hover {
+    text-decoration: underline;
+    color: #1d4ed8;
+  }
+
+  .tableRefError {
+    color: #dc2626;
+    font-style: italic;
+  }
+
+  /* ================================
+     ELEMENTOS ESPECÍFICOS DE SMARTTABLE
+     ================================ */
+  
+  /* Código inline */
+  .inlineCode {
+    background-color: #f8fafc;
+    color: #475569;
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-sm);
+    font-family: "Menlo", "Monaco", "Courier New", monospace;
+    font-size: 0.875rem;
+    font-weight: 400;
+    white-space: nowrap;
+    border: 1px solid #f1f5f9;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .inlineCode:hover {
+    background-color: #f1f5f9;
+  }
+  
+  /* Texto en negrita (bold) */
+  .boldText {
+    font-weight: 700;
+    color: inherit;
+  }
+  
+  /* Texto en cursiva (italic) */
+  .italicText {
+    font-style: italic;
+    color: inherit;
+  }
+
+  /* ================================
+     TEXTO COLOREADO: {{color:texto}}
+     Útil para replicar anotaciones en color (ej. tinta roja de pizarra)
+     ================================ */
+  .colorRed {
+    color: #dc2626;
+    font-weight: 600;
+  }
+
+  .colorBlue {
+    color: #2563eb;
+    font-weight: 600;
+  }
+
+  .colorGreen {
+    color: #16a34a;
+    font-weight: 600;
+  }
+
+  .colorGray {
+    color: #6b7280;
+    font-weight: 600;
+  }
+
+  .colorYellow {
+    color: #ca8a04;
+    font-weight: 600;
+  }
+
+  :global(html.dark-mode) .colorRed,
+  :global(html.dark-mode-override) .colorRed {
+    color: #f87171;
+  }
+
+  :global(html.dark-mode) .colorBlue,
+  :global(html.dark-mode-override) .colorBlue {
+    color: #60a5fa;
+  }
+
+  :global(html.dark-mode) .colorGreen,
+  :global(html.dark-mode-override) .colorGreen {
+    color: #4ade80;
+  }
+
+  :global(html.dark-mode) .colorGray,
+  :global(html.dark-mode-override) .colorGray {
+    color: #9ca3af;
+  }
+
+  :global(html.dark-mode) .colorYellow,
+  :global(html.dark-mode-override) .colorYellow {
+    color: #facc15;
+  }
+  
+  /* ================================
+     FÓRMULAS KATEX - COMPATIBLES CON MDX
+     ================================ */
+  
+  /* Permitir que KaTeX use sus estilos nativos */
+  .table td .katex-wrapper,
+  .table th .katex-wrapper {
+    font-size: 1.2em !important;
+    line-height: 1.2 !important;
+    vertical-align: baseline !important;
+    display: inline-block !important;
+  }
+  
+  /* NO interferir con las clases nativas de KaTeX */
+  .table td .katex,
+  .table th .katex {
+    font-family: KaTeX_Main, "Times New Roman", serif !important;
+  }
+  
+  /* Asegurar que los elementos matemáticos no hereden estilos de tabla */
+  .table td .katex .mord,
+  .table th .katex .mord,
+  .table td .katex .mrel,
+  .table th .katex .mrel,
+  .table td .katex .mop,
+  .table th .katex .mop {
+    font-family: inherit !important;
+  }
+  
+  .code {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-weight: 600;
+    color: #2563eb;
+    font-size: 0.8rem;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  /* Reproductores multimedia */
+  .audioPlayer {
+    width: 100%;
+    max-width: 270px;
+    height: 32px;
+  }
+  
+  /* Listas con referencias externas */
+  .smartList {
+    margin: 0;
+    padding-left: 1.2rem;
+    list-style-type: disc;
+  }
+  
+  .smartListItem {
+    margin-bottom: var(--spacing-md);
+    line-height: 1.5;
+    text-align: justify;
+  }
+  
+  .smartListContent {
+    white-space: pre-wrap;
+  }
+  
+  /* Listas simples */
+  .simpleList {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+  
+  /* Lista no ordenada (ul) */
+  .simpleList:where(ul) {
+    list-style-type: disc;
+  }
+  
+  /* Lista ordenada (ol) */
+  .simpleList:where(ol) {
+    list-style-type: decimal;
+  }
+  
+  .simpleListItem {
+    margin-bottom: 0.3rem;
+    line-height: 1.5;
+  }
+  
+  /* Mensaje de error */
+  .errorMessage {
+    color: #dc2626;
+    font-style: italic;
+    padding: var(--spacing-sm);
+    background-color: #fef2f2;
+    border-radius: var(--radius-sm);
+    border: 1px solid #fecaca;
+    font-size: 0.875rem;
+  }
+  
+  /* Estilos para enlaces */
+  .titleLink {
+    color: #2563eb;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-weight: 500;
+  }
+  
+  .titleLink:hover {
+    text-decoration: underline;
+    color: #1d4ed8;
+  }
+  
+  .titleLink:focus,
+  .titleLink:active {
+    outline: none;
+  }
+  
+  .noCertificate {
+    color: #9ca3af;
+    font-style: italic;
+    font-weight: 500;
+  }
+  
+  /* =================================================================
+     MODO OSCURO
+     ================================================================= */
+  :global(html.dark-mode) .table,
+  :global(html.dark-mode-override) .table {
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+  }
+  
+  :global(html.dark-mode) .table thead,
+  :global(html.dark-mode-override) .table thead {
+    background: linear-gradient(135deg, #374151 0%, #111827 100%);
+  }
+  
+  :global(html.dark-mode) .table th,
+  :global(html.dark-mode) .table td,
+  :global(html.dark-mode-override) .table th,
+  :global(html.dark-mode-override) .table td {
+    border-color: #1e1e1e;
+  }
+  
+  :global(html.dark-mode) .table thead th,
+  :global(html.dark-mode-override) .table thead th {
+    color: #f9fafb;
+    border-color: transparent;
+  }
+  
+  :global(html.dark-mode) .table tbody tr:hover,
+  :global(html.dark-mode-override) .table tbody tr:hover {
+    background-color: #2d3748;
+  }
+  
+  :global(html.dark-mode) .table tbody td,
+  :global(html.dark-mode-override) .table tbody td {
+    color: #e5e7eb;
+    border-color: #1e1e1e;
+  }
+  
+  :global(html.dark-mode) .code,
+  :global(html.dark-mode-override) .code {
+    color: #60a5fa;
+  }
+  
+  /* Modo oscuro - código inline */
+  :global(html.dark-mode) .inlineCode,
+  :global(html.dark-mode-override) .inlineCode {
+    background-color: #1e293b;
+    color: #cbd5e1;
+    border-color: #334155;
+  }
+  
+  :global(html.dark-mode) .inlineCode:hover,
+  :global(html.dark-mode-override) .inlineCode:hover {
+    background-color: #334155;
+  }
+  
+  /* Modo oscuro - texto bold */
+  :global(html.dark-mode) .boldText,
+  :global(html.dark-mode-override) .boldText {
+    color: inherit;
+  }
+  
+  /* Modo oscuro - texto cursiva */
+  :global(html.dark-mode) .italicText,
+  :global(html.dark-mode-override) .italicText {
+    color: inherit;
+  }
+  
+  /* Modo oscuro - permitir que KaTeX maneje sus propios colores */
+  :global(html.dark-mode) .table td .katex-wrapper,
+  :global(html.dark-mode) .table th .katex-wrapper,
+  :global(html.dark-mode-override) .table td .katex-wrapper,
+  :global(html.dark-mode-override) .table th .katex-wrapper {
+    font-size: 1.2em !important;
+  }
+  
+  :global(html.dark-mode) .titleLink,
+  :global(html.dark-mode-override) .titleLink {
+    color: #60a5fa;
+  }
+  
+  :global(html.dark-mode) .titleLink:hover,
+  :global(html.dark-mode-override) .titleLink:hover {
+    color: #93c5fd;
+  }
+  
+  :global(html.dark-mode) .noCertificate,
+  :global(html.dark-mode-override) .noCertificate {
+    color: #9ca3af;
+  }
+  
+  :global(html.dark-mode) .errorMessage,
+  :global(html.dark-mode-override) .errorMessage {
+    background-color: #1f1f1f;
+    border-color: #374151;
+    color: #f87171;
+  }
+
+  :global(html.dark-mode) .caption,
+  :global(html.dark-mode-override) .caption {
+    color: #9ca3af;
+  }
+
+  :global(html.dark-mode) .tableRef,
+  :global(html.dark-mode-override) .tableRef {
+    color: #60a5fa;
+  }
+
+  :global(html.dark-mode) .tableRef:hover,
+  :global(html.dark-mode-override) .tableRef:hover {
+    color: #93c5fd;
+  }
+  
+  /* =================================================================
+     RESPONSIVE DESIGN
+     ================================================================= */
+  
+  /* Tablets y pantallas medianas */
+  @media (max-width: 768px) {
+    .table {
+      font-size: 0.8rem;
+    }
+  
+    .table thead th,
+    .table tbody td {
+      padding: 0.75rem 0.5rem;
+    }
+  }
+  
+  /* Móviles */
+  @media (max-width: 640px) {
+    .table thead th,
+    .table tbody td {
+      padding: 0.5rem 0.375rem;
+      font-size: 0.75rem;
+    }
+  
+    .table thead th {
+      font-size: 0.75rem;
+    }
+  }
+  

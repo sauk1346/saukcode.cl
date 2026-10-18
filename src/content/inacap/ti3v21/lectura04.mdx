@@ -1,0 +1,164 @@
+# Solucionando un problema con Diagrma de clases UML
+
+## Problema
+
+Imagina que estás diseñando un Sistema de Gestión de Biblioteca y necesitas modelar la estructura y las interacciones entre las entidades principales. Para abordar esta problemática, utilizarás un diagrama de clases (DDC) UML, siguiendo los pasos que muestra la figura
+
+<SmartFigure
+	id="pasos-uml"
+	src="/inacap/ti3v21/images/fig24.png"
+	alt="Pasos para utilizar un Diagrama de Clases UML"
+	caption="Pasos para utilizar un Diagrama de Clases UML"
+	size="large"
+/>
+
+## Contexto
+La biblioteca cuenta con diferentes tipos de usuarios: estudiantes, profesores y el personal administrativo, que pueden tomar prestado varios tipos de materiales como libros, revistas, y DVDs. Desea gestionar la información sobre la disponibilidad de los materiales y llevar un registro de los préstamos realizados.
+
+
+## Solución
+
+### Identificar las Clases
+
+1. **Usuario:** Clase base que representa a todos los usuarios
+2. **Estudiante:** Clase derivada que hereda de la clase `Usuario`
+3. **Profesor:** Clase derivada que hereda de la clase `Usuario`
+4. **PersonalAdministrativo:** Clase derivada que hereda de la clase `Usuario`
+5. **MaterialBiologico:** Clase base que representa materiales de la biblioteca
+6. **Libro:** Clase derivada que hereda de la clase `MaterialBibliografico`
+7. **Revista:** Clase derivada que hereda de la clase `MaterialBibliografico`
+8. **DVD:** Clase derivada que hereda de la clase `MaterialBibliografico`
+9. **Prestamo:** Clase para registrar la información sobre los préstamos
+
+
+<SmartFigure
+	id="identificar-clases"
+	src="/inacap/ti3v21/images/fig25.png"
+	alt="Identificar Clases"
+	caption="Identificar Clases"
+	size="large"
+/>
+
+### Identificar Relaciones
+
+1. **Usuarios-Prestamo:** qué usuarios han realizado préstamos
+
+<SmartFigure
+	id="identificar-relaciones-1"
+	src="/inacap/ti3v21/images/fig26.png"
+	alt="Identificar Relaciones (1)"
+	caption="Identificar Relaciones (1)"
+	size="large"
+/>
+
+2. **MaterialBibliografico-Prestamo:** qué materiales han sido prestados
+
+<SmartFigure
+	id="identificar-relaciones-2"
+	src="/inacap/ti3v21/images/fig27.png"
+	alt="Identificar Relaciones (2)"
+	caption="Identificar Relaciones (2)"
+	size="large"
+/>
+
+### Herencia
+
+1. **Usuario:** sus clases derivadas son `Estudiante`, `Profesor`, `PersonalAdministrativo`
+
+<SmartFigure
+	id="identificar-herencias-1"
+	src="/inacap/ti3v21/images/fig28.png"
+	alt="Identificar Herencias (1)"
+	caption="Identificar Herencias (1)"
+	size="large"
+/>
+
+2. **MaterialBibliografico:** sus clases derivadas son `Libro`, `Revista`, `DVD`
+
+<SmartFigure
+	id="identificar-herencias-2"
+	src="/inacap/ti3v21/images/fig29.png"
+	alt="Identificar Herencias (2)"
+	caption="Identificar Herencias (2)"
+	size="large"
+/>
+
+### Multiplicidad
+Relación de cantidad entre las distintas asociaciones de clases
+
+<SmartFigure
+	id="identificar-multiplicidad"
+	src="/inacap/ti3v21/images/fig30.png"
+	alt="Identificar Multiplicidad"
+	caption="Identificar Multiplicidad"
+	size="large"
+/>
+
+- **Un** *usuario* puede realizar **ningún o muchos** *préstamos*
+- Se pueden realizar **ningún o muchos** *préstamos*. *Éstos*, pueden contener **1 o muchos** *materiales bibliográficos* 
+
+### Solución Propuesta
+
+<SmartFigure
+	id="solucion-diagrama-clases-uml"
+	src="/inacap/ti3v21/images/fig31.png"
+	alt="Solución Diagrama de Clases UML"
+	caption="Solución Diagrama de Clases UML"
+  lightbox={true}
+	size="large"
+/>
+
+# Actividad de Práctica 04
+
+<Quiz questions={[
+  {
+    question: "¿Cuál de las siguientes opciones describe correctamente el propósito principal de un diagrama de clases?",
+    options: [
+      "Representar la secuencia temporal de un proceso",
+      "Visualizar las relaciones estáticas entre las clases en un sistema",
+      "Mostrar la distribución de componentes en un sistema",
+      "Ilustrar las interacciones entre objetos en tiempo real"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de estos símbolos se suele representar una asociación en un diagrama de clases?",
+    options: [
+      "Flecha con punta vacía",
+      "Rombo",
+      "Línea sólida",
+      "Flecha doble"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es la función principal de una clase abstracta en un diagrama de clases?",
+    options: [
+      "Ser una plantilla para otras clases",
+      "Representar una instancia específica",
+      "Indicar una asociación débil",
+      "Flecha doble"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué representa el símbolo de multiplicidad en una asociación en un diagrama de clases?",
+    options: [
+      "La dirección de la asociación",
+      "El tipo de relación",
+      "El número de instancias de la clase relacionada",
+      "La visibilidad de los atributos"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es el propósito principal de la herencia en un diagrama de clases?",
+    options: [
+      "Línea punteada con flecha",
+      "Representar asociaciones entre objetos en tiempo real",
+      "Indicar una relación de composición entre clases",
+      "Compartir atributos y comportamientos entre clases"
+    ],
+    correctIndex: 3
+  }
+]} />

@@ -1,0 +1,222 @@
+# Introducción a SaaS, IaaS, y Cloud Computing
+
+El *cloud computing*, junto con sus principales modelos de servicio: 
+
+- SaaS (*Software as a Service*)
+- IaaS (*Infrastructure as a Service*)
+
+se han convertido en piezas clave para el desarrollo y la implementación de proyectos de software.
+
+## 1. ¿Qué es el cloud computing?
+- Se refiere a la **entrega de recursos informáticos**, como almacenamiento, potencia de cálculo y aplicaciones, a través de Internet.
+- Este paradigma **permite a las organizaciones acceder a servicios y recursos bajo demanda, sin necesidad de realizar grandes inversiones en infraestructura física**.
+
+<SmartTable
+    tableLayout="fixed"
+    headers={["Beneficios", "Descripción"]}
+    rows={[
+        [
+            "**Escalabilidad**",
+            "Ajuste rápido de recursos según demanda"
+        ],
+        [
+            "**Flexibilidad**",
+            "Acceso a recursos desde cualquier lugar"
+        ],
+        [
+            "**Reducción de costos**",
+            "Menores inversiones en infraestructura física"
+        ],
+        [
+            "**Enfoque en negocio**",
+            "Permite a las organizaciones centrarse en su actividad principal"
+        ],
+    ]}
+/>
+
+## 2. ¿Qué es SaaS?
+- Es un modelo de servicio en el que las aplicaciones de software se ofrecen a los usuarios a través de Internet, eliminando la necesidad de instalar y mantener software localmente.
+- Los proveedores de SaaS alojan y gestionan las aplicaciones en sus servidores, lo que permite a los usuarios acceder a ellas desde cualquier lugar con una conexión a Internet.
+
+Nace a partir de la necesidad de:
+
+- Solucionar problemas con el software y hardware como el almacenamiento, fallas en el disco duro e incluso, hacer más lentos tus aparatos electrónicos.
+- Actualización manual del software cuando existen cambios de nuevas versiones.
+- Costos de instalación y mantenimiento.
+
+### Principales características del SaaS
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Características", "Descripción"]}
+    rows={[
+        [
+            "**Actualizaciones automáticas**",
+            "Los proveedores se encargan de mantener el software actualizado"
+        ],
+        [
+            "**Acceso bajo demanda**",
+            "Los usuarios pueden acceder a las aplicaciones desde navegadores web o dispositivos móviles"
+        ],
+        [
+            "**Modelos de suscripción**",
+            "Generalmente, los modelos SaaS se ofrecen bajo un esquema de pago por uso o suscripción mensual/anual"
+        ],
+    ]}
+/>
+
+### Ejemplos de SaaS
+
+- Herramientas de colaboración como Microsoft 365 o Google Workspace
+- Plataformas de gestión de proyectos como Trello o Asana
+- Soluciones de gestión de relaciones con clientes (CRM) como salesforce
+
+### Ventajas del SaaS
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Ventajas", "Descripción"]}
+    lists= {{
+        R1: [
+            "Reducción de costos de instalación e implementación",
+            "No se necesita invertir en un hardware adicional"    
+        ],
+        R2: [
+            "No se necesita realizar gastos en reparación, actualización o administración del software o hardware",
+            "El proveedor del software supervisa constantemente la seguridad de esta tecnología en la nube, por lo tanto, los riesgos se reducen",
+            "El gasto se convierte en un gasto operativo y no en un gasto de capital. Puede ser deducible cada mes"
+        ],
+        R3: [
+            "La actualización y reparaciones del software se ejecutan automáticamente",
+            "Disponibilidad de tiempo para utilizar el sistema"
+        ],
+        R4: [
+            "Reducción de tiempos de inactividad",
+            "Escalabilidad gracias a la posibilidad de cubrir mayores demandas de trabajo"
+        ]
+    }}
+    rows={[
+        [
+            "**Costos más bajos**",
+            "@R1"
+        ],
+        [
+            "**Costos corrientes previsibles**",
+            "@R2"
+        ],
+        [
+            "**Implementación rápida**",
+            "@R3"
+        ],
+        [
+            "**Escalabilidad**",
+            "@R4"
+        ]
+    ]}
+/>
+
+## 3. ¿Qué es IaaS?
+- Es una forma de computación en la nube que ofrece recursos fundamentales de infraestructura de TI, como informática, servidores, máquinas virtuales, redes y almacenamiento a los consumidores, a través de Internet y de pago por uso.
+- Permite a las organizaciones alquilar recursos informáticos según sus necesidades, en lugar de comprarlos y gestionarlos físicamente.
+- Surgió como un modelo informático a partir del lanzamiento de Amazon Compute Cloud (EC2) en 2006, que permitió a las empresas acceder a recursos informáticos virtualizados. Desde entonces, IaaS se convirtió en el modelo de abstracción estándar para muchos tipos de cargas de trabajo.
+
+Con un modelo IaaS, un proveedor de servicios en la nube (CSP); por ejemplo, Amazon Web Services (AWS), Google Cloud, Microsoft Azure, IBM® Cloud, Oracle Cloud, mantiene y gestiona los componentes de la infraestructura física (servidores, parches, hardware de red). Al mismo tiempo, una organización mantiene el control de la instalación, configuración y gestión de sus aplicaciones de software.
+
+### Principales características del IaaS
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Características", "Descripción"]}
+    rows={[
+        [
+            "**Escalabilidad**",
+            "Los recursos pueden ajustarse rápidamente en función de las demandas del proyecto"
+        ],
+        [
+            "**Pago por uso**",
+            "Los usuarios solo pagan por los recursos que utilizan"
+        ],
+        [
+            "**Control total**",
+            "Permite a los desarrolladores personalizar y configurar entornos según sus requisitos específicos"
+        ]
+    ]}
+/>
+
+## 4. Relevancia en proyectos de software
+El uso de SaaS e IaaS dentro del marco de cloud computing ha revolucionado la forma en que las organizaciones abordan el desarrollo y la gestión de proyectos de software.
+
+
+Estos modelos permiten:
+<SmartTable
+    tableLayout="auto"
+    headers={["Características", "Descripción"]}
+    rows={[
+        [
+            "**Agilidad**",
+            "Implementar soluciones rápidamente sin necesidad de preocuparse por la infraestructura subyacente"
+        ],
+        [
+            "**Colaboración**",
+            "Facilitar la colaboración entre equipos distribuidos geográficamente"
+        ],
+        [
+            "**Reducción de costos**",
+            "Minimizar gastos en hardware y mantenimiento"
+        ],
+        [
+            "**Innovación**",
+            "Enforcarse en crear valor a través de nuevas funcionalidades y servicios"
+        ],
+    ]}
+/>
+
+### Comparación de modelos de servicio en la nube
+
+<SmartTable
+    tableLayout="fixed"
+    headers={["Característica", "SaaS", "IaaS"]}
+    rows={[
+        [
+            "**Acceso**",
+            "Navegadores web, dispositivos móviles",
+            "Virtualización de recursos"
+        ],
+        [
+            "**Gestión**",
+            "Proveedor",
+            "Usuario"
+        ],
+        [
+            "**Pago**",
+            "Suscripción",
+            "Pago por uso"
+        ],
+        [
+            "**Ejemplos**",
+            "Microsoft 365, Google Workspace",
+            "AWS, Microsoft Azure"
+        ],
+    ]}
+/>
+
+# Actividad de Práctica 11
+
+<Quiz questions={[
+	{
+		question: "El modelo SaaS permite a los usuarios acceder a las aplicaciones desde cualquier lugar con una conexión a Internet",
+		options: [
+			"Falso",
+			"Verdadero",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "IaaS proporciona únicamente almacenamiento en la nube y no incluye recursos de red o servidores",
+		options: [
+			"Falso",
+			"Verdadero",
+		],
+		correctIndex: 0
+	},
+]} />

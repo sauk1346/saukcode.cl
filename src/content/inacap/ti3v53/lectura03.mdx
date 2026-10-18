@@ -1,0 +1,125 @@
+# Aprovisionamiento seguro en la nube: estrategias y normativas
+
+El aprovisionamiento en la nube se refiere al proceso de **asignar y configurar recursos informáticos** como servidores, almacenamiento, redes y servicios en entornos cloud para satisfacer las necesidades de una organización o aplicación. 
+
+Este proceso puede realizarse de manera manual o automatizada, y es uno de los pilares fundamentales del modelo de cloud computing (computación en la nube), ya que permite escalar recursos bajo demanda, optimizar costos y garantizar la disponibilidad de los servicios. 
+
+Según el estándar **NIST SP 800-145**, el aprovisionamiento debe ser rápido, flexible y medible, asegurando que los usuarios puedan acceder a los recursos sin intervención directa del proveedor.
+
+## 1. Tipos de aprovisionamiento
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Aprovisionamiento", "Descripción"]}
+    rows={[
+        [
+            "**Estático**",
+            "Los recursos se asignan de forma fija"
+        ],
+        [
+            "**Dinámico**",
+            "Ajusta los recursos según la carga de trabajo"
+        ],
+        [
+            "**Automatizado**",
+            "Utiliza herramientas de orquestación y scripts para desplegar entornos completos en segundos"
+        ],
+    ]}
+/>
+
+### Ejemplos
+
+#### AWS
+
+-  Supongamos que una empresa necesita desplegar una aplicación web escalable
+
+- Con **AWS CloudFormation**, se crea una plantilla en formato YAML que define una arquitectura completa:
+    - Instancias EC2 para el backend
+    - Un balanceador de carga ELB
+    - Una base de datos RDS
+    - Reglas de seguridad en grupos SG
+
+- Al ejecutar la plantilla, AWS aprovisiona todos los recursos automáticamente, **asegurando consistencia** y reduciendo el tiempo de implementación de horas a minutos. Además, se puede integrar con Auto Scaling para ajustar la capacidad según la demanda
+
+#### Microsoft Azure
+
+- Una organización que requiere un entorno para desarrollo puede sar **Azure Resource Manager (ARM)** para aprovisionar máquinas virtuales, redes virtuales y cuentas de almacenamiento mediante plantillas JSON
+
+- Se puede definir un conjunto de VMs con escalado automático y conectarlas a una red segura
+
+- Con **Azure Automation**, se agregan scripts para instalar dependencias y configurar servicios adicionales, logrando un despliegue completo **sin intervención manual**
+
+
+#### Google Cloud Platform (GCP)
+
+- Una empresa que necesita un clúster para análisis de datos puede usar **Deployment Manager** para crear instancias de *compute engine*, configurar redes y aplicar reglas de firewall mediante archivos YAML
+
+- Con **Autoscaler**, el sistema ajusta automáticamente la cantidad de instancias según la carga de trabajo, optimizando costos y garantizando rendimiento
+
+- Este enfoque permite que los equipos de TI gestionen **entornos complejos** con rapidez y seguridad
+
+## 2. Revisión de seguridad en la nube
+
+La revisión de seguridad en arquitecturas en la nube consiste en **evaluar y validar** que los componentes y configuraciones implementadas cumplen con los estándares y buenas prácticas de **protección de datos**, aplicaciones y servicios. 
+
+Este proceso es esencial para garantizar la confidencialidad, integridad y disponibilidad en entornos distribuidos, donde la infraestructura es dinámica y escalable. 
+
+Normas como ISO/IEC 27017, ISO/IEC 27018 y lineamientos del **NIST SP 800-53** proporcionan marcos de referencia para realizar auditorías y revisiones periódicas.
+
+### MFA y Responsabilidad compartida
+
+El análisis debe incluir la verificación de controles de acceso, políticas de autenticación multifactor (MFA), cifrado en tránsito y en reposo, segmentación de redes y monitoreo continuo. Además, se debe evaluar el cumplimiento del principio de **responsabilidad compartida**, asegurando que tanto el proveedor como el cliente cumplan con sus roles en la protección de la infraestructura y los datos. 
+
+Las revisiones también contemplan pruebas de penetración, análisis de vulnerabilidades y validación de configuraciones contra benchmarks como CIS (Center for Internet Security).
+
+
+---
+
+## Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "Una empresa necesita escalar recursos bajo demanda sin intervención del proveedor. ¿Qué característica de aprovisionamiento lo permite?",
+		options: [
+            "Escalabilidad rápida, flexible y medible según NIST SP 800-145",
+            "Asignación fija de recursos definidos al inicio del proyecto",
+            "Uso exclusivo de servidores físicos locales dedicados",
+            "Configuración manual realizada directamente por el proveedor",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "Un despliegue completo en AWS se realiza en minutos usando plantillas YAML. ¿Qué herramienta se emplea?",
+		options: [
+            "AWS EC2 para ejecutar instancias manualmente",
+            "AWS Auto Scaling para ajustar capacidad automáticamente",
+            "WS RDS para gestionar bases de datos relacionales",
+            "AWS CloudFormation para definir infraestructura como código",
+		],
+		correctIndex: 3
+	},
+    {
+		question: "Un auditor revisa controles técnicos en entornos dinámicos. ¿Las normas ISO y NIST sirven como marcos de referencia?",
+		options: [
+            "Verdadero",
+            "Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "Un equipo verifica accesos y cifrado. ¿La revisión incluye MFA, cifrado y segmentación de redes?",
+		options: [
+            "Verdadero",
+            "Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "Una organización asume toda la seguridad cloud. ¿La responsabilidad compartida excluye al proveedor?",
+		options: [
+            "Verdadero",
+            "Falso",
+		],
+		correctIndex: 1
+	},    
+]}/>

@@ -1,0 +1,496 @@
+# DRF: Creación de APIs
+
+## 1. Instalación DRF
+DRF (*Django Rest Framework*)
+
+```sh
+pip install djangorestframework
+```
+
+## 2. Serializers
+Son componentes que convierten datos complejos en formatos simples y viceversa.
+
+### Serialización (Python -> JSON/XML)
+- Convierten objetos de Python (como modelos de Django, querysets) en formatos que pueden transmitirse por HTTP
+- **Por ejemplo:** Un objeto `Usuario` de la base de datos -> JSON para enviar por la API
+
+### Deserialización (JSON/XML -> Python)
+- Convierten datos recibidos (JSON, XML) en objetos Python que puedes guardar en la base de datos
+- **Por ejemplo:** JSON recibido en un POST -> Objeto `Usuario` validado
+
+
+### Ejemplo Serializer
+```python
+# models.py
+class Libro(models.Model):
+    titulo = models.CharField(max_length=100)
+    autor = models.CharField(max_length=100)
+    precio = models.DecimalField(max_digits=6, decimal_places=2)
+
+# serializers.py
+class LibroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Libro
+        fields = ['id', 'titulo', 'autor', 'precio']
+```
+
+**Resultado**
+```json
+{
+    "id": 1,
+    "titulo": "Cien años de soledad",
+    "autor": "Gabriel García Márquez",
+    "precio": "15.99"
+}
+```
+
+## 3. ViewSets
+Son clases de DRF que agrupan toda la lógica para manejar las operaciones CRUD
+
+### ¿Por qué existen?
+Porque escribir vistas separadas para cada operación es repetitivo:
+
+- Vista para listar
+- Vista para crear
+- Vista para ver detalle
+- Vista para actualizar
+- Vista para eliminar
+
+Los ViewSets automatizan todo esto
+
+
+### Tipos de Viewsets
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Tipo", "Descripción"]}
+    lists={{
+        R1: [
+            "`list()` - GET/recursos/",
+            "`create()` - POST /recursos/",
+            "`retrieve()` - GET /recursos/1/",
+            "`update()` - PUT /recursos/1",
+            "`partial_update()` - PATCH /recursos/1",
+            "`destroy()` - DELETE /recursos/1",
+        ],
+        R2: [
+            "`list()`",
+            "`retrieve()`",
+        ]
+    }}
+    rows={[
+        [
+            "**ModelViewSet** (el más común)",
+            "@R1"
+
+        ],
+        [
+            "**ReadOnlyModelViewSet**",
+            "@R2"
+        ]
+    ]}
+/>
+
+## 4. Creación API REST
+API que proveerá servicios (datos) mediante endpoints REST
+
+1. **Crear nuevo proyecto:** Llamado `proyectodrf`
+    ```sh
+    django-admin startproject proyectodrf
+    cd proyectodrf
+    ```
+
+2. **Crear App:** Llamada `api`
+    ```sh
+    python manage.py startapp api
+    ```
+
+3. **Configurar Base de datos (1):** Crear base de datos
+    ```sh
+    python manage.py migrate
+    ```
+    <TerminalOutput>
+    {`Operations to perform:
+    Apply all migrations: admin, auth, contenttypes, sessions
+    Running migrations:
+    Applying contenttypes.0001_initial... OK
+    Applying auth.0001_initial... OK
+    Applying admin.0001_initial... OK
+    Applying admin.0002_logentry_remove_auto_add... OK
+    Applying admin.0003_logentry_add_action_flag_choices... OK
+    Applying contenttypes.0002_remove_content_type_name... OK
+    Applying auth.0002_alter_permission_name_max_length... OK
+    Applying auth.0003_alter_user_email_max_length... OK
+    Applying auth.0004_alter_user_username_opts... OK
+    Applying auth.0005_alter_user_last_login_null... OK
+    Applying auth.0006_require_contenttypes_0002... OK
+    Applying auth.0007_alter_validators_add_error_messages... OK
+    Applying auth.0008_alter_user_username_max_length... OK
+    Applying auth.0009_alter_user_last_name_max_length... OK
+    Applying auth.0010_alter_group_name_max_length... OK
+    Applying auth.0011_update_proxy_permissions... OK
+    Applying auth.0012_alter_user_first_name_max_length... OK
+    Applying sessions.0001_initial... OK`}
+    </TerminalOutput>
+
+4. **Configuración Inicial:** Agregar `api` y `rest_framework` en `settings.py`. Configurar fecha y hora
+    ```python
+    #./proyectodrf/setting.py
+    from pathlib import Path
+    ...
+    ...
+    INSTALLED_APPS = [
+        ...
+        ...
+        "api",
+        "rest_framework",
+    ]
+    ...
+    ...
+    LANGUAGE_CODE = "es-CL"
+
+    TIME_ZONE = "America/Santiago"
+    ...
+    ...
+    ```
+
+5. **Configuración Modelos:** Crear modelo `Proyecto` en `models.py`
+    ```python
+    #./api/models.py
+    from django.db import models
+
+    class Proyecto(models.Model):
+        titulo = models.CharField(max_length=100, null=False, blank=True)
+        descripcion = models.CharField(max_length=200, null=False, blank=True)
+        tecnologia = models.CharField(max_length=100)
+        fecha_creacion = model.DateTimeField(auto_now=True)
+    ```
+
+6. **Configurar Base de datos:** Crear archivos de migración con los cambios realizados y aplicarlos a la base de datos
+    ```sh
+    python manage.py makemigrations
+    ```
+    <TerminalOutput>
+    {`Migrations for 'api':
+    api/migrations/0001_initial.py
+        + Create model Proyecto`}
+    </TerminalOutput>
+    ```sh
+    python manage.py migrate
+    ```
+    <TerminalOutput>
+    {`Operations to perform:
+    Apply all migrations: admin, api, auth, contenttypes, sessions
+    Running migrations:
+    Applying api.0001_initial... OK`}
+    </TerminalOutput>
+
+7. **Configuración Serializers:** Crear un nuevo módulo `serializers.py`
+    ```python
+    #./api/serializers.py
+    from rest_framework import serializers
+    from .models import Proyecto
+
+    class ProyectoSerializers(serializers.ModelSerializer):
+        # Permite definir una representación en formato JSON para
+        # nuestra api
+        class Meta:
+            model = Proyecto
+            fields = ['id', 'titulo', 'descripcion', 'tecnologia', 'fecha_creacion']
+            read_only_fields = ('fecha_creacion',) #tupla
+    ```
+
+8. **Configuración ViewSets** Crear el módulo `api.py` para los viewsets
+    ```python
+    #./api/api.py
+    from .models import Proyecto
+    from rest_framework import viewsets, permissions
+    from .serializers import ProyectoSerializers
+
+    # Permite establecer quién y cómo se visualizará 
+    # la información de nuestra API
+    class ProyectoViewSet(viewsets.ModelViewSet):
+        
+        # Se define el grupo de datos a disponibilizar
+        queryset = Proyecto.objects.all()
+        
+        # Se definen permisos de acceso
+        permission_classes = [permissions.AllowAny]
+        
+        # Qué serializador se utilizará
+        serializer_class = ProyectoSerializers
+    ```
+
+9. **Configurar Enrutamiento:** Crear módulo `./api/urls.py` y agregarlo a `./proyectoapi/urls.py`
+    ```python
+    #./api/urls.py
+    from rest_framework import routers
+    from django.urls import path, include
+    from .api import ProyectoViewSet
+
+    # Crear rutas CRUD a través de routers
+    router = routers.DefaultRouter()
+
+    # Registro del path para ejecutar las acciones
+    # GET, POST, PUT, PATCH, DELETE, etc
+    router.register('api/proyectos', ProyectoViewSet, 'proyectos')
+
+    urlpatterns = [
+        path("", include(router.urls)),
+    ]
+    ```
+    ```python
+    #./proyectoapi/urls.py
+    from django.contrib import admin
+    from django.urls import path, include
+
+    urlpatterns = [
+        path("admin/", admin.site.urls),
+        path("", include('api.urls')),
+    ]
+    ```
+
+10. **Realizar Pruebas:** Levantar servidor y verificar ruta
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/
+    ```
+    <SmartFigure
+        id="pagina-inicio-api-rest"
+        src="/inacap/ti3v41/images/fig25.png"
+        alt="Página inicio de nuestra API REST"
+        caption="Página inicio de nuestra API REST"
+        size="large"
+    />
+
+### Agregar Proyectos
+
+1. **Crear Datos**: Ir a la ruta de la imágen anterior, y agregar proyectos
+    ```sh
+    http://127.0.0.1:8000/api/proyectos/
+    ```
+    <SmartFigure
+        id="agregar-proyectos-a-api"
+        src="/inacap/ti3v41/images/fig26.png"
+        alt="Agregar proyectos a la API"
+        caption="Agregar proyectos a la API"
+        size="large"
+    />
+    <SmartFigure
+        id="proyectos-agregados"
+        src="/inacap/ti3v41/images/fig27.png"
+        alt="Proyectos agregados"
+        caption="Proyectos agregados"
+        size="large"
+    />
+
+## 5. Consumir API con ThunderClient
+- Para consumir la API creada, se utilizará una extensión de VSCode: **ThunderClient**
+- Esta es una forma de **probar** la API
+- En un entorno real, la API sería consumida por una aplicación frontend (React, Vue, etc.) o desde otro backend
+
+1. **Iniciar Extensión:** Hacer click en botón azul `New Request`
+    <SmartFigure
+        id="nueva-solicitud"
+        src="/inacap/ti3v41/images/fig28.png"
+        alt="Nueva solicitud"
+        caption="Nueva solicitud"
+        size="large"
+    />
+
+2. **Consumir API (1):** Solicitar información a la API
+    ```sh
+    GET http://localhost:8000/api/proyectos
+    ```
+    <SmartFigure
+        id="solicitar-info-api"
+        src="/inacap/ti3v41/images/fig29.png"
+        alt="Solicitar información a la API"
+        caption="Solicitar información a la API"
+        size="large"
+    />
+
+3. **Consumir API (2):** Enviar información a la API
+    ```sh
+    POST http://localhost:8000/api/proyectos
+    ```
+    <SmartFigure
+        id="enviar-info-api"
+        src="/inacap/ti3v41/images/fig30.png"
+        alt="Enviar información a la API"
+        caption="Enviar información a la API"
+        size="large"
+    />
+
+4. **Consumir API (3):** Eliminar el proyecto con id=2
+    ```sh
+    DELETE http://localhost:8000/api/proyectos/2/
+    ```
+    <SmartFigure
+        id="eliminar-información"
+        src="/inacap/ti3v41/images/fig31.png"
+        alt="Eliminar información"
+        caption="Eliminar información"
+        size="large"
+    />
+
+5. **Consumir API (4):** Solicitar nuevamente información a la API
+    ```sh
+    GET http://localhost:8000/api/proyectos
+    ```
+    <SmartFigure
+        id="eliminar-información"
+        src="/inacap/ti3v41/images/fig32.png"
+        alt="Solicitar información a la API (ya no aparece proyecto 2)"
+        caption="Solicitar información a la API (ya no aparece proyecto 2)"
+        size="large"
+    />
+
+## 6. Consumir API con proyectoapi
+- Se reutiliza el proyecto anterior `proyectoapi`, el cual consumía una API de usuarios desde [https://reqres.in/api/users?page=2](https://reqres.in/api/users?page=2)
+- Se realizan las siguientes modificaciones a `proyectoapi` para que ahora consuma la API de proyectos
+
+1. **Consumir API:** Crear el método `get_proyectos()` en el módulo `service.py`
+    ```python
+    #./proyectoapi/api/service.py
+    import requests
+
+    def get_users(params={}):
+        ...
+        ...
+    def get_proyectos(params={}):
+        try:
+            # Se define el endpoint o URL a consumir
+            url = "http://localhost:8001/api/proyectos"
+            
+            # Consumir la API
+            respuesta = requests.get(url, params=params)
+            
+            #Se realiza check del código de status de HTTP (200)
+            if respuesta.status_code == 200:
+                return respuesta.json()
+            else:
+                return ''
+            
+        except requests.exceptions.RequestExceptions as e:
+            return f"Error: {e}"
+    ```
+
+2. **Configurar Vistas:** Crear una vista para los proyectos en modulo `views.py`
+    ```python
+    #./proyectoapi/api/views.py
+    from django.shortcuts import render
+    from .service import get_users, get_proyectos
+
+    # Create your views here.
+    ...
+    ...
+    def proyectos(request):
+        params = {}
+        context = { 'proyectos': get_proyectos(params) }
+        return render(request, 'api/proyectos.html', context)
+    ```
+
+3. **Configurar Enrutamiento:** Agregar ruta para proyectos
+    ```python
+    #./proyectoapi/api/urls.py
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        ...
+        ...
+        path("proyectos/", views.proyectos, name='proyectos'),
+    ]
+    ```
+
+4. **Configurar Templates (1):** Agregar template `proyectos.html`
+    ```html
+    <!-- ./proyectoapi/api/templates/api/proyectos.html -->
+    {% extends "base.html" %}
+    {% block title %}
+    <title>DRF</title>
+    {% endblock title %}
+    {% block content %} 
+    <div class="container-fluid p-2 bg-primary text-white text-center">     
+    <h1>Listado de Proyectos desde nuestra API</h1>
+    </div>
+    <div class="container mt-5">
+        {% if  proyectos %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Titulo</td>
+                    <td>Descripción</td>
+                    <td>Tecnología</td>
+                    <td>Fecha Creación</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in proyectos %}
+                    <tr>
+                        <td>{{p.id}}</td>
+                        <td>{{p.titulo}}</td>
+                        <td>{{p.descripcion}}</td>
+                        <td>{{p.tecnologia}}</td>
+                        <td>{{p.fecha_creacion}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p>No se obtiene información del servicio.</p>
+        {% endif %}  
+    </div>
+    {% endblock content %}
+    ```
+
+5. **Configurar Templates (2):** agregar url de proyectos, en navbar de template `base.html`
+    ```html
+    <!-- ./proyectoapi/api/templates/base.html -->
+    <!DOCTYPE html>
+    <html lang="en">
+    {% load static %}
+    <head>
+        ...
+        ...
+    </head>
+    <body>
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            {% block sidebar %}
+            <ul class="sidebar-nav">
+                <li><a href="{% url 'proyectos' %}">Proyectos</a></li>
+                <li><a href="{% url 'usuarios' %}">Usuarios</a></li>
+            </ul>
+            {% endblock sidebar %}
+        </div>
+        ...
+        ...
+    </div>
+    </div>
+    </body>
+    ```
+
+6. **Realizar Pruebas:** Levantar ambos proyectos, cada uno en un puerto distinto y realizar pruebas
+    ```sh
+    # Cliente Django que consume la API REST
+    cd proyectoapi
+    python manage.py runserver 8000
+    ```
+    ```sh
+    # Servidor DRF que expone la API 
+    cd proyectodrf
+    python manage.py runserver 8001
+    ```
+    <SmartFigure
+        id="cliente-django-mostrando-proyectos"
+        src="/inacap/ti3v41/images/fig33.png"
+        alt="Cliente Django mostrando proyectos desde la API REST"
+        caption="Cliente Django mostrando proyectos desde la API REST"
+        size="large"
+    />

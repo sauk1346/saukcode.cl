@@ -1,0 +1,391 @@
+# (Proyecto Tienda) Vistas genéricas de edición
+
+Las **vistas genéricas de edición** en Django son clases que simplifican las operaciones CRUD en los modelos.
+
+Las vistas principales son:
+- **CreateView:** Para crear nuevos objetos
+- **UpdateView:** Para editar objetos existentes
+- **DeleteView:** Para eliminar objetos
+
+Estas vistas manejan automáticamente la generación de formularios, validación, guardado en la base de datos y redirección. Solo necesitas especificar el modelo, los campos a mostrar y la URL de éxito
+
+#### Ejemplo
+```python
+from django.views.generic.edit import CreateView
+from .models import Producto
+
+class ProductoCreate(CreateView):
+    model = Producto
+    fields = ['nombre', 'precio', 'descripcion']
+    success_url = '/productos/'
+```
+
+Con esto, Django genera automáticamente el formulario, lo valida y guarda el objeto. Es mucho más eficiente que escribir toda la lógica manualmente en vistas basadas en funciones.
+
+## 1. Continuación Proyecto tienda
+
+### Agregar productos usando vistas genéricas de edición
+- Se continua con el proyecto tienda, ahora implementando la opción para agregar productos desde la página
+- Para esto se utilizarán las vistas genéricas de edición
+
+1. **Configuración Vistas:** Crear las vista genérica de edición para Productos en `views.py`
+    ```python
+    #./tienda/views.py
+    from django.shortcuts import render
+    from .models import Cliente, Producto, Categoria
+    from django.views import generic
+    from django.views.generic.edir import CreateView, UpdateView, DeleteView
+    from django.urls import reverse_lazy
+    ...
+    ...
+    # Listas genéricas de edición
+    class ProductoCreateView(CreateView):
+        model = Producto
+        fields = '__all__'
+        initial = {'stock':0}
+    ```
+
+2. **Configurar enrutamiento:** Agregar la ruta para la vista `ProductCreateView`, en el módulo `urls.py`
+    ```python
+    #./tienda/urls.py
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        ...
+        ...
+        path("productos/add/", views.ProductoCreateView.as_view(), name="producto-add"),
+    ]
+    ```
+
+3. **Configuración Templates (1):** Agregar el link para 'bootstrap-icons.css', en el template `base.html`
+    ```html
+    <!-- ./tienda/templates/tienda/base.html -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        ...
+        ...
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        ...
+        ...
+    </head>
+    <body>
+        ...
+        ...
+    </body>
+    ``` 
+
+3. **Configuración Templates (2):** Agregar el botón para 'agregar productos' en el template `producto_list.html`
+    ```html
+    <!-- ./tienda/templates/tienda/producto_list.html -->
+    {% extends "tienda/base.html" %}
+    
+    {% block title %}<title>Tienda de Productos - Productos</title>{% endblock %}
+    
+    {% block content %}
+    <!-- Projects Section-->
+    {% load static %}
+    <section class="py-5">
+      <div class="container px-1 mb-5">
+          ...
+          ...
+          <div class="text-center mb-5">
+            <a href="{% url 'producto-add' %}" class="btn btn-secondary btn-sm col-md-12">
+                <i class="bi bi-plus-square"></i>
+                Agregar Producto
+            </a>
+          </div>
+          ...
+          ...
+      </div>
+    </section>
+    {% endblock content %}
+    ```
+
+4. **Configuración Templates (3):** Crear una template con formulario agregar productos al presionar el botón 'Agregar Producto'
+    ```html
+    <!-- ./tienda/templates/tienda/producto_form.html -->
+    {% extends "tienda/base.html" %}
+
+    {% block title %}{% endblock title%}
+
+    {% block content %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Enviar" />
+    </form>
+    {% endblock content%}
+    ```
+
+5. **Realizar Pruebas:** Levantar servidor y verificar rutas
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/tienda/productos/
+    ```
+    <SmartFigure
+    	id="botón-agregar-productos"
+    	src="/inacap/ti3v41/images/fig048.png"
+    	alt="Botón 'Agregar Productos'"
+    	caption="Botón 'Agregar Producto'"
+    	size="large"
+    />
+    ```sh
+    http://127.0.0.1:8000/tienda/productos/add/
+    ```
+    <SmartFigure
+    	id="formulario-agregar-producto"
+    	src="/inacap/ti3v41/images/fig049.png"
+    	alt="Formulario para agregar producto"
+    	caption="Formulario para agregar producto"
+    	size="large"
+    />
+
+### Mejora estética de formulario para agregar productos
+
+1. **Configurar Templates:** Reemplazar el template `producto_form.html` por el siguiente código
+    ```html
+    {% extends "tienda/base.html" %}
+    
+    {% block title %}{% endblock title %}
+    
+    {% block content %}
+    
+    <div class="row text-center my-5 ">
+        <div class="col-sm-6 shadow-lg rounded mb-5">
+            <h2 class="bg-primary bg-gradient text-white p-5 text-center rounded ">Formulario de Producto</h2>
+            <form action="" method="post" enctype="multipart/form-data"  class="col-12 bg-light bg-gradient">
+                {% csrf_token %}
+                {%for campo in form %}
+                  {% if campo.field.widget.input_type == "select" %}
+                    <div class="mb-3">
+                        <label for="" class="form-label">{{campo.label}} - {{campo.field.widget.input_type}}</label>
+                        <div>
+                            {{campo}}
+                        </div>
+                    </div>           
+                  {% else %}
+                    <div class="mb-3">
+                      <label for="" class="form-label">{{campo.label}}</label>
+                      <input type="{{campo.field.widget.input_type}}"
+                        class="form-control" 
+                        name="{{campo.name}}"
+                        aria-describedby="{{campo.name}}Help"
+                        placeholder="Ingrese {{campo.label}}"
+                        value =""/>                  
+                    </div>
+                    <div class ="col-12 help-text">{{campo.errors}}</div>
+                  {% endif %}
+                {% endfor %}
+                <button type="submit" class="btn btn-primary my-5">Submit</button>
+            </form>
+    
+       </div>
+      </div>
+    {% endblock content %}
+    ```
+
+2. **Realizar pruebas:** Levantar servidor y verificar ruta
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/tienda/productos/add/
+    ```
+    <SmartFigure
+    	id="formulario-mejorado-esteticamente"
+    	src="/inacap/ti3v41/images/fig050.png"
+    	alt="Formulario mejorado estéticamente"
+    	caption="Formulario mejorado estéticamente"
+    	size="large"
+    />
+
+### Implementar 'Actualizar' y 'Borrar' productos, con vistas genéricas de edición
+
+1. **Configurar Vistas:** Agregar las vistas genéricas de edición `ProductoUpdateView` y `ProductoDeleteView`, en el módulo `views.py`
+    ```python
+    # ./tienda/views.py
+    from django.shortcuts import render
+    from .models import Cliente, Producto, Categoria
+    from django.views import generic
+    from django.views.generic.edit import CreateView, UpdateView, DeleteView
+    from django.urls import reverse_lazy
+    ...
+    ...    
+
+    # Listas genéricas de edición
+    ...
+    ...    
+    class ProductoUpdateView(UpdateView):
+        model = Producto
+        fields = '__all__'
+        # Se usa el template con nombre: producto_update_form.html
+        template_name_suffix = '_update_form'
+
+    class ProductoDeleteView(DeleteView):
+        model = Producto
+        # Indicar dónde ir cuando la eliminación se realiza correctamente
+        success_url = reverse_lazy('productos')
+    ```
+
+2. **Configurar Enrutamiento:** Agregar las rutas para `ProductoUpdateView` y `ProductoDeleteView`
+    ```python
+    # ./tienda/urls.py
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        ...
+        ...
+        path("productos/<int:pk>/update>/", views.ProductoUpdateView.as_view(), name="producto-update"),
+        path("productos/<int:pk>/delete", views.ProductoDeleteView.as_view(), name="producto-delete"),
+    ]
+    ```
+
+3. **Configurar Templates (1):** Agregar los templates para `ProductoUpdateView` y `ProductoDeleteView`
+    ```html
+    <!-- ./tienda/templates/tienda/producto_update_form.html -->
+    {% extends "tienda/base.html" %}
+    
+    {% block title %}{% endblock title %}
+    
+    {% block content %}
+    
+    <div class="row text-center my-5 ">
+        <div class="col-sm-6 shadow-lg rounded mb-5">
+            <h2 class="bg-primary bg-gradient text-white p-5 text-center rounded ">Actualizar Producto</h2>
+            <form action="" method="post" enctype="multipart/form-data"  class="col-12 bg-light bg-gradient">
+                {% csrf_token %}
+                {%for campo in form %}
+                  {% if campo.field.widget.input_type == "select" %}
+                    <div class="mb-3">
+                        <label for="" class="form-label">{{campo.label}}</label>
+                        <!--label for="" class="form-label">{{campo.label}} - {{campo.field.widget.input_type}}</label-->
+                        <div>
+                            {{campo}}
+                        </div>
+                    </div>           
+                  {% else %}
+                    <div class="mb-3">
+                      <label for="" class="form-label">{{campo.label}}</label>
+                      <input type="{{ campo.field.widget.input_type}}"
+                        class="form-control" 
+                        name="{{campo.name}}"
+                        aria-describedby="{{campo.name}}Help"
+                        placeholder="Ingrese {{campo.label}}"
+                        value ="{{campo.value}}"/>                  
+                    </div>
+                    <div class ="col-12 help-text">{{campo.errors}}</div>
+                  {% endif %}
+                {% endfor %}
+                <button type="submit" class="btn btn-primary my-5">Submit</button>
+            </form>
+    
+       </div>
+      </div>
+    {% endblock content %}
+    ```
+    ```html
+    <!-- ./tienda/templates/tienda/producto_confirm_delete.html -->
+    {% extends "tienda/base.html" %}
+    
+    {% block title %}{% endblock title %}
+    
+    {% block content %}
+    
+    <h1>Borrar Producto</h1>
+    
+    <p>¿Estás seguro que deseas borrar el producto: {{ producto.nombre }}?</p>
+    
+    <form action="" method="POST">
+      {% csrf_token %}
+      <input type="submit" action="" value="Si, borrar." />
+    </form>
+    
+    {% endblock %}
+    ```
+
+4. **Configurar Templates (2):** Agregar los templates `producto_update_form.html` y `producto_confirm_delete.html` a los botones del template `producto_list.html`
+    ```html
+    <!-- ./tienda/templates/tienda/producto_list.html -->
+    {% extends "tienda/base.html" %}
+    
+    {% block title %}{% endblock title %}
+    
+    {% block content %}
+    <h1>Producto: {{producto.nombre}}</h1>
+    <hr />
+    
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        ...
+        ...
+        <div class="col-md-4">
+          <div class="card-body">
+            ...
+            ...
+            <div class="mb-2">
+              <a href="{% url 'producto-update' producto.id %}" class="btn btn-warning btn-sm col-md-12">
+                <i class="bi bi-pencil-square"></i> Actualizar
+              </a>
+            </div>
+            <div class="mb-2">
+              <a href="{% url 'producto-delete' producto.id %}" class="btn btn-danger btn-sm col-md-12">
+                <i class="bi bi-trash"></i> Borrar</a>
+            </div>
+            ...
+            ...
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock content %}
+    ```
+
+5. **Realizar Pruebas:** Levantar servidor y verificar rutas
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    # Creación nuevo producto para realizar pruebas
+    http://127.0.0.1:8000/tienda/producto/7
+    ```
+    <SmartFigure
+    	id="nuevo-producto"
+    	src="/inacap/ti3v41/images/fig051.png"
+    	alt="Nuevo producto para realizar pruebas"
+    	caption="Nuevo producto para realizar pruebas"
+    	size="large"
+    />
+    ```sh
+    http://127.0.0.1:8000/tienda/productos/7/update%3E/
+    ```
+    <SmartFigure
+    	id="formulario-para-actualizar-producto"
+    	src="/inacap/ti3v41/images/fig052.png"
+    	alt="Formulario para actualizar producto"
+    	caption="Formulario para actualizar producto"
+    	size="large"
+    />
+     <SmartFigure
+    	id="producto-actualizado-con-nuevo-precio-y-stock"
+    	src="/inacap/ti3v41/images/fig053.png"
+    	alt="Producto actualizado con nuevo precio y stock"
+    	caption="Producto actualizado con nuevo precio y stock"
+    	size="large"
+    />
+
+    ```sh
+    # Borrar producto
+    http://127.0.0.1:8000/tienda/productos/7/delete
+    ```
+         <SmartFigure
+    	id="borrar-producto"
+    	src="/inacap/ti3v41/images/fig054.png"
+    	alt="Opción 'Borrar producto'"
+    	caption="Opción 'Borrar producto'"
+    	size="large"
+    />

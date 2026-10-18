@@ -1,0 +1,133 @@
+# Animación, Iluminación y Colisiones en Videojuegos
+
+## 1. Creación de terreno y colisiones
+Veamos una guía práctica para la creación de terrenos y la configuración de colisiones en videojuegos 2D utilizando Unreal Engine. En ella, se abordan aspectos clave como el uso de recursos gráficos descargados, la edición de sprites, la conversión a Tile Set y Tile Map, y la activación de colisiones. Además, se incluyen consideraciones sobre la iluminación en entornos 2D, proporcionando una base sólida para el desarrollo de escenarios interactivos en videojuegos. 
+
+### Uso de recursos descardados desde Itch.io
+
+El desarrollo de escenarios 2D puede optimizarse mediante el uso de recursos gráficos externos. Plataformas como Itch.io ofrecen texturas y animaciones que, adaptadas al formato sprite de Unreal Engine, permiten acelerar la creación de entornos interactivos: 
+
+- Es posible utilizar recursos similares o personalizar los propios, siempre que se mantenga la compatibilidad con el formato sprite requerido por Unreal Engine
+
+### Edición de sprite para agregar colisión
+Los sprites no solo aportan la apariencia visual de los elementos, también definen cómo interactúan físicamente con el entorno. Editar un sprite para incluir colisión es esencial para lograr jugabilidad coherente y evitar errores en la experiencia del jugador.
+
+Es importante considerar que:
+
+- Para agregar colisión a un sprite, se debe modificarlo dentro del editor de Unreal Engine
+- Este proceso permite definir zonas específicas del sprite que interactuarán físicamente con otros elementos del juego.
+- Es fundamental activar la visualización de colisiones para verificar su correcta implementación.
+
+
+### Conversión de imagen Tile Set / Tile Map
+El diseño modular de escenarios se basa en transformar imágenes en componentes reutilizables. La conversión de sprites en Tile Sets, y posteriormente, en Tile Maps permite construir terresnos complejos de manera ordenada y eficiente:
+
+- Una vez utilizado el sprite, se convierte en un Tile Set, que es un conjunto de piezas reutilizables para construir el terreno
+- Posteriormente, el Tile Set se transforma en un Tile Map, que representa el área de trabajodonde se colocan los Tiles.
+- Esta conversión facilita la creación de escenarios complejos de manera modular
+
+### Ajustes de tamaño y separación
+La correcta configuración de colisiones depende de parámetros técnicos precisos. Ajustar dimensiones y separación de los Tile asegura que el terreno responda fielmente a la interacción del jugador y mantenga coherencia visual.
+
+Para una correcta configuración de colisiones, se deben ajustar las dimensiones de cada Tile:
+
+- **Tamaño de Tile:** 48 pixeles
+- **Separación en el eje Y:** 16 pixeles
+
+Estos valores asegurarn que las colosiones se alineen adecuadamente con los gráficos del terreno
+
+### Activación de visión de colisiones
+Verificar las áreas de colisión es un paso clave para garantizar la jugabilidad. Por lo tanto, activar la visualización de colisiones al colocar el terreno en el mapa facilita la identificación de zonas de interacción, el ajuste de objetos y la detección y corrección de errores como, por ejemplo, personajes atravesando superficies o cayendo al vacío.
+
+### Consideraciones sobre iluminación en videojuegos 2D
+A diferencia de los entornos 3D, los videojuegos 2D manejan sprites autoiluminados, lo que significa que no requieren fuentes de luz externas. Por esta razón la iluminación no representa un aspecto crítido en el desarrollo de videojuegos 2D. Comprender esta particularidad permite simplificar el diseño, evitar configuraciones innecesarias y optimizar el rendimiento del proyecto.
+
+## 2. Animación del personaje y colisión
+En este apartado se explica el proceso de animación de personajes y la configuración de sus colisiones en videojuegos 2D desarrollados con Unreal Engine. Por ende, detallan los pasos necesarios para asociar animaciones tipo FlipBook, utilizar el objeto paper character, ajustar la cápsula de colisión, y garantizar la correcta interacción entre el personaje y el terreno. También se menciona la importancia de configurar la cámara para una experiencia de juego completa.
+
+### Animación de personaje y su colision
+En los videojuegos 2D, la animación de personajes debe ir de la mano con la configuración de colisiones. Mientras los FlipBooks otorgan movimiento y expresividad, las colisiones garantizan que el personaje interactúe de manera coherente con el entorno:
+
+- La animación de personaje en Unreal Engine se realiza mediante FlipBook, que son secuencias de imágenes que simulan movimiento
+- Para que el personaje interactúe correctamente con el entorno, es necesario configurar su colición, lo que evita que atraviese objetos o caiga fuera del mapa
+
+### Asociación de animación FlipBook (idle) a personaje
+Las animaciones en reposo o idle son el puneto de partida para dar vida a un personaje. Su asociación inicial permite establecer una base desde la cual se incorporan luego otras acciones como correr o saltar:
+
+- Se utiliza una animación tipo idle (reposo) como ejemplo inicial
+- Esta animación se asocia al personaje mediante la opción sprite dentro del objeto para character.
+- Es posible cmabiar la animación según eventos del juego, como correr o saltar, lógica en Blueprints.
+
+### Uso de objeto tipo paper character
+Un personaje 2D en Unreal Engine requiere un objeto especializado que combine movimiento, físicas y colisiones. El paper character cumple este rol, integrando de forma nativa los elementos esenciales para la jugabilidad:
+
+- El objeto **paper character** esencial para trabajar con personajes en 2D.
+- Este tipo de objeto permite integrar animaciones, físicas y colisiones de manera eficiente.
+- Es compatible con el sistema de Blueprints, lo que facilita la programación de comportamientos dinámicos.
+
+### Configuración de colisión mediante cápsula (shape)
+La interacción física del personaje se define a través de una cápsula de colisión. Su correcta configuración asegura que el sprite se ajuste al terreno y evite errores visuales o mecánicos en la jugabilidad. La cápsula se puede ajustar en la opción **shape**.
+
+Es importante que la cápsula esté bien alineada con el sprite del personaje puesto que:
+
+- Si está mal posicionada, el personaje puede parecer que flota o atraviesa el terreno
+- Una configuración precisa mejora la jugabilidad y la percepción visual
+
+### Alinea personaje y terreno, evita errores
+La coherencia entre las coliciones del personaje y las del terreno es vital. Una mala alineación puede generar fallas como caídas al vacío o movimientos poco realistas, afectando la experiencia del jugador. Por ello, al colocar el personaje en el terreno, sus colisiones deben coincidir con las del Tile Map.
+
+Asimismo, es fundamental activar la visualización de colisiones para ayudar a verificar esta alineación.
+
+### Cámara pendiente de implementación en configuración
+Aunque el personaje y sus colisiones puedan estan configuradas, sin la cámara el jugador no percibe la experiencia completa. Ajustar encuadre, seguimiento y perspectiva será el paso clave para consolidar la jugabilidad:
+
+- Hata este punto del desarrollo, la cámara no ha sido configurada
+- Esto impide visualizar cómo verá el juego el jugador final.
+- La configuración de la cámara es un paso posterior esencial para definir el encuadre, el seguimiento del personaje y la perspectiva del juego
+
+## 3. Iluminación en videojuegos 2D y 3D
+La iluminación es un componente esencial en el diseño visual de los videojuegos, ya que influye directamente en la atmósfera, la jugabilidad y la percepción del entorno. Sin embargo, su implementación varía significativamente entre los videojuegos en 2D y 3D. Mientras que en los entornos 2D la iluminación suele ser automática y sencilla, en los entornos 3D se requiere una configuración más detallada y técnica.
+
+- **En los videojuegos 2D**, la iluminación es generalmente un aspecto secundario debido a la naturaleza plana de los gráficos
+- **En los videojuegos 3D**, la iluminación es fundamental para crear profundidad, realismo y coherencia visual en el entorno
+
+# Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "¿Qué objeto se usa para asociar animaciones a personajes en Unreal Engine?",
+		options: [
+			"FlipBook Viewer",
+			"Paper character",
+			"Tile Map",
+			"Static Mesh"
+		],
+		correctIndex: 1    
+	},
+    {
+		question: "Activar la visión de colisiones facilita ubicar objetos en el terreno",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Qué tipo de iluminación usan los objetos móviles en videojuegos 3D?",
+		options: [
+			"Lightmaps",
+			"Autoiluminación",
+			"Iluminación dinámica",
+			"Luz estacionaria"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "Los sprites en videojuegos 2D requieren fuentes de luz externas",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 1
+	},
+]} />

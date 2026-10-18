@@ -1,0 +1,273 @@
+/* =================================================================
+ SMART LINK COMPONENT - CON FOCUS TEMPORAL
+ ================================================================= */
+
+.link {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  line-height: 25px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.link:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color: #1d4ed8;
+}
+
+/* ✨ NUEVO: Focus temporal que desaparece automáticamente */
+.link:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 2px;
+  animation: focusBrief 0.6s ease-out forwards;
+}
+
+/* ✨ NUEVO: Keyframes para focus temporal */
+@keyframes focusBrief {
+  0% {
+    outline-color: transparent;
+  }
+  15% {
+    outline-color: #2563eb;
+  }
+  70% {
+    outline-color: #2563eb;
+  }
+  100% {
+    outline-color: transparent;
+  }
+}
+
+/* Icono para enlaces externos */
+.externalIcon {
+  width: 14px;
+  height: 14px;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 2px;
+}
+
+.link:hover .externalIcon {
+  opacity: 1;
+}
+
+/* ✨ NUEVO: Icono para enlaces de YouTube */
+.youtubeIcon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 3px;
+}
+
+.youtubeBody {
+  fill: #ff0000; /* Caja roja YouTube */
+}
+
+.youtubePlay {
+  fill: #ffffff; /* Triángulo play blanco */
+}
+
+.link:hover .youtubeIcon {
+  opacity: 1;
+}
+
+/* Icono para archivos PDF */
+.pdfIcon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 2px;
+  color: #dc2626;
+}
+
+.link:hover .pdfIcon {
+  opacity: 1;
+}
+
+/* ✨ NUEVO: Icono para archivos de música/audio */
+.musicIcon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 2px;
+  color: #7c3aed; /* Púrpura para música */
+}
+
+.link:hover .musicIcon {
+  opacity: 1;
+}
+
+/* =================================================================
+ MODO OSCURO
+ ================================================================= */
+
+:global(html.dark-mode) .link,
+:global(html.dark-mode-override) .link {
+  color: #60a5fa;
+}
+
+:global(html.dark-mode) .link:hover,
+:global(html.dark-mode-override) .link:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color: #93c5fd;
+}
+
+/* ✨ ACTUALIZADO: Focus temporal en modo oscuro */
+:global(html.dark-mode) .link:focus,
+:global(html.dark-mode-override) .link:focus {
+  animation: focusBriefDark 0.6s ease-out forwards;
+}
+
+/* ✨ NUEVO: Keyframes para modo oscuro */
+@keyframes focusBriefDark {
+  0% {
+    outline-color: transparent;
+  }
+  15% {
+    outline-color: #60a5fa;
+  }
+  70% {
+    outline-color: #60a5fa;
+  }
+  100% {
+    outline-color: transparent;
+  }
+}
+
+:global(html.dark-mode) .pdfIcon,
+:global(html.dark-mode-override) .pdfIcon {
+  color: #f87171;
+}
+
+/* ✨ NUEVO: Icono de YouTube en modo oscuro (rojo un poco más luminoso; triángulo se mantiene blanco) */
+:global(html.dark-mode) .youtubeBody,
+:global(html.dark-mode-override) .youtubeBody {
+  fill: #ff3d3d;
+}
+
+/* ✨ NUEVO: Icono de música en modo oscuro */
+:global(html.dark-mode) .musicIcon,
+:global(html.dark-mode-override) .musicIcon {
+  color: #a78bfa; /* Púrpura más claro para dark mode */
+}
+
+/* =================================================================
+ VARIANTES OPCIONALES
+ ================================================================= */
+
+.link.noUnderline:hover {
+  text-decoration: none;
+}
+
+.link.subtle {
+  color: #6b7280;
+  font-weight: 400;
+}
+
+.link.subtle:hover {
+  color: #2563eb;
+  font-weight: 500;
+}
+
+.link.button {
+  background-color: #2563eb;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.link.button:hover {
+  background-color: #1d4ed8;
+  text-decoration: none;
+  color: white;
+}
+
+/* Variantes modo oscuro */
+:global(html.dark-mode) .link.subtle,
+:global(html.dark-mode-override) .link.subtle {
+  color: #9ca3af;
+}
+
+:global(html.dark-mode) .link.subtle:hover,
+:global(html.dark-mode-override) .link.subtle:hover {
+  color: #60a5fa;
+}
+
+:global(html.dark-mode) .link.button,
+:global(html.dark-mode-override) .link.button {
+  background-color: #60a5fa;
+  color: #1e1e1e;
+}
+
+:global(html.dark-mode) .link.button:hover,
+:global(html.dark-mode-override) .link.button:hover {
+  background-color: #93c5fd;
+  color: #1e1e1e;
+}
+
+/* =================================================================
+ ACCESIBILIDAD Y RESPONSIVE
+ ================================================================= */
+
+/* ✨ MEJORADO: Focus-visible para navegación por teclado */
+.link:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 2px;
+  animation: none; /* Sin animación para teclado - debe mantenerse visible */
+}
+
+:global(html.dark-mode) .link:focus-visible,
+:global(html.dark-mode-override) .link:focus-visible {
+  outline-color: #60a5fa;
+  animation: none;
+}
+
+/* Reducir movimiento para usuarios que lo prefieran */
+@media (prefers-reduced-motion: reduce) {
+  .link,
+  .externalIcon,
+  .pdfIcon,
+  .musicIcon,
+  .youtubeIcon {
+    transition: none;
+  }
+  
+  /* ✨ NUEVO: Sin animaciones de focus para usuarios sensibles al movimiento */
+  .link:focus {
+    animation: none;
+    outline-color: #2563eb;
+  }
+  
+  :global(html.dark-mode) .link:focus,
+  :global(html.dark-mode-override) .link:focus {
+    animation: none;
+    outline-color: #60a5fa;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .externalIcon,
+  .pdfIcon,
+  .musicIcon,
+  .youtubeIcon {
+    width: 12px;
+    height: 12px;
+  }
+}

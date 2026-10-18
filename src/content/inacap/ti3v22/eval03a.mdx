@@ -1,0 +1,239 @@
+# Evaluación 03-A
+
+## Sección 1: Selección Múltiple (30 puntos)
+Selecciona la alternativa correcta para cada pregunta.
+
+<Quiz questions= {[
+  {
+    question: "¿Qué significa PL/SQL en Oracle?",
+    options: [
+      "Procedural Language/Structured Query Language",
+      "Programming Logic/SQL",
+      "Program Logic/Structured Query Language",
+      "Procedural Logic/SQL"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué tipo de dato se usa en PL/SQL para manejar cadenas de caracteres?",
+    options: [
+      "STRING",
+      "TEXT",
+      "VARCHAR2",
+      "CHAR"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es la sintaxis correcta para declarar una variable en PL/SQL?",
+    options: [
+      "DECLARE variable_name : data_type;",
+      "DECLARE variable_name data_type;",
+      "variable_name data_type := value;",
+      "variable_name data_type;"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es la diferencia entre un procedimiento almacenado y una función en PL/SQL?",
+    options: [
+      "Ambos devuelven un valor",
+      "Solo los procedimientos devuelven valores",
+      "Solo las funciones devuelven valores",
+      "Ambos son iguales"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál de las siguientes operaciones se puede realizar dentro de un bloque PL/SQL?",
+    options: [
+      "SELECT INTO",
+      "GROUP BY",
+      "ORDER BY",
+      "DROP TABLE"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cómo se maneja una excepción cuando ocurre un error en PL/SQL?",
+    options: [
+      "TRY-CATCH",
+      "BEGIN-END",
+      "WHEN-THEN",
+      "EXCEPTION-WHEN"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál es la función PL/SQL utilizada para calcular el promedio de una columna en una tabla?",
+    options: [
+      "MAX",
+      "MIN",
+      "SUM",
+      "AVG"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál de las siguientes es una ventaja de usar PL/SQL sobre SQL puro?",
+    options: [
+      "Menor control de flujo",
+      "Permite la programación procedural",
+      "Menor flexibilidad",
+      "No es compatible con bases de datos relacionales"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es la palabra clave para crear un procedimiento almacenado en PL/SQL?",
+    options: [
+      "FUNCTION",
+      "PROCEDURE",
+      "DECLARE",
+      "BEGIN"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué comando se utiliza para imprimir texto en PL/SQL?",
+    options: [
+      "PRINT",
+      "DBMS_OUTPUT.PUT_LINE",
+      "ECHO",
+      "OUTPUT"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es la estructura correcta para manejar errores en PL/SQL?",
+    options: [
+      "BEGIN ... END",
+      "TRY ... CATCH",
+      "EXCEPTION ... WHEN",
+      "IF ... ELSE"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cómo se declara una variable de tipo numérico en PL/SQL?",
+    options: [
+      "NUMBER",
+      "INTEGER",
+      "FLOAT",
+      "DECIMAL"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué hace el siguiente comando SELECT INTO en PL/SQL?",
+    options: [
+      "Inserta valores en una tabla",
+      "Copia datos de una tabla a otra",
+      "Almacena el resultado de una consulta en una variable",
+      "Crea una nueva tabla"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cómo se inicia un bloque PL/SQL?",
+    options: [
+      "BEGIN",
+      "DECLARE",
+      "START",
+      "INIT"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué se usa en PL/SQL para ejecutar un bloque repetidamente?",
+    options: [
+      "WHILE",
+      "LOOP",
+      "FOR",
+      "Todas las anteriores"
+    ],
+    correctIndex: 3
+  }
+]} />
+
+
+## Sección 2: Ejercicios Prácticos (75 puntos) 
+
+### Ejercicio 2
+**Verificar Si un Número es Par o Impar** (25 puntos)
+
+Crea un bloque PL/SQL que reciba un número y determine si es par o impar. Si el número es par, debe imprimir "Es par", de lo contrario, "Es impar".
+
+Ejemplo de Entrada:
+
+```sql
+DECLARE
+    v_numero NUMBER := 8;
+BEGIN
+    -- bloque para verificar si es par o impar
+END;
+```
+Ejemplo de Salida Esperada:
+
+<TerminalOutput withBg>
+{`Es par`}
+</TerminalOutput>
+
+<Solution>
+```sql
+DECLARE
+    v_numero NUMBER := 8;
+BEGIN
+    IF MOD(v_numero, 2) = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Es par');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Es impar');
+    END IF;
+END;
+```
+</Solution>
+
+### Ejercicio 3
+**Actualizar el Precio de un Producto** (25 puntos)
+
+Crea un procedimiento almacenado llamado sp_ActualizarPrecioProducto que reciba el ID del producto y un porcentaje de incremento, y actualice el precio del producto incrementándolo en ese porcentaje. Imprime el nuevo precio del producto.
+
+Ejemplo de Entrada:
+```sql
+CALL sp_ActualizarPrecioProducto(101, 10);
+```
+
+Ejemplo de Salida Esperada:
+
+<TerminalOutput withBg>
+{`El nuevo precio del producto con ID 101 es: 550`}
+</TerminalOutput>
+
+<Solution>
+```sql
+CREATE OR REPLACE PROCEDURE sp_ActualizarPrecioProducto(
+    p_ProductoID IN NUMBER,
+    p_incremento_porcentaje IN NUMBER
+) IS
+    v_precio_actual NUMBER;
+    v_nuevo_precio NUMBER;
+BEGIN
+    -- Obtener el precio actual del producto
+    SELECT precio INTO v_precio_actual
+    FROM Productos
+    WHERE ProductoID = p_ProductoID;
+
+    -- Calcular el nuevo precio
+    v_nuevo_precio := v_precio_actual + (v_precio_actual * p_incremento_porcentaje / 100);
+
+    -- Actualizar el precio del producto
+    UPDATE Productos
+    SET Precio = v_nuevo_precio
+    WHERE ProductoID = p_ProductoID;
+
+    -- Imprimir el nuevo precio del producto
+    DBMS_OUTPUT.PUT_LINE('El nuevo precio del producto con ID ' || p_ProductoID || ' es: ' || v_nuevo_precio);
+    
+END;
+```
+</Solution>

@@ -1,0 +1,118 @@
+# Construyendo la lógica del videojuego
+
+## 1. Configuración básica de colisiones
+La configuración básica de colisiones en Unreal Engine ofrece una introducción esencial para comprender cómo los objetos interactúan físicamente dentro del entorno virtual. Aprender sobre colisiones permite controlar el comportamiento de los elementos en el juego, asegurando una experiencia más realista y funcional.
+
+Se entienden como la interacción entre los diversos elementos de los escenarios al momento de superponerse entre sí, estableciéndose qué acción debe desencadenar el motor ante este evento.   
+
+### Creación del proyecto tipo DEMO
+
+<SmartTable
+    tableLaytout="auto"
+    headers={['Paso', 'Descripción']}
+    rows={[
+        [
+            "**Selección de plantilla en Unreal Engine**",
+            "Para facilitar el proceso de integración de las colisiones, se utilizará el demo de ejemplo de Unreal para un escenario 3D en tercera persona"
+        ],
+        [
+            "**Configuración del proyecto en Unreal Engine**",
+            "Las opciones de seleccion deben ser según el menú desplegado en settings"
+        ],
+        [
+            "**Interfaz principal de Unreal Engine**",
+            "Una vez que ha sido creado el proyecto ya se puede ejecutar porque contiene todos los elementos básicos para utilizar un personaje en un escenario 3D. Para ejecutar presionas en el botón PLAY y para detener puedes presionar la tecla escape del teclado"
+        ],
+    ]}
+/>
+
+### Editando colisiones en el entorno virtual
+Las colisiones establecen interacciones físicas entre los objetos y el personaje dentro del entorno. Comprender su configuración es imprescindible para asegurar una experiencia de juego coherente y controlada.
+
+
+#### 1. Agregando un objeto de prueba 
+En esta etapa trabajarás con los elementos preconfigurados para la detección de colisiones. Para ello, agregarás un cubo al mapa y lo ubicarás en un punto donde el personaje pueda interactuar con él. Esta acción te permitirá observar cómo se gestionan las colisiones de forma predeterminada en el motor y analizar su impacto en la dinámica del juego.
+
+<SmartFigure
+	id="seleccion-objeto-cube"
+	src="/inacap/tilv22/images/fig01.png"
+	alt="Selección del objeto 'Cube'"
+	caption="Selección del objeto 'Cube'"
+	size="large"
+/>
+
+#### 2. Verificando el comportamiento de colisión predeterminado
+Si ejecutas y te acercas con el personaje, te darás cuenta de que no puedes traspasar el cubo.
+
+Para cambiar las opciones de colisión debes hacer clic en el cubo y debes ir a la opción de colisión
+
+<SmartFigure
+	id="propiedades-de-colision"
+	src="/inacap/tilv22/images/fig02.png"
+	alt="Propiedades de colisión de un objeto"
+	caption="Propiedades de colisión de un objeto"
+	size="large"
+/>
+
+#### 3. Configurando la superposición de objetos
+Seleccionaremos la opción “OverlapALL”, pues esta permite la detección de la superposición de los objetos y facilita, en este caso, que el personaje pueda traspasar al cubo. De todas formas, aún se podrá gatillar eventos ante esta colisión. Recuerda guardar los cambios.
+
+<SmartFigure
+	id="configuracion-colisiones-y-eventos-de-superposicion"
+	src="/inacap/tilv22/images/fig03.png"
+	alt="Configuración de colisiones y eventos de superposición"
+	caption="Configuración de colisiones y eventos de superposición"
+	size="large"
+/>
+
+#### 4. Aplicaciones de prácticas del overlap
+En este caso, probablemente no es útil permitir que el personaje traspase el cubo, pero puede aplicarse este principio para ciertos coleccionables.
+
+<SmartFigure
+	id="escena-en-unreal-engine-con-personaje-en-vista-tercera-persona"
+	src="/inacap/tilv22/images/fig04.png"
+	alt="Escena en Unreal Engine con personaje en vista tercera persona"
+	caption="Escena en Unreal Engine con personaje en vista tercera persona"
+	size="large"
+/>
+
+
+
+# Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "¿Qué permite la opción \"OverlapALL\" en las colisiones de Unreal Engine?",
+		options: [
+			"Impide cualquier interacción entre objetos",
+			"Elimina la física del objeto completamente",
+			"Permite que los objetos se superpongan y se detecten eventos",
+			"Hace que los objetos desaparezcan al colisionar"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "La opción \"OverlapAll\" permite que el personaje atraviese el cubo y aún se detecten eventos",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "La carpeta \"Mapa\" se utiliza para guardar objetos programables mediante blueprints",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "La ventana \"World Outliner\" permite seleccionar objetos del nivel y ubicarlos fácilmente",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+]} />

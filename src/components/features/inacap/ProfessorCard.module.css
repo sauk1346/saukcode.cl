@@ -1,0 +1,123 @@
+/* Tarjeta base - extraído de CourseDetails */
+.card {
+  background-color: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Modo oscuro para tarjeta */
+:global(html.dark-mode) .card,
+:global(html.dark-mode-override) .card {
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.18);
+}
+
+/* Header de tarjeta - extraído de CourseDetails */
+.cardHeader {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Modo oscuro para header */
+:global(html.dark-mode) .cardHeader,
+:global(html.dark-mode-override) .cardHeader {
+  background-color: #1e293b;
+  border-bottom: 1px solid #374151;
+}
+
+/* Título de tarjeta con icono - extraído de CourseDetails */
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #1f2937;
+  transition: color 0.3s ease;
+  margin: 0; /* Reset margin */
+}
+
+/* Modo oscuro para título */
+:global(html.dark-mode) .cardTitle,
+:global(html.dark-mode-override) .cardTitle {
+  color: #f3f4f6;
+}
+
+/* Cuerpo de tarjeta - extraído de CourseDetails */
+.cardBody {
+  padding: var(--spacing-md);
+}
+
+/* Items de información - extraído de CourseDetails */
+.infoItem {
+  margin-bottom: var(--spacing-sm);
+}
+
+.infoItem:last-child {
+  margin-bottom: 0; /* Sin margin en el último item */
+}
+
+/* Etiquetas de información - extraído de CourseDetails */
+.infoLabel {
+  display: block;
+  font-weight: 500;
+  color: #64748b;
+  margin-bottom: var(--spacing-xs);
+  transition: color 0.3s ease;
+}
+
+/* Modo oscuro para etiquetas */
+:global(html.dark-mode) .infoLabel,
+:global(html.dark-mode-override) .infoLabel {
+  color: #94a3b8;
+}
+
+/* ===================================================================
+ RESPONSIVE DESIGN
+ =================================================================== */
+
+@media (max-width: 768px) {
+  .card {
+    max-width: 100%;
+    margin: 0; /* Sin auto-centering en móvil */
+  }
+
+  .cardHeader {
+    padding: var(--spacing-sm);
+  }
+
+  .cardBody {
+    padding: var(--spacing-sm);
+  }
+
+  .cardTitle {
+    font-size: 1.125rem;
+  }
+
+  .infoItem {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .infoLabel {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardTitle {
+    font-size: 1rem;
+  }
+
+  .cardHeader,
+  .cardBody {
+    padding: var(--spacing-sm);
+  }
+}

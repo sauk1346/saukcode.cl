@@ -1,0 +1,56 @@
+# Git y Github: implementación de políticas de respaldo
+
+GitHub es una plataforma de desarrollo colaborativo de software que se utiliza para alojar proyectos, controlar versiones y colaborar con otros programadores. Permite a los desarrolladores trabajar juntos en un proyecto, realizar un seguimiento de los cambios realizados en el código y coordinar sus esfuerzos a través de herramientas como solicitudes de extracción y problemas. 
+
+## Clonar un repositorio
+Para trabajar en un repositorio existente, debes clonarlo en tu máquina local
+
+```sh
+git clone
+```
+
+## Flujo de Trabajo Básico
+
+**Verificar el estado del repositorio**
+```sh
+git status
+```
+
+**Agregar archivos**
+```sh
+git add nombre-del-archivo
+```
+
+**Agregar todos los archivos**
+```sh
+git add .
+```
+
+**Confirmar cambios**
+```sh
+git commit -m "mensaje de confirmación"
+```
+
+**Subir cambios al repositorio**
+```sh
+git push origin main
+```
+
+## Manejo de Ramas
+En Git, una rama es una versión paralela del código en el repositorio. Se utiliza para trabajar en nuevas funcionalidades, correcciones de errores o cualquier otra tarea de forma separada del código principal (rama principal o ”master”). Esto permite a los desarrolladores trabajar de forma colaborativa sin interferir en el código principal y luego fusionar sus cambios de forma ordenada.
+
+**Crear nueva rama**
+```sh
+git checkout -b nombre-rama
+```
+
+**Cambiar de rama**
+```sh
+git checkout nombre-rama-destino
+```
+
+**Fusionar una rama con la principal (main)**
+```sh
+git checkout main
+git merge nombre-rama
+```

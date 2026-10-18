@@ -1,0 +1,211 @@
+# Interfaz y distribución de videojuegos
+
+## 1. Interfaz
+
+Los HUDs (*Heads-Up Display*) son esencialmente pantallas de información para los jugadores. Esta información está representada por diferentes elementos, tales como imágenes, textos, etc. Son una parte clave dentro de los elementos técnicos del videojuego ya que apoyan a la jugabilidad y a la historia, además de tener su propio apartado artístico. 
+
+Los HUDs también nos permiten tomar decisiones estratégicas, por lo cual son elementos que deben planificarse con cuidado al momento de plantearse los objetivos que se deben cumplir en el transcurso de las misiones de nuestro videojuego.
+
+### Tipo de información dentro de un HUD
+El tipo de información que puede presentar un HUD vería según el tipo de videojuego, pero en términos generales, podemos destacar
+
+- Salud (vida del personaje)
+- Niveles como la resistencia, maná, etc.
+- Municiones, armas
+- Objetivo de la misión
+- Mapas
+- Pistas
+- Experiencia
+- Cantidad de recursos
+
+Los HUDs originalmente no son interactivos, pero existen algunas excepciones, como por ejemplo, cuando se quiere cambiar el mapa o hacer *zoom* en una zona del mapa
+
+### Creación del widget
+Para Unreal, las interfaces visuales se desarrollan con widgets. Es decir, nuestros HUDs se construyen a través de ellos
+
+1. Lo primero es crear una carpeta para ordenar nuestros widgets, generalmente titulada con el mismo nombre: "Widget". En las opciones del menú contextual del ratón encontramos las importaciones de nuestros objetos de interfaz
+
+<SmartFigure
+	id="creacion-widget-blueprint-en-unreal-engine"
+	src="/inacap/tilv22/images/fig05.png"
+	alt="Creación de un widget Blueprint en Unreal Engine"
+	caption="Creación de un widget Blueprint en Unreal Engine"
+	size="medium"
+/>
+
+2. Para efectos de de este ejemplo, trabajaremos con la creación del HUD del menú principal. Haciendo click sobre este widget, llegamos a nuestra ventana de editor. Por defecto, la zona de trabajo incluye un canvas con una escala de tamaño (que también, por defecto, es de 1280px por 720px) que puede ajustarse según la necesidad de la plataforma de destino
+
+<SmartFigure
+	id="interfaz-de-diseño-de-ui"
+	src="/inacap/tilv22/images/fig06.png"
+	alt="Interfaz de diseño de UI en Unreal Engine: widget Blueprint del menú principal"
+	caption="Interfaz de diseño de UI en Unreal Engine: widget Blueprint del menú principal"
+	size="large"
+/>
+
+3. Arrastramos una caja de texto para colocar el título de nuestro menú principal y cambiamos el texto y tamaño. Estas opciones se encuentran en la sección de "*Details*"
+
+<SmartFigure
+	id="edicion-del-texto-menu-principal"
+	src="/inacap/tilv22/images/fig07.png"
+	alt="Edición del texto 'Menú Principal' en el widget Bluepirnt de Unreal Engine"
+	caption="Edición del texto 'Menú Principal' en el widget Bluepirnt de Unreal Engine"
+	size="large"
+/>
+
+4. Para cada elemento que colocamos dentro de nuestro canvas, podemos establecer una posición más absoluta. Como es posible modificar el tmaño de nuestras pantallas, la posición de los objetos dentor del canvas se relativiza, es decir, por ejemplo, una caja de texto que antes estaba en el centro, al modificar el tamaño, ahora estará en una posición diferente con respecto a ese centro
+
+<SmartFigure
+	id="configuracion-de-posicionamiento-y-estilo-del-texto-menu-principal"
+	src="/inacap/tilv22/images/fig08.png"
+	alt="Configuración de posicionamiento y estilo del texto 'Menú Principal' en Unreal Engine"
+	caption="Configuración de posicionamiento y estilo del texto 'Menú Principal' en Unreal Engine"
+	size="large"
+/>
+
+5. Generamos ahora los botones para una "nueva partida" y "salir del juego". Los botones por defecto no tienen una propiedad para "escribir en ellos", por lo tanto, debemos arrastrar dentro de ellos una caja de texto y aplicar las mismas opciones antes mencionadas. Recuerda ir compilando y guardando, ya que, como un widget es un objeto dentro de Unreal, es necesario este proceso.
+
+<SmartFigure
+	id="diseno-del-menu-principal-con-imagen-y-botones"
+	src="/inacap/tilv22/images/fig09.png"
+	alt="Diseño del menú principal con imagen y botones en Unreal Engine"
+	caption="Diseño del menú principal con imagen y botones en Unreal Engine"
+	size="large"
+/>
+
+### Diseñando un HUD
+Lo que haremos es diseñar un HUD que permita ver el tiempo transcurrido, por ejemplo, desde que inicia el juego hasta que termina. No veremos la lógica (Blueprints) ya que eso es parte del desarrollo en laboratorio, pero sí entenderemos lo básico, demostrando que podemos establecer estos objetos con sus diseños antes de tener la lógica construida.
+
+
+1. Debes repetir los pasos anterioes para crear un widget. La única diferencia es que lo llamaremos HUD
+
+<SmartFigure
+	id="vista-del-content-browser"
+	src="/inacap/tilv22/images/fig10.png"
+	alt="Vista del Content Browser: carpeta 'Widget' con HUD y Menú Principal en Unreal Engine"
+	caption="Vista del Content Browser: carpeta 'Widget' con HUD y Menú Principal en Unreal Engine"
+	size="large"
+/>
+
+2. Como vamos a colocar un timer, debemos utilizar un objeto tipo *input*. En esta oportunidad, escribiremos un tiempo en la caja de texto solo apra que nos sirva de referencia. El lugar donde ubiques la caja de texto es donde la verás en la pantalla del juego, por lo tanto, debes considerar que sea fácil de visualizar y entender. Por ejemplo, si el color de la fuente es blanco y el fondo del juego también lo es, no se podría leer la información, pues se confundiría con el fondo.
+
+<SmartFigure
+	id="configuracion-del-temporizador"
+	src="/inacap/tilv22/images/fig11.png"
+	alt="Configuración del temporizador '00:29' en el widget Blueprint de Unreal Engine"
+	caption="Configuración del temporizador '00:29' en el widget Blueprint de Unreal Engine"
+	size="large"
+/>
+
+3. Asimismo, añadimos una caja de texto en el centro, la cual servirá para mostrar un texto personalizado. Por ejemplo, cuando nuestro personaje encuentre un mapa clave puede aparecer el texto "Mapa Encontrado". Arrastramos además, una barra de progreso, la cual servirá para demostrar la estamina que posee nuestro personaje. Dentro de las propiedades de edición para la barra de progreso podemos editar el colo, el porcentaje y la posición de relleno de la barra "*Bar Fill Type*"
+
+<SmartFigure
+	id="interfaz-de-evento-con-temporizador-mensaje-y-barra-de-estamina"
+	src="/inacap/tilv22/images/fig12.png"
+	alt="Interfaz de evento con temporizador, mensaje y barra de estamina en Unreal Engine"
+	caption="Interfaz de evento con temporizador, mensaje y barra de estamina en Unreal Engine"
+	size="large"
+/>
+
+4. Por último, agregamos una imagen que nos indique cuántas partes hemos adquirido de un coleccionable. En este caso, utilizamos un "Dado", En "*Style*", la propiedad "*Image*" de la opción de "*Fill Image*", podemos incorporar la imagen. Si es necesario, puedes cambiar la opacidad, dependiendo de la imagen que estés utilizando. El objeto sigue siendo una barra de progreso
+
+<SmartFigure
+	id="interfaz-de-coleccion-de-evento-con-imagen-y-barra-de-progreso"
+	src="/inacap/tilv22/images/fig13.png"
+	alt="Interfaz de colección de evento con imagen y barra de progreso en Unreal Engine"
+	caption="Interfaz de colección de evento con imagen y barra de progreso en Unreal Engine"
+	size="large"
+/>
+
+## 2. Distribución
+Para poder distribuir, en este caso, una aplicación para PC, debemos crear un ejecutable (.EXE), por lo cual, procederemos a describir este proceso, pero, antes de llegar a este paso, es necesario tener las siguientes consideraciones mínimas: 
+
+1. Establecer correctamente el nivel inicial del juego
+2. Configurar correctamente el modo de  juego (*game mode*), teniendo en cuenta el HUD, los *widgets* y otros objetos importantes
+3. Eliminar el contenido no utilizado. Los *assets* no asociados utilizados deben removerse al momento de la compilación
+4. Configurar el empaquetado. En caso de ser necesario, se debe establecer si es público o para la versión de prueba
+5. Verificar la resolución y el escalado pensando en la plataforma de destino
+6. Dependencias externas: en algunos casos es necesario validar que todos los plugins estén correctamente instalados y activados
+7. Verificar que todos los *assets* tengan las licencias respectivas
+
+Existen otras verificaciones, pero al menos estas son algunas de las más críticas.
+
+### Configuración del proyecto previo a la creación del ejecutable
+
+1. En las opciones de "*Project Settings*", en la sección de "*Maps & Modes*", debes definir el nivel de inicio y el modo de juego (pueden existir varios *game modes*)
+
+<SmartFigure
+	id="configuracion-de-mapas-y-modos-por-defecto"
+	src="/inacap/tilv22/images/fig14.png"
+	alt="Configuración de mapas y modos por defecto en Unreal Engine"
+	caption="Configuración de mapas y modos por defecto en Unreal Engine"
+	size="large"
+/>
+
+2. Si posees scripts en C++ debes compilarlos con Visual Studio y escoger si será en modo desarrollador (*developer*) o *shipping*
+
+<SmartFigure
+	id="empaquetado-del-proyecto-para-windows-64"
+	src="/inacap/tilv22/images/fig15.png"
+	alt="Empaquetado del proyecto para Windows 64-bit en Unreal Engine"
+	caption="Empaquetado del proyecto para Windows 64-bit en Unreal Engine"
+	size="large"
+/>
+
+3. Finalmente debes ingresar la opción de "*File*" para encontrar la selección del empaquetado según lo requiera la plataforma de destino
+
+
+# Actividad de Práctica
+
+<Quiz questions={[
+    {
+        question: "¿Qué tipo de objeto se utiliza en Unreal Engine para crear un HUD?",
+        options: [
+            "Blueprint",
+            "Canvas",
+            "Widget",
+            "Texture"
+        ],
+        correctIndex: 2
+    },
+    {
+        question: "¿Cuál de los siguientes elementos puede mostrar un HUD en un videojuego de acción?",
+        options: [
+            "Municiones",
+            "Créditos del juego",
+            "Pantalla de carga",
+            "Música de fondo"
+        ],
+        correctIndex: 0
+    },
+    {
+        question: "¿Qué herramienta permite posicionar objetos de forma más precisa en el canvas?",
+        options: [
+            "Layers",
+            "Details",
+            "Brushes",
+            "Anchors"
+        ],
+        correctIndex: 3
+    },
+    {
+        question: "¿Qué tipo de archivo se genera para distribuir una aplicación en PC?",
+        options: [
+            "Script (.CPP)",
+            "Archivo de texto (.TXT)",
+            "Ejecutable (.EXE)",
+            "Imagen (.PNG)"
+        ],
+        correctIndex: 2
+    },
+    {
+        question: "¿Qué debe configurarse en 'Maps & Modes' antes de empaquetar el proyecto?",
+        options: [
+            "Resolución de pantalla",
+            "Nivel inicial y modo de juego",
+            "Licencias de los assets",
+            "Plugins externos"
+        ],
+        correctIndex: 1
+    },
+]} />

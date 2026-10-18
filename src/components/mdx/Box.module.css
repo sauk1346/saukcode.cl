@@ -1,0 +1,21 @@
+.box {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md, 8px);
+  background: rgba(127, 127, 127, 0.12);
+  padding: var(--spacing-lg, 16px);
+  margin: var(--spacing-lg, 16px) 0;
+}
+
+.title {
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: var(--spacing-sm, 8px);
+}
+
+.content > *:first-child {
+  margin-top: 0;
+}
+
+.content > *:last-child {
+  margin-bottom: 0;
+}

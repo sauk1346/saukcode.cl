@@ -1,0 +1,88 @@
+# ARPA 02
+
+**Material**
+- [ARPA 2: Función desconocida](docs/unit02-arpa02a.pdf)
+- [ARPA 2: Extensión](docs/unit02-arpa02b.pdf)
+
+## Función Desconocida
+
+La posición de una partícula, en metros, está representada por una función $f$ que, lamentablemente, desconocemos. Sin embargo, tenemos acceso a las diferentes pendientes puntuales (derivada puntual o pendiente de la recta tangente) que corresponden a la velocidad instantánea de la partícula en ciertos momentos del tiempo $x$.
+
+En la siguiente tabla se muestran los valores de la variable y de la pendiente
+
+<SmartFigure
+    src="/inacap/cvcd01/images/fig185.png"
+	alt="Tabla con datos"
+	caption="Tabla con datos"
+	size="large"
+/>
+
+A dos estudiantes se les ha dado la tarea de determinal cuál es la expresión de la función desconocida $f$. Carolina dice que la posición de la partícula es:
+
+$$
+f(x) = 3x^2+5x+4+ln(3x+4)
+$$
+
+mientras que Vanessa plantea que es:
+
+$$
+f(x) = 3x^2+5x+8+ln(4x+3)
+$$
+
+¿Cuál de las dos estudiantes está en lo correcto?
+
+<Solution title="Solución ARPA 2">
+
+**Paso 1: Conversión de tabla**
+
+- Se convierte la tabla del enunciado a decimal, para una mejor comparación de resultados
+
+<SmartFigure
+    id="fig186"
+    src="/inacap/cvcd01/images/fig186.png"
+	alt="Tabla con datos decimales"
+	caption="Tabla con datos decimales"
+	size="large"
+/>
+
+---
+
+**Paso 2: Comparación de modelos**
+
+- Se compara los datos obtenidos con los modelos $f(x)$ de Carolina y Vanessa
+
+<SmartFigure
+    id="fig187"
+    src="/inacap/cvcd01/images/fig187.png"
+	alt="Comparación de modelos"
+	caption="Comparación de modelos"
+	size="large"
+/>
+
+<P indent={2}>
+$\therefore$ La estudiante Vanessa está en lo correcto
+</P>
+</Solution>
+
+## Extensión
+
+Si obtenemos la segunda derivada de la función $f$, ¿Qué modela esta función?
+
+<Solution title="Solución extensión">
+
+En clases anteriores, se vieron los siguientes modelos:
+- $X(t)$: modelo de posición
+- $V(t)$: modelo de velocidad
+- $A(t)$: modelo de aceleración
+
+donde por medio de la **derivada** es posible pasar de un modelo al siguiente.
+
+Entonces, se puede realizar la siguiente comparación:
+- La función $f(x)$ modela la posición de una partícula, según el enunciado
+- Entonces, su primera derivada $f'(x)$ modela la velocidad de una partícula
+- Finalmente, su segunda derivada $f''(x)$ modela la aceleración de una particula
+
+<P indent={2}>
+$\therefore$ La segunda derivada de la función $f$ modela la aceleración de una particula en un tiempo $x$ 
+</P>
+</Solution>

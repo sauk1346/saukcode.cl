@@ -1,0 +1,242 @@
+# Guía de Ejercicios - Base de Datos de Empleados
+
+- **Base de datos:** empresaDB
+- **Colección:** empleados
+- **JSON:** [empleados.json](/inacap/ti3v32/data/empleados.json)
+
+## Ejercicio 01
+Buscar empleados mayores de 40 años
+
+<Solution>
+```js
+db.empleados.find({ edad:{$gt:40} }) 
+```
+</Solution>
+
+## Ejercicio 02
+Filtrar empleados cuyo sueldo sea mayor a \$1.500.000 
+
+<Solution>
+```js
+db.empleados.find({ sueldo:{$gt:1500000} }) 
+```
+</Solution>
+
+
+## Ejercicio 03
+Mostrar empleados activos (activo: true)
+
+<Solution>
+```js
+db.empleados.find({ activo: true }) 
+```
+</Solution>
+
+## Ejercicio 04
+Listar empleados que vivan en la comuna de "Providencia" 
+
+<Solution>
+```js
+db.empleados.find({ "direccion.comuna":"Providencia" }) 
+```
+</Solution>
+
+## Ejercicio 05
+Buscar empleados contratados después del año 2020
+
+<Solution>
+```js
+db.empleados.find({ fecha_contratacion:{$gt:"2020-12-31"} }) 
+```
+</Solution>
+
+## Ejercicio 06
+Buscar empleados con cargo "Ingeniero" o "Desarrollador"
+
+<Solution>
+```js
+db.empleados.find({ 
+    $or:[ 
+        {cargo:/Ingeniero/i}, 
+        {cargo:/Desarrollador/i} 
+    ] 
+}) 
+```
+</Solution>
+
+## Ejercicio 07
+Mostrar empleados cuya evaluación de 2023 sea mayor que la de 2021
+
+<Solution>
+```js
+db.empleados.find({ 
+    $expr:{ 
+        $gt:["$evaluaciones.2023","$evaluaciones.2021"] 
+    } 
+}) 
+```
+</Solution>
+
+## Ejercicio 08
+Filtrar empleados del área de "TI" y con sueldo inferior a \$900.000
+
+<Solution>
+```js
+db.empleados.find({ 
+    departamento:"TI", 
+    sueldo:{$lt:900000} 
+}) 
+```
+</Solution>
+
+## Ejercicio 09
+Buscar empleados que no trabajen en "Finanzas"
+
+<Solution>
+```js
+db.empleados.find({ 
+    departamento: {$nin:["Finanzas"]} 
+}) 
+```
+</Solution>
+
+## Ejercicio 10
+Mostrar empleados con más de 2 habilidades 
+
+<Solution>
+```js
+db.empleados.find({ 
+    $expr:{ 
+        $gt:[{$size:"$habilidades"},2] 
+    } 
+}) 
+```
+</Solution>
+
+## Ejercicio 11
+Buscar empleados cuyo nombre empiece con "M"
+
+<Solution>
+```js
+db.empleados.find({ nombre:/^M/i }) 
+```
+</Solution>
+
+## Ejercicio 12
+Listar empleados cuyo cargo contenga la palabra "analista" (sin importar mayúsculas)
+
+<Solution>
+```js
+db.empleados.find({ cargo:/Analista/i }) 
+```
+</Solution>
+
+## Ejercicio 13
+Mostrar empleados con al menos una habilidad que incluya "SQL"
+
+<Solution>
+```js
+db.empleados.find({ 
+    habilidades: {$in:["SQL"]} 
+}) 
+```
+</Solution>
+
+## Ejercicio 14
+Buscar empleados que no tengan evaluación registrada para el año "2023"
+
+<Solution>
+```js
+db.empleados.find({ 
+    $or:[ 
+        {"evaluaciones.2023":{$exists:false}}, 
+        {"evaluaciones.2023":null} 
+    ] 
+}) 
+```
+</Solution>
+
+## Ejercicio 15
+Mostrar empleados que sí tengan el campo direccion
+
+<Solution>
+```js
+db.empleados.find({ 
+    direccion:{$exists:true} 
+}) 
+```
+</Solution>
+
+## Ejercicio 16
+Filtrar empleados con exactamente 3 habilidades
+
+<Solution>
+```js
+db.empleados.find({ 
+    $expr:{ 
+        $eq:[{$size:"$habilidades"},3] 
+    } 
+}) 
+```
+</Solution>
+
+## Ejercicio 17
+Buscar empleados cuya edad sea igual a la cantidad de letras de su comuna (ejemplo con `$strLenCP`)
+
+<Solution>
+```js
+db.empleados.find({ 
+    $expr: { 
+        $eq: ["$edad", {$strLenCP: "$direccion.comuna"}] 
+    } 
+}) 
+```
+</Solution>
+
+## Ejercicio 18
+Mostrar empleados cuyo promedio de evaluaciones (2021, 2022, 2023) sea mayor a 4.5
+
+<Solution>
+```js
+db.empleados.find({ 
+    $expr: { 
+        $gt: [ 
+            {  
+                $divide: [  
+                    {$add: ["$evaluaciones.2021", "$evaluaciones.2022", "$evaluaciones.2023"]},3  
+                ]
+            },4.5 
+        ] 
+    } 
+}) 
+```
+</Solution>
+
+## Ejercicio 19
+Filtrar empleados cuya ciudad de residencia sea "Santiago" y su cargo contenga "jefe" o "gerente"
+
+<Solution>
+```js
+db.empleados.find({ 
+    "direccion.ciudad": "Santiago",
+    $or: [
+        {cargo: /jefe/i},
+        {cargo: /gerente/i}
+    ]
+})
+```
+</Solution>
+
+## Ejercicio 20
+Buscar empleados que tengan una evaluación que haya ido en descenso: 2021 > 2022 > 2023
+
+<Solution>
+```js
+db.empleados.find({
+    $and: [
+        {$expr: {$gt: ["$evaluaciones.2021", "$evaluaciones.2022"]}},
+        {$expr: {$gt: ["$evaluaciones.2022", "$evaluaciones.2023"]}}
+    ]
+})
+```
+</Solution>

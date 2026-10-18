@@ -1,0 +1,89 @@
+# Incorporación de la estación de trabajo en el dominio
+
+## Configuración de esquemas de dominio Microsoft
+
+- **Esquemas de dominio:** Estructuras lógicas que permiten organizar y gestionar los recursos de una red de manera centralizada. Para esto, se utiliza **Active Directory (AD)**.
+
+## Importancia de realizar configuración de esquemas de dominio Microsoft
+1. **Gestión Centralizada:** Permite administrar usuarios, dispositivos y políticas de seguridad desde una ubicación central, mejorando la eficiencia y la consistencia.
+2. **Seguridad Mejorada:** Facilita el control de acceso y la autenticación centralizada, protegiendo los recursos críticos.
+3. **Automaticación y eficiencia:** Simplifica el mantenimiento y las actualizaciones mediante scripts y políticas de grupo, aumentando la eficiencia y reduciendo errores.
+4. **Resiliencia y recuperación:** Proporciona redundancia y herramientas de recuperación rápida, asegurando la continuidad del negocio.
+
+## Pasos para configurar un dominio Microsoft
+Un dominio en el contexto de Windows Server es una colección de objetos, como usuarios y dispositivos, que comparten una base de datos común y políticas de seguridad centralizadas.
+
+Los dominios facilitan la administración de grandes redes, permitiendo a los administradores gestionar usuarios, permisos y recursos de manera eficiente.
+
+1. Preparación del servidor
+2. Instalación de *Active Directory Domain Services* (AD DS)
+3. Promoción del servidor a controlador de dominio
+
+## Gestión de Objetos Vía Herramienta Active Directory
+
+<SmartFigure
+	id="uso-active-directory"
+	src="/inacap/ti3v35/images/fig69.png"
+	alt="Uso de Active Directory"
+	caption="Uso de Active Directory"
+	size="large"
+/>
+
+Active Directory Domain Services (AD DS) es un conjunto de servicios de directorio de Microsoft para Windows Server que permite la autenticación, autorización y gestión centralizada de recursos de red, como usuarios, grupos y dispositivos. 
+
+Facilita la implementación de políticas de grupo, mejora la seguridad y eficiencia operativa, y asegura la consistencia y control en entornos de TI de cualquier tamaño.
+
+# Actividad de Práctica 05
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es la principal función de Active Directory Domain Services (AD DS)?",
+		options: [
+			"Proporcionar almacenamiento en la nube para los usuarios",
+			"Administrar cuentas de correo electrónico",
+			"Gestionar la autenticación y autorización de usuarios y dispositivos",
+			"Supervisar el rendimiento de la red"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Qué permite la incorporación de una estación de trabajo a un dominio?",
+		options: [
+			"Acceso a aplicaciones de terceros sin necesidad de autenticación",
+			"Uso compartido de la misma dirección IP por varios dispositivos",
+			"Aplicación de políticas de grupo y administración centralizada",
+			"Desbloqueo de recursos del sistema operativos"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Qué acción debes realizar para cambiar el nombre de una estación de trabajo antes de unirla al dominio?",
+		options: [
+			"Acceder a la configuración del BIOS",
+			"Reiniciar la estación de trabajo en modo seguro",
+			"Usar la herramienta de configuración de red avanzada",
+			"Acceder a \"Sistema\" y seleccionar \"Configuración avanzada del sistema\""
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Cuál de los siguientes es un tipo de objeto que se puede gestionar en Active Directory?",
+		options: [
+			"Documento",
+			"Aplicación",
+			"Unidad organizativa",
+			"Perfil de usuario local"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Qué sucede cuando promocionas un servidor a controlador de dominio?",
+		options: [
+			"Se elimina toda la información de usuario",
+			"Se configuran automáticamente todas las políticas de seguridad",
+			"El servidor comienza a gestionar la autenticación de usuarios y dispositivos",
+			"Se desactiva el acceso a la red hasta que se complete la configuración"
+		],
+		correctIndex: 2
+	},
+]} />

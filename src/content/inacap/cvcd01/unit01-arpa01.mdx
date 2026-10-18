@@ -1,0 +1,71 @@
+# ARPA 1: Ahorro para el departamento
+
+**Material**
+- [ARPA1 : Ahorro para el departamento](docs/arpa01.pdf)
+
+Manuel ha comenzado a trabajar en enero de 2024 y se ha propuesto comprar un bien raíz. Él quiere comprar un departamento que actualmente tiene un valor de 3600 UF y necesita reunir al menos el 10\% de este monto para pagar el pie.
+
+Su buen amigo Ricardo le ofrece un préstamo sin intereses por el monto que necesita para pagar el pie. Para esto, han diseñado un plan de pago, desde el primer mes, que se rige por el modelo logistico:
+
+$$
+A(t)=\frac{225000}{1+0.35e^{-0.7t}}
+$$
+
+donde $t$ representa el mes de pago y $A(t)$ representa el monto, en pesos, de la cuota que paga en dicho mes.
+
+¿En qué mes y año terminaría de pagar el préstamo a su amigo Ricardo?
+
+<Solution title="Solución ARPA 1">
+
+Paso 1: Cálculo valor pie en Pesos
+
+- De la página https://www.sii.cl/valores_y_fechas/uf/uf2024.htm se extrae el valor del UF a partir del 1ro de enero de 2024
+
+<SmartFigure
+	id="fig62"
+    src="/inacap/cvcd01/images/fig62.png"
+	alt="Valores UF en pesos para enero 2024"
+	caption="Valores UF en pesos para enero 2024"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig63"
+    src="/inacap/cvcd01/images/fig63.png"
+	alt="Cálculo pie en pesos"
+	caption="Cálculo pie en pesos"
+	size="large"
+/>
+
+$\therefore$ el valor del pie es de \$$13247042$ pesos
+
+---
+
+Paso 2: Cálculo de suma de pagos
+
+- Se genera una tabla mediante hoja de cálculo, para analizar el monto pagado cada mes y total pagado para completar el préstamo
+
+<SmartFigure
+	id="fig64"
+    src="/inacap/cvcd01/images/fig64.png"
+	alt="Registro de cuotas"
+	caption="Registro de cuotas"
+	size="large"
+/>
+
+- Se observa que en el mes 59, aún faltan alrededor de \$42000 pesos para pagar el total del prestamo
+- Entonces, en el mes 60 se paga completamente el préstamo otorgado por Ricardo
+
+<SmartFigure
+	id="fig65"
+    src="/inacap/cvcd01/images/fig65.png"
+	alt="Años necesarios para pagar el préstamo"
+	caption="Años necesarios para pagar el préstamo"
+	size="large"
+/>
+
+- A partir de enero del 2024, se necesitarán 5 años para pagar el préstamo
+
+$\therefore$ Manuel terminaría de pagar el préstamo a su amigo Ricardo en **enero del 2029**
+
+</Solution>

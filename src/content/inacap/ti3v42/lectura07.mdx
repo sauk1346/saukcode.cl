@@ -1,0 +1,120 @@
+# Estructura de aplicaciones y permisos en Android
+
+## 1. Arquitectura de Aplicaciones Android
+La arquitectura de aplicaciones Android se basa en un enfoque modular que permite desarrollar sistemas robustos, escalables y eficientes. En lugar de depender de un único punto de entrada, Android distribuye la lógica de la aplicación en distintos componentes que trabajan de forma coordinada.
+
+### Paradigma de Componentes
+Las aplicaciones Android se estructuran en cuatro componentes principales con ciclos de vida independientes:
+
+<SmartTable
+    tableLayout="auto"
+    headers={['Componente', 'Descripción']}
+    rows={[
+        ['**Activities**', 'Gestionan las interfaces con el usuario'],
+        ['**Services**', 'Ejecutan tareas en segundo plano sin interfaz'],
+        ['**Broadcast receivers**', 'Responden a eventos del sistema o apps'],
+        ['**Content providers**', 'Permiten el intercambio seguro de datos entre aplicaciones'],
+    ]}
+/>
+
+Android además utiliza callbacks en lugar de un método `main()` tradicional.
+
+### Ciclo de vida de Activities
+El ciclo de vida de una activity define los estados por los que transita desde su creación hasta su destrucción. Sus estados principales son los siguientes:
+
+<SmartTable
+    tableLayout="fixed"
+    headers={['Estado', 'Métodos asociados', 'Descripción']}
+    rows={[
+        [
+            "**Inicializado (Initialized)**",
+            "Inicio",
+            "Estado inicial antes de que la activity sea creada"
+        ],
+        [
+            "**Creado (Created)**",
+            "`onCreate()`, `onStart()`, `onRestart()`, `onStop()`",
+            "La activity existe en memoria pero no es visible. Es un estado intermedio entre la creación y la visualización, o después de detenerse"
+        ],
+        [
+            "**Reanudado (Resumed)**",
+            "`onResume()`, `onPause()`",
+            "La activity está activa en primer plano, completamente visible e interactiva para el usuario"
+        ],
+        [
+            "**Destruido (Destroyed)**",
+            "`onDestroy()`",
+            "La activity ha sido completamente destruida y removida de la memoria"
+        ]
+    ]}
+/>
+
+<SmartFigure
+	id="ciclo-vida-activity"
+	src="/inacap/ti3v42/images/fig16.png"
+	alt="Ciclo de vida de una Activity en Android"
+	caption="Ciclo de vida de una Activity en Android"
+	size="large"
+/>
+
+### Gestión de recursos y estado
+El sistema Android gestiona automáticamente los recursos de las aplicaciones, pero los desarrolladores deben implementar estrategias para preservar el estado del usuario durante transiciones.
+
+### Sistema de permisos en Android
+El sistema de permisos en Android ha evolucionado para fortalecer la seguridad y la experiencia del usuario. En versiones anteriores a Android 6.0, todos los permisos se solicitaban al instalar la app, sin opción de elegir individualmente. A partir de Android 6.0, se implementó un modelo más flexible con permisos en tiempo de ejecución, permitiendo a los usuarios concederlos o denegarlos cuando son necesarios e incluso revocarlos desde la configuración en cualquier momento.
+
+
+## 2. Categorías de permisos
+
+<SmartTable
+    tableLayout="auto"
+    headers={['Categoría de permiso', 'Descripción']}
+    rows={[
+        [
+            "**Normales**",
+            "Se otorgan automáticamente durante la instalación y no requieren intervención del usuario. Incluyen acceso a internet, estado de red, vibración y configuración de alarmas"
+        ],
+        [
+            "**Firma**",
+            "Solo se otorgan a aplicaciones firmadas con el mismo certificado que define el permiso"
+        ],
+        [
+            "**Tiempo de ejecucución**",
+            "También conocidos como permisos peligrosos, requieren solicitud explícita al usuario durante el uso de la aplicación. Estos permisos acceden a datos sensibles o funcionalidades que pueden comprometer la privacidad del usuario"
+        ],
+        [
+            "**Especiales**",
+            "Permisos que requieren un proceso especial de solicitud y están disponibles en la sección de \"Acceso especial de aplicaciones\" en la configuración del sistema. Incluyen capacidades como dibujar sobre otras aplicaciones o modificar configuraciones del sistema"
+        ],
+        [
+            "**Grupo de permisos**",
+            "Los permisos están organizados en grupos lógicos que simplifican la gestión para el usuario. Cuando se otorga un permiso de un grupo, el sistema puede automáticamente otorgar otros permisos relacionados del mismo grupo"
+        ],
+    ]}
+/>
+
+
+# Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "¿Cuál de los siguientes componentes de Android permite ejecutar tareas en segundo plano sin interfaz de usuario?",
+		options: [
+			"Service",
+			"Content provider",
+			"Activity",
+			"Broadcast receiver"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Qué característica diferencia al modelo de permisos en Android 6.0+  respecto al modelo tradicional?",
+		options: [
+			"Los permisos se solicitan en tiempo de ejecución",
+			"Los permisos se otorgan todos al instalar la app",
+			"Las apps ya no necesitan permisos para acceder a datos sensibles",
+			"Los usuarios ya no pueden denegar permisos"
+		],
+		correctIndex: 0
+	},
+]} />

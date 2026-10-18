@@ -1,0 +1,322 @@
+/* ==================== COMPONENTE SOLUTION BASE ==================== */
+
+.solution {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin: var(--spacing-lg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.solution:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* Modo oscuro - sombras más sutiles */
+:global(html.dark-mode) .solution,
+:global(html.dark-mode-override) .solution {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+:global(html.dark-mode) .solution:hover,
+:global(html.dark-mode-override) .solution:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* ==================== VARIANTES DE ESTILO MEJORADAS ==================== */
+
+/* Variante por defecto - Gris con acento azul sutil */
+.solutionDefault {
+  border: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+:global(html.dark-mode) .solutionDefault,
+:global(html.dark-mode-override) .solutionDefault {
+  border-color: #374151;
+  background-color: #1f2937;
+}
+
+/* Variante hint - Verde más sutil */
+.solutionHint {
+  border: 1px solid #d1fae5;
+  background-color: #f0fdf4;
+}
+
+:global(html.dark-mode) .solutionHint,
+:global(html.dark-mode-override) .solutionHint {
+  border-color: #065f46;
+  background-color: #1f2937;
+}
+
+/* Variante warning - Amber más sutil */
+.solutionWarning {
+  border: 1px solid #fde68a;
+  background-color: #fffbeb;
+}
+
+:global(html.dark-mode) .solutionWarning,
+:global(html.dark-mode-override) .solutionWarning {
+  border-color: #92400e;
+  background-color: #1f2937;
+}
+
+/* Variante info - Púrpura más sutil */
+.solutionInfo {
+  border: 1px solid #e9d5ff;
+  background-color: #faf5ff;
+}
+
+:global(html.dark-mode) .solutionInfo,
+:global(html.dark-mode-override) .solutionInfo {
+  border-color: #7c3aed;
+  background-color: #1f2937;
+}
+
+/* ==================== HEADER/BOTÓN MEJORADO ==================== */
+
+.solutionHeader {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-md);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Headers más sutiles */
+.solutionDefault .solutionHeader {
+  background-color: #f3f4f6;
+  color: #374151;
+  border-left: 3px solid #3b82f6;
+}
+
+.solutionHint .solutionHeader {
+  background-color: #f0fdf4;
+  color: #065f46;
+  border-left: 3px solid #10b981;
+}
+
+.solutionWarning .solutionHeader {
+  background-color: #fffbeb;
+  color: #92400e;
+  border-left: 3px solid #f59e0b;
+}
+
+.solutionInfo .solutionHeader {
+  background-color: #faf5ff;
+  color: #7c3aed;
+  border-left: 3px solid #8b5cf6;
+}
+
+/* Modo oscuro para headers - mucho más sutil */
+:global(html.dark-mode) .solutionDefault .solutionHeader,
+:global(html.dark-mode-override) .solutionDefault .solutionHeader {
+  background-color: #374151;
+  color: #e5e7eb;
+  border-left: 3px solid #60a5fa;
+}
+
+:global(html.dark-mode) .solutionHint .solutionHeader,
+:global(html.dark-mode-override) .solutionHint .solutionHeader {
+  background-color: #374151;
+  color: #d1fae5;
+  border-left: 3px solid #34d399;
+}
+
+:global(html.dark-mode) .solutionWarning .solutionHeader,
+:global(html.dark-mode-override) .solutionWarning .solutionHeader {
+  background-color: #374151;
+  color: #fde68a;
+  border-left: 3px solid #fbbf24;
+}
+
+:global(html.dark-mode) .solutionInfo .solutionHeader,
+:global(html.dark-mode-override) .solutionInfo .solutionHeader {
+  background-color: #374151;
+  color: #e9d5ff;
+  border-left: 3px solid #a78bfa;
+}
+
+.solutionHeader:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.solutionHeader:active {
+  transform: translateY(0);
+}
+
+/* ==================== CONTENIDO DEL HEADER ==================== */
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-right: 0.75rem;
+}
+
+.ideaIcon {
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.chevron {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  opacity: 0.7;
+}
+
+.title {
+  flex: 1;
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+/* ==================== CONTENIDO/ANIMACIÓN ==================== */
+
+.contentWrapper {
+  overflow: hidden;
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: white;
+  border-top: 1px solid #f3f4f6;
+}
+
+/* Modo oscuro para contenido */
+:global(html.dark-mode) .contentWrapper,
+:global(html.dark-mode-override) .contentWrapper {
+  background-color: #111827;
+  border-top: 1px solid #4b5563;
+}
+
+.content {
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: #374151;
+  line-height: 1.6;
+}
+
+/* Modo oscuro para contenido */
+:global(html.dark-mode) .content,
+:global(html.dark-mode-override) .content {
+  color: #d1d5db;
+}
+
+/* ==================== ESTILOS PARA CÓDIGO DENTRO ==================== */
+
+/* Mejorar la apariencia de bloques de código dentro del componente */
+.content :global(pre) {
+  margin: var(--spacing-xl) 0 !important;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+}
+
+.content :global(figure pre) {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.content :global(code) {
+  font-size: 0.875rem;
+}
+
+.content table {
+  margin: var(--spacing-xl) auto;
+  width: 100%;
+  max-width: 700px;
+  font-size: 0.9rem;
+}
+
+/* Espaciado vertical para párrafos y listas — sin margin horizontal (el padding de .content lo maneja) */
+.content p {
+  margin-top: var(--spacing-md);
+}
+
+.content p:last-child {
+  margin-bottom: var(--spacing-md);
+}
+
+.content ul,
+.content ol {
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+/* ==================== EFECTOS ADICIONALES ==================== */
+
+/* Efecto de focus para accesibilidad - más sutil */
+.solutionHeader:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.solutionHeader:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Modo oscuro para focus */
+:global(html.dark-mode) .solutionHeader:focus,
+:global(html.dark-mode-override) .solutionHeader:focus,
+:global(html.dark-mode) .solutionHeader:focus-visible,
+:global(html.dark-mode-override) .solutionHeader:focus-visible {
+  outline-color: #60a5fa;
+}
+
+/* Animación sutil de entrada */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.solution {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* ==================== RESPONSIVO ==================== */
+
+@media (max-width: 768px) {
+  .solutionHeader {
+    padding: 0.875rem 1rem;
+    font-size: 0.95rem;
+  }
+  
+  .content {
+    padding: 1.25rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .iconContainer {
+    margin-right: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .solution {
+    margin: 1rem 0;
+  }
+  
+  .solutionHeader {
+    padding: 0.75rem 0.875rem;
+  }
+  
+  .content {
+    padding: 1rem 0.875rem;
+  }
+}

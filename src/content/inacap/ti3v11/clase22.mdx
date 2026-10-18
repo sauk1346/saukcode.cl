@@ -1,0 +1,47 @@
+# Clase Recuperativa
+
+## Instrucciones Evaluación 03
+- [eval03_enu.pdf](/inacap/ti3v11/docs/eval03_enu.pdf)
+
+## Solución Evaluación 02 - Parte 01
+
+```python
+DIC={}
+total={}
+op=0
+while op!=4:
+    print ("1. Iniciar Registro 2. Consultar Estudiante 3. Eliminar Estudiante 4. Salir")
+    op=int(input("Seleccione Opción: "))
+    
+    if op==1:    
+			rut=input("ingrese rut del Estudiante: ")
+			ASIG_YanezLuis=[]
+			sumaProm=0
+			nprom=0
+			resp1="S"
+			while resp1=="S":
+				asig=input("ingrese asignatura del Estudiante: ")
+				cont=0
+				suma=0
+				nota=-1
+				while nota!=0:
+					nota=int(input("Ingrese nota del Estudiante: "))
+					while (nota<10 or nota>70) and nota!=0:
+						nota=int(input("ERROR - Ingrese un correcta"))
+						suma=suma+nota
+						cont=cont+1
+						promedio=suma/(cont-1)
+						sumaProm=sumaProm+promedio
+						nprom=nprom+1
+
+						ASIG_YanezLuis.append(asig)
+						DIC[rut]=ASIG_YanezLuis
+						resp1=input("OTRA ASIG S-N: ")
+				
+				promGRAL=sumaProm/nprom
+				total[rut]=promGRAL
+             
+    elif op==4:
+        print("DIC",DIC)
+        print("TOTAL",total)
+```

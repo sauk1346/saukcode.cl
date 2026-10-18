@@ -1,0 +1,342 @@
+# Implementación de Comunicación Segura entre Dispositivos IoT y Aplicaciones
+
+## 1. Comunicación segura entre dispositivos IoT y aplicaciones
+El internet de las cosas conecta millones de dispositivos, creando nuevos desafíos de seguridad que requieren enfoques estandarizados. La familia ISO/IEC 27000 proporciona el marco fundamental para gestionar la seguridad en comunicaciones IoT de manera efectiva.
+
+### Estándares ISO 27000: fundamentos clave
+La seguridad en entornos digitales se sustenta en normas que establecen buenas prácticas para proteger la información. La familia ISO 27000 ofrece un marco integral que orienta desde los principios básicos hasta la gestión avanzada de riesgos.
+
+**Principios fundamentales (triada CID)**
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Principio", "Descripción"]}
+    rows={[
+        [
+            "**Confidencialidad**",
+            "proteger datos mediante cifrado y autenticación robusta entre dispositivos y aplicaciones"
+        ],
+        [
+            "**Integridad**",
+            "verificar que los datos no sean alterados durante la transmisión y que los comandos enviados sean legítimos"
+        ],
+        [
+            "**Disponibilidad**",
+            "mantener la conectividad y funcionalidad continua de dispositivos, incluso ante ataques de denegación de servicio"
+        ],
+    ]}
+/>
+
+**Estándares principales**
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Estándar", "Descripción"]}
+    rows={[
+        [
+            "**ISO/IEC 27001**",
+            "requisitos para sistemas de gestión de seguridad"
+        ],
+        [
+            "**ISO/IEC 27002**",
+            "controles de seguridad específicos"
+        ],
+        [
+            "**ISO/IEC 27005**",
+            "gestión de riesgos de seguridad"
+        ],
+        
+    ]}
+/>
+
+### Desafíos específicos en IoT
+    El internet de las cosas plantea un escenario complejo donde millones de dispositivos interconectados deben funcionar de manera segura. Este entorno exige afrontar limitaciones técnicas y responder a amenazas que ponen en riesgo la confiabilidad del sistema.
+
+**Limitaciones técnicas**
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Limitación", "Descripción"]}
+    rows={[
+        [
+            "**Recursos limitados**",
+            "dispositivos con capacidades restringidas de procesamiento y energía"
+        ],
+        [
+            "**Heterogeneidad**",
+            "variedad de protocolos, sistemas operativos y capacidades"
+        ],
+        [
+            "**Gestión masiva**",
+            "identificación y gestión segura de millones de dispositivos"
+        ],
+    ]}
+/>
+
+**Amenazas principales**
+
+- Interceptación de comunicaciones
+- Ataques de intermediario (*man-in-the-middle*)
+- Suplantación de dispositivos
+- Ataques de denegación de servicio
+
+
+## 2. Recomendaciones ISO 27000 para IoT
+La seguridad en IoT es un desafío creciente que requiere un marco integral y estandarizado. Las recomendaciones de la familia ISO 27000 ofrecen guías sólidas para gestionar riesgos, establecer controles de seguridad y diseñar arquitecturas confiables en entornos donde conviven miles de dispositivos conectados.
+
+### Gestión de riesgos (ISO 27005)
+La seguridad en IoT debe partir de un proceso estructurado que permita reconocer amenazas y evaluar vulnerabilidades de forma constante. Solo al comprender los riesgos es posible priorizar recursos y definir medidas efectivas de protección.
+
+**Procesamiento sistemático**
+
+- Elaborar un **inventario completo** de dispositivos y aplicaciones conectadas
+- **Identificar amenazas** específicas que afectan a entornos IoT
+- Realizar **evaluaciones periódicas de vulnerabilidades**
+- **Priorizar riesgos** considerando su impacto y probabilidad de ocurrencia
+
+### Controles de seguridad esenciales (ISO 27002)
+Para que un entorno IoT sea confiable, es indispensable establecer controles que regulen el acceso, protejan los datos y aseguren la red. ISO 27002 guía la selección e implementación de estos mecanismos fundamentales.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Control", "Descripción"]}
+    lists={{
+        R1: [
+            "Implementar **autenticación multifactor** en dispositivos críticos",
+            "Utilizar **certificados digitales** para la identificación de dispositivos",
+            "Definir **autorizaciones granulares** basadas en roles"
+        ],
+        R2: [
+            "Adoptar **algoritmo robustos** (AES-256, RSA-2028+)",
+            "Aplicar una **gestión segura de claves**, con rotación periódica",
+            "Incorporar **criptografía ligera** en dispositivos con recursos limitados"
+        ],
+        R3: [
+            "Emplear **protocolos seguros** (TLS/SSL) en todas las comunicaciones",
+            "Realizar **segmentación de red** para aislar dispositivos IoT",
+            "Integrar **sistemas de detección de intrusiones** específicos para IoT"
+        ],
+    }}
+    rows={[
+        [
+            "**Autenticación y control de acceso**",
+            "@R1"
+        ],
+        [
+            "**Criptografía**",
+            "@R2"
+        ],
+        [
+            "**Seguridad de red**",
+            "@R3"
+        ],
+    ]}
+/>
+
+### Arquitectura de seguridad por capas
+Los sistemas IoT se benefician de un enfoque donde la protección no se concentra en un solo punto, sino que se distribuye en distintos niveles. Una arquitectura por capas permite aplicar medidas específicas en cada componente del ecosistema.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Capa", "Descripción"]}
+    rows={[
+        [
+            "**Capa de dispositivos**",
+            "arranque seguro, almacenamiento de credenciales protegido y actualización confiable de *firmware*"
+        ],
+        [
+            "**Capa de conectividad**",
+            "uso de protocolos seguros, autenticación de red y canales cifrados"
+        ],
+        [
+            "**Capa de procesamiento**",
+            "control de acceso a datos, cifrado de bases de datos y auditorias"
+        ],
+        [
+            "**Capa de aplicación**",
+            "codificación segura, validación de entradas/salidas, registro de eventos y monitoreo"
+        ],
+    ]}
+/>
+
+### Implementación práctica: protocolo de comunicación seguros
+Las interacciones entre dispositivos conectados exigen canales que garanticen la privacidad y la integridad de la información. La adopción de protocolos seguros constituye la base para proteger la comunicación en diferentes escenarios técnicos.
+
+- **MQTT con TLS:** ideal para telemetría, con autenticación mediante certificados y autorización granular por temas
+- **CoAP con DTLS:** adecuado para dispositivos con recursos limitados, utilizando UDP seguro
+- **HTTPS:** apropiado para APIs REST, con integración de OAuth 2.0 o JWT
+
+### Gestión de identidades
+En redes IoT masivas, identificar de manera única y confiable a cada dispositivo es esencial. La gestión de identidades garantiza autenticidad, evita suplantaciones y fortalece la confianza en todo el ecosistema.
+
+- Implementar una **infraestructura de clave pública (PKI)** con autoridad de certificación interna
+- Configurar **renovación automática de certificados**
+- Establecer **procedimientos de revocación** ante anomalías
+- Asignar **identidades únicas** para cada dispositivo
+
+### Monitoreo y respuesta
+La seguridad no concluye con la prevención: también implica observar permanentemente lo que ocurre en la red. Un monitoreo eficaz, acompañado de planes de respuesta, asegura que los incidentes se detecten y atiendan oportunamente.
+
+**Monitoreo continuo**
+
+- Utilizar **herramientas especializadas** para tráfico IoT
+- Implementar **detección de anomalías** basada en comportamiento
+- Configurar **alertas automáticas** ante actividades sospechosas
+
+**Respuesta a incidentes**
+
+- Definir *playbooks* **específicos** para IoT
+- Aislar automáticamente dispositivos comprometidos
+- Establecer **mecanismos de recuperación rápida** para restaurar operaciones
+
+## 3. Desarrollo de aplicaciones Android-Arduino
+El desarrollo de aplicaciones con Arduino y Android en el contexto de IoT requiere comprender cómo se comunican ambos entornos y qué limitaciones existen en los microcontroladores. Esto implica diseñar protocolos estructurados, validar entradas para evitar vulnerabilidades y administrar con eficiencia recursos limitados como la memoria.
+
+### Consideraciones de implementación
+La integración entre Android y Arduino exige atender tanto a las particularidades del desarrollo en dispositivos móviles como a las restricciones técnicas de los microcontroladores. Un diseño sólido debe contemplar arquitecturas de software claras, gestión de permisos, manejo de estados y conexiones en Android, junto con protocolos eficientes y validación estricta en Arduino.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Tecnología", "Descripción"]}
+    lists={{
+        R1: [
+            "Adoptar **arquitectura MVVM** para separar interfaz, lógica de negocio y datos",
+            "Implementar **permisos en tiempo de ejecución** en Android 6+",
+            "Usar **estados reactivos** que actualicen automáticamente la interfaz",
+            "Configurar *timeouts* y **reconexión automática** en la gestión de conexiones"
+        ],
+        R2: [
+            "Definir **protocolos estructurados** con mensajes claros y prefijos identificables",
+            "Aplica **validación de entrada** para sanitizar los comandos recibidos",
+            "Optimizar la **gestión de memoria** y recursos limitados",
+            "Responde con **códigos de estao claros** para cada escenario"
+        ],
+    }}
+    rows={[
+        [
+            "**Android**",
+            "@R1"
+        ],
+        [
+            "**Arduino**",
+            "@R2"
+        ],
+    ]}
+/>
+
+### Buenas prácticas de desarrollo
+Más allá de la implementación técnica, la calidad y seguridad de las aplicaciones IoT dependen de principios transversales que deben incorporarse desde el inicio. Estas buenas prácticas aseguran confiabilidad, trazabilidad y resiliencia en entornos reales de uso.
+
+- Integrar seguridad desde el diseño inicial (*security by design*)
+- Elaborar **documentación completa**, con ejemplos de *request/response* para cada comando.
+- Diseñar un **manejo robusto de errores**, con clasificación y recuperación automática
+- Realizar **pruebas exhaustivas** en condiciones reales de red
+- Garantizar el **cumplimiento de estándares** como ISO 27000
+
+### Casos de uso y aplicaciones prácticas
+La combinación de Android y Arduino permite cubrir múltiples escenarios en IoT, desde soluciones cotidianas hasta prototipado avanzado. Estos casos muestran la versatilidad y aplicabilidad de esta integración en entornos reales.
+
+**Escenarios típicos**
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Escenario", "Descripción"]}
+    rows={[
+        [
+            "**Control remoto de dispositivos**",
+            "iluminación, climatización o sistemas de seguridad"
+        ],
+        [
+            "**Monitoreo de sensores**",
+            "temperatura, humedad y calidad del aire"
+        ],
+        [
+            "**Automatización doméstica**",
+            "integración con sistemas de domótica existentes"
+        ],
+        [
+            "**Prototipado IoT**",
+            "desarrollo ágil de conceptos y validación de ideas"
+        ],
+    ]}
+/>
+
+### Selección de tecnología
+Elegir la tecnología de comunicación adecuada entre Android y Arduino es clave para garantizar eficiencia y seguridad. La decisión depende del alcance, el consumo energético, la necesidad de acceso remoto y la integración con otros servicios.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Selección", "Descripción"]}
+    lists={{
+        R1: [
+            "La distancia de conexión es corta (**menos de 30m**)",
+            "El consumo energético debe ser mínimo",
+            "Se busca comunicación directa sin acceso a internet",
+            "Se necesita prototipado rápido"
+        ],
+        R2: [
+            "Se requiere **acceso remoto vía internet**",
+            "Es necesaria **alta velocidad de transmisión de datos**",
+            "Deben conectarse múltiples usuarios de manera simultánea",
+            "Se integra con **servicios web y plataformas externas**"
+        ]
+    }}
+    rows={[
+        [
+            "**Usar Bluetooth cuando...**",
+            "@R1"
+        ],
+        [
+            "**Usar WiFi cuando... **",
+            "@R2"
+        ],
+    ]}
+/>
+
+La **comunicación inalámbrica segura** entre **Android** y **Arduino** es la base de soluciones IoT modernas. Su éxito requiere comprender las particularidades de cada plataforma, integrar seguridad desde el diseño y cumplir estándares internacionales. Esta integración posibilita sistemas escalables y eficientes que combinan la simplicidad de Arduino con la potencia de Android, ofreciendo herramientas clave para desarrollar aplicaciones IoT profesionales y seguras.
+
+
+# Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "¿Cuál de los siguientes elementos forma parte de la gestión de riesgos en IoT según ISO 27005?",
+		options: [
+			"Uso de tokens temporales",
+			"Segmentación de red",
+			"Playbooks de respuesta a incidentes",
+			"Inventario de dispositivos y aplicaciones"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Cuáles de los siguientes controles corresponden a la seguridad de red en IoT según ISO 27002?",
+		options: [
+			"Cambio del idioma predeterminado en la interfaz",
+			"Ajuste del brillo de la pantalla en dispositivos IoT",
+			"Protocolos seguros (TLS/SSL)",
+			"Configuración de recordatorios en aplicaciones móviles"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Cuáles son los cuatro elementos esenciales de un smart device en el contexto de IoT?",
+		options: [
+			"Conectividad inalámbrica, procesamiento local, sensores/actuadores, interoperabilidad",
+			"Microcontroladores, robots industriales, sensores de movimiento, seguridad física",
+			"Procesamiento local, autenticación multifactor, cableado estructurado, criptografía avanzada",
+			"Pantalla táctil, batería, conectividad inalámbrica, almacenamiento en la nube"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Cuáles de las siguientes medidas corresponden a los principios de seguridad ISO 27000 aplicados a IoT?",
+		options: [
+			"Cifrado de datos y autenticación multifactor",
+			"Seguridad física de la instalación",
+			"Validación de comandos y uso de tokens",
+			"Confidencialidad, integridad y disponibilidad"
+		],
+		correctIndex: 3
+	},
+]} />

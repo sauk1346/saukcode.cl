@@ -1,0 +1,75 @@
+# Fundamentos Networking
+**Material Clase:** [clase15.pdf](/inacap/ti3v13/docs/clase15.pdf)
+
+## Dispositivos de Redes
+**¿Que es posible configurar en una red?** nombre, clase, potencia, ancho de banda
+
+### MAC
+- Única, no se repite (como el rut)
+- Se encuentra en dispositivos físicos (routers, switches, tarjetas)
+- cmd -> `ipconfig/all`
+
+### Loopback
+- Es realizar un ping a mi propia tarjeta
+- cmd -> `ping 127.0.0.1`
+- Si no tengo respuesta, hay un error de conexión con la tarjeta o está mala.
+
+### Cable de red (UTP)
+- *Unshielded Twisted Pair*. Par trenzado no blindado.
+- Unifilar. Es poco maleable.
+- Multifilar. Muy maleable.
+- Actualmente se utiliza *Categoría 6* (CAT6)
+- Al estar entrelazadas, se cancela la emisión de "campos magnéticos"
+
+### Normas
+- 568A
+- 568B
+- Ambas normas clasifica al cable en 8 pines, con distintos colores
+- 2 colores para positivo, 1 color para negativo
+
+Un *cable cruzado* tiene ambas normas de cableado en cada extremo.
+
+### Topología de Red
+1. **Bus:** ya no existe, salvo excepciones en industria minera 
+2. **Anillo:** tampoco está en uso
+3. **Estrella:** Si está en uso
+4. **Estrella extendida:** también está en uso
+5. **Jerárquica o árbol:** al utilizar un pc como servidor
+6. **Malla:** utilizado en telefonía
+
+### Alcance de Redes
+**WLAN:** utilizas *access point* (AP) para no perder conectividad, gracias a la funcionalidad *roaming*
+
+
+### Modelo OSI
+- *Open System Interconnection*
+- Modelo de 7 capas
+- Facilita interoperabilidad
+- Permite comprender cómo los datos son transmitidos
+
+### Modelo TCP/IP
+*Transfer Control Protocol / Internet Protocol*
+
+## Direcciones IP
+
+### DNS
+- *Domain Name System*
+- Convierte dirección IP en nombre legible para la lectura del usuario
+- ej: www.google.cl, elcoleccionistadiecast.cl
+
+### DHCP
+- *Dynamic Host Control Protocol*
+- Entrega IP dinámicas
+- También entrega IP estáticas, pero a determinados MAC (ej: impresoras)
+
+### Clases de Direcciones IP
+- IPV4
+- IPV6
+
+Ambas se combinan:
+
+- IPV4 a modo interno
+- IPV6 a modo externo
+
+El uso de ambas permite tener suficientes direcciones distintas para poder dar abasto
+

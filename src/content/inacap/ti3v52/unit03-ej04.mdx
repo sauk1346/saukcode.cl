@@ -1,0 +1,250 @@
+# Ejercicio 04
+
+<SmartFigure
+	src="/inacap/ti3v52/images/fig148.png"
+	alt="Topología de red"
+	caption="Topología de red"
+    lightbox={true}
+	size="large"
+/>
+---
+## Actividad 01
+Realice las configuraciones de IPv4 en cada dispositivo de la topología de red de acuerdo con información mostrada en la tabla siguiente:
+
+<SmartFigure
+	src="/inacap/ti3v52/images/fig149.png"
+	alt="Tabla de asignación de direcciones IP"
+	caption="Tabla de asignación de direcciones IP"
+	size="large"
+/>
+
+<Solution title="Solución Actividad 01">
+
+<SmartFigure
+    id="fig150"
+	src="/inacap/ti3v52/images/fig150.png"
+	alt="Configuración IPv4, router COLLAHUASI"
+	caption="Configuración IPv4, router COLLAHUASI"
+	size="large"
+/>
+
+<SmartFigure
+    id="fig151"
+	src="/inacap/ti3v52/images/fig151.png"
+	alt="Configuración IPv4, router LOSPELAMBRES"
+	caption="Configuración IPv4, router LOSPELAMBRES"
+	size="large"
+/>
+
+<SmartFigure
+    id="fig152"
+	src="/inacap/ti3v52/images/fig152.png"
+	alt="Configuración IPv4, router ELTENIENTE"
+	caption="Configuración IPv4, router ELTENIENTE"
+	size="large"
+/>
+
+<SmartFigure
+    id="fig153"
+	src="/inacap/ti3v52/images/fig153.png"
+	alt="Configuración IPv4 para PC0, PC1, PC2, PC3, PC4"
+	caption="Configuración IPv4 para PC0, PC1, PC2, PC3, PC4"
+	size="large"
+/>
+
+</Solution>
+---
+
+## Actividad 02
+
+Realice configuración de protocolo de enrutamiento OSPFv2 en router COLLAHUASI:
+
+- ID de proceso 100
+- ID del router 100.100.100.100
+- Declare o publique las redes directamente conectadas con su correspondiente WildCardMask y en área 0 backbone.
+- No enviar información de enrutamiento por interfaces que no sea necesario o inseguro
+
+
+<Solution title="Solución Actividad 02">
+
+<TerminalOutput withBg>
+{`enable
+configure terminal
+
+# Entrar al proceso OSPF con ID de proceso 100
+router ospf 100
+
+# Fijar el ID del router en 100.100.100.100
+router-id 100.100.100.100
+
+# Publicar las redes directamente conectadas con su wildcard mask,
+# todas en área 0 (backbone)
+network 172.20.0.0 0.0.7.255 area 0      # LAN G0/0
+network 172.20.9.0 0.0.1.255 area 0      # LAN G0/1
+network 172.20.10.128 0.0.0.3 area 0     # Enlace serial hacia LOSPELAMBRES
+
+# No enviar información de enrutamiento por interfaces
+# que no sea necesario o inseguro:
+passive-interface default                
+no passive-interface s0/0/0`}
+</TerminalOutput>
+
+</Solution>
+
+---
+## Actividad 03
+
+Realice configururación de protocolo de enrutamiento OSPFv2 en router LOSPELAMBRES:
+
+- ID de proceso 200
+- ID del router 200.200.200.200
+- Declare o publique las IP de las interfaces del router con su correspondiente WildCardMask en área 0 backbone.
+- No enviar información de enrutamiento por interfaces que no sea necesario o inseguro
+
+<Solution title="Solución Actividad 03">
+
+<TerminalOutput withBg>
+{`enable
+configure terminal
+
+# Entrar al proceso OSPF con ID de proceso 200
+router ospf 200
+
+# Fijar el ID del router en 200.200.200.200
+router-id 200.200.200.200
+
+# Publicar las IP de las interfaces del router (host exacto, wildcard 0.0.0.0),
+# todas en área 0 (backbone)
+network 120.120.0.1 0.0.0.0 area 0       # LAN G0/0
+network 172.20.10.130 0.0.0.0 area 0     # Enlace serial hacia COLLAHUASI
+network 172.20.10.133 0.0.0.0 area 0     # Enlace serial hacia ELTENIENTE
+
+# No enviar información de enrutamiento por interfaces
+# que no sea necesario o inseguro:
+passive-interface g0/0`}
+</TerminalOutput>
+
+</Solution>
+
+---
+## Actividad 04
+
+Realice configuración de protocolo de enrutamiento OSPFv2 en router ELTENIENTE:
+
+- Agregue una Interface Loopback 1 con IP=190.190.190.1 , M=255.255.255.255
+- Agregar ruta estática por defecto que ocupe la interface loopback como salida
+- En OSPF ocupe ID de proceso 30
+- ID del router 30.30.30.30
+- Habilite cada interfaz del router para ospf en área backbone
+- No envier información de enrutamiento por interfaces que no sea necesario o inseguro
+- Redistribuya la ruta por defecto dentro del ospf
+
+<Solution title="Solución Actividad 04">
+
+<TerminalOutput withBg>
+{`enable
+configure terminal
+
+# Agregue una Interface Loopback 1 con IP=190.190.190.1, M=255.255.255.255
+interface loopback1
+ip address 190.190.190.1 255.255.255.255
+exit
+
+# Agregar ruta estática por defecto que ocupe la interface loopback como salida
+ip route 0.0.0.0 0.0.0.0 loopback1
+
+# En OSPF ocupe ID de proceso 30
+router ospf 30
+
+# ID del router 30.30.30.30
+router-id 30.30.30.30
+
+# Habilite cada interfaz del router para ospf en área backbone
+exit
+interface g0/0
+ip ospf 30 area 0
+exit
+
+interface g0/1
+ip ospf 30 area 0
+exit
+
+interface s0/0/1
+ip ospf 30 area 0
+exit
+
+router ospf 30
+
+# No envier información de enrutamiento por interfaces que no sea necesario o inseguro
+passive-interface default
+no passive-interface s0/0/1
+
+# Redistribuya la ruta por defecto dentro del ospf
+default-information originate`}
+</TerminalOutput>
+
+</Solution>
+---
+## Actividad 05
+
+Muestre la tabla de enrutamiento de vecinos y topología
+
+- Aplique el comando para mostrar la tabla de enrutamiento en router COLLAHUASI
+- Aplique comando para mostrar tabla de vecinos en router LOSPELAMBRES
+- Aplique comando para mostra tabla de topología en router ELTENIENTE
+- Explique resultado de dicho comando
+- Realice resolucion de problemas en caso de fallas de configuración
+
+<Solution title="Solución Actividad 05">
+
+**Aplique el comando para mostrar la tabla de enrutamiento en router COLLAHUASI. Explique resultado de dicho comando**
+
+<TerminalOutput withBg>
+{`enable
+show ip route`}
+</TerminalOutput>
+
+Qué debería mostrar:
+- Rutas `C`/`L` para las tres redes propias conectadas (172.20.0.0/21, 172.20.9.0/23, 172.20.10.128/30).
+- Rutas `O` (OSPF intra-área) hacia 120.120.0.0/20 (LAN de LOSPELAMBRES) y hacia 192.168.20.0/25 y 192.168.20.128/26 (LANs de ELTENIENTE).
+- Una ruta `O*E2` para 0.0.0.0/0, marcada como candidata a default, aprendida desde ELTENIENTE gracias al `default-information originate`.
+
+
+---
+**Aplique comando para mostrar tabla de vecinos en router LOSPELAMBRES. Explique resultado de dicho comando**
+
+<TerminalOutput withBg>
+{`enable
+show ip ospf neighbor`}
+</TerminalOutput>
+
+Qué debería mostrar:
+- Dos vecinos: Router ID 100.100.100.100 (COLLAHUASI) por S0/0/0, y 30.30.30.30 (ELTENIENTE) por S0/0/1.
+- Estado FULL en ambos. En enlaces punto a punto seriales no hay elección de DR/BDR, por lo que aparece `FULL/ -` en vez de `FULL/DR` o `FULL/BDR`.
+- Dead time e IP del vecino visto por cada interfaz.
+
+---
+
+**Aplique comando para mostra tabla de topología en router ELTENIENTE. Explique resultado de dicho comando**
+
+<TerminalOutput withBg>
+{`enable
+show ip ospf database`}
+</TerminalOutput>
+
+Qué debería mostrar:
+- Sección "Router Link States": una entrada LSA tipo 1 por cada router del dominio (COLLAHUASI, LOSPELAMBRES, ELTENIENTE), identificadas por su Router ID.
+- Sección "Type-5 AS External Link States": la entrada 0.0.0.0 correspondiente a la ruta por defecto redistribuida, con ELTENIENTE (30.30.30.30) como ADV Router.
+
+---
+**Realice resolucion de problemas en caso de fallas de configuración**
+
+1. `show ip interface brief` en cada router: confirmar que todas las interfaces estén up/up. Un serial en down/down suele ser falta de `no shutdown` o, si es el extremo DCE, falta de `clock rate`.
+2. Wildcard mask incorrecta en los `network`: excluye la interfaz del proceso OSPF y nunca se forma vecindad ahí.
+3. Área distinta declarada en los dos extremos de un mismo enlace: ambos deben quedar en área 0, o la adyacencia se queda pegada en INIT/2-WAY.
+4. Router-ID duplicado entre dos routers: revisar que cada uno tenga su router-id fijado manualmente, evitando que IOS elija automáticamente y genere colisión.
+5. `passive-interface` puesto por error sobre un enlace que sí debía formar vecindad: esa interfaz deja de mandar Hello y el vecino nunca aparece en `show ip ospf neighbor`.
+6. Máscaras distintas en los dos extremos de un mismo enlace serial (ej. /30 en un lado y /29 en el otro): ambos extremos quedan en subredes distintas y no forman vecindad aunque el enlace esté físicamente activo.
+7. Si la ruta por defecto no llega a COLLAHUASI ni LOSPELAMBRES: confirmar en ELTENIENTE que existe `ip route 0.0.0.0 0.0.0.0 loopback1` y que `default-information originate` está dentro de `router ospf 30`.
+
+</Solution>

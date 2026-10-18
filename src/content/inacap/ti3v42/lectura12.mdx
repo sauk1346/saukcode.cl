@@ -1,0 +1,107 @@
+# Envío y recepción de información serial entre Android y Arduino
+
+En la era del internet de las cosas (IoT), la capacidad de establecer conexiones inalámbricas entre dispositivos inteligentes y aplicaciones móviles se ha convertido en un eje central de la innovación tecnológica. Este recurso se orienta a la integración de microcontroladores Arduino con aplicaciones Android, explorando dos tecnologías de conectividad ampliamente utilizadas: Bluetooth y wifi.
+
+## 1. ¿Qué son los Smart Devices?
+
+Son dispositivos electrónicos que pueden conectarse, comunicarse e interactuar con otros dispositivos o redes de forma autónoma. Combinan conectividad inalámbrica (Bluetooth, wifi), procesamiento local (microncontroladores), sensores y actuadores (interacción con el entorno) e interoperabilidad (protocolos estándar).
+
+## 2. Tecnología de comunicación inalámbrica
+
+Bluetooth es una tecnología de comunicación inalámbrica de corto alcance que opera en la banda ISM de 2.4 GHz. Su evolución hacia Bluetooth Low Energy (BLE) la ha convertido en una opción preferida para aplicaciones IoT debido a su bajo consumo energético y facilidad de implementación.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Tecnología", "Comunicación", "Características", "Casos de usos típicos"]}
+    lists={{
+        R11: [
+            "Alcance: 10-30 metros",
+            "Velocidad: 1-3 Mbps",
+            "Consumo: Bajo (especialmente BLE)",
+            "Configuración: Simple, conexión directa"
+        ],
+        R12: [
+            "Control remoto de dispositivos",
+            "Monitoreo de sensores locales",
+            "Wearables y dispositivos portátiles",
+            "Automatización doméstica básica"
+        ],
+        R21: [
+            "Alcance: 30-100 metros",
+            "Velocidad: 54 Mbps - 9.6 Gbps",
+            "Consumo: Alto",
+            "Configuración: Requiere red/router"
+        ],
+        R22: [
+            "Acceso remoto vía Internet",
+            "Transferencia de datos intensivos",
+            "Múltiples dispositivos conectados",
+            "Integración con servicios web"
+        ]
+    }}
+    rows={[
+        [
+            "**Bluetooth**",
+            "Comunicación de proximidad",
+            "@R11",
+            "@R12"
+        ],
+        [
+            "**Wi-Fi**",
+            "Conectividad de red",
+            "@R21",
+            "@R22"
+        ]
+    ]}
+/>
+
+### ¿Cuándo usar cada tecnología?
+
+- Se recomienda utilizar **Bluetooth** en proyectos que requieran comunicación a corta distancia (menos de 30 metros), bajo consumo energético, conexión directa entre dispositivos y un prototipado rápido. 
+- Por otro lado, es preferible optar por **Wi-Fi** cuando se necesita acceso a internet, alta velocidad de transmisión de datos, control remoto desde cualquier lugar y la conexión simultánea de múltiples usuarios.
+
+
+## 2. Comunicación serial entre Android y Arduino
+
+La comunicación serial inalámbrica entre Android y Arduino forma la base de aplicaciones IoT modernas. Este apartado se enfoca en dos procesos fundamentales de comunicación inalámbrica: el envío de información serial desde Android hacia Arduino y recepción de información serial en Arduino desde Android.
+
+### ¿Qué es la comunicación serial inalámbrica?
+
+La comunicación serial inalámbrica es un protocolo de transmisión donde los datos se envían bit a bit de forma secuencial a través de ondas electromagnéticas, sin necesidad de cables físicos. Los datos viajan a través de protocolos como Bluetooth o wifi.
+
+Además, incluye control de flujo automático para regular la transmisión según la capacidad del receptor. En este proceso, el tamaño del buffer resulta clave, ya que define la cantidad de información que puede almacenarse temporalmente sin riesgo de pérdida o saturación de datos.
+
+# Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "¿Cuál de las siguientes afirmaciones describe mejor una ventaja principal de usar Bluetooth en proyectos IoT con Arduino y Android?",
+		options: [
+			"Permite acceso global a través de Internet",
+			"Soporta múltiples usuarios simultáneos a alta velocidad",
+			"Presenta bajo consumo energético y simplicidad de configuración",
+			"Requiere un router para establecer la conexión"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Cuál de las siguientes opciones representa una ventaja clave en la comunicación vía internet entre Arduino y Android usando wifi?",
+		options: [
+			"Escalabilidad para múltiples usuarios",
+			"Bajo consumo energético",
+			"Alta velocidad de transmisión",
+			"Acceso global a los dispositivos"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Cuál de las siguientes opciones describe mejor una característica de la comunicación serial inalámbrica?",
+		options: [
+			"Solo se puede realizar mediante conexión física",
+			"Requiere sincronización de reloj entre dispositivos",
+			"Envía varios bits en paralelo para mayor velocidad",
+			"Transmite datos de forma secuencial bit a bit"
+		],
+		correctIndex: 3
+	},
+]} />

@@ -1,0 +1,172 @@
+# Sistemas distribuidos y mensajería P2P
+
+## 1. ¿Qué es un sistema distribuido?
+- Es un conjunto de programas informáticos que utilizan recursos computacionales en varios nodos de cálculo distintos para lograr un objetivo compartido común.
+- Este tipo de sistemas, también denominados **computación distribuida o bases de datos distribuidas**, usan nodos distintos para comunicarse y sincronizarse a través de una red común.
+- Estos nodos suelen representar dispositivos de hardware físicos diferentes, pero también pueden representar procesos de software diferentes u otros sistemas encapsulados recursivos.
+
+> La finalidad de los sistemas distribuidos es eliminar los cuellos de botella o los puntos de error centrales de un sistema.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Características", "Descripción"]}
+    rows={[
+        [
+            "**Recursos compartidos**",
+            "Los sistemas distribuidos pueden compartir hardware, software o datos"
+        ],
+        [
+            "**Procesamiento simultáneo**",
+            "Varias máquinas pueden procesar la misma función a la vez"
+        ],
+        [
+            "**Escalabilidad**",
+            "La capacidad computacional y de procesamiento puede escalarse hacia arriba según sea necesario cuando se añaden máquinas adicionales"
+        ],
+        [
+            "**Detección de errores**",
+            "Los errores se pueden detectar fácilmente"
+        ],
+        [
+            "**Transparencia**",
+            "Un nodo puede acceder a otros nodos del sistema y comunicarse con ellos"
+        ]
+    ]}
+/>
+
+## 2. Cloud computing (Computación en la nube)
+Se refiere a la entrega de servicios de computación a través de Internet. Incluye almacenamiento, servidores, bases de datos, redes y software, proporcionando acceso a través de Internet en lugar de tener recursos locales.
+
+#### Modelos de servicio
+Se describen los principales modelos de servicio que ofrece la computación en la nube. Estos modelos permiten a las organizaciones seleccionar la solución que mejor se adapte a sus necesidades tecnológicas, optimizando recursos y facilitando la escalabilidad de sus operaciones.
+
+<SmartTable
+    tableLayout="fixed"
+    headers={["Modelos", "Descripción"]}
+    rows={[
+        [
+            "**SaaS (Software as a Service)**",
+            "Permite acceder a software a través de Internet, eliminando la necesidad de instalación y mantenimiento. Ejemplos incluyen Google Workspace y Salesforce"
+        ],
+        [
+            "**IaaS (Infraestructure as a Service)**",
+            "Proporciona recursos de infraestructura a la demanda, como servidores virtuales y almacenamiento. Ejemplos son Amazon EC2 y Microsoft Azure"
+        ],        
+    ]}
+/>
+
+## 3. Grid computing
+- El *grid computing* o computación en malla apareció como una respuesta a la necesidad de contar con ordenadores más potentes que pudieran realizar tareas más complejas, como puede ser el ejecutar cálculos muy amplios.
+- Se trata de unir a varios procesadores en una única tarea conectados a una misma red de comunicación o a Internet y, generalmente, se conoce como procesamiento en paralelo.
+- En la computación en malla o de rejilla puede ocurrir que todos los recursos de esa red se utilicen por todos los usuarios, o que algunos tengan restricciones de algún tipo.
+
+### ¿Cómo funciona el grid computing?
+- Una forma sencilla de entender el funcionamiento del grid computing es pensar en la siguiente analogía: cuando conectamos un dispositivo a un enchufe no tenemos un conocimiento claro de dónde proviene la electricidad o cómo se está generando.
+- Así mismo ocurre con la computación en malla; **cuando se accede a una red de computación como esta, no se tiene conocimiento real de dónde proviene la capacidad de procesamiento**.
+- Datos como el hardware, sistemas operativos, procesadores, aplicaciones o tecnologías específicas no son conocidos en todo momento. Lo que ocurre acá es que hay muchos equipos conectados a la vez, y estos tienen mayor o menor potencia, con más o menos recursos disponibles.
+
+## 4. Cluster computing
+- Consiste en un **grupo de computadoras conectadas que trabajan juntas como un único sistema**. 
+- Se enfoca en proporcionar alta disponibilidad y rendimiento mejorado, ideal para aplicaciones que requieren procesamiento intensivo, como la minería de datos.
+
+### ¿Cuál es la función de un cluster?
+- A menudo, la computación en cluster permite el uso de hardwares simples, evitando la necesidad de utilizar servidores complejos o las llamadas “supercomputadoras” para realizar la misma tarea, reduciendo así las inversiones y, por la tanto, el presupuesto.
+
+### ¿Cuáles son las ventajas del cluster para las empresas?
+- Reducción de costos.
+- Incremento del volumen de producción.
+- Aceleración de las ventas, lo que lleva a aumentar la facturación.
+- Fácil acceso a nuevos proveedores.
+- Acceso a nuevas tecnologías.
+- Aprovechamiento del uso de soluciones innovadoras.
+- Reclutamiento más efectivo de mano de obra especializada.
+- Mayor poder competitivo.
+- Optimización de las operaciones de la empresa.
+
+## 5. Mensajería P2P (Peer-to-peer)
+- Un modelo de comunicación en el que cada participante (o peer) actúa tanto como cliente como servidor. 
+- Esto permite una mayor escalabilidad y redundancia, ya que no hay un punto único de fallo.
+
+### Ventajas
+
+#### Mayor eficiencia y velocidad
+Las conexiones directas entre dispositivos en las redes P2P mejoran la velocidad de transferencia de datos, reduciendo la latencia, lo que es esencial en comunicaciones en tiempo real. Esta eficiencia es particularmente útil en aplicaciones empresariales como videoconferencias y colaboración en línea, donde el tiempo de respuesta es crítico.
+
+Por ejemplo, las empresas que dependen de sistemas VoIP (como los servicios que ofrece LCRcom) pueden beneficiarse de una comunicación más ágil y sin interrupciones gracias a la tecnología P2P. 
+
+#### Reducción de costos
+Una de las principales ventajas de las redes P2P es la eliminación de la necesidad de costosos servidores centrales. Al permitir que los dispositivos compartan directamente los recursos, las empresas pueden ahorrar considerablemente en infraestructura y en gastos de mantenimiento. Estos ahorros pueden destinarse a otras áreas estratégicas, optimizando el presupuesto de comunicaciones.
+
+#### Escalabilidad
+Las redes P2P son altamente escalables, ya que pueden crecer con facilidad al agregar nuevos nodos sin necesidad de modificar o aumentar la infraestructura existente. Esto es ideal para empresas en expansión o que experimentan fluctuaciones en la demanda de recursos, permitiendo un crecimiento sin límites ni grandes inversiones.
+
+Además, esta capacidad de adaptación es especialmente útil para negocios que manejan cargas de trabajo variables o que necesitan ser ágiles ante cambios en el mercado.
+
+#### Resiliencia y fiabilidad
+La descentralización de las redes P2P las hace menos vulnerables a fallos sistémicos. Si un nodo falla, los demás pueden seguir funcionando sin interrupciones, lo que mejora la continuidad operativa y reduce el riesgo de caídas masivas. Esto es fundamental para la recuperación ante desastres, garantizando que las operaciones críticas se mantengan activas en situaciones adversas.
+
+#### Seguridad
+Aunque pueda parecer contradictorio, las conexiones directas entre dispositivos pueden ofrecer un mayor control sobre la seguridad de los datos. Las redes P2P pueden implementar cifrado extremo a extremo, garantizando que la información compartida sea accesible solo por los nodos autorizados.
+
+Para las empresas que manejan datos sensibles, estas medidas pueden ofrecer ventajas significativas en términos de protección y cumplimiento de normativas sobre la privacidad
+
+## 6. Nuevas tendencias tecnológicas
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Tendencias", "Descripción"]}
+    rows={[
+        [
+            "**Aumento en el uso de SaaS**",
+            "La adopción del modelo SaaS ha crecido significativamente, permitiendo a las empresas reducir costos operativos y aumentar la flexibilidad al acceder a software en la nube"
+        ],
+        [
+            "**Microservicios y contenedores**",
+            "Las arquitecturas de microservicios, que dividen aplicaciones en componentes más pequeños e independientes, están ganando popularidad. Junto con tecnologías como Docker, permiten un desarrollo y despliegue más ágil"
+        ],
+        [
+            "**Desentralización**",
+            "Con la mensajería P2P y las blockchains, la tendencia se dirige hacia sistemas más descentralizados, lo que promueve la seguridad y la resistencia al control central"
+        ],
+        [
+            "**Integración de IoT (Internet de las Cosas)**",
+            "Los sistemas distribuidos están comenzando a integrar más dispositivos IoT, lo que requiere soluciones de mensajería robustas para manejar la comunicación entre millones de dispositivos"
+        ],
+    ]}
+/>
+
+
+# Actividad de Práctica 12
+
+<Quiz questions={[
+	{
+		question: "Teniendo en cuenta lo aprendido. ¿cuál de los siguiente es un ejemplo de computación en la nube?",
+		options: [
+			"Amazon EC2",
+			"Bittorrent",
+			"Cluster computing",
+			"Grid computing"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "Con relación al cluster computing. ¿cuál de las siguientes características es una ventaja de la computación en clúster?",
+		options: [
+			"Baja escalabilidad",
+			"Dependencia de un único punto de fallo",
+			"Necesidad de hardware complejo",
+			"Alta disponibilidad y rendimiento mejorado"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "Teniendo en cuenta lo aprendido, ¿cuál es una ventaja clave de las redes P2P (Peer-to-peer)?",
+		options: [
+			"Alta latencia",
+			"Baja escalabilidad",
+			"Necesidad de servidores centrales costosos",
+			"Reducción de costes"
+		],
+		correctIndex: 3
+	},
+]} />

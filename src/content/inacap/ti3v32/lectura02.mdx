@@ -1,0 +1,142 @@
+# Bases de datos NoSQL: Características y Tipos
+
+## Bases de datos Estructuradas
+
+Se basan en el modelo relacional, una forma intuitiva y directa de representar datos en tablas.
+
+### Características
+
+- En una base de datos relacional, cada fila en una tabla es un registro con una ID única, llamada clave
+- Las columnas de la tabla contienen los atributos de los datos
+- Cada registro suele tener un valor para cada atributo, lo que simplifica la creación de relaciones entre los puntos de datos
+- El lenguaje en este tipo de base de datos es NoSQL
+
+### Propiedades ACID
+Son 4 propiedades cruciales que definen las transacciones de las bases de datos relacionales
+
+1. **Atomicidad:** Las transacciones son todo o nada
+2. **Consistencia:** Solo se guardan datos válidos
+3. **Aislamiento:** Las transacciones nos se afectan entre sí
+4. **Durabilidad:** Los datos escritos no se perderán
+
+### Ventajas
+
+- Mayor soporte y más variedad de herramientas debido a que lleva más tiempo en el mercado
+- Es útil para manejar y objeter los datos
+- Permite agregar otros servidores de SQL, por ejemplo, una persona puede acceder a la base de datos de otra
+
+### Desventajas
+
+- No es flexible (antes de ingresar los objetos, deben estar correctamente validados)
+- Mientras más compleja sea la base de datos, requiere mayor procesamiento y eso se puede ver reflejado en el rendimiento y consumo de recursos
+
+## Base de Datos no Estructuradas
+
+### Características
+
+- No utilizan tablas ni columnas para almacenar sus datos: Los datos se almacenan en documentos
+- No utiliza SQL para la gestión de datos
+- Son base de datos escalables, pueden crecer en tamaño con el paso del tiempo
+- Son flexibles en cuanto a los formatos de uso
+- El acceso es rápido debido al tener una estructura simple
+- Están diseñados para almacenar grander volúmenes de datos
+- En general, se tratan de proyectos de código abierto
+- Se ejecutan en clúster (serie de computadoras pequeñas y de gran procesamiento)
+
+### Tipos
+ 
+1. **Clave-valor:** Almacena datos como un conjunto de pares clave-valor en los que una clave sirve como un identificador único
+2. **Documentos:** Se representan en formato XML, JSON o BSON, son flexibles, no utilizan una estructura rígida y hay reducción de la complejidad en las consultas para datos asociados
+3. **Columnas:** Basado en un modelo de almacenamiento "tabular". Por cada entrada, hay una columna, por lo tanto, los datos de cada entrada están dispuestos uno debajo del otro; permiten grande volúmenes de datos, poseen gran escalabilidad y disposición de la información
+4. **Grafos:** Los datos se modelan como un conjunto de relaciones entre elementos, tienen alto rendimiento en consultas de relaciones de proximidad entre datos, y no para ejecutar consultas globales. Existe flexibilidad en la definición de atributos y longitud de registros
+
+### Ventajas NoSQL
+
+1. **Aplicaciones de big data:** Grandes volúmenes son manejados fácilmente por la bases de datos NoSQL
+2. **Administración de la BD:** Requieren menos administración práctica, cuenta con capacidades de distribución de datos y reparación automática, modelos de datos simplificados y menos requisitos de ajuste y administración
+3. **Versatilidad:** Las posibilidades de crecimiento en el volumen de datos o la posibilidad de incluir cambios sobre la forma en la que ingresan los datos sin necesidad de alterar la estructura, permite adaptarse de forma rápida a un entorno de alto dinamismo
+4. **Crecimiento horizontal:** Son altamente escalables, si se requiere instalar mayor cantidad de nodos para ampliar la capacidad, se puede hacer sin problemas. Eso no interrumpe la usabilidad o consultas dentro de la base de datos
+5. **Economía:** No se necesitan servidores con gran cantidad de recursos para operar. La adaptabilidad y flexibilidad permiten empezar con bajos niveles de inversión en equipos e ir ampliando la capacidad a medida de las necesidades
+
+### Desventajas NoSQL
+
+1. **Atomicidad:** Algunas de estas bases de datos no incorporan la atomicidad de información. Esto puede derivar en que la información no sea consistente entre nodos
+2. **Software poco documentado:** Puee adolecer de que algunas operaciones sean limitadas por la falta de información sobre las herramientas y características
+3. **Baja estandarización:** No se tiene un criterio plenamente definido entre los motores que se utilizan en este tipo de base de datos. El lenguaje tiende a variar según el tipo de base de datos que se vaya a utilizar
+4. **Herramientas GUI:** La mayoría de las bases de datos NoSQL no contienen una interfaz gráfica. Requiere conocimiento especial para poder ejecutar algunas de ellas
+
+### Comparativas SQL vs NoSQL
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Aspecto","SQL","NoSQL"]}
+  rows={[
+    ["**Tipo**","Relacional","No Relacional"],
+    ["**Estructura**","Basada en Tablas","Basada en Documentos"],
+    ["**Esquema**","Mantiene estructura definida","Su estructura puede ser dinámica"],
+    ["**Redundancia**","Tienen redundancia controlada","Permite la redundancia de datos"],
+    ["**Uso Ideal**","Para aplicaciones que requieren datos consistentes (sin errores)","Para aplicaciones que requieren grandes cantidades de datos a consultar"],
+    ["**Escalabilidad**","Escalables verticalmente: aumentar las prestaciones del servidor","Escalables horizontalmente: agregar más servidores"],
+    ["**Desempeño**","Bajo","Alto"],
+    ["**Disponibilidad**","Pobre","Buena"],
+    ["**Fiabilidad**","Buena","Pobre"],
+    ["**Consistencia**","Buena","Pobre"],
+    ["**Almacenamiento**","Tamaño medio","Optimizado para grandes volúmenes de datos"],
+    ["**Escalabilidad Costo**","Alta pero costosa","Alta"]
+  ]}
+/>
+
+# Actividad de Práctica 01
+
+<Quiz questions={[
+  {
+    question: "¿Qué tipo de base de datos no estructurada es MongoDB?",
+    options: [
+      "Grafos",
+      "Documentos",
+      "Columnas",
+      "Clave-valor"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Una empresa necesita crear un sistema informático cuya principal característica sea la gran cantidad de datos que deben ser procesados de forma no transaccional. ¿Cuál de las siguientes bases de datos recomendarías para el desarrollo del sistema?",
+    options: [
+      "Mysql",
+      "Oracle",
+      "CouchDB",
+      "SQLServer"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuáles son las características del esquema de una base de datos no estructurada?",
+    options: [
+      "Es un esquema con diferentes estructuras que usa documentos embebidos.",
+      "Es horizontal; se pueden agregar equipos sin alterar su rendimiento.",
+      "Su procesamiento de datos y retorno de valores es mucho más rápido que en las bases de datos estructuradas.",
+      "En general, se trata de proyectos de código abierto."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál de las siguientes alternativas es una desventaja de las bases de datos relacionales?",
+    options: [
+      "Menor capacidad de procesamiento de transacciones.",
+      "Menor soporte en el mercado.",
+      "Menor rendimiento al tener estructura más compleja y mayor consumo de recursos.",
+      "Menor adaptabilidad para agregar prestaciones en los servidores."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "En cuanto a las bases de datos no estructuradas (NoSQL), ¿cuál de las siguientes alternativas representa diferencias respecto a las bases de datos estructuradas (SQL)?",
+    options: [
+      "Permite la redundancia de datos, su estructura es dinámica y está basada en documentos.",
+      "Redundancia controlada, basada en tablas y su estructura es fija.",
+      "Su estructura es dinámica, redundancia controlada de datos y para aplicaciones consistentes.",
+      "Son relacionales, basadas en documentos y con estructura dinámica."
+    ],
+    correctIndex: 0
+  }
+]} />

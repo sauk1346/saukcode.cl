@@ -1,0 +1,44 @@
+/* styles/MDXWrapper.module.css */
+
+.mdxLayout {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .mdxContent {
+    width: 100%;
+  }
+
+  .mdxSidebar {
+    display: none;
+  }
+
+  /* Pantallas más grandes: 2 columnas */
+  @media (min-width: 1024px) {
+    .mdxLayout {
+      flex-direction: row;
+      gap: 2rem;
+    }
+
+    .mdxContent {
+      flex: 1;
+      max-width: calc(100% - 280px); /* Más espacio para el contenido */
+    }
+
+    .mdxSidebar {
+      display: block;
+      width: 250px;
+      flex-shrink: 0;
+    }
+  }
+
+  /* Pantallas muy grandes */
+  @media (min-width: 1400px) {
+    .mdxLayout {
+      max-width: 1600px;
+    }
+  }

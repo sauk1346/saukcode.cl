@@ -1,0 +1,96 @@
+# Evaluación 01 Parte 2: VLSM
+
+Sea la siguiente Red y números de IPs para cada Segmento (subred):
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Red', 'Segmento 1', 'Segmento 2', 'Segmento 3', 'Segmento 4']}
+	rows={[
+		['172.31.0.0/24', '45', '21', '10', '8']
+	]}
+/>
+
+Explicar claramente el desarrollo y completar la siguiente tabla:
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Subred', 'IP de Red', 'Máscara', 'IP Difusión', 'IPs Posibles']}
+	rows={[
+		['Segmento 1', '', '', '', ''],
+		['Segmento 2', '', '', '', ''],
+		['Segmento 3', '', '', '', ''],
+		['Segmento 4', '', '', '', '']
+	]}
+/>
+
+<Solution>
+1. Se ordenan las subredes de mayor a menor:
+
+    1. **Segmento 1:** `45`
+    2. **Segmento 2:** `21`
+    3. **Segmento 3:** `10`
+    4. **Segmento 4:** `8`
+
+2. Se utiliza el método de cuadro, con máscara inicial `/24`, hosts `256`
+
+<img
+	src="/inacap/ti3v35/images/fig15.png"
+	style={{ display: 'block', margin: '0 auto', width:'50%'}}
+/>
+<br/>
+
+3. Se realiza una división de máscara:
+
+    - 1ra división: máscara `/25`, hosts `128`
+    - 2da división: máscara `/26`, hosts `64`. Cumple para Segmento1:45
+
+<img
+	src="/inacap/ti3v35/images/fig65.png"
+	style={{ display: 'block', margin: '0 auto', width:'50%'}}
+/>
+<br/>
+
+4. Se realiza otra división de máscara:
+
+    - 3ra división: máscara `/27`, hosts `32`. Cumple para Segmento2:21
+
+<img
+	src="/inacap/ti3v35/images/fig66.png"
+	style={{ display: 'block', margin: '0 auto', width:'50%'}}
+/>
+<br/>
+
+5. Se realiza otra división de máscara:
+
+    - 4ta división: máscara `/28`, hosts `16`. Cumple para Segmento3:10
+
+<img
+	src="/inacap/ti3v35/images/fig67.png"
+	style={{ display: 'block', margin: '0 auto', width:'50%'}}
+/>
+<br/>
+
+6. Se realiza otra división de máscara:
+
+    - 5ta división: máscara `/29`, hosts `8`. Cumple para Segmento4:8
+
+<img
+	src="/inacap/ti3v35/images/fig68.png"
+	style={{ display: 'block', margin: '0 auto', width:'50%'}}
+/>
+<br/>
+
+7. Finalmente, se completa la tabla:
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Subred', 'IP de Red', 'Máscara', 'IP Difusión', 'IPs Posibles']}
+	rows={[
+		['Segmento 1', '172.31.0.0', '/26', '172.31.0.63', '62'],
+		['Segmento 2', '172.31.0.64', '/27', '172.31.0.95', '30'],
+		['Segmento 3', '172.31.0.96', '/28', '172.31.0.111', '14'],
+		['Segmento 4', '172.31.0.112', '/29', '172.31.0.119', '6']
+	]}
+/>
+
+</Solution>

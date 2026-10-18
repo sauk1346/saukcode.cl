@@ -1,0 +1,104 @@
+# Ejercicio "Estudiantes"
+**Material Clase:** [clase17.pdf](/inacap/ti3v11/docs/clase17.pdf)
+
+## Continuación Ejercicio Clase anterior
+
+```python
+VETADOS=()
+RR=input("ingrese vetados:").upper()
+ee=RR.split(',')
+VETADOS=tuple(ee)
+
+estudiantes={}
+nombre=""
+    
+while nombre!="FIN":
+    
+    nombre=input('ingrese nombre:').upper()
+    if nombre in VETADOS:
+        print("el nombre agregado no esta permitido")
+    elif nombre!="FIN":
+        nota = int(input('Ingrese la nota: '))
+        estudiantes[nombre] = nota
+        
+				#2da forma
+        #estudiantes.setdefault(nombre,nota)
+				
+				#3ra forma
+        #estudiantes1 = {nombre:nota}
+        #estudiantes.update(estudiantes1)
+
+op=""
+while op!="5":
+    
+    op=input("1.mostrar Todo\n2.Buscar\n3.Borrar\n4.Salir :")
+    #mostrar diccionario
+    if op=="1":
+        for clave,valor in estudiantes.items():
+            print(f'{clave}: {valor}')
+    
+    if op=="2":
+        estudiantes.sort()
+        print("La lista fue Ordenada")
+
+    if op=="3":
+        nombreBuscar=input('ingrese nombre a buscar: ')
+        if nombreBuscar in estudiantes.keys():
+            print("SI ESTA")
+            print(f'{nombreBuscar}:{estudiantes[nombreBuscar]}')
+        else:
+            print ("NO ESTA")
+
+    if op=="4":
+        nombreBorrar=input('ingrese nombre a buscar para borrar: ')
+        while nombreBorrar in estudiantes:
+            estudiantes.remove(nombreBorrar)
+        print(estudiantes)
+
+if op=="5":
+    print("ADIOS")
+```
+
+## Ingresar datos al diccionario "estudiantes"
+Para agregar nombre de estudiante y nota se ven 3 formas en clases.
+
+**Ejemplo 01:** Utilizando función `setdefault()`
+```python
+estudiantes = {}
+nombre = input('Ingrese el nombre: ')
+nota = int(input('Ingrese la nota: '))
+
+estudiantes.setdefault(nombre,nota)
+```
+
+**Ejemplo 02:** Utilizando función `update()`
+```python
+estudiantes = {}
+nombre = input('Ingrese el nombre: ')
+nota = int(input('Ingrese la nota: '))
+
+estudiante1 = {nombre:nota}
+estudiantes.update(estudiante1)
+```
+
+**Ejemplo 03:** Utilizando sintaxis de corchetes
+```python
+estudiantes = {}
+nombre = input('Ingrese el nombre: ')
+nota = int(input('Ingrese la nota: '))
+
+estudiantes[nombre] = nota
+```
+
+## Recorrer el diccionario "estudiantes"
+La función `for()` sirve para recorrer estructuras, por lo que se puede utilizar para recorrer un diccionario. 
+
+- Es necesario 2 variables auxiliares `n`, `c` para capturar la `key` y `value` en el recorrido.
+- Se utiliza la función `items()` para convertir el diccionario a una lista de tuplas, y así poder capturar sus datos en el recorrido.
+
+```python
+for n,c in estudiantes.items():
+	print('Nombre:',n,'	Nota:',c)
+```
+
+

@@ -1,0 +1,5 @@
+---
+import Reveal from './Reveal.jsx';
+const props = Astro.props;
+---
+<Reveal client:visible {...props}><slot /></Reveal>

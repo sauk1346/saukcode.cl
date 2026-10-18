@@ -1,0 +1,277 @@
+# SM01: Recipiente de costo mínimo
+
+**Material**
+- [SM01: Recipiente de costo mínimo](docs/unit03-sm01.pdf)
+
+Ricardo se ha propuesto construir un recipiente metálico de base rectangular que tenga un volumen de 30 metros cúbicos y la cara superior abierta (sin tapa). Las medidas del recipiente se muestran a continuación:
+
+<SmartFigure
+    src="/inacap/cvcd01/images/fig270.png"
+	alt="enunciado"
+	size="large"
+/>
+
+Para la construcción del recipiente se dispone de dos tipos de materiales. El material para la base cuesta \$5000 el metro cuadrado y el de las caras laterales, \$3000 pesos el metro cuadrado.
+
+Ricardo se propone a construir un recipiente que sea lo más barato posible, es decir, de costo mínimo.
+
+## Actividad 01
+
+Completa la siguiente tabla con expresiones algebraicas en función de las variables $x$ e $y$
+
+<SmartFigure
+    src="/inacap/cvcd01/images/fig271.png"
+	alt="tabla"
+	size="large"
+/>
+
+<Solution title="Solución Actividad 01">
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Elemento","Costo de un m²($)", "Área(m²)", "Costo total($)"]}
+    rows={[
+        [
+            "**Base**",
+            "$5000$",
+            "$3x^2$",
+            "$15000x^2$"
+        ],
+        [
+            "**Cuatro caras laterales**",
+            "$3000$",
+            "$2(xy+3xy)$",
+            "$24000xy$"
+        ],
+    ]}
+/>
+
+
+</Solution>
+
+---
+
+## Actividad 02
+
+1. ¿Cuál es la expresión algebraica reducida que permite calcular el costo total en función de las variables $x$ e $y$?
+2. ¿Cuál es la expresión algebraica reducida que permite calcular el costo total en función de la variable $x$?
+
+<Solution title="Solución Actividad 02">
+
+1. **¿Cuál es la expresión algebraica reducida que permite calcular el costo total en función de las variables $x$ e $y$?**
+
+$$
+C(x,y) = 15000x^2 + 24000xy
+$$
+---
+2. **¿Cuál es la expresión algebraica reducida que permite calcular el costo total en función de la variable $x$?**
+
+<P indent={2}>
+Sea el Volumen del recipiente 30m³. Entonces:
+</P>
+$$
+\begin{align*}
+30 &= 3x^2y\\[6pt]
+y &= \dfrac{30}{3x^2}\\[10pt]
+y &= \dfrac{10}{x^2}
+
+\end{align*}
+$$
+
+<P indent={2}>
+Reemplazando en la función de Costo:
+
+$$
+\begin{align*}
+C(x) = 15000x^2 + 24000x\left(\dfrac{10}{x^2}\right)
+\end{align*}
+$$
+</P>
+
+<SmartFigure
+    id="fig272"
+    src="/inacap/cvcd01/images/fig272.png"
+	alt="Costo total en función de x"
+	caption="Costo total en función de x"
+	size="large"
+/>
+
+</Solution>
+
+---
+
+## Actividad 03
+
+1. ¿Cuáles son los valores de las variables $x$ e $y$ que permiten construir un recipiente de costo mínimo?
+2. ¿Cuál es el costo mínimo del recipiente?
+
+<Solution title="Solución Actividad 03">
+
+1. **¿Cuáles son los valores de las variables $x$ e $y$ que permiten construir un recipiente de costo mínimo?**
+
+<SmartFigure
+    id="fig273"
+    src="/inacap/cvcd01/images/fig273.png"
+	alt="Valores x e y para un costo mínimo"
+	caption="Valores x e y para un costo mínimo"
+	size="large"
+/>
+
+<P indent={2}>
+$\therefore$ Los valores son $\boxed{x=2}$ e $\boxed{y=2.5}$
+</P>
+---
+
+2. **¿Cuál es el costo mínimo del recipiente?**
+
+<SmartFigure
+    id="fig274"
+    src="/inacap/cvcd01/images/fig274.png"
+	alt="Gráfico de costo y punto mínimo local A"
+	caption="Gráfico de costo y punto mínimo local A"
+    lightbox={true}
+	size="large"
+/>
+
+<P indent={2}>
+$\therefore$ El costo mínimo del recipiente es de **\$180000** pesos
+</P>
+
+</Solution>
+
+---
+
+## Actividad 04
+
+Imagina ahora que se requiere construir un recipiente metálico que tenga un volumen de $V$ m³, el material para la base cueste \$$a$ el metro cuadrado y el de las caras laterales, \$$b$  el metro cuadrado.
+
+1. ¿Cuáles son los valores de las variables $x$ e $y$ que permiten construir un recipiente de costo mínimo?
+2. ¿Cuál es el costo mínimo del recipiente?
+
+<Solution title="Solución Actividad 04">
+
+1. **¿Cuáles son los valores de las variables $x$ e $y$ que permiten construir un recipiente de costo mínimo?**
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Elemento","Costo de un m²($)", "Área(m²)", "Costo total($)"]}
+    rows={[
+        [
+            "**Base**",
+            "$a$",
+            "$3x^2$",
+            "$3ax^2$"
+        ],
+        [
+            "**Cuatro caras laterales**",
+            "$b$",
+            "$2(xy+3xy)$",
+            "$b8xy$"
+        ],
+    ]}
+/>
+
+<P indent={2}>
+Función de costo $C(x,y)$:
+</P>
+$$
+C(x,y) = 3ax^2 + 8bxy
+$$
+
+<P indent={2}>
+Volumen:
+</P>
+$$
+\begin{align*}
+V &= 3x^2y\\[10pt]
+y &= \dfrac{V}{3x^2}
+\end{align*}
+$$
+
+<P indent={2}>
+Función de costo $C(x)$:
+</P>
+$$
+\begin{align*}
+C(x) &= 3ax^2 + 8bx\dfrac{V}{3x^2}\\[10pt]
+C(x) &= 3ax^2 + \dfrac{8bV}{3x}
+\end{align*}
+$$
+
+<P indent={2}>
+El costo mínimo ocurre cuando $C'(x)=0$ 
+</P>
+
+<SmartFigure
+    id="fig275"
+    src="/inacap/cvcd01/images/fig275.png"
+	alt="Valor de x para costo mínimo"
+	caption="Valor de x para costo mínimo"
+	size="large"
+/>
+
+$$
+\begin{align*}
+x &= \sqrt[3]{12}\cdot \dfrac{\sqrt[3]{a^2bV}}{3a}\\[10pt]
+x^3 &= 12\cdot \dfrac{a^2bV}{27a^3}\\[10pt]
+x^3 &= 4\cdot \dfrac{bV}{9a}\\[10pt]
+x &= \sqrt[3]{\dfrac{4bV}{9a}}\\[10pt]
+\end{align*}
+$$
+
+<P indent={2}>
+Valor de y:
+</P>
+$$
+\begin{align*}
+y &=\dfrac{V}{3x^2}\\[10pt]
+y &=\dfrac{V}{3\left(\sqrt[3]{\dfrac{4bV}{9a}}\right)^2}\\[10pt]
+y &=\dfrac{V}{3}\left(\sqrt[3]{\dfrac{9a}{4bV}}\right)^2\\[10pt]
+...\\
+...\\
+y &= \sqrt[3]{\dfrac{3a^2V}{16b^2}}
+\end{align*}
+$$
+
+<P indent={2}>
+$\therefore$ Los valores de $x$ e $y$ que permiten construir un recipiente de costo mínimo son:
+</P>
+$$
+\boxed{x = \sqrt[3]{\dfrac{4bV}{9a}}}\quad \boxed{y = \sqrt[3]{\dfrac{3a^2V}{16b^2}}}
+$$
+
+---
+2. **¿Cuál es el costo mínimo del recipiente?**
+
+$$
+C(x) = 3ax^2 + \dfrac{8bV}{3x}\\[10pt]
+$$
+<P indent={2}>
+Se sabe que en el costo mínimo, $C'(x)=0$
+</P>
+$$
+\begin{align*}
+C'(x) &= 6ax - \dfrac{8bV}{3x^2}\\[10pt]
+0 &= 6ax - \dfrac{8bV}{3x^2}\\[10pt]
+6ax&= \dfrac{8bV}{3x^2}\\[10pt]
+6ax^2&= \dfrac{8bV}{3x}\\[10pt]
+\end{align*}
+$$
+
+<P indent={2}>
+Se reemplaza esta expresión en la función de costo:
+</P>
+$$
+\begin{align*}
+C_{min} &= 3ax^2 + 6ax^2\\[10pt] 
+&= 9ax^2\\[10pt]
+&= 9a\left(\sqrt[3]{\dfrac{4bV}{9a}}\right)^2\\[10pt]
+&= 9a\left(\dfrac{4bV}{9a}\right)^{2/3}\\[10pt]
+\end{align*}
+$$
+
+<P indent={2}>
+$\therefore$ El costo mínimo del recipiente es: $\boxed{C_{min} = 9a\left(\dfrac{4bV}{9a}\right)^{2/3}}$
+</P>
+
+</Solution>

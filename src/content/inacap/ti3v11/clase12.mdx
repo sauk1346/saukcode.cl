@@ -1,0 +1,184 @@
+# Instrucción for(), Ejercicios, Tarea
+**Material Clase:** [clase12.pdf](/inacap/ti3v11/docs/clase12.pdf)
+
+## Instrucción for()
+En python, la instrucción `for()` permite recorrer estructuras, elemento por elemento.
+
+**Ejemplo 1**
+```python
+for i in range(3):
+    print(i)
+```
+<TerminalOutput withBg>
+{`0
+1
+2`}
+</TerminalOutput>
+
+En el ejemplo 1, la instrucción `for()` recorre la estructura `range(3)`, que generará números comanzando desde 0 hasta 2, pero no incluirá el número 3. En otras palabras, `range(3)` es `[0,1,2]`. Luego la instrucción `for()` recorre cada elemento y los imprime en líneas separadas.
+
+**Ejemplo 2**
+```python
+for i in range(1,3):
+	print(i)
+```
+<TerminalOutput withBg>
+{`1
+2`}
+</TerminalOutput>
+
+En el ejemplo 2, la instrucción `for()` recorre la estructura acotada `range(1,3)`. Esta estructura acotada sigue el principio *"inicio incluyente, final excluyente"*. Esto es, generará números comenzando desde 1 hasta 2, pero no incluirá el número 3. Entonces el rango generado será `[1,2]`
+
+**Ejemplo 3**
+```python
+cadena = "LuisYanez"
+print("largo string:", len(cadena))
+for i in cadena:
+	print(i)
+```
+<TerminalOutput withBg>
+{`largo string: 9
+L
+u
+i
+s
+Y
+a
+n
+e
+z`}
+</TerminalOutput>
+
+En el ejemplo 3, la instrucción `for()` recorre la cadena de caracteres `cadena`, imprimiendo cada letra en el recorrido. También se utiliza la función `len()`, que permite contar la candidad de elementos (letras) dentro de la cadena de caracteres
+
+# Ejercicios
+
+## Ejercicio 01
+
+Generar un código que muestre en pantalla la siguiente imagen:
+
+<SmartFigure
+	id="ej01"
+	src="/inacap/ti3v11/images/fig05.png"
+	alt="Output promedio notas"
+	caption="Output promedio notas"
+	autoNumber={true}
+	center={true}
+	size="small"
+/>
+
+<Solution>
+```python
+print("PROMEDIO DE NOTAS")
+numNotas = int(input("ingrese el numero de notas: "))
+sumNotas = 0
+for i in range(numNotas):
+    nota = float(input(f"ingrese la nota {i+1}: "))
+    sumNotas = sumNotas + nota
+promedio = sumNotas / numNotas
+
+print("Promedio 1: ", promedio)
+print("Promedio 2: ", round(promedio))
+print("Promedio 3: ", round(promedio,1))
+print(f"Promedio 4: {promedio:.2f}")
+```
+</Solution>
+
+## Ejercicio 02
+Generar un código que muestre en pantalla la siguiente imagen:
+
+<SmartFigure
+	id="ej02"
+	src="/inacap/ti3v11/images/fig06.png"
+	alt="Output largo string"
+	caption="Output largo string"
+	autoNumber={true}
+	center={true}
+	size="small"
+/>
+
+<Solution>
+```python
+nombre = input("ingrese el nombre: ")
+
+print("Largo String: ", len(nombre))
+for i in nombre:
+    print(i)
+```
+</Solution>
+
+<br/>
+# Tarea
+
+Generar un código que valide el dígito RUT. Debe seguir las instrucciones de la imagen.
+
+<SmartFigure
+	id="ej03"
+	src="/inacap/ti3v11/images/fig07.png"
+	alt="Validar rut"
+	caption="Validar rut"
+	autoNumber={true}
+	center={true}
+	size="small"
+/>
+
+<Solution>
+```python
+print()
+print('------------------------------')
+print('Operación de validación de rut')
+print('------------------------------')
+print()
+
+rut = input('Ingrese rut: ')
+print()
+print('Rut:', end=' ')
+
+# eliminar '.'
+aux = ''
+for i in rut:
+    if (i != '.'):
+        aux += i
+        print(i,end=' ')
+
+# eliminar '-'
+digito = ''
+for i in aux:
+    digito = digito + i if (i != '-') else digito
+
+# eliminar num verificador y conv. a entero
+digito = int(digito[:-1])
+
+# multiplicar 'digito invertida' por factor 2,...,7,2,...,7 y sumarlas
+suma = 0
+factor = 2
+print() #restaurar a modo salto linea
+print() #salto linea
+while (digito > 0):
+    print(f'{digito%10} * {factor} = {digito%10 * factor}')
+    suma += (digito % 10) * factor
+    digito = int(digito / 10)
+    factor = 2 if (factor == 7) else factor + 1
+print()
+print('SUMA:',suma)
+
+# división por 11
+print()
+print(f'DIVISION: {suma} / 11 = {suma/11}')
+
+# tomar solo decimales
+digito = (suma/11) - int(suma/11)
+
+# despejar 'digito'
+print()
+print(f'Dígito: ( 11 - ( 11 * ({digito}) ) )')
+print(f'Dígito: ( 11 - ({11 * digito}) )')
+print(f'Dígito: ({11-(11 * digito)})')
+print(f'Dígito: {round(11-(11 * digito))}')
+digito = round(11-(11 * digito))
+
+# caso especial: 'digito = 10 o 11'
+digito = 'K' if (digito == 10) else 0 if (digito == 11) else digito
+print(f'Dígito: {digito}') if digito in ['K',0] else None
+```
+</Solution>

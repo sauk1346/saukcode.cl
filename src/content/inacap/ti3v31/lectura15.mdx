@@ -1,0 +1,95 @@
+# Implementación de CRUD con local storage en JS
+
+## Local Storage
+Es una **API de almacenamiento web** que permite almacenar datos en el navegador de manera persistente y sin fecha de expiración. 
+
+Los datos almacenados en LocalStorage están disponibles incluso después de cerrar el navegador. 
+
+Gracias a Local storage, los desarrolladores pueden almacenar información importante de sus aplicaciones web para su posterior acceso y utilización. 
+
+### Características
+
+- Almacenamiento clave-valor.
+- Tamaño máximo de aproximadamente 5MB por dominio.
+- Acceso sincrónico.
+
+### Operaciones básicas
+
+1. **Almacenar un valor**
+
+```jsx
+localStorage.setItem('clave','valor');
+```
+
+2. **Recuperar un valor**
+
+```jsx
+localStorage.getItem('clave');
+```
+
+3. **Eliminar un valor**
+
+```jsx
+localStorage.removeItem('clave');
+```
+
+4. **Limpiar todo el almacenamiento**
+
+```jsx
+localStorage.clear();
+```
+
+# Actividad de Práctica 08
+
+<Quiz questions={[
+	{
+		question: "¿Cómo se elimina un elemento específico de LocalStorage?",
+		options: [
+			"localStorage.clear()",
+			"localStorage.updateItem('clave', null)",
+			"localStorage.removeItem('clave')",
+			"localStorage.setItem('clave', '')"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Qué es local storage en el contexto de desarrollo web?",
+		options: [
+			"Una biblioteca de JavaScript para manejar datos.",
+			"Un servicio de almacenamiento en la nube.",
+			"Una base de datos en el servidor.",
+			"Una API de almacenamiento web que permite almacenar datos de manera persistente en el navegador del usuario."
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Qué significan las siglas CRUD en el contexto de desarrollo de aplicaciones?",
+		options: [
+			"Crear, renderizar, unir, depurar",
+			"Crear, leer, actualizar, eliminar",
+			"Compilar, recargar, utilizar, depurar",
+			"Conectar, reutilizar, utilizar, desplegar"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Qué método de local storage se utiliza para almacenar un valor?",
+		options: [
+			"localStorage.clear()",
+			"localStorage.removeItem('clave')",
+			"localStorage.getItem('clave')",
+			"localStorage.setItem('clave', 'valor')"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Cuál es la función del componente Form en una aplicación CRUD en React?",
+		options: [
+			"Mostrar una lista de elementos.",
+			"Crear y actualizar elementos.",
+			"Almacenar datos en local storage.",
+			"Eliminar elementos."
+		],
+		correctIndex: 1
+	},
+]} />

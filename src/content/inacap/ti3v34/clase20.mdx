@@ -1,0 +1,87 @@
+# Matriz de Riesgo
+
+## Material Clase
+- [matriz-riesgo.pdf](/inacap/ti3v34/docs/ppt32.pdf)
+- [InventarioActivos.xlsx](/inacap/ti3v34/docs/InventarioActivos.xlsx)
+
+## Matriz de Riesgo
+Es una herramienta clave para gestionar y priorizar los riesgos de seguridad de una organización.
+
+### Creación
+1. **Identificación de activos:** Listas los activos: identificar todos los activos relevantes, como software, hardware, datos, y personal
+2. **Clasificación de activos:** Agrupar los activos por categoría y criticidad (ej: críticos, sensibles, no críticos)
+3. **Identificación de vulnerabilidades:** Determinar las vulnerabilidades existentes en cada activo. Utilizar bases de datos de vulnerabilidades como CVE, NVD, OWASP
+4. **Evaluación de impacto** 
+    - Impacto alto: compromiso de la operación crítica, pérdida significativa de datos
+    - Impacto medio: afecta la operación, pero no es catastrófico
+    - impacto bajo: Efecto menor en la operación y datos
+5. **Evaluación de probabilidad**
+    - Probabilidad alta: vulnerabilidad es fácil de explotar y tiene una alta probabilidad de ocurrencia
+    - Probabilidad media: vulnerabilidad es explotable bajo ciertas condiciones
+    - Probabilidad baja: vulnerabilidad es difícil de explotar
+6. **Generación de la matriz de riesgo**
+    - Crear una tabla que cruce la probabilidad y el impacto para cada activo
+    - Asignar un nivel de riesgo (bajo, medio, alto) según la intersección de probabilidad e impacto
+
+### Ejemplo Matriz de riesgo terminada
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Activo', 'Vulnerabilidad', 'Impacto', 'Probabilidad', 'Nivel de riesgo']}
+	rows={[
+		[
+			'**Servidor de base de datos**',
+			'Inyección SQL',
+			'Alto',
+			'Alta',
+			'Alto'
+		],
+		[
+			'**Red corporativa**',
+			'Ataque Man-in-the-Middle',
+			'Medio',
+			'Media',
+			'Medio'
+		],
+		[
+			'**Aplicación web**',
+			'XSS',
+			'Alto',
+			'Media',
+			'Alto'
+		],
+		[
+			'**Dispositivo de red**',
+			'Configuración insegura',
+			'Bajo',
+			'Alta',
+			'Medio'
+		],
+		[
+			'**Usuarios**',
+			'Phishing',
+			'Medio',
+			'Alta',
+			'Alto'
+		],
+		[
+			'**Sistemas de control**',
+			'Escalada de privilegios',
+			'Alto',
+			'Baja',
+			'Medio'
+		]
+	]}
+/>
+
+### ¿Cómo se intepreta una matriz de riesgo?
+
+1. **Riesgo alto:** Requiere acciones inmediatas, como parches, actualizaciones o medidas de mitigación urgentes
+2. **Riesgo medio:** Necesita un plan de acción a corto plazo, incluyendo posibles cambios en la configuración o mejoras en la seguridad
+3. **Riesgo bajo:** Puede ser monitorizado y abordado en el ciclo de mantenimiento regular
+
+### ¿Cuáles son las acciones posteriores?
+
+1. **Mitigación:** Se deben implementar soluciones para reducir el riesgo (parches, firewalls, etc.)
+2. **Monitoreo:** Requiere establecer sistemas de monitoreo continuo para detectar y responder a incidentes
+3. **Revisión regular:** Implica actualizar la matriz de riesgo periódicamente para reflejar nuevos activos, vulnerabilidades y cambios en el entorno

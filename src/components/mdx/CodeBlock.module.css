@@ -1,0 +1,230 @@
+/* CodeBlock.module.css - Extraído del original */
+.codeBlockContainer {
+  margin: 0;
+  line-height: 1.4;
+  position: relative;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.relative {
+  position: relative;
+}
+
+/* Botón de copiar - FIJO independiente del scroll horizontal */
+.copyButton {
+  position: absolute;
+  top: 0.6rem;
+  right: 2.5rem;
+  color: white;
+  font-size: 0.75rem;
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  opacity: 0.6;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+  z-index: 10;
+  border: none;
+  cursor: pointer;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.copyButton:hover {
+  opacity: 1;
+}
+
+.buttonLight {
+  background-color: #374151;
+}
+
+.buttonLight:hover {
+  background-color: #4B5563;
+}
+
+.buttonDark {
+  background-color: #1f2937;
+}
+
+.buttonDark:hover {
+  background-color: #374151;
+}
+
+/* Ajustes para el contenedor de código */
+.pre {
+  border-radius: var(--radius-md);
+  padding: 0.75rem !important;
+  margin: 1.8rem !important;
+  margin-bottom: 1.75rem !important;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: pre;
+  scrollbar-width: thin;
+}
+
+@media (max-width: 768px) {
+  .pre {
+    margin: 1rem 0.75rem !important;
+    margin-bottom: 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .pre {
+    margin: 0.75rem 0 !important;
+    margin-bottom: 0.75rem !important;
+  }
+}
+
+/* Estilos para la barra de desplazamiento */
+.pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.pre::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.4);
+  border-radius: 4px;
+}
+
+.pre::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.6);
+}
+
+.code {
+  padding: 0 !important;
+  transition: color 0.3s ease !important;
+  white-space: pre;
+  word-wrap: normal;
+  word-break: normal;
+}
+
+/* Tema único - SIEMPRE OSCURO para ambos modos */
+.lightTheme,
+.darkTheme {
+  background-color: #2d2d2d !important;
+  border: 1px solid #4b5563 !important;
+  color: #ccc !important;
+  text-shadow: none !important;
+}
+
+/* Barra de scroll - IGUAL PARA AMBOS MODOS */
+.lightTheme::-webkit-scrollbar-thumb,
+.darkTheme::-webkit-scrollbar-thumb {
+  background-color: rgba(229, 231, 235, 0.3);
+}
+
+.lightTheme::-webkit-scrollbar-thumb:hover,
+.darkTheme::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(229, 231, 235, 0.5);
+}
+
+/* Eliminar sombras de todos los elementos */
+.lightTheme :global(*),
+.darkTheme :global(*) {
+  text-shadow: none !important;
+}
+
+/* Tokens sin sombra con transiciones */
+.lightTheme :global(.token),
+.darkTheme :global(.token) {
+  text-shadow: none !important;
+  transition: color 0.3s ease, background-color 0.3s ease !important;
+}
+
+/* ============================================================
+   TEMA ÚNICO OSCURO - APLICADO A AMBOS MODOS
+   ============================================================ */
+
+.lightTheme :global(.token.comment),
+.lightTheme :global(.token.block-comment),
+.lightTheme :global(.token.prolog),
+.lightTheme :global(.token.doctype),
+.lightTheme :global(.token.cdata),
+.darkTheme :global(.token.comment),
+.darkTheme :global(.token.block-comment),
+.darkTheme :global(.token.prolog),
+.darkTheme :global(.token.doctype),
+.darkTheme :global(.token.cdata) {
+  color: #999 !important;
+}
+
+.lightTheme :global(.token.punctuation),
+.darkTheme :global(.token.punctuation) {
+  color: #ccc !important;
+}
+
+.lightTheme :global(.token.tag),
+.lightTheme :global(.token.attr-name),
+.lightTheme :global(.token.namespace),
+.lightTheme :global(.token.deleted),
+.darkTheme :global(.token.tag),
+.darkTheme :global(.token.attr-name),
+.darkTheme :global(.token.namespace),
+.darkTheme :global(.token.deleted) {
+  color: #e2777a !important;
+}
+
+.lightTheme :global(.token.function-name),
+.darkTheme :global(.token.function-name) {
+  color: #6196cc !important;
+}
+
+.lightTheme :global(.token.boolean),
+.lightTheme :global(.token.number),
+.lightTheme :global(.token.function),
+.darkTheme :global(.token.boolean),
+.darkTheme :global(.token.number),
+.darkTheme :global(.token.function) {
+  color: #f08d49 !important;
+}
+
+.lightTheme :global(.token.property),
+.lightTheme :global(.token.class-name),
+.lightTheme :global(.token.constant),
+.lightTheme :global(.token.symbol),
+.darkTheme :global(.token.property),
+.darkTheme :global(.token.class-name),
+.darkTheme :global(.token.constant),
+.darkTheme :global(.token.symbol) {
+  color: #f8c555 !important;
+}
+
+.lightTheme :global(.token.selector),
+.lightTheme :global(.token.important),
+.lightTheme :global(.token.atrule),
+.lightTheme :global(.token.keyword),
+.lightTheme :global(.token.builtin),
+.darkTheme :global(.token.selector),
+.darkTheme :global(.token.important),
+.darkTheme :global(.token.atrule),
+.darkTheme :global(.token.keyword),
+.darkTheme :global(.token.builtin) {
+  color: #cc99cd !important;
+}
+
+.lightTheme :global(.token.string),
+.lightTheme :global(.token.char),
+.lightTheme :global(.token.attr-value),
+.lightTheme :global(.token.regex),
+.lightTheme :global(.token.variable),
+.darkTheme :global(.token.string),
+.darkTheme :global(.token.char),
+.darkTheme :global(.token.attr-value),
+.darkTheme :global(.token.regex),
+.darkTheme :global(.token.variable) {
+  color: #7ec699 !important;
+}
+
+.lightTheme :global(.token.operator),
+.lightTheme :global(.token.entity),
+.lightTheme :global(.token.url),
+.darkTheme :global(.token.operator),
+.darkTheme :global(.token.entity),
+.darkTheme :global(.token.url) {
+  color: #67cdcc !important;
+  background: none !important;
+}

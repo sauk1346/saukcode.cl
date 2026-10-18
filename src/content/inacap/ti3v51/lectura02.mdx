@@ -1,0 +1,131 @@
+# Arquitecturas que transforman datos en valor
+
+## 1. Jerarquías de almacenamiento de datos
+
+El almacenamiento de datos no es un concepto o un requerimiento nuevo de las organizaciones. El procesamiento de datos y la computación inherentemente necesitan contar con diferentes cantidades de datos para realizar sus procesos asociados y ayudar a las personas, empresas y organizaciones a la realización de sus tareas y conseguir sus objetivos de negocios, por lo que esto ha sido una de las preocupaciones principales a tratar desde los inicios de la era de la computación electrónica.
+
+**Jerarquía de almacenamiento generales**
+
+<SmartTable
+    tableLayout="auto"
+    headers={['Jerarquía','Características']}
+    lists={{
+        R1: [
+            "Grandes almacenes de datos orientados al tema. Generan históricos de datos",
+            "La organización de datos es radicalmente diferente a la utilizada en los sistemas transaccionales OLTP normales, ya que generalmente los datos están almacenados de forma desestructurada (sin seguir las formas normales o de forma redundante)",
+            "Se pueden orientar a la empresa/organización completa (data warehouse) o solo a un departamento interno en particular (datamart)"
+        ],
+        R2: [
+            "Almacenamiento de datos orientado al servicio",
+            "Otorgado por grandes empresas transaccionales, con muchos recursos de espacio almacenado, recursos de red y gran ancho de banda, conectados 24/7 a internet. Venden sus servicios a diversas empresas con diferente orientación de negocio, generalmente con períodos de facturación en formato mensual o anual",
+            "Ofrecen disponibilidad, espacio, seguridad e integridad a toda hora, los 365 días del año"
+        ],
+        R3: [
+            "Corresponden a repositorios de datos enormes que pueden almacenar tanto datos estructurados como no estructurados, únicos y redundantes",
+            "Se alimentan de datos de otras bases de datos SQL/NoSQL, datawarehouses o datamarts"
+        ]
+    }}
+    rows={[
+        [
+            "**Data warehouse/ data mart**",
+            "@R1"
+        ],
+        [
+            "**Almacenamiento cloud**",
+            "@R2"
+        ],
+        [
+            "**Data lakes**",
+            "@R3"
+        ]
+    ]}
+/>
+
+## 2. Almacenes de datos y almacenamiento distribuido
+
+Debido a las diversas necesidades de las empresas y organizaciones por contar con repositorios de datos más grandes y organizados según aplicaciones y tipos de análisis, permitieron y obligaron a definir nuevas formas de almacenamiento y organización de datos más allá de las utilizadas en las bases de datos relacionales tradicionales.
+
+Basadas en el **modelo transaccional de datos (OLTP: *On-Line Transaction Processing*)**, se permite el almacenamiento organizado de datos orientado a entidades de la problemática a resolver, manteniendo relaciones entre datos y practicando la llamada **normalización de datos**
+
+Sin embargo, este tipo de operación se limita a solo almacenar datos, sin permitirse directamente la realización de análisis profundos relativos a extraer información relevante para el negocio.
+
+Por esta razón, se crea una nueva modalidad, denominada **OLAP (On-Line Analytical Processing)**, la cual asegura que los datos que se almacenan en una base de datos tradicional puedan ser adaptados/reorganizados para realizar diferentes tipos de análisis de datos, normalmente relacionados con tendencias históricas, análisis de tendencias futuras y búsqueda de patrones de información, pero utilizando nuevas herramientas de datos que estén a la altura de la tarea y que otorguen mayor rapidez y precisión que las herramientas OLTP tradicionales.
+
+En conjunto, los modelos OLTP y OLAP, junto con los almacenes de datos y las bases de datos distribuidas, representan una evolución natural en la forma en que las organizaciones gestionan y analizan la información.
+
+## 3. Tecnologías de almacenamiento de datos
+
+### A. Data warehouse
+
+Los almacenes de datos empresariales, o *data warehouses*, representan una evolución sobre el concepto tradicional de base de datos relacional transaccional. El motor de base de datos relacional tradicional solo almacena datos y registros de la organización, a intervalos regulares de tiempo, pero sin efectura mayores transformaciones o análisis de datos sobre los registros ya incorporados. Por el contrario, un almacén de datos (o data warehouse) estará orientado a deducir y extraer información relevante de las bases de datos transaccionales de la organización, con el objetivo de permitir la toma de decisiones continua.
+
+El concepto de data warehouse fue acuñado en 1993 por Inmon y Hackathorn, apareciendo como sistemas comunes en la década de los 90. En su definición se hace mención a que el almacén de datos empresarial debe no ser volátil, integrado y mantener un historial de datos bien organizado, segpun los requerimientos de análisis de la organización a la cual esté siendo destinado el sistema. La dificultad de su construcción radica principalmente en saber de antemano cuáles son los datos más relevantes y cómo deberían ser organizados.
+
+**Beneficios Data warehouse**
+
+- Toma de decisiones fundamentales
+- Datos consolidados desde muchos orígenes (similares o diferentes) de datos
+- Análisis histórico de los datos extraídos desde las fuentes de datos originales
+- Independencia de estos análisis de los procesos que realiza el sistema transaccional de datos original, lo que aumenta la eficiencia y rapidez de generación de reportes de datos finales
+- Integración de datos mediante metadatos
+
+### B. Data mart
+
+Un *data mart* (almacén de datos departamental) se constituye como un *data warehouse* en concepto, pero a menor escala: estará ubicado dentro de un área específica de la empresa, como el sector de finanzas o el de ventas. Tiene un enfoque mayor al área, en particular donde se encuentra montado, o bien, hacia un equipo de trabajo en particular, y puede incluir resúmenes de datos que sean más relevantes para dicho sector de la organización. También pueden organizarse varios de ellos como parte de un sistema de *data warehouse* más grande.
+
+### C. Data lake
+
+Un lago de datos, o *data lake*, constituye un almacén de datos más grande que un *data mart* o un *data warehouse*. Puede contener un conjunto de datos estructurados y no estructurados, que podrán ser almacenados primero y procesados después. Los datos no necesitan ser filtrados inicialmente, ya que la idea detrás del *data lake* es la acumulación masiva de datos para su uso probable en el futuro.
+
+Su definición y creación va de la mano con la aparición de procesos y sistemas actuales que producen una mayor cantidad de datos que en décadas anteriores. Considera la aparición de tecnología y tendencias tecnológicas, tales como la inteligencia artificial, *machine learning*, *data science*, *IoT*, etc., y otras áreas de negocio que lidian diariamente con un sinnúmero de registros de datos de clientes, tales como las áreas de finanzas, seguros, las entidades de gobierno y ministerios varios, etc. 
+
+## 4. Arquitecturas de datos modernas
+
+### A. Arquitectura de microservicios
+
+Es la evolución natural para un sistema informático creado como una única aplicación monolítica y ejecutado como un solo archivo ejecutable final. Es sabido que la ejecución de una aplicación única, que incluya todos los módulos de  programa y rutinas de procesamiento en su interior, puede fallar catastróficamente si es que ocurre un error irrecuperable, tan solo en uno de aquellos módulos; esto es muy común en el ámbito de los servicios web y de datos. Por esta razón desacoplar cada uno de los servicios provistos por el sistema, de forma que se ejecuten independientemente de los demás (mediante una arquitectura basada en hilos de ejecución o *threads*) entregará mayor resiliencia al sistema completo y evitará caídas totales de la aplicación, teniendo solamente que reiniciarse aquellos servicios que hayan fallado, mientras que los demás sigan ejecutándose correctamente. Esto logra la continuidad del servicio total, mayor disponibilidad y menos fallos notados por los usuarios del sistema.
+
+---
+
+## Actividad de práctica
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es el propósito principal de un data warehouse?",
+		options: [
+			"Apoyar el análisis de datos y la toma de decisiones",
+            "Registrar transacciones operacionales en tiempo real",
+            "Almacenar datos temporalmente en memoria",
+            "Gestionar archivos del sistema operativo"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Qué característica distingue al modelo OLAP del OLTP?",
+		options: [
+			"Optimiza la inserción de transacciones individuales",
+            "Se ejecuta únicamente en memoria RAM",
+            "Utiliza solo bases de datos distribuidas",
+            "Permite análisis histórico y multidimensional de datos"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "Las bases de datos distribuidas mejoran la disponibilidad del sistema",
+		options: [
+            "Verdadero",
+            "Falso"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Qué criterio explica la existencia de las jerarquías de almacenamiento de datos?",
+		options: [
+            "La necesidad de almacenar solo datos históricos y costos",
+            "El uso exclusivo de bases de datos distribuidas y memorias",
+            "Diferencias en velocidad, capacidad, costo y persistencia",
+            "La eliminación de memorias intermedias y datos"
+		],
+		correctIndex: 2
+	},
+]}/>

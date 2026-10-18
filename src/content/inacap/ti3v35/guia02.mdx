@@ -1,0 +1,748 @@
+# Guía 02: PPT
+
+## Material Clase
+- [subnetting.pdf](/inacap/ti3v35/docs/subnetting.pdf)
+
+## Parte I: Conceptos Básicos
+
+1. **Identifica la clase de las siguiente direcciones IP:**
+
+    1. 125.45.78.90
+    2. 172.16.254.1
+    3. 192.168.10.5
+    4. 10.0.0.1
+    5. 224.1.1.1
+
+<Solution>
+Recordando que:
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Clase', 'IP Subred', '1ra IP Útil', 'Última IP Útil', 'Broadcast']}
+	rows={[
+		['**Clase A**', '0.0.0.0 - 127.255.255.255 (/8)', 'x.0.0.1', 'x.255.255.254', 'x.255.255.255'],
+		['**Clase B**', '128.0.0.0 - 191.255.255.255 (/16)', 'x.x.0.1', 'x.x.255.254', 'x.x.255.255'],
+		['**Clase C**', '192.0.0.0 - 223.255.255.255 (/24)', 'x.x.x.1', 'x.x.x.254', 'x.x.x.255'],
+		['**Clase D**', '224.0.0.0 - 239.255.255.255', 'No aplica', 'No aplica', 'No aplica'],
+		['**Clase E**', '240.0.0.0 - 255.255.255.255', 'No aplica', 'No aplica', 'No aplica']
+	]}
+/>
+
+Entonces:
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['IP', 'Clase']}
+	rows={[
+		['125.45.78.90', 'A'],
+		['172.16.254.1', 'B'],
+		['192.168.10.5', 'C'],
+		['10.0.0.1', 'A'],
+		['224.1.1.1', 'D']
+	]}
+/>
+
+</Solution>
+
+2. **Escribe la máscara de red por defecto para cada clase:**
+
+    1. Clase A: _____
+    2. Clase B: _____
+    3. Clase C: _____
+
+<Solution>
+1. **Clase A:** `255.0.0.0` (o `/8`)
+2. **Clase B:** `255.255.0.0` (o `/16`)
+3. **Clase C:** `255.255.255.0` (o `/24`)
+ 
+**Explicación:**
+- **Clase A:** Usa 8 bits para la red (primer octeto), por eso la máscara es `255.0.0.0`
+- **Clase B:** Usa 16 bits para la red (primeros dos octetos), por eso la máscara es `255.255.0.0`
+- **Clase C:** Usa 24 bits para la red (primeros tres octetos), por eso la máscara es `255.255.255.0`
+</Solution>
+
+3. **Convierte las siguientes direcciones IP a notación binaria**
+
+    1. 192.168.1.100
+    2. 172.16.0.1
+    3. 10.255.255.254
+
+<Solution>
+Recordando las posiciones de los bits en un octeto y sus valores:
+
+```text
+Posición:  7   6   5   4   3   2   1   0
+Valor:    128  64  32  16  8   4   2   1
+```
+
+1. `192.168.1.100`
+    
+    1. Convertir octeto 192 a binario:
+        1. $192 \ge 128$, sí. Entonces: `1xxxxxxx`. Luego `192 - 128 = 64`
+        2. $64 \ge 64$, sí. Entonces: `11xxxxxx`. Luego `64 - 64 = 0` 
+        3. $0 \ge 32$, no. Entonces: `110xxxxx`.  
+        4. $0 \ge 16$, no. Entonces: `1100xxxx`.  
+        5. $0 \ge 8$, no. Entonces: `11000xxx`.  
+        6. $0 \ge 4$, no. Entonces: `110000xx`.  
+        7. $0 \ge 2$, no. Entonces: `1100000x`.  
+        8. $0 \ge 1$, no. Entonces: `11000000`.  
+
+    2. Convertir octeto 168 a binario:
+        1. $168 \ge 128$, si. Entonces `1xxxxxxx`. Luego `168 - 128 = 40`
+        2. $40 \ge 64$, no. Entonces `10xxxxxx`.
+        3. $40 \ge 32$, sí. Entonces `101xxxxx`. Luego `40 - 32 = 8`
+        4. $8 \ge 16$, no. Entonces `1010xxxx`. 
+        5. $8 \ge 8$, si. Entonces `10101xxx`. Luego `8 - 8 = 0` 
+        6. $0 \ge 4$, no. Entonces `101010xx`. 
+        7. $0 \ge 2$, no. Entonces `1010100x`. 
+        7. $0 \ge 1$, no. Entonces `10101000`. 
+    
+    3. Convertir octeto 1 a binario: `00000001`
+
+    4. Convertir octeto 100 a binario:
+        1. $100 \ge 128$, no. Entonces `0xxxxxxx`.
+        2. $100 \ge 64$, si. Entonces `01xxxxxx`. Luego `100 - 64 = 36`
+        3. $36 \ge 32$, si. Entonces `011xxxxx`. Luego `36 - 32 = 4`
+        4. $4 \ge 16$, no. Entonces `0110xxxx`.
+        5. $4 \ge 8$, no. Entonces `01100xxx`.
+        6. $4 \ge 4$, si. Entonces `011001xx`. Luego `4 - 4 = 0`
+        7. $0 \ge 2$, no. Entonces `0110010x`.
+        8. $0 \ge 1$, no. Entonces `01100100`.
+
+Finalmente `192.168.1.100 = 11000000.10101000.00000001.01100100`
+
+2. `172.16.0.1`
+
+    1. Convertir octeto 172 a binario
+
+        1. $172 \ge 128\,?$, sí. Entonces `1xxxxxxx`. Luego `172 -128 = 44`
+        2. $44 \ge 64\,?$, no. Entonces `10xxxxxx`. 
+        3. $44 \ge 32\,?$, sí. Entonces `101xxxxx`. Luego `44 - 32 = 12`  
+        4. $12 \ge 16\,?$, no. Entonces `1010xxxx`.   
+        5. $12 \ge 8\,?$, sí. Entonces `10101xxx`. Luego `12 - 8 = 4`
+        6. $4 \ge 4\,?$, sí. Entonces `101011xx`. Luego `4 - 4 = 0`
+        7. $0 \ge 2\,?$, no. Entonces `1010110x`.
+        8. $0 \ge 1\,?$, no. Entonces `10101100`.
+
+    2. Convertir octeto 16 a binario: `00001000`
+
+    3. Convertir octeto 0 a binario: `00000000`
+
+    4. Convertir octeto 1  binario: `00000001`
+
+Finalmente: `172.16.0.1 = 10101100.00001000.00000000.00000001`
+
+3. `10.255.255.254`
+
+    1. Convertir octeto 10 a binario: `00001010`
+    2. Convertir octeto 255 a binario: `11111111`
+    3. Convertir octeto 255 a binario: `11111111`
+    4. Convertir octeto 254 a binario: `11111110`
+
+Finalmente `10.255.255.254 = 00001010.11111111.11111111.11111110`
+</Solution>
+
+## Parte II: Cálculo de Subredes
+
+### Ejercicio 01
+
+Dada una red `192.168.50.0/24`, se necesita crear 6 subredes
+
+1. **¿Cuántos bits necesitas "robar" de la porción de host?**
+
+<Solution>
+Recordando la fórmula 4 (Bits necesarios para N subredes)
+
+$$
+2^n ≥ número\, subredes\, deseadas
+$$
+
+Entonces:
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['n', 'fórmula', 'cumple?']}
+	rows={[
+		['1', '$2^1 = 2 \\ge 6\\, ?$', 'no'],
+		['2', '$2^2 = 4 \\ge 6\\, ?$', 'no'],
+		['3', '$2^3 = 8 \\ge 6\\, ?$', 'si']
+	]}
+/>
+
+Entonces `n = 3`. 
+
+$\therefore$ Se necesitan `3` bits de la porción del host.
+</Solution>
+
+2. **¿Cuál será la nueva máscara de subred en decimal?**
+
+<Solution>
+- Máscara inicial (CIDR): `/24` (24 bits)
+- Nueva máscara (CIDR): `/27` (24 + 3 bits)
+- Equivale a (binario): `11111111.11111111.11111111.11100000`
+- Equivale a (decimal): `255.255.255.224`
+
+$\therefore$ La nueva máscara de subred en decimal es `255.255.255.224`
+</Solution>
+
+3. **¿Cuál será la nueva máscara en notación CIDR (/xx) ?**
+
+<Solution>
+- Nueva máscara (CIDR): `/27` (analizado en la pregunta anterior)
+
+$\therefore$ La nueva máscara en notación CIDR es `/27`
+
+</Solution>
+
+4. **¿Cuántas subredes obtienes en total?**
+
+<Solution>
+Recordando la fórmula 1: (Número de Subredes)
+
+$$
+    Subredes = 2^n
+$$
+
+Entonces:
+
+$$
+\begin{aligned}
+    Subredes &= 2^3\\[10pt]
+    &= 8
+
+\end{aligned}
+$$
+
+**Explicación:**
+- Necesitaba 6 subredes
+- Al "robar" 3 bits, puedo obtener 8 subredes
+- Subredes sobrantes: 2 (se pueden utilizar para crecimiento futuro)
+
+$\therefore$ Se obtienen `8` subredes en total (2 no se utilizan)
+</Solution>
+
+5. **¿Cuántos hosts por subred tendrás disponibles?**
+
+<Solution>
+Recordando la fórmula 6 (bits de hosts desde máscara CIDR)
+
+$$
+   Bits\, de\, host = 32 - máscara\, CIDR
+$$
+
+Entonces:
+
+$$
+\begin{aligned}
+    Bits\, de\, host &= 32 - 27\\[10pt]
+    &= 5
+\end{aligned}
+$$
+
+Luego, recordando la fórmula 2 (Número de hosts por subred)
+
+$$
+    Hosts\, útiles = 2^h - 2
+$$
+
+Entonces:
+
+$$
+\begin{aligned}
+    Hosts\, útiles &= 2^5 - 2\\[10pt]
+    &= 32 - 2\\[10pt]
+    &= 30\\[10pt]
+\end{aligned}
+$$
+
+$\therefore$ Se obtienen `30` hosts disponibles por subred
+</Solution>
+
+6. **Cuál es el "número mágico" (salto entre subredes)**
+
+<Solution>
+Se calcula el valor del octeto de subred:
+$$
+\begin{aligned}
+    valor\, octeto\, subred &= 11100000\, (binario)\\[10pt]
+    &= 224\, (decimal)\\[10pt]
+\end{aligned}
+$$
+
+Recordando la fórmula 3 (Salto entre subredes)
+
+$$
+Salto = 256 - valor\, octeto\, subred
+$$
+
+Entonces:
+
+$$
+\begin{aligned}
+    Salto &= 256 - 224\\[10pt]
+    &= 32
+\end{aligned}
+$$
+
+$\therefore$ El "número mágico" (salto entre subredes) es `32` 
+</Solution>
+
+7. **Completa la siguiente tabla:**
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Subred', 'Dirección de Red', 'Primera IP útil', 'última IP útil', 'Broadcast']}
+	rows={[
+		['1', '', '', '', ''],
+		['2', '', '', '', ''],
+		['3', '', '', '', ''],
+		['4', '', '', '', ''],
+		['5', '', '', '', ''],
+		['6', '', '', '', '']
+	]}
+/>
+
+<Solution>
+1. Se completa la **Dirección de Red** en base al "número mágico"
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Subred', 'Dirección de Red', 'Primera IP útil', 'última IP útil', 'Broadcast']}
+	rows={[
+		['1', '192.168.50.0', '', '', ''],
+		['2', '192.168.50.32', '', '', ''],
+		['3', '192.168.50.64', '', '', ''],
+		['4', '192.168.50.96', '', '', ''],
+		['5', '192.168.50.128', '', '', ''],
+		['6', '192.168.50.160', '', '', '']
+	]}
+/>
+
+2. Se calcula la **Primera IP útil** (dirección de red + 1)
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Subred', 'Dirección de Red', 'Primera IP útil', 'última IP útil', 'Broadcast']}
+	rows={[
+		['1', '192.168.50.0', '192.168.50.1', '', ''],
+		['2', '192.168.50.32', '192.168.50.33', '', ''],
+		['3', '192.168.50.64', '192.168.50.65', '', ''],
+		['4', '192.168.50.96', '192.168.50.97', '', ''],
+		['5', '192.168.50.128', '192.168.50.129', '', ''],
+		['6', '192.168.50.160', '192.168.50.161', '', '']
+	]}
+/>
+
+3. Se calcula el **Broadcast** (dirección de red siguiente -1)
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Subred', 'Dirección de Red', 'Primera IP útil', 'última IP útil', 'Broadcast']}
+	rows={[
+		['1', '192.168.50.0', '192.168.50.1', '', '192.168.50.31'],
+		['2', '192.168.50.32', '192.168.50.33', '', '192.168.50.63'],
+		['3', '192.168.50.64', '192.168.50.65', '', '192.168.50.95'],
+		['4', '192.168.50.96', '192.168.50.97', '', '192.168.50.127'],
+		['5', '192.168.50.128', '192.168.50.129', '', '192.168.50.159'],
+		['6', '192.168.50.160', '192.168.50.161', '', '192.168.50.191']
+	]}
+/>
+
+4. Se calcula la **Última IP Útil** (broadcast - 1)
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Subred', 'Dirección de Red', 'Primera IP útil', 'última IP útil', 'Broadcast']}
+	rows={[
+		['1', '192.168.50.0', '192.168.50.1', '192.168.50.30', '192.168.50.31'],
+		['2', '192.168.50.32', '192.168.50.33', '192.168.50.62', '192.168.50.63'],
+		['3', '192.168.50.64', '192.168.50.65', '192.168.50.94', '192.168.50.95'],
+		['4', '192.168.50.96', '192.168.50.97', '192.168.50.126', '192.168.50.127'],
+		['5', '192.168.50.128', '192.168.50.129', '192.168.50.158', '192.168.50.159'],
+		['6', '192.168.50.160', '192.168.50.161', '192.168.50.190', '192.168.50.191']
+	]}
+/>
+
+</Solution>
+
+### Ejercicio 02
+
+Tienes la red `172.20.0.0/16` y necesitas 100 subredes con al menos 500 hosts cada una.
+
+1. **¿Cuántos bits necesitas para crear 100 subredes?**
+
+<Solution>
+
+Recordando la fórmula 4 (Bits necesarios para N subredes)
+
+$$
+2^n \ge número\, subredes\, deseadas
+$$
+
+Entonces:
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['n', 'fórmula', 'cumple?']}
+	rows={[
+		['1', '$2^1 = 2 \\ge 100\\, ?$', 'no'],
+		['2', '$2^2 = 4 \\ge 100\\, ?$', 'no'],
+		['3', '$2^3 = 8 \\ge 100\\, ?$', 'no'],
+		['4', '$2^4 = 16 \\ge 100\\, ?$', 'no'],
+		['5', '$2^5 = 32 \\ge 100\\, ?$', 'no'],
+		['6', '$2^6 = 64 \\ge 100\\, ?$', 'no'],
+		['7', '$2^7 = 128 \\ge 100\\, ?$', 'sí']
+	]}
+/>
+
+Entonces `n = 7`
+
+$\therefore$ Se necesitan `7` bits para crear 100 subredes.
+</Solution>
+
+2. **¿Cuál será la nueva máscara de subred?**
+
+<Solution>
+- Máscara inicial (CIDR): `/16` (16 bits)
+- Nueva máscara (CIDR): `/23` (16 + 7 bits)
+- Equivalente a (binario): `11111111.11111111.11111110.00000000`
+- Equivalente a (decimal): `255.255.254.0`
+
+$\therefore$ La nueva máscara de subred es:
+    - `/23` (CIDR)
+    - `255.255.254.0` (decimal) 
+</Solution>
+
+3. **¿Cuántos hosts por subred obtienes?**
+
+<Solution>
+Recordando la fórmula 6 (bits de hosts desde máscara CIDR)
+
+$$
+   Bits\, de\, host = 32 - máscara\, CIDR
+$$
+
+Entonces:
+
+$$
+\begin{aligned}
+   Bits\, de\, host &= 32 - 23\\[10pt]
+   Bits\, de\, host &= 9
+\end{aligned}
+$$
+
+Luego, recordando la fórmula 2 (Número de hosts por subred)
+
+$$
+    Hosts\, útiles = 2^h - 2
+$$
+
+Entonces:
+
+$$
+\begin{aligned}
+    Hosts\, útiles &= 2^9 - 2\\[10pt]
+    &= 512 - 2\\[10pt]
+    &= 510
+\end{aligned}
+$$
+
+$\therefore$ Se obtienen `510`hosts disponibles por subred. 
+</Solution>
+
+4. **¿Es suficiente para el requerimiento de 500 hosts?**
+
+<Solution>
+Si, ya que $510 \ge 500$
+</Solution>
+
+5. **Lista las primeras 5 subredes**
+
+<Solution>
+- Red original: `172.20.0.0\16`
+- Nueva máscara: `/23`
+- `23 - 16 = 7` bits para subred
+
+Se calcula el valor del octeto de subred:
+$$
+\begin{aligned}
+    valor\, octeto\, subred &= 11111110\, (binario)\\[10pt]
+    &= 254\, (decimal)\\[10pt]
+\end{aligned}
+$$
+
+Recordando la fórmula 3 (Salto entre subredes)
+
+$$
+Salto = 256 - valor\, octeto\, subred
+$$
+
+Entonces:
+
+$$
+\begin{aligned}
+    Salto &= 256 - 254\\[10pt]
+    &= 2
+\end{aligned}
+$$
+
+$\therefore$ El "número mágico" (salto entre subredes) es `2`
+
+1. Se completa la **Dirección de Red** en base al "número mágico"
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Subred', 'Dirección de Red', 'Primera IP útil', 'última IP útil', 'Broadcast']}
+	rows={[
+		['1', '172.20.0.0', '', '', ''],
+		['2', '172.20.2.0', '', '', ''],
+		['3', '172.20.4.0', '', '', ''],
+		['4', '172.20.6.0', '', '', ''],
+		['5', '172.20.8.0', '', '', '']
+	]}
+/>
+
+2. Se calcula la **Primera IP útil** (dirección de red + 1)
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Subred', 'Dirección de Red', 'Primera IP útil', 'última IP útil', 'Broadcast']}
+	rows={[
+		['1', '172.20.0.0', '172.20.0.1', '', ''],
+		['2', '172.20.2.0', '172.20.2.1', '', ''],
+		['3', '172.20.4.0', '172.20.4.1', '', ''],
+		['4', '172.20.6.0', '172.20.6.1', '', ''],
+		['5', '172.20.8.0', '172.20.8.1', '', '']
+	]}
+/>
+
+3. Se calcula el **Broadcast** (dirección de red siguiente -1)
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Subred', 'Dirección de Red', 'Primera IP útil', 'última IP útil', 'Broadcast']}
+	rows={[
+		['1', '172.20.0.0', '172.20.0.1', '', '172.20.1.255'],
+		['2', '172.20.2.0', '172.20.2.1', '', '172.20.3.255'],
+		['3', '172.20.4.0', '172.20.4.1', '', '172.20.5.255'],
+		['4', '172.20.6.0', '172.20.6.1', '', '172.20.7.255'],
+		['5', '172.20.8.0', '172.20.8.1', '', '172.20.9.255']
+	]}
+/>
+
+4. Se calcula la **Última IP Útil** (broadcast - 1)
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Subred', 'Dirección de Red', 'Primera IP útil', 'última IP útil', 'Broadcast']}
+	rows={[
+		['1', '172.20.0.0', '172.20.0.1', '172.20.1.254', '172.20.1.255'],
+		['2', '172.20.2.0', '172.20.2.1', '172.20.3.254', '172.20.3.255'],
+		['3', '172.20.4.0', '172.20.4.1', '172.20.5.254', '172.20.5.255'],
+		['4', '172.20.6.0', '172.20.6.1', '172.20.7.254', '172.20.7.255'],
+		['5', '172.20.8.0', '172.20.8.1', '172.20.9.254', '172.20.9.255']
+	]}
+/>
+</Solution>
+
+### Ejercicio 03
+
+Se te asigna la red `10.0.0.0/8` y necesitas dividirla en 20 subredes.
+
+1. **¿Cuántos bits robas de la porción de host?**
+
+<Solution>
+Recordando la fórmula 4 (Bits necesarios para N subredes)
+
+$$
+2^n \ge número\, subredes\, deseadas
+$$
+
+Entonces:
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['n', 'fórmula', 'cumple?']}
+	rows={[
+		['1', '$2^1 = 2 \\ge 20\\, ?$', 'no'],
+		['2', '$2^2 = 4 \\ge 20\\, ?$', 'no'],
+		['3', '$2^3 = 8 \\ge 20\\, ?$', 'no'],
+		['4', '$2^4 = 16 \\ge 20\\, ?$', 'no'],
+		['5', '$2^5 = 32 \\ge 20\\, ?$', 'sí']
+	]}
+/>
+
+Entonces `n = 5`
+
+$\therefore$ Se necesitan `5` bits para crear 20 subredes.
+</Solution>
+
+2. **¿Cuál es la nueva máscara de subred?**
+
+<Solution>
+- Máscara inicial (CIDR): `/8` (8 bits)
+- Nueva máscara (CIDR): `/13` (8 + 5 bits)
+- Equivalente a (binario): `11111111.11111000.00000000.00000000`
+- Equivalente a (decimal): `255.248.0.0`
+
+$\therefore$ La nueva máscara de subred es:
+    - `/13` (CIDR)
+    - `255.248.0.0` (decimal) 
+</Solution>
+
+3. **¿Cuántos hosts por subred tendrás?**
+
+<Solution>
+Recordando la fórmula 6 (bits de hosts desde máscara CIDR)
+
+$$
+   Bits\, de\, host = 32 - máscara\, CIDR
+$$
+
+Entonces:
+
+$$
+\begin{aligned}
+   Bits\, de\, host &= 32 - 13\\[10pt]
+   Bits\, de\, host &= 19
+\end{aligned}
+$$
+
+Luego, recordando la fórmula 2 (Número de hosts por subred)
+
+$$
+    Hosts\, útiles = 2^h - 2
+$$
+
+Entonces:
+
+$$
+\begin{aligned}
+    Hosts\, útiles &= 2^{19} - 2\\[10pt]
+    &= 524288 - 2\\[10pt]
+    &= 524286
+\end{aligned}
+$$
+
+$\therefore$ Se obtienen `524286`hosts disponibles por subred. 
+</Solution>
+
+4. **¿Cuál es el rango de la subred número 10?**
+
+<Solution>
+- Red original: `10.0.0.0/8`
+- Nueva máscara: `/13`
+- `13 - 8 = 5` bits para subred
+
+Se calcula el valor del octeto de subred:
+$$
+\begin{aligned}
+    valor\, octeto\, subred &= 11111000\, (binario)\\[10pt]
+    &= 248\, (decimal)\\[10pt]
+\end{aligned}
+$$
+
+Recordando la fórmula 3 (Salto entre subredes)
+
+$$
+Salto = 256 - valor\, octeto\, subred
+$$
+
+Entonces:
+
+$$
+\begin{aligned}
+    Salto &= 256 - 248\\[10pt]
+    &= 8
+\end{aligned}
+$$
+
+$\therefore$ El "número mágico" (salto entre subredes) es `8`
+
+1. Se completa la **Dirección de Red** en base al "número mágico"
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Subred', 'Dirección de Red', 'Primera IP útil', 'última IP útil', 'Broadcast']}
+	rows={[
+		['1', '10.0.0.0', '', '', ''],
+		['2', '10.8.0.0', '', '', ''],
+		['3', '10.16.0.0', '', '', ''],
+		['4', '10.24.0.0', '', '', ''],
+		['5', '10.32.0.0', '', '', ''],
+		['6', '10.40.0.0', '', '', ''],
+		['7', '10.48.0.0', '', '', ''],
+		['8', '10.56.0.0', '', '', ''],
+		['9', '10.64.0.0', '', '', ''],
+		['10', '10.72.0.0', '', '', '']
+	]}
+/>
+
+2. Se calcula la **Primera IP útil** (dirección de red + 1)
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Subred', 'Dirección de Red', 'Primera IP útil', 'última IP útil', 'Broadcast']}
+	rows={[
+		['1', '10.0.0.0', '10.0.0.1', '', ''],
+		['2', '10.8.0.0', '10.8.0.1', '', ''],
+		['3', '10.16.0.0', '10.16.0.1', '', ''],
+		['4', '10.24.0.0', '10.24.0.1', '', ''],
+		['5', '10.32.0.0', '10.32.0.1', '', ''],
+		['6', '10.40.0.0', '10.40.0.1', '', ''],
+		['7', '10.48.0.0', '10.48.0.1', '', ''],
+		['8', '10.56.0.0', '10.56.0.1', '', ''],
+		['9', '10.64.0.0', '10.64.0.1', '', ''],
+		['10', '10.72.0.0', '10.72.0.1', '', '']
+	]}
+/>
+
+3. Se calcula el **Broadcast** (dirección de red siguiente -1)
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Subred', 'Dirección de Red', 'Primera IP útil', 'última IP útil', 'Broadcast']}
+	rows={[
+		['1', '10.0.0.0', '10.0.0.1', '', '10.7.255.255'],
+		['2', '10.8.0.0', '10.8.0.1', '', '10.15.255.255'],
+		['3', '10.16.0.0', '10.16.0.1', '', '10.23.255.255'],
+		['4', '10.24.0.0', '10.24.0.1', '', '10.31.255.255'],
+		['5', '10.32.0.0', '10.32.0.1', '', '10.39.255.255'],
+		['6', '10.40.0.0', '10.40.0.1', '', '10.47.255.255'],
+		['7', '10.48.0.0', '10.48.0.1', '', '10.55.255.255'],
+		['8', '10.56.0.0', '10.56.0.1', '', '10.63.255.255'],
+		['9', '10.64.0.0', '10.64.0.1', '', '10.71.255.255'],
+		['10', '10.72.0.0', '10.72.0.1', '', '10.79.255.255']
+	]}
+/>
+
+4. Se calcula la **Última IP Útil** (broadcast - 1)
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Subred', 'Dirección de Red', 'Primera IP útil', 'última IP útil', 'Broadcast']}
+	rows={[
+		['1', '10.0.0.0', '10.0.0.1', '10.7.255.254', '10.7.255.255'],
+		['2', '10.8.0.0', '10.8.0.1', '10.15.255.254', '10.15.255.255'],
+		['3', '10.16.0.0', '10.16.0.1', '10.23.255.254', '10.23.255.255'],
+		['4', '10.24.0.0', '10.24.0.1', '10.31.255.254', '10.31.255.255'],
+		['5', '10.32.0.0', '10.32.0.1', '10.39.255.254', '10.39.255.255'],
+		['6', '10.40.0.0', '10.40.0.1', '10.47.255.254', '10.47.255.255'],
+		['7', '10.48.0.0', '10.48.0.1', '10.55.255.254', '10.55.255.255'],
+		['8', '10.56.0.0', '10.56.0.1', '10.63.255.254', '10.63.255.255'],
+		['9', '10.64.0.0', '10.64.0.1', '10.71.255.254', '10.71.255.255'],
+		['10', '10.72.0.0', '10.72.0.1', '10.79.255.254', '10.79.255.255']
+	]}
+/>
+
+$\therefore$ el rango de la subred número 10 es
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Subred', 'Dirección de Red', 'Primera IP útil', 'última IP útil', 'Broadcast']}
+	rows={[
+		['10', '10.72.0.0', '10.72.0.1', '10.79.255.254', '10.79.255.255']
+	]}
+/>
+</Solution>
+

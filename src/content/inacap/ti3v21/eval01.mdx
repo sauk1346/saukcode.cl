@@ -1,0 +1,84 @@
+# Evaluación 01
+
+- **Instrucciones:** [prueba01.pdf](/inacap/ti3v21/docs/prueba01.pdf)
+
+## Pregunta 01 (5 ptos)
+Desarrolle un programa que permita al usuario ingresar hasta donde desea la serie y despliegue por pantalla lo siguiente:
+
+**Input**
+<TerminalOutput>
+{`Ingrese hasta donde desea la serie: 10`}
+</TerminalOutput>
+
+**Output**
+<TerminalOutput>
+{`1+2-3+4-5+6-7+8-9+10=7`}
+</TerminalOutput>
+
+<Solution>
+```python
+serie = int(input("Ingrese hasta donde desea la serie: "))
+suma_serie = 1
+print("1",end="")
+for i in range(2,serie+1):
+	if i % 2 != 0: 
+		suma_serie = suma_serie - i
+		print("-"+str(i), end="")
+	else:
+		suma_serie = suma_serie + i 
+		print("+"+str(i), end="")
+
+print("="+str(suma_serie)) 			
+```
+</Solution>
+
+## Pregunta 02 (5 ptos)
+Desarrolle un programa que permita al usuario ingresar 10 números y al finalizar desplegar por pantalla cuántos fueron mayores y cuántos menores al primer número ingresado. Si ingresa un cero en el primer número debemos validar, enviar un mensaje de error y pedir que reintente.
+
+<Solution>
+```python
+num1_valido = False
+while (not num1_valido):
+	num1 = float(input("Ingrese número [1 de 10]: "))
+	if num1 == 0:
+		print("Error. Ingrese valor nuevamente")
+	else:
+		num1_valido = True
+
+cont_mayor = 0
+cont_menor = 0
+for i in range(2,10+1):
+	num = float(input(f"Ingrese número [{i} de 10]: "))
+	if num > num1:
+		cont_mayor = cont_mayor + 1
+	elif num < num1:
+		cont_menor = cont_menor + 1
+
+print(f"\nPrimer número ingresado: {num1:.2f}")
+print(f"Números mayores que {num1}: {cont_mayor:.0f}")
+print(f"Números menores que {num1}: {cont_menor:.0f}") 
+```
+</Solution>
+
+## Pregunta 03 (5 ptos)
+Desarrolle un programa que permita ingresar `n` números y al finalizar desplegar cuántos fueron primos.
+
+<Solution>
+```python
+def es_primo(num):
+	cont_div = 0
+	for i in range(1,num+1): 
+		if num % i == 0: 
+			cont_div = cont_div + 1 
+	return cont_div == 2 
+
+numeros = int(input("Ingrese la cantidad de números: "))
+cant_primos = 0 
+for i in range(numeros):
+	num = int(input(f"Ingrese el número [{i+1} de {numeros}]:"))
+	if es_primo(num):
+		cant_primos = cant_primos + 1 
+
+print(f"\nCantidad de números primos: {cant_primos}") 
+```
+</Solution>

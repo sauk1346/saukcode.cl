@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Ti3v12Page from '../../components/features/inacap/Ti3v12Page.jsx';
+import courseData from '../../data/inacap/ti3v12.js';
+---
+
+<BaseLayout title={`${courseData.courseCode} | INACAP`} description={courseData.courseDescription}>
+  <Ti3v12Page />
+</BaseLayout>

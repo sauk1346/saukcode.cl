@@ -1,0 +1,159 @@
+# Codificación de componentes en JS con componentes en React
+Los componentes en React son unidades independientes y reutilizables que encapsulan la lógica y la presentación de una parte de la interfaz de usuario. Pueden ser de dos tipos: componentes **funcionales** y de **clase**. 
+
+## Tipos de Componentes
+
+1. **Componentes Funcionales:** Son funciones en JS que retornan elementos React (normalmente escritos en JSX) y aceptan *props* como argumentos.
+2. **Componentes de clase:** Son clases de ES6 que extienden de *React.Component* y tienen un método *render* que retorna elementos React.
+
+> Información más detallada en https://es.legacy.reactjs.org/docs/components-and-props.html
+
+## Creación de componentes funcionales
+Los componentes funcionales son funciones simples que retornan JSX. Son la forma más común de definir componentes en React, especialmente desde la introducción de hooks.
+
+**Creación de componente "Saludo"**
+
+```jsx
+import React from 'react';
+
+function Saludo(props) {
+    return <h1>Hola {props.nombre}</h1>
+}
+export default Saludo;
+```
+
+## Props
+Son **argumentos** que se **pasan a los componentes para personalizarlos**. Los props son de solo lectura y no se pueden modificar dentro del componente.
+
+**Uso de componente "Saludo"**
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Saludo from './Saludo';
+
+ReactDOM.render(<Saludo nombre="Mundo">,document.getElementById('root'));
+```
+
+## Estado (state)
+Es un objeto que representa la **información local del componente**. El estado puede cambiar con el tiempo y afectar la renderización del componente. En componentes funcionales, se maneja usando el hook `useState`.
+
+```jsx
+import React { useState } from 'react';
+
+function Contador() {
+    const [cuenta, setCuenta] = useState(0);
+
+    return (
+        <div>
+            <p>Cuenta: {cuenta}</p>
+            <button onClick={() => setCuenta(cuenta + 1)}>Incrementar</button>
+        </div>
+    )
+}
+export default Contador;
+```
+
+> En este ejemplo, contador es un componente funcional que utiliza el hook useState para manejar el estado local cuenta. Se inicializa con el valor 0.
+
+
+## Manejo de eventos
+Los eventos en React se manejan de manera similar a los eventos en HTML, pero con algunas diferencias sintácticas.
+
+En React, los eventos se nombran usando camelCase y se pasan como funciones.
+
+```jsx
+import React, { useState } from 'react';
+
+function Boton() {
+    const [mensaje, setMensaje] = useState('Haz click en el botón');
+
+    function manejarClick() {
+        setMensaje('¡Botón clickeado!');
+    }
+
+    return (
+        <div>
+            <p>{mensaje}</p>
+            <button onClick={manejarClick}>Click aquí</button>         
+        </div>
+    );
+}
+export default Boton;
+```
+
+> En este ejemplo, el componente Botón cambia el mensaje mostrado cuando se hace clic en el botón. Se inicializa con el valor 0.
+
+## Ciclo de vida de los componentes
+El ciclo de vida de un componente se refiere a las fases por las que pasa desde su creación hasta su eliminación.
+
+En **componentes de clase**, se manejan con métodos específicos como **componentDidMount**, **componentDidUpdate** y **componentWillUnmount**.
+
+En **componentes funcionales**, se utiliza el hook `useEffect` para manejar los efectos secundarios y el ciclo de vida. 
+
+```jsx
+import React, { useState, useEffect } from 'react';
+
+function ContadorConEfecto() {
+    const [cuenta, setCuenta] = useState(0);
+
+    useEffect(() => {
+        document.title = `Cuenta: ${cuenta}`;
+    },[cuenta]);
+
+    return (
+        <div>
+            <p>Cuenta: {cuenta}</p>
+            <button onClick={() => setCuenta(cuenta + 1)}>Incrementar</button>
+        </div>
+    );
+}
+export default ContadorConEfecto;
+```
+
+> En este ejemplo, `useEffect` actualiza el título del documento cada vez que cambia la cuenta.
+
+# Actividad de Práctica 07
+
+<Quiz questions={[
+	{
+		question: "¿Qué es un componente funcional en React?",
+		options: [
+			"Un hook que permite manejar efectos secundarios.",
+			"Una clase de JavaScript que acepta props como argumento.",
+			"Una función de JavaScript que retorna elementos React (JSX) y acepta props como argumento.",
+			"Una clase de JavaScript que se extiende de React.Component."
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Qué son los props en React?",
+		options: [
+			"Argumentos que se pasan a los componentes para personalizarlos y son de solo lectura.",
+			"Funciones que cambian el estado del componente.",
+			"Funciones que actualizan el estado del componente.",
+			"Variables globales que se utilizan en todos los componentes."
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Cuál es la ventaja principal de utilizar componentes en React?",
+		options: [
+			"Reutilizar código y crear interfaces de usuario modulares y mantenibles.",
+			"Reducir el tamaño del archivo JavaScript.",
+			"Simplificar la gestión de estilos CSS.",
+			"Aumentar el tamaño del archivo JavaScript."
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Qué hook de React se utiliza para manejar efectos secundarios y el ciclo de vida de los componentes funcionales?",
+		options: [
+			"useReducer",
+			"useEffect",
+			"useContext",
+			"useState"
+		],
+		correctIndex: 1
+	},
+]} />

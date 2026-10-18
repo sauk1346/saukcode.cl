@@ -1,0 +1,93 @@
+# Solución con hash y conectada a base de datos
+
+## ¿Para qué sirve?
+- Asegurar la autenticación de usuarios de manera robusta
+- Almacenar datos en una base de datos de forma eficiente y robusta
+
+## Hash
+- Es una función matemática que toma una entrada, y genera una cadena de caracteres de longitud fija, que es única para esa entrada
+- Este proceso se conoce como *"hashing"*
+- La salida resultante se llama *"hash"* o "valor de hash"
+- Su característica principal es que es unidireccional
+	- Es fácil calcularlo para una entrada dada
+	- Es casi imposible recuperar la entrada original a partir del hash
+
+## Algoritmos Comunes
+- MD5 (Message Digest Algorithm 5)
+- SHA-1 (Secure Hash Algorithm 1)
+- SHA-256
+- SHA-512
+- bcrypt
+
+## ¿Por qué utilizar hash para contraseñas?
+
+- **Protección:** agrega una capa adicional de seguridad. Incluso si la base de datos se ve comprometida, los atacantes no pueden obtener las contraseñas reales
+- **Integridad:** Al ser unidireccionales, incluso los administradores del sistema no pueden ver ni acceder a las contraseñas de los usuarios
+- **Resistencia a ataques de fuerza bruta:** Los atacantes debe realizar cálculos intensivos para descrifrar una contraseña a partir de su hash, lo que hace que el proceso sea mucho mmás difícil y lento
+- **Salting:** Técnica adicional. Se usa junto al hash para agregar más seguridad. Se agrega datos aleatorios conocidos como "salt" a la contraseña antes de generar el hash. Esto hace que cada contraseña tenga un hash diferente, incluso si las contraseñas originales son idénticas
+
+# Consultas Seguras
+- Conocidas como SQL seguras
+- Se diseñan y ejecutan para proteger contra ataques de inyección SQL
+
+## Características
+- **Parámetros parametrizados:** En vez de concatenar valores directamente en las consultas SQL, las consultas seguras utilizan parámetros parametrizados o vinculaciones de variables para pasar datos a la consulta
+- **Sanitización de entradas:** Antes de utilizar los datos proporcionasod por los usuarios en una consulta SQL, es importante sanitizar y validar esas entradas para eliminar caracteres especiales o escaparlos adecuadamente
+- **Uso de listas blancas:** En lugar de confiar en la eliminación de caracteres especiales, es mejor utilizar lista blancas para validar los datos de entrada. Esto implica permitir solo ciertos caracteres o patrones de datos específicos y rechazar todo los demas. Por ejemplo, si se espera un número entero, se debe rechazar cualquier entrada que no coincida con ese formato.
+- **Uso de consultas preparadas:** Son consultas SQL precompiladas que se almacenan en el servidor de la base de datos y se ejecutan con datos proporcionados por el usuario como parámetros. Esto evita la necesidad de concatenar valores directamente en la cadena SQL y ayuda a prevenir la inyección SQL
+- **Escapado de datos:** Cuando sea necesario incluir datos dinámicos en una consulta SQL, es importante escapar esos datos adecuadamente para evitar que sean interpretados com o parte de la sintaxis SQL. Esto se logra agregando caracteres de *escape* antes de los caracteres especiales en los datos
+
+# Actividad de práctica 17
+
+<Quiz questions={[
+  {
+    question: "De los siguientes enunciados, ¿qué sería un hash en el contexto de la seguridad informática?",
+    options: [
+      "Una función matemática que convierte una entrada en una cadena de caracteres única",
+      "Un algoritmo de cifrado simétrico",
+      "Una técnica para la transmisión segura de datos",
+      "Un método para la autenticación de usuarios en línea"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál de los siguientes algoritmos de hash es considerado inseguro debido a vulnerabilidades conocidas?",
+    options: [
+      "SHA-256",
+      "MD5",
+      "SHA-512",
+      "Bcrypt"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué técnica de las siguientes se utiliza junto con el hashing para aumentar la seguridad de las contraseñas almacenadas?",
+    options: [
+      "Salting",
+      "Encriptación simétrica",
+      "Sanitización de entradas",
+      "Escapado de datos"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál de las siguientes prácticas es fundamental para prevenir los ataques de inyección SQL?",
+    options: [
+      "Concatenación de datos de usuario en las consultas SQL",
+      "Uso de consultas preparadas",
+      "Validación de entradas con listas negras",
+      "Deshabilitación de la autenticación de usuarios"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué beneficio ofrece el uso de un único usuario de base de datos para la aplicación?",
+    options: [
+      "Aumenta la superficie de ataque",
+      "Disminuye el rendimiento del sistema",
+      "Complica la auditoría de la base de datos",
+      "Facilita la gestión de accesos"
+    ],
+    correctIndex: 3
+  }
+]} />

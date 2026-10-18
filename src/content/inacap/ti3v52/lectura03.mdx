@@ -1,0 +1,211 @@
+# Comandos Básicos y Seguridad en Routers y Switches Cisco
+
+## 1. Fundamentos del sistema operativo IOS y modos de acceso
+
+El sistema operativo de internetwork de Cisco (IOS) utiliza una estructura jerárquica de modos de comando para gestionar la configuración y el monitoreo de los dispositivos. Es fundamental comprender esta jerarquía para operar el equipo sin errores y acceder a las funciones correctas según la necesidad operativa.
+
+### Comandos de exploración y verificación
+
+Para interactuar con el router o switch, el administrador debe transitar entre el modo usuario, el modo privilegiado y el modo de configuración global. A continuación, te detallamos los comandos esenciales para la navegación y verificación del estado del sistema.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Comando", "Función Principal", "Contexto de uso"]}
+    rows={[
+        [
+            "`enable`",
+            "Permite el paso de modo usuario (>) al modo privilegiado (#)",
+            "Necesario antes de ejecutar comandos de configuración o diagnósticos avanzados"
+        ],
+        [
+            "`configure terminal`",
+            "Ingresa al modo de configuración global",
+            "Se utiliza cuando se requiere modificar parámetros que afectan a todo el dispositivo"
+        ],
+        [
+            "`show running-config`",
+            "Muestra la configuración actual activa en la memoria RAM",
+            "Vital para verificar los cambios aplicados en tiempo real antes de guardarlos"
+        ],
+        [
+            "`show startup-config`",
+            "Despliega la configuración guardada en la NVRAM",
+            "Se usa para revisar la configuración que cargará el equipo al reiniciarse"
+        ],
+        [
+            "`show ip interface brief`",
+            "Resumen del estado de las interfaces e IPs",
+            "Diagnóstico rápido para validar si las interfaces están up/up"
+        ],
+        [
+            "`show version`",
+            "Muestra datos del hardware y versión del software",
+            "Útil para inventario, soporte técnico y verificación de capacidades"
+        ],
+    ]}
+/>
+
+### Configuración inicial y fortalecimiento de la seguridad
+
+Una vez comprendida la navegación, el siguiente paso crítico es la configuración base. Esto incluye otorgar una identidad única al dispositivo y asegurar todos los puntos de acceso administrativo, tanto físicos como virtuales.
+
+**Identidad y avisos legales**
+
+- **Administración:** Para facilitar la administración, se debe asignar un nombre de host (*hostname*) que identifique al equipo de la topología
+- **Práctica de seguridad:** Además, es una buena práctica de seguridad configurar un mensaje del día (*banner motd*) que advierta sobre las consecuencias del acceso no autorizado, estableciendo un marco legal básico
+- **Recomendación:** Asimismo, se recomienda desactivar la búsqueda de DNS (*no IP domain-lookup*) para evitar retardos innecesarios por errores de escritura en la consola
+
+### Gestión de credenciales y cifrado
+
+De acuerdo con lo que hemos señalado, siempre debes procurar una gestión cuidadosa de las credenciales y cifrado. Aquí compartimos algunos comandos
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Nivel de Protección", "Comando de Configuración", "Propósito de Seguridad"]}
+    rows={[
+        [
+            "**Modo Privilegiado**",
+            "`enable secret [clave]`",
+            "Protege el acceso total al equipo con un hash cifrado robusto"
+        ],
+        [
+            "**Línea de Consola**",
+            "`line console 0 -> password [clave] -> login`",
+            "Asegura el acceso físico directo al dispositivo"
+        ],
+        [
+            "**Líneas VTY**",
+            "`line vty 0 4 -> password [clave] -> login`",
+            "Protegra el acceso remoto vía Telnet o SSH"
+        ],
+        [
+            "**Cifrado Global**",
+            "`service password-encryption`",
+            "Aplica un cifrado débil a todas las contraseñas que estén en texto plano en la configuración"
+        ],
+    ]}
+/>
+
+<Callout type="info">
+La seguridad del dispositivo depende de la robustez de sus contraseñas. Se deben proteger tres niveles de acceso: el modo privilegiado, el puerto de consola y las líneas virtuales (VTY).
+</Callout>
+
+## 2. Implementación de conectividad y direccionamiento IP
+
+La función primordial de los routers es interconectar redes diferentes. Para ello, cada interfaz debe configurarse con una dirección IP lógica y una máscara de subred que corresponda al diseño de la red.
+
+En el contexto de la topología estudiada, el router actúa como la puerta de enlace predeterminada (gateway) para las redes LAN conectadas.
+
+La activación de las interfaces requiere el comando `no shutdown`, ya que en los routers vienen apagadas por defecto.
+
+Paralelamente, los dispositivos finales (PCs) deben configurarse con una IP única, su máscara y la dirección del gateway para permitir la comunicación fuera de su red local.
+
+### Habilitación de administración remota segura
+
+El protocolo Telnet transmite datos en texto plano, lo cual representa un riesgo de seguridad. Por ello, la norma actual exige el uso de **SSH (Secure Shell)**, que cifra la sesión de administración.
+
+### Pasos para la implementación de SSH
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Pasos", "Descripción", "Comando IOS"]}
+    rows={[
+        [
+            "**Dominio**",
+            "Definir un nombre de dominio IP (requerido para generar llaves RSA)",
+            "`ip domain-name [nombre]`"
+        ],
+        [
+            "**Usuario**",
+            "Crear un usuario local con privilegios de administración",
+            "`username [usuario] secret [clave]`"
+        ],
+        [
+            "**Criptografía**",
+            "Generar el par de llaves RSA para cifrar la sesión SSH",
+            "`crypto key generate rsa`"
+        ],
+        [
+            "**Versión**",
+            "Forzar el uso de SSH versión 2 para mayor seguridad",
+            "`ip ssh version 2`"
+        ],
+        [
+            "**Transporte**",
+            "Configurar las líneas VTY para aceptar solo conexiones SSH (bloquea Telnet)",
+            "`line vty 0 4 -> transport input ssh`"
+        ],
+    ]}
+/>
+
+## 3. Comparación y rol en el diseño de redes
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Característica", "Acceso por Consola", "Acceso por Telnet", "Acceso por SSH"]}
+    rows={[
+        [
+            "**Medio de conexión**",
+            "Cable físico directo (Rollover)",
+            "Red IP (TCP puerto 23)",
+            "Red IP (TCP puerto 22)"
+        ],
+        [
+            "**Seguridad de datos**",
+            "Alta (acceso físico requerido)",
+            "Baja (texto plano, vulnerable a sniffing)",
+            "Alta (sesión cifrada)"
+        ],
+        [
+            "**Requisitos previos**",
+            "Ninguno (solo cable)",
+            "IP configurada y contraseña VTY",
+            "IP, dominio, llaves RSA y usuario local"
+        ],
+        [
+            "**Rol en el diseño**",
+            "Recuperación ante desastres y configuración inicial (Out-of-band)",
+            "Obsoleto, no recomendado en redes de producción",
+            "Estándar obligatorio para gestión remota (In-band)"
+        ],
+    ]}
+/>
+---
+## Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "Te encuentras realizando la configuración inicial de un router de núcleo para una nueva sucursal. Tras asignar el nombre del equipo, necesitas establecer una barrera de seguridad que proteja el acceso total al dispositivo, asegurando que incluso si alguien visualiza el archivo de configuración, no pueda descifrar la clave del modo más crítico de operación.",
+        questionItems: [],
+        questionSuffix: "¿Cuál es el comando que debes aplicar para cumplir con este requerimiento de seguridad robusta?",
+		options: [
+            "Enable password",
+            "Enable secret [Contraseña]",
+            "Service password-encryption",
+            "Password [Contraseña]",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "Un colega te solicita habilitar el acceso remoto en un switch de distribución para que el equipo de soporte pueda realizar diagnósticos desde otra oficina. Al revisar la guía técnica, observas que el flujo de datos viajará por una red pública. Debes decidir entre utilizar el protocolo tradicional o el estándar de seguridad actual.",
+        questionItems: [],
+        questionSuffix: "¿Qué método de acceso remoto es el obligatorio para garantizar la integridad y confidencialidad de los datos en este escenario?",
+		options: [
+            "Acceso por consola",
+            "Acceso por Telnet",
+            "Acceso por SSH",
+            "Acceso por puerto auxiliar",
+		],
+		correctIndex: 2
+	},
+    {
+		question: "El comando show ip interface brief se utiliza principalmente para visualizar el hardware detallado y la versión del software del sistema operativo del dispositivo",
+        questionItems: [],
+        questionSuffix: "Esta afirmación, ¿es verdadera o falsa?",
+		options: [
+            "Verdadera",
+            "Falsa",
+		],
+		correctIndex: 1
+	},
+]}/>

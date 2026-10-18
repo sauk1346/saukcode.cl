@@ -1,0 +1,450 @@
+# Repaso (sin logaritmo)
+
+## Ajuste Lineal
+
+Una corredora de seguros realiza un test de habilidades a todos sus empleados, los cuales posteriormente entregan un balance mensual de sus ventas en millones de pesos.
+
+Basado en esta información Jorge, el gerente de Recursos Humanos, pretende modelar los datos para así predecir el volumen de ventas (en millones de pesos) conociendo la calificación (de 0 a 100 puntos) en el test de habilidades de los empleados nuevos. Él sospecha que el modelo matemático que mejor ajusta al conjunto de datos es uno lineal.
+
+La tabla a continuación resume esta información para cuatro empleados:
+
+<SmartTable
+  tableLayout="fixed"
+  headers={["Calificación en el test de habilidades (x)","Volumen de ventas (y)"]}
+  rows={[
+    ["35","1.6"],
+    ["55","2.3"],
+    ["65","2.9"],
+    ["70","3.8"]
+  ]}
+/>
+
+1. **¿Cuál es la expresión lineal que modela el volumen de ventas en fución de la calificación obtenida en el test de habilidades?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig87.png"
+	alt="Modelo lineal f(x)"
+	caption="Modelo lineal f(x)"
+	size="large"
+/>
+
+**Respuesta:** La expresión lineal que modela el volumen de ventas en función de la calificación obtenida en el test de habilidades es `0.06x-0.54`
+</Solution>
+
+2. **Según el modelo hallado, ¿cuánto dinero se espera que logre vender en un mes un empleado que obtiene 80 puntos en el test de habilidades?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig88.png"
+	alt="Cálculo volúmen de ventas para x = 80"
+	caption="Cálculo volúmen de ventas para x = 80"
+	size="large"
+/>
+
+**Respuesta:** El volumen de venta es `4.00`
+</Solution>
+
+## Ajuste Cuadrático
+Una entidad financiera quiere analizar la relación entre los ingresos declarados por sus clientes y la cantidad de dinero que destinan a invertir en fondos mutuos.
+
+Después de analizar 350 datos provenientes de sus clientes, un analista de datos propone que una función cuadrática podría describir de buena manera la dependencia del monto de inversión en fondos mutuos (en miles de pesos) respecto del ingreso mensual promedio (en millones de pesos).
+
+Considere la siguiente tabla con cuatro de estos clientes:
+
+<SmartTable
+  tableLayout="fixed"
+  headers={["Ingreso promedio mensual (x)","Monto de inversión en fondos mutuos (y)"]}
+  rows={[
+    ["1,5","250"],
+    ["1,8","230"],
+    ["2,2","320"],
+    ["2,9","450"]
+  ]}
+/>
+
+3. **¿Cuál es la expresión cuadrática que modela el monto de inversión en fondos mutuos en función del ingreso promedio mensual?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig89.png"
+	alt="Modelo cuadrático g(x)"
+	caption="Modelo cuadrático g(x)"
+	size="large"
+/>
+
+**Respuesta:** La expresión cuadrática que modela el monto de inversión en fondos mutuos en función del ingreso promedio mensual es `87.82x^2-233.11x+390.61`
+</Solution>
+
+4. **Según el modelo hallado, ¿cuánto dinero se espera que invierta en fondos mutuos un cliente que tenga un ingreso de 4,2 millones de pesos mensuales?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig90.png"
+	alt="Inversión para empleado con ingreso de 4.2 millones"
+	caption="Inversión para empleado con ingreso de 4.2 millones"
+	size="large"
+/>
+
+**Respuesta:** Se espera que invierta `960.63` miles de pesos
+</Solution>
+
+
+# Problema 1: El precio del combustible
+
+## Enunciado 1
+Si en determinada semana del año (semana 0) el precio de la bencina es $1280 y sabiendo que el fondo de estabilización FEPCO, inyecta dinero, de forma que el precio de la bencina no suba más de 7 pesos por semana y suponiendo que en cada semana comienza a subir el máximo posible:
+
+1. **Complete la siguiente tabla**
+
+<SmartTable
+  tableLayout="fixed"
+  headers={["Semana","Valor de la gasolina en Stgo"]}
+  rows={[
+    ["0","1280"],
+    ["1",""],
+    ["2",""],
+    ["3",""],
+    ["4",""]
+  ]}
+/>
+
+<Solution>
+
+<SmartTable
+  tableLayout="fixed"
+  headers={["Semana","Valor de la gasolina en Stgo"]}
+  rows={[
+    ["0","1280"],
+    ["1","1287"],
+    ["2","1294"],
+    ["3","1301"],
+    ["4","1308"]
+  ]}
+/>
+</Solution>
+
+
+2. **¿Cuál de las gráficas siguientes representa mejor el valor de la gasolina en cada semana?**
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
+  <div>
+    <img
+      src="/inacap/mvfm01/images/fig91.png"
+      style={{ width: '100%', height: 'auto' }}
+    />
+  </div>
+  <div>
+    <img
+      src="/inacap/mvfm01/images/fig92.png"
+      style={{ width: '100%', height: 'auto' }}
+    />
+  </div>
+  <div>
+    <img
+      src="/inacap/mvfm01/images/fig93.png"
+      style={{ width: '100%', height: 'auto' }}
+    />
+  </div>
+  <div>
+    <img
+      src="/inacap/mvfm01/images/fig94.png"
+      style={{ width: '100%', height: 'auto' }}
+    />
+  </div>
+</div>
+
+
+<Solution>
+**Respuesta:** La gráfica es `gráfica 1`
+</Solution>
+
+3. **Represente mediante una expresión algebraica el valor de la gasolina en función de las semanas transcurridas.**
+
+<Solution>
+
+**Respuesta:** `7x+1280`
+</Solution>
+
+## Enunciado 2
+Si el precio de la gasolina en cierta semana en La Serena se modela a través de la función $f(x) = 4x + 1063$
+
+1. **¿En qué semana el valor de la gasolina alcanzará un valor aproximado de $1147?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig95.png"
+	alt="Semana donde valor gasolina es 1147"
+	caption="Semana donde valor gasolina es 1147"
+	size="large"
+/>
+
+**Respuesta:** Semana `21`
+</Solution>
+
+2. **Si las alzas continúan en forma sostenida, ¿Qué valor podría alcanzar la gasolina en la semana 44?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig96.png"
+	alt="Valor gasolina en semana 44"
+	caption="Valor gasolina en semana 44"
+	size="large"
+/>
+
+**Respuesta:** `1239` pesos
+</Solution>
+
+## Enunciado 3
+ Si debido a circunstancia a nivel mundial el valor de la gasolina comienza a bajar 7 pesos todas las semanas iniciando con un valor de $1290.
+
+1. **La expresión funcional que modela el precio en función de las semanas transcurridas.**
+
+<Solution>
+**Respuesta:** `-7x+1290`
+</Solution>
+
+2. **Si un cliente consume 35 litros de bencina por semana, y la baja de la bencina se mantiene por un periodo de 5 semanas.**
+
+**¿Qué cantidad de dinero ahorró semana a semana y el total ahorrado durante todo el periodo de tiempo en que la bencina fue a la baja a partir del valor inicial de $1290?**
+
+<SmartTable
+  tableLayout="fixed"
+  headers={["Semana","Precio por litro","Ahorro por 35 litros"]}
+  rows={[
+    ["0","1290","0"],
+    ["1","",""],
+    ["2","",""],
+    ["3","",""],
+    ["4","",""],
+    ["5","",""]
+  ]}
+/>
+
+<Solution>
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Semana","Precio/litro","Costo 35L","Ahorro vs Sem.0","Ahorro Acumulado"]}
+  rows={[
+    ["0","$1290","$45150","$0","$0"],
+    ["1","$1283","$44905","$245","$245"],
+    ["2","$1276","$44660","$490","$735"],
+    ["3","$1269","$44415","$735","$1470"],
+    ["4","$1262","$44170","$980","$2450"],
+    ["5","$1255","$43925","$1225","$3675"]
+  ]}
+/>
+
+**Respuesta:** El total ahorrado es `3675` pesos
+</Solution>
+
+# Problema: COVID 19
+
+## Enunciado 1
+Sabemos que el factor de contagio llamado Ro del COVID-19, es un número que indica cuántas personas son susceptibles de ser contagiadas en promedio por una sola persona infectada.
+
+Al inicio de la pandemia (día = 0) la cantidad de contagios fue de 13 casos y esa cantidad fue triplicándose diariamente hasta el décimo día.
+
+1. **Complete la siguiente tabla para la primera semana de contagios nuevos:**
+
+<SmartTable
+  tableLayout="fixed"
+  headers={["Día","N° de Contagios diarios"]}
+  rows={[
+    ["0",""],
+    ["1",""],
+    ["2",""],
+    ["3",""],
+    ["4",""],
+    ["5",""],
+    ["6",""]
+  ]}
+/>
+
+<Solution>
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Día","N° de Contagios diarios"]}
+  rows={[
+    ["0","13"],
+    ["1","39"],
+    ["2","117"],
+    ["3","351"],
+    ["4","1053"],
+    ["5","3159"],
+    ["6","9477"]
+  ]}
+/>
+</Solution>
+
+## Enunciado 2
+El 15 de enero del 2021 cuando los contagios llegaron a 10.000 casos diarios, se declaró la tercera gran ola de contagios en nuestro país, Las autoridades de salud pronosticaron un Ro de 2.3, sin embargo, un grupo de científicos epidemiólogos determinaron un modelo matemático diferente para predecir el número de nuevos contagios, además difieren del número de contagios iniciales ya que no cuentan los contactos estrechos
+
+A partir de la información, se puede determinar un modelo para cada caso:
+
+- Número de contagios diarios según las autoridades de salud:  $N(x) = 5000 \cdot (2.2)x$
+- Número de contagios diarios según los epidemiólogos:  $N(x) = 2111 \cdot (3.2)x$
+
+(en ambos modelos “x” representa los días transcurridos desde que se decreta la tercera ola)
+
+Las autoridades de Salud decretaron cuarentena total cuando se alcanzaron los 115000 contagiados diarios.
+
+1. **Si la tendencia se mantuvo, ¿qué día de la tercera ola se decretó cuarentena total siguiendo el modelo de las autoridades de salud?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig97.png"
+	alt="Día de cuarentena total en modelo AS(x)"
+	caption="Día de cuarentena total en modelo AS(x)"
+	size="large"
+/>
+
+**Respuesta:** En el día `4`
+</Solution>
+
+2. **Si la tendencia se mantuvo, ¿qué día de la tercera ola se decretó cuarentena total siguiendo el modelo de los epidemiólogos?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig98.png"
+	alt="Día de cuarentena total en modelo EP(x)"
+	caption="Día de cuarentena total en modelo EP(x)"
+	size="large"
+/>
+
+**Respuesta:** En el día `3`
+</Solution>
+
+3. **Para que día los modelos matemáticos pronostican el mismo número de contagiados.**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig99.png"
+	alt="Mismo número contagiados en modelos AS(x) y EP(x)"
+	caption="Mismo número contagiados en modelos AS(x) y EP(x)"
+	size="large"
+/>
+
+**Respuesta:** Ambos modelos tendrán el mismo número de contagiados a los `2` días
+</Solution>
+
+4. **Considerando el momento exacto donde ambos modelos tienen igual cantidad de contagiados ¿Cuál es la cantidad de nuevos contagiados?**
+
+<Solution>
+
+**Respuesta:** En ese momento hay `30689` nuevos casos
+</Solution>
+
+# Problema 1: Precio de la camioneta
+
+## Enunciado 1
+El mercado de autos nuevos y usados en Chile experimentó fuertes cambios durante 2021 y 2022, debido a una serie de factores que han generado escasez de autos y aumento de sus precios. Dentro de los distintos segmentos automotrices, las camionetas son las que más han subido su precio.
+
+Vicente compró en Enero de 2021 una camioneta 4x4 en $ 19.000.000. De ahí en adelante, cada mes la camioneta sube un 2,2%.
+
+1. **Completa la siguiente tabla de valores con la información del valor de la camioneta dependiendo de cada mes transcurrido**
+
+<SmartTable
+  tableLayout="fixed"
+  headers={["Mes","Valor de la Camioneta"]}
+  rows={[
+    ["0","19000000"],
+    ["1",""],
+    ["2",""],
+    ["3",""],
+    ["4",""],
+    ["5",""],
+    ["6",""]
+  ]}
+/>
+<Solution>
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Mes","Valor de la Camioneta"]}
+  rows={[
+    ["0","19000000"],
+    ["1","19418000"],
+    ["2","19845196"],
+    ["3","20281790"],
+    ["4","20727990"],
+    ["5","21184005"],
+    ["6","21650054"]
+  ]}
+/>
+</Solution>
+
+2. **Seleccione la gráfica que mejor representa a la tabla anterior.**
+
+<img
+	src="/inacap/mvfm01/images/fig100.png"
+	style={{ display: 'block', margin: '0 auto', width:'90%'}}
+/>
+<br/>
+
+<Solution>
+
+**Respuesta:** La gráfica es `Gráfica 2`
+</Solution>
+
+3. **Debido al alza sostenida del precio de la camioneta, Vicente considera que es un buen negocio conservarla por 8 meses y luego venderla, ¿Cuál será el precio de venta de la camioneta en este caso?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig101.png"
+	alt="Valor camioneta luego de 8 meses"
+	caption="Valor camioneta luego de 8 meses"
+	size="large"
+/>
+
+**Respuesta:** El precio de la venta será de `22613135` pesos
+</Solution>
+
+## Enunciado 2
+Vicente ha estudiado el mercado de la venta de camionetas usadas y ha podido establecer un modelo que le permite calcular el precio de ésta dependiendo de los x meses trascurridos.
+
+$$
+\begin{aligned}
+Precio Camioneta(x) = 19000000 \cdot (1,022)^x
+\end{aligned}
+$$
+
+4. **¿Cuál será el precio de la camioneta en Noviembre del 2022?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig102.png"
+	alt="Valor camioneta luego de 22 meses (ene2021 a nov2022)"
+	caption="Valor camioneta luego de 22 meses (ene2021 a nov2022)"
+	size="large"
+/>
+
+**Respuesta:** El precio será de `30667142` pesos
+</Solution>
+
+5. **¿Cuántos meses deberá esperar Vicente, si quiere vender la camioneta cuando ésta cueste el triple del valor de compra inicial?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig103.png"
+	alt="Tiempo mínimo para triplicar valor camioneta"
+	caption="Tiempo mínimo para triplicar valor camioneta"
+	size="large"
+/>
+
+**Respuesta:** Debe esperar `50` meses 
+</Solution>

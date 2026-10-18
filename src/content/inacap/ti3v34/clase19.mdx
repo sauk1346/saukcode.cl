@@ -1,0 +1,202 @@
+# Controles de Mitigación y Gestión de Riesgos
+
+**Material Clase:** [control-mitigacion.pdf](/inacap/ti3v34/docs/ppt35.pdf)
+
+## CVSS
+*Common Vulnerability Scoring System*. Sistema común de puntuación de vulnerabilidades.
+
+Su objetivo es proporcionar una forma consistente y objetiva de calificar las vulnerabilidades, lo que ayuda a las organizaciones a priorizar la remediación de las amenazas según su nivel de riesgo.
+
+
+## Fases Análisis de Vulnerabilidad
+1. Recopilación de información
+2. Detección de vulnerabilidades
+3. Evaluación de la severidad de las vulnerabilidades
+
+## Puntuaciones CVSS métricas base
+Se determinan mediante la evaluación de la explotabilidad de vulnerabilidades, el impacto en la Confidencialidad, Integridad y Disponibilidad y el alcance del efecto.
+
+Factores como el Vector de Ataque, los Privilegios Requeridos y el posible impacto en todo el sistema se evalúan para generar una puntuación de gravedad entre 0 y 10.
+
+### Según la complejidad del ataque
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Complejidad del Ataque', 'Descripción']}
+	rows={[
+		[
+			'Baja (10)',
+			'Es fácil de explotar, no se requieren habilidades especiales ni configuración'
+		],
+		[
+			'Alta (5)',
+			'Es difícil de explotar, requiere habilidades especializadas, condiciones específicas o configuración compleja para tener éxito'
+		]
+	]}
+/>
+
+- 10, por la facilidad de acceso
+- 5, por la dificultad
+
+### Privilegios requeridos (PR) ¿?El atacante necesita privilegios previos para explotar la vulnerabilidad?
+
+<SmartTable
+	tableLayout="auto"
+	headers={['PR', 'Descripción']}
+	rows={[
+		[
+			'Ninguno',
+			'El atacante no necesita privilegios previos, puede explotar la vulnerabilidad sin autenticación'
+		],
+		[
+			'Bajo',
+			'El atacante necesita privilegios básicos de usuario para explotar la vulnerabilidad'
+		],
+		[
+			'Alto',
+			'El atacante necesita privilegios administrativos o de alto nivel para explotar la vulnerabilidad'
+		]
+	]}
+/>
+
+### Vector de Ataque(AV) ¿Cómo se explota la vulnerabilidad?
+
+<SmartTable
+	tableLayout="auto"
+	headers={['AV', 'Descripción']}
+	rows={[
+		[
+			'Red (10)',
+			'La vulnerabilidad se puede explotar de forma remota a través de la red'
+		],
+		[
+			'Local (5)',
+			'Se necesita acceso físico o local al sistema afectado'
+		],
+		[
+			'Adyacente (5)',
+			'El atacante debe estar en una red local (por ejemplo, una red Wi-fi compartida)'
+		],
+		[
+			'Físico (0)',
+			'El atacante necesita tener acceso físico al dispositivo para explotarlo'
+		]
+	]}
+/>
+
+### Interacción del Usuario (UI) ¿El atacante necesita que un usuario realice alguna cción?
+
+<SmartTable
+	tableLayout="auto"
+	headers={['UI', 'Descripción']}
+	rows={[
+		[
+			'Ninguna (10)',
+			'El atacante puede explotar la vulnerabilidad sin intervensción del usuario'
+		],
+		[
+			'Requerida (5)',
+			'El usuario necesita realizar alguna acción, como hacer clic en un enlace o abrir un archivo'
+		]
+	]}
+/>
+
+Las métricas se ajustan con el tiempo, teniendo encuanta la existencia de parches.
+
+- Solución Temporal (RL)
+    - Ninguna 
+    - PArcial
+    - Completa
+
+- Fase de Madurez (RC): ¿El parche o la corrción está disponible?
+    - No corrección (0)
+    - Parcial (1)
+    - Completa (2)
+
+## Puntaje Métricas de Impacto Ambiental
+
+Permiten ajustar el puntaje base de acuerdo con el impacto específico en un entorno particular, como la infraestructura de una organización
+
+- Métricas impacto ambiental
+    - Impacto de confidencialidad, integridad y disponibilidad (CIA): Se ajustan de acuerdo...
+
+## Evaluación Impacto
+
+1. Comienza asignando un valor para la métricas de impacto (CIA) según la gravedad que tenga para el sistema o los datos comprometidos. Luego asignar el vector de ataque(AV), la complejida del ataque(AC), los privilevios necesarios (PR), y si requiere o no interacción del usuario (UI)
+2. Calcular la puntuación Base, Para esto, se suman los valores de la métricas que has asignado y se aplican las fórmulas matemáticas corresopndientes (que etán documentadas en el sitio oficial CVSS). El puntaje final se calcula utilizando una fórmula
+3. Ajustar con las métricas ambientales y ...
+
+## CVSS Base Score
+Refleja la gravedad de la vulnerabilidad en un estado "normal", sin tener en cuenta factores que puedan cambiar con el timepo o con el entorno
+
+- Impacto
+- Explotabilidad
+
+## Métricas de puntuación base
+
+- Confidencialidad (confidenciality C)| ¿Cuánto se ve afectada la confidencialida del sitema? (ninguna, parcial, completa)
+- Integridad (integrity I)|¿Cuánto se ve afectada la integridad del sistema? (ninguna, parcial, completa)
+- Disponibilidad (availability A)|¿Cuánto se ve afectada la disponibilidad del sistema? (ninguna, parcial, completa)
+- Vector de ataque (Attack Vector AV)|¿Dónde y cómo se puede explotar la vulnerabilidad? (red, local, físico, etc)
+- Compljidad del ataque (Attack complexity AC)|¿Qué tan difícil es llevar a cabo el ataque? (bajo, alto)
+- Privilivegios requeridos (Privileges required PR)| ¿Qué privilegios o permisos son necesarios para explotar la vulnerabilidad?
+- Interacción de usuario (User Interaction UI)|¿El ataque requiere interaccipon por parte de un usuario? (ninguna, requiere interacción)
+- Alcance (Scope S)| ¿La explotación de la vulnerabilidad?
+
+## Métricas de Explotabilidad
+
+...
+
+## Métricas de complejidad de ataque
+Mide la dificultad de explotación
+
+- Baja (L)
+- Alta (H)
+
+## Temporal Score (Puntuación temporal)
+
+## Environmental Score (Puntuación ambiental)
+
+## Ejemlpo de cómo se calcual CVSS
+
+- Impacto en confidencialidad|coompleto 10
+- Impacto en Integridad|
+- Impacto en Disponibilidad|
+- Vector de Ataque|
+- Complejidad de ataque|
+- Requerimiento de priviliegios|
+- Interacción de USuario|
+
+## Implementación y monitoreo de controles
+
+1. Planificación de la implementación
+    1. Priorizar vulnerabilidades
+    2. Asignación de recursos
+
+2. Monitoreo y revisipon continua
+    1. Monitoreo de la efectividad
+    2. Reevaluación periódica
+
+## Propuestas de mejora tecnológicas en la recuperación ante desastres
+Recuperación ante desastres: Es crucial para asegurar la continuidad de la compañía
+
+1. Definicipon de requisitos
+2. Evaluación de riesgos
+3. Establecimiento de objetivos de recuperación
+
+## Tecnologías de REcuperación ante Desastres
+
+- Replicación y redundancia
+- Copia de seguridad y restauración
+- Virtualización y contenedores
+
+## Estandarización y mejores prácticas
+
+- Normativas y estándares: Asegurarse de que las prupuestas de mejoras tecnológicas cumplan con normativas y estándares relevantes de la industria, como USO 22301
+- Auditorias y pruebas
+- Capacitación
+    - Entrenamiento del personal
+    - Concienciación sobre la segurida
+- Mejora continua
+    - Revisión periódica
+    - Feedback y ajustes

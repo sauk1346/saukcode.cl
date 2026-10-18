@@ -1,0 +1,832 @@
+## Control 02
+
+### Pregunta 01
+
+**ASÍNTOTAS**
+
+Considere la siguiente función racional: 
+
+$$
+g(x) = \frac{x^2}{x^2-x-6}
+$$
+
+1. Las asíntotas verticales de $g(x)$ son:
+2. La ecuación de la asíntota horizontal es:
+3. Considere la función $h(x)=x\cdot g(x)$. La ecuación de la asíntota oblicua de $h(x)$ es:
+
+<Solution title="Solución Pregunta 01">
+
+1. **Las asíntotas verticales de $g(x)$ son:**
+
+<SmartFigure
+    id="fig143"
+    src="/inacap/cvcd01/images/fig143.png"
+	alt="Asíntotas de f(x)"
+	caption="Asíntotas de f(x)"
+	size="large"
+/>
+<P indent={2}>
+Asíntotas verticales de $g(x)$: $\boxed{x = -2}$ y $\boxed{x = 3}$
+</P>
+---
+
+2. **La ecuación de la asíntota horizontal es:**
+<P indent={2}>
+Asíntotas horiontales de $g(x)$: $\boxed{y = 1}$
+</P>
+
+---
+
+3. **Considere la función $h(x)=x\cdot g(x)$. La ecuación de la asíntota oblicua de $h(x)$ es:**
+
+<SmartFigure
+    id="fig144"
+    src="/inacap/cvcd01/images/fig144.png"
+	alt="Función h(x)"
+	caption="Función h(x)"
+	size="large"
+/>
+
+<SmartFigure
+    id="fig145"
+    src="/inacap/cvcd01/images/fig145.png"
+	alt="Asíntotas de h(x)"
+	caption="Asíntotas de h(x)"
+	size="large"
+/>
+<P indent={2}>
+Asíntota oblicua de $h(x)$: $\boxed{y=x+1}$
+</P>
+
+</Solution>
+---
+
+### Pregunta 02
+
+Encuentre las asíntotas verticales de la siguiente función racional:
+
+$$
+f(x) = \frac{x-3}{x^2-x-20}
+$$
+
+<Solution title="Solución Pregunta 02">
+
+<SmartFigure
+    id="fig146"
+    src="/inacap/cvcd01/images/fig146.png"
+	alt="Asíntotas de f(x)"
+	caption="Asíntotas de f(x)"
+	size="large"
+/>
+<P indent={2}>
+Las asíntotas verticales de $f(x)$ son: $\boxed{x=-4}$ y $\boxed{x=5}$
+</P>
+</Solution>
+---
+
+### Pregunta 03
+
+Encuentre la asíntota horizontal de la siguiente función racional:
+
+$$
+f(x) = \frac{5-16x^2}{(4x+2)(x+1)}
+$$
+
+<Solution title="Solución Pregunta 03">
+
+<SmartFigure
+    id="fig147"
+    src="/inacap/cvcd01/images/fig147.png"
+	alt="Asíntotas de f(x)"
+	caption="Asíntotas de f(x)"
+	size="large"
+/>
+<P indent={2}>
+La asíntota horizontal de $f(x)$ es: $\boxed{y=-4}$
+</P>
+</Solution>
+---
+
+### Pregunta 04
+
+Encuentre la asíntota oblicua de la siguiente función racional:
+
+$$
+f(x) = \frac{6x^3+8}{(2x-2)(x+2)}
+$$
+
+<Solution title="Solución Pregunta 04">
+
+<SmartFigure
+    id="fig148"
+    src="/inacap/cvcd01/images/fig148.png"
+	alt="Asíntotas de f(x)"
+	caption="Asíntotas de f(x)"
+	size="large"
+/>
+<P indent={2}>
+La asíntota oblicua de $f(x)$ es: $\boxed{y = 3x-3}$
+</P>
+</Solution>
+---
+
+### Pregunta 05
+
+**PARÁMETROS PARA LA CONTINUIDAD DE UNA FUNCIÓN**
+
+Sea:
+
+$$
+f(x) = 
+\begin{cases}
+    x+3 & \text{si } x\leq a\\[6pt]
+    5 & \text{si } a < x < b\\[6pt]
+    9-x & \text{si } x\geq b
+\end{cases}
+$$
+
+1. Encuentre el valor de $a$ y $b$ de tal manera que $f$ se continua en todo su dominio
+2. Además, calcule los siguientes límites:
+    1. $\displaystyle\lim_{x \to a} f(x)$
+    2. $\displaystyle\lim_{x \to b} f(x)$
+
+<Solution title="Solución Pregunta 05">
+
+1. **Encuentre el valor de $a$ y $b$ de tal manera que $f$ se continua en todo su dominio**
+
+<P indent={3}>
+Para encontrar el valor de $a$:
+</P>
+$$
+\begin{align*}
+\text{Tramo 1} &= \text{Tramo 2}\\[6pt]
+x+3 &= 5\\[6pt]
+\text{(Se evalúa en x=a)}\\[6pt]
+a+3 &= 5\\[6pt]
+\end{align*}
+$$
+
+<SmartFigure
+    id="fig149"
+    src="/inacap/cvcd01/images/fig149.png"
+	alt="Valor de a"
+	caption="Valor de a"
+	size="large"
+/>
+
+<P indent={3}>
+Para encontrar el valor de $b$:
+</P>
+$$
+\begin{align*}
+\text{Tramo 2} &= \text{Tramo 3}\\[6pt]
+5 &= 9-x\\[6pt]
+\text{(Se evalúa en x=b)}\\[6pt]
+5 &= 9-b\\[6pt]
+\end{align*}
+$$
+
+<SmartFigure
+    id="fig150"
+    src="/inacap/cvcd01/images/fig150.png"
+	alt="Valor de b"
+	caption="Valor de b"
+	size="large"
+/>
+<P indent={3}>
+$\therefore$ Los valores son: $\boxed{a=2}$ y $\boxed{b=4}$
+</P>
+---
+2. **Además, calcule los siguientes límites:**
+    1. $\displaystyle\lim_{x \to a} f(x)$
+    2. $\displaystyle\lim_{x \to b} f(x)$
+
+<P indent={3}>
+Con los valores $a$ y $b$ es posible 'armar' la función $f(x)$ en GeoGebra
+</P>
+
+<TerminalOutput withBg>
+{`# Función f(x) en GeoGebra
+f(x) = Si(x<=2, x+3, 2<x<4, 5, x>=4, 9-x)
+`}
+</TerminalOutput>
+
+<SmartFigure
+    id="fig151"
+    src="/inacap/cvcd01/images/fig151.png"
+	alt="Límite de f(x) cuando x tiende a a=2"
+	caption="Límite de f(x) cuando x tiende a a=2"
+	size="large"
+/>
+
+<SmartFigure
+    id="fig152"
+    src="/inacap/cvcd01/images/fig152.png"
+	alt="Límite de f(x) cuando x tiende a b=4"
+	caption="Límite de f(x) cuando x tiende a b=4"
+	size="large"
+/>
+
+</Solution>
+
+---
+
+### Pregunta 06
+
+**CONTINUIDAD DE FUNCIONES POR TRAMOS**
+
+**Indicaciones:**
+    - Ingrese los números decimales aproximando (redondeo) a 2 cifras decimales, utilizando punto decimal. Ejemplo 4.5657 -> 4.57
+    - Los números mayor a mil ingréselos sin punto separadosr de miles. Ejemplo: 34600
+
+1. Sea la función:
+
+$$
+f(x) = 
+\begin{cases}
+3(x+1)^2 - 11e^{x+2} & \text{si } x\leq -2\\[6pt]
+\dfrac{4x^2+8x}{x+2} & \text{si } x > -2
+\end{cases}
+$$
+
+<P indent={2}>
+Analizando la continuidad de $f$ en $x=-2$, podemos decir que:
+</P>
+<List level={2}>
+1. El valor de $f(-2)$ es:
+2. $\displaystyle\lim_{x\to -2^-} f(x)$ es:
+3. $\displaystyle\lim_{x\to -2^+} f(x)$ es:
+4. Entonces, se deduce que $f$ es:
+5. Con límite:
+</List>
+
+<br/><br/>
+2. Sea la función:
+
+$$
+f(x) =
+\begin{cases}
+    8x^2+4 & \text{si } x\leq 1\\[6pt]
+    \dfrac{4x^2+3x+5}{2x-1} & \text{si } 1 < x < 3\\[6pt]
+    18-x^2 & \text{si } x\geq 3 
+\end{cases}
+$$
+<P indent={2}>
+Analizando la continuidad de $f$ en $x=1$, podemos decir que:
+</P>
+<List level={2}>
+1. $f(1)$ es:
+2. $\displaystyle\lim_{x\to 1^-} f(x)$ es:
+3. $\displaystyle\lim_{x\to 1^+} f(x)$ es:
+4. Entonces, se deduce que $f$ es:
+5. Con límite:
+</List>
+
+<br/>
+<P indent={2}>
+Analizando la continuidad de $f$ en $x=3$, podemos decir que:
+</P>
+<List level={2}>
+1. $f(3)$ es:
+2. $\displaystyle\lim_{x\to 3^-} f(x)$ es:
+3. $\displaystyle\lim_{x\to 3^+} f(x)$ es:
+4. Entonces, se deduce que $f$ es:
+5. Con límite:
+</List>
+
+<Solution title="Solución Pregunta 06">
+
+1. **Sea la función:**
+
+$$
+f(x) = 
+\begin{cases}
+3(x+1)^2 - 11e^{x+2} & \text{si } x\leq -2\\[6pt]
+\dfrac{4x^2+8x}{x+2} & \text{si } x > -2
+\end{cases}
+$$
+
+<P indent={2}>
+**Analizando la continuidad de $f$ en $x=-2$, podemos decir que:**
+</P>
+<List level={2}>
+
+1. **El valor de $f(-2)$ es:**
+
+<SmartFigure
+    id="fig153"
+    src="/inacap/cvcd01/images/fig153.png"
+	alt="Valor de f(-2)"
+	caption="Valor de f(-2)"
+	size="large"
+/>
+
+2. **$\displaystyle\lim_{x\to -2^-} f(x)$ es:**
+
+<SmartFigure
+    id="fig154"
+    src="/inacap/cvcd01/images/fig154.png"
+	alt="Límite de f(x) cuando x tiende a -2, por la izquiereda"
+	caption="Límite de f(x) cuando x tiende a -2, por la izquierda"
+	size="large"
+/>
+
+3. **$\displaystyle\lim_{x\to -2^+} f(x)$ es:**
+
+<SmartFigure
+    id="fig155"
+    src="/inacap/cvcd01/images/fig155.png"
+	alt="Límite de f(x) cuando x tiende a -2, por la derecha"
+	caption="Límite de f(x) cuando x tiende a -2, por la derecha"
+	size="large"
+/>
+
+4. **Entonces, se deduce que $f$ es:** $\boxed{\text{continua en } x=-2}$
+5. **Con límite:** $\boxed{-8}$
+</List>
+---
+
+2. **Sea la función:**
+
+$$
+f(x) =
+\begin{cases}
+    8x^2+4 & \text{si } x\leq 1\\[6pt]
+    \dfrac{4x^2+3x+5}{2x-1} & \text{si } 1 < x < 3\\[6pt]
+    18-x^2 & \text{si } x\geq 3 
+\end{cases}
+$$
+<P indent={2}>
+**Analizando la continuidad de $f$ en $x=1$, podemos decir que:**
+</P>
+<List level={2}>
+1. $f(1)$ es:
+
+<SmartFigure
+    id="fig156"
+    src="/inacap/cvcd01/images/fig156.png"
+	alt="Valor de f(1)"
+	caption="Valor de f(1)"
+	size="large"
+/>
+
+2. $\displaystyle\lim_{x\to 1^-} f(x)$ es:
+
+<SmartFigure
+    id="fig157"
+    src="/inacap/cvcd01/images/fig157.png"
+	alt="Límite de f(x) cuando x tiende a 1, por la izquierda"
+	caption="Límite de f(x) cuando x tiende a 1, por la izquierda"
+	size="large"
+/>
+
+3. $\displaystyle\lim_{x\to 1^+} f(x)$ es:
+
+<SmartFigure
+    id="fig158"
+    src="/inacap/cvcd01/images/fig158.png"
+	alt="Límite de f(x) cuando x tiende a 1, por la derecha"
+	caption="Límite de f(x) cuando x tiende a 1, por la derecha"
+	size="large"
+/>
+
+4. Entonces, se deduce que $f$ es: $\boxed{\text{continua en } x=1}$
+5. Con límite: $\boxed{12}$
+</List>
+
+<P indent={2}>
+**Analizando la continuidad de $f$ en $x=3$, podemos decir que:**
+</P>
+
+<List level={2}>
+1. $f(3)$ es:
+
+<SmartFigure
+    id="fig159"
+    src="/inacap/cvcd01/images/fig159.png"
+	alt="Valor de f(3)"
+	caption="Valor de f(3)"
+	size="large"
+/>
+
+2. $\displaystyle\lim_{x\to 3^-} f(x)$ es:
+
+<SmartFigure
+    id="fig160"
+    src="/inacap/cvcd01/images/fig160.png"
+	alt="Límite de f(x) cuando x tiende a 3, por la izquierda"
+	caption="Límite de f(x) cuando x tiende a 3, por la izquierda"
+	size="large"
+/>
+
+3. $\displaystyle\lim_{x\to 3^+} f(x)$ es:
+
+<SmartFigure
+    id="fig161"
+    src="/inacap/cvcd01/images/fig161.png"
+	alt="Límite de f(x) cuando x tiende a 3, por la derecha"
+	caption="Límite de f(x) cuando x tiende a 3, por la derecha"
+	size="large"
+/>
+
+4. Entonces, se deduce que $f$ es: $\boxed{\text{discontinua de salto finito en } x=3}$
+5. Con límite: $\boxed{\text{indeterminado}}$
+</List>
+</Solution>
+
+---
+
+### Pregunta 07
+**PARÁMETROS PARA LA CONTINUIDAD DE UNA FUNCIÓN**
+
+Sea:
+
+$$
+f(x) =
+\begin{cases}
+5 & \text{si } x\leq 2\\[6pt]
+x-a & \text{si } 2 < x < 3\\[6pt]
+-2x+b & \text{si } x\geq 3
+\end{cases}
+$$
+
+1. Encuentre el valor de $a$ y $b$ de tal manera que $f$ sea continua en todo su dominio
+2. Además, calcule los siguientes límites
+    1. $\displaystyle\lim_{x\to 2} f(x)$ es:
+    2. $\displaystyle\lim_{x\to 3} f(x)$ es:
+
+<Solution title="Solución Pregunta 07">
+
+1. **Encuentre el valor de $a$ y $b$ de tal manera que $f$ sea continua en todo su dominio**
+
+<P indent={3}>
+Para encontrar el valor de $a$:
+</P>
+$$
+\begin{align*}
+\text{Tramo 1} &= \text{Tramo 2}\\[6pt]
+5 &= x - a\\[6pt]
+\text{(Se evalúa en x=2)}\\[6pt]
+5 &= 2 - a\\[6pt]
+\end{align*}
+$$
+
+<SmartFigure
+    id="fig162"
+    src="/inacap/cvcd01/images/fig162.png"
+	alt="Valor de a"
+	caption="Valor de a"
+	size="large"
+/>
+<P indent={3}>
+Para encontrar el valor de $b$:
+</P>
+$$
+\begin{align*}
+\text{Tramo 2} &= \text{Tramo 3}\\[6pt]
+x-a &= -2x+b\\[6pt]
+x-(-3) &= -2x+b\\[6pt]
+x+3 &= -2x+b\\[6pt]
+\text{(Se evalúa en x=3)}\\[6pt]
+3+3 &= -2\cdot 3 + b
+\end{align*}
+$$
+
+<SmartFigure
+    id="fig163"
+    src="/inacap/cvcd01/images/fig163.png"
+	alt="Valor de b"
+	caption="Valor de b"
+	size="large"
+/>
+<P indent={3}>
+$\therefore$ Los valores son: $\boxed{a=-3}$ y $\boxed{b=12}$
+</P>
+---
+2. **Además, calcule los siguientes límites**
+    1. **$\displaystyle\lim_{x\to 2} f(x)$ es:**
+    2. **$\displaystyle\lim_{x\to 3} f(x)$ es:**
+
+<P indent={3}>
+Con los valores $a$ y $b$ es posible 'armar' la función $f(x)$ en GeoGebra
+</P>
+
+<TerminalOutput withBg>
+{`# Función f(x) en GeoGebra
+f(x) = Si(x<=2, 5, 2<x<3, x+3, x>=3, -2x+12)
+`}
+</TerminalOutput>
+
+<SmartFigure
+    id="fig164"
+    src="/inacap/cvcd01/images/fig164.png"
+	alt="Límite de f(x) cuando x tiende a 2"
+	caption="Límite de f(x) cuando x tiende a 2"
+	size="large"
+/>
+
+<SmartFigure
+    id="fig165"
+    src="/inacap/cvcd01/images/fig165.png"
+	alt="Límite de f(x) cuando x tiende a 3"
+	caption="Límite de f(x) cuando x tiende a 3"
+	size="large"
+/>
+
+</Solution>
+---
+
+### Pregunta 08
+
+**CONTINUIDAD DE FUNCIONES POR TRAMOS**
+
+**Indicaciones:**
+- Ingrese los números decimales aproximando (redondeo) a 2 cifras decimales, utilizando punto decimal. Ejemplo: 4.5657 -> 4.57
+- Los números mayor a mil ingréselos sin punto separador de miles. Ejemplo: 34600
+
+Sea:
+
+$$
+f(x) =
+\begin{cases}
+-3x + 4 & \text{si } x\leq 3\\[6pt]
+17.5 - 3Kx & \text{si } x > 3
+\end{cases}
+$$
+
+1. Encuentre el valor de K para que $f(x)$ sea continua en los reales
+2. Calcule el límite: $\displaystyle\lim_{x\to 3} f(x)$
+
+<Solution title="Solución Pregunta 08">
+
+1. **Encuentre el valor de K para que $f(x)$ sea continua en los reales**
+
+<P indent={3}>
+Para encontrar el valor de $K$:
+</P>
+
+$$
+\begin{align*}
+\text{Tramo 1} &= \text{Tramo 2}\\[6pt]
+-3x+4 &= 17.5-3Kx\\[6pt]
+\text{(Se evalúa en x=3)}\\[6pt]
+-3\cdot 3+4 &= 17.5-3K\cdot 3\\[6pt]
+\end{align*}
+$$
+
+<SmartFigure
+    id="fig166"
+    src="/inacap/cvcd01/images/fig166.png"
+	alt="Valor de K"
+	caption="Valor de K"
+	size="large"
+/>
+---
+
+2. **Calcule el límite: $\displaystyle\lim_{x\to 3} f(x)$**
+
+<P indent={3}>
+Con el valor de $K$ es posible 'armar' la función $f(x)$ en GeoGebra
+</P>
+
+<TerminalOutput withBg>
+{`# Función f(x) en GeoGebra
+f(x)=Si(x<=3, -3x+4, x>3, 17.5-3*2.5x)
+`}
+</TerminalOutput>
+
+<SmartFigure
+    id="fig167"
+    src="/inacap/cvcd01/images/fig167.png"
+	alt="Límite de f(x) cuando x tiende a 3"
+	caption="Límite de f(x) cuando x tiende a 3"
+	size="large"
+/>
+
+</Solution>
+---
+
+### Pregunta 09
+
+**Velocidad Desconocida**
+
+La velocidad de un automóvil está representado por una función $V(t)$ desconocida en m/s.
+
+La tabla adjunta muestra la velocidad del automóvil para algunos valores de $t$ en segundos.
+
+<SmartFigure
+    src="/inacap/cvcd01/images/fig168.png"
+	alt="Tabla adjunta"
+	caption="Tabla adjunta"
+	size="large"
+/>
+
+1. ¿Cuál es la velocidad del automóvil en el tiempo $t=2$ segundos?
+2. ¿Cuál de las siguientes expresiones algebraicas representa a la función V(t) desconocida?
+    1. $(340t+10)/(5t+5)$
+    2. $(640t+10)/(5t+5)$
+    2. $(340t+10)/(6t+5)$
+    3. $(340t+5)/(50t+5)$
+3. ¿Cuál es la velocidad límite del automóvil?
+
+<Solution title="Solución Pregunta 09">
+
+1. **¿Cuál es la velocidad del automóvil en el tiempo $t=2$ segundos?**
+
+<P indent={2}>
+$t=4$ 
+- numerador aumenta de 1030 a 1370. $\Delta = 1370-1030 = 340$
+- denominador aumenta de 20 a 25. $\Delta = 25-20 =5$
+
+$t=5$
+- numerador aumenta de 1370 a 1710. $\Delta = 1710-1370 = 340$
+- denominador aumenta de 25 a 30. $\Delta = 30-25 =5$
+
+Entonces:
+- numerador aumenta en 340. Cuando $t=1$, $\text{numerador}= 350 = 340t+10$
+- denominador aumenta en 5. Cuando $t=1$, $\text{denominador} = 10 = 5t+5$
+
+Por lo tanto: $V(t)= \dfrac{340t+10}{5t+5}$
+</P>
+
+<SmartFigure
+    id="fig218"
+    src="/inacap/cvcd01/images/fig218.png"
+	alt="Valor V(2)"
+	caption="Valor V(2)"
+	size="large"
+/>
+
+---
+2. **¿Cuál de las siguientes expresiones algebraicas representa a la función V(t) desconocida?**
+    1. **$(340t+10)/(5t+5)$**
+    2. **$(640t+10)/(5t+5)$**
+    2. **$(340t+10)/(6t+5)$**
+    3. **$(340t+5)/(50t+5)$**
+
+
+<P indent={2}>
+Se calculó la expresión algebraica en la pregunta 1, para evaluar el modelo en $t=2$
+
+Entonces, la expresión algebraica es $V(t)= \dfrac{340t+10}{5t+5}$
+</P>
+---
+3. **¿Cuál es la velocidad límite del automóvil?**
+
+<SmartFigure
+    id="fig219"
+    src="/inacap/cvcd01/images/fig219.png"
+	alt="Velocidad límite del automóvil"
+	caption="Velocidad límite del automóvil"
+	size="large"
+/>
+
+</Solution>
+
+---
+
+### Pregunta 10
+
+**ANÁLISIS DE LA CONTINUIDAD DE LA UNA FUNCIÓN**
+
+**Indicaciones:**
+- Ingrese los números decimales aproximando (redondeo) a 2 cifras decimales, utilizando punto decimal. Ejemplo: 4.5657 -> 4.57
+- Los números mayor a mil ingréselos sin punto separador de miles. Ejemplo: 34600
+
+1. Analizando la continuidad de $f$ dada por $f(x) = \dfrac{x+2}{x^2-2x-8}$ podemos decir que:
+<P indent={2}>
+$f$ tiene 2 valores de $x$ de discontinuidad, $x_1$ y $x_2$ donde $x_1 < x_2$
+</P>
+<List level={2}>
+1. El valor de $x_1$ es:
+2. El valor de $x_2$ es:
+3. En $x=x_1$, $f$ es:
+4. En $x=x_2$, $f$ es:
+</List>
+
+<br/><br/>
+2. Sea:
+
+$$
+f(x) = 
+\begin{cases}
+x+2 & \text{si } x\leq -4\\[6pt]
+ln(x+5)-2 & \text{si } x > -4
+\end{cases}
+$$
+
+<P indent={2}>
+Analizando la continuidad de $f$ en $x=-4$, podemos decir que:
+</P>
+<List level={2}>
+1. El valor de $f(-4)$ es:
+2. $\displaystyle\lim_{x\to -4^-} f(x)$ es:
+3. $\displaystyle\lim_{x\to -4^+} f(x)$ es:
+4. Entonces, se deduce que $f$ es:
+5. Con límite:
+</List>
+
+<Solution title="Solución Pregunta 10">
+
+1. Analizando la continuidad de $f$ dada por $f(x) = \dfrac{x+2}{x^2-2x-8}$ podemos decir que:
+<P indent={2}>
+$f$ tiene 2 valores de $x$ de discontinuidad, $x_1$ y $x_2$ donde $x_1 < x_2$
+</P>
+
+<SmartFigure
+    id="fig220"
+    src="/inacap/cvcd01/images/fig220.png"
+	alt="Valores de x0 y x1"
+	caption="Valores de x0 y x1"
+	size="large"
+/>
+
+<SmartFigure
+    id="fig221"
+    src="/inacap/cvcd01/images/fig221.png"
+	alt="f evaluada en x=x1"
+	caption="f evaluada en x=x1"
+	size="large"
+/>
+
+<SmartFigure
+    id="fig222"
+    src="/inacap/cvcd01/images/fig222.png"
+	alt="f evaluada en x=x2"
+	caption="f evaluada en x=x2"
+	size="large"
+/>
+
+<List level={2}>
+1. **El valor de $x_1$ es:** $\boxed{-2}$
+2. **El valor de $x_2$ es:** $\boxed{4}$
+3. **En $x=x_1$, $f$ es:** $\boxed{\text{Discontinua evitable con } f(x_1)=-1/6}$
+4. **En $x=x_2$, $f$ es:** $\boxed{\text{Discontinua asintótica}}$
+</List>
+---
+
+2. **Sea:**
+
+$$
+f(x) = 
+\begin{cases}
+x+2 & \text{si } x\leq -4\\[6pt]
+ln(x+5)-2 & \text{si } x > -4
+\end{cases}
+$$
+
+<P indent={2}>
+**Analizando la continuidad de $f$ en $x=-4$, podemos decir que:**
+</P>
+<List level={2}>
+1. **El valor de $f(-4)$ es:**
+2. **$\displaystyle\lim_{x\to -4^-} f(x)$ es:**
+3. **$\displaystyle\lim_{x\to -4^+} f(x)$ es:**
+4. **Entonces, se deduce que $f$ es:**
+5. **Con límite:**
+</List>
+
+
+
+
+<SmartFigure
+    id="fig223"
+    src="/inacap/cvcd01/images/fig223.png"
+	alt="Valor de f(-2)"
+	caption="Valor de f(-2)"
+	size="large"
+/>
+
+<SmartFigure
+    id="fig224"
+    src="/inacap/cvcd01/images/fig224.png"
+	alt="Límite por la izquierda de f cuando x tiende a -4"
+	caption="Límite por la izquierda de f cuando x tiende a -4"
+	size="large"
+/>
+
+<SmartFigure
+    id="fig225"
+    src="/inacap/cvcd01/images/fig225.png"
+	alt="Límite por la derecha de f cuando x tiende a -4"
+	caption="Límite por la derecha de f cuando x tiende a -4"
+	size="large"
+/>
+
+<SmartFigure
+    id="fig226"
+    src="/inacap/cvcd01/images/fig226.png"
+	alt="Límite de f cuando x tiende a -4"
+	caption="Límite de f cuando x tiende a -4"
+	size="large"
+/>
+
+<List level={2}>
+1. **El valor de $f(-4)$ es:** $\boxed{-2}$
+2. **$\displaystyle\lim_{x\to -4^-} f(x)$ es:** $\boxed{-2}$
+3. **$\displaystyle\lim_{x\to -4^+} f(x)$ es:** $\boxed{-2}$
+4. **Entonces, se deduce que $f$ es:** $\boxed{\text{continua en }x=-4}$
+5. **Con límite:** $\boxed{-2}$
+</List>
+
+</Solution>

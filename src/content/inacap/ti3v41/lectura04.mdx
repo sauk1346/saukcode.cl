@@ -1,0 +1,197 @@
+# Tu primera apliacación Django: Templates en acción
+
+## 1. Plantillas en Django
+
+Es un archivo que mezcla: 
+
+- HTML normal
+- Lenguaje de plantillas de Django
+
+**Ejemplo**
+
+```html
+<!-- Esto ES una plantilla -->
+<!DOCTYPE html>                          ← HTML normal
+<html>
+<head>
+    <title>{{ titulo }}</title>          ← Variable de Django
+</head>
+<body>
+    <h1>{{ titulo }}</h1>                ← Variable de Django
+    <p>{{ mensaje }}</p>                 ← Variable de Django
+    
+    {% if servicios %}                   ← Lógica de Django
+        <ul>
+        {% for servicio in servicios %}  ← Loop de Django
+            <li>{{ servicio }}</li>      ← Variable de Django
+        {% endfor %}                     ← Cierre loop Django
+        </ul>
+    {% endif %}                          ← Cierre if Django
+    
+    <footer>Copyright 2024</footer>      ← HTML normal
+</body>
+</html>
+```
+
+Las plantillas son útiles para:
+
+- Aplicar lógica condicional y de repetición
+- Incluir componentes reutilizables
+- Heredar estructuras base
+
+## 2. Cómo renderizar una plantialla desde la vista
+
+En el archivo `views.py` se utiliza la función `render()` para combinar los datos con una plantilla: 
+
+```python
+from django.shorcuts import render
+
+def inicio(request):
+    return render(request, 'blog/inicio.html', {'usuario':'Lukas'})
+```
+
+> Esto le indica a Django que debe buscar el archivo `blog/inicio.html` dentro de la carpeta `templates/` y renderizarlo, pasando el contexto `{'usuario':'Lukas'}`
+
+
+## 3. Formas de organizar las plantillas
+
+### Plantillas dentro de cada aplicación
+
+<TerminalOutput>
+{`mi_proyecto/
+├── blog/
+│   └── templates/
+│       └── blog/
+│           └── inicio.html`}
+</TerminalOutput>
+
+- Esta es la estructura por defecto y recomendada para proyectos con varias apps.
+- Si la app está incluída en `INSTALLED_APPS`, no es necesario modificar `settings.py`, ya que Django usa un cargador llamado *app directories loader* que detecta automáticamente estas plantillas
+
+### Plantillas en una carpeta global (fuera de las apps)
+
+<TerminalOutput>
+{`mi_proyecto/
+├── templates/
+│   └── base.html`}
+</TerminalOutput>
+
+- Esta opción es útil cuando quieres centralizar plantillas comunes para todo el proyecto
+- En este caso si es necesario configurar `settings.py` para que Django sepa dónde buscar
+
+```python
+import os
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], # Ruta manual a la carpeta global
+        'APP_DIRS': True,
+        ...
+        ...
+    },
+]
+```
+
+## 4. Uso de condicionales y ciclos
+El objetivo es mantener las plantillas lo más simples posible, sin embargo, cuando es necesario personalizar la presentación de los datos, Django ofrece herramientas específicas que permiten incorporar cierta lógica de manera controlada.
+
+### Etiquetas de plantilla (Template Tags)
+Django incluye etiquetas que permiten manejar estructuras de control directamente en las plantillas
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Tags","Descripción"]}
+    rows = {[
+        ["`{% if %}` `{% elif %}` `{% else %}` `{% endif %}`", "Para condicionales"],
+        ["`{% for %}` ... `{% endfor %}`","Para bucles"],
+        ["`{% block %}` ... `{%endblock%}`", "Para definir bloques de contenido"],
+        ["`{% extends 'base.html' %}`", "Para heredar de una plantilla base"],
+        ["`{% include 'archivo.html' %}`", "Para insertar otras plantillas"]
+    ]}
+/>
+
+**Ejemplo condicional**
+```python
+{% if usuario %}
+    <p>Bienvenido, {{ usuario }}</p>
+{% else %}
+    <p>No has iniciado sesión</p>
+{% endif %}
+```
+
+**Ejemplo de bucle**
+```python
+<ul>
+{% for producto in productos %}
+    <li>{{ producto }}</li>
+{% endfor %}    
+</ul>
+```
+
+**Ejemplo de vista que envía datos**
+```python
+def inicio(request):
+    lista = ['Teclado', 'Mouse', 'Monitor']
+    return render(request, 'blog/inicio.html', {'productos':lista})
+```
+
+### Buenas Prácticas
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Práctica", "Descripción"]}
+    rows = {[
+        [
+            "**Organización de Plantillas**", 
+            "Las plantillas deben organizarse dentro de una carpeta `templates/` y, dentron de ella, en una subcarpeta con el nombre de la app (`templates/blog`, por ejemplo). Esto eva conflictos de nombres cuando hay múltiples aplicaciones"
+            ],
+        [
+            "**Uso de Archivos Base**",
+            "Utiliza archivos base (`base.html`) que contengan la estructura general de la página (encabezado, pie y menú) y extiéndelo en las demás plantillas utilizando `{% extends %}` y bloques `{% block %}`"],
+        [
+            "**Separación de Lógica y Presentación**",
+            "Evita colocar lógicas complejas en las plantillas. Todo el procesamiento debe realizarse en las vistas o modelos. Las plantillas deben usarse exclusivamente para mostrar contenido"],
+    ]}
+/>
+
+# Actividad de Práctica 03
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es el orden correcto para que una vista en Django funcione correctamente?",
+		options: [
+			"Agregar la URL en urls.py, crear la plantilla y luego definir la vista",
+			"Crear el archivo HTML, luego definir la URL y después la vista",
+			"Definir la función en views.py, agregar la URL en urls.py, y crear el archivo en templates/",
+			"Solo crear la plantilla, Django la conecta automáticamente"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Una vista en Django puede funcionar sin estar registrara en urls.py?",
+		options: [
+			"Falso",
+			"Verdadero",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Cuál es la forma recomendada de instalas Django?",
+		options: [
+			"Instalando directamente en el sistema operativo",
+			"Desde una página web",
+			"Usando un servidor externo",
+			"Dentro de un entorno virtual"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "Una app en Django puede funcionar sin estar registrada en settings.py",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 1
+	},
+]} />

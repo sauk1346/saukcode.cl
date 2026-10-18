@@ -1,0 +1,398 @@
+# Introducción a PSeInt
+**Material Clase:** [clase04.pdf](/inacap/ti3v11/docs/clase04.pdf)
+
+- PSeInt: [https://pseint.sourceforge.net](https://pseint.sourceforge.net)
+
+## Tipos de Datos
+
+<SmartTable
+    tableLayout="fixed"
+    headers={["Dato","Descripción"]}
+    rows={[
+        ["`Entero`","Para números enteros"],
+        ["`Real`","Para números decimales"],
+        ["`Cadena`","Para texto"]
+    ]}
+/>
+
+**Ejemplo:** definir las variables `A`, `B`, `C`, como entero, decimal y cadena de texto respectivamente
+
+```js
+Proceso Ejemplo
+    Definir A Como Entero;
+    Definir B Como Real;
+    Definir C Como Cadena;
+FinProceso
+```
+
+## Lectura y Escritura de datos
+
+<SmartTable
+    tableLayout="fixed"
+    headers={["Función","Descripción"]}
+    rows={[
+        ["`Leer`","Lee el valor de la variable"],
+        ["`Escribir`","Escribe una cadena de texto, el valor de una variable, o ambas"],
+    ]}
+/>
+
+**Ejemplo 1**: Mostrar en pantalla el mensaje `hola mundo`
+
+```js
+Proceso Ejemplo1
+    Escribir "hola mundo";
+FinProceso
+```
+
+**Ejemplo 2**: Solicitar al usuario ingresar su nombre, apellido y edad. Luego mostrarlos en pantalla.
+
+```js
+Proceso Ejemplo2
+    Definir nombre Como Cadena;
+    Definir apellido Como Cadena;
+    Definir edad Como Entero;	
+    
+    Escribir "Ingrese su Nombre";
+    Leer nombre;
+    Escribir "Ingrese su Apellido";
+    Leer apellido;
+    Escribir "Ingrese su edad";
+    Leer edad;
+    Escribir "Su nombre y apellido es: ", nombre, " ", apellido;
+    Escribir "Su edad es: ", edad;
+FinProceso
+```
+## Bucles
+
+### While
+
+```default
+Mientras (expresión_logica) Hacer
+    ...
+    ...
+    ...
+Fin Mientras
+```
+
+**Ejemplo**: Calcular la suma de los 100 primeros números.
+
+```javascript
+Proceso Ejemplo
+	Definir sum Como Entero;
+	Definir num Como Entero; 
+	sum = 0;
+	num = 1;
+	
+	Mientras (num <= 100) Hacer
+		sum = sum + num;
+		num = num + 1;
+	FinMientras
+	
+	Escribir "La suma de los 100 primero número es :", sum;
+FinProceso
+```
+### Do-While
+
+```default
+Repetir
+    ...
+    ...
+    ...
+Hasta Que (expresión_logica)
+```
+
+**Ejemplo**: Ejecutar un programa hasta que el usuario ingrese el comando "terminar".
+
+```js
+Proceso Ejemplo
+    Definir comando Como Cadena;
+    Repetir
+	Escribir "Ingrese el comando para salir del programa";
+	Leer comando;
+    Hasta Que (comando = 'terminar')
+FinProceso
+```
+
+### For
+
+```default
+Para (i = valor_iniciar) Hasta (n) Con Paso (valor_paso) Hacer
+    ...
+    ...
+    ...
+Fin Para
+```
+**Ejemplo**: Calcular la suma de los primeros 10 números.
+
+```js
+Proceso Ejemplo
+	Definir num Como Entero;
+	Definir sum Como Entero;
+	sum = 0;
+	
+	Para num = 1 Hasta 10 Con Paso 1 Hacer
+		sum = sum + num;
+	FinPara
+	
+	Escribir "La suma de los 10 primeros números es: ", sum;
+FinProceso
+```
+
+## Decisiones
+
+### If-else
+
+```default
+Si (condición) Entonces
+    ...
+    ...
+    ...
+SiNo
+    ...
+    ...
+    ...
+FinSi
+```
+
+**Ejemplo**: Realizar un programa que verifique si es mayor o menor de edad.
+
+```js
+Proceso Ejemplo
+    Definir edad Como Entero;
+
+    Escribir "Ingrese su edad";
+    Leer edad;
+    Si edad > 18 Entonces
+        Escribir "Ud. es mayor de edad";
+    SiNo
+        Escribir "Ud. es menor de edad";
+    FinSi
+FinProceso
+```
+
+### If anidados
+
+```default
+Si (condición) Entonces
+    ...
+    ...
+    ...
+SiNo
+    Si (condición) Entonces
+        ...
+        ...
+        ...
+    SiNo
+        ...
+        ...
+        ...
+    FinSi
+FinSi
+```
+
+## Funciones
+
+### Funciones con retorno
+
+```default
+Funcion variable_retorno <- nombre_funcion (argumentos)
+    ...
+    ...
+    ...
+Fin Funcion
+```
+
+**Ejemplo**: Diseñar un programa que calcule la suma de 3 números.
+
+```js
+Funcion suma <- sumarNum (a, b, c)
+	Definir suma Como Real;
+	suma = a + b + c;
+FinFuncion
+
+Proceso Ejemplo
+	Definir num Como Real;
+	Dimension num[3];
+	
+	Escribir "Ingrese el primer número";
+	Leer num[0];
+	Escribir "Ingrese el segundo número";
+	Leer num[1];
+	Escribir "Ingrese el tercer número";
+	Leer num[2];
+	
+	Escribir "la suma de los 3 números es: ", sumarNum(num[0],num[1],num[2]); 
+FinProceso
+```
+
+### Funciones sin retorno
+
+```default
+Funcion nombre_funcion
+    ...
+    ...
+    ...
+Fin Funcion
+```
+
+**Ejemplo**: Crear un programa que salude al ingresar `1` y se despida al ingresar `0`.
+
+```js
+Funcion  saludar
+    Escribir "Hola!!, bienvenido";
+FinFuncion
+
+Funcion despedir
+    Escribir "Hasta Luego!!, vuelva otra vez";
+FinFuncion
+
+Funcion error
+    Escribir "ERROR!!, el comando ingresado es incorrecto";
+FinFuncion
+
+Proceso Ejemplo
+    Definir comando Como Entero;
+	
+    Escribir "Ingrese 1 para saludo, o 0 para despedida";
+    Leer comando;
+    
+    Si comando = 1 Entonces
+    	saludar;
+    SiNo
+        Si comando = 0 Entonces
+            despedir;
+        SiNo
+            error;
+        FinSi
+    FinSi
+FinProceso
+```
+
+# Ejercicios
+
+## Ejercicio 01
+Sumar 3 números que se ingresan por teclado y mostrar el resultado.
+
+<Solution>
+```js
+Funcion sum <- suma (a, b ,c)
+	Definir sum Como Real;
+	sum = a + b + c; 
+FinFuncion
+
+Proceso Ejercicio01
+    Definir num Como Real;
+	Dimension num[3];	
+    
+	Escribir "Ingresar el primer número";
+    Leer num[0];
+    Escribir "Ingresar el segundo número";
+    Leer num[1];
+    Escribir "Ingresar el tercer número";
+    Leer num[2];
+    Escribir "La suma de los 3 números es: " , suma(num[0], num[1], num[2]);
+FinProceso
+```
+</Solution>
+
+## Ejercicio 02
+Calcular el área de un triángulo.
+
+<Solution>
+```js
+Funcion area <- areaTriangulo (b, h)
+	Definir area Como Real;
+	area = b * h / 2;
+Fin Funcion
+
+Proceso Ejercicio02
+	Definir altura Como Real;
+	Definir base Como Real;
+	
+	Escribir "Ingrese la altura del triángulo";
+	Leer altura;
+	Escribir "Ingrese la base del triángulo";
+	Leer base;
+	Escribir "El área del triángulo es: ", areaTriangulo(base, altura);
+FinProceso
+```
+</Solution>
+
+## Ejercicio 03
+Promediar 3 números ingresados.
+
+<Solution>
+```js
+Funcion prom <- promedio (a, b ,c)
+	Definir prom Como Real;
+	prom = (a + b + c) / 3; 
+FinFuncion
+
+Proceso Ejercicio03
+    Definir num Como Real;
+	Dimension num[3];	
+    
+	Escribir "Ingresar el primer número";
+    Leer num[0];
+    Escribir "Ingresar el segundo número";
+    Leer num[1];
+    Escribir "Ingresar el tercer número";
+    Leer num[2];
+    Escribir "El promedio de los 3 números es: " , promedio(num[0], num[1], num[2]);
+FinProceso
+```
+</Solution>
+
+## Ejercicio 04
+Determinar que APRUEBA si 'nota' es mayor a 4.0 o REPRUEBA si es menor a 4.0.
+
+<Solution>
+```js
+Proceso Ejercicio04
+    Definir nota Como Real;
+    Escribir "Ingrese nota";
+    Leer nota;
+    Si nota >= 4.0 Entonces
+        Escribir "APRUEBA";
+    SiNo
+        Escribir "REPRUEBA";
+    FinSi
+FinProceso
+```
+</Solution>
+
+## Ejercicio 05
+Indicar "DEBE ASISTIR A PROGRAMACIÓN" si el día es igual a "JUEVES", de lo contrario "DEBE ASISTIR A OTRAS CLASES".
+
+<Solution>
+```js
+Proceso Ejercicio05
+    Definir dia Como Cadena;
+    Escribir "Ingrese el día";
+    Leer dia;
+    Si dia = "jueves" O dia = "JUEVES" Entonces
+        Escribir "DEBE ASISTIR A PROGRAMACIÓN";
+    SiNo
+        Escribir "DEBE ASISTIR A OTRAS CLASES";
+    FinSi
+FinProceso
+```
+</Solution>
+
+## Ejercicio 06
+Indicar si un número es PAR o IMPAR.
+
+<Solution>
+```js
+Proceso Ejercicio06
+    Definir num Como Entero;
+    Escribir "Ingrese un número entero";
+    Leer num;
+    Si num mod 2 = 0 Entonces
+        Escribir "El número es par";
+    SiNo
+        Escribir "El número es impar";
+    FinSi
+FinProceso
+```
+</Solution>

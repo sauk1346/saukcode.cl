@@ -1,0 +1,188 @@
+# Integración de Firebase Realtime Database
+
+Firebase Realtime Database es una base de datos NoSQL en la nube que permite almacenar y sincronizar datos en tiempo real. En esta clase aprenderás a configurar e integrar Firebase en un proyecto Android con Kotlin y Jetpack Compose.
+
+## 1. Configuración del Proyecto
+
+### Paso 1: Archivo build.gradle.kts (proyecto raíz)
+
+El primer paso es agregar el plugin de Google Services en el archivo de configuración del proyecto raíz:
+
+**Archivo:** `build.gradle.kts` (proyecto raíz)
+
+```Kotlin
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.compose) apply false
+    id("com.google.gms.google-services") version "4.4.4" apply false  // ← Agregar esta línea
+}
+```
+
+¿Por qué `apply false`?. Porque en el archivo raíz solo declaramos el plugin disponible, pero lo aplicamos en el módulo específico (`:app`)
+
+### Paso 2: Archivo build.gradle.kts (Módulo :app)
+
+En el módulo de la aplicación, aplicamos el plugin y agregamos las dependencias
+
+**Sección Plugins**
+
+```kotlin
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
+    id("com.google.gms.google-services")  // ← Aplicar el plugin aquí
+}
+```
+
+**Sección Dependencias**
+
+```kotlin
+dependencies {
+    // Firebase BOM (Bill of Materials) - Gestiona versiones automáticamente
+    implementation(platform("com.google.firebase:firebase-bom:34.7.0"))
+    
+    // Firebase Analytics (requerido)
+    implementation("com.google.firebase:firebase-analytics")
+    
+    // Firebase Realtime Database
+    implementation(libs.firebase.database)
+    
+    // ... otras dependencias de AndroidX
+}
+```
+
+**¿Qué es Firebase BOM?**. Es un "Bill of Materials" que gestiona las versiones de todas las librerías de Firebase. Al usar BOM, no necesitas especificar la versión de cada librería individual, evitando conflictos de versiones.
+
+### Paso 3: Catálogo de Versiones (libs.versions.toml)
+
+El catálogo de versiones centraliza la gestión de dependencias
+
+```toml
+[versions]
+coreKtx = "1.10.1"
+firebaseDatabaseKtx = "22.0.1"  # Versión comentada como referencia
+
+[libraries]
+firebase-database = { group = "com.google.firebase", name = "firebase-database" }
+# Nota: Sin versión porque BOM la gestiona
+```
+
+## 2. Implementación del Código
+
+### Paso 1: Modelo de Datos (Data Class)
+
+```kotlin
+class Usuario(
+    var id: Int = 0, 
+    var nombre: String = "", 
+    var correo: String = ""
+){}
+```
+
+**Importante:** Firebase requiere un constructor vacío y propiedades mutables (`var`) para deserializar los datos correctamente.
+
+### Paso 2: Clase de Acceso a Firebase
+
+```kotlin
+class UsuarioFirebase {
+    // Obtener instancia de la base de datos
+    private val db = FirebaseDatabase.getInstance()
+    
+    // Referencia al nodo "usuarios" en la BD
+    private val usrDB = db.getReference(path: "usuarios")
+    
+    // Función para guardar un usuario
+    fun grabarUsuario(usr: Usuario) {
+        usrDB.child(usr.id.toString())  // Crear nodo hijo con el ID
+            .setValue(usr)               // Guardar el objeto
+            .addOnSuccessListener {
+                Log.d("TAG_", "Grabado")
+            }
+            .addOnFailureListener {
+                Log.e("TAG_", "Error ${it.message}")
+            }
+    }
+}
+```
+
+**Estructura en Firebase:**
+
+<TerminalOutput>
+{`root/
+└── usuarios/
+      └── 33/
+          ├── id: 33
+          ├── nombre: "Cata"
+          └── correo: "cata@correo.cl"`}
+</TerminalOutput>
+
+### Paso 3: MainActivity con Jetpack Compose
+
+```kotlin
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            Button(
+                modifier = Modifier.padding(top = 50.dp),
+                onClick = {
+                    // Crear objeto Usuario
+                    val miUsr = Usuario(
+                        id = 33, 
+                        nombre = "Cata", 
+                        correo = "cata@correo.cl"
+                    )
+                    
+                    // Instanciar clase Firebase
+                    val fireBase = UsuarioFirebase()
+                    
+                    // Guardar en la base de datos
+                    fireBase.grabarUsuario(miUsr)
+                }
+            ) {
+                Text(text = "Grabar")
+            }
+        }
+    }
+}
+```
+
+
+## 3. Diagrama de Arquitectura
+<TerminalOutput>
+{`┌──────────────────────────────────────────────────────────────┐
+│                       ANDROID APP                            │
+├──────────────────────────────────────────────────────────────┤
+│  ┌─────────────┐    ┌───────────────┐    ┌─────────────────┐ │
+│  │MainActivity │───▶│UsuarioFirebase│───▶│ FirebaseDatabase│ │
+│  │ (UI/Compose)│    │    (Lógica)   │    │    (Instancia)  │ │
+│  └─────────────┘    └───────────────┘    └───────┬─────────┘ │
+└──────────────────────────────────────────────────┼───────────┘
+                                                     │
+                                                     ▼
+                                       ┌─────────────────────────┐
+                                       │   FIREBASE CLOUD        │
+                                       │  ┌───────────────────┐  │
+                                       │  │ Realtime Database │  │
+                                       │  │  /usuarios/33/... │  │
+                                       │  └───────────────────┘  │
+                                       └─────────────────────────┘`}
+</TerminalOutput>
+
+## 4. Resumen de Pasos de Configuración
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Paso", "Archivo", "Acción"]}
+    rows={[
+        ["1", "**Consola Firebase**", "Crear proyecto y registrar app Android"],
+        ["2", "`/app`", "Descargar y colocar `google-services.json`"],
+        ["3","`build.gradle.kts` (raíz)","Agregar plugin google-services"],
+        ["4","`build.gradle.kts` (app)","Aplicar plugin y agregar dependencias"],
+        ["5","`libs.versions.toml`","Definir librerías en catálogo"],
+        ["6","**Código Kotlin**","Implementar lógica de acceso a BD"],
+    ]}
+/>

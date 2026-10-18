@@ -1,0 +1,236 @@
+# Situación de Modelación 05: Seguidores de Instagram
+
+## Material
+- [sm15.pdf](/inacap/mvfm01/docs/sm15.pdf)
+
+## Actividad 01
+
+Imagina que Antonio está trabajando en una empresa de marketing digital y desea analizar el crecimiento de seguidores en la cuenta de Instagram de un influencer a lo largo del tiempo. La información que ha recopilado durante los cinco primeros meses se sintetiza en la siguiente tabla:
+
+<SmartTable
+  tableLayout="fixed"
+  headers={["Mes","Número de Seguidores"]}
+  rows={[
+    ["1","485"],
+    ["2","1353"],
+    ["3","2307"],
+    ["4","2689"],
+    ["5","3005"]
+  ]}
+/>
+
+En la tabla anterior, el primer mes indica el momento en que se comienza a analizar el crecimiento de la cuenta.
+
+Antonio ha observado que el número de seguidores siempre va en aumento, y este aumento es constante, pero no de manera lineal. **Comprueba esta afirmación.**
+
+<Solution>
+
+<SmartTable
+  tableLayout="fixed"
+  headers={["Mes","Número de Seguidores","Aumento de Seguidores"]}
+  rows={[
+    ["1","485","0"],
+    ["2","1353","868"],
+    ["3","2307","954"],
+    ["4","2689","382"],
+    ["5","3005","316"]
+  ]}
+/>
+
+- El número de seguidores va en aumento cada mes.
+- El aumento **NO** es constante.
+- El aumento **NO** es lineal.
+</Solution>
+
+## Actividad 02
+
+Antonio desea utilizar un modelo logarítmico para predecir cuántos seguidores tendrá el influencer en el futuro.
+
+1. **¿Cuál es la expresión algebraica que permite realizar lo que se propone?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig67.png"
+	alt="Modelo logarítmico f(x)"
+	caption="Modelo logarítmico f(x)"
+	size="large"
+/>
+
+La expresión algebraica es:
+
+$$
+\begin{aligned}
+f(x) = 1619.08 \cdot \ln (x) + 417.53
+\end{aligned}
+$$
+</Solution>
+
+2. **Analiza la gráfica de la función que entrega GeoGebra**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig68.svg"
+	alt="Gráfica modelo logarítmico f(x)"
+	caption="Gráfica modelo logarítmico f(x)"
+	lightbox={true}
+	size="large"
+/>
+</Solution>
+
+3. **Si quisiera establecer el mes 0 como el mes de inicio. ¿sería factible hacerlo? De no ser así, ¿cómo debería modificar la expresión algebraica de la preguna A?**
+
+<Solution>
+Establecer el mes 0 como el mes de inicio, implica desplazar el gráfico a la izquierda. El nuevo modelo queda entonces:
+
+$$
+\begin{aligned}
+g(x) = 1619.08 \cdot \ln (x+1) + 417.53
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig69.png"
+	alt="Modelo trasladado g(x)"
+	caption="Modelo trasladado g(x)"
+	size="large"
+/>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig70.svg"
+	alt="Comparación modelos logarítmicos f(x) y g(x)"
+	caption="Comparación modelos logarítmicos f(x) y g(x)"
+	lightbox={true}
+	size="large"
+/>
+</Solution>
+
+## Actividad 03
+Considerando la función planteada en la pregunta A de la actividad anterior, responde las siguientes preguntas:
+
+1. **¿Cuántos seguidores se espera que tenga el influencer en el sexto mes?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig71.png"
+	alt="Cantidad de seguidores en el mes 6"
+	caption="Cantidad de seguidores en el mes 6"
+	size="large"
+/>
+
+En el sexto mes, se espera una cantidad de `3318` seguidores.
+</Solution>
+
+2. **¿En qué mes aproximadamente el influencer alcanzará los 5000 seguidores?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig72.png"
+	alt="Meses transcurridos para una cantidad de 5000 seguidores"
+	caption="Meses transcurridos para una cantidad de 5000 seguidores"
+	size="large"
+/>
+
+El influencer alcanzará los `5000` seguidores aproximadamente en el mes `17`.
+</Solution>
+
+3. **¿Aproximadamente qué tiempo debe esperar el influencer para pasar de 3500 a 4500 seguidores?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig73.png"
+	alt="Tiempo transcurrido para pasar de 3500 a 4500 seguidores"
+	caption="Tiempo transcurrido para pasar de 3500 a 4500 seguidores"
+	size="large"
+/>
+
+Debe esperar aproximadamente `6` meses.
+</Solution>
+
+## Actividad 04
+Richard, otro analista, plantea que tiene su propio modelo para incrementar el número de seguidores de cualquier cuenta, a partir de una cantidad inicial de 600 personas en el primer mes. La expresión algebraica que modela el número de seguidores en función de los meses es
+
+$$
+\begin{aligned}
+g(x) = 600 + 1157.25 \cdot \ln (2x - 1)
+\end{aligned}
+$$
+
+1. **Representa gráficamente en GeoGebra este modelo junto al modelo de la actividad 2-1.**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig74.png"
+	alt="Modelos logarítmicos f(x) y g(x)"
+	caption="Modelos logarítmicos f(x) y g(x)"
+	size="large"
+/>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig75.svg"
+	alt="Comparación modelos logarítmicos f(x) y g(x)"
+	caption="Comparación modelos logarítmicos f(x) y g(x)"
+	lightbox={true}
+	size="large"
+/>
+</Solution>
+
+2. **¿Cuál de los dos modelos es más conveniente para incrementar rápidamente el número de seguidores? Argumenta.**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig76.png"
+	alt="Cálculo del mes con el mismo número de seguidores"
+	caption="Cálculo del mes con el mismo número de seguidores"
+	size="large"
+/>
+
+- El modelo $g(x)$ es conveniente para los primeros meses.
+- Sin embargo, a partir del mes `7`, ambos modelos alcanzan aproximadamente el mismo número de seguidores.
+- En los meses posteriores, el modelo $f(x)$ es mejor que $g(x)$
+</Solution>
+
+## Actividad 05 
+Teniendo en cuenta el modelo $g(x)$ de la actividad anterior, responde:
+
+1. **¿Cuál es la tasa promedio de crecimiento de seguidores entre el séptimo y el décimo mes?¿Qué interpretación tiene?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig77.png"
+	alt="Tasa promedio de crecimiento entre meses 7 y 10"
+	caption="Tasa promedio de crecimiento entre meses 7 y 10"
+	size="large"
+/>
+
+- La tasa promedio de crecimiento de seguidores durante los meses 7 y 10 es: `146.39`
+- Esta razón indica que durante ese periodo de tiempo, los seguidores aumentaron en promedio 146 por mes.
+</Solution>
+
+2. **¿La tasa promedio de crecimiento de seguidores entre el décimo y el duodécimo mes es la misma que la determinada en la pregunta anterior? ¿Por qué?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig78.png"
+	alt="Tasa promedio de crecimiento entre meses 10 y 12"
+	caption="Tasa promedio de crecimiento entre meses 10 y 12"
+	size="large"
+/>
+
+- La tasa de crecimiento entre los meses 10 y 12 es menor.
+- Esto es debido a las características de un modelo logaritmico:
+	- Creciente si su base logarítmica es positiva
+	- Crecimiento más rápido al principio
+	- Crecimiento desacelerado, a medida que $x$ aumenta
+	- Crecimiento nunca se detiene
+
+Entonces, a pesar de que el modelo logarítmico siempre va en aumento, su tasa de crecimiento es menor, pero nunca 0, a medida que $x$ aumenta.
+</Solution>

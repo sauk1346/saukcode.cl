@@ -1,0 +1,114 @@
+# ARPA 2: Un Terreno Peligroso
+
+## Material
+- [ARPA2.pdf](/inacap/mvfm01/docs/ARPA22.pdf)
+- [ARPA2_Extension.pdf](/inacap/mvfm01/docs/ARPA22_Extension.pdf)
+
+## Ejercicio 01
+El profesor de topografía ha asignado a sus estudiantes la tarea de calcular el área de un terreno triangular, como el que se muestra en la imagen, donde $h_b$ representa la altura del triángulo:
+
+<SmartFigure
+    id="terreno-triangular"
+	src="/inacap/mvfm01/images/fig161.png"
+	alt="Terreno triangular"
+	caption="Terreno triangular"
+	size="large"
+/>
+
+El profesor les ha indicado que puede medir las distancias $a$, $b$, $c$, así como los ángulos $\alpha$, $\beta$, $\gamma$, utilizando las herramientas a su disposición. Sin embargo, no podrán medir la altura $h_b$ directamente, ya que en ese punto hay un deslizamiento de tierra peligroso.
+
+Dos estudiantes de la clase, Alan y Matías, saben que el área de un triángulo se calcula utilizando la siguiente fórmula:
+
+$$
+\begin{aligned}
+    A = \frac{base \cdot altura}{2}
+\end{aligned}
+$$
+
+Alan comenta: "Si conocemos la distancia $c$ del terreno y el ángulo $\alpha$, podemos calcular la altura del triángulo y, con ello, determinar el área del terreno"
+
+Matías opina: "Si calculamos la distancia $a$ del terrno y el ángulo $\gamma$, también podemos hallar la altura del triángulo y, por lo tanto, el área del terreno."
+
+Después de unos minutos de debate, ambos creen que su procedimiento es el correcto y que el otro está equivocado. Llaman al profesor para resolver la discusión. El profesor se acerca y les dice: "Ambos tienen razón"
+
+¿Por qué les dice esto?
+
+<Solution>
+
+- Ambos están en lo correcto, ya que descomponen el problema en problemas más pequeños
+- En este caso, descomponen el triángulo en 2 triangulos pequeños, T1 y T2:
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig162.png"
+	alt="Triángulos T1 y T2"
+	caption="Triángulos T1 y T2"
+	size="medium"
+/>
+
+**Para T1:**
+
+- $c$ es la hipotenusa
+- $h_b$ es el cateto opuesto de $\alpha$
+
+$$
+\begin{aligned}
+    \sin(\alpha) &=  \frac{cateto\;opuesto}{hipotenusa}\\[15pt]
+    &=  \frac{h_b}{c}
+\end{aligned}
+$$
+
+Despejando
+
+$$
+\begin{aligned}
+    h_b = c \cdot \sin(\alpha)
+\end{aligned}
+$$
+
+**Para T2:**
+
+- $a$ es la hipotenusa
+- $h_b$ es el cateto opuesto de $\gamma$
+
+$$
+\begin{aligned}
+    \sin(\gamma) &= \frac{cateto\;opuesto}{hipotenusa}\\[15pt]
+    &= \frac{h_b}{a}
+\end{aligned}
+$$
+
+Despejando 
+
+$$
+\begin{aligned}
+    h_b = a \cdot \sin(\gamma)
+\end{aligned}
+$$
+</Solution>
+
+## Ejercicio 02
+El profesor, después de decirles: "Ambos tienen razon", añade: "Sin embargo, esta no es la única altura que se puede trazar en el triángulo". A continuación, señala lo siguiente en el plano:
+
+<SmartFigure
+    id="alturas-hc-ha"
+	src="/inacap/mvfm01/images/fig163.png"
+	alt="Alturas Hc y Ha"
+	caption="Alturas Hc y Ha"
+	size="large"
+/>
+
+¿Qué otras relaciones pueden establecer para hallar la altura en ambos casos?
+
+<Solution>
+Se utiliza el mismo método que en el ejercicio 1. Esto es, descomponer el triángulo en triángulos más pequeños
+
+**Para $h_c$** : se tiene 2 formas para calcular la altura
+
+- $h_c = a \cdot \sin(\beta)$
+- $h_c = b \cdot \sin(\alpha)$
+
+**Para $h_a$** : de la misma manera, se tienen 2 formas para calcular su altura
+
+- $h_a = c \cdot \sin(\beta)$
+- $h_a = b \cdot \sin(\gamma)$
+</Solution>

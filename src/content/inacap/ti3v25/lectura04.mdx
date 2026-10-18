@@ -1,0 +1,132 @@
+# Diagramas de bases de datos
+
+## Diagrama de Clases
+
+**Ejemplo**
+
+- Una base de datos para una biblioteca. Se tiene una clase "Libro" que representa la entidad de libros.
+- Atributos: título, autor, número de páginas
+- Operaciones: buscar libro, registrar préstamo.
+
+<SmartFigure
+	id="ejemplo-diagrama-clases"
+	src="/inacap/ti3v25/images/fig05.png"
+	alt="Ejemplo Diagrama de Clases"
+	caption="Ejemplo Diagrama de Clases"
+	size="medium"
+/>
+
+
+### Atributos
+
+- **Público:** accesibles desde cualquier clase.
+- **Privado:** solo accesibles dentro de la misma clase.
+- **Protegido:** accesibles desde la propia clase y desde clases hijas que heredan de ella.
+
+**Ejemplo**
+
+- *titulo* es privado
+- *autor* es público
+- *num_paginas* es protegido
+
+<SmartFigure
+	id="tipo-atributos"
+	src="/inacap/ti3v25/images/fig06.png"
+	alt="Tipo de Atributos"
+	caption="Tipo de Atributos"
+	size="medium"
+/>
+
+### Operaciones
+
+- Públicas
+- Privadas
+- Protegidas
+
+**Ejemplo**
+
+- *buscar_libro()* es pública
+- *procesar_prestamo()* es privada
+- *validar_atributos()* es protegida
+
+<SmartFigure
+	id="tipo-operaciones"
+	src="/inacap/ti3v25/images/fig07.png"
+	alt="Tipo de Operaciones"
+	caption="Tipo de Operaciones"
+	size="medium"
+/>
+
+## Asociaciones y Multiplicidad
+- **Asociaciones:** conexiones y relaciones entre diferentes clases o entidades.
+- **Multiplicidad:** cuántas instancias de una clase están relacionadas con una instancia de la otra clase. (0...1 , 1...*, *...*)
+
+**Ejemplo**
+
+<SmartFigure
+	id="asociaciones-multiplicidad"
+	src="/inacap/ti3v25/images/fig08.png"
+	alt="Asociaciones y Multiplicidad"
+	caption="Asociaciones y Multiplicidad"
+	size="medium"
+/>
+
+## Perfil del Modelo de datos en UML
+- Es una extensión que brinda soporte para el modelado de bases de datos relacionales en UML.
+- Incluye extensiones personalizadas como: tablas, esquemas de bases de datos, clasves de tablas, desencadenadores y restricciones.
+
+
+# Actividad de Práctica 04
+
+<Quiz questions={[
+  {
+    question: "¿En qué se diferencia el modelo UML del modelo entidad-relación en el diseño lógico de bases de datos?",
+    options: [
+      "UML se enfoca en la configuración de entidades, mientras que el modelo entidad-relación se basa en la representación de objetos.",
+      "UML no proporciona un conjunto estandarizado de diagramas.",
+      "El modelo entidad-relación utiliza operaciones para definir el comportamiento de las entidades.",
+      "UML se enfoca en la representación de objetos, mientras que el modelo entidad-relación se basa en la configuración de entidades."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cómo se representan los atributos privados, públicos y protegidos en un Diagrama de Clases en UML?",
+    options: [
+      "Mediante líneas con el signo más (\"+\").",
+      "Utilizando símbolos específicos colocados antes de su declaración.",
+      "Con líneas que contienen el signo menos (\"-\").",
+      "A través de flechas punteadas en el diagrama."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué representa la multiplicidad en una asociación entre clases en UML?",
+    options: [
+      "La visibilidad de los atributos.",
+      "La cantidad de instancias de una clase relacionada con una instancia de otra clase.",
+      "La bidireccionalidad de la asociación.",
+      "La dependencia entre dos clases."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué función cumple la bidireccionalidad en una relación entre clases en UML?",
+    options: [
+      "Determina la cantidad de instancias relacionadas entre clases.",
+      "Indica la dependencia entre dos clases.",
+      "Permite la navegación en ambas direcciones a lo largo de la relación.",
+      "Define la visibilidad de las operaciones en una clase."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es el propósito del Perfil del Modelo de Datos en UML en el diseño de bases de datos relacionales?",
+    options: [
+      "Representar la estructura física global de la base de datos.",
+      "Brindar soporte para el modelado de bases de datos relacionales en UML.",
+      "Definir roles de relación en un modelo físico.",
+      "Mapear atributos a columnas en una tabla relacional."
+    ],
+    correctIndex: 1
+  }
+]} />

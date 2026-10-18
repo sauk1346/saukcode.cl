@@ -1,0 +1,95 @@
+# Configuración básica en la instalación de un sistema operativo Windows Server
+
+## Windows Server
+Es un sistema operativo de la compañía Microsoft desarrollado especialmente para servidores. 
+
+## Ediciones de Microsoft Windows Server
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Edición', 'Descripción']}
+	rows={[
+		[
+			'**Windows Server Standard**',
+			'Esta edición es adecuada para pequeñas y medianas empresas y se enfoca en la implementación de servicios de red esenciales, como Active Directory, DNS, DHCP y servicios de archivos e impresión'
+		],
+		[
+			'**Windows Server Datacenter**',
+			'Esta edición está diseñada para empresas que necesitan una gran cantidad de recursos de servidor y se centra en la virtualización de servidores y el almacenamiento de datos. Incluye características como el clúster de conmutación por error y el equilibrio de carga de red'
+		],
+		[
+			'**Windows Server Essentials**',
+			'Esta edición está diseñada para pequeñas empresas con hasta 25 usuarios y 50 dispositivos y ofrece una solución todo en uno para la gestión de servidores, el correo electrónico, la seguridad y el almacenamiento de archivos'
+		],
+		[
+			'**Windows Server Web**',
+			'Esta edición está diseñada para alojamiento web y se enfoca en la implementación de servicios web esenciales, como servidores web, servidores de bases de datos y servicios de correo electrónico'
+		],
+		[
+			'**Windows Server Storage Server**',
+			'Esta edición se enfoca en el almacenamiento de datos y ofrece una solución de almacenamiento en red (NAS) para empresas que necesitan una gran cantidad de espacio de almacenamiento de datos'
+		]
+	]}
+/>
+
+## Configuración en la instalación
+
+1. Configurar el nuevo hostname
+2. Asignar contraseña segura
+3. Asignar direccionamiento IPv4
+
+
+# Actividad de Práctica 04
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es el propósito principal de Windows Server?",
+		options: [
+			"Ejecutar aplicaciones de escritorio",
+			"Proporcionar servicios de red esenciales",
+			"Navegar por internet",
+			"Garantizar el funcionamiento de Office"
+		],
+		correctIndex: 1
+	},
+	{
+		question: "¿Qué versión de Windows Server equivale a Windows 10 en términos de funcionalidades?",
+		options: [
+			"Windows Server 2008",
+			"Windows Server 2012",
+			"Windows Server 2016",
+			"Windows Server 2019"
+		],
+		correctIndex: 2
+	},
+	{
+		question: "¿Qué es el hostname en un servidor?",
+		options: [
+			"La dirección IP del servidor",
+			"El nombre único asignado al servidor en la red",
+			"El nombre del sistema operativo del servidor",
+			"La contraseña de administrador del servidor"
+		],
+		correctIndex: 1
+	},
+	{
+		question: "¿Cuál es el ciclo de vida típico de soporte para una versión de Windows Server?",
+		options: [
+			"3 años de soporte principal y 2 años de soporte extendido",
+			"5 años de soporte principal y 5 años de soporte extendido",
+			"7 años de soporte principal y 3 años de soporte extendido",
+			"4 años de soporte principal y 4 años de soporte extendido"
+		],
+		correctIndex: 1
+	},
+	{
+		question: "¿Cuál de las siguientes no es una edición común de Windows Server?",
+		options: [
+			"Windows Server Standard",
+			"Windows Server Datacenter",
+			"Windows Server Professional",
+			"Windows Server Essentials"
+		],
+		correctIndex: 2
+	},    
+]} />

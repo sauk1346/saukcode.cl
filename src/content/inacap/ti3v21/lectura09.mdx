@@ -1,0 +1,206 @@
+# Manejo de Excepciones y jerarquías
+
+## Bloques 
+El manejo de excepciones sigue una estructura mediante los bloques:
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Bloques","Descripción"]}
+  rows={[
+    ["`try`","Contiene el código que puede generar una excepción. Si ocurre, la ejecución del bloque `try` se detiene y se pasa al bloque `except`"],
+    ["`except`","Especifica cómo manejar una excepción que se ha producido en el bloque `try`. Pueden existir varios bloques `except` para manejar diferentes tipos de excepciones"],
+    ["`else`","Opcional. Se ejecuta si no se produce ninguna excepción en el bloque `try`"],
+    ["`finally`","Opcional. Este bloque se ejecuta siempre, exista una excepción o no. Útil para realizar acciones de limpieza, como cerrar archivos o conexiones, independientemente de lo que suceda"]
+  ]}
+/>
+
+<SmartFigure
+	id="excepciones-jerarquias"
+	src="/inacap/ti3v21/images/fig34.png"
+	alt="Ejemplo Excepciones y jerarquías"
+	caption="Ejemplo Excepciones y jerarquías"
+	size="large"
+/>
+
+## Tipo de excepciones
+
+### ValueError
+Cuando se recibe un valor con un tipo de dato incorrecto
+
+```python
+# Programa espera número, pero usuario ingresa string
+try:
+	edad = int("treinta")
+
+except ValueError as e:
+	print(f"Error: {e}")
+```
+<TerminalOutput withBg>
+{`Error: invalid literal for int() with base 10: 'treinta'`}
+</TerminalOutput>
+
+### TypeError
+Cuando una operación o función se aplica a un objeto de tipo inapropiado
+
+```python
+# Se intenta "sumar" un string y número
+try:
+	resultado = "15" + 5
+
+except TypeError as e:
+	print(f"Error: {e}")
+```
+<TerminalOutput withBg>
+{`Error: can only concatenate str (not "int") to str`}
+</TerminalOutput>
+
+### ZeroDivisionError
+Cuando se intenta dividir un número por 0
+
+```python
+# Se divide 15 entre 0
+try:
+	resultado = 15 / 0
+
+except ZeroDivisionError as e:
+	print(f"Error: {e}")
+```
+<TerminalOutput withBg>
+{`Error: division by zero`}
+</TerminalOutput>
+
+### KeyError
+Para diccionarios. Cuando se intenta acceder a una clave que no existe en el diccionario
+
+```python
+# Diccionario solo tiene clave "nombre", pero 
+# se intenta acceder a clave "apellido"
+try:
+	diccionario = {"nombre": "Arturo"}
+	valor = diccionario["apellido"]
+
+except KeyError as e:
+	print(f"Error: {e}")
+```
+<TerminalOutput withBg>
+{`Error: 'apellido'`}
+</TerminalOutput>
+
+### IndexError
+Para listas. Cuando se intenta acceder a un elemento fuera del rango de la lista
+
+```python
+# lista solo tiene 3 elementos, pero se intenta acceder 
+# al elemento en la posición 5
+try:
+	lista = [10,20,30]
+	elemento = lista[5]
+
+except IndexError as e:
+	print(f"Error: {e}")
+```
+<TerminalOutput withBg>
+{`Error: list index out of range`}
+</TerminalOutput>
+
+### AttributeError
+Para Clases. Cuando se intenta acceder a un atributo que no existe en un objeto
+
+```python
+# Se intenta acceder al "método" de "numero", pero
+# "numero" no es un objeto
+try:
+	numero = 42
+	longitud = numero.length
+
+except AttributeError as e:
+	print(f"Error: {e}")
+```
+<TerminalOutput withBg>
+{`Error: 'int' object has no attribute 'length'`}
+</TerminalOutput>
+
+### FileNotFoundError
+Cuando se intenta abrir un archivo que no existe
+
+```python
+try:
+	with open("archivo_inexistente.txt", "r") as archivo:
+		contenido = archivo.read()
+
+except FileNotFoundError as e:
+	print(f"Error: {e}")
+```
+<TerminalOutput withBg>
+{`Error: [Errno 2] No such file or directory: 'archivo_inexistente.txt'`}
+</TerminalOutput>
+
+### FileExistsError
+Cuando se intenta crear un archivo ya existente
+
+```python
+try:
+	with open("archivo_existene.txt", "x") as archivo:
+		contenido = archivo.read()
+
+except FileExistsError as e:
+	print(f"Error: {e}")
+```
+<TerminalOutput withBg>
+{`Error: [Errno 17] File exists: 'archivo_existene.txt'`}
+</TerminalOutput>
+
+# Actividad de Práctica 09
+
+<Quiz questions={[
+  {
+    question: "¿Cuál es la función principal del bloque try en la gestión de excepciones en Python?",
+    options: [
+      "Definir cómo manejar excepciones",
+      "Ejecutar código que podría generar excepciones",
+      "Ignorar los errores",
+      "Realizar operaciones de limpieza"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "En la estructura de manejo de excepciones, ¿qué hace el bloque \"except\"?",
+    options: [
+      "Es opcional y no es necesario especificar ninguna excepción",
+      "Ignora cualquier error potencial",
+      "Maneja las excepciones que se producen en el bloque try",
+      "Define el código que se ejecutará siempre"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es el propósito principal del bloque \"else\" en la gestión de excepciones?",
+    options: [
+      "Realizar operaciones de limpieza",
+      "Manejar excepciones específicas",
+      "Ignorar cualquier error potencial",
+      "Ejecutar código solo si no hay excepciones en el bloque try"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué hace el bloque \"finally\" en la gestión de excepciones?",
+    options: [
+      "Maneja específicamente las excepciones",
+      "Define el código que se ejecutará siempre, independientemente si existen o no las excepciones",
+      "Es opcional y no es necesario especificar ninguna excepción",
+      "Ignora las excepciones"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es la ventaja de utilizar bloques \"try-except\" en la resolución de errores en Python?",
+    options: [
+      "Permite que el código sea más complejo",
+      "Ignora por completo las excepciones",
+      "Proporciona un enfoque estructurado para manejar errores y evitar la terminación abrupta del programa",
+      "Utiliza la palabra reservada poly en la declaración de clase"
+    ],
+    correctIndex: 2
+  }
+]} />

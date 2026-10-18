@@ -1,0 +1,92 @@
+# Tablero Kanban
+
+## DOD y DOR
+- **DOD (*Definition of Done*):** Conjunto de criterios que describe cuándo un elemento del backlog(historia de usuario, tarea o incremento) se considera completado
+- **DOR(*Definition of Ready*):** Establece los criterios que un elemento del backlog (historia de usuario o tarea) debe cumplir antes de ser seleccionado para el desarorllo durante un sprint o iteración
+
+Por lo tanto:
+
+1. **DOR** asegura que el trabajo está listo para empezar
+2. **DOD** asegura que el trabajo está completamente terminado
+
+## Historias de Usuario
+Responden a las preguntas: Cómo..., Quiero..., Para...
+
+## Prioridad
+
+- Épicas, tareas, historias de usuario, ¿cuál hago primero?
+- Depende del Product Owner
+
+Dependerá de la decisión del Product Owner según algunos criterios
+
+1. Mayor Valor
+2. Realmente Requerido
+3. Menor tiempo/costo
+
+## Estimación de Esfuerzo
+
+### Estimación por Tallas de Ropas
+Tareas o historias de usuario se clasifican en "tallas" según su complejidad, esfuerzo o tamaño percibido. Las categorías suelen ser:
+
+<SmartTable
+  tableLayout="fixed"
+  headers={["Talla","Descripción"]}
+  rows={[
+    ["**XS**","extra small"],
+    ["**S**","small"],
+    ["**M**","medium"],
+    ["**L**","large"],
+    ["**XL**","extra large"]
+  ]}
+/>
+
+### Estimación con la Secuencia de Fibonacci
+
+$$
+\begin{aligned} 
+    0,\,1,\,3,\,4,\,5,\,8,\,13,\,21,\,...\,(n-1) + n
+\end{aligned}
+$$
+
+- **¿Cómo se usa?:** Se suele aplica junto con el método de **Planning Poker**, donde los miembros del equipo seleccionan una cifra de Fibonacci para estimar una tarea. Se repite hasta que el equipo llega a un consenso.
+- **¿Por qué Fibonacci?:** Los números de Fibonacci reflejan una relación no lineal, lo cual es útil porque las tareas más complejas suelen crecer de forma exponencial en esfuerzo. Por ejemplo la diferencia entre una tarea "3" y una de "5" es mucho menor que entre una de "5" y una de "13"
+
+## Tablero Kanban
+- Permite gestionar tareas y flujos de trabajo de manera eficiente
+- Su objetivo principal es visualizar el trabajo, limitar el trabajo en curso (WIP) y optimizar la entrega de valor al equipo o cliente
+- Está compuesto por 4 columnas
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Por Hacer (To Do)","En Progreso (In Progress)","En Revisión (Review)","Hecho (Done)"]}
+  rows={[
+    ["Tarea A","","",""],
+    ["","","","Tarea B"],
+    ["Tarea C","","",""],
+    ["","Tarea D","",""],
+    ["","","Tarea E",""],
+    ["","","",""]
+  ]}
+/>
+
+## Cómo ordenar las tareas
+
+### Evaluar esfuerzo de las tareas
+- Cada tarea del tablero se evalúa en función de su complejidad, tiempo estimado y recursos necesarios.
+- La secuencia de Fibonacci se utiliza porque refleja un aumento exponencial del esfuerzo a medida que las tareas se vuelven más complejas. Esto evita debates extensos sobre diferencias pequeñas y fomenta decisiones rápidas.
+
+### Asignar un valor de Fibonacci
+A cada tarea se le asigna un número de la secuencia de Fibonacci, que representa su esfuerzo relativo:
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Puntos","Descripción"]}
+  rows={[
+    ["**1**","Tarea muy simple, rápida de realizar"],
+    ["**2**","Tarea sencilla, pero que requiere algo más de tiempo"],
+    ["**3**","Tarea moderada, con cierta complejidad"],
+    ["**5**","Tarea más compleja, que puede necesitar más recursos o tiempo"],
+    ["**8**","Tarea difícil, con múltiples dependencias o riesgos"],
+    ["**13**","Tarea muy compleja y extensa"]
+  ]}
+/>

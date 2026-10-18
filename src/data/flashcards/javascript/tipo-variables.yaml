@@ -1,0 +1,45 @@
+topic: Tipo Variables
+slug: js-tipo-variables
+section: javascript
+layout: default
+cards:
+  - front: |
+      ¿Cuál es la diferencia entre `var`, `let` y `const`?
+    back: |
+      - `var`: scope de función, se puede redeclarar
+      - `let`: scope de bloque, no se puede redeclarar
+      - `const`: scope de bloque, no se puede reasignar
+
+  - front: |
+      ¿Qué imprime este código?
+
+      ```js
+      console.log(typeof null)
+      ```
+    back: |
+      `"object"`
+
+      Es un bug histórico de JavaScript. `null` no es un objeto.
+
+  - front: |
+      ¿Qué es el hoisting?
+    back: |
+      Las declaraciones de variables con `var` y funciones son "elevadas" al tope de su scope antes de ejecutarse.
+
+      ```js
+      console.log(x) // undefined, no error
+      var x = 5
+      ```
+
+  - front: |
+      ¿Cuántos tipos primitivos tiene JavaScript?
+    back: |
+      7 tipos primitivos:
+
+      - `string`
+      - `number`
+      - `bigint`
+      - `boolean`
+      - `undefined`
+      - `null`
+      - `symbol`

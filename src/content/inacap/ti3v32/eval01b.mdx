@@ -1,0 +1,380 @@
+# Evaluación 1 - Versión B
+
+## Sección de Alternativas (40 puntos)
+
+<Quiz questions={[
+  {
+    question: "¿Cuál es la principal característica de una base de datos NoSQL como MongoDB?",
+    options: [
+      "Utiliza solo tablas relacionales",
+      "Requiere esquema fijo",
+      "Usa documentos flexibles",
+      "Solo permite texto plano"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué formato se basa en JSON pero es más eficiente para el almacenamiento interno de MongoDB?",
+    options: [
+      "YAML",
+      "CSV",
+      "BSON",
+      "HTML"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "En MongoDB Compass, ¿qué permite el botón \"Insert Document\"?",
+    options: [
+      "Crear un nuevo campo",
+      "Cargar un archivo JSON externo",
+      "Insertar un nuevo documento manualmente",
+      "Eliminar un documento"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál de los siguientes no es un tipo de dato válido en MongoDB?",
+    options: [
+      "String",
+      "Boolean",
+      "Date",
+      "Float64List"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué operador permite filtrar documentos con valores diferentes al especificado?",
+    options: [
+      "$eq",
+      "$ne",
+      "$gt",
+      "$lt"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es la estructura correcta para representar un documento en MongoDB?",
+    options: [
+      "Tabla con columnas",
+      "Objeto con pares clave-valor",
+      "Lista separada por comas",
+      "Archivo binario"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué campo único se asigna automáticamente a cada documento en MongoDB?",
+    options: [
+      "id_doc",
+      "uuid",
+      "_id",
+      "ref"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué acción se realiza cuando haces clic en el botón \"Delete Document\" en Compass?",
+    options: [
+      "Se borra toda la base de datos",
+      "Se elimina la colección",
+      "Se elimina un documento específico",
+      "Se borra solo un campo del documento"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué operador se utiliza para comprobar si un campo está presente en los documentos?",
+    options: [
+      "$in",
+      "$exists",
+      "$has",
+      "$check"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué campo se recomienda usar para guardar fechas en MongoDB?",
+    options: [
+      "dateField como tipo string",
+      "Cualquier campo con NumberLong",
+      "fecha con tipo ISODate",
+      "No es necesario usar fechas en MongoDB"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué hace el operador $in en una consulta?",
+    options: [
+      "Inserta varios valores",
+      "Elimina campos nulos",
+      "Busca si un valor pertenece a un conjunto",
+      "Agrega datos a un array"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué tipo de dato es un array en MongoDB?",
+    options: [
+      "Una lista de claves",
+      "Un campo único",
+      "Una colección",
+      "Una lista ordenada de valores"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué sucede si intentas insertar dos documentos con el mismo valor en _id?",
+    options: [
+      "Ambos se almacenan como versiones",
+      "Se lanza un error",
+      "El documento anterior se actualiza",
+      "Se eliminan ambos"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué puedes hacer desde la pestaña \"Documents\" en Compass?",
+    options: [
+      "Ejecutar scripts JavaScript",
+      "Importar drivers",
+      "Ver y editar documentos visualmente",
+      "Crear nuevas bases de datos"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál de los siguientes operadores sirve para combinar varias condiciones de filtro?",
+    options: [
+      "$or",
+      "$like",
+      "$contains",
+      "$group"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué operador filtra documentos cuya propiedad está dentro de un rango de valores?",
+    options: [
+      "$range",
+      "$in",
+      "$between",
+      "$map"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué campo representa el número total de registros de una colección?",
+    options: [
+      "total_rows",
+      "documentCount",
+      "Se obtiene con countDocuments()",
+      "No se puede saber"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué herramienta permite ver la estructura interna y tipos de campos de una colección en Compass?",
+    options: [
+      "Aggregation",
+      "Schema",
+      "Import",
+      "Atlas Sync"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué tipo de operación representa \"Update One\"?",
+    options: [
+      "Reemplazar todos los documentos",
+      "Actualizar el primer documento que cumpla una condición",
+      "Crear una colección",
+      "Borrar una base de datos"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de las siguientes opciones es un ejemplo válido de subdocumento?",
+    options: [
+      "\"detalles\": \"marca, color\"",
+      "\"detalles\": [\"marca\", \"color\"]",
+      "\"detalles\": { \"marca\": \"LG\", \"color\": \"Negro\" }",
+      "\"detalles\": marca: \"LG\", color: \"Negro\""
+    ],
+    correctIndex: 2
+  }
+]} />
+
+## Parte Práctica (60 puntos)
+
+### Preparación
+- Crear la base de datos llamada evaluacionFinalB
+- Crear dos colecciones:
+    - productos
+    - usuarios
+- Insertar al menos 4 documentos en cada colección con datos realistas
+
+<Solution>
+1. Documentos para colección "usuarios":
+```json
+[
+  {
+    "nombre": "Antonio",
+  	"email": "antonio@example.com",
+  	"direccion": "direccion111"
+  },
+  {
+    "nombre": "María",
+  	"email": "maria@example.com",
+  	"direccion": "direccion222"
+  },
+  {
+    "nombre": "Marcos",
+  	"email": "marcos@example.com",
+  	"direccion": "direccion333"
+  },
+  {
+    "nombre": "Doris",
+  	"email": "doris@example.com",
+  	"direccion": "direccion444"
+  }
+]
+```
+
+2. Documentos para colección productos
+```json
+[
+  {
+    "nombre":"mouse",
+    "stock":100,
+    "precio":25
+  },
+  {
+    "nombre":"teclado",
+    "stock":35,
+    "precio":10
+  },
+  {
+    "nombre":"pantalla",
+    "stock":40,
+    "precio":30
+  },
+  {
+    "nombre":"impresora",
+    "stock":15,
+    "precio":32
+  }
+]
+```
+</Solution>
+
+### Ejercicio 1 - Inserción visual de documentos (15 puntos)
+Inserta **2 nuevos documentos** en la colección usuarios. Cada uno debe contener:
+- nombre (string)
+- email (string)
+- edad (number)
+- fechaRegistro(date)
+
+Agrega el campo extra activo (boolean) en **uno** de ellos
+
+<Solution>
+```json
+[
+  {
+  	"nombre": "Raúl",
+    "email": "raul@example.com",
+    "edad": 30,
+    "fechaRegistro": {"$date":"2025-01-03"},
+    "activo": true
+  },
+  {
+    "nombre": "Sofía",
+    "email": "sofia@example.com",
+    "edad": 28,
+    "fechaRegistro": {"$date":"2025-02-15"},
+    "activo": true
+  }
+]
+```
+</Solution>
+
+### Ejercicio 2 - Filtros visuales (15 puntos)
+Usa la barra de filtros para lo siguiente:
+1. En usuarios, muestra los que tengan edad menor o igual a 25
+
+<Solution>
+```json
+{ "edad": { "$lte":25 } }
+```
+</Solution>
+
+2. En productos, filtra los productos que contengarn la palabra "Pro" en su nombre
+
+<Solution>
+```json
+{ "nombre": { "$regex": "Pro", "$options": "i" } }
+```
+</Solution>
+
+### Ejercicio 3 - Edicion visual (15 puntos)
+Realiza las siguiente actualizaciones desde la interfaz visual:
+1. Cambia el correo de un usuario existente
+
+<Solution>
+- Ir a query y agregar:
+```json
+{ "nombre": "Antonio" }
+```
+- Luego ir a "update" y agregar:
+```json
+{ $set: { "email":"tono@example.com" } }
+```
+</Solution>
+
+2. Agrega el campo `vip:true` a todos los usuarios con edad mayor a 30
+
+<Solution>
+- Ir a query y agregar:
+```json
+{ "edad": { "$gt":30 } }
+```
+- Luego ir a "update" y agregar:
+```json
+{ $set:{"vip":true } }
+```
+</Solution>
+
+3. Modifica el precio de un producto, sumando 10
+
+<Solution>
+- Ir a query y agregar:
+```json
+{ "nombre": "mouse"}
+```
+- Luego ir a "update" y agregar:
+```json
+{ $inc:{"precio":10 } }
+```
+</Solution>
+
+### Ejercicio 4 - Eliminaciones visuales (15 puntos)
+Elimina desde Compass:
+1. Un usuario cuyo campo activo sea false (puedes editar uno si es necesario)
+
+<Solution>
+- Ir a query y agregar:
+```json
+{ "activo": false }
+```
+- Luego presionar botón "delete":
+</Solution>
+
+2. Un producto cuyo precio sea mayor a 1000
+
+<Solution>
+- Ir a query y agregar:
+```json
+En query: {"precio":{"$gt":1000}}
+```
+- Luego presionar botón "delete":
+</Solution>

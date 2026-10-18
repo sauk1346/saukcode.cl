@@ -1,0 +1,303 @@
+topic: Comandos IOS
+slug: ti3v52-comandos-ios
+courseId: ti3v52
+layout: default
+cards:
+  # tarjeta01
+  - front: |
+      ¿Cómo acceder al modo privilegiado?
+    back: |
+      Con el comando `enable`
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`Switch> enable
+      Switch#`}
+      </TerminalOutput>
+
+  # tarjeta02
+  - front: |
+      ¿Cómo entrar al modo de configuración global?
+    back: |
+      Con el comando `configure terminal` desde el modo privilegiado
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`Switch# configure terminal
+      Switch(config)#`}
+      </TerminalOutput>
+
+  # tarjeta03
+  - front: |
+      ¿Cómo entrar a la interfaz virtual de administración de un switch?
+    back: |
+      Con el comando `interface vlan 1`
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`Switch(config)# interface vlan 1
+      Switch(config-if)#`}
+      </TerminalOutput>
+
+  # tarjeta04
+  - front: |
+      ¿Cómo asignar una IP y máscara a una interfaz?
+    back: |
+      Con el comando `ip address <ip> <máscara>` dentro del submodo de interfaz
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`Switch(config-if)# ip address 172.20.30.2 255.255.255.0`}
+      </TerminalOutput>
+
+  # tarjeta05
+  - front: |
+      ¿Cómo activar una interfaz en Cisco IOS?
+    back: |
+      Con el comando `no shutdown`
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`Switch(config-if)# no shutdown`}
+      </TerminalOutput>
+
+  # tarjeta06
+  - front: |
+      ¿Cómo salir de un submodo de configuración?
+    back: |
+      Con el comando `exit`, vuelve al modo anterior
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`Switch(config-if)# exit
+      Switch(config)#`}
+      </TerminalOutput>
+
+  # tarjeta07
+  - front: |
+      ¿Cómo definir el gateway por defecto en un switch?
+    back: |
+      Con el comando `ip default-gateway <ip>` en modo de configuración global
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`Switch(config)# ip default-gateway 172.20.30.1`}
+      </TerminalOutput>
+
+  # tarjeta08
+  - front: |
+      ¿Cómo asignar una IP a una interfaz física de un router?
+    back: |
+      Con `interface <tipo><número>`, luego asignando IP y activando. El tipo de interfaz se puede abreviar
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`Router(config)# interface GigabitEthernet0/0  ! o: g0/0
+      Router(config-if)# ip address 172.20.30.1 255.255.255.0
+      Router(config-if)# no shutdown`}
+      </TerminalOutput>
+
+  # tarjeta09
+  - front: |
+      ¿Cómo configurar múltiples interfaces en un router?
+    back: |
+      Entrando a cada interfaz por separado, asignando IP y activando con `no shutdown`
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`Router(config)# interface GigabitEthernet0/0  ! o: g0/0
+      Router(config-if)# ip address 172.16.0.1 255.255.240.0
+      Router(config-if)# no shutdown
+      Router(config-if)# exit
+      Router(config)# interface GigabitEthernet0/1  ! o: g0/1
+      Router(config-if)# ip address 172.16.16.1 255.255.240.0
+      Router(config-if)# no shutdown`}
+      </TerminalOutput>
+
+  # tarjeta10
+  - front: |
+      ¿Cuáles son las abreviaciones de interfaces más comunes en Cisco IOS?
+    back: |
+      Cisco IOS acepta abreviaciones siempre que no sean ambiguas
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`GigabitEthernet0/0  →  gi0/0  o  g0/0
+      FastEthernet0/0     →  fa0/0  o  f0/0
+      Serial0/0/0         →  se0/0/0  o  s0/0/0`}
+      </TerminalOutput>
+
+  # tarjeta11
+  - front: |
+      ¿Cómo cambiar el nombre de un router o switch?
+    back: |
+      Con el comando `hostname <nombre>` en modo de configuración global
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`Router(config)# hostname ANTONIO
+      ANTONIO(config)#`}
+      </TerminalOutput>
+
+  # tarjeta12
+  - front: |
+      ¿Cómo asignar un nombre de dominio en Cisco IOS?
+    back: |
+      Con el comando `ip domain-name <dominio>`. Es requerido para generar claves RSA y habilitar SSH
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`ANTONIO(config)# ip domain-name morales.cl`}
+      </TerminalOutput>
+
+  # tarjeta13
+  - front: |
+      ¿Cómo crear un usuario local con contraseña cifrada?
+    back: |
+      Con el comando `username <usuario> secret <contraseña>`
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`ANTONIO(config)# username admin secret cisco-admin`}
+      </TerminalOutput>
+
+  # tarjeta14
+  - front: |
+      ¿Cuál es la diferencia entre `enable password` y `enable secret`?
+    back: |
+      `enable secret` almacena la contraseña cifrada (MD5), `enable password` la guarda en texto plano. Siempre se prefiere `enable secret`
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`ANTONIO(config)# enable secret cisco-ena`}
+      </TerminalOutput>
+
+  # tarjeta15
+  - front: |
+      ¿Cómo generar las claves RSA para habilitar SSH?
+    back: |
+      Con `crypto key generate rsa`. Requiere tener `hostname` y `ip domain-name` configurados previamente. Se recomienda 2048 bits
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`ANTONIO(config)# crypto key generate rsa
+      How many bits in the modulus [512]: 2048`}
+      </TerminalOutput>
+
+  # tarjeta16
+  - front: |
+      ¿Cómo habilitar SSH versión 2?
+    back: |
+      Con el comando `ip ssh version 2` en modo de configuración global
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`ANTONIO(config)# ip ssh version 2`}
+      </TerminalOutput>
+
+  # tarjeta17
+  - front: |
+      ¿Cómo configurar el tiempo máximo de inactividad en SSH?
+    back: |
+      Con el comando `ip ssh time-out <segundos>`
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`ANTONIO(config)# ip ssh time-out 60`}
+      </TerminalOutput>
+
+  # tarjeta18
+  - front: |
+      ¿Cómo configurar los intentos de autenticación en SSH?
+    back: |
+      Con el comando `ip ssh authentication-retries <n>`
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`ANTONIO(config)# ip ssh authentication-retries 2`}
+      </TerminalOutput>
+  
+  # tarjeta19
+  - front: |
+      ¿Cómo restringir el acceso remoto solo a SSH en las líneas vty?
+    back: |
+      Entrando a `line vty 0 4`, deshabilitando todos los protocolos y permitiendo solo SSH
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`ANTONIO(config)# line vty 0 4
+      ANTONIO(config-line)# no transport input
+      ANTONIO(config-line)# transport input ssh
+      ANTONIO(config-line)# login local`}
+      </TerminalOutput>
+
+  # tarjeta20
+  - front: |
+      ¿Qué hace `login local` en las líneas vty?
+    back: |
+      Le indica al router que autentique usando los usuarios locales creados con `username`, en lugar de una contraseña de línea simple
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`ANTONIO(config-line)# login local`}
+      </TerminalOutput>
+
+  # tarjeta21
+  - front: |
+      ¿Cómo configurar una ruta estática en un router?
+    back: |
+      Con el comando `ip route <red destino> <máscara> <IP next-hop>` en modo de configuración global
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`ANTONIO(config)# ip route 170.170.48.0 255.255.254.0 170.170.50.130`}
+      </TerminalOutput>
+
+  # tarjeta22
+  - front: |
+      ¿Cómo configurar una ruta por defecto en un router?
+    back: |
+      Con el comando `ip route 0.0.0.0 0.0.0.0 <IP next-hop>`. Envía todo el tráfico que no coincide con ninguna ruta conocida hacia ese destino
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`ANTONIO(config)# ip route 0.0.0.0 0.0.0.0 170.170.50.130`}
+      </TerminalOutput>
+
+  # tarjeta23
+  - front: |
+      ¿Cómo ver las direcciones IP de las interfaces de un router?
+    back: |
+      Con el comando `show ip interface brief` (abreviado `sh ip int br`)
+
+      Ejemplo:
+
+      <TerminalOutput withBg>
+      {`ANTONIO# show ip interface brief
+      Interface              IP-Address      OK? Method Status                Protocol
+      GigabitEthernet0/0     170.170.0.1     YES manual up                    up
+      GigabitEthernet0/1     170.170.32.1    YES manual up                    up
+      Serial0/0/0            170.170.50.129  YES manual up                    up`}
+      </TerminalOutput>

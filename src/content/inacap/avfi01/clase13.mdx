@@ -1,0 +1,202 @@
+# Ejercicio 1 (Presupuesto de Caja)
+
+Construya el presupuesto de caja, considerando las siguientes cuentas, de una empresa que recién inicia sus operaciones el año 2027
+
+**Datos:**
+1. Ventas estimadas netas:
+    - Enero: \$10.000.000, Febrero: \$12.000.000, Marzo: \$14.000.000
+2. Política de cobro: 50\% al contado y 50\% a 30 días
+3. Las compras netas son el 40\% de las ventas netas y se pagan de la misma manera que las ventas
+4. Los sueldos brutos son: (y las imposiciones un 20\%)
+        - Enero: \$1.800.000, Febrero: \$2.000.000, Marzo: \$2.200.000
+5. Paga un seguro por \$300.000 mensuales
+6. Tiene una oficina por la que le pagan \$500.000 mensuales
+7. Tiene gasto administrativo por \$1.000.000 mensual
+
+<Solution title="Solución Ejercicio 1">
+
+<Callout type="note" title="Supuestos utilizados">
+El enunciado no lo indica explícitamente, pero para resolver un presupuesto de caja se asume:
+- Las ventas y compras están afectas a **IVA (19%)**, por lo que el efectivo cobrado/pagado corresponde al valor **bruto** (neto + IVA), no al neto.
+- Las **imposiciones** (20% del sueldo bruto) y el **IVA a pagar** se cancelan al **mes siguiente** de haberse devengado, tal como ocurre en la práctica (plazo legal de pago).
+</Callout>
+
+---
+
+<TableProvider>
+
+**Paso 1: Ventas (netas, IVA y brutas)**
+
+<P indent={2}>
+Como la política de cobro (50% contado / 50% a 30 días) se aplica sobre lo que realmente se cobra, primero hay que llevar las ventas netas a su valor bruto, agregando el 19% de IVA.
+</P>
+
+<SmartTable
+    id="tablaVentasIVA"
+    tableLayout="auto"
+    caption="Ventas: Netas, IVA y Brutas"
+    headers={["Concepto", "Enero", "Febrero", "Marzo"]}
+    rows={[
+        ["Ventas Netas", "\$10.000.000", "\$12.000.000", "\$14.000.000"],
+        ["+ IVA (19%)", "\$1.900.000", "\$2.280.000", "\$2.660.000"],
+        { cells: ["**= Ventas Brutas**", "**\$11.900.000**", "**\$14.280.000**", "**\$16.660.000**"], highlight: true }
+    ]}
+/>
+
+---
+
+**Paso 2: Cobranza de Ventas (50% contado / 50% a 30 días)**
+
+<P indent={2}>
+El 50% de las ventas brutas se cobra el mismo mes (contado) y el otro 50% se cobra al mes siguiente (a 30 días). Por eso, la columna "Crédito 30 días" de un mes repite el 50% contado del mes anterior.
+</P>
+
+<SmartTable
+    id="tablaCobranzaVentas"
+    tableLayout="auto"
+    caption="Cobranza de Ventas"
+    headers={["Concepto", "Enero", "Febrero", "Marzo"]}
+    rows={[
+        ["{{red:50%}} Contado", "\$5.950.000", "\$7.140.000", "\$8.330.000"],
+        ["{{red:50%}} 30 días", "\$0", "\$5.950.000", "\$7.140.000"]
+    ]}
+/>
+
+<P indent={3}>
+→ Estos valores llenan las filas **Ventas Contado** y **Ventas Crédito 30 días** de la <TableRef id="tablaPresupuestoCaja" /> (Presupuesto de Caja, Paso 7).
+</P>
+
+---
+
+**Paso 3: Compras (netas, IVA y brutas)**
+
+<P indent={2}>
+Las compras netas son el 40% de las ventas netas. Igual que con las ventas, se debe agregar el IVA para obtener el monto que realmente se paga.
+</P>
+
+<SmartTable
+    id="tablaComprasIVA"
+    tableLayout="auto"
+    caption="Compras: Netas, IVA y Brutas"
+    headers={["Concepto", "Enero", "Febrero", "Marzo"]}
+    rows={[
+        ["Compras Netas (40% Ventas Netas)", "\$4.000.000", "\$4.800.000", "\$5.600.000"],
+        ["+ IVA (19%)", "\$760.000", "\$912.000", "\$1.064.000"],
+        { cells: ["**= Compras Brutas**", "**\$4.760.000**", "**\$5.712.000**", "**\$6.664.000**"], highlight: true }
+    ]}
+/>
+
+---
+
+**Paso 4: Pago de Compras (50% contado / 50% a 30 días)**
+
+<P indent={2}>
+Las compras se pagan de la misma manera que las ventas: 50% al contado y 50% a 30 días.
+</P>
+
+<SmartTable
+    id="tablaPagoCompras"
+    tableLayout="auto"
+    caption="Pago de Compras"
+    headers={["Concepto", "Enero", "Febrero", "Marzo"]}
+    rows={[
+        ["{{red:50%}} Contado", "\$2.380.000", "\$2.856.000", "\$3.332.000"],
+        ["{{red:50%}} 30 días", "\$0", "\$2.380.000", "\$2.856.000"]
+    ]}
+/>
+
+<P indent={3}>
+→ Estos valores llenan las filas **Compras Contado** y **Compras Crédito 30 días** de la <TableRef id="tablaPresupuestoCaja" /> (Presupuesto de Caja, Paso 7).
+</P>
+
+---
+
+**Paso 5: Sueldos (bruto, imposiciones y líquido)**
+
+<P indent={2}>
+Del sueldo bruto se descuenta el 20% de imposiciones. Lo que efectivamente se paga al trabajador ese mes es el **sueldo líquido**; las imposiciones se enteran (pagan) el mes siguiente.
+</P>
+
+<SmartTable
+    id="tablaSueldos"
+    tableLayout="auto"
+    caption="Sueldos: Bruto, Imposiciones y Líquido"
+    headers={["Concepto", "Enero", "Febrero", "Marzo"]}
+    rows={[
+        ["Sueldo Bruto", "\$1.800.000", "\$2.000.000", "\$2.200.000"],
+        ["- Imposiciones (20%)", "\$360.000", "\$400.000", "\$440.000"],
+        { cells: ["**= Sueldo Líquido**", "**\$1.440.000**", "**\$1.600.000**", "**\$1.760.000**"], highlight: true }
+    ]}
+/>
+
+<P indent={3}>
+→ El **Sueldo Líquido** llena directamente esa fila de la <TableRef id="tablaPresupuestoCaja" />. Las **Imposiciones** también, pero desplazadas un mes (Enero → se pagan en Febrero, etc.), tal como se explica en el Paso 7.
+</P>
+
+---
+
+**Paso 6: Saldo de IVA (Débito - Crédito)**
+
+<P indent={2}>
+El IVA Débito (de las ventas) menos el IVA Crédito (de las compras) determina el IVA que se debe pagar al Servicio de Impuestos Internos. Este saldo se paga el mes siguiente al que se generó.
+</P>
+
+<SmartTable
+    id="tablaSaldoIVA"
+    tableLayout="auto"
+    caption="Saldo de IVA a pagar"
+    headers={["Concepto", "Enero", "Febrero", "Marzo"]}
+    rows={[
+        ["IVA Débito (Ventas)", "\$1.900.000", "\$2.280.000", "\$2.660.000"],
+        ["- IVA Crédito (Compras)", "\$760.000", "\$912.000", "\$1.064.000"],
+        { cells: ["**= Saldo IVA**", "**\$1.140.000**", "**\$1.368.000**", "**\$1.596.000**"], highlight: true }
+    ]}
+/>
+
+<P indent={3}>
+→ Este saldo llena la fila **Pago IVA (mes siguiente)** de la <TableRef id="tablaPresupuestoCaja" />, también desplazado un mes.
+</P>
+
+---
+
+**Paso 7: Presupuesto de Caja consolidado**
+
+<P indent={2}>
+Con todos los flujos ya calculados, se arma el presupuesto de caja mes a mes. El **Saldo Inicial** de cada mes se suma dentro del **Total de Ingresos** (es efectivo disponible al comenzar el mes), por lo que el **Flujo de Caja Neto** (Total Ingresos − Total Egresos) ya corresponde directamente al **Saldo Final de Caja**, salvo que la empresa decida ahorrar o invertir parte del excedente. Recuerda que las imposiciones y el saldo de IVA de un mes se pagan efectivamente el mes siguiente, por lo que en Enero ambos parten en \$0.
+</P>
+
+<SmartTable
+    id="tablaPresupuestoCaja"
+    tableLayout="auto"
+    caption="Presupuesto de Caja"
+    headers={["Item", "Enero", "Febrero", "Marzo"]}
+    rows={[
+        ["Saldo Inicial", "\$0", "\$330.000", "\$3.284.000"],
+        { section: "Ingresos" },
+        ["Ventas Contado", "\$5.950.000", "\$7.140.000", "\$8.330.000"],
+        ["Ventas Crédito 30 días", "\$0", "\$5.950.000", "\$7.140.000"],
+        { cells: ["**Total Ingresos**", "**\$5.950.000**", "**\$13.420.000**", "**\$18.754.000**"], highlight: true },
+        { section: "Egresos" },
+        ["Compras Contado", "\$2.380.000", "\$2.856.000", "\$3.332.000"],
+        ["Compras Crédito 30 días", "\$0", "\$2.380.000", "\$2.856.000"],
+        ["Sueldo Líquido", "\$1.440.000", "\$1.600.000", "\$1.760.000"],
+        ["Imposiciones (mes siguiente)", "\$0", "\$360.000", "\$400.000"],
+        ["Seguro", "\$300.000", "\$300.000", "\$300.000"],
+        ["Arriendo Oficina", "\$500.000", "\$500.000", "\$500.000"],
+        ["Gasto Administrativo", "\$1.000.000", "\$1.000.000", "\$1.000.000"],
+        ["Pago IVA (mes siguiente)", "\$0", "\$1.140.000", "\$1.368.000"],
+        { cells: ["**Total Egresos**", "**\$5.620.000**", "**\$10.136.000**", "**\$11.516.000**"], highlight: true },
+        { section: "Resultado" },
+        { cells: ["**Flujo de Caja Neto**", "**\$330.000**", "**\$3.284.000**", "**\$7.238.000**"], highlight: true },
+        ["Ahorro / Inversión de Excedentes", "\$0", "\$0", "\$0"],
+        { cells: ["**Saldo Final de Caja**", "**\$330.000**", "**\$3.284.000**", "**\$7.238.000**"], highlight: true }
+    ]}
+/>
+
+<Callout type="tip" title="Conclusión">
+La empresa termina cada mes con caja positiva y creciente: \$330.000 en Enero, \$3.284.000 en Febrero y \$7.238.000 en Marzo. El saldo final de un mes es siempre el saldo inicial del mes siguiente. El **Flujo de Caja Neto** y el **Saldo Final de Caja** coinciden porque en este ejercicio no hay ahorro ni inversión de excedentes (fila en \$0); si la empresa decidiera apartar parte del efectivo disponible, esa fila dejaría de ser \$0 y el Saldo Final de Caja pasaría a ser menor que el Flujo de Caja Neto.
+</Callout>
+
+</TableProvider>
+
+</Solution>

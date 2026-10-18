@@ -1,0 +1,88 @@
+# ARPA 01
+
+**Material**
+- [ARPA 1: Sitio de área máxima](docs/unit03-arpa01a.pdf)
+- [ARPA 1: Extensión](docs/unit03-arpa01b.pdf)
+
+## Sitio de área máxima
+
+Se requiere cercar un terreno rectangular justo en las partes trazadas con las líneas azules.
+
+Ingresa al link https://www.geogebra.org/m/es8rbjmd
+
+<SmartFigure
+    src="/inacap/cvcd01/images/fig266.png"
+	alt="enunciado"
+	size="large"
+/>
+
+Manipula el punto $P$ y determina cuáles deben ser las dimensiones del terreno (largo y ancho), para que el cerco tenga una longitud de 65 metros y el área del terreno sea máxima.
+
+<Solution title="Solución ARPA 1">
+
+<SmartFigure
+    id="fig269"
+    src="/inacap/cvcd01/images/fig269.png"
+	alt="Longitud cerco y área máxima (aproximados)"
+	caption="Longitud cerco y área máxima (aproximados)"
+	size="large"
+/>
+
+</Solution>
+
+## Extensión
+
+Determina, a través del método gŕafico, el valor del ancho y del largo del rectángulo para que el área sea máxima.
+
+<Solution title="Solución Extensión">
+
+**Paso 1: longitud de la cerca**
+
+<List level={0} indent={2}>
+- Compuesta por 3 paredes azules: alto-ancho-alto
+- longitud de 65 metros
+</List>
+$$
+\text{longitud cerca: } 2a+b=65
+$$
+---
+
+**Paso 2: área máxima**
+<List level={0} indent={2}>
+- Sea la función área A(a,b)
+- Se desea encontrar el área máxima, manteniendo una longitud de cerca de 65 metros
+</List>
+
+$$
+\begin{align*}
+A(a,b) &= a\cdot b\\[6pt]
+A(b) &= a\cdot (65-2a)\\[6pt]
+A(b) &= 65a-2a^2\\[6pt]
+\end{align*}
+$$
+
+<SmartFigure
+    id="fig267"
+    src="/inacap/cvcd01/images/fig267.png"
+	alt="Cálculo área máxima"
+	caption="Cálculo área máxima"
+	size="large"
+/>
+
+<SmartFigure
+    id="fig268"
+    src="/inacap/cvcd01/images/fig268.png"
+	alt="Valores para largo y ancho"
+	caption="Valores para largo y ancho"
+	size="large"
+/>
+
+<List level={0} indent={2}>
+- El área máxima del cerco es: $\boxed{528.13}\, \text{metros}$
+- El largo del cerco es: $\boxed{16.25}\, \text{metros}$
+- El ancho del cerco es: $\boxed{32.5}\, \text{metros}$
+</List>
+<P indent={2}>
+$\therefore$ El cerco tiene una longitud de 65m y un área máxima de 528.13m² en el punto $P=(32.5, 16.25)$
+</P>
+</Solution>

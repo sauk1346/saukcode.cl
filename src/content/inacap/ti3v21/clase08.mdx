@@ -1,0 +1,322 @@
+# Paradigma POO
+
+## Principios de POO
+
+<SmartTable
+ layoutTable="auto"
+ headers={["Principios","Descripción"]}
+ rows={[
+ ["Encapsulamiento","Protege los datos de la clase. Ayuda a evitar la modificación no controlada."],
+ ["Polimorfismo","Permite que diferentes clases utilicen métodos con el mismo nombre, adaptándolos a su comportamiento específico."],
+ ["Herencia","Permite que clases hijas, hereden atributos y métodos de la clase padre."],
+ ]}
+/>
+
+## Componentes Fundamentales
+
+### Clases
+Permiten modelar entidades del mundo real como objetos en el código
+
+### Atributos
+- Variables que almacenan datos o propiedades de la clase
+
+**Ejemplo:** Para una clase `Auto`, los atributos pueden ser:
+
+- `color`
+- `marca`
+- `cilindrado`
+
+### Métodos
+- Son las funciones definidas dentro de la clase
+- Describen el comportamiento de los objetos
+
+**Ejemplo:** algunos métodos para la clase `Auto` serían:
+
+- `acelerar()`
+- `frenar()`
+
+## Diagramas de Clases
+
+<SmartFigure
+	id="ejemplo-diagrama-clases"
+	src="/inacap/ti3v21/images/fig01.svg"
+	alt="Ejemplo Diagrama de Clases"
+	caption="Ejemplo Diagrama de Clases"
+	size="large"
+/>
+
+<br/>
+- Se representa por un rectángulo
+- Esta compuesto por: Nombre de la clase, conjunto de atributos, conjunto de métodos
+
+## Métodos Importantes
+
+### Método Constructor
+
+- En python, se llama `__init__`
+- Se utiliza para inicializar los atributos del objeto con valores predeterminados o dados por el usuario
+
+```python
+class Auto:
+	def __init__(self, color, marca):
+		self.color = color
+		self.marca = marca
+```
+
+- `self.color` y `self.marca` son los atributos
+
+### Método Get
+- Permiten acceder al valor de un atributo privado o protegido de una clase
+- Para crearlas se utiliza el decorador `@property`, que permite tratar al método como un atributo (llamarlo sin los paréntesis)
+
+```python
+class Auto:
+	def __init__(self, color, marca):
+		self.__color = color # atributo privado
+		self.marca = marca
+	
+	# método get: permite acceder al atributo privado
+	@property
+	def color(self):
+		return self.__color 
+```
+
+### Método Set
+- Permiten modificar el valor de un atributo privado o protegido de una clase
+- Para crearlas se utiliza el decorador `@<nombre>.setter`
+
+```python
+class Auto:
+	def __init__(self, color, marca):
+		self.__color = color # atributo privado
+		self.marca = marca
+	
+	# método get: permite acceder al atributo privado
+	@property
+	def color(self):
+		return self.__color 
+
+	# método set: permite modificar el atributo privado
+	@color.setter
+	def color(self, nuevo_color):
+		self.__color = nuevo_color
+```
+
+### Conclusiones sobre Métodos
+- Se observa que tanto el método "get" como el método "set" tienen el mismo nombre
+- Python los distingue según la acción:
+	- Si asigno un valor, utiliza el setter
+	- Si solicito un valor, utiliza el getter
+
+# Ejercicios 
+
+## Ejercicio 01
+Crea una clase `Persona`, con atributos:
+
+- rut: público
+- nombre: público
+- edad: privado
+
+Agrega métodos "set" y "get" para acceder al atributo `edad`
+
+<Solution>
+```python
+class Persona:
+    # clase constructor
+    def __init__(self, rut, nombre, edad):
+        self.rut = rut
+        self.nombre = nombre
+        self._edad = 0
+        if edad > 0:
+            self._edad = edad #Encapsulado (privado)
+        else:
+            raise ValueError("Error en la edad")
+
+    # metodo get: permite obtener edad
+    @property
+    def edad(self): #getter
+        return self._edad
+
+    # metodo set: permite modificar edad
+    @edad.setter
+    def edad(self, nuevaEdad): #setter
+        if nuevaEdad > 0 and nuevaEdad < 150:
+            self._edad = nuevaEdad
+        else:
+            print("¡¡¡...Edad inválida...!!!")
+
+# instanciar objetos
+per1 = Persona("1-9","Juan",-10)
+per2 = Persona("2-7","Maria", 46)
+
+# modificar atributos
+per1.edad = -10
+print(per1.edad)
+print(per2.edad)
+```
+</Solution>
+
+
+## Ejercicio 02
+Crea un método para mostrar el nombre y rut de la persona
+
+<Solution>
+```python
+class Persona:
+    def __init__(self, rut, nombre, edad):
+        self.rut = rut
+        self.nombre = nombre
+        self._edad = 0
+        if edad > 0:
+            self._edad = edad #Encapsulado
+        else:
+            raise ValueError("Error en la edad")
+
+    @property
+    def edad(self): #Getter
+        return self._edad
+
+    @edad.setter
+    def edad(self, nuevaEdad):
+        if nuevaEdad > 0 and nuevaEdad < 150:
+            self._edad = nuevaEdad
+        else:
+            print("¡¡¡...Edad inválida...!!!")
+
+    # método solicitado
+    def mostrarDatos(self):
+        datos = self.rut + ", " + self.nombre + ", " + str(self._edad)
+        return datos
+
+per1 = Persona("1-9", "Juan", 10)
+per2 = Persona("2-7", "Maria", 46)
+
+print(per1.mostrarDatos())
+```
+<TerminalOutput withBg>
+{`1-9, Juan, 10`}
+</TerminalOutput>
+</Solution>
+
+
+## Ejercicio 03
+- Crea una clase `Auto`
+- Atributos: chasis, marca, modelo, cilindrada, velocidad, anio
+	- chasis: solo "get" y constructor
+	- cilindrada: "set" entre 50 y 10000 cc
+	- velocidad: solo "get". Solo subir cada 10 en 10
+
+- Metodos: acelerar(), frenar()
+	- acelerar()
+		- aumenta de 10 en 10 la velocidad, retorna booleano
+		- límite para acelerar, no más de 180
+	- frenar()
+		- disminuye de 10 en 10 la velocidad
+		- límite para frenar(), no puede ser 0
+
+<Solution>
+```python
+class Auto:
+    def __init__(self, chasis, marca, modelo, cilindrada, velocidad, anio):
+        self._chasis = chasis
+        self.marca = marca
+        self.modelo = modelo
+        self.cilindrada = cilindrada
+        self._velocidad = velocidad
+        self.anio = anio
+
+    @property
+    def chasis(self):
+        return self._chasis
+    
+    @property
+    def cilindrada(self):
+        return self._cilindrada
+    
+    @cilindrada.setter
+    def cilindrada(self, nuevo_valor):
+        if nuevo_valor >=50 and nuevo_valor <= 10000:
+            self._cilindrada = nuevo_valor
+        else:
+            raise ValueError("Error. Valor fuera del rango 50-10000 cc")
+
+    @property
+    def velocidad(self):
+        return self._velocidad
+    
+    def acelerar(self):
+        if (self._velocidad + 10) <= 180:
+            self._velocidad += 10
+            return True
+        else:
+            return False
+    
+    def frenar(self):
+        if (self._velocidad - 10) >= 0:
+            self._velocidad -= 10
+            return True
+        else:
+            return False
+        
+auto1 = Auto("XYZ123456", "Toyota", "Corolla", 1600, 0, 2020)
+
+print("\nAtributos:")
+print(f"Chasis: {auto1.chasis}")
+print(f"Marca: {auto1.marca}")
+print(f"Modelo: {auto1.modelo}")
+print(f"Cilindrada: {auto1.cilindrada}")
+print(f"Velocidad: {auto1.velocidad}")
+print(f"Año: {auto1.anio}")
+
+while auto1.acelerar():
+    print(f"Acelerar: velocidad = {auto1.velocidad}")
+
+while auto1.frenar():
+    print(f"Frenar: velocidad = {auto1.velocidad}")
+```
+<TerminalOutput withBg>
+{`Atributos:
+Chasis: XYZ123456
+Marca: Toyota
+Modelo: Corolla
+Cilindrada: 1600
+Velocidad: 0
+Año: 2020
+Acelerar: velocidad = 10
+Acelerar: velocidad = 20
+Acelerar: velocidad = 30
+Acelerar: velocidad = 40
+Acelerar: velocidad = 50
+Acelerar: velocidad = 60
+Acelerar: velocidad = 70
+Acelerar: velocidad = 80
+Acelerar: velocidad = 90
+Acelerar: velocidad = 100
+Acelerar: velocidad = 110
+Acelerar: velocidad = 120
+Acelerar: velocidad = 130
+Acelerar: velocidad = 140
+Acelerar: velocidad = 150
+Acelerar: velocidad = 160
+Acelerar: velocidad = 170
+Acelerar: velocidad = 180
+Frenar: velocidad = 170
+Frenar: velocidad = 160
+Frenar: velocidad = 150
+Frenar: velocidad = 140
+Frenar: velocidad = 130
+Frenar: velocidad = 120
+Frenar: velocidad = 110
+Frenar: velocidad = 100
+Frenar: velocidad = 90
+Frenar: velocidad = 80
+Frenar: velocidad = 70
+Frenar: velocidad = 60
+Frenar: velocidad = 50
+Frenar: velocidad = 40
+Frenar: velocidad = 30
+Frenar: velocidad = 20
+Frenar: velocidad = 10
+Frenar: velocidad = 0`}
+</TerminalOutput>
+</Solution>

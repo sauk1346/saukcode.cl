@@ -1,0 +1,648 @@
+# Función setContent
+
+## 1. Repaso Clase anterior
+- Se utiliza Java o Kotlin para desarrollo Android
+- Ambos utilizan el mismo ciclo de vida de composables (Activity/Fragment)
+- Jetpack Compose es el nuevo framework de UI moderno para Android para construir interfaces de usuario de forma declarativa usando Kotlin
+- `setContent` es una función de Jetpack Compose, diseñada principalmente para Kotlin, donde se aprovecha su sintaxis de lambdas para definir UI de forma declarativa
+
+```kotlin
+setContent {
+    Text("Hola Mundo")
+}
+```
+
+## 2. setContent y Jetpack Compose
+`setContent` es la función que define la interfaz de usuario en Jetpack Compose. Reemplaza al tradicional `setContentView()` del sistema XML.
+
+### Diferencias
+<SmartTable
+    tableLayout="auto"
+    headers={["JetPack Compose", "Sistema Tradicional XML"]}
+    rows={[
+        [
+            "Usa `setcontent { }` con expresión lambda",
+            "Usa `setContentView(R.layout.activity_main)`"
+        ],
+        [
+            "Todo el UI se define en código Kotlin",
+            "UI definida en archivos XML separados"
+        ],
+        [
+            "Declarativo y reactivo",
+            "Imperativo"
+        ],
+    ]}
+/>
+
+
+### Conceptos importantes
+
+- **Composables:** Funciones que definen elementos de UI (marcadas con `@Composable`)
+- **Modifier:** Permite personalizar el diseño de componentes (tamaño, padding, color, etc.)
+- **Scaffold:** Estructura base que proporciona layout con barras, FAB, etc.
+- **Theme:** Envuelve la UI para aplicar estilos consistentes
+
+### Atajos Útiles
+- `Ctrl + Click` sobre un composable -> Ver su definición/implementación
+- `Alt + Enter` -> sugerencia de corrección
+
+### Ejemplo: Aplicación por defecto
+
+```kotlin
+package com.example.myapplication
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.myapplication.ui.theme.MyApplicationTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            MyApplicationTheme {
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    Greeting(
+                        name = "Android",
+                        modifier = Modifier.padding(innerPadding)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "Hello $name!",
+        modifier = modifier
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    MyApplicationTheme {
+        Greeting("Android")
+    }
+}
+```
+
+#### Estructura del código
+<SmartTable
+    tableLayout="auto"
+    headers={["Comando", "Descripción"]}
+    rows={[
+        [
+            "`MainActivity`",
+            "Punto de entrada de la aplicación"
+        ],
+        [
+            "`setContent { }`",
+            "Define toda la UI"
+        ],
+        [
+            "`MyApplicationTheme`",
+            "Aplica colores y estilos"
+        ],
+        [
+            "`Scaffold`",
+            "Estructura base de la pantalla"
+        ],
+        [
+            "`Greeting`",
+            "Composable personalizado que muestra texto"
+        ],
+        [
+            "`@Preview`",
+            "Permite previsualizar en Android Studio sin ejecutar la app"
+        ],
+    ]}
+
+/>
+
+## 3. Previsualización
+El decorador `@Preview` permite visualizar composables en Android Studio sin ejecutar la aplicación.
+
+**Características:**
+- `showBackground = true`: Muestra un fondo blanco para ver mejor el contenido
+- Debe ser un composable sin parámetros obligatorios
+- Puede tener múltiples previews con diferentes configuraciones
+```kotlin
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    MyApplicationTheme {
+        Greeting("Android")
+    }
+}
+```
+
+**Otros parámetros útiles:**
+```kotlin
+@Preview(
+    showBackground = true,
+    name = "Vista previa modo oscuro",
+    uiMode = Configuration.UI_MODE_NIGHT_YES
+)
+```
+
+## 4. Interpolación de Strings (Incrustar variables)
+
+Kotlin permite insertar variables directamente en strings usando el signo `$`.
+
+**Comparación con otros lenguajes:**
+- **Python:** `f"Hello {name}!"`
+- **Kotlin:** `"Hello $name!"`
+
+**Ejemplos:**
+```kotlin
+// Variable simple
+val name = "Antonio"
+Text(text = "Hello $name!")
+
+// Expresiones complejas (usar ${})
+val edad = 20
+Text(text = "En 5 años tendrás ${edad + 5} años")
+
+// Propiedades de objetos
+val usuario = Usuario("Juan")
+Text(text = "Bienvenido ${usuario.nombre}")
+```
+
+## 5. Ejercicios
+
+### Ejercicio 01: Texto básico
+
+**Objetivo:** Crear una aplicación minimalista que muestre texto
+
+**MainActivity.kt limpio:**
+```kotlin
+package com.example.myapplication
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            Text(text = "Hola mundo")
+        }
+    }
+}
+```
+
+**Puntos clave:**
+- Se elimina `Scaffold` y `Theme` para simplificar
+- `text` es un parámetro obligatorio de `Text`
+- El contenido dentro de `setContent {}` se renderiza directamente
+
+---
+
+### Ejercicio 02: Layouts y Composables
+
+**Objetivo:** Crear un contenedor vertical para organizar múltiples elementos
+
+**Conceptos nuevos:**
+- **`Column`**: Contenedor que apila elementos verticalmente (similar a flexbox column)
+- **`Modifier.fillMaxSize()`**: Ocupa todo el espacio disponible
+- **`Modifier.padding(10.dp)`**: Agrega espaciado interno
+- **`Arrangement.Center`**: Centra elementos verticalmente en el contenedor
+- **`Alignment.CenterHorizontally`**: Centra elementos horizontalmente
+- **`.dp`**: Unidad density-independent pixels (se adapta a diferentes pantallas)
+```kotlin
+package com.example.myapplication
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            TextoBoton()
+        }
+    }
+
+    @Composable
+    fun TextoBoton() {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(10.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(text = "Hola")
+            Text(text = "Hola2")
+            Text(text = "Hola3")
+            Text(text = "Hola4")
+        }
+    }
+}
+```
+
+**Otros contenedores disponibles:**
+- **`Row`**: Apila elementos horizontalmente
+- **`Box`**: Superpone elementos uno encima del otro
+- **`LazyColumn`**: Lista vertical con scroll (como RecyclerView)
+
+---
+
+### Ejercicio 03: Estado y reactividad
+
+**Objetivo:** Crear un campo de texto que actualice su valor dinámicamente
+
+**Conceptos de estado en Compose:**
+
+- **`remember`**: Mantiene el estado entre recomposiciones (cuando la UI se redibuja)
+- **`mutableStateOf`**: Crea una variable observable que dispara recomposición automática
+- **`by` (delegación)**: Permite acceder directamente al valor sin usar `.value`
+- **`Log.d()`**: Imprime mensajes en Logcat para debugging
+
+**Sintaxis de estado:**
+```kotlin
+// Opción 1: Sin delegación (acceso con .value)
+val txtNombre = remember { mutableStateOf("") }
+txtNombre.value = "Nuevo valor"
+
+// Opción 2: Con delegación 'by' (acceso directo) ✅ Recomendado
+var txtNombre by remember { mutableStateOf("") }
+txtNombre = "Nuevo valor"
+```
+
+**Código completo:**
+```kotlin
+package com.example.myapplication
+
+import android.os.Bundle
+import android.util.Log
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            TextoBoton()
+        }
+    }
+
+    @Composable
+    fun TextoBoton() {
+        var txtNombre by remember { mutableStateOf("") }
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(10.dp),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(text = "Hola")
+            OutlinedTextField(
+                value = txtNombre,
+                label = { Text("Nombre") },
+                onValueChange = { nuevoTexto -> 
+                    txtNombre = nuevoTexto
+                    Log.d("Tag_", "El nombre nuevo es $txtNombre")
+                }
+            )
+        }
+    }
+}
+```
+
+**¿Qué hace cada parte?**
+
+| Elemento | Descripción |
+|----------|-------------|
+| `OutlinedTextField` | Campo de texto con borde (Material Design 3) |
+| `value` | El valor actual del campo |
+| `label` | Etiqueta flotante que se muestra en el campo |
+| `onValueChange` | Callback que se ejecuta cada vez que cambia el texto |
+| `Log.d()` | Imprime en Logcat con nivel Debug |
+
+**Ver los logs:**
+1. Abrir panel **Logcat** en Android Studio (parte inferior)
+2. Filtrar por "Tag_" para ver solo tus mensajes
+3. Los cambios aparecen en tiempo real mientras escribes
+
+---
+
+## 6. Tarea: Tipos de teclado personalizados
+
+**Objetivo:** Crear una actividad con 4 campos de texto, cada uno con un tipo de teclado específico que facilite la entrada de datos.
+
+### Requisitos:
+
+Implementar 4 `OutlinedTextField` con los siguientes tipos de teclado:
+
+1. **Campo numérico** - Solo permite ingresar números
+2. **Campo password** - Oculta el texto ingresado
+3. **Campo alfanumérico** - Texto normal con letras y números
+4. **Campo email** - Teclado optimizado para correos electrónicos
+
+### Pista - KeyboardOptions:
+```kotlin
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+
+OutlinedTextField(
+    value = texto,
+    onValueChange = { texto = it },
+    label = { Text("Etiqueta") },
+    keyboardOptions = KeyboardOptions(
+        keyboardType = KeyboardType.Number  // Cambiar según el campo
+    )
+)
+```
+
+### Tipos de teclado disponibles:
+
+| KeyboardType | Descripción | Uso |
+|--------------|-------------|-----|
+| `KeyboardType.Number` | Solo números | Edad, teléfono, cantidad |
+| `KeyboardType.Email` | Incluye @ y . | Correos electrónicos |
+| `KeyboardType.Password` | Texto oculto | Contraseñas (necesita `PasswordVisualTransformation`) |
+| `KeyboardType.Text` | Alfanumérico estándar | Nombres, direcciones |
+| `KeyboardType.Phone` | Teclado telefónico | Números de teléfono |
+| `KeyboardType.Uri` | Incluye :// y / | URLs |
+
+### Para el campo password:
+```kotlin
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+
+OutlinedTextField(
+    value = password,
+    onValueChange = { password = it },
+    label = { Text("Contraseña") },
+    visualTransformation = PasswordVisualTransformation(),
+    keyboardOptions = KeyboardOptions(
+        keyboardType = KeyboardType.Password
+    )
+)
+```
+
+### Herramienta de debugging:
+
+**Logcat** es el panel en Android Studio que muestra logs, errores y mensajes del sistema:
+- Ubicación: Panel inferior de Android Studio
+- Filtros: Puedes filtrar por tag, nivel (Debug, Info, Error)
+- Uso: `Log.d("MiTag", "Mensaje: $variable")`
+
+### Estructura sugerida:
+```kotlin
+@Composable
+fun FormularioCompleto() {
+    var campoNumerico by remember { mutableStateOf("") }
+    var campoPassword by remember { mutableStateOf("") }
+    var campoTexto by remember { mutableStateOf("") }
+    var campoEmail by remember { mutableStateOf("") }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        // Aquí van tus 4 OutlinedTextField
+        // Cada uno con su keyboardOptions correspondiente
+    }
+}
+```
+
+**Tip adicional:** Usa `Arrangement.spacedBy(16.dp)` para agregar espaciado automático entre campos.
+
+**Entregable:** Captura de pantalla mostrando los 4 campos funcionando y el Logcat con los valores ingresados.
+
+
+
+
+Tiene que ver con el decorador `Preview`
+
+```kotlin
+...
+...
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    MyApplicationTheme {
+        Greeting("Android")
+    }
+}
+```
+
+## 3. Incrustar variable
+
+- En python era mediante f-string 
+- En kotlin es solo el signo `$`
+```kotlin
+...
+...
+text = "Hello $name!",
+...
+...
+```
+
+## 4. Ejercicios
+
+
+### Ejercicio 01
+
+Trabajar a partir de un archivo `MainActivity.kt` limpio
+
+```kotlin
+package com.example.myapplication
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.myapplication.ui.theme.MyApplicationTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            Text(text="Hola asdf")
+        }
+    }
+}
+```
+
+- Se agrega el paramétro `text` para saber lo que vamos a mostrar
+
+### Ejercicio 02
+- Agregar un contenedor para poder manejar más componentes, por ejemplo, uno debajo de otro
+- Para esto, es posible utilizar un decorador
+
+```kotlin
+package com.example.myapplication
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.example.myapplication.ui.theme.MyApplicationTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            TextoBoton()
+        }
+    }
+
+    @Composable
+    fun TextoBoton(){
+        Column(modifier=Modifier
+            .fillMaxSize()
+            .padding(10.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally)
+        {
+            Text(text="Hola")
+            Text(text="Hola2")
+            Text(text="Hola3")
+            Text(text="Hola4")
+        }
+    }
+}
+```
+
+## Ejercicio 03
+Modificar el nombre para que sea dinámico
+
+```kotlin
+package com.example.myapplication
+
+import android.os.Bundle
+import android.util.Log
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.example.myapplication.ui.theme.MyApplicationTheme
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            TextoBoton()
+        }
+    }
+
+    @Composable
+    fun TextoBoton(){
+        var txtNombre by remember{mutableStateOf("")}
+
+        Column(modifier=Modifier
+            .fillMaxSize()
+            .padding(10.dp),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally)
+        {
+            Text(text="Hola")
+            OutlinedTextField(
+                value = txtNombre,
+                label={Text("Nombre")},
+                onValueChange = { nuevoTexto -> txtNombre = nuevoTexto
+                    Log.d("Tag_", "El nombre nuevo es $txtNombre")
+                }
+            )
+        }
+    }
+}
+```
+
+## Tarea
+Cambiar el teclado virtual
+
+- Hacer actividad, donde se ingresan 4 campos (textfield).
+- Cada texfield:
+    - numérico
+    - password
+    - alfanumerico
+    - correo
+
+existe una opción "logcat", que permite ver los cambios realizados por el usuario
+
+pista: 
+```
+   keyboardOptions = KeyboardOptions(keyboardType=KeyboardType.),
+```

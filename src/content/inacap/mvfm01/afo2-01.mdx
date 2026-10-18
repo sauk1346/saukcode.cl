@@ -1,0 +1,114 @@
+# AFO 1
+
+El ángulo de elevación desde la parte superior de un edificio pequeño hasta la parte superior de un edificio de oficinas cercano es de 44.7°, mientras que el ángulo de depresión es de 14.2°. Si el edificio pequeño tiene una altura de 28.1 metros, determine la altura del edificio.
+
+<SmartFigure
+  id = "edificios"
+	src="/inacap/mvfm01/images/fig145.png"
+	alt="Edificio pequeño y edificio de oficinas"
+	caption="Edificio pequeño y edificio de oficinas"
+	size="large"
+/>
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig146.svg"
+	alt="Triángulo formado por edificios"
+	caption="Triángulo formado por edificios"
+	size="large"
+/>
+
+$$
+\begin{aligned}
+  altura\;edificio = A + C
+\end{aligned}
+$$
+
+De los triangulos formados se obtienen las siguientes relaciones
+
+<style>
+{`
+.equations-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.equation-block {
+  flex: 1;
+  max-width: 300px;
+}
+
+@media (max-width: 768px) {
+  .equations-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+`}
+</style>
+<div className="equations-container">
+  <div className="equation-block">
+    $$
+    \begin{aligned}
+     \tan(14.2) = \frac{A}{B}\\[5pt]
+     B = \frac{A}{\tan(14.2)}\\[10pt]
+    \end{aligned}
+    $$
+  </div>
+  <div className="equation-block">
+    $$
+    \begin{aligned}
+     \tan(44.7) = \frac{C}{B}\\[5pt]
+     B = \frac{C}{\tan(44.7)}\\[5pt]
+    \end{aligned}
+    $$
+  </div>
+</div>
+
+Entonces
+
+$$
+\begin{aligned}
+    \frac{A}{\tan(14.2)} &= \frac{C}{\tan(44.7)}\\[10pt]
+    C &= A\cdot\frac{\tan(44.7)}{\tan(14.2)}\\
+\end{aligned}
+$$
+
+Finalmente
+
+$$
+\begin{aligned}
+    altura\;edificio &= A + C\\[5pt]
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig147.png"
+	alt="Altura edificio de oficinas"
+	caption="Altura edificio de oficinas"
+	size="large"
+/>
+
+Se verifica mediante una gráfica
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig148.png"
+	alt="Datos para creación de gráfica"
+	caption="Datos para creación de gráfica"
+	size="large"
+/>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig149.svg"
+	alt="Gráfica de triángulo formado por edificios"
+	caption="Gráfica de triángulo formado por edificios"
+  lightbox={true}
+	size="large"
+/>
+
+$\therefore$ La altura del edificio es `137.99` metros
+</Solution>

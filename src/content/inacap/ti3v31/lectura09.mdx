@@ -1,0 +1,342 @@
+# Validación y modularización de formularios y código en JS
+
+La validación de formularios es un aspecto crucial en el desarrollo web, ya que garantiza que los datos ingresados por los usuarios sean correctos y adecuados antes de ser procesados o almacenados.
+
+## ¿Qué es la validación de formularios?
+
+Se refiere al proceso de verificar que los datos ingresados por los usuarios cumplen con ciertos criterios antes de ser enviados al servidor. Esto incluye asegurarse de que los campos obligatorios no estén vacíos, que los datos sean del tipo correcto (como un correo electrónico o un número) y que cumplan con las restricciones de formato.
+
+### 1. Validación del lado del cliente
+- Se realiza en el navegador del usuario utilizando JavaScript.
+- Proporciona retroalimentación inmediata y reduce la cantidad de solicitudes al servidor.
+
+### 2. Validación del lado del servidor
+- Se realiza en el servidor después de que los datos son enviados.
+- Es esencial para la seguridad, ya que no se puede confiar completamente en la validación del lado del cliente.
+
+
+## Ejemplo validación
+
+```html
+<form id="miFormulario">
+  
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="nombre" name="nombre"><br><br>
+  
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email"><br><br>
+  
+  <label for="edad">Edad:</label>
+  <input type="number" id="edad" name="edad"><br><br>
+  
+  <button type="submit">Enviar</button>
+
+</form>
+
+<div id="errores"></div>
+```
+
+## Validación de campos vacíos
+Es un proceso en el desarrollo de aplicaciones web y formularios en el que se verifica que ciertos campos de entrada no estén vacíos antes de permitir que el usuario envíe el formulario. Esto es crucial para asegurar la integridad de los datos ingresados y evitar errores en el procesamiento de la información.
+
+```js
+document.getElementById('miFormulario').addEventListener('submit', function(event) {
+
+  let errores = [];
+  let nombre = document.getElementById('nombre').value;
+  let email = document.getElementById('email').value;
+  let edad = document.getElementById('edad').value;
+
+  if (nombre === '') {
+    errores.push('El campo nombre es obligatorio.');
+  }
+
+  if (email === '') {
+    errores.push('El campo email es obligatorio.');
+  }
+
+  if (edad === '') {
+    errores.push('El campo edad es obligatorio.');
+  }
+
+  if (errores.length > 0) {
+    event.preventDefault();
+    document.getElementById('errores').innerHTML = errores.join('<br>');
+  }
+});
+```
+
+## Validación de tipos de datos
+Además de verificar si los campos están vacíos, también es importante validar el tipo de datos ingresados, por ejemplo, un correo electrónico.
+
+```js
+function esEmailValido(email) {
+  let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+}
+
+document.getElementById('miFormulario').addEventListener('submit', function(event) {
+  let errores = [];
+  let email = document.getElementById('email').value;
+  
+  if (!esEmailValido(email)) {
+    errores.push('El formato del email es incorrecto.');
+  }
+  
+  if (errores.length > 0) {
+    event.preventDefault();
+    document.getElementById('errores').innerHTML = errores.join('<br>');
+  }
+});
+```
+
+## Validación de rango numérico
+Para campos numéricos, puedes validar que el valor ingresado esté dentro de un rango específico, por ejemplo, edades entre 18 y 65 años.
+
+```js
+function esEdadValida(edad) {
+  let min = 18;
+  let max = 65;
+  return edad >= min && edad <= max;
+}
+
+document.getElementById('miFormulario').addEventListener('submit', function(event) {
+  let errores = [];
+  let edad = document.getElementById('edad').value;
+  
+  if (!esEdadValida(edad)) {
+    errores.push('La edad debe estar entre 18 y 65 años.');
+  }
+  
+  if (errores.length > 0) {
+    event.preventDefault();
+    document.getElementById('errores').innerHTML = errores.join('<br>');
+  }
+});
+```
+
+## Prevención del envío del formulario
+Para evitar que el formulario se envíe si hay errores, se utiliza el método preventDefault() dentro del manejador de eventos del formulario.
+
+```js
+document.getElementById('miFormulario').addEventListener('submit', function(event) {
+  let errores = [];
+  let nombre = document.getElementById('nombre').value;
+  let email = document.getElementById('email').value;
+  let edad = document.getElementById('edad').value;
+  
+  if (nombre === "") {
+    errores.push('El campo nombre es obligatorio.');
+  }
+  
+  if (email === "") {
+    errores.push('El campo email es obligatorio.');
+  } else if (!esEmailValido(email)) {
+    errores.push('El formato del email es incorrecto.');
+  }
+  
+  if (edad === "") {
+    errores.push('El campo edad es obligatorio.');
+  } else if (!esEdadValida(edad)) {
+    errores.push('La edad debe estar entre 18 y 65 años.');
+  }
+  
+  if (errores.length > 0) {
+    event.preventDefault();
+    document.getElementById('errores').innerHTML = errores.join('<br>');
+  }
+});
+
+function esEmailValido(email) {
+  let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+}
+
+function esEdadValida(edad) {
+  let min = 18;
+  let max = 65;
+  return edad >= min && edad <= max;
+}
+```
+
+## Tipos de Funciones
+
+### 1. Funciones declarativas
+- Son definidas con la palabra clave `function`.
+- Pueden ser llamadas antes de su declaración debido al *hosting*.
+- El *hosting* en JavaScript es el comportamiento que mueve las declaraciones de variables y funciones al principio del código durante la compilación. Esto permite que se utilicen antes de ser declaradas en el código.
+- Comprender el *hosting* es crucial para evitar errores y asegurar un uso adecuado de variables y funciones en el código JavaScript.
+
+```js
+function saludar(nombre) {
+  return `Hola, ${nombre}`;
+}
+
+console.log(saludar('Juan')); // Hola, Juan
+```
+
+### 2. Funciones expresivas
+- Son definidas como expresiones y están asignadas a una variable.
+- No son elevadas (hoisted).
+
+```js
+const saludar = function(nombre) {
+  return `Hola, ${nombre}`;
+};
+
+console.log(saludar('Ana')); // Hola, Ana
+```
+
+### 3. Funciones Flecha
+- Introducidas en ES6 (lenguaje de scripting), tienen una sintaxis más concisa.
+- No tienen su propio `this` ni `arguments`.
+
+```js
+const saludar = (nombre) => `Hola, ${nombre}`;
+
+console.log(saludar('Carlos')); // Hola, Carlos
+```
+
+## Funciones anidadas y ámbito
+
+### 1. Funciones anidadas
+Es una función definida dentro de otra función
+
+```js
+function exterior() {
+  let variableExterior = 'Soy exterior'; 
+
+  function interior() {
+    let variableInterior = 'Soy interior';
+    console.log(variableExterior); // Accede a variable exterior
+  }
+
+interior();
+  console.log(variableInterior); // Error: variableInterior no está definida
+
+}
+
+exterior();
+```
+
+### 2. Ámbito
+Define la accesibilidad de variables y funciones en diferentes partes del código. En JavaScript existen principalmente tres tipos de ámbitos: global, de función y de bloque. Las variables y funciones definidas en un ámbito están disponibles solo dentro de ese ámbito y sus ámbitos anidados, lo que ayuda a controlar la visibilidad y la vida útil de las variables.
+
+1. **ámbito global:** Son variables fuera de cualquier función, accesibles desde cualquier parte del código.
+2. **ámbito local:** Son variables dentro de una función, accesibles solo dentro de esa función.
+
+
+## Funciones de orden superior
+Son funciones que aceptan otras funciones como argumentos o devuelven funciones.
+
+```js
+function operacion(a, b, callback) {
+  return callback(a, b);
+}
+
+function sumar(a, b) {
+  return a + b;
+}
+
+function multiplicar(a, b) {
+  return a * b;
+}
+
+console.log(operacion(5, 3, sumar)); // 8
+console.log(operacion(5, 3, multiplicar)); // 15
+```
+
+## Ejemplos
+
+### 1. validación de formulario con funciones
+
+```js
+function validarNombre(nombre) {
+  return nombre.trim() !== '';
+}
+
+function validarEmail(email) {
+  let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+}
+
+function validarFormulario(nombre, email) {
+  if (!validarNombre(nombre)) {
+    console.log('El nombre es obligatorio.');
+    return false;
+  }
+  if (!validarEmail(email)) {
+    console.log('El email es inválido.');
+    return false;
+  }
+  console.log('Formulario válido.');
+  return true;
+}
+
+validarFormulario('Juan', 'juan@example.com'); // Formulario válido.
+```
+
+### 2. función de orden superior para manejo de Arrays
+```js
+const numeros = [1, 2, 3, 4, 5];
+const cuadrados = numeros.map(function(numero) {
+  return numero * numero;
+});
+
+console.log(cuadrados); // [1, 4, 9, 16, 25]
+```
+
+# Actividad de Práctica 03
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es el objetivo de validar un campo numérico para que esté dentro de un rango específico?",
+		options: [
+			"Asegurarse de que el valor ingresado esté dentro del rango permitido.",
+			"Hacer que el formulario se vea más atractivo.",
+			"Convertir el número a un formato de texto.",
+			"Agregar un estilo de borde al campo numérico."
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Qué función cumple la validación de formularios en el desarrollo web?",
+		options: [
+			"Asegura que los datos ingresados sean correctos antes de enviarlos al servidor.",
+			"Reduce el tamaño del formulario.",
+			"Incrementa la velocidad de carga de la página web.",
+			"Mejora la apariencia de la página web."
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Cuál es la diferencia principal entre una función declarativa y una expresiva en JavaScript?",
+		options: [
+			"Las funciones declarativas son elevadas y pueden ser llamadas antes de su declaración, mientras que las funciones expresivas no son elevadas.",
+			"Las funciones expresivas son elevadas y pueden ser llamadas antes de su declaración, mientras que las funciones declarativas no son elevadas.",
+			"Las funciones declarativas no aceptan parámetros, mientras que las funciones expresivas sí.",
+			"No hay diferencia entre las funciones declarativas y las funciones expresivas."
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Qué método de JavaScript se utiliza para validar el valor de un campo de formulario?",
+		options: [
+			"getAttribute",
+			"innerHTML",
+			"value",
+			"textContent"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Cuál es el propósito del método preventDefault() en la validación de formularios?",
+		options: [
+			"Agregar nuevos campos al formulario.",
+			"Cambiar el estilo del formulario.",
+			"Borrar los campos del formulario.",
+			"Evitar que el formulario se envíe si hay errores."
+		],
+		correctIndex: 3
+	},
+]} />

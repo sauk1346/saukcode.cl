@@ -1,0 +1,236 @@
+# Integridad de Bases de Datos
+
+## 1. ¿Qué es la Integridad de Datos?
+
+La información es de importancia trascendental en los sistemas modernos. Para que sea útil, debe ser **confiable y real**. Esta confiabilidad se denomina **integridad de datos**: la capacidad de mantener almacenada en forma correcta la información en una Base de Datos.
+
+> **Integridad de Base de Datos:** se refiere a la corrección y exactitud de la información contenida en ella.
+
+El **DBMS (Database Management System)** es el encargado de administrar la base de datos y garantizar esta integridad mediante reglas y restricciones.
+
+## 2. Restricciones
+
+Las restricciones son reglas que mantienen el **estado correcto** de la base de datos. Se aplican sobre los datos para asegurar que siempre sean válidos y consistentes.
+
+### a. Restricciones de Dominio (Tipo)
+
+Un dominio es un tipo de dato: el conjunto de todos los valores válidos posibles para un atributo. Los dominios pueden ser:
+
+- **Escalares:** sin componentes visibles para el usuario (ej: `INTEGER`, `DATE`, `VARCHAR`).
+- **No escalares:** definidos explícitamente con componentes visibles (ej: tipos compuestos).
+
+```sql
+-- Ejemplo: restricción de dominio con CHECK
+CREATE TABLE empleado (
+    id_empleado  INT          PRIMARY KEY,
+    nombre       VARCHAR(100) NOT NULL,
+    edad         INT          CHECK (edad >= 18 AND edad <= 65),
+    salario      DECIMAL(10,2) CHECK (salario > 0),
+    genero       CHAR(1)      CHECK (genero IN ('M', 'F', 'O'))
+);
+```
+
+### b. Restricciones de Existencia (NOT NULL)
+
+Evita la aparición de valores nulos en columnas donde el dato es obligatorio. Es un tipo especial de restricción aplicable a cualquier dominio.
+
+```sql
+CREATE TABLE producto (
+    id_producto  INT          PRIMARY KEY,
+    nombre       VARCHAR(100) NOT NULL,   -- No puede ser NULL
+    precio       DECIMAL(8,2) NOT NULL,   -- No puede ser NULL
+    descripcion  TEXT                     -- Puede ser NULL (opcional)
+);
+```
+
+### c. Restricciones de Unicidad (UNIQUE)
+
+Evita la aparición de valores duplicados en una columna o conjunto de columnas.
+
+```sql
+CREATE TABLE usuario (
+    id_usuario INT          PRIMARY KEY,
+    email      VARCHAR(150) NOT NULL UNIQUE,  -- No pueden repetirse emails
+    rut        VARCHAR(12)  NOT NULL UNIQUE,  -- No pueden repetirse RUTs
+    nombre     VARCHAR(100) NOT NULL
+);
+
+-- También se puede definir a nivel de tabla:
+CREATE TABLE matricula (
+    id_alumno   INT,
+    id_curso    INT,
+    semestre    VARCHAR(10),
+    UNIQUE (id_alumno, id_curso, semestre)  -- Combinación única
+);
+```
+
+### d. Restricciones de Atributo
+
+Una restricción de atributo especifica el valor válido de un atributo dado. Es parte de la definición del atributo y solo puede eliminarse eliminando el propio atributo.
+
+```sql
+-- La restricción DEFAULT también es una restricción de atributo
+CREATE TABLE pedido (
+    id_pedido   INT           PRIMARY KEY,
+    fecha       DATE          NOT NULL DEFAULT CURRENT_DATE,
+    estado      VARCHAR(20)   NOT NULL DEFAULT 'pendiente'
+                              CHECK (estado IN ('pendiente','procesado','enviado','cancelado')),
+    total       DECIMAL(10,2) NOT NULL CHECK (total >= 0)
+);
+```
+
+## 3. Integridad Referencial
+
+Permite asegurar que un valor que aparece en una relación (tabla) para un conjunto de atributos determinado, aparezca también en otra relación para un cierto conjunto de atributos. Es decir: una **Clave Foránea (FK)** siempre debe apuntar a un valor existente en la **Clave Primaria (PK)** de la tabla referenciada.
+
+<TerminalOutput>
+{`Tabla Padre: Artículo          Tabla Padre: Orden
+┌──────────┬──────────────┐   ┌──────────┬─────────────┐
+│ N_Art(PK)│ Nombre_Art   │   │ N_Orden  │ Fecha_Orden │
+├──────────┼──────────────┤   ├──────────┼─────────────┤
+│  40000   │ Teclado      │   │  22333   │ 2024-01-10  │
+│  75500   │ Monitor      │   │  35555   │ 2024-01-15  │
+└──────────┴──────────────┘   └──────────┴─────────────┘
+
+Tabla Dependiente: Ítem Orden-Artículo
+┌──────────┬──────────┬──────────┐
+│ N_Orden  │ N_Art    │ Cantidad │
+│  (FK)    │  (FK)    │          │
+├──────────┼──────────┼──────────┤
+│  22333   │  40000   │    2     │  ✅ Existe en ambas tablas padre
+│  35555   │  75500   │    8     │  ✅ Existe en ambas tablas padre
+│  99999   │  40000   │    1     │  ❌ N_Orden 99999 no existe → ERROR
+└──────────┴──────────┴──────────┘`}
+</TerminalOutput>
+
+```sql
+-- Ejemplo completo de integridad referencial
+CREATE TABLE articulo (
+    n_articulo INT          PRIMARY KEY,
+    nombre     VARCHAR(100) NOT NULL,
+    stock      INT          DEFAULT 0
+);
+
+CREATE TABLE orden (
+    n_orden     INT  PRIMARY KEY,
+    fecha_orden DATE NOT NULL
+);
+
+CREATE TABLE item_orden (
+    n_orden    INT NOT NULL,
+    n_articulo INT NOT NULL,
+    cantidad   INT NOT NULL CHECK (cantidad > 0),
+    PRIMARY KEY (n_orden, n_articulo),
+    FOREIGN KEY (n_orden)    REFERENCES orden(n_orden)
+        ON DELETE CASCADE    -- Si se borra la orden, se borran sus ítems
+        ON UPDATE CASCADE,
+    FOREIGN KEY (n_articulo) REFERENCES articulo(n_articulo)
+        ON DELETE RESTRICT   -- No permite borrar un artículo con ítems asociados
+        ON UPDATE CASCADE
+);
+```
+
+## 4. Restricciones de Transición
+
+Hacen referencia a transiciones válidas de un estado correcto a otro. Definen qué cambios de estado están permitidos en los datos.
+
+**Ejemplo con estado civil:**
+
+<SmartTable
+    tablelayout="auto"
+    headers={['Transición', '¿Válida?']}
+    rows={[
+        ["Soltero → Casado", "✅"],
+        ["Casado → Viudo", "✅"],
+        ["Casado → Divorciado", "✅"],
+        ["Viudo → Casado", "✅"],
+        ["Soltero → Viudo", "❌"],
+        ["Soltero → Divorciado", "❌"],
+        ["Viudo → Divorciado", "❌"],
+        ["Divorciado → Viudo", "❌"]
+    ]}
+/>
+
+```sql
+-- Restricción de transición implementada con CHECK o TRIGGER
+-- Ejemplo con estados de un pedido
+CREATE OR REPLACE FUNCTION validar_transicion_estado()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Solo se permiten ciertas transiciones de estado
+    IF OLD.estado = 'pendiente'  AND NEW.estado NOT IN ('procesado', 'cancelado') THEN
+        RAISE EXCEPTION 'Transición inválida: pendiente → %', NEW.estado;
+    END IF;
+    IF OLD.estado = 'procesado'  AND NEW.estado NOT IN ('enviado', 'cancelado') THEN
+        RAISE EXCEPTION 'Transición inválida: procesado → %', NEW.estado;
+    END IF;
+    IF OLD.estado = 'enviado'    AND NEW.estado != 'entregado' THEN
+        RAISE EXCEPTION 'Transición inválida: enviado → %', NEW.estado;
+    END IF;
+    IF OLD.estado IN ('cancelado', 'entregado') THEN
+        RAISE EXCEPTION 'Estado % es final, no puede cambiar.', OLD.estado;
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER tg_transicion_pedido
+BEFORE UPDATE OF estado ON pedido
+FOR EACH ROW EXECUTE FUNCTION validar_transicion_estado();
+```
+
+## 5. Claves
+
+### a. Clave Candidata
+Conjunto no vacío de atributos que identifica de forma única a cada tupla (fila) de una relación. Siempre existe al menos una clave candidata.
+
+### b. Clave Primaria (PK)
+La clave candidata que el usuario escoge para identificar tuplas de modo único. Debe ser **única** y **no nula**.
+
+```sql
+-- Una clave primaria simple
+CREATE TABLE departamento (
+    depto_num INT         PRIMARY KEY,
+    nombre    VARCHAR(50) NOT NULL
+);
+
+-- Una clave primaria compuesta
+CREATE TABLE horario (
+    id_profesor INT,
+    id_sala     INT,
+    dia         VARCHAR(10),
+    hora_inicio TIME,
+    PRIMARY KEY (id_profesor, id_sala, dia, hora_inicio)
+);
+```
+
+### c. Clave Alternativa
+Las claves candidatas que no fueron elegidas como PK. Igualmente identifican de forma única a las tuplas.
+
+```sql
+CREATE TABLE empleado (
+    emp_num   INT          PRIMARY KEY,          -- PK elegida
+    rut       VARCHAR(12)  NOT NULL UNIQUE,       -- Clave alternativa
+    pasaporte VARCHAR(20)  UNIQUE,                -- Otra clave alternativa
+    nombre    VARCHAR(100) NOT NULL,
+    depto_num INT,
+    FOREIGN KEY (depto_num) REFERENCES departamento(depto_num)
+);
+```
+
+### d. Clave Foránea (FK)
+Atributo(s) de una tabla que referencian la PK de otra tabla. Una restricción referencial garantiza que todos los valores (no nulos) de una FK sean también valores de la PK referenciada.
+
+
+## 5. Resumen de Tipos de Restricciones
+
+<TerminalOutput>
+{`Restricciones de Integridad
+├── De Dominio        → Valores válidos (tipo de dato, CHECK)
+├── De Existencia     → NOT NULL
+├── De Unicidad       → UNIQUE
+├── De Atributo       → Reglas propias del campo
+├── Referencial       → FK → PK (integridad entre tablas)
+└── De Transición     → Cambios de estado permitidos`}
+</TerminalOutput>
+

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Fondo -->
+  <rect width="200" height="200" fill="#f8f9fa" rx="16"/>
+
+  <!-- Carta trasera -->
+  <rect x="30" y="50" width="120" height="85" rx="10" fill="#c7d2fe" stroke="#818cf8" stroke-width="2"/>
+
+  <!-- Carta frontal -->
+  <rect x="50" y="68" width="120" height="85" rx="10" fill="#ffffff" stroke="#6366f1" stroke-width="2.5"/>
+
+  <!-- Líneas de texto en carta frontal -->
+  <rect x="66" y="88" width="70" height="7" rx="3.5" fill="#6366f1"/>
+  <rect x="66" y="103" width="88" height="5" rx="2.5" fill="#a5b4fc"/>
+  <rect x="66" y="115" width="75" height="5" rx="2.5" fill="#a5b4fc"/>
+
+  <!-- Signo de pregunta -->
+  <text x="148" y="138" font-size="26" font-family="serif" font-weight="bold" fill="#6366f1" text-anchor="middle">?</text>
+</svg>

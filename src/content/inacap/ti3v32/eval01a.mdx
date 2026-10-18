@@ -1,0 +1,399 @@
+# Evaluación 1 - Versión A
+
+## Sección de Alternativas (40 puntos)
+
+<Quiz questions={[
+  {
+    question: "¿Qué es MongoDB?",
+    options: [
+      "Un sistema de archivos distribuido",
+      "Un servidor web para JavaScript",
+      "Una base de datos relacional",
+      "Una base de datos NoSQL orientada a documentos"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál de los siguientes formatos de documento usa MongoDB internamente?",
+    options: [
+      "XML",
+      "BSON",
+      "CSV",
+      "HTML"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué componente gráfico de MongoDB Compass permite ver los registros de una colección?",
+    options: [
+      "Data Studio",
+      "Documents",
+      "Terminal",
+      "Query Builder"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué tipo de dato representa correctamente una fecha en MongoDB?",
+    options: [
+      "String(\"2024-01-01\")",
+      "DateTime",
+      "ISODate(\"2024-01-01T00:00:00Z\")",
+      "newTime(\"2024-01-01\")"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué operador se utiliza para buscar documentos cuyo valor de campo sea mayor a cierto número?",
+    options: [
+      "$lt",
+      "$in",
+      "$gt",
+      "$ne"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué tipo de estructura representa un subdocumento en MongoDB?",
+    options: [
+      "Un array dentro de un campo",
+      "Un documento dentro de otro documento",
+      "Una base de datos dentro de una colección",
+      "Un índice embebido"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de las siguientes opciones es un nombre válido para una colección en MongoDB?",
+    options: [
+      "123-usuarios",
+      "user.data",
+      "clientesVIP",
+      "\\@productos"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué herramienta permite insertar documentos directamente en MongoDB Compass?",
+    options: [
+      "Shell",
+      "Insert Query",
+      "Insert Document",
+      "Compass Script Panel"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es la finalidad de usar filtros en la pestaña \"Documents\" de MongoDB Compass?",
+    options: [
+      "Crear colecciones nuevas",
+      "Cargar documentos desde archivos",
+      "Ejecutar funciones JavaScript",
+      "Visualizar solo los documentos que cumplen ciertas condiciones"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué operador se usa para verificar si un campo existe en los documentos?",
+    options: [
+      "$match",
+      "$exists",
+      "$has",
+      "$contains"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué campo es automáticamente asignado por MongoDB a cada documento si no se especifica?",
+    options: [
+      "docID",
+      "_id",
+      "uuid",
+      "record"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de los siguientes datos corresponde a un tipo de dato válido en MongoDB?",
+    options: [
+      "null",
+      "fecha: undefined",
+      "int64",
+      "list\<\>"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué sucede si insertas un documento con la misma clave _id que otro ya existente?",
+    options: [
+      "MongoDB lo reemplaza",
+      "MongoDB lo ignora",
+      "Se lanza un error",
+      "Se crea una versión del documento"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué hace la opción \"Delete Document\" en Compass?",
+    options: [
+      "Elimina todos los documentos de la colección",
+      "Elimina la base de datos",
+      "Elimina el documento seleccionado",
+      "Borra el campo actual del documento"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Para qué sirve el botón \"+\" al lado de un campo en el modo de edición?",
+    options: [
+      "Para agregar un nuevo documento",
+      "Para importar un documento externo",
+      "Para agregar un nuevo campo al documento",
+      "Para cambiar el tipo de dato"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué operador se usa para buscar un valor dentro de un array?",
+    options: [
+      "$in",
+      "$array",
+      "$within",
+      "$contains"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál es la estructura válida de un documento en MongoDB?",
+    options: [
+      "Lista de valores separados por comas",
+      "Un objeto JSON con claves y valores",
+      "Una tabla con filas y columnas",
+      "Un archivo CSV"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cómo se visualiza gráficamente una fecha en MongoDB Compass?",
+    options: [
+      "Como string",
+      "Como entero",
+      "Como campo tipo Date con un ícono de calendario",
+      "Como array de tiempo"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué tipo de operación corresponde a \"Update Many\" en Compass?",
+    options: [
+      "Insertar múltiples documentos",
+      "Actualizar múltiples documentos que cumplan una condición",
+      "Reemplazar la colección completa",
+      "Borrar todos los campos de una colección"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué significa el campo stock: 0 en un documento?",
+    options: [
+      "El producto tiene descuento",
+      "El producto está agotado",
+      "El producto es nuevo",
+      "El producto no tiene nombre"
+    ],
+    correctIndex: 1
+  }
+]} />
+
+
+## Parte Práctica (60 puntos)
+
+### Preparación
+1. Crear la base de datos llamada evaluacionFinalA
+2. Crear dos colecciones:
+    - productos
+    - clientes
+3. Insertar al menos **4 documentos en cada colección**, usando datos realistas. Puedes inventar nombre, precios, edades, etc.
+
+<Solution>
+1. Documentos para colección "productos":
+```json
+[
+    {
+        "nombre": "Laptop HP",
+        "categoria": "Computadoras",
+        "precio": 899.99,
+        "stock": 15,
+        "fechaIngreso": {"$date":"2024-12-10"}
+    },
+    {
+        "nombre": "Mouse inalámbrico",
+        "categoria": "Accesorios",
+        "precio": 49.99,
+        "stock": 30,
+        "fechaIngreso": {"$date":"2024-11-15"}
+    },
+    {
+        "nombre": "Teclado mecánico",
+        "categoria": "Accesorios",
+        "precio": 129.99,
+        "stock": 0,
+        "fechaIngreso": {"$date":"2024-10-05"}
+    },
+    {
+        "nombre": "Monitor 27'",
+        "categoria": "Monitores",
+        "precio": 249.99,
+        "stock": 8,
+        "fechaIngreso": {"$date":"2024-12-01"}
+    }
+]
+```
+
+2. Documentos para colección "clientes"
+```json
+[
+    {
+        "nombre": "Ana López",
+        "edad": 28,
+        "email": "ana.lopez@email.com",
+        "direccion": "Calle Principal 123"
+    },
+    {
+        "nombre": "Carlos Hernández",
+        "edad": 35,
+        "email": "carlos.hernandez@email.com",
+        "direccion": "Avenida Central 456"
+    },
+    {
+        "nombre": "María González",
+        "edad": 19,
+        "email": "maria.gonzalez@email.com",
+        "direccion": "Plaza Mayor 789"
+    },
+    {
+        "nombre": "Juan Pérez",
+        "edad": 42,
+        "email": "juan.perez@email.com",
+        "direccion": "Calle Secundaria 101"
+    }  
+]
+```
+</Solution>
+
+
+### Ejercicio 1 - Inserción visual de documentos (15 puntos)
+
+Inserta **2 nuevos documentos** en la colección productos, cada uno debe incluir los siguientes campos
+- nombre (string)
+- categoria (string)
+- precio (number)
+- stock (number)
+- fechaIngreso (date)
+
+Además, agrega un campo extra llamado oferta (boolean) a **uno** de ellos.
+
+<Solution>
+
+```json
+[
+    {
+        "nombre": "Impresora Láser",
+        "categoria": "Impresoras",
+        "precio": 299.99,
+        "stock": 12,
+        "fechaIngreso": {"$date":"2025-01-15"}
+    },
+    {
+        "nombre": "Disco SSD 1TB",
+        "categoria": "Almacenamiento",
+        "precio": 149.99,
+        "stock": 25,
+        "fechaIngreso": {"$date":"2025-01-10"},
+        "oferta": true
+    }
+]
+```
+</Solution>
+
+
+### Ejercicio 2 - Filtros en la pestaña "Documents" (15 puntos)
+Realiza los siguientes filtros desde la vista visual de documentos (no en shell):
+
+1. En la colección clientes, filtra todos los clientes con edad mayor a 30.
+
+<Solution>
+```json
+{ "edad": { "$gt": 30 } }
+```
+</Solution>
+2. En la colección productos, filtra todos los productos cuyo precio sea menor a 200.
+
+<Solution>
+```json
+{ "precio": { "$lt": 200 } }
+```
+</Solution>
+
+### Ejercicio 3 - Actualización visual (15 puntos)
+Realiza las siguientes actualizaciones desde el botón "Edit Document":
+
+1. Aumenta el campo stock de un producto en +5 unidades.
+
+<Solution>
+- Seleccionar la colección "productos"
+- Buscar un producto (por ejemplo la "Laptop HP")
+- Hacer clic en el ícono de edición (lápiz) de ese documento
+- Cambiar el valor del campo "stock" de 15 a 20
+- Hacer clic en "Update"
+
+</Solution>
+
+2. Agrega el campo estado: "activo" a un cliente existente.
+
+<Solution>
+- Seleccionar la colección "clientes"
+- Buscar un cliente (por ejemplo "Ana López")
+- Hacer clic en el ícono de edición
+- Agregar el campo "estado" con valor "activo"
+- Hacer clic en "Update"
+
+</Solution>
+
+3. A todos los productos de la categoría "Accesorios", agrega el campo proveedor: "ElectroMax".
+
+<Solution>
+- Seleccionar la colección "productos"
+- En la barra de filtro, escribir: `{ "categoria": "Accesorios" }`
+- Para cada resultado, hacer clic en el ícono de edición
+- Agregar el campo "proveedor" con valor "ElectroMax"
+- Hacer clic en "Update" para cada documento
+</Solution>
+
+
+### Ejercicio 4 - Eliminación visual (15 puntos)
+Elimina un documento de cada colección que cumpla una de estas condiciones:
+
+- Un producto cuyo stock sea 0.
+
+<Solution>
+- Ir a colección "productos"
+- En barra de filtro, ingresar:
+
+```json
+{ "stock": 0 }
+```
+- Presionar boton "Delete"
+</Solution>
+
+- Un cliente cuya edad sea menor a 20.
+
+<Solution>
+- Ir a colección "clientes"
+- En barra de filtro, ingresar:
+
+```json
+{ "edad": {"$lt": 20 } }
+```
+- Presionar boton "Delete"
+</Solution>

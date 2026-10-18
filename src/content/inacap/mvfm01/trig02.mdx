@@ -1,0 +1,510 @@
+# Ejercicios Trigonometría
+
+## Material Clases
+- [Ejercicios_trigonometria.pdf](/inacap/mvfm01/docs/Ejercicios_trigonometria.pdf)
+
+## Ejercicio 01
+Calcula la altura de la torre si nuestro personaje está a 7m de la torre, el ángulo con el que está observando la cúspide es de 60° y sostiene el artilugio a una altura de 1.5m
+
+<SmartFigure
+	id="personaje-torre-artilugio"
+	src="/inacap/mvfm01/images/fig220.png"
+	alt="Personaje observando la torre con un artilugio"
+	caption="Personaje observando la torre con un artilugio"
+	size="large"
+/>
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig221.svg"
+	alt="Triángulo formado por personaje y torre"
+	caption="Triángulo formado por personaje y torre"
+	size="large"
+/>
+
+Sea la $h$ la altura de la torre:
+
+$$
+\begin{aligned}
+    h = \overline{BC} + \overline{CD}
+\end{aligned}
+$$
+
+1. Se tiene la siguiente relación:
+
+$$
+\begin{aligned}
+    \tan(60) &= \frac{\overline{BC}}{\overline{AC}}\\[15pt]
+    \overline{BC} &= \overline{AC} \cdot \tan(60)
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig222.png"
+	alt="Cálculo segmento BC"
+	caption="Cálculo segmento BC"
+	size="large"
+/>
+
+2. Finalmente, se calcula la altura de la torre:
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig223.png"
+	alt="Cálculo altura h"
+	caption="Cálculo altura h"
+	size="large"
+/>
+
+$\therefore$ La altura de la torre es de `13.62` metros
+</Solution>
+
+## Ejercicio 02
+Miguel desea calcular la altura de dos edificios que están situados a 100 metros el uno del otro. Como tiene acceso al edificio más alto, observa que desde la azotea de dicho edificio se avista la azotea del otro bajo un ángulo de $\alpha = 73.3°$. Desde la base del mismo edificio, se ve la azotea del otro edificio bajo un ángulo de elevación $\beta = 19.29°$. ¿Cuál es la altura de cada edificio?
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig224.svg"
+	alt="Triángulos formados por edificios"
+	caption="Triángulos formados por edificios"
+	size="large"
+/>
+
+Sean $h1$ y $h2$ las alturas de los edificios pequeño y grande respectivamente:
+
+$$
+\begin{aligned}
+    h1 &= \overline{CA}\\[5pt] 
+    h2 &= \overline{CA} + \overline{ED}\\[5pt] 
+\end{aligned}
+$$
+
+1. Se calcula el segmento $\overline{CA}$:
+
+$$
+\begin{aligned}
+	\tan(19.29) &= \frac{\overline{CA}}{100}\\[5pt]
+	\overline{CA} &= 100 \cdot \tan(19.29)
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig225.png"
+	alt="Cálculo segmento CA"
+	caption="Cálculo segmento CA"
+	size="large"
+/>
+
+2. Se calcula el segmento $\overline{ED}$:
+
+$$
+\begin{aligned}
+	\tan(73.3) &= \frac{\overline{ED}}{100}\\[5pt]
+	\overline{ED} &= 100 \cdot \tan(73.3)
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig226.png"
+	alt="Cálculo segmento ED"
+	caption="Cálculo segmento ED"
+	size="large"
+/>
+
+3. Finalmente, se calculan las alturas de los edificios:
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig227.png"
+	alt="Cálculo alturas edificios"
+	caption="Cálculo alturas edificios"
+	size="large"
+/>
+
+$\therefore$ La altura de los edificios son `35` y `368.32` metros
+</Solution>
+
+## Ejercicio 03
+Halla la altura $x$ de las Torres Petronas, y también las distancias $y$ y $z$
+
+<SmartFigure
+	id="torres-petronas"
+	src="/inacap/mvfm01/images/fig228.png"
+	alt="Torres Petronas"
+	caption="Torres Petronas"
+	size="large"
+/>
+
+<Solution>
+Sea el triángulo $\triangle ABC$
+
+1. Se calcula el ángulo faltante:
+
+$$
+\begin{aligned}
+	ang1 &= 180° - 75° - 45°\\[5pt]
+	&= 60°\\[5pt]
+\end{aligned}
+$$
+
+2. Se calcula el segmento $z$ mediante ley de los senos:
+
+$$
+\begin{aligned}
+	\frac{678}{\sin(ang1)} &= \frac{z}{\sin(75)}\\[5pt]
+	z &= \frac{678 \cdot \sin(75)}{\sin(ang1)}
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig229.png"
+	alt="Cálculo segmento Z"
+	caption="Cálculo segmento Z"
+	size="large"
+/>
+
+3. Se calcula el segmento $y$ mediante ley de los senos:
+
+$$
+\begin{aligned}
+	\frac{678}{\sin(ang1)} &= \frac{y}{\sin(45)}\\[5pt]
+	y &= \frac{678 \cdot \sin(45)}{\sin(ang1)}
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig230.png"
+	alt="Cálculo segmento Y"
+	caption="Cálculo segmento Y"
+	size="large"
+/>
+
+4. Finalmente, se calcula el segmento $x$:
+
+$$
+\begin{aligned}
+	\sin(60) &= \frac{x}{y}\\[5pt]
+	x = y \cdot \sin(60)
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig231.png"
+	alt="Cálculo segmento X"
+	caption="Cálculo segmento X"
+	size="large"
+/>
+
+$\therefore$ Los valores encontrados son: $(x, y, z) =$ (`479.42`, `553.58`, `756.21`) 
+</Solution>
+
+## Ejercicio 04
+
+<SmartFigure
+	id="trayecto-duadriatlon"
+	src="/inacap/mvfm01/images/fig232.png"
+	alt="Trayecto cuadriatlón"
+	caption="Trayecto cuadriatlón"
+	size="large"
+/>
+
+El trayecto de un cuadriatlón (competición deportiva de cuatro disciplinas) está trazado entre cinco puntos (o vértices): A, B, C, D y E.
+
+El tramo AB son 9km de ciclismo, el tramo BC son 3km de natación, el tramo CD son 5km de atletismo y el tramo BD son 5km de piragüismo
+
+En el vértice E hay una parada para tomar agua, la distancia entre los vértices C y E es de 0.95km y los ángulos $\alpha$ y $\beta$ miden 72.58° y 54° respectivamente.
+
+1. **Calcular Distancias a (tramo EB)**
+
+<Solution>
+Sea el segmento $\overline{EB}$ la distancia que se busca
+
+1. Se aplica la ley de los senos para el triángulo $\triangle BDE$:
+
+$$
+\begin{aligned}
+    \frac{\overline{BD}}{\sin(\gamma)} &= \frac{\overline{CD}}{\sin(\beta)}\\[5pt]
+    \sin(\gamma) &= \frac{\overline{BD} \cdot \sin(\beta)}{\overline{CD}}\\[5pt] 
+    \gamma &= \arcsin\left(\frac{\overline{BD} \cdot \sin(\beta)}{\overline{CD}}\right) 
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig233.png"
+	alt="Cálculo ángulo gamma"
+	caption="Cálculo ángulo gamma"
+	size="large"
+/>
+
+2. Se calcula el ángulo faltante del triángulo $\triangle BDE$:
+
+$$
+\begin{aligned}
+    180° &= ang1 + \beta + \gamma\\[5pt]
+    ang1 &= 180° - \beta - \gamma\\[5pt]
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig234.png"
+	alt="Cálculo ángulo ang1"
+	caption="Cálculo ángulo ang1"
+	size="large"
+/>
+
+3. Finalmente, se utiliza una última vez la ley de los senos:
+
+$$
+\begin{aligned}
+    \frac{\overline{EB}}{\sin(ang1)} &= \frac{\overline{CD}}{\sin(\beta)}\\[5pt]
+    \overline{EB} &= \frac{\overline{CD} \cdot \sin(ang1)}{\sin(\beta)}
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig235.png"
+	alt="Cálculo segmento EB"
+	caption="Cálculo segmento EB"
+	size="large"
+/>
+
+$\therefore$ La distancia $\overline{EB} =$ `5.88` km
+</Solution>
+
+2. **Calcular Distancia del inicio al punto D en línea recta**
+
+<Solution>
+Sea el segmento $\overline{AD}$ la distancia que se busca
+
+1. Se observa el triángulo $\triangle ABD$, del cual se conocen 2 de sus 3 lados, y el ángulo $\beta$:
+	- Segmento $\overline{AB}$
+	- Segmento $\overline{BD}$
+	- Ángulo $\angle \beta$
+
+2. Se calcula el segmento $\overline{AB}$:
+
+$$
+\begin{aligned}
+    \overline{AB} = \overline{AE} + \overline{EB}
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig236.png"
+	alt="Cálculo segmento AB"
+	caption="Cálculo segmento AB"
+	size="large"
+/>
+
+3. Finalmente, se aplica la ley de los cosenos:
+
+$$
+\begin{aligned}
+    \overline{AD}^2 &= \overline{AB}^2 + \overline{BD}^2 - 2 \cdot \overline{AB} \cdot \overline{BD} \cdot \cos{\beta}\\[5pt]  
+    \overline{AD} &= \sqrt{\overline{AB}^2 + \overline{BD}^2 - 2 \cdot \overline{AB} \cdot \overline{BD} \cdot \cos{\beta}}\\[5pt]  
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig237.png"
+	alt="Cálculo segmento AD"
+	caption="Cálculo segmento AD"
+	size="large"
+/>
+
+$\therefore$ La distancia del inicio al punto D en línea recta es $\overline{AD} =$ `12.61` km
+</Solution>
+
+## Ejercicio 05
+
+<SmartFigure
+	id="plano-terreno"
+	src="/inacap/mvfm01/images/fig238.png"
+	alt="Plano de emplazamiento de un terreno"
+	caption="Plano de emplazamiento de un terreno"
+	size="large"
+/>
+
+La figura muestra el plano de emplazamiento de un terreno. La información que contiene se obtuvo de un levantamiento que se hizo en terreno.
+
+¿Cuál sería el valor de una cerca perimetral si el metro tiene un valor de \$1800?
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig239.svg"
+	alt="Lados y ángulos de terreno"
+	caption="Lados y ángulos de terreno"
+	size="large"
+/>
+
+1. Se visualiza el polígono como 2 triángulos. Esto es para poder aplicar herramientas trigonométricas como la ley de senos y cosenos. En un inicio solo se sabe que:
+
+	- $\angle 76.87° = \angle ang1 + \angle ang2$
+	- $\angle 63.48° = \angle ang3 + \angle ang4$
+
+
+2. Del triángulo $\triangle ACD$, se calcula el segmento $\overline{AC}$ utilizando la ley de los cosenos:
+
+$$
+\begin{aligned}
+    \overline{AC}^2 &= \overline{AD}^2 + \overline{CD}^2 - 2 \cdot \overline{AD} \cdot \overline{CD} \cdot \cos(104.06)\\[5pt]
+    \overline{AC} &= \sqrt{\overline{AD}^2 + \overline{CD}^2 - 2 \cdot \overline{AD} \cdot \overline{CD} \cdot \cos(104.06)}
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig240.png"
+	alt="Cálculo segmento AC"
+	caption="Cálculo segmento AC"
+	size="large"
+/>
+
+3. Se calcula los ángulos $\angle ang2$ y $\angle ang4$ utilizando la ley de los senos:
+
+$$
+\begin{aligned}
+    \frac{\overline{AC}}{\sin(104.06)} = \frac{\overline{CD}}{\sin(ang2)} = \frac{\overline{AD}}{\sin(ang4)}
+\end{aligned}
+$$
+
+- Para $\angle ang2$
+
+$$
+\begin{aligned}
+    \frac{\overline{AC}}{\sin(104.06)} &= \frac{\overline{CD}}{\sin(ang2)}\\[5pt]
+    \sin(ang2) &= \frac{\overline{CD} \cdot \sin(104.06)}{\overline{AC}}\\[5pt]
+    ang2 &= \arcsin\left(\frac{\overline{CD} \cdot \sin(104.06)}{\overline{AC}}\right)
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig241.png"
+	alt="Cálculo ángulo ang2"
+	caption="Cálculo ángulo ang2"
+	size="large"
+/>
+
+- Para $\angle ang4$
+
+$$
+\begin{aligned}
+    \frac{\overline{AC}}{\sin(104.06)} &= \frac{\overline{AD}}{\sin(ang4)}\\[5pt]
+    \sin(ang4) &= \frac{\overline{AD} \cdot \sin(104.06)}{\overline{AC}}\\[5pt]
+    ang4 &= \arcsin\left(\frac{\overline{AD} \cdot \sin(104.06)}{\overline{AC}}\right)
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig242.png"
+	alt="Cálculo ángulo ang4"
+	caption="Cálculo ángulo ang4"
+	size="large"
+/>
+
+4. Se calcula los ángulos $\angle ang1$ y $\angle ang3$, utilizando las ecuaciones mencionadas en el punto 1:
+
+- Para $\angle ang1$
+
+$$
+\begin{aligned}
+	76.87° &= ang1 + ang2\\[5pt]
+	ang1 &= 76.87° - ang2
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig243.png"
+	alt="Cálculo ángulo ang1"
+	caption="Cálculo ángulo ang1"
+	size="large"
+/>
+
+- Para $\angle ang3$
+
+$$
+\begin{aligned}
+	63.48° &= ang3 + ang4\\[5pt]
+	ang3 &= 63.48° - ang4
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig244.png"
+	alt="Cálculo ángulo ang3"
+	caption="Cálculo ángulo ang3"
+	size="large"
+/>
+
+5. Del triángulo $\triangle ABC$, se calcula los segmentos $\overline{AB}$ y $\overline{BC}$ utilizando la ley de los senos:
+
+$$
+\begin{aligned}
+	\frac{\overline{BC}}{\sin(ang1)} = \frac{\overline{AC}}{\sin(115.59)} = \frac{\overline{AB}}{\sin(ang3)}
+\end{aligned}
+$$
+
+- Para segmento $\overline{AB}$
+
+$$
+\begin{aligned}
+	\frac{\overline{AC}}{\sin(115.59)} &= \frac{\overline{AB}}{\sin(ang3)}\\[5pt]
+	\overline{AB} &= \frac{\overline{AC} \cdot \sin(ang3)}{\sin(115.59)}
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig245.png"
+	alt="Cálculo segmento AB"
+	caption="Cálculo segmento AB"
+	size="large"
+/>
+
+- Para segmento $\overline{BC}$
+
+$$
+\begin{aligned}
+	\frac{\overline{BC}}{\sin(ang1)} &= \frac{\overline{AC}}{\sin(115.59)}\\[5pt]
+	\overline{BC} &= \frac{\overline{AC} \cdot \sin(ang1)}{\sin(115.59)}
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig246.png"
+	alt="Cálculo segmento BC"
+	caption="Cálculo segmento BC"
+	size="large"
+/>
+
+6. Se calcula el perímetro $P$ del terreno:
+
+$$
+\begin{aligned}
+    P = \overline{AD} + \overline{CD} + \overline{AB} + \overline{BC}
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig247.png"
+	alt="Cálculo perímetro P"
+	caption="Cálculo perímetro P"
+	size="large"
+/>
+
+7. Finalmente, si el metro tiene un valor de \$1800, se realiza la siguiente conversión:
+
+$$
+\begin{aligned}
+    Precio\;total = P[km] \cdot 1000\left[\frac{m}{km}\right] \cdot 1800\left[\frac{\$}{m}\right]
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig248.png"
+	alt="Cálculo costo cerca perimetral"
+	caption="Cálculo costo cerca perimetral"
+	size="large"
+/>
+
+$\therefore$ El valor de la cerca perimetral es de \$`40246499.82` (40 millones 246 mil 499) 
+</Solution>

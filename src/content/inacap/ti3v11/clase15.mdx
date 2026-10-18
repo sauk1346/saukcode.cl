@@ -1,0 +1,189 @@
+# Tuplas, Ejercicios
+**Material Clase:** [clase15.pdf](/inacap/ti3v11/docs/clase15.pdf)
+
+## Continuación Clase anterior
+
+- Agregar un menú (similar a la 'evaluación 01') que permita al usuario elegir las 4 opciones.
+- Agregar una 5ta opcion: SALIR.
+
+<Solution>
+<br/>
+```python
+estudiantes=[] 
+nombre = '' 
+print('------------------')
+print('Nombre Estudiantes')
+print('------------------')
+
+while (nombre != 'FIN'): 
+    nombre=input('Ingrese nombre: ')
+
+    if nombre == 'fin':
+        nombre = nombre.upper()
+    estudiantes.append(nombre) 
+
+estudiantes.remove('FIN') # remueve 'fin' de la lista 
+
+op = 1 #numero random para entrar al bucle 
+while op!='5':
+    print('----------------------------------------------------------')
+    print('1.Mostrar Todo | 2.Ordenar | 3.Buscar | 4.Borrar | 5.Salir')
+    print('----------------------------------------------------------')
+    op = input('Elegir opción: ')
+    # mostrar lista
+    if op == '1': 
+        for i in estudiantes: 
+            print(i)         
+    # ordenar lista
+    if op == '2': 
+        estudiantes.sort() 
+        print('--- La lista fue ordenada ---') 
+    # buscar nombre
+    if op == '3': 
+        nombreBuscar=input('Ingrese nombre a buscar: ') 
+        if nombreBuscar in estudiantes: 
+            print("--- SI ESTA ---") 
+            print(f'--- Posicion: {estudiantes.index(nombreBuscar)} de la lista ---') 
+        else: 
+            print ("--- NO ESTA ---") 
+    # borrar nombre
+    if op == '4': 
+        nombreBorrar=input('Ingrese nombre para borrar: ') 
+        while nombreBorrar in estudiantes: 
+            estudiantes.remove(nombreBorrar)
+        print('--- El nombre fue eliminado de la lista ---')
+    # salir menu
+    if op == '5':
+        print('--- SALIR ---')
+```
+</Solution>
+
+## Tuplas
+
+- **Indexables:** sus elementos se obtienen indicando su índices (como las 'listas').
+- **Inmutables:** Sus elementos **NO** pueden ser modificados (contrario a las 'listas').
+
+**Ejemplo 01:** Declaración de tuplas
+
+```python
+t0 = ()                   # tupla vacía
+t1 = (3,)                 # tupla con un elemento
+t2 = (5,3,9)              # tupla con números
+t3 = ('Juan', 'Perez')    # tupla de strings
+t4 = ('Juan','Perez', 18) # tupla mixta
+t5 = (t1, t2 , t3)        # tupla de tuplas
+```
+
+**Ejemplo 02:** Tupla de tuplas
+
+```python
+t1 = (5,3,9)
+t2 = ('Juan','Perez')
+t3 = ('Juan','Perez',18)
+t4 = (t1, t2, t3)
+```
+
+<TerminalOutput>
+{`tupla de tuplas: vista matriz
+-----------------------------
+| t4[0][0] | t4[0][1] | t4[0][2] |       |  5   |   3   | 9  |
+| t4[1][0] | t4[1][1] |          |   =   | Juan | Perez |    |
+| t4[2][0] | t4[2][1] | t4[2][2] |       | Juan | Perez | 18 |`}
+</TerminalOutput>
+
+
+## Packing - Unpacking
+
+1. **Packing:** Reunir varias variables o valores dentro de una tupla.
+2. **Unpacking:** Pasar valores de una tupla a varias variables.
+
+**Ejemplo 01:** *Packing* 
+
+```python
+nombre = 'margarita'
+apellido = 'castro'
+correo = 'mjcastro@uc.cl'
+
+# packing
+usuario = nombre, apellido, correo
+print(f'usuario = {usuario}')
+```
+
+**Ejemplo 02:** *Unpacking*
+
+```python
+copiaNombre, copiaApellido, copiaCorreo = usuario
+print(f'copiaNombre = {copiaNombre}')
+print(f'copiaApellido = {copiaApellido}')
+print(f'copiaCorreo = {copiaCorreo}')
+```
+
+# Tarea
+
+Crear un algoritmo que permita al usuario:
+
+- Ingresar los nombres de los estudiantes de la asignatura de Programación y almacenarlos en una Lista llamada ESTUDIANTE.
+- **NO PUEDEN SER INGRESADOS NOMBRES CONTENIDOS EN LA TUPLA VETADOS** ('Jennifer','Luis','Rady','Jimmy')
+- Después de finalizar el ingreso de datos a la lista debe mostrar un menú con las siguientes opciones:
+	- BUSCAR: Permite al usuario ingresar un nombre y buscarlo en la lista, indicando si existe o no. Si existe debe indicar en qué posición de la lista se encuentra.
+	- MOSTRAR TODO: Permite mostrar todo el contenido de la lista.
+	- ORDENAR: Ordena la lista.
+	- SALIR: Única forma de salir de la ejecución del menú.
+
+<Solution>
+
+- Se reutiliza el código de tarea anterior.
+- Se agrega tupla de vetados.
+
+```python
+estudiantes=[] 
+nombre = '' 
+print('------------------')
+print('Nombre Estudiantes')
+print('------------------')
+
+vetados = ('Jennifer','Luis','Rady','Jimmy')
+while (nombre != 'FIN'): 
+    nombre=input('Ingrese nombre: ')
+
+    if (nombre not in vetados):
+        if nombre == 'fin':
+            nombre = nombre.upper()
+        estudiantes.append(nombre) 
+    else:
+        print('--- Estudiante vetado. No se puede ingresar a la lista ---')
+estudiantes.remove('FIN') # remueve 'fin' de la lista 
+
+op = 1 #numero random para entrar al bucle 
+while op!='5':
+    print('----------------------------------------------------------')
+    print('1.Mostrar Todo | 2.Ordenar | 3.Buscar | 4.Borrar | 5.Salir')
+    print('----------------------------------------------------------')
+    op = input('Elegir opción: ')
+    # mostrar lista
+    if op == '1': 
+        for i in estudiantes: 
+            print(i)         
+    # ordenar lista
+    if op == '2': 
+        estudiantes.sort() 
+        print('--- La lista fue ordenada ---') 
+    # buscar nombre
+    if op == '3': 
+        nombreBuscar=input('Ingrese nombre a buscar: ') 
+        if nombreBuscar in estudiantes: 
+            print("--- SI ESTA ---") 
+            print(f'--- Posicion: {estudiantes.index(nombreBuscar)} de la lista ---') 
+        else: 
+            print ("--- NO ESTA ---") 
+    # borrar nombre
+    if op == '4': 
+        nombreBorrar=input('Ingrese nombre para borrar: ') 
+        while nombreBorrar in estudiantes: 
+            estudiantes.remove(nombreBorrar)
+        print('--- El nombre fue eliminado de la lista ---')
+    # salir menu
+    if op == '5':
+        print('--- SALIR ---')
+```
+</Solution>

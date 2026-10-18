@@ -1,0 +1,174 @@
+# Ejercicio 3: Indicadores de Rentabilidad
+
+Calcule los indicadores de rentabilidad de un proyecto de inversión, considerando los siguientes datos:
+
+**Datos:**
+1. Flujos de Caja estimados:
+    - Año 1: \$4.200.000, Año 2: \$4.600.000, Año 3: \$5.100.000, Año 4: \$5.500.000, Año 5: \$5.700.000
+2. Inversión Inicial: \$9.000.000
+3. Tasa de descuento: 23\%
+
+**Calcule:**
+1. Valor Actual Neto (VAN)
+2. Tasa Interna de Retorno (TIR)
+3. Período de Recuperación de la Inversión (PRI / Payback)
+4. Retorno sobre la Inversión (ROI)
+
+<Solution title="Solución Ejercicio 3">
+
+**Paso 1: Valor Actual Neto (VAN)**
+
+<P indent={2}>
+El VAN trae todos los flujos de caja futuros a valor presente, descontándolos a la tasa exigida (23%), y les resta la inversión inicial.
+</P>
+
+$$
+VAN = \sum_{t=1}^{n} \dfrac{FC_t}{(1+i)^t} - I_0
+$$
+
+<SmartTable
+    id="tablaVAN3"
+    tableLayout="auto"
+    caption="Flujos de Caja Descontados al 23%"
+    headers={["Año", "Flujo de Caja", "Cálculo", "Flujo Descontado"]}
+    rows={[
+        ["1", "\$4.200.000", "$\\dfrac{4.200.000}{(1,23)^1}$", "\$3.414.634"],
+        ["2", "\$4.600.000", "$\\dfrac{4.600.000}{(1,23)^2}$", "\$3.040.518"],
+        ["3", "\$5.100.000", "$\\dfrac{5.100.000}{(1,23)^3}$", "\$2.740.658"],
+        ["4", "\$5.500.000", "$\\dfrac{5.500.000}{(1,23)^4}$", "\$2.402.936"],
+        ["5", "\$5.700.000", "$\\dfrac{5.700.000}{(1,23)^5}$", "\$2.024.647"],
+        { cells: ["**Suma Flujos Descontados**", "", "", "**\$13.623.393**"], highlight: true }
+    ]}
+/>
+
+$$
+\begin{align*}
+VAN &= 13.623.393 - 9.000.000\\[6pt]
+VAN &= \$4.623.393
+\end{align*}
+$$
+
+<Callout type="tip" title="Decisión">
+Como **VAN > 0** (\$4.623.393), se **acepta el proyecto**: los flujos futuros descontados superan la inversión inicial.
+</Callout>
+
+---
+
+**Paso 2: Tasa Interna de Retorno (TIR)**
+
+<P indent={2}>
+La TIR es la tasa de descuento que hace que el VAN sea exactamente **0**; representa la rentabilidad máxima que se le puede exigir al proyecto. No se despeja algebraicamente (requiere iteración o calculadora financiera), por lo que se comprueba probando con una tasa candidata.
+</P>
+
+$$
+0 = -I_0 + \sum_{t=1}^{n} \dfrac{FC_t}{(1+TIR)^t}
+$$
+
+<SmartTable
+    id="tablaDecisionTIR3"
+    tableLayout="auto"
+    caption="Criterio de Decisión (TIR vs. tasa exigida i)"
+    headers={["Condición", "Decisión"]}
+    rows={[
+        ["TIR > i", "Acepta Proyecto"],
+        ["TIR < i", "Rechaza Proyecto"]
+    ]}
+/>
+
+<P indent={2}>
+**Prueba (solo teoría):** se verifica qué ocurre si la tasa fuera **43%**.
+</P>
+
+<SmartTable
+    id="tablaPruebaTIR3"
+    tableLayout="auto"
+    caption="Prueba de flujos descontados al 43%"
+    headers={["Año", "Flujo de Caja", "Cálculo", "Flujo Descontado"]}
+    rows={[
+        ["1", "\$4.200.000", "$\\dfrac{4.200.000}{(1,43)^1}$", "\$2.937.063"],
+        ["2", "\$4.600.000", "$\\dfrac{4.600.000}{(1,43)^2}$", "\$2.249.499"],
+        ["3", "\$5.100.000", "$\\dfrac{5.100.000}{(1,43)^3}$", "\$1.744.063"],
+        ["4", "\$5.500.000", "$\\dfrac{5.500.000}{(1,43)^4}$", "\$1.315.281"],
+        ["5", "\$5.700.000", "$\\dfrac{5.700.000}{(1,43)^5}$", "\$953.223"],
+        { cells: ["**Suma Flujos Descontados**", "", "", "**\$9.199.129**"], highlight: true }
+    ]}
+/>
+
+$$
+9.199.129 - 9.000.000 = \$199.129
+$$
+
+<Callout type="note" title="Interpretación">
+Al descontar al 43% el resultado sigue siendo **positivo** (\$199.129), aunque ya muy cercano a 0. Esto confirma que la **TIR real es apenas superior a 43%** —muy por encima de la tasa exigida del 23%—, por lo que el proyecto se **acepta** también bajo este criterio.
+</Callout>
+
+---
+
+**Paso 3: Período de Recuperación de la Inversión (PRI / Payback)**
+
+<P indent={2}>
+Indica el número de años que tarda el proyecto en recuperar la inversión inicial, usando los flujos **ya descontados** del Paso 1.
+</P>
+
+$$
+PB = a + \dfrac{I_0 - b}{FC_n}
+$$
+
+<P indent={3}>
+donde $a$ = año anterior a la recuperación, $b$ = flujo acumulado hasta el año $a$, y $FC_n$ = flujo descontado del año en que se recupera la inversión.
+</P>
+
+<SmartTable
+    id="tablaAcumuladoPRI3"
+    tableLayout="auto"
+    caption="Flujo Descontado Acumulado"
+    headers={["Año", "Flujo Descontado", "Acumulado", "¿Cubierta la inversión?"]}
+    rows={[
+        ["1", "\$3.414.634", "\$3.414.634", "No"],
+        ["2", "\$3.040.518", "\$6.455.152", "No"],
+        { cells: ["3", "\$2.740.658", "\$9.195.810", "**Sí**"], highlight: true }
+    ]}
+/>
+
+<P indent={2}>
+La inversión (\$9.000.000) queda cubierta entre el año 2 (\$6.455.152 acumulados) y el año 3 (\$9.195.810 acumulados), por lo que $a = 2$, $b = $ \$6.455.152 y $FC_3 = $ \$2.740.658.
+</P>
+
+$$
+\begin{align*}
+PB &= 2 + \dfrac{9.000.000 - 6.455.152}{2.740.658}\\[8pt]
+PB &= 2 + \dfrac{2.544.848}{2.740.658}\\[8pt]
+PB &= 2 + 0,93\\[8pt]
+PB &= 2,93 \text{ años}
+\end{align*}
+$$
+
+<Callout type="tip" title="Conclusión">
+La inversión se recupera en **2,93 años** (prácticamente 2 años y 11 meses).
+</Callout>
+
+---
+
+**Paso 4: Retorno sobre la Inversión (ROI)**
+
+<P indent={2}>
+El ROI mide, en términos porcentuales, el beneficio neto obtenido (el VAN) respecto a la inversión total realizada.
+</P>
+
+$$
+ROI = \left(\dfrac{\text{Beneficio Neto}}{\text{Inversión Total}}\right) \times 100
+$$
+
+$$
+\begin{align*}
+ROI &= \left(\dfrac{4.623.393}{9.000.000}\right) \times 100\\[8pt]
+ROI &= 0,5137 \times 100\\[8pt]
+ROI &= 51,37\%
+\end{align*}
+$$
+
+<Callout type="tip" title="Conclusión">
+Por cada peso invertido, el proyecto genera un **51,37%** de retorno neto, confirmando —junto con el VAN positivo, la TIR muy superior al 23% exigido y un payback de 2,93 años— que conviene **aceptar el proyecto**.
+</Callout>
+
+</Solution>

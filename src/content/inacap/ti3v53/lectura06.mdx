@@ -1,0 +1,147 @@
+# Fiabilidad en entornos Cloud: Diseño para la Alta Disponibilidad
+
+## 1. Continuidad operacional
+
+
+
+La continuidad operacional es un pilar fundamental en la arquitectura cloud, ya que garantiza que los **servicios permanezcan disponibles** incluso ante fallos inesperados o incidentes regionales. Diseñar soluciones confiables requiere integrar alta disponibilidad, redundancia de infraestructura y elasticidad.
+
+
+
+Para asegurar la continuidad, se puede implementar una arquitectura multicloud que interconecte AWS y Oracle Cloud (OCI) mediante túneles VPN cifrados o conexiones dedicadas (Direct Connect y FastConnect). Esta topología elimina los puntos únicos de falla al distribuir la lógica de negocio en **múltiples zonas de disponibilidad y dominios de falla**, utilizando balanceadores de carga inteligentes que redirigen el tráfico global automáticamente ante cualquier degradación del servicio en el proveedor principal.
+
+### Principios clave
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Principios", "Descripción"]}
+    rows={[
+        [
+            "**Alta disponibilidad (HA)**",
+            "Construida en capas, permite que un servicio continue operando ante la falla de un componenten o de un centro de datos completo"
+        ],
+        [
+            "**Redundancia geográfica y de zona**",
+            "Replicación de recursos entre múltiples zonas y regiones, asegurando resiliencia frente a desastres naturales o fallos masivos de red"
+        ],
+        [
+            "**Elasticidad de la infraestructura**",
+            "auto-scaling ajusta dinámicamente la capacidad de cómputo según la demanda, optimizando recursos y costos"
+        ],
+        [
+            "**Seguridad y acceso controlado**",
+            "Políticas IAM y monitoreo de red protegen recursos y permiten detectar fallos o accesos no autorizados"
+        ],
+    ]}
+/>
+
+## 2. La reduncancia en la continuidad del negocio
+
+La redundancia **evita la dependencia de un solo componente** o centro de datos. Replicar servicios y datos en múltiples ubicaciones permite resiliencia progresiva, soportando fallos locales o regionales y asegurando la operación continua del negocio.
+
+La persistencia de los datos se logra mediante replicación crítica entre plataformas, usando herramientas como **Oracle Data Guard** para bases de datos y políticas de replicación cruzada en almacenamiento de objetos, garantizando la disponibilidad ante desastres y cumpliendo con los estándares de RPO más exigentes.
+
+La solución se alinea con normas **ISO 27001** y **22301**, integrando observabilidad proactiva e infraestructura como código (Terraform), facilitando escalabilidad automática ante picos de demanda y minimizando el RTO, asegurando recuperación rápida de servicios críticos.
+
+## 3. Integración multicloud
+
+La integración multicloud permite combinar servicios de distintos proveedores (AWS, Azure, Google Cloud) para aprovechar fortalezas específicas y cumplir requerimientos de la industria, aumentando resiliencia, reduciendo vendor lock-in y optimizando costos. A continuación, se muestran los elementos claves de la integración 
+
+### Elementos clave
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Elementos", "Descripción"]}
+    rows={[
+        [
+            "**Selección de proveedores según la industria**",
+            "Algunas industrias requieren alta seguridad o cumplimiento normativo específico",
+        ],
+        [
+            "**Conectividad segura entre nubes**",
+            "VPN Site-to-Site, AWS Direct Connect o Azure ExpressRoute permiten replicación de datos y comunicación privada entre proveedores",
+        ],
+        [
+            "**Replicación de bases de datos y almacenamiento**",
+            "Oracle Data Guard, replicación lógica en PostgreSQL/MySQL y sincronización de buckets aseguran consistencia y disponibilidad de datos críticos",
+        ],
+        [
+            "**Gestión unificada de tráfico y cargas**",
+            "Servicios DNS con health checks (Route 53, Cloudfire) redirigen tráfico automáticamente en caso de fallos de un proveedor",
+        ],
+        [
+            "**Automatización y observabilidad**",
+            "Infraestructura como código y herramientas de monitoreo permiten estandarizar despliegues y detectar fallos proactivamente",
+        ],
+    ]}
+/>
+
+### Beneficios de la integración cloud
+
+- Resiliencia frente a fallos masivos de un proveedor
+- Flexibilidad para combinar servicios según necesidades de la industria
+- Optimización de costos y recursos
+- Cumplimiento de normativas internacionales y estándares de recuperación antes desastres (ISO 22301)
+
+La intregación *multicloud* garantiza continuidad, eficiencia y permite diseñar arquitecturas estratégicas, alineadas con objetivos de negocio y adaptables a cambios en la demanda y regulación industrial.
+
+---
+
+## Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "Si un centro de datos falla por completo, ¿qué principio de arquitectura cloud garantiza continuidad operativa de los servicios?",
+		options: [
+            "Elasticidad basada únicamente en auto-scaling",
+            "Monitoreo reactivo de incidentes aislados",
+            "Optimización de costos mediante instancias reservadas",
+            "Alta disponibilidad construida en capas",
+		],
+		correctIndex: 3
+	},
+    {
+		question: "Una organización replica bases de datos entre AWS y OCI para evitar pérdida de información. ¿Qué objetivo principal se persigue con esta práctica?",
+		options: [
+            "Reducir latencia de acceso para usuarios finales",
+            "Garantizar persistencia de datos y cumplir RPO",
+            "Simplificar la gestión de identidades entre nubes",
+            "Optimizar costos de almacenamiento a corto plazo",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "Tras un desastre, los servicios se recuperan rápidamente con mínima intervención humana. ¿Qué combinación de prácticas lo hace posible?",
+		options: [
+            "Escalado manual y monitoreo reactivo",
+            "Seguridad basada solo en controles perimetrales",
+            "Infraestructura como código y observabilidad",
+            "Replicación local sin automatización",
+		],
+		correctIndex: 2
+	},
+    {
+		question: "Una empresa busca evitar depender de un solo proveedor. ¿La integración multicloud reduce el vendor lock-in y mejora la resiliencia?",
+		options: [
+            "Verdadero",
+            "Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "Una organización financiera debe cumplir normativas estrictas. ¿La selección de proveedores multicloud puede depender del tipo de industria?",
+		options: [
+            "Verdadero",
+            "Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "El tráfico debe redirigirse automáticamente ante una caída regional. ¿DNS con health checks permite esta gestión unificada de tráfico?",
+		options: [
+            "Verdadero",
+            "Falso",
+		],
+		correctIndex: 0
+	},
+]}/>

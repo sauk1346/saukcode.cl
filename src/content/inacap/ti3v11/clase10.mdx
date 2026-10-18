@@ -1,0 +1,105 @@
+# Instrucciones if(), while() 
+**Material Clase:** [clase10.pdf](/inacap/ti3v11/docs/clase10.pdf)
+
+## Instrucción if()
+- Es necesario respetar la indentación para las instrucciones dentro del `if()`.
+- Si no está indentado, python asume que dichas instrucciones no pertenecen al `if()`
+
+**Ejemplo 01:** 
+
+- Semáforo.
+- Si luz-verde imprimir 'Cruzar la calle'.
+- Sino imprimir 'Esperar'
+
+```python
+semaforo = input("ingrese luz semáforo (rojo/verde): ")
+
+if (semaforo == "verde"):
+	print("Cruzar la calle")
+else:
+	print("Esperar")
+```
+
+**Ejemplo 02**: *if anidados*
+
+- Ingresar compra
+- Si es menor o igual a 100 imprimir "Pago en efectivo"
+- Si es mayor a 100 y menor a 300 imprimir "Pago con tarjeta de débito"
+- Sino, imprimir "Pago con tarjeta de crédito"
+
+```python
+compra = int ( input("Ingrese el valor de la compra: ") )
+
+if (compra <=100):
+	print("Pago en efectivo")
+elif (compra > 100) and (compra < 300):
+	print("Pago con tarjeta de débito")
+else:
+	print("Pago con tarjeta de crédito")
+```
+
+## Instrucción while()
+
+**Ejemplo 01:** Listar un número desde `1` hasta `varnumero`
+
+```python
+varnumero = int( input("Ingrese el número: ") )
+i = 1
+while (i <= varnumero):
+	print("numero: ",i)
+	i = i + 1
+```
+
+**Ejemplo 02:** Listar sólo los números pares desde `2` hasta `varnumero`
+
+```python
+varnumero = int( input("Ingrese el número: "))
+i = 1
+while (i <= varnumero):
+	if (i % 2 == 0): # filtro para números pares
+		print("número: ", i)
+	i = i + 1 # indentación. No pertenece al if()
+```
+
+# Ejercicios
+
+## Ejercicio 01
+Calcular la suma de 3 números
+
+<Solution>
+```python
+num1 = int( input("Ingrese el 1er número: ") )
+num2 = int( input("Ingrese el 2do número: ") )
+num3 = int( input("Ingrese el 3er número: ") )
+
+suma = num1 + num2 +  num3
+print("la suma es: ", suma)
+```
+</Solution>
+
+## Ejercicio 02
+Calcular el área de un triángulo
+
+<Solution>
+```python
+base = int( input("ingrese base: ") )
+altura = int( input("ingrese altura: ") )
+
+area = (base * altura) / 2
+print("el área del triángulo es: ", area)
+```
+</Solution>
+
+## Ejercicio 03
+Calcular el promedio de 3 números
+
+<Solution>
+```python
+num1 = int( input("ingrese el 1er número: ") )
+num2 = int( input("ingrese el 2do número: ") )
+num3 = int( input("ingrese el 3er número: ") )
+
+prom = (num1 + num2 + num3) / 3
+print("el promedio de los números es: ", prom)
+```
+</Solution>

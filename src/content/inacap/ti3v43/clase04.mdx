@@ -1,0 +1,228 @@
+# Estándares de Calidad
+
+## 1. Calidad del Software
+
+La calidad del software se define como el grado en que un programa cumple su propósito de manera confiable, eficiente y fácil de usar. Es un concepto multidimensional que abarca tanto aspectos técnicos como la satisfacción del usuario final.
+
+### Beneficios de los estándares de calidad:
+- Aseguran calidad y confiabilidad del producto final
+- Reducen riesgos de fallas y defectos críticos
+- Proporcionan un lenguaje común entre equipos de desarrollo
+- Facilitan la comunicación con clientes y stakeholders
+
+La calidad del software se mide a través de cinco dimensiones principales:
+
+- **Funcionalidad:** El sistema hace exactamente lo que se especificó en los requerimientos
+- **Confiabilidad:** Funciona consistentemente sin fallar bajo condiciones normales de operación
+- **Usabilidad:** Es intuitivo y fácil de usar para los usuarios finales
+- **Rendimiento:** Responde en tiempos apropiados y utiliza recursos eficientemente
+- **Mantenibilidad:** Permite modificaciones y actualizaciones de manera sencilla
+
+## 2. Estándar ISO/IEC 12207
+
+El estándar ISO/IEC 12207 establece un marco de referencia completo que define los procesos, actividades y tareas involucradas en el ciclo de vida completo del software, desde la conceptualización inicial hasta su retiro definitivo.
+
+### Características principales:
+- **Alcance completo:** Cubre todo el ciclo de vida del software
+- **Enfoque por procesos:** Organiza las actividades en procesos bien definidos
+- **Flexibilidad:** Adaptable a diferentes tipos de proyectos y organizaciones
+
+### Procesos principales del ciclo de vida:
+
+1. **Adquisición:** Procesos para obtener software de proveedores externos
+2. **Desarrollo:** Actividades de análisis, diseño, implementación y pruebas
+3. **Operación:** Gestión del software en producción
+4. **Mantenimiento:** Modificaciones y mejoras durante la vida útil
+5. **Retiro:** Procesos para descontinuar el uso del software
+
+**Aplicación práctica:** Este estándar es especialmente valioso en empresas que manejan proyectos complejos, proporcionando estructura y consistencia en la gestión del desarrollo de software.
+
+## 3. Estándar ISO/IEC 25000 (SQuaRE)
+
+**SQuaRE** (*System and Software Quality Requirements and Evaluation*) constituye una familia de normas internacionales diseñada para crear un marco de trabajo unificado para evaluar la calidad del producto software.
+
+### Objetivos principales:
+- Establecer modelos de calidad estandarizados
+- Definir métricas de evaluación objetivas
+- Proporcionar guías para la medición de calidad
+- Facilitar la certificación de productos software
+
+### Beneficios para la industria:
+
+**Para desarrolladores:**
+- Conocimiento objetivo de la calidad de sus productos
+- Identificación de áreas de mejora
+- Validación de cumplimiento de estándares internacionales
+
+**Para compradores:**
+- Criterios objetivos para comparar soluciones
+- Reducción de riesgos en la selección de software
+- Garantía de calidad certificada
+
+## 4. Introducción a Requerimientos
+
+- Los requerimientos constituyen la base fundamental de cualquier proyecto de software, definiendo **qué** debe hacer el sistema y **cómo** debe comportarse para satisfacer las necesidades del usuario.
+- Un requerimiento es una condición o capacidad que debe ser cumplida o poseída por un sistema para resolver un problema o alcanzar un objetivo específico del usuario.
+
+
+### Requerimientos Funcionales
+Describen **qué** debe hacer el sistema: las funciones, servicios y operaciones específicas que debe proporcionar.
+
+**Ejemplos:**
+- "El sistema debe permitir el registro de usuarios con email y contraseña"
+- "El sistema debe generar reportes financieros mensuales"
+- "El usuario debe poder buscar productos por categoría"
+
+### Requerimientos No Funcionales
+Especifican **cómo** debe comportarse el sistema en términos de calidad, rendimiento, seguridad y otras características operacionales.
+
+**Categorías principales:**
+- **Rendimiento:** Tiempo de respuesta, throughput, capacidad de usuarios concurrentes
+- **Seguridad:** Autenticación, autorización, encriptación de datos
+- **Usabilidad:** Facilidad de uso, accesibilidad, experiencia del usuario
+- **Confiabilidad:** Disponibilidad del sistema, tolerancia a fallos
+- **Mantenibilidad:** Facilidad de modificación y actualización
+
+### Características de Buenos Requerimientos
+
+Un requerimiento de calidad debe ser:
+
+- **Claro:** Sin ambigüedades ni interpretaciones múltiples
+- **Completo:** Incluye toda la información necesaria
+- **Consistente:** No contradice otros requerimientos
+- **Verificable:** Se puede probar su cumplimiento
+- **Trazable:** Se puede seguir su origen y evolución
+- **Modificable:** Permite cambios sin afectar la estructura general
+
+### Herramientas y Tecnologías
+
+**Herramientas de gestión de requerimientos:**
+- **Jira:** Gestión ágil de requerimientos y seguimiento
+- **Azure DevOps:** Plataforma integral de desarrollo
+- **Rational DOORS:** Herramienta enterprise para trazabilidad
+- **Confluence:** Documentación colaborativa de requerimientos
+
+**Técnicas de documentación:**
+- Casos de uso UML
+- Historias de usuario (User Stories)
+- Diagramas de flujo de procesos
+- Mockups y wireframes de interfaz
+
+### Conexión con los Estándares de Calidad
+
+La correcta gestión de requerimientos es fundamental para lograr los objetivos de calidad definidos en los estándares ISO/IEC 12207 y 25000, ya que:
+
+- Asegura que la **funcionalidad** desarrollada cumple las necesidades reales
+- Establece criterios medibles de **rendimiento** y **confiabilidad**
+- Define expectativas claras de **usabilidad** desde el inicio
+- Facilita la **mantenibilidad** a través de documentación estructurada
+
+La validación continua con el cliente garantiza que el producto final no solo cumpla con estándares técnicos, sino que realmente resuelva los problemas del negocio para los cuales fue diseñado.
+
+
+# Actividad grupal: análisis de calidad
+- Formar grupos de 3–4 personas.
+- **Caso:** Sistema de reservas de vuelos para una aerolínea.
+
+Preguntas a responder:
+
+1. **¿Qué aspectos de calidad son críticos en este sistema?**
+
+<Solution>
+**CONFIABILIDAD** 🔒
+- **Transacciones financieras seguras:** No puede haber errores en pagos
+- **Consistencia de datos:** Disponibilidad de asientos en tiempo real
+- **Recuperación ante fallos:** Sistema debe mantener integridad de reservas
+- **Disponibilidad 24/7:** Servicio continuo para clientes globales
+
+**RENDIMIENTO** ⚡
+- **Concurrencia masiva:** Miles de usuarios simultáneos en temporadas altas
+- **Tiempo de respuesta:** Búsquedas y reservas en menos de 3 segundos
+- **Escalabilidad:** Capacidad de crecer según demanda
+- **Optimización de recursos:** Manejo eficiente de base de datos
+
+**FUNCIONALIDAD** ✅
+- **Búsqueda precisa:** Filtros por fecha, destino, precio, horarios
+- **Proceso de reserva completo:** Desde selección hasta confirmación
+- **Integración:** Conexión con sistemas de pago, aeropuertos, check-in
+- **Gestión de itinerarios:** Modificaciones, cancelaciones, reembolsos
+
+**SEGURIDAD** 🛡️
+- **Protección de datos personales:** Cumplimiento GDPR/normativas locales
+- **Seguridad en pagos:** Encriptación de datos financieros
+- **Autenticación robusta:** Verificación de identidad de usuarios
+- **Prevención de fraudes:** Detección de actividades sospechosas
+
+**USABILIDAD** 👥
+- **Interfaz intuitiva:** Proceso de reserva simple y claro
+- **Accesibilidad:** Cumplimiento de estándares para usuarios con discapacidades
+- **Responsividad:** Funcionamiento óptimo en móviles y tablets
+- **Multiidioma:** Soporte para mercados internacionales
+</Solution>
+
+2. **¿Cómo se podrían medir o asegurar?**
+<Solution>
+**Métricas de Confiabilidad**
+- **MTBF** (Mean Time Between Failures): > 2000 horas
+- **Tasa de disponibilidad:** 99.9% uptime mínimo
+- **RTO/RPO:** Recovery Time < 30 min, Recovery Point < 5 min
+- **Pruebas:** Testing de carga, stress testing, disaster recovery
+
+**Métricas de Rendimiento**
+- **Tiempo de respuesta:** Búsqueda < 2 seg, Reserva < 5 seg
+- **Throughput:** > 10,000 transacciones por minuto en picos
+- **Usuarios concurrentes:** Soporte mínimo 50,000 usuarios simultáneos
+- **Herramientas:** Load testing con JMeter, monitoreo con New Relic
+
+**Métricas de Funcionalidad**
+- **Tasa de éxito de transacciones:** > 99.5%
+- **Precisión de búsquedas:** 100% datos actualizados
+- **Cobertura de pruebas:** > 90% code coverage
+- **Testing:** Pruebas unitarias, integración, end-to-end
+
+**Métricas de Seguridad**
+- **Tiempo de detección de vulnerabilidades:** < 24 horas
+- **Cumplimiento normativo:** Auditorías trimestrales PCI-DSS
+- **Penetration testing:** Evaluaciones mensuales
+- **Certificaciones:** ISO 27001, SOC 2 Type II
+
+**Métricas de Usabilidad**
+- **Tasa de conversión:** > 15% de búsquedas resultan en reserva
+- **Tiempo de completar reserva:** < 5 minutos promedio
+- **Tasa de abandono:** < 20% en proceso de reserva
+- **Testing:** A/B testing, user testing, heatmaps
+</Solution>
+
+3. **¿Qué pasaría si se descuida alguno?**
+
+<Solution>
+**Si se descuida CONFIABILIDAD:**
+- **💰 Pérdidas financieras:** Reservas perdidas, doble booking
+- **😡 Pérdida de clientes:** Desconfianza en la marca
+- **⚖️ Problemas legales:** Demandas por incumplimiento de contratos
+- **📰 Daño reputacional:** Crisis de imagen pública
+
+**Si se descuida RENDIMIENTO:**
+- **🐌 Experiencia frustrante:** Usuarios abandonan el sitio
+- **💸 Pérdida de ventas:** Especialmente en temporadas altas
+- **🏆 Ventaja competitiva perdida:** Clientes migran a competencia
+- **💰 Costos operacionales altos:** Infraestructura ineficiente
+
+**Si se descuida SEGURIDAD:**
+- **🚨 Violación de datos:** Multas millonarias por GDPR
+- **💳 Fraude financiero:** Pérdidas económicas directas
+- **📉 Pérdida total de confianza:** Recuperación muy difícil
+- **🔒 Suspensión de operaciones:** Por autoridades regulatorias
+
+**Si se descuida USABILIDAD:**
+- **📱 Baja adopción móvil:** Mercado móvil representa 60%+ de ventas
+- **👥 Exclusión de usuarios:** Pérdida de segmento con discapacidades
+- **💼 Costos de soporte:** Mayor volumen de llamadas de ayuda
+- **📊 Métricas pobres:** Baja conversión y retención
+
+**Si se descuida FUNCIONALIDAD:**
+- **❌ Procesos incompletos:** Reservas no finalizadas
+- **🔄 Procesos manuales:** Aumenta costos operacionales
+- **📞 Sobrecarga de call center:** Para completar transacciones
+- **🚫 Pérdida de mercado:** Funcionalidades básicas no competitivas
+</Solution>

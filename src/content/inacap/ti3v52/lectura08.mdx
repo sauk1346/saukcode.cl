@@ -1,0 +1,80 @@
+# Enrutamiento dinámico con OSPFv2
+
+## 1. Evolución hacia el enrutamiento dinámico
+
+- **OSPF:** (*Open Shortest Path First*). Protocolo de pasarela interior (IGP) de estado de enlace, diseñado para entornos empresariales que requieren alta disponibilidad y adaptación rápida
+
+<SmartFigure
+	id="fig156"
+	src="/inacap/ti3v52/images/fig156.png"
+	alt="Diferencias de enrutamiento estático y dinámico"
+	caption="Diferencias de enrutamiento estático y dinámico"
+	size="large"
+/>
+
+<SmartTable
+    id="tabla01"
+    caption="Características enrutamiento dinámico"
+    tableLayout="auto"
+    headers={["Característica", "Descripción"]}
+    rows={[
+        [
+            "**Escalabilidad**",
+            "el enrutamiento estático se vuelve inmanejabla a medida que la red crece. OSPF permite el aprendizaje automática de nuevas rutas sin intervención humana constante"
+        ],
+        [
+            "**Resiliencia**",
+            "ante una falla de enlace, el enrutamiento estático requiere reconfiguración manual. OSPF ofrece convergencia, recalculando rutas alternativas automáticamente"
+        ],
+        [
+            "**Reducción de errores**",
+            "minimiza el riesgo humano asociado a la configuración manual ruta por ruta en topologías complejas",
+        ],
+    ]}
+/>
+
+## 2. Lógica del estado de enlace y algoritmo SPF
+
+<SmartTable
+    id="tabla01"
+    caption="Características OSPF"
+    tableLayout="auto"
+    headers={["Característica", "Descripción"]}
+    rows={[
+        [
+            "**Link-state (estado de enlace)**",
+            "a diferencia de los protocolos vector-distancia, OSPF permite que cada router construya un mapa conpleto de la topología de la red"
+        ],
+        [
+            "**Algoritmo SPF**",
+            "utiliza el algoritmo *Shortest Path First* (SPF) para calcular la ruta más eficiente hacia cada destino basándose en el \"costo\" actumulado del enlace"
+        ],
+        [
+            "**OSPFv2**",
+            "específicamente diseñano para redes IPv4, gestiona el anuncio de subredes y el cálculo de métricas para optimizar el tráfico empresarial"
+        ],
+    ]}
+/>
+
+## 3. Vecindad y adyacencia
+
+<SmartFigure
+	id="fig157"
+	src="/inacap/ti3v52/images/fig157.png"
+	alt="El lenguaje de los routers"
+	caption="El lenguaje de los routers"
+	size="large"
+/>
+
+- Los routers OSPF envían paquetes 'Hello' periódicoa para descubrir vecinos y mantener la relación activa
+- Para que 2 routers establezcan una adyacencia completa, deben coincidir en:
+    - Misma subred y máscara
+    - Mismo ID de área
+    - Temporizadores (Hello/Dead intervals) idénticos
+    - Autenticación compatible (si está configurada)
+
+## 4. Arquitectura de Área Única (Backbone)
+
+- **El Núcleo (Área 0):** todas la redes OSPF deben tener un área backbone (Área 0). En diseño pequeños o iniciales, toda la red reside dentro de esta única área
+- **Propósito:** el diseño de área única simplifica la comprensión del intercambio del *Link-State Advertisements* (LSAs), y es el paso previo antes de escalar a diseño multiárea.
+- **Eficiencia:** la división por áreas futuras permitirá segmentar el tráfico de actualización, pero el dominio del Área 0 es crítico para la estabilidad 

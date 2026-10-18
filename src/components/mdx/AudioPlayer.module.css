@@ -1,0 +1,131 @@
+.figure {
+  margin: var(--spacing-lg, 16px) 0;
+}
+
+.caption {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-style: italic;
+  line-height: 1.4;
+  text-align: left;
+  margin-bottom: var(--spacing-sm, 8px);
+}
+
+:global(html.dark-mode) .caption,
+:global(html.dark-mode-override) .caption {
+  color: #9ca3af;
+}
+
+@media (prefers-color-scheme: dark) {
+  .player {
+    background: #1e40af;
+  }
+}
+
+:global(html.dark-mode) .player,
+:global(html.dark-mode-override) .player {
+  background: #1e40af;
+}
+
+:global(html.light-mode-override) .player {
+  background: #2563eb;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: var(--radius-full, 999px);
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.iconButton:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.time {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.seekBar {
+  flex: 1;
+  min-width: 60px;
+}
+
+.volumeBar {
+  width: 70px;
+  flex-shrink: 0;
+}
+
+/* Range inputs: track + thumb, cross-browser */
+.seekBar,
+.volumeBar {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: var(--radius-full, 999px);
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  outline: none;
+}
+
+.seekBar::-webkit-slider-thumb,
+.volumeBar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.seekBar::-moz-range-thumb,
+.volumeBar::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: none;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.seekBar::-moz-range-track,
+.volumeBar::-moz-range-track {
+  height: 4px;
+  border-radius: var(--radius-full, 999px);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+@media (max-width: 480px) {
+  .player {
+    flex-wrap: wrap;
+    padding: 10px 14px;
+  }
+
+  .volumeBar {
+    width: 50px;
+  }
+}

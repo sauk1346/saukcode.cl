@@ -1,0 +1,230 @@
+# Ejercicios POO (1)
+
+## Ejercicio 01
+Crear una clase `Persona`, con atributos:
+
+- rut 
+- nombre
+- edad (privada)
+
+<Solution>
+```python
+class Persona:
+    def __init__(self, rut, nombre, edad):
+        self.rut = rut
+        self.nombre = nombre
+        self.__edad = 0
+        if edad > 0:
+            self.__edad = edad #Encapsulado
+        else:
+            raise ValueError("Error en la edad")
+
+    @property
+    def edad(self):
+        return self.__edad
+
+    @edad.setter
+    def edad(self, nueva_edad):
+        self.__edad = nueva_edad
+
+persona1 = Persona("123-4", "AAA", 25)
+
+print(f"Nombre: {persona1.nombre}")
+print(f"Rut: {persona1.rut}")
+print(f"Edad: {persona1.edad}")
+
+persona1.edad = 35
+print(f"Nueva Edad: {persona1.edad}")
+```
+<TerminalOutput withBg>
+{`Nombre: AAA
+Rut: 123-4
+Edad: 25
+Nueva Edad: 35`}
+</TerminalOutput>
+</Solution>
+
+## Ejercicio 02
+Crear un método `mostrarDatos()` que muestre el rut, nombre y edad de la persona
+
+<Solution>
+```python
+class Persona:
+    def __init__(self, rut, nombre, edad):
+        self.rut = rut
+        self.nombre = nombre
+        self.__edad = 0
+        if edad > 0:
+            self.__edad = edad #Encapsulado
+        else:
+            raise ValueError("Error en la edad")
+
+    @property
+    def edad(self):
+        return self.__edad
+
+    @edad.setter
+    def edad(self, nueva_edad):
+        self.__edad = nueva_edad
+
+    def mostrarDatos(self):
+        return f"Rut: {self.rut}, Nombre: {self.nombre}, Edad: {self.edad}"
+
+persona1 = Persona("123-4", "AAA", 35)
+print(persona1.mostrarDatos())
+```
+<TerminalOutput withBg>
+{`Rut: 123-4, Nombre: AAA, Edad: 35`}
+</TerminalOutput>
+</Solution>
+
+## Ejercicio 03
+- Crear una clase `Correo` con atributos `tipo` y `correo`
+- Agregar el atributo privado `correos` a la clase `Persona`
+- Crear métodos `agregarCorreo()` y `mostrarCorreos()` en la clase `Persona`
+
+<Solution>
+```python
+class Correo:
+    def __init__(self, tipo, correo):
+        self.tipo = tipo
+        self.correo = correo
+        
+class Persona:
+    def __init__(self, rut, nombre, edad):
+        self.rut = rut
+        self.nombre = nombre
+        self.__edad = 0
+        if edad > 0:
+            self.__edad = edad #Encapsulado
+        else:
+            raise ValueError("Error en la edad")
+        self.__correos = []
+
+    @property
+    def edad(self):
+        return self.__edad
+
+    @edad.setter
+    def edad(self, nueva_edad):
+        self.__edad = nueva_edad
+
+    def mostrarDatos(self):
+        return f"Rut: {self.rut}, Nombre: {self.nombre}, Edad: {self.edad}"
+
+    def agregarCorreo(self, tipo, direccion):
+        correo = Correo(tipo, direccion)
+        self.__correos.append(correo)
+
+    def mostrarCorreos(self):
+        return self.__correos[:] # retorna una lista de objetos de tipo Correo
+
+persona1 = Persona("123-4", "AAA", 35)
+print(persona1.mostrarDatos())
+
+persona1.agregarCorreo("trabajo", "trabajo@gmail.com")
+persona1.agregarCorreo("personal", "personal@gmail.com")
+
+for i in persona1.mostrarCorreos():
+    print(f"Tipo correo: {i.tipo}, Dirección: {i.correo}")
+```
+<TerminalOutput withBg>
+{`Rut: 123-4, Nombre: AAA, Edad: 35
+Tipo correo: trabajo, Dirección: trabajo@gmail.com
+Tipo correo: personal, Dirección: personal@gmail.com`}
+</TerminalOutput>
+</Solution>
+
+
+## Ejercicio 04
+- Mejorar el método `agregarCorreo()`
+	- Manejar el caso de que se ingrese un correo ya existente
+	- Debe retornar `True` si ingresa un correo o False en caso contrario
+
+- Diseñar un método `eliminarCorreo()`
+	- Elimina un correo ingresado
+	- Retorna `True` si elimina el correo, y `False` en caso contrario
+
+<Solution>
+```python
+class Correo:
+    def __init__(self, tipo, direccion):
+        self.tipo = tipo
+        self.direccion = direccion
+        
+class Persona:
+    def __init__(self, rut, nombre, edad):
+        self.rut = rut
+        self.nombre = nombre
+        self.__edad = 0
+        if edad > 0:
+            self.__edad = edad #Encapsulado
+        else:
+            raise ValueError("Error en la edad")
+        self.__correos = []
+
+    @property
+    def edad(self):
+        return self.__edad
+
+    @edad.setter
+    def edad(self, nueva_edad):
+        self.__edad = nueva_edad
+
+    def mostrarDatos(self):
+        return f"Rut: {self.rut}, Nombre: {self.nombre}, Edad: {self.edad}"
+
+    def agregarCorreo(self, tipo, direccion):
+        for c in self.__correos:
+            if c.direccion == direccion:
+                return False
+        
+        correoNuevo = Correo(tipo, direccion)
+        self.__correos.append(correoNuevo)
+        return True
+    
+    def eliminarCorreo(self, direccion):
+        for i in range(len(self.__correos)):
+            if self.__correos[i].direccion == direccion:
+                del self.__correos[i]
+                return True
+        return False
+
+
+    def mostrarCorreos(self):
+        return self.__correos[:] # retorna una lista de objetos de tipo Correo
+
+persona1 = Persona("123-4", "AAA", 35)
+print(persona1.mostrarDatos())
+
+persona1.agregarCorreo("trabajo", "trabajo@gmail.com")
+persona1.agregarCorreo("personal", "personal@gmail.com")
+for i in persona1.mostrarCorreos():
+    print(f"Tipo correo: {i.tipo}, Dirección: {i.direccion}")
+
+print("\n--agrega nuevo correo--")
+persona1.agregarCorreo("trabajo2", "nuevo@gmail.com")
+for i in persona1.mostrarCorreos():
+    print(f"Tipo correo: {i.tipo}, Dirección: {i.direccion}")
+
+print("\n--elimina un correo--")
+persona1.eliminarCorreo("personal@gmail.com")
+for i in persona1.mostrarCorreos():
+    print(f"Tipo correo: {i.tipo}, Dirección: {i.direccion}")
+```
+<TerminalOutput withBg>
+{`Rut: 123-4, Nombre: AAA, Edad: 35
+Tipo correo: trabajo, Dirección: trabajo@gmail.com
+Tipo correo: personal, Dirección: personal@gmail.com
+
+--agrega nuevo correo--
+Tipo correo: trabajo, Dirección: trabajo@gmail.com
+Tipo correo: personal, Dirección: personal@gmail.com
+Tipo correo: trabajo2, Dirección: nuevo@gmail.com
+
+--elimina un correo--
+Tipo correo: trabajo, Dirección: trabajo@gmail.com
+Tipo correo: trabajo2, Dirección: nuevo@gmail.com`}
+</TerminalOutput>
+</Solution>
+

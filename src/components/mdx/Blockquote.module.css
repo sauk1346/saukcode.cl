@@ -1,0 +1,38 @@
+/* Bloques de citas */
+.blockquote {
+    border-left: none;
+    padding-left: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 1.75rem;
+    font-style: normal;
+    color: #4b5563;
+    white-space: pre-wrap;
+    display: flex;
+    align-items: flex-start;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+  
+  .blockquote > * {
+    flex: 1;
+    padding-left: var(--spacing-lg);
+  }
+  
+  /* Barra lateral como pseudo-elemento con longitud controlada */
+  .blockquote::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: calc(100% - 1.1rem);
+    background-color: #3b82f6;
+    transition: background-color 0.3s ease;
+  }
+  
+  :global(html.dark-mode) .blockquote,
+  :global(html.dark-mode-override) .blockquote {
+    border-left-color: #60a5fa;
+    color: #9ca3af;
+  }

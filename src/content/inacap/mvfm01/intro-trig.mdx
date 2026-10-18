@@ -1,0 +1,189 @@
+# Introducción a Trigonometría
+
+## Material Clases
+- [Trigonometria.pdf](/inacap/mvfm01/docs/Trigonometria.pdf)
+- [Actividad_Tecnológica.pdf](/inacap/mvfm01/docs/Angulos_y_razones_trigonometricas.pdf)
+
+## Tipos de Ángulos
+
+<SmartTable
+  tableLayout="fixed"
+  headers={["Ángulo","Descripción"]}
+  rows={[
+    ["**agudo**","menor a 90°"],
+    ["**recto**","igual a 90°"],
+    ["**obtuso**","mayor a 90°"],
+    ["**extendido**","igual a 180°"]
+  ]}
+/>
+
+## Sistema y Medidas Angulares
+
+- **Sexagesimal:** Se utilizan grados, minutos, segundos
+- **Circular:** Se utilizan radianes
+
+<SmartTable
+  tableLayout="fixed"
+  headers={["Grados","Radianes"]}
+  rows={[
+    ["90","$\\frac{\\pi}{2}$"],
+    ["180","$\\pi$"],
+    ["270","$\\frac{3\\pi}{2}$"],
+    ["360","$2\\pi$"]
+  ]}
+/>
+
+## Razones Trigonométricas
+
+<SmartFigure
+	id="razon-trigonometrica"
+	src="/inacap/mvfm01/images/fig135.png"
+	alt="Razones trigonométricas"
+	caption="Razones trigonométricas"
+	size="large"
+/>
+
+<SmartTable
+  tableLayout="fixed"
+  headers={["","Descripción"]}
+  rows={[
+    ["$seno(\\alpha)$","$\\frac{cateto\\;opuesto}{hipotenusa}$"],
+    ["$coseno(\\alpha)$","$\\frac{cateto\\;adyacente}{hipotenusa}$"],
+    ["$tangente(\\alpha)$","$\\frac{cateto\\;opuesto}{cateto\\;adyacente}$"],
+    ["$cosecante(\\alpha)$","$\\frac{1}{seno(\\alpha)}$"],
+    ["$secante(\\alpha)$","$\\frac{1}{coseno(\\alpha)}$"],
+    ["$cotangente(\\alpha)$","$\\frac{1}{tangente(\\alpha)}$"]
+  ]}
+/>
+
+## Ángulo de elevación y Ángulo de depresión
+
+**Angulo de elevación:** Se forma entre la horizontal del observador y el lugar observado, cuando éste está situado arriba del observador
+
+<SmartFigure
+	id="turista-torre"
+	src="/inacap/mvfm01/images/fig136.png"
+	alt="El turísta observa la torre con un ángulo de elevación"
+	caption="El turísta observa la torre con un ángulo de elevación"
+	size="large"
+/>
+
+**Ángulo de depresión:** Cuando el observador está más alto lo llamaremos ángulo de depresión
+
+<SmartFigure
+	id="torre-turista"
+	src="/inacap/mvfm01/images/fig137.png"
+	alt="La torre observa al turísta con un ángulo de depresión"
+	caption="La torre observa al turísta con un ángulo de depresión"
+	size="large"
+/>
+
+## Teorema del Seno y Coseno
+
+<SmartFigure
+	id="lagos-angulos"
+	src="/inacap/mvfm01/images/fig138.png"
+	alt="Lados y ángulos de un triángulo"
+	caption="Lados y ángulos de un triángulo"
+	size="large"
+/>
+
+### Ley de los Senos
+
+$$
+\begin{aligned}
+    \frac{a}{\sin \alpha} = \frac{b}{\sin\beta} = \frac{c}{\sin\mu}
+\end{aligned}
+$$
+
+### Ley de los Cosenos
+
+$$
+\begin{aligned}
+    a^2 &= b^2 + c^2 - 2bc \cos\alpha\\[5pt]
+    b^2 &= a^2 + c^2 - 2ac \cos\beta\\[5pt]
+    c^2 &= a^2 + b^2 - 2ab \cos\mu\\[5pt]
+\end{aligned}
+$$
+
+## Función Seno
+
+$$
+\begin{aligned}
+    f(x) = \sin(x)
+\end{aligned}
+$$
+
+<SmartFigure
+	id="funcion-seno"
+	src="/inacap/mvfm01/images/fig139.png"
+	alt="Función Seno"
+	caption="Función Seno"
+	size="large"
+/>
+
+- Las imágenes de la función $f(x) = \sin(x)$ están en el intervalo $[-1,1]$
+- El máximo de $\sin(x)$ se alcanza cuando $x = \frac{\pi}{2} + 2k\pi$, con $k \in \mathbb{Z}$
+- El mínimo de $\sin(x)$ se alcanza cuando $x = \frac{3\pi}{2} + 2k\pi$, con $k \in \mathbb{Z}$
+- Los ceros de la función se obtienen cuando $x = k\pi$, con $k \in \mathbb{Z}$
+- La gráfica de la función es periódica, se repite cada $x = 2k\pi$, con $k \in \mathbb{Z}$
+- La función seno es impar, por lo que su gráfica no se altera luego de una rotación de  180° alrededor de su origen
+
+## Función Coseno
+
+<SmartFigure
+	id="funcion-coseno"
+	src="/inacap/mvfm01/images/fig140.png"
+	alt="Función Coseno"
+	caption="Función Coseno"
+	size="large"
+/>
+
+- Las imágenes de la función $f(x) = \cos(x)$ están en el intervalo $[-1,1]$
+- El máximo de $\cos(x)$ se alcanza cuando $x = 2k\pi$, con $k \in \mathbb{Z}$
+- El mínimo de $\sin(x)$ se alcanza cuando $x = \pi + 2k\pi$, con $k \in \mathbb{Z}$
+- Los ceros de la función se obtienen cuando $x = \frac{\pi}{2} + k\pi$, con $k \in \mathbb{Z}$
+- La gráfica de la función es periódica, se repite cada $x = 2k\pi$, con $k \in \mathbb{Z}$
+- La función coseno es par (es simétrica con respecto al eje y), por lo que su gráfica no se altera luego de una reflexión sobre el eje y
+
+## Amplitud
+Distancia vertical entre la línea media y uno de los puntos extremos. Si no tenemos la línea media, es posible calcular la amplitud en base a los puntos extremos.
+
+$$
+\begin{aligned}
+    \frac{valor\;máximo - valor\;mínimo}{2}
+\end{aligned}
+$$
+
+## Período
+- Las funciones trigonométricas son periódicas, es decir, cada cierto tramo se repiten
+- El periódo es la distancia entre 2 ptos. máximos o 2 ptos. mínimos consecutivos
+
+Sean las funciones $f(x) = \sin(bx)$ y $h(x) = \cos(bx)$, su periodo se puede calcular como:
+
+$$
+\begin{aligned}
+    período = \frac{2\pi}{|b|}
+\end{aligned}
+$$
+
+## Traslación
+
+<SmartFigure
+	id="traslacion-coseno"
+	src="/inacap/mvfm01/images/fig141.png"
+	alt="Traslación Función Coseno"
+	caption="Traslación Función Coseno"
+	size="large"
+/>
+
+<SmartFigure
+	id="grafica-traslacion-coseno"
+	src="/inacap/mvfm01/images/fig142.svg"
+	alt="Gráfica Traslación Función Coseno"
+	caption="Gráfica Traslación Función Coseno"
+	size="large"
+/>
+
+- $g(x)$ es idéntica a $f(x)$, pero trasladada $\frac{\pi}{2}$ unidades a la izquierda.
+- $h(x)$ es idéntica a $f(x)$, pero trasladada $\pi$ unidades a la derecha.

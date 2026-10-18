@@ -1,0 +1,109 @@
+# Elementos de las Bases de Datos no Estructuradas
+
+## Limitaciones de las Bases de Datos estructuradas
+
+1. **Integración:** La posibilidad de que muchas aplicaciones compartan los mismo datos y compartir la base de datos con algunas políticas de control de concurrencia
+2. **Modelo Estándar:** Es un modelo que ha sido exitoso en la historia debido a que todas las bases relacionales trabajan con los mismo conceptos y el mismo lenguaje, SQL
+3. **Impedancia:** Diferencia entre el modelo relacional y las estructuras de memoria. Las bases de datos relacionales usan el concepto de fila y columna, no pudiendo utilizar otras estructuras como listas o registros anidados. Por esto el trabajo con las estructuras de la memoria son más rápidas que el trabajo de las b ases de datos relacionales
+4. **Integración en un clúster:** Un clúster es un conjunto de máquinas que permiten implementar soluciones para escalar una aplicación. Las bases de datos relacionales no están diseñadas para ejecutarse sobre un clúster. Solo algunas trabajan con discos compartidos
+5. **Costo:** Las bases de datos relacionas están pensadas para ejecutarse en un único servidor, por lo que si se quieren ejecutar en clúster requieren de varias instancias de base de datos, los que aumenta el costo económico
+
+## Ventajas Bases de Datos No Estructuradas
+
+1. **Productividad del desarrollo de aplicaciones:** Se simplifica la codificación, la depuración y la evolución de las aplicaciones
+2. **Datos a gran escala:** El uso de grandes cantidades de datos procesados rápidamente. La mayorúa de las bases de datos NoSQL se ejecutan en clúster
+
+## Modelos de Distribución de datos para BD NoSQL
+
+1. **Replicación:** Técnica que implica copiar los mismo datos en múltiples servidores
+2. **Sharding:** Técnica que distribuye diferentes datos a múltiples servidores, de manera que cada servidor actúe como una única fuente para un subconjunto de datos
+
+## Consistencia de datos en BD NoSQL
+
+### Consistencia de Escritura
+- Cuando 2 usuarios tratan de actualizar el mismo dato se produce un **conflicto de escritura**. Cuando las escrituras llegan al servidor, las serializa y entonces decide aplicar una, y a continuación la otra.
+- De esta forma, **uno de los usuarios sufre una pérdida de actualización**, por lo cual se aplica una serie de bloqueos para determinar el orden de ejecución
+
+### Consistencia de Lectura
+Se produce cuando un usuario realiza una lectura en mitad de la escritura de otro sobre los mismo datos que se están leyendo.
+
+### Consitencia de Replicación
+Consiste en asegurar que los mismos datos tengan el mismo valor cuando son leídos desde diferentes réplicas. Por el tipo de BD, se establece que el tiempo de respuesta es de milisegundos para las inconsistencias.
+
+# Base de datos Mongo DB
+
+- Es una base de datos NoSQL orientada a documentos
+- Fue creada por la compañía 10gen, en el año 2007
+- Se caracteriza porque almacena datos en documentos JSON con un esquema dinámico denominado BSON
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['JSON', 'BSON']}
+	rows={[
+		[
+			'Es un formato ligero de intercambio de datos. Leerlo y escribirlo es simple para humanos, mientras que para las máquinas es simple interpretarlo y generarlo. Está basado en un subconjunto del Lenguaje de Programación JavaScript',
+			'BSON (Binary JSON) es un formato de datos que, si bien no es directamente legible como texto plano, a diferencia de JSON, ofrece a las tecnologías como bases de datos un acceso más rápido y directo a la información'
+		]
+	]}
+/>
+
+## Documentos
+Son la unidad básica de organización de información en MongoDB. Se trata de un conjunto ordenado de claves que tiene asociados determinados valores.
+
+## Colecciones
+Es un grupo de documentos y desempeña un papel análogo a las tablas de las bases de datos relacionales.
+
+# Actividad de Práctica 02
+
+<Quiz questions={[
+  {
+    question: "¿Cómo MongoDB almacena internamente los datos?",
+    options: [
+      "Documentos dinámicos",
+      "Documentos de texto",
+      "Documentos array",
+      "Documentos JSON"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "Dos usuarios están conectados a la misma base de datos, uno de ellos está leyendo información en el mismo momento en que el otro usuario escribe en la base de datos, ¿Qué tipo de inconsistencia se produce?",
+    options: [
+      "Lectura",
+      "Escritura",
+      "Sesión",
+      "Persistencia"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál de las siguientes características corresponde a una base de datos NoSQL?",
+    options: [
+      "Tienen un esquema fijo",
+      "Usan SQL",
+      "Son de código abierto",
+      "Son relacionales"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es la unidad básica de organización de información en MongoDB?",
+    options: [
+      "Colecciones",
+      "Base de datos",
+      "Documentos",
+      "Tablas"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿De qué manera MongoDB estructura las instancias?",
+    options: [
+      "En base de datos con cero o más tablas",
+      "En documentos con cero o más tablas",
+      "En documentos con cero o más colecciones",
+      "En bases de datos con cero o más colecciones"
+    ],
+    correctIndex: 3
+  }
+]} />

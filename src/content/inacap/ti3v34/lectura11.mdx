@@ -1,0 +1,193 @@
+# Controles de mitigación y de riesgos y mejoras tecnológicas ante desastres
+
+## Identificación y evaluación de vulnerabilidades mediante CVSS
+
+*Common Vulnerability Scoring System* (CVSS) es un paso crucial para proponer controles de mitigación y gestión de riesgos efectivos.
+
+CVSS proporciona una metodología estandarizada para evaluar la severidad de las vulnerabilidades, lo que permite a las organizaciones priorizar los riesgos y planificar las acciones de mitigación de manera eficiente.
+
+### ¿Qué es un análisis de vulnerabilidad?
+Este proceso implica identificar y evaluar vulnerabilidades en sistemas, redes o aplicaciones. Las vulnerabilidades pueden ser debilidades en el diseño, implementación, configuración o uso de tecnologías que podrían ser explotadas por amenazas.
+
+### Pasos para identificar vulnerabilidades
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Pasos', 'Descripción']}
+	rows={[
+		[
+			'**Recopilación de información**',
+			'[**Identificación de activos:** Enumerar todos los activos críticos de la organización incluyendo hardware software datos y recursos humanos,**Evaluación de activos:** Clasificar los activos según su importancia y criticidad para la operación del negocio]'
+		],
+		[
+			'**Detección de vulnerabilidades**',
+			'[**Escaneo de vulnerabilidades:** Utilizar herramientas automatizadas y manuales para identificar vulnerabilidades en los sistemas y aplicaciones,**Bases de datos de vulnerabilidades:** Consultar bases de datos como CVE (Common Vulnerabilities and Exposures) NVD (National Vulnerability Database) y OWASP para obtener información sobre vulnerabilidades conocidas]'
+		],
+		[
+			'**Evaluación de severidad de las vulnerabilidades**',
+			'[**Métricas básicas:** Miden las cualidades intrínsecas de una vulnerabilidad,**Métricas temporales:** Ajustan la puntuación en función de factores temporales como la disponibilidad de exploits o parches,**Métricas ambientales:** Consideran las características del entorno de la organización que afectan la gravedad de la vulnerabilidad]'
+		]
+	]}
+/>
+
+### Controles de Mitigación
+Basándose en los resultados de análisis de vulnerabilidades CVSS, se pueden proponer diversos controles de mitigación para gestionar y reducir los riesgos.
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Controles', 'Descripción']}
+	rows={[
+		[
+			'**Controles técnicos**',
+			'[**Parches y actualizaciones:** Aplicar parches y actualizaciones de seguridad a los sistemas y aplicaciones vulnerables,**Configuración segura:** Asegurar que todos los sistemas y aplicaciones estén configurados de manera segura,**Firewalls y sistemas de detección de intrusos (IDS):** Implementar y mantener firewalls e IDS para proteger la red y detectar actividades maliciosas]'
+		],
+		[
+			'**Controles administrativos**',
+			'[**Políticas de seguridad:** Desarrollar y aplicar políticas claras y concisas que aborden la gestión de vulnerabilidades,**Capacitación y concientización:** Proporcionar capacitación continua a los empleados sobre las mejores prácticas de seguridad y concienciar sobre las amenazas actuales]'
+		],
+		[
+			'**Controles físicos**',
+			'[**Seguridad en el acceso físico:** Implementar medidas de seguridad física para proteger los activos críticos contra accesos no autorizados,**Resguardo y recuperación de datos:** Realizar copias de seguridad periódicas y desarrollar planes de recuperación ante desastres]'
+		]
+	]}
+/>
+
+### Implementación y monitoreo de controles
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Pasos', 'Descripción']}
+	rows={[
+		[
+			'**Planificación de la Implementación**',
+			'[**Priorizar vulnerabilidades:** Basar la implementación de controles en la prioridad de las vulnerabilidades comenzando por aquellas con puntuaciones CVSS más altas,**Asignación de recursos:** Asegurar que se asignen los recursos necesarios para implementar los controles de mitigación de manera efectiva]'
+		],
+		[
+			'**Monitoreo y revisión continua**',
+			'[**Monitoreo de efectividad:** Establecer mecanismos para monitorear la efectividad de los controles implementados y realizar ajustes según sea necesario,**Reevaluación periódica:** Realizar evaluaciones periódicas de vulnerabilidades y actualizar la matriz de riesgo para reflejar cambios en el entorno y en las amenazas]'
+		]
+	]}
+/>
+
+## Propuestas de mejoras tecnológicas en la recuperación ante desastres
+Es crucial para asegurar la continuidad del negocio y la protección de los activos críticos en caso de incidentes graves.
+
+### Planificación de la Recuperación ante Desastres (DRP)
+
+1. **Definición de requisitos:** Identificar y documentar los requisitos específicos de recuperación ante desastres para cada sistema crítico y servicio de la organización
+2. **Evaluación de riesgos:** Realizar evaluaciones de riesgos para determinar amenazas potenciales y los posibles impactos en las operaciones
+3. **Establecimiento de objeticos de recuperación:** Definir objetivos de tiempo de recuperación (RTO) y objetivos de punto de recuperación (RPO) para guiar la implementación de tecnologías de DR
+
+### Tecnologías de Recuperación ante Desastres
+
+1. **Replicación y abundancia:** Implementar tecnologías que permitan la replicación de datos y sistemas críticos en ubicaciones geográficamente dispersas para garantizar la disponibilidad continua
+2. **Servicios en la nube:** Adoptar servicios en la nube para la copia de seguridad y la recuperación ante desastres, aprovechando las capacidades de escalabilidad y redundancia ofrecidas por los proveedores de nube.
+3. **Copia de seguridad y restauración:** Automatizar procesos de copia de seguridad y restauración para asegurar la integridad y disponibilidad de los datos críticos
+4. **Virtualización y contenedores:** Utilizar virtualización y contenedores para facilitar la rápida recuperación y la migración de cargas entre entornos de infraestructura
+
+### Estandarización y mejores prácticas
+
+- **Normativas y estándares:** Asegurarse de que las propuestas de mejoras tecnológicas cumplan con normativas y estándares relevantes de la industria, como ISO 22301 para la gestión de continuidad del negocio
+- **Auditorías y pruebas:** Realizar auditorías periódicas y pruebas de recuperación ante desastres para validar la efectividad de las soluciones implementadas y garantizar la preparación del equipo ante emergencias
+
+### Capacitación y concienciación
+- **Entrenamiento del personal:** Capacitar al personal en los procedimientos de recuperación ante desastres y en el uso de las tecnologías implementadas
+- **Concienciación sobre la seguridad:** Promover una cultura de seguridad informática que enfatice la importancia de la preparación para desastres y la protección de datos críticos
+
+### Evaluación y mejora continua
+- **Revisión periódica:** Evaluar regularmente las capacidades de recuperación ante desastres y actualizar las propuestas de mejora tecnológica en función de nuevas amenazas y tecnologías emergentes
+- **Feedback y ajustes:** Utilizar retroalimentación del proceso de recuperación ante desastres e incidentes simulados para ajustar y mejorar continuamente las estrategias y tecnologías implementadas
+
+## NIST Cibersecurity Framework (CSF)
+Es un conjunto de estándares, directrices y mejores prácticas desarrollado por el *National Institute of Standards and Technology* (NIST) de los Estados Unidos. Su objetivo principal es proporcionar a las organizaciones un marco flexible y basado en riesgos para mejorar y fortalecer su postura de ciberseguridad.
+
+### Componentes
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Componente', 'Descripción']}
+	rows={[
+		[
+			'**Framework Core**',
+			'Es el núcleo del marco y consta de 5 funciones principales que representan las actividades clave de ciberseguridad: Proteger, Detectar, Responder y Recuperar (funciones IPDRR)'
+		],
+		[
+			'**Categorías y Subcategorías**',
+			'Cada función se desglosa en categorías que representan las áreas de enfoque específicas de la ciberseguridad, y a su vez, cada categoría incluye subcategorías que detallan acciones concretas que las organizaciones pueden tomar para alcanzar los objetivos de seguridad'
+		],
+		[
+			'**Perfil del CSF**',
+			'Permite a las organizaciones establecer un perfil de ciberseguridad actual y un perfil objetivo deseado, lo que facilita la evaluación y la comparación de la postura de seguridad actual con las metas establecidas'
+		],
+		[
+			'**Tiers de Implementación**',
+			'Proporciona una guía para que las organizaciones determinen y comuniquen el nivel de sofisticación de su enfoque de ciberseguridad, desde Básico hasta Avanzado, ayudando así a priorizar y enfocar los recursos de mejora'
+		]
+	]}
+/>
+
+### Objetivos NIST CSF
+
+1. **Mejora de la resiliencia:** Ayuda a las organizaciones a gestionar y reducir el riesgo cibernético, promoviendo una mayor capacidad para prevenir, detectar, responder y recuperarse de incidentes de seguridad
+2. **Adaptabilidad y flexibilidad:** El marco está diseñado para ser aplicable a cualquier organización, independientemente de su tamaño, sector o infraestructura tecnológica específica, permitiendo una adaptación flexible a las necesidades individuales
+3. **Comunicación efectiva:** Facilita la comunicación interna y externa sobre prácticas de ciberseguridad, especialmente útil para la gestión ejecutiva y los stakeholders que necesitan entender los riesgos y las medidas adoptadas
+
+### Beneficios NIST CSF
+
+1. **Mejora continua:** Promueve la mejora continua mediante la evaluación periódica de la postura de ciberseguridad, la identificación de áreas de mejora y la revisión de los perfiles del CSF
+2. **Estándar reconocido:** Ampliamente adoptado tanto en el sector privado como en el público, el NIST CSF se ha convertido en un estándar de facto para la ciberseguridad en muchas industrias y jurisdicciones
+
+# Actividad de Práctica 08
+
+<Quiz questions={[
+	{
+		question: "¿Cuál de los siguientes es un control técnico recomendado para mitigar vulnerabilidades?",
+		options: [
+			"Políticas de seguridad",
+			"Capacitación continua",
+			"Parches y actualizaciones",
+			"Seguridad en el acceso físico"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Qué medida se clasifica como un control administrativo para la mitigación de riesgos?",
+		options: [
+			"Implementación de firewalls",
+			"Realización de copias de seguridad periódicas",
+			"Desarrollar y aplicar políticas de seguridad",
+			"Uso de servicios en la nube"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Cuál de las siguientes opciones es un control físico para proteger los activos críticos?",
+		options: [
+			"Configuración segura",
+			"Replicación de datos",
+			"Entrenamiento del personal",
+			"Seguridad en el acceso físico"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Qué tecnología se recomienda para asegurar la disponibilidad continua de los datos críticos mediante su replicación en ubicaciones geográficamente dispersas?",
+		options: [
+			"Parches y actualizaciones",
+			"Virtualización y contenedores",
+			"Replicación y redundancia",
+			"Auditorías periódicas"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Cuál es uno de los componentes del NIST Cybersecurity Framework (CSF)?",
+		options: [
+			"Firewalls y IDS",
+			"Framework Core",
+			"Servicios en la nube",
+			"Capacitación y concienciación"
+		],
+		correctIndex: 1
+	}
+]} />

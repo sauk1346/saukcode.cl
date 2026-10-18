@@ -1,0 +1,382 @@
+# Templates
+- Un template de Django es una cadena de texto que permite  separar la presentación de la lógica de negocio
+- Define etiquetas de plantillas que permiten configurar la forma en la que el contenido del documento será presentado
+- Normalmente, son usadas con HTML, pero Django es capaz de generar cualquier formato basado en texto
+- Cualquier texto encerrado por un par de llave (por ejemplo: \{\{ nombre \}\}) es una **variable**
+- Cualquier texto que esté rodeado por llaves y porcentaje (ejemplo: \{\% if orden_pedido \%\}) es una **etiqueta de plantilla**. Estas etiquetas indican que se debe realizar una acción
+
+## 1. Repaso Ejercicio Template
+
+1. **Configurar Templates (1):** Crear carpeta `templates/` y subcarpeta `miapp/` (la subcarpeta es por buenas prácticas)
+	```sh
+	mkdir -p ./miapp/templates/miapp/
+	```
+
+2. **Configurar Template (2):** Crear template `info.html`
+	```html
+    <!-- ./miapp/templates/miapp/info.html -->
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+	</head>
+	<body>
+		<p>Fecha: {{ fecha }} </p>
+	</body>
+	</html>
+	```
+
+3. **Configurar Vista:** Crear la vista `info` para mostrar la página `info.html`
+	```python
+	#./miapp/views.py
+	from django.shortcuts import render
+	from datetime import datetime
+
+	def info(request):
+		fecha = datetime.now()
+		contexto = {'fecha': fecha}
+		return render(request, 'miapp/info.html', contexto)
+	```
+
+4. **Configurar Enrutamiento:** Crear `./miapp/urls.py` y agregarlo a `./proyectotemplate/urls.py`
+	```python
+	#./miapp/urls.py
+	from . import views
+	from django.urls import path
+
+	urlpatterns = [
+		path("info/", views.info),
+	]
+
+	```
+	```python
+	#./proyectotemplate/urls.py
+	from django.contrib import admin
+	from django.urls import path, include
+
+	urlpatterns = [
+		path("admin/", admin.site.urls),
+		path("miapp/", include('miapp.urls')),
+	]
+	```
+
+5. **Realizar Pruebas:** Ejecutar servidor y verificar ruta
+	```sh
+	python mangage.py runserver
+	```
+	```sh
+	http://127.0.0.1:8000/miapp/info/
+	```
+	<SmartFigure
+        id="pagina-info"
+        src="/inacap/ti3v41/images/fig007.png"
+        alt="Página 'info'"
+        caption="Página 'info'"
+        size="large"
+    />
+
+
+
+## 2. Elementos Estáticos
+- Los sitios web generalmente necesitan utilizar archivos adicionales como imágenes, JavaScript o CSS.
+- En Django, estos archivos son reconocidos como **archivos estáticos**
+- Django proporciona `django.contrib.staticfiles` para su administración
+- Para usar archivos estáticos se debe procurar lo siguiente:
+    - Asegúrarse de que `django.contrib.staticfiles` esté incluido en `INSTALLED_APPS` (en **settings.py**)
+    - En `settings.py`, debe estar definida la carpeta `static/` en `STATIC_URL`
+    ```python
+    #./proyectotemplate/settings.py
+    from pathlib import Path
+    ...
+    ...
+    INSTALLED_APPS = [
+        ...
+        ...
+        "django.contrib.staticfiles",
+        "miapp"
+    ]
+    ...
+    ...
+    STATIC_URL = "static/"    
+    ```
+
+### Cargar recursos estáticos
+
+- En las plantillas, se debe usar la etiqueta de plantilla **static** para construir la URL con la ruta relativa
+    ```html
+    {% load static %}
+    <img src="{% static 'miapp/example.jpg' %}" alt="My_image" />
+    ```
+- Finalmente, depositar los archivos en la carpeta `static/`
+
+## 3. Ejercicios
+
+### Ejercicio 01
+
+Agregar más contenido a `info.html`: Año, Fecha, Nombre, Apellido, Edad, Hobbies
+
+1. **Configurar Template:** Modificar estructura inicial de `info.html`
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Información del usuario - año</h1>
+        <p>Fecha: {{ fecha }}</p>
+        <h2>Datos Personales</h2>
+        <p>Nombre: </p>
+        <p>Apellido: </p>
+        <p>Edad: </p>
+        <h2>Hobbies:</h2>
+        <ul>
+            <li></li>
+        </ul>
+    </body>
+    </html>
+    ```
+
+2. **Configurar Vista:** Modificar vista `info` en `./miapp/views.py`
+    - agregar variable `annio`
+    - agregar diccionario `usuario`
+    - agregar la nueva información en `contexto`
+
+    ```python
+    #./miapp/views.py
+    from django.shortcuts import render
+    from datetime import datetime
+
+    def info(request):
+        fecha = datetime.now()
+        annio = fecha.strftime("%Y") # año en 4 dígitos
+        
+        #diccionario con info del usuario
+        usuario = {
+            "nombre":"Rosita",
+            "apellido": "Rojas",
+            "edad": 27,
+            "hobbies": [
+                "Natación",
+                "Lectura",
+                "Música"
+            ]
+        }
+        # Información que se le entrega al template
+        contexto = {
+            "fecha": fecha,
+            "annio": annio,
+            "usuario": usuario
+        }
+        return render(request, 'miapp/info.html', contexto)
+    ```
+
+3. **Actualizar Template:** Actualizar la estructura inicial de `info.html`
+    - Agregar datos de `annio`, `fecha`, `usuario`, `hobbies`
+    - Contar el número de hobbies con un filtro: `{{ usuario.hobbies|length }}`
+    - Condicionar la lista de hobbies, cuando existen y no existen hobbies: `{% if usuario.hobbies %}`
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Información del usuario - {{ annio }}</h1>
+        <p>Fecha: {{ fecha }}</p>
+        <h2>Datos Personales</h2>
+        <p>Nombre: {{ usuario.nombre }} </p>
+        <p>Apellido: {{ usuario.apellido }} </p>
+        <p>Edad: {{ usuario.edad}} </p>
+        <h2>Hobbies: tiene {{ usuario.hobbies|length }} </h2>
+        {% if usuario.hobbies %}
+            <ul>
+                {% for hobbie in usuario.hobbies %}
+                    <li>{{ hobbie }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>{{ usuario.nombre }} no tiene hobbies</p>
+        {% endif %}
+    </body>
+    </html>
+    ```
+
+4. **Realizar Pruebas:** Ejecutar servidor y verificar ruta
+    ```sh
+    python manage.py runserver
+    ```
+
+    ```sh
+    http://127.0.0.1:8000/miapp/info/
+    ```
+	<SmartFigure
+        id="pagina-info-mejorada"
+        src="/inacap/ti3v41/images/fig010.png"
+        alt="Página 'info' mejorada"
+        caption="Página 'info' mejorada"
+        size="large"
+    />
+
+### Ejercicio 02
+
+- Generar 1 documento html en la carpeta `templates/` (**index.html**)
+- Iniciar la aplicación desde el index
+
+1. **Crear Nuevo Proyecto:** Crear un nuevo proyecto `proyectostatic`
+    ```sh
+    django-admin startproject proyectostatic
+    cd proyectostatic
+    ```
+
+2. **Crear Nueva App:** Crear app `core` y su base de datos
+    ```sh
+    python manage.py startapp core
+    python manage.py migrate
+    ```
+
+3. **Configuración inicial:** Agregar `core` en `./proyectostatic/settings.py`
+    ```python
+    #.proyectostatic/settings.py
+    from pathlib import Path
+    ...
+    ...
+    INSTALLED_APPS = [
+        ...
+        ...
+        "core"
+    ]
+    ```
+
+4. **Crear Directorio Templates:** Crear la carpeta `templates` y su subcarpeta `core`
+    ```sh
+    mkdir -p ./core/templates/core
+    ```
+
+5. **Configurar Templates:** Crear el template `./core/templates/core/index.html`
+    ```html
+    <!-- ./core/templates/core/index.html -->
+
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+        <title>Talleres Inacap - {{annio}}</title>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Django</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" 
+                            href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" 
+                            href="#">Talleres</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        </li>
+                        </ul>
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1 class="bg-primary bg-gradient text-white p-5 text-center">Plantilla con Django y Boostrap5</h1>
+                </div>
+            </div>
+            <div class="row text-center my-5 ">
+                <div class="col-sm-3 "></div>
+                <div class="col-sm-6 shadow-lg rounded my-5">
+                    <h2 class="bg-primary bg-gradient text-white p-5 text-center rounded ">Home</h2>
+                    <p class="lh-sm">This is a long paragraph written to show how the line-height of an element is affected by our utilities. Classes are applied to the element itself or sometimes the parent element. These classes can be customized as needed with our utility API.</p> 
+                </div>
+            <div class="col-sm-3 "></div>
+            </div>
+        </div>
+    
+        <!-- Optional JavaScript; choose one of the two! -->
+    
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+        <!-- Option 2: Separate Popper and Bootstrap JS -->
+        <!--
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+        -->
+    </body>
+    </html>
+    ```
+
+6. **Configurar Vistas:** Agregar `index.html` a la vista `index` en `./core/views.py`
+    ```python
+    #./core/views.py
+    from django.shortcuts import render
+    from datetime import datetime
+
+    def index(request):
+        fecha = datetime.now().strftine("%Y")
+        contexto = {'annio': fecha}
+        return render(request, 'core/index.html', contexto)
+    ```
+
+7. **Configurar Enrutamiento:** Crear `./core/urls.py` y agregarlo a `./proyectostatic/urls.py`
+    ```python
+    #./core/urls.py
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path("index/", views.index),
+    ]
+    ```
+    ```python
+    #./proyectostatic/urls.py
+    from django.contrib import admin
+    from django.urls import path, include
+
+    urlpatterns = [
+        path("admin/", admin.site.urls),
+        path("core/", include('core.urls')),
+    ]
+    ```
+
+8. **Realizar Pruebas:** Ejecutar servidor y verificar ruta
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/core/index/
+    ```
+    <SmartFigure
+        id="pagina-index"
+        src="/inacap/ti3v41/images/fig011.png"
+        alt="Página 'index'"
+        caption="Página 'index'"
+        size="large"
+    />

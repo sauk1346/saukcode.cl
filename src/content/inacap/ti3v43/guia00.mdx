@@ -1,0 +1,548 @@
+# Guía Resumen: Ingeniería de Software
+
+## 1. TEORÍA GENERAL DE SISTEMAS
+
+### Conceptos Fundamentales
+
+**¿Qué es un Sistema?**
+Un sistema es un conjunto de elementos interrelacionados que trabajan hacia un objetivo común. En software: componentes, módulos, interfaces que funcionan coordinadamente.
+
+**Principios Clave:**
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Principio", "Descripción"]}
+    rows = {[
+        ["**Holismo**", "*El todo es más que la suma de sus partes*"],
+        ["**Sinergia**", "*El efecto conjunto supera los efectos individuales*"],
+        ["**Emergencia**", "*Propiedades que surgen solo de la interacción entre componentes*"],
+    ]}
+/>
+
+### Tipos de Sistemas
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Tipo", "Descripción"]}
+    lists = {{
+        R1: [
+            "Intercambian energía, materia e información con el entorno",
+            "Se adaptan y evolucionan",
+            "**Ej:** aplicaciones web, sistemas distribuidos"
+        ],
+        R2: [
+            "No intercambian con el entorno",
+            "Más predictibles pero menos adaptables",
+            "**Ej:** sistemas embebidos específicos"
+        ]
+    }}
+    rows = {[
+        ["**Sistemas Abiertos**", "@R1"],
+        ["**Sistemas Cerrados**", "@R2"],
+    ]}
+/>
+
+### Propiedades Sistémicas
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Tipo", "Descripción"]}
+    lists = {{
+        R1: [
+            "Salidas del sistema que se convierten en entradas",
+            "Permite autorregulación y mejora continua",
+            "Fundamental en desarrollo iterativo"
+        ],
+        R2: [
+            "Capacidad de mantener equilibrio interno",
+            "Adaptación a cambios manteniendo estabilidad",
+            "Importante para sistemas en producción"
+        ],
+        R3: [
+            "Tendencia natural hacia el desorden",
+            "**En software:** degradación del código, acumulación de deuda técnica",
+            "Se combate con mantenimiento y refactoring"
+        ],
+        R4: [
+            "Múltiples caminos pueden llevar al mismo resultado",
+            "Flexibilidad en metodologías y arquitecturaa",
+        ],
+        R5: [
+            "Organización por niveles de abstracción",
+            "Desde componentes hasta sistemas completos",
+        ],
+        R6: [
+            "Límites que separan el sistema de su entorno",
+            "Definen interfaces y puntos de integración",
+        ],
+    }}
+    rows = {[
+        ["**Retroalimentación**", "@R1"],
+        ["**Homeostasis**", "@R2"],
+        ["**Entropía**", "@R3"],
+        ["**Equifinidad**", "@R4"],
+        ["**Jerarquía**", "@R5"],
+        ["**Fronteras**", "@R6"],
+    ]}
+/>
+
+### Aplicaciones en Software
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Principio", "Descripción"]}
+    rows = {[
+        ["**Arquitectura**", "Sistemas como jerarquías de subsistemas"],
+        ["**Desarrollo**", "Equipos como sistemas socio-técnicos"],
+        ["**Mantenimiento**", "Sistemas adaptativos que evolucionan"],
+        ["**Integración**", "Sistema de sistemas interconectados"],
+    ]}
+/>
+
+## 2. MODELOS DE CICLOS DE VIDA
+
+### Modelo en Cascada
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Concepto", "Descripción"]}
+    lists = {{
+        R1: [
+            "Desarrollo secuencial y lineal",
+            "Fase bien definidas sin solpamiento",
+            "Documentación extensa entre fases",
+            "Difícil retroceso a fases anteriores",
+        ],
+        R2: [
+            "Análisis de requisitos",
+            "Diseño del sistema",
+            "Implementación",
+            "Pruebas",
+            "Despliegue",
+            "Mantenimiento"
+        ],
+        R3: [
+            "Estructura clara y predecible",
+            "Fácil gestión y seguimiento",
+            "Documentación completa",
+            "Adecuado para proyecto con requisitos estables"
+        ],
+        R4: [
+            "Inflexible ante cambios",
+            "Detección tardía de problemas",
+            "No hay entregas tempranas",
+            "Riesgo alto en proyectos complejos",
+        ],
+    }}
+    rows = {[
+        ["**Características**", "@R1"],
+        ["**Fases**", "@R2"],
+        ["**Ventajas**", "@R3"],
+        ["**Desventajas**", "@R4"],
+    ]}
+/>
+
+### Modelo en V (V-Model)
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Concepto", "Descripción"]}
+    lists = {{
+        R1: [
+            "Extensión del modelo en cascada",
+            "Cada fase de desarrollo tiene una fase de prueba correspondiente",
+            "Enfoque tempano en verificación y validación",
+        ],
+        R2: [
+            "Lado izquiedo: Especificación y diseño",
+            "Lado derecho: Pruebas y validación",
+            "Conexiones entre fases relacionadas",
+        ],
+        R3: [
+            "Énfasis temprano de testing",
+            "Mejor control de calidad",
+            "Clara trazabilidad entre requisitos y pruebas",
+        ],
+    }}
+    rows = {[
+        ["**Características**", "@R1"],
+        ["**Estructura**", "@R2"],
+        ["**Ventajas**", "@R3"],
+    ]}
+/>
+
+### Modelo en Espiral
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Concepto", "Descripción"]}
+    lists = {{
+        R1: [
+            "Combina desarrollo iterativo con evaluación sistemática de riesgos",
+            "Ciclos repetitivos en espiral",
+            "Cada iteración pasa por las mismas fases",
+        ],
+        R2: [
+            "**Planificación:** Objetivos, alternativas, restricciones",
+            "**Análisis de Riesgos:** Identificación y resolución de riesgos",
+            "**Ingeniería:** Desarrollo del producto",
+            "**Evaluación:** Revisión con el cliente",
+        ],
+        R3: [
+            "Gestión proactiva de riesgos",
+            "Flexibilidad y adaptabilidad",
+            "Entrega incremental",
+            "Adecuado para proyectos grandes y complejos",
+        ],
+    }}
+    rows = {[
+        ["**Características**", "@R1"],
+        ["**Fases por Iteración**", "@R2"],
+        ["**Ventajas**", "@R3"],
+    ]}
+/>
+
+### Desarrollo Iterativo e Incremental
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Tipo", "Descripción"]}
+    lists = {{
+        R1: [
+            "El producto se contruye por partes (incrementos)",
+            "Cada incremento añade funcionalidad",
+            "Entregas periódicas de software funcional"
+        ],
+        R2: [
+            "Refinamiento continuo a través de ciclos",
+            "Cada iteración mejora y extiende versiones anteriores",
+            "Permite incorporar feedback frecuente"
+        ]
+    }}
+    rows = {[
+        ["**Incremental**", "@R1"],
+        ["**Iterativo**", "@R2"],
+    ]}
+/>
+
+### Metodologías Ágiles
+
+**Principios Fundamentales (Manifiesto Ágil):**
+- Individuos e interacciones sobre procesos y herramientas
+- Software funcionando sobre documentación exhaustiva
+- Colaboración con el cliente sobre negociación contractual
+- Respuesta ante el cambio sobre seguir un plan
+
+**Scrum**
+
+<SmartTable
+    tableLayout =  "auto"
+    headers = {["Concepto", "Descripción"]}
+    lists = {{
+        R1: [
+            "**Product Owner:** Define requisitos y prioridades",
+            "**Scrum Master:** Facilita el proceso y elimina impedimentos",
+            "**Dev Team:** Desarrolla el producto"
+        ],
+        R2: [
+            "**Product Backlog:** Lista priorizada de funcionalidades",
+            "**Sprint Backlog:** Tareas seleccionadas para el Sprint",
+            "**Increment:** Producto potencialmente entregable"
+        ],
+        R3: [
+            "**Sprint:** Períodod de desarrollo (1-4 semanas)",
+            "**Spring Planning:** Planificación del Sprint",
+            "**Daily Scrum:** Sincronización diaria",
+            "**Sprint Review:** Demostración del incremento",
+            "**Sprint Retrospective:** Mejora continua del proceso",
+        ]
+    }}
+    rows = {[
+        ["**Roles**", "@R1"],
+        ["**Artefactos**", "@R2"],
+        ["**Eventos**", "@R3"],
+    ]}
+/>
+
+**Extreme Programming (XP)**
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Prácticas Clave", "Descripción"]}
+    rows = {[
+        ["**Pair Programming**","Programación en parejas"],
+        ["**Test-Driven Development**","Pruebas antes del código"],
+        ["**Refactoring**","Mejora continua del código"],
+        ["**Integración Continua**","Integración frecuente de cambios"],
+        ["**Historias de Usuario**","Requisitos desde perspectiva del usuario"],
+    ]}
+/>
+
+**Kanban**
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Principios"]}
+    rows = {[
+        ["Visualización del flujo de trabajo"],
+        ["Limitar el trabajo en progreso (WIP limits)"],
+        ["Gestionar el flujo"],
+        ["Mejora continua"],
+    ]}
+/>
+
+**Otros Enfoques Ágiles**
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Otros Enfoques", "Descripción"]}
+    lists = {{
+        R1: [
+            "Eliminar desperdicios",
+            "Amplificar el aprendizaje",
+            "Decidir lo más tarde posible",
+            "Entregar lo más rápido posible"
+        ],
+        R2: [
+            "Familia de metodologías según tamaño y criticidad del proyecto",
+            "Colores que indican el nivel de formalidad necesario"
+        ],
+        R3: [
+            "Desarrollo rápido mediante prototipos",
+            "Herramientas visuales y generación de código",
+            "Ciclo de desarrollo muy cortos"
+        ]
+    }}
+    rows = {[
+        ["**Lean Software Development**", "@R1"],
+        ["**Crystal**", "@R2"],
+        ["**RAD (Rapid Application Development**", "@R3"],
+    ]}
+/>
+
+## 3. NORMAS ISO
+
+### ISO/IEC 12207 - Procesos del Ciclo de Vida del Software
+
+**Objetivo:**
+Establecer un marco común para los procesos del ciclo de vida del software desde la concepción hasta el retiro.
+
+#### Clasificación de Procesos
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Procesos", "Descripción"]}
+    lists = {{
+        R1: [
+            "**Adquisición:** Actividades del cliente que adquiere software",
+            "**Suministro:** Actividades del proveedor que suministra software",
+            "**Desarrollo:** Actividades para crear y mantener software",
+            "**Operación:** Uso operacional del software",
+            "**Mantenimiento:** Modificación del software después de su entrega",
+        ],
+        R2: [
+            "Documentación",
+            "Gestión de configuración",
+            "Aseguramiento de calidad",
+            "Verificación",
+            "Validación",
+            "Revisión conjunta",
+            "Auditoría",
+            "Resolución de problemas",
+        ],
+        R3: [
+            "Gestión",
+            "Infraestructura",
+            "Mejora",
+            "Formación"
+        ]
+    }}
+    rows = {[
+        ["**Procesos Principales**", "@R1"],
+        ["**Procesos de Soporte**", "@R2"],
+        ["**Procesos Organizacionales**", "@R3"],
+    ]}
+/>
+
+#### Características de los Procesos
+
+**Proceso de Desarrollo incluye:**
+- Análisis de requisitos del sistema
+- Diseño de la arquitectura del sistema
+- Análisis de requisitos del software
+- Diseño de la arquitectura del software
+- Diseño detallado del software
+- Codificación y testing
+- Integración
+- Testing de calificación
+
+**Proceso de Mantenimiento:**
+- Mantenimiento correctivo (corrección de defectos)
+- Mantenimiento adaptativo (adaptación a cambios del entorno)
+- Mantenimiento perfectivo (mejora de rendimiento o mantenibilidad)
+- Mantenimiento preventivo (prevención de futuros problemas)
+
+### ISO/IEC 25000 (SQuaRE) - Calidad del Producto Software
+
+**Objetivo:**
+Proporcionar un marco para la especificación y evaluación de la calidad del producto software y datos.
+
+**Reemplaza a:**
+- ISO/IEC 9126 (modelo de calidad)
+- ISO/IEC 14598 (evaluación de productos software)
+
+#### División de la Serie 25000
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["División", "Descripción", "Ejemplos"]}
+    lists = {{
+        R1: [
+            "**25000:** Guía general y vocabulario",
+            "**25001:** Planificación y gestión"
+        ],
+        R2: [
+            "**25010:** Modelo de calidad del producto software",
+            "**25012:** Modelo de calidad de datos"
+        ],
+        R3: [
+            "**25020:** Guía de medición",
+            "**25023:** Medición de calidad del producto software"
+        ],
+        R4: [
+            "**25030:** Requisitos de calidad",
+        ],
+        R5: [
+            "**25040:** Proceso de evaluación",
+            "**25041:** Guía de evaluación"
+        ],
+
+    }}
+    rows = {[
+        ["**ISO/IEC 2500n**", "**Gestión de Calidad**", "@R1"],
+        ["**ISO/IEC 2501n**", "**Modelo de Calidad**", "@R2"],
+        ["**ISO/IEC 2502n**", "**Medición de Calidad**", "@R3"],
+        ["**ISO/IEC 2503n**", "**Requisitos de Calidad**", "@R4"],
+        ["**ISO/IEC 2504n**", "**Evaluación de Calidad**", "@R5"],
+    ]}
+/>
+
+#### Modelo de Calidad ISO/IEC 25010
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Características de Calidad", "Descripción"]}
+    lists = {{
+        R1: [
+            "Completitud funcional",
+            "Corrección funcional",
+            "Pertinencia funcional"
+        ],
+        R2: [
+            "Comportamiento temporal",
+            "Utilización de recursos",
+            "Capacidad"
+        ],
+        R3: [
+            "Coexistencia",
+            "Interoperabilidad"
+        ],
+        R4: [
+            "Reconocimiento de ideoneidad",
+            "Capacidad de aprendizaje",
+            "Capacidad de operación",
+            "Protección contra errores de usuario",
+            "Estética de la interfaz de usuario",
+            "Accesibilidad"
+        ],
+        R5: [
+            "Madurez",
+            "Disponibilidad",
+            "Tolerancia a fallos",
+            "Capacidad de recuperación"
+        ],
+        R6: [
+            "Confidencialidad",
+            "Integridad",
+            "No repudio",
+            "Responsabilidad",
+            "Autenticidad"
+        ],
+        R7: [
+            "Modularidad",
+            "Reusabilidad",
+            "Analizabilidad",
+            "Modificabilidad",
+            "Capacidad de testing"
+        ],
+        R8: [
+            "Adaptabilidad",
+            "Facilidad de instalación",
+            "Capacidad de reemplazo"
+        ]
+    }}
+    rows = {[
+        ["**Funcionalidad**", "@R1"],
+        ["**Eficiencia de desempeño**", "@R2"],
+        ["**Compatibilidad**", "@R3"],
+        ["**Usabilidad**", "@R4"],
+        ["**Fiabilidad**", "@R5"],
+        ["**Seguridad**", "@R6"],
+        ["**Mantenibilidad**", "@R7"],
+        ["**Portabilidad**", "@R8"],
+    ]}
+/>
+
+#### Aplicación Práctica de las Normas
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Aplicación", "Descripción"]}
+    lists = {{
+        R1: [
+            "Selección de procesos apropiados según ISO 12207",
+            "Definición de requisitos de calidad según ISO 25030",
+            "Evaluación del producto según ISO 25040"
+        ],
+        R2: [
+            "Establecimiento de métricas de calidad",
+            "Procesos de aseguramiento de calidad",
+            "Evaluación objetiva de productos software"
+        ],
+        R3: [
+            "Identificación de gaps en procesos actuales",
+            "Implementación de mejores prácticas",
+            "Medición y mejora continua"
+        ]
+    }}
+    rows = {[
+        ["**En Proyectos de Desarrollo**", "@R1"],
+        ["**En Gestión de Calidad**", "@R2"],
+        ["**En mejora de Procesos**", "@R3"],
+    ]}
+/>
+
+## 4. RESUMEN EJECUTIVO
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Concepto", "Descripción"]}
+    rows = {[
+        [
+            "**Teoría de Sistemas**",
+            "Los sistemas de software son entidades complejas con propiedades emergentes que requieren un enfoque holístico para su comprensión y gestión."
+        ],
+        [
+            "**Modelos de Ciclos de Vida**",
+            "La elección del modelo depende de factores como estabilidad de requisitos, tolerancia al riesgo, necesidad de entregas tempranas y capacidad de adaptación al cambio."
+        ],
+        [
+            "**Normas ISO**",
+            "Proporcionan marcos estandarizados para procesos (ISO 12207) y calidad (ISO 25000), facilitando la mejora continua y la comparabilidad entre organizaciones."
+        ],
+        [
+            "**Integración de Conceptos**",
+            "La efectividad en **Ingeniería de Software** surge de la aplicación coordinada de principios sistémicos, modelos de desarrollo apropiados y estándares de calidad reconocidos."
+        ],
+    ]}
+/>

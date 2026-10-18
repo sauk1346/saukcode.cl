@@ -1,0 +1,89 @@
+# Ejercicios con Bucles (3)
+**Material Clase:** [clase07.pdf](/inacap/ti3v11/docs/clase07.pdf)
+
+Realizar un programa con las siguientes intrucciones
+
+1. Permitir al usuario ingresar un número.
+2. Mostrar en pantalla un ménu con las siguiente opciones:
+
+	`| 1.Listar | 2.Factorial | 3.Tabla | 4. Promedio | 5.Salir |`
+
+
+> **Nota:** Para la solución utilizo el comando `Definir` para declarar el tipo de variable, y utilizo `;` al final de cada línea. Para efectos del ramo no es necesario, es sólo por buenas prácticas. 
+
+<Solution>
+```js
+Algoritmo sin_titulo
+	Definir op Como Entero;
+	Definir i Como Entero;
+	Definir num Como Entero;
+	Definir fact Como Entero;
+	Definir tabla Como Entero;
+	Definir nota Como Real;
+	Definir sumNota Como Real;
+	Definir promedio Como Real;
+	
+	Escribir Sin Saltar "Ingresar un número: ";
+	Leer num;
+	op = 1; //valor aleatorio distinto de 5, para entrar en bucle
+	Mientras op != 5 Hacer
+		Escribir "-----------------------------------------------------------------------";
+		Escribir "Menu: 1.Listar | 2.Factorial | 3.Tabla | 4.Promedio | 5.Salir";
+		Escribir "-----------------------------------------------------------------------";
+		Escribir Sin Saltar "Seleccionar una opcion: ";
+		Leer op;
+		Si op == 1 Entonces
+			Escribir "------";
+			Escribir "Listar";
+			Escribir "------";
+			i = 0;
+			Mientras i <= num Hacer
+				Escribir i;
+				i = i + 1;
+			FinMientras
+		FinSi
+		Si op == 2 Entonces
+			Escribir "---------";
+			Escribir "Factorial";
+			Escribir "---------";
+			i = 1;
+			fact = 1;
+			Mientras i <= num Hacer
+				fact = fact * i;
+				i = i + 1;
+			FinMientras
+			Escribir "El factorial de ", num, " es: ", fact;
+		FinSi
+		Si op == 3 Entonces
+			Escribir "-----";
+			Escribir "Tabla";
+			Escribir "-----";
+			i = 1;
+			Mientras i <= 10 Hacer
+				tabla = i * num;
+				Escribir num, " * " , i, " = ", tabla;
+				i = i + 1;
+			FinMientras
+		FinSi
+		Si op == 4 Entonces
+			Escribir "--------------";
+			Escribir "Promedio Notas";
+			Escribir "--------------";
+			i = 1;
+			sumNota = 0;
+			Mientras i <= num Hacer
+				Escribir Sin Saltar "Ingrese nota ", i, ": ";
+				Leer nota;
+				sumNota = sumNota + nota;
+				i = i+1;
+			FinMientras 
+			promedio = sumNota / num;
+			Escribir "promedio es: ", promedio;
+		FinSi
+		Si op == 5 Entonces
+			Escribir "Salir";
+		FinSi
+	FinMientras
+FinAlgoritmo
+```
+</Solution>

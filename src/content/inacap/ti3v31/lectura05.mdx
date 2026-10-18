@@ -1,0 +1,181 @@
+# CSS3: aplicación de estilos según un diseño
+
+*Cascading Style Sheets*. Es el lenguaje utilizado para describir la presentación de un documento HTML.
+
+## Sintaxis básica
+
+```css
+selector {
+    propiedad: valor;
+}
+```
+
+- **selector:** indica en qué elementos HTML se aplicarán los estilos
+- **propiedad:** define la característica específica que deseas estilizar
+- **valor:** especifíca el valor de la propiedad
+
+**Ejemplo**
+```css
+p {
+    color: blue;
+    font-size: 16px;
+}
+```
+
+En este caso, modifica el texto contenido en la etiqueta `<p>`. Ahora el texto es azul, y tiene un tamaño de `16px`
+
+## Propiedades básicas de CSS
+
+### 1. Color
+Define el color del texto de un elemento.
+```css
+h1 {
+    color: red;
+}
+```
+
+### 2. Tamaño (width y height)
+Controla las dimensiones de un elemento.
+```css
+div {
+    width: 300px;
+    height: 150px;
+}
+```
+### 3. Bordes (border)
+Establece el estilo, el grosor y el color del borde de un elemento.
+```css
+p {
+    border: 1px solid black;
+}
+```
+
+### 4. Margen (margin)
+Espacio exterior que rodea el borde de un elemento.
+```css
+p {
+    margin: 20px;
+}
+```
+
+### 5. Relleno (padding)
+Espacio interior entre el contenido y el borde de un elemento.
+```css
+div {
+    padding: 15px;
+}
+```
+
+### 6. Posicionamiento 
+
+#### Estático (static)
+Posicionamiento por defecto. Los elementos siguen el flujo normal del documento.
+```css
+.div1 {
+    position: static;
+}
+```
+
+#### Relativo (relative)
+Posiciona el elemento relativo a su posición original.
+```css
+.div2 {
+    position: relative;
+    top: 10px;
+    left: 20px;
+}
+```
+
+#### Absoluto (absolute)
+Posiciona el elemento relativo a su contenedor más cercano con position: relative o absolute.
+```css
+.div3 {
+    position: absolute;
+    top: 50px;
+    left: 100px;
+}
+```
+
+#### Fijo (fixed)
+El elemento se posiciona respecto a la ventana del navegador y no se desplaza al hacer scroll.
+```css
+.div4 {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+```
+
+### 7. Visibilidad
+Controla la visibilidad de un elemento.
+
+- `visible` el elemento es visible.
+- `hidden` el elemento está oculto, pero ocupa espacio en el diseño.
+- `display: none` el elemento está oculto y no ocupa espacio.
+
+```css
+p.visible {
+    visibility: visible;
+}
+p.hidden {
+    visibility: hidden;
+}
+p.none {
+    display: none;
+}
+```
+
+# Actividad de Práctica 01
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es la diferencia entre margin y padding en el modelo de cajas de CSS?",
+		options: [
+			"Margin es el espacio exterior y padding el interior",
+			"Margin define el espacio interior y padding el exterior",
+			"Ambos son lo mismo y se utilizan indistintamente",
+			"Padding define el espacio entre el borde y otros elementos"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Cuál es la función de la propiedad padding en CSS?",
+		options: [
+			"Define el espacio exterior entre el borde y otros elementos",
+			"Establece el color de fondo del elemento",
+			"Define el espacio interior entre el contenido y el borde",
+			"Cambia el tamaño de la fuente del texto"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Qué propiedad CSS se utiliza para ocultar completamente un elemento de una página, de modo que no ocupe espacio en el diseño?",
+		options: [
+			"visibility: none",
+			"opacity: 0",
+			"display: none",
+			"visibility: hidden"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Qué propiedad CSS se utiliza para cambiar el color del texto de un elemento?",
+		options: [
+			"background-color",
+			"text-color",
+			"font-color",
+			"color"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "Elige el valor de la propiedad position se utiliza para posicionar un elemento relativo a su contenedor más cercano con position: ¿relative o absolute?",
+		options: [
+			"fixed",
+			"static",
+			"relative",
+			"absolute"
+		],
+		correctIndex: 3
+	},
+]} />

@@ -1,0 +1,276 @@
+# Códigos de herencia, encapsulamiento y polimorfismo
+
+## El método "constructor" de la Clase
+- Es una función especial que se llama automáticamente cuando se crea una nueva instancia u objeto de esa clase
+- En python, el método constructor se denomina `__init__`
+
+**Ejemplo:** creación de un método constructor para la clase `Automovil`
+
+```python
+class Automovil:
+	def __init__(self, marca, modelo, cilindrada, posicion=0):
+		self.marca = marca
+		self.modelo = modelo
+		self.cilindrada = cilindrada
+		self.posicion = posicion
+		print("Se ha creado un automóvil {} {} {} cc".format(marca,modelo,cilindrada))
+
+auto1 = Automovil("Toyota", "Corolla", 1600)
+```
+
+## El método "destructor" de la Clase
+- Es una función especial que se llama automáticamente cuando un objeto de esa clase se elimina o se va fuera del alcance.
+- En python, el método destructor se denomina `__del__`
+- Su función principal es realizar tareas de limpieza, antes que el objeto sea liberado de la memoria
+
+**Ejemplo**
+
+```python
+class Automovil:
+	def __init__(self, marca, modelo, cilindrada, posicion=0):
+		self.marca = marca
+		self.modelo = modelo
+		self.cilindrada = cilindrada
+		self.posicion = posicion
+		print("Se ha creado un automóvil {} {} {} cc".format(marca,modelo,cilindrada))
+
+	def __del__(self):
+		print("Se ha eliminado el automóvil {} {} {} cc".format(self.marca, self.modelo, self.cilindrada))
+
+auto2 = Automovil("Ford", "Focus", 1800)
+del auto2
+```
+
+## El método String de la Clase
+- Es un método especial que permite definir la representación en forma de cadena de una instancia de una clase
+- Es llamado cuando se utiliza la función `str()` o la función `print()` en un objeto de esa clase
+- En python, el método String se denomina `__str__`
+
+**Ejemplo**
+
+```python
+class Automovil:
+	def __init__(self, marca, modelo, cilindrada, posicion=0):
+		self.marca = marca
+		self.modelo = modelo
+		self.cilindrada = cilindrada
+		self.posicion = posicion
+		print("Se ha creado un automóvil {} {} {} cc".format(marca,modelo,cilindrada))
+
+	def __str__(self):
+		return "{} {} {} cc".format(self.marca, self.modelo, self.cilindrada)
+
+auto3 = Automovil("Chevrolet", "Cruze", 2000)
+str(auto3)
+```
+
+## Atributos Privados
+- En python, la convención para indicar que un atributo es privado es **agregar un guión bajo al principio del nombre**
+- Esta convención no impide el acceso directo desde fuera de la clase
+
+**Ejemplo**
+
+```python
+class Automovil:
+	#atributos
+	marca = ""
+	modelo = ""
+	cilindrada = ""
+	posicion = ""
+	__codigo = "Este es un atributo privado"
+```
+
+## Implementando métodos propios de la Clase
+- En python, los métodos propios de una clase son "funciones" definidas dentro de la clase
+- Estos métodos puede acceder y manipular los atributos de la instancia
+
+**Ejemplo**
+
+```python
+class Automovil:
+	def __init__(self, marca, modelo, cilindrada, posicion=0):
+		self.marca = marca
+		self.modelo = modelo
+		self.cilindrada = cilindrada
+		self.posicion = posicion
+		print("Se ha creado un automóvil {} {} {} cc".format(marca,modelo,cilindrada))
+
+	def __str__(self):
+		return "{} {} {} cc".format(self.marca, self.modelo, self.cilindrada)
+	
+	def avanzar(self, metros=0):
+		self.posicion += metros
+		return "avanzo desde {} a {}: {} metros".format(self.posicion-metros, self.posicion, metros)
+
+	def retroceder(self, metros=0):
+		self.posicion -= metros
+		return "retrocedió desde {} a {}: {} metros".format(self.posicion+metros, self.posicion, metros)
+
+	def girarIzquierda(self):
+		return "giró a la Izquierda"
+	
+	def girarDerecha(self):
+		return "giró a la derecha"
+
+auto4 = Automovil("Honda", "Civic", 2200)
+
+print(str(auto4), auto4.avanzar(15))
+print(str(auto4), auto4.avanzar(15))
+print(str(auto4), auto4.girarIzquierda())
+print(str(auto4), auto4.girarDerecha())
+```
+
+## La herencia de Clase
+Permite a una clase heredar los atributos y métodos de otra, promoviendo la reutilización de código
+
+**Ejemplo: ** Clase "Modelito", hereda los atributos y métodos de la clase "Automovil"
+
+```python
+class Modelito(Automovil):
+	def __init__(self, marca, modelo, cilindrada, tipo, anio, color, puertas):
+		super().__init__(marca, modelo, cilindrada) #atributos heredados
+		self.tipo = tipo
+		self.anio = anio
+		self.color = color
+		self.puertas = puertas
+		print("""Se ha creado un nuevo Modelito:
+		Marca: {}
+		Modelo: {}
+		Cilindrada: {}
+		Tipo: {}
+		Año: {}
+		Color: {}
+		Num. Puertas: {}
+		""".format(self.marca, self.modelo, self.cilindrada, self.tipo, self.anio, self.color, self.puertas))
+
+
+deportivo = Modelito("Chevrolet", "Camaro", 6.2, "Sedan", 2020, "Rojo", 2)
+print(str(deportivo), deportivo.girarIzquierda())
+```
+
+## La Clase abstracta
+- Es una clase que no puede ser instanciada directamente
+- Generalmente se utiliza como una interfaz base para otras clases
+- Su idea es proporcionar una estructura común para clases derivadas
+
+```python
+from abc import ABC, abstractmethod
+
+# Clase abstracta Auto
+class Auto(ABC):
+    def __init__(self, marca, modelo, año):
+        self.marca = marca
+        self.modelo = modelo
+        self.año = año
+
+    # Método abstracto para obtener la descripción del auto
+    @abstractmethod
+    def descripcion(self):
+        pass
+
+    # Método abstracto para obtener el tipo de combustible
+    @abstractmethod
+    def tipo_combustible(self):
+        pass
+
+    def __str__(self):
+        return "{} {} - Año: {}".format(self.marca, self.modelo, self.año)
+
+# Subclase AutoDeLujo
+class AutoDeLujo(Auto):
+    def __init__(self, marca, modelo, año, precio):
+        super().__init__(marca, modelo, año)
+        self.precio = precio
+
+    def descripcion(self):
+        return f"Auto de lujo {self.marca} {self.modelo}, con un precio de {self.precio}."
+
+    def tipo_combustible(self):
+        return "Gasolina de alta calidad"
+
+    def __str__(self):
+        return super().__str__() + " - Precio: " + str(self.precio)
+
+# Subclase AutoDeCarreras
+class AutoDeCarreras(Auto):
+    def __init__(self, marca, modelo, año, velocidad_maxima):
+        super().__init__(marca, modelo, año)
+        self.velocidad_maxima = velocidad_maxima
+
+    def descripcion(self):
+        return f"Auto de carreras {self.marca} {self.modelo}, velocidad máxima: {self.velocidad_maxima} km/h."
+
+    def tipo_combustible(self):
+        return "Combustible especial de competición"
+
+    def __str__(self):
+        return super().__str__() + " - Velocidad máxima: " + str(self.velocidad_maxima) + " km/h"
+
+# Instanciación de las subclases
+auto_lujo = AutoDeLujo("Mercedes-Benz", "S-Class", 2022, 120000)
+auto_carreras = AutoDeCarreras("Ferrari", "488 GTB", 2021, 330)
+
+# Ejemplo de uso
+print(auto_lujo)  # Imprime: Mercedes-Benz S-Class - Año: 2022 - Precio: 120000
+print(auto_lujo.descripcion())  # Descripción del Auto de Lujo
+print("Tipo de combustible:", auto_lujo.tipo_combustible())
+
+print(auto_carreras)  # Imprime: Ferrari 488 GTB - Año: 2021 - Velocidad máxima: 330 km/h
+print(auto_carreras.descripcion())  # Descripción del Auto de Carreras
+print("Tipo de combustible:", auto_carreras.tipo_combustible())
+```
+
+# Actividad de Práctica 06
+
+<Quiz questions={[
+  {
+    question: "¿Cómo se establece la herencia entre dos clases en Python?",
+    options: [
+      "Con la declaración de clase \"class NuevaClase(ClaseExistente)\"",
+      "Usando la palabra clave extends",
+      "Utilizando el operador >>",
+      "Mediante la palabra clave inherits"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cómo se logra el encapsulamiento en Python?",
+    options: [
+      "Definiendo la clase dentro de otra clase",
+      "Mediante el uso de guiones bajos (_) al inicio del nombre de un atributo o método",
+      "Declarando la clase con el modificador encapsulated",
+      "Utilizando la palabra clave private"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "En el contexto de polimorfismo, ¿cómo se crea una Clase abstracta en Python?",
+    options: [
+      "Utilizando la palabra clave common_interface antes de la definición de la clase",
+      "Creando una función principal llamada interface en cada clase",
+      "Definiendo una clase con el nombre interface y heredándola",
+      "Declarando un conjunto de métodos abstractos en una clase base"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "En Python, ¿cuál es el modificador que se utiliza para indicar un atributo o método como privado?",
+    options: [
+      "Palabra reservada secure",
+      "Palabra reservada hidden",
+      "Guiones bajos (_) al inicio del nombre",
+      "Palabra reservada private"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cómo se aplica el polimorfismo en Python?",
+    options: [
+      "Definiendo una función principal llamada polymorph en cada clase",
+      "Creando una clase única para cada tipo de objeto",
+      "Permitiendo que objetos de diferentes clases respondan al mismo método definido en una interfaz común",
+      "Utilizando la palabra reservada poly en la declaración de clase"
+    ],
+    correctIndex: 2
+  }
+]} />

@@ -1,0 +1,76 @@
+# PCI DSS
+
+**Material Clase:** [PCI-DSS.pdf](/inacap/ti3v34/docs/ppt23.pdf)
+
+*Payment Card Industry Security Standar*. Es un estándar de seguridad de la información creado para proteger los datos de tarjetas de pago y reducir el riesgo de fraude
+
+- Desarrollado por *PCI Security Standards Council* (PCI SSC)
+- Conformado por las principales marcas de tarjetas de crédito: Visa, MasterCard, American Express, Discover y JCB
+
+## ¿Por qué es importante?
+
+1. Prevenir fraudes y filtraciones de datos de tarjetas
+2. Garantizar la seguridad de los pagos electrónicos
+3. Cumplir con requisitos regulatorios y evitar multas
+4. Proteger la reputación de empresas que manejan pagos con tarjeta
+
+## Requisitos de PCI DSS
+Tiene 12 requisitos organizados en 6 objetivos principales
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Objetivos Principales', 'Requisitos']}
+	rows={[
+		[
+			'**Construir y mantener una red segura**',
+			'[Usar firewalls efectivos,No usar contraseñas predeterminadas]'
+		],
+		[
+			'**Proteger los datos del titular de la tarjeta**',
+			'[Proteger los datos almacenados de tarjetas,Cifrar la transmisión de datos sensibles]'
+		],
+		[
+			'**Mantener un programa de gestión de vulnerabilidades**',
+			'[Usar y actualizar software antivirus,Desarrollar sistemas seguros]'
+		],
+		[
+			'**Implementar medidas de control de acceso**',
+			'[Restringir acceso a la información,Identificar y autenticar accesos,Restringir el acceso físico a los datos]'
+		],
+		[
+			'**Monitorear y probar redes regularmente**',
+			'[Rastrear y monitorear accesos a datos,Probar seguridad de sistemas y redes regularmente]'
+		],
+		[
+			'**Mantener una política de seguridad de la información**',
+			'[Mantener y actualizar políticas de seguridad]'
+		]
+	]}
+/>
+
+## Cumplimiento y Validación del PCI DSS
+El cumplimiento del PCI DSS depende del nivel de la empresa y la cantidad de transacciones que procesa anualmente. Existen cuatro niveles
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Niveles', 'Descripción']}
+	rows={[
+		['**Nivel 1**', 'Más de 6 millones de transacciones anuales'],
+		['**Nivel 2**', 'Entre 1 y 6 millones de transacciones'],
+		['**Nivel 3**', 'entre 20.000 y 1 millón de transacciones'],
+		['**Nivel 4**', 'menos de 20.000 transacciones']
+	]}
+/>
+
+Los métodos de validación incluyen:
+
+- Evaluaciones de terceros (QSA; *Qualified Security Assessor*)
+- Cuestionarios de autoevaluacion (SAQ; *Self Assessment Questionnaire*)
+
+## Buenas Prácticas para cumplir con PCI DSS
+
+1. **Tokenización:** Reemplazar datos de tarjetas con un identificador único
+2. **Cifrado de extremo a extremo (E2EE):** Asegurar la información durante la transmisión
+3. **Segmentación de redes:** Separar sistemas que manejan datos de tarjetas de otras redes
+4. **Monitoreo y auditoría continua:** Detectar accesos no autorizados y vulnerabilidades
+

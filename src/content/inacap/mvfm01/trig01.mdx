@@ -1,0 +1,122 @@
+# Temperatura de una tubería
+
+## Material Clases
+- [Temperatura_tuberia.pdf](/inacap/mvfm01/docs/Temperatura_tuberia.pdf)
+
+La ecuación de la variación de temperatura en una tubería es:
+
+$$
+\begin{aligned}
+	T(x) = 25 + 10 \cdot \cos(3\pi x - \pi / 4)
+\end{aligned}
+$$
+
+Donde
+
+- $x$: distancia en metros desde el origen
+- $T(x)$: temperatura en grados Celsius en el punto $x$ a lo largo de la tubería
+
+1. **Según la función anterior, ¿cuál es el valor máximo de la temperatura a lo largo de la tubería y a qué distancia del centro de equilibrio se encuentra?**
+
+<Solution>
+En una función sinusoidal, su valor máximo es su amplitud $(a)$ más su desplazamiento vertical $(d)$
+
+$$
+\begin{aligned}
+	valor_{max} &= a + d\\[10pt]
+	&= 10 + 25\\[10pt]
+	&= 35
+\end{aligned}
+$$
+
+$\therefore$ El valor máximo de la temperatura a lo largo de la tubería es de `35`°C
+</Solution>
+
+2. **Según la función anterior, ¿cuál es la longitud de onda? (distancia a lo largo de la tubería para un ciclo completo de temperatura)**
+
+<Solution>
+La distancia entre 2 puntos que completan un ciclo completo, correponde al período $(P)$. En este contexto donde $x$ se mide en unidades de longitud (y no tiempo), tanto el período $(P)$ como la longitud de onda $(\lambda)$ son equivalentes
+
+$$
+\begin{aligned}
+	\lambda &= \frac{2\pi}{b}\\[10pt]
+	&= \frac{2\pi}{3\pi}\\[10pt]
+	&= 0.67
+\end{aligned}
+$$
+
+$\therefore$ La longitud de onda es de `0.67` metros
+</Solution>
+
+3. **Si la distancia a lo largo de la tubería es de 1.5 metros, ¿cuál es la temperatura en ese punto?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig217.png"
+	alt="Cálculo temperatura a 1.5 metros"
+	caption="Cálculo temperatura a 1.5 metros"
+	size="large"
+/>
+
+$\therefore$ La temperatura de la tubería a `1.5` metros de distancia desde el origen es de `32.07`°C
+</Solution>
+
+4. **La siguiente tabla resume la información de temperatura observadas a lo largo de la tubería en diferentes puntos:**
+
+<SmartTable
+  tableLayout="fixed"
+  headers={["Distancia desde el origen (m)","Temperatura observada (°C)"]}
+  rows={[
+    ["0.5","19.73"],
+    ["1.2","24.85"],
+    ["1.8","30.02"],
+    ["2.4","22.19"],
+    ["2.7","15.30"]
+  ]}
+/>
+
+**Utilizando la función seno, determina la expresión algebraica que mejor se ajuste al conjunto de puntos de la tabla anterior**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig218.png"
+	alt="Modelo sinusoidal f(x)"
+	caption="Modelo sinusoidal f(x)"
+	size="large"
+/>
+</Solution>
+
+5. **En base a la fórmula del ajuste sinusoidal, ¿cuál es el desfase horizontal y desplazamiento vertical de la onda para los valores de la tabla?**
+
+<Solution>
+La forma general de una función sinusoidal es:
+
+$$
+\begin{aligned}
+	f(x) = a \cdot \sin(b \cdot x + c) + d
+\end{aligned}
+$$
+
+Donde:
+	
+- $\frac{c}{b}$: representa el desfase horizontal $(dh)$
+- $d$: representa el desplazamiento vertical $(dv)$
+
+$$
+\begin{aligned}
+	dh &= \frac{c}{b}\\[10pt]
+	&= \frac{2.5675}{3.0543}
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig219.png"
+	alt="Cálculo desfase horizontal"
+	caption="Cálculo desfase horizontal"
+	size="large"
+/>
+
+$\therefore$ El desfase horizontal es de `0.87` metros a la izquierda, y el desplazamiento vertical es de `+24.22` °C
+</Solution>

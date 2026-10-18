@@ -1,0 +1,113 @@
+# Fundamentos de cloud computing: la nube actual
+
+El *cloud computing* es un modelo tecnológico que permite el acceso remoto, bajo demanda y a través de internet, a recursos informáticos como servidores, almacenamiento, redes y aplicaciones. Este paradigma se basa en la virtualización y la distribución de recursos, ofreciendo **escalabilidad**, **flexibilidad** y **reducción de costos** operativos.
+
+## 1. Modelos de servicio principales
+
+El cloud computing se organiza en tres modelos de servicio fundamentales, cada uno definiendo el nivel de control y responsabilidad que tiene el usuario sobre la infraestructura.
+
+### A. IaaS (Infraestructure as a Service)
+
+Proporciona acceso a infraestructura virtualizada como servidores, redes y almacenamiento. El usuario gestiona el sistema operativo, middleware y aplicaciones, mientras el proveedor administra el hardware físico. Es el modelo más flexible y de mayor control para el usuario.
+
+> **Ejemplos:** Amazon EC2, Google Compute Engine, Azure Virtual Machines.
+
+### B. PaaS (Platform as a Service)
+
+Ofrece una plataforma completa de desarrollo y despliegue en la nube. El usuario se enfoca exclusivamente en desarrollar y desplegar aplicaciones, sin preocuparse por la infraestructura subyacente ni el sistema operativo.
+
+> **Ejemplos:** Google App Engine, Azure App Service, Heroku.
+
+### C. SaaS (Software as a Service)
+
+Es el modelo más abstracto. El usuario consume directamente una aplicación lista para usar a través del navegador o cliente, sin gestionar ninguna capa tecnológica subyacente.
+
+> **Ejemplos:** Gmail, Microsoft 365, Salesforce, Zoom.
+
+## 2. Tipos de arquitecturas de cloud computing
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Arquitectura", "Descripción"]}
+    lists={{
+        R1: [
+            "Se basa en aplicaciones que funcionan como una sola unidad",
+            "Simple de implementar, pero presenta limitaciones de escalabilidad y flexibilidad"
+        ],
+        R2: [
+            "Divide las aplicaciones en servicios pequeños e independientes que se comunican entre sí mediante API",
+            "Permite escalabilidad, resiliencia y despliegue continuo",
+            "Ideal para entornos multicloud y contenedores"
+        ],
+        R3: [
+            "Permite ejecutar funciones bajo demanda sin gestionar servidores",
+            "El proveedor de la nube administra la infraestructura y el usuario para solo por el tiempo de ejecución",
+            "Ejemplos: AWS Lambda, Azure Functions y Google Cloud Functions"
+        ],
+        R4: [
+            "Combina servicios de diferentes proveedores (AWS, Azure, GCP) para optimizar costos, evitar dependencia y cumplir regulaciones",
+            "Requiere herramientas de orquestación y gestión centralizada"
+        ],
+        R5: [
+            "Integra nubes públicas y privadas",
+            "Esto permite que las organizaciones mantengan datos sensibles en entornos privados mientras aprovechan la escalabilidad de la nube pública"
+        ],
+        R6: [
+            "Utiliza contenedores (docker) para empaquetar aplicaciones y Kubernetes para orquestación",
+            "Garantiza portabilidad entre diferentes nubes y entornos"
+        ]
+    }}
+    rows={[
+        [
+            "**Monolítica en la nube**",
+            "@R1"
+        ],
+        [
+            "**Basada en microservicios**",
+            "@R2"
+        ],
+        [
+            "**Serverless**",
+            "@R3"
+        ],
+        [
+            "**Multicloud**",
+            "@R4"
+        ],
+        [
+            "**Híbrida**",
+            "@R5"
+        ],
+        [
+            "**Basada en contenedores**",
+            "@R6"
+        ],
+    ]}
+/>
+
+---
+
+## Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "Una empresa necesita recursos informáticos inmediatos sin intervención humana, ¿qué atributo esencial del cloud computing según NIST se está aplicando?",
+		options: [
+            "Autoservicio bajo demanda",
+            "Acceso amplio mediante redes públicas",
+            "Agrupación dinámica de recursos compartidos",
+            "Elasticidad rápida entre variaciones de carga"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "Un desarrollador despliega aplicaciones sin administrar servidores ni sistemas operativos, ¿qué modelo de servicio en la nube está utilizando?",
+		options: [
+            "Infraestructura como servicio (IaaS)",
+            "Software como servicio (SaaS)",
+            "Plataforma como servicio (PaaS)",
+            "Funciones como servicio gestionadas"
+		],
+		correctIndex: 2
+	},
+]}/>

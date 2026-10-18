@@ -1,0 +1,471 @@
+# Recursos Estáticos
+
+- Los sitios web generalmente necesitan utilizar archivos adicionales como imágenes, JavaScript o CSS.
+- En Django, estos archivos son reconocidos como **archivos estáticos**
+- Django proporciona `django.contrib.staticfiles` para su administración
+- Para usar archivos estáticos se debe procurar lo siguiente:
+    - Asegúrarse de que `django.contrib.staticfiles` esté incluido en `INSTALLED_APPS` (en **settings.py**)
+    - En `settings.py`, debe estar definida la carpeta `static/` en `STATIC_URL`
+    ```python
+    #./proyectotemplate/settings.py
+    from pathlib import Path
+    ...
+    ...
+    INSTALLED_APPS = [
+        ...
+        ...
+        "django.contrib.staticfiles",
+        "miapp"
+    ]
+    ...
+    ...
+    STATIC_URL = "static/"    
+    ```
+
+## 1. Uso de Recursos Estáticos
+
+1. **Crear Directorio Static:** Crear la carpeta `static/` y subcarpeta `core/` dentro de la app `core`
+    ```sh
+    mkdir -p ./core/static/core
+    ```
+
+2. **Agregar recursos estáticos:** agregar los siguientes archivos de [recursos_estaticos.rar](/inacap/ti3v41/assets/recursos_estaticos.rar) en `./core/static/core`
+    - carpetas `css/`, `images/`, `js/`
+
+3. **Configurar Templates:** Modificar `.core/templates/core/index.html` cambiando la referencia de "bootstrap" en el servidor, a una referencia local
+    ```html
+    <!-- ./core/templates/core/index.html -->
+
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <!-- inicializar static -->
+        {% load static %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        
+        <!-- referencia css local -->
+        <link rel="stylesheet" href="{% static 'core/css/bootstrap.min.css' %}"/>
+        <title>Talleres Inacap - {{annio}}</title>
+    </head>
+    <body>
+        ...
+        ...
+    </body>
+    </html>
+    ```
+
+## 2. Ejercicios
+
+### Ejercicio 01
+
+Continuar con el `proyectostatic`. Agregar el template `talleres.html`
+
+1. **Configurar Templates:** Crear el template `./core/templates/core/talleres.html`
+    ```html
+    <!-- ./core/templates/core/talleres.html-->
+
+    <!doctype html>
+    <html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">  
+        <link href="{% static 'core/css/bootstrap.min.css' %}" rel="stylesheet" />
+        
+        <title>Talleres Inacap - {{annio}}</title>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Django</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" 
+                            href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Talleres</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        </li>
+                        </ul>
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1 class="bg-primary bg-gradient text-white p-5 text-center">Plantilla con Django y Boostrap5</h1>
+                </div>
+            </div>
+            <div class="row text-center my-5">
+                    <div class="col-sm">
+                        <h3>Taller de Dibujo</h3>
+                        <p>Este taller es ideal para la gente que está 
+                        estresada y quiere relajarse dentro del espacio que 
+                        permite el confinamiento.</p>
+                        <img src="https://unsplash.it/250/250/?random" width="250" alt="imagen de taller Yoga" />
+                    </div>
+                    <div class="col-sm">
+                        <h3>Taller de Cocina</h3>
+                        <p>Este taller es ideal para la gente que está 
+                        estresada y quiere relajarse dentro del espacio que 
+                        permite el confinamiento.</p>
+                        <img src="https://unsplash.it/250/250/?random" width="250" alt="imagen de taller Yoga" />
+                    </div>
+                    <div class="col-sm">
+                        <h3>Taller de Baile</h3>
+                        <p>Este taller es ideal para la gente que está 
+                        estresada y quiere relajarse dentro del espacio que 
+                        permite el confinamiento.</p>
+                        <img src="https://unsplash.it/250/250/?random" width="250" alt="imagen de taller Yoga" />           
+                    </div>
+            </div>
+        </div>
+        
+        <!-- Optional JavaScript; choose one of the two! -->
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <!-- Option 2: Separate Popper and Bootstrap JS -->
+        <!--
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+        -->
+    </body>
+    </html>
+    ```
+
+2. **Configurar Vistas:** Crear vista `talleres` en `./core/views.py`
+    ```python
+    #./core/views.py
+    from django.shortcuts import render
+    from datetime import datetime
+    ...
+    ...
+    def talleres(request):
+        fecha = datetime.now().strftime("%Y")
+        contexto = {'annio': fecha}
+        return render(request, 'core/talleres.html', contexto)
+    ```
+
+3. **Configurar Enrutamiento:** Agregar ruta para la vista `talleres`, en `./core/urls.py`
+    ```python
+    #./core/urls.py
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path("index/", views.index),
+        path("talleres/", views.talleres),
+    ]
+    ```
+
+4. **Realizar Pruebas:** Ejecutar servidor y verificar ruta
+    ```sh
+    python manage.py runsever
+    ```
+    ```sh
+    http://127.0.0.1:8000/core/talleres/
+    ```
+	<SmartFigure
+        id="pagina-talleres"
+        src="/inacap/ti3v41/images/fig012.png"
+        alt="Página 'talleres'"
+        caption="Página 'talleres'"
+        size="large"
+    />
+
+### Ejercicio 02
+
+Agregar imágenes locales en los distintos talleres
+
+1. **Configurar Templates:** Modificar `./core/templates/core/talleres.html` agregando imágenes locales
+    ```html
+    <!-- ./core/templates/core/talleres.html -->
+    <!doctype html>
+    <html lang="en">
+    <head>
+        {% load static %}
+        ...
+        ...
+    </head>
+    <body>
+        <div class="container">
+            ...
+            ...
+            <div class="row text-center my-5">
+                <div class="col-sm">
+                    <h3>Taller de Dibujo</h3>
+                    <p>Este taller es ideal para la gente que está 
+                    estresada y quiere relajarse dentro del espacio que 
+                    permite el confinamiento.</p>
+                    <img src="{% static 'core/images/gato_cosmico.jpg' %}" width="250" alt="imagen de taller dibujo" />
+                </div>
+                <div class="col-sm">
+                    <h3>Taller de Cocina</h3>
+                    <p>Este taller es ideal para la gente que está 
+                    estresada y quiere relajarse dentro del espacio que 
+                    permite el confinamiento.</p>
+                    <img src="{% static 'core/images/taller_cocina.png' %}" width="250" alt="imagen de taller cocina" />
+                </div>
+                <div class="col-sm">
+                    <h3>Taller de Baile</h3>
+                    <p>Este taller es ideal para la gente que está 
+                    estresada y quiere relajarse dentro del espacio que 
+                    permite el confinamiento.</p>
+                    <img src="{% static 'core/images/taller_baile.png' %}" width="250" alt="imagen de taller baile" />    
+                </div>
+            </div>
+        </div>
+        ...
+        ...
+    </body>
+    </html>
+    ```
+
+2. **Realizar Pruebas:** Levantar servidor y verificar ruta
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/core/talleres/
+    ```
+	<SmartFigure
+        id="pagina-talleres-con-imagenes-locales"
+        src="/inacap/ti3v41/images/fig013.png"
+        alt="Página 'talleres' con imágenes locales"
+        caption="Página 'talleres' con imágenes locales"
+        size="large"
+    />
+
+###  Ejercicio 03
+
+Modificar el template `talleres.html` del Ejercicio 02, de manera que la información llegue desde la vista, y no desde el template
+
+1. **Configurar Vistas:** Trasladar la información de los talleres mediante una lista, hacia `./core/views.py`
+    - agregar una lista `talleres`
+    - agregar la lista `talleres` al `contexto`
+
+    ```python
+    #./core/views.py
+    from django.shortcuts import render
+    from datetime import datetime
+
+    def index(request):
+        fecha = datetime.now().strftime("%Y")
+        contexto = {'annio': fecha}
+        return render(request, 'core/index.html', contexto)
+
+    def talleres(request):
+        fecha = datetime.now().strftime("%Y")
+        talleres = [
+            {
+                "id": "1",
+                "contenidos": {
+                    "cabecera": "Taller de Caricaturas",
+                    "descripcion": """Este taller es ideal para la gente que quiere desarrollar
+                    su potencial artístico, desarrollando historias en caricaturas, utilizando
+                    técnicas avanzadas de dibujos.""",
+                    "imagen":"gato_cosmico.jpg",
+                }
+            },
+            {
+                "id": "2",
+                "contenidos": {
+                    "cabecera": "Taller de Cocina",
+                    "descripcion": """Este taller es ideal para la gente que buscar mejorar
+                    sus técnicas culinarias, desarrollando al máximo el placer de cocinar.""",
+                    "imagen":"taller_cocina.png",
+                }
+            },
+            {
+                "id": "3",
+                "contenidos": {
+                    "cabecera": "Taller de Baile",
+                    "descripcion": """Este taller es ideal para la gente que está 
+                    estresada y quiere relajarse disfrutando de la música
+                    y la buena compañía de un grupo de personas.""",
+                    "imagen":"taller_baile.png",
+                }
+            },
+        ]
+        contexto = {
+            'annio': fecha,
+            'talleres': talleres
+        }
+        return render(request, 'core/talleres.html', contexto)
+    ```
+
+
+2. **Configurar Templates:** Modificar `./core/templates/core/talleres.html` para mostrar la información de los talleres a través de la vista
+    ```html
+    <!-- ./core/templates/core/talleres.html -->
+
+    <!doctype html>
+    <html lang="en">
+    <head>
+        {% load static %}
+        ...
+        ...
+    </head>
+    <body>
+        <div class="container">
+            ...
+            ...
+            <div class="row text-center my-5">
+                {% for taller in talleres%}
+                    <div class="col-sm">
+                        <h3>{{ taller.contenidos.cabecera }}</h3>
+                        <p>{{ taller.contenidos.descripcion}}</p>
+                        <img src="{% static 'core/images/'|add:taller.contenidos.imagen %}" width="250" alt="imagen de taller {{ taller.contenidos.cabecera }}" />
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        ...
+        ...
+    </body>
+    </html>
+    ```
+
+3. **Realizar Pruebas:** Ejecutar servidor y verificar ruta
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/core/talleres/
+    ```
+    <SmartFigure
+        id="pagina-talleres-con-informacion-desde-vista"
+        src="/inacap/ti3v41/images/fig014.png"
+        alt="Página 'talleres' con información desde la vista"
+        caption="Página 'talleres' con información desde la vista"
+        size="large"
+    />
+
+### Ejercicio 04
+
+Agregar las URLs para los navbar de `index.html` y `talleres.html`
+
+1. **Configurar Enrutamiento:** Asignar un alias a las rutas en `./core/urls.py`
+    ```python
+    #./core/urls.py
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path("index/", views.index, name="index"),
+        path("talleres/", views.talleres, name="talleres"),
+    ]
+    ```
+
+2. **Configurar Templates (1):** Actualizar `./core/templates/core/index.html`
+    - agregar url-alias de talleres, en `index.html` 
+    ```html
+    <!-- ./core/templates/core/index.html -->
+    <!doctype html>
+    <html lang="en">
+    <head>
+        {% load static %}
+        ...
+        ...
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    ...
+                    ...
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        ...
+                        ...
+                        <li class="nav-item">
+                            <a class="nav-link" 
+                            href="{% url 'talleres' %}">Talleres</a>
+                        </li>
+                        ...
+                        ...
+                        </ul>
+                        ...
+                        ...
+                    </div>
+                </div>
+            </nav>
+            ...
+            ...
+        </div>
+        ...
+        ...
+    </body>
+    </html>
+    ```
+
+2. **Configurar Templates (2):** Actualizar `.core/templates/core/talleres.html`
+    - agregar url-alias de index, en `talleres.html`
+    ```html
+    <!-- ./core/templates/core/talleres.html -->
+
+    <!doctype html>
+    <html lang="en">
+    <head>
+        {% load static %}
+        ...
+        ...
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    ...
+                    ...
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" 
+                            href="{% url 'index' %}">Home</a>
+                        </li>
+                        ...
+                        ...
+                        </ul>
+                        ...
+                        ...
+                    </div>
+                </div>
+            </nav>
+            ...
+            ...
+        </div>
+        ...
+        ...
+    </body>
+    </html>
+    ```
+
+4. **Realizar Pruebas:** Ejecutar servidor y verificar rutas
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    # ruta index
+    http://127.0.0.1:8000/core/index/
+    ```
+    - En `index.html` ir al navbar y hacer click en `Talleres`
+
+    ```sh
+    # ruta talleres
+    http://127.0.0.1:8000/core/talleres/
+    ```
+    - en `talleres.html` ir al navbar y hacer click en `Home`

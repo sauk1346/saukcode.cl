@@ -1,0 +1,214 @@
+# Evaluación 02
+- **Instrucciones 1ra parte:** [eval02_parte01.pdf](/inacap/ti3v11/docs/eval02_parte01.pdf)
+- **Instrucciones 2da parte:** [eval02_parte02.pdf](/inacap/ti3v11/docs/eval02_parte02.pdf)
+
+## Primera Parte
+
+```python
+#EVA2_MoralesAntonio_Vespertino.py
+op = 1 #num random distinto de 4
+while op != 4:
+    print('-----------------------------------------------------------------------------')
+    print('1.Iniciar Registro | 2.Consultar Estudiante | 3.Eliminar Estudiante | 4.Salir')
+    print('-----------------------------------------------------------------------------')
+    op = int(input('Ingrese una opción: '))
+
+    if op == 1:
+        rut = input('Ingrese Rut del Estudiante: ')
+        op2 = 'SI'
+        ASIG_MoralesAntonio = []
+        DIC_MoralesAntonio = {}
+        Total_MoralesAntonio = {}
+        sumaProm = 0
+        contProm = 0
+
+        while (op2 == 'SI'):
+            asig = input('Ingrese Asignatura: ')
+        
+            cont = 0
+            suma = 0
+            nota = -1
+            while (nota != 0):
+                nota = float(input('Ingrese nota: '))
+                if (nota >= 1.0) and (nota <= 7.0):
+                    suma = suma + nota
+                    cont = cont + 1
+                else:
+                    print('Error Ingrese nota nuevamente')
+
+            promedio = suma / cont
+            sumaProm = sumaProm + promedio
+            contProm = contProm + 1
+
+            ASIG_MoralesAntonio.append(asig)
+            op2 = input('Desea agregar otra Asignatura(SI/NO): ')
+
+        promedio_general = sumaProm / contProm
+        Total_MoralesAntonio.setdefault(rut,promedio_general)
+        DIC_MoralesAntonio.setdefault(rut,ASIG_MoralesAntonio)
+
+        #print para corroborar resultados
+        print(f'DIC_MoralesAntonio: {DIC_MoralesAntonio}')
+        print(f'promedio_general: {promedio_general}')
+        print(f'Total_MoralesAntonio: {Total_MoralesAntonio}')
+        
+    if op == 2:
+        pass
+    if op == 3:
+        pass
+    if op == 4:
+        pass
+```
+
+## Segunda Parte 
+
+```python
+#EVA2Func_MoralesAntonio.py
+def mostrarMenu():
+    print()
+    print('1.Iniciar Registro   2.Consultar Estudiante   3.Eliminar Estudiante   4.Salir')    
+
+def validarNota(nota):
+    if (nota >= 1.0) and (nota <= 7.0):
+        result = True
+    else:
+        result = False
+    return result
+
+def acumVars(var,sumaVars,cantVars):
+    sumaVars = sumaVars + var
+    cantVars = cantVars + 1
+    return sumaVars,cantVars
+
+def estadoAsig(promedio):
+    if (promedio > 5.0):
+        estado = 'APRUEBA ASIGNATURA'
+    elif (promedio < 4.0):
+        estado = 'REPRUEBA ASIGNATURA'
+    else:
+        estado = 'DEBE RENDIR EXAMEN'
+    return estado
+
+def mostrarAsig(asig,promNotas):
+    print()
+    print(f'Promedio Asignatura \'{asig}\': {promNotas}')
+    print(estadoAsig(promNotas)) 
+    print()
+
+def mostrarDiccionario(nombre,dic):
+    print()
+    print(f'Diccionario \'{nombre}\'')
+    print(14*'-' + len(nombre)*'-')
+    for i,j in dic.items():
+        print(f'{i}: {j}')
+
+def mostrarEstudiante(rut,dic,total):
+    print()
+    print(f'El Estudiante rut {rut} registra las siguiente asignaturas:',end=' ')
+    for index,asig in enumerate(dic[rut]):
+        if index < len(dic[rut])-1:
+            print(asig,end=', ')
+        else:
+            print(asig)
+    print(f'El promedio general de todas las asignaturas es: {total[rut]}')
+
+def eliminarEstudiante(rut,dic,total):
+    del dic[rut]
+    del total[rut]
+    print()
+    print(f'Estudiante \'{rut}\' eliminado')
+
+def validarRut(rut):   
+    ultDigito = rut[-1].upper()
+    rut = rut[:-2].zfill(8)
+    sum = 0
+    for i,j in zip(rut,'32765432'):
+        sum = sum + (int(i) * int(j))
+    
+    decimal = (sum/11) - int(sum/11)
+    digito = round(11-(11*decimal))
+    digito = 'K' if (digito == 10) else 0 if (digito == 11) else digito
+    return True if (str(digito) == ultDigito) else False
+```
+
+```python
+#EVA2_MoralesAntonio_Vespertino.py
+from EVA2Func_MoralesAntonio import *
+
+DIC_MoralesAntonio = {}
+Total_MoralesAntonio = {}
+op = 1 #num random distinto de 4
+while op != 4:    
+    mostrarMenu()
+    try:
+        op = int(input('Seleccione Opción: '))
+
+        if op == 1:
+            # Validación a. Valida el rut ingresado como string, mediante funcion validarRut()
+            # Validación b. Si el rut es menor a 10 millones, se agregan 0s hasta completar 8 digitos
+            print()
+            rut = input('Ingrese Rut del Estudiante: ')
+            rutValido = validarRut(rut)
+            # Validacion c. Si rut no es valido imprime 'El rut NO es válido'
+            if not rutValido:
+                print('El rut NO es válido')
+            else:
+                ASIG_MoralesAntonio = []
+        
+                sumaProms = 0
+                cantProms = 0
+                otraAsig='SI'
+                while (otraAsig == 'SI'):
+                    asig = input('Ingrese Nombre Asignatura: ')
+                    ASIG_MoralesAntonio.append(asig)
+        
+                    cantNotas = 0
+                    sumaNotas = 0
+                    nota = -1
+                    while (nota != 0):
+                        try:
+                            nota = float(input('Ingrese Nota: '))
+                            if validarNota(nota):
+                                sumaNotas,cantNotas = acumVars(nota,sumaNotas,cantNotas)
+                            elif (nota != 0):
+                                print('Error Ingrese Nota nuevamente')
+                    
+                        except ValueError:
+                            print('Error Ingrese Nota nuevamente')
+                
+                    promNotas = sumaNotas / cantNotas
+                    sumaProms,cantProms = acumVars(promNotas,sumaProms,cantProms)
+                    mostrarAsig(asig,promNotas)
+                
+                    otraAsig = input('Desea agregar otra Asignatura (SI/NO): ').upper()
+
+                promedio_general = sumaProms / cantProms
+                DIC_MoralesAntonio.setdefault(rut,ASIG_MoralesAntonio)
+                Total_MoralesAntonio.setdefault(rut,promedio_general)
+
+        elif op == 2:
+            print()
+            rut = input('Ingrese rut a consultar: ')
+            if rut in DIC_MoralesAntonio.keys():
+                mostrarEstudiante(rut,DIC_MoralesAntonio,Total_MoralesAntonio)
+            else:
+                print('El Estudiante consultado no se encuentra registrado')
+
+        elif op == 3:
+            rut = input('Ingrese rut a Eliminar: ')
+            if rut in DIC_MoralesAntonio.keys():
+                eliminarEstudiante(rut,DIC_MoralesAntonio,Total_MoralesAntonio)
+            else:
+                print('El Estudiante a eliminar no se encuentra registrado')
+        
+        elif op == 4:
+            print('Sesión Finalizada')
+        
+        else:
+            print('Error. Opción no válida')
+    
+    except ValueError:
+        print('Error. Opción no válida')
+```
+
+

@@ -1,0 +1,416 @@
+# Prueba: Indicadores de rentabilidad para evaluar proyectos
+
+Responde las siguientes preguntas de alternativas basadas en el documento *Indicadores de Rentabilidad*.
+
+<Quiz questions={[
+  {
+    question: "¿Qué se entiende por costo de oportunidad?",
+    options: [
+      "Los beneficios que genera la mejor alternativa rechazada.",
+      "El costo de financiamiento de un proyecto.",
+      "La inversión inicial requerida por un proyecto.",
+      "La suma de todos los flujos de caja futuros de una inversión."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "En la evaluación de inversiones, ¿a qué corresponde el costo de oportunidad?",
+    options: [
+      "Al interés que cobra el banco por financiar el proyecto.",
+      "A la rentabilidad que se estima entregaría la inversión del proyecto, si ésta se destina a la segunda mejor alternativa.",
+      "Al total de egresos operacionales del primer año del proyecto.",
+      "A la depreciación de los activos fijos del proyecto."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué es el costo de capital?",
+    options: [
+      "El beneficio de la mejor alternativa rechazada.",
+      "El total de la inversión inicial del proyecto.",
+      "El costo de financiamiento del proyecto; en otras palabras, representa la rentabilidad mínima exigida a un proyecto para su implementación.",
+      "El valor presente de los flujos de caja futuros."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "Según el documento, ¿con qué está relacionado directamente el costo de oportunidad en un proyecto?",
+    options: [
+      "Con el periodo de recuperación de la inversión.",
+      "Con la depreciación de los activos del proyecto.",
+      "Con los ingresos operacionales proyectados.",
+      "Con el costo de financiamiento del proyecto, llamado costo de capital."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué es el Valor Actual Neto (VAN)?",
+    options: [
+      "Un procedimiento que permite calcular el valor presente de un determinado número de flujos de caja futuros, originados por una inversión.",
+      "La tasa de interés o rentabilidad que ofrece una inversión.",
+      "El periodo de tiempo requerido para recuperar el capital inicial de una inversión.",
+      "El porcentaje que compara el beneficio neto con el costo de la inversión."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Para qué se utiliza el VAN en la valoración de distintas opciones de inversión?",
+    options: [
+      "Para calcular el plazo exacto de recuperación de cada inversión.",
+      "Porque calculando el VAN de distintas inversiones vamos a conocer con cuál de ellas vamos a obtener una mayor ganancia.",
+      "Para determinar la estructura de financiamiento óptima del proyecto.",
+      "Para calcular los impuestos asociados a cada inversión."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "En la fórmula del VAN, ¿qué representa Ft?",
+    options: [
+      "La inversión realizada en el momento inicial.",
+      "La tasa de descuento exigida a la inversión.",
+      "Los flujos de dinero en cada periodo t.",
+      "El número total de períodos."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "En la fórmula del VAN, ¿qué representa I0?",
+    options: [
+      "El número total de períodos de la inversión.",
+      "La rentabilidad exigida a la inversión.",
+      "Los flujos de dinero de cada periodo.",
+      "La inversión realizada en el momento inicial (t = 0)."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "En la fórmula del VAN, ¿qué representa k?",
+    options: [
+      "La tasa de descuento o tipo de descuento, es decir, la rentabilidad exigida a la inversión.",
+      "El flujo de caja del último año del proyecto.",
+      "El número de periodos de tiempo.",
+      "El valor de rescate de los activos."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "Según los criterios de decisión del VAN, ¿qué sucede cuando VAN > 0?",
+    options: [
+      "El proyecto debe ser rechazado porque generará pérdidas.",
+      "El valor actualizado de los cobros y pagos futuros de la inversión, a la tasa de descuento elegida, generará beneficios: se acepta el proyecto.",
+      "La realización del proyecto es indiferente.",
+      "El proyecto debe reevaluarse con una tasa de descuento mayor."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Según los criterios de decisión del VAN, ¿qué significa que VAN = 0?",
+    options: [
+      "El proyecto generará beneficios y debe aceptarse.",
+      "El proyecto generará pérdidas y debe rechazarse.",
+      "El proyecto de inversión no generará ni beneficios ni pérdidas, siendo su realización, en principio, indiferente.",
+      "El proyecto tiene un error de cálculo en sus flujos."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "Según los criterios de decisión del VAN, ¿qué sucede cuando VAN < 0?",
+    options: [
+      "El proyecto se acepta si la TIR es positiva.",
+      "La realización del proyecto es indiferente.",
+      "El proyecto se acepta solo si el payback es menor a 2 años.",
+      "El proyecto de inversión generará pérdidas, por lo que deberá ser rechazado."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "Un proyecto tiene flujos de caja de $4.200.000 (año 1), $4.800.000 (año 2), $5.200.000 (año 3) y $5.700.000 (año 4), una inversión inicial de $12.000.000 y una tasa de descuento del 15%. La suma de los flujos descontados es $13.959.742. ¿Cuál es el VAN y qué decisión se toma?",
+    options: [
+      "VAN = $1.959.742; se acepta el proyecto.",
+      "VAN = -$1.959.742; se rechaza el proyecto.",
+      "VAN = $13.959.742; se acepta el proyecto.",
+      "VAN = $0; la decisión es indiferente."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "Un proyecto tiene flujos de caja de $2.200.000, $3.800.000, $4.200.000, $6.700.000 y $1.100.000 (años 1 a 5), una inversión inicial de $19.000.000 y una tasa de descuento del 10%. La suma de los flujos descontados es $13.555.221. ¿Cuál es el VAN y qué decisión se toma?",
+    options: [
+      "VAN = $5.444.779; se acepta el proyecto.",
+      "VAN = -$5.444.779; se rechaza el proyecto.",
+      "VAN = $13.555.221; se acepta el proyecto.",
+      "VAN = -$19.000.000; la decisión es indiferente."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué es la Tasa Interna de Retorno (TIR)?",
+    options: [
+      "El valor presente de los flujos de caja menos la inversión inicial.",
+      "El tiempo requerido para recuperar la inversión inicial.",
+      "La tasa de interés o rentabilidad que ofrece una inversión; es decir, el porcentaje de beneficio o pérdida que tendrá una inversión.",
+      "El porcentaje del beneficio neto sobre el costo de la inversión."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "Matemáticamente, ¿cómo se define la TIR?",
+    options: [
+      "Es la tasa que duplica el valor de la inversión inicial.",
+      "Es la tasa de descuento más la prima de riesgo del proyecto.",
+      "Es la tasa que iguala los ingresos y egresos operacionales del primer año.",
+      "Es el valor de la tasa de descuento que hace que el VAN sea igual a cero para un proyecto de inversión dado; en otras palabras, es la máxima rentabilidad que se le puede exigir al proyecto."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "Según el criterio de selección de proyectos con la TIR, ¿qué sucede si TIR > k?",
+    options: [
+      "El proyecto de inversión será aceptado, pues la tasa de rendimiento interno obtenida es superior a la tasa mínima de rentabilidad exigida a la inversión.",
+      "El proyecto debe rechazarse por no alcanzar la rentabilidad mínima.",
+      "La decisión es indiferente.",
+      "Debe recalcularse el VAN con una tasa mayor antes de decidir."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "Según el criterio de selección de proyectos con la TIR, ¿qué sucede si TIR = k?",
+    options: [
+      "El proyecto se acepta de inmediato.",
+      "La decisión es indiferente.",
+      "El proyecto se rechaza de inmediato.",
+      "El proyecto duplica la rentabilidad exigida."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Según el criterio de selección de proyectos con la TIR, ¿qué sucede si TIR < k?",
+    options: [
+      "El proyecto se acepta porque la tasa interna es conservadora.",
+      "La decisión es indiferente.",
+      "El proyecto debe rechazarse: no se alcanza la rentabilidad mínima que le pedimos a la inversión.",
+      "El proyecto se acepta solo si el VAN es igual a cero."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué es el payback (período de recuperación)?",
+    options: [
+      "La tasa de descuento que hace el VAN igual a cero.",
+      "El porcentaje de retorno sobre la inversión inicial.",
+      "El valor presente de los flujos futuros de la inversión.",
+      "El periodo de tiempo requerido para recuperar el capital inicial de una inversión; es un método estático para la evaluación de inversiones."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "Según el criterio del payback, ¿qué inversión será preferible?",
+    options: [
+      "Una inversión en donde el plazo de recuperación sea menor.",
+      "Una inversión en donde el plazo de recuperación sea mayor.",
+      "Una inversión cuyo plazo de recuperación iguale la vida útil del proyecto.",
+      "Una inversión sin plazo de recuperación definido."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál es la principal ventaja del criterio payback?",
+    options: [
+      "Considera el valor del dinero en el tiempo.",
+      "Es muy fácil de calcular.",
+      "Mide directamente la creación de valor económico.",
+      "Entrega la rentabilidad porcentual del proyecto."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Si los flujos de caja son iguales todos los años, ¿cómo se calcula el payback?",
+    options: [
+      "Multiplicando el flujo anual por el número de años del proyecto.",
+      "Restando a cada flujo anual la tasa de descuento.",
+      "Dividiendo la inversión inicial por el flujo de caja anual.",
+      "Sumando todos los flujos y dividiéndolos por la tasa de descuento."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "En la fórmula del payback para flujos desiguales, ¿qué representa 'a'?",
+    options: [
+      "La suma de los flujos hasta el final del periodo de recuperación.",
+      "El valor del flujo de caja del año en que se recupera la inversión.",
+      "La inversión inicial del proyecto.",
+      "El número del periodo inmediatamente anterior hasta recuperar el desembolso inicial."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "En la fórmula del payback para flujos desiguales, ¿qué representa 'b'?",
+    options: [
+      "La suma de los flujos hasta el final del periodo «a».",
+      "La inversión inicial del proyecto.",
+      "El flujo de caja del año en que se recupera la inversión.",
+      "La tasa de descuento del proyecto."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "Una inversión inicial de $10.000.000 genera flujos de caja iguales de $4.000.000 en los años 1, 2 y 3. ¿Cuál es el payback?",
+    options: [
+      "3 años.",
+      "2,5 años.",
+      "2 años.",
+      "4 años."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Una inversión inicial de $10.000.000 genera flujos de $3.000.000 (año 1), $4.000.000 (año 2), $5.000.000 (año 3) y $2.000.000 (año 4). Aplicando la fórmula PB = 2 + (10.000.000 - 7.000.000) / 5.000.000, ¿cuál es el payback?",
+    options: [
+      "2,5 años.",
+      "3,2 años.",
+      "2,6 años.",
+      "4 años."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué mide el ROI (rentabilidad sobre la inversión)?",
+    options: [
+      "El tiempo necesario para recuperar la inversión inicial.",
+      "La tasa de descuento que anula el VAN del proyecto.",
+      "El valor presente de los flujos de caja futuros.",
+      "La rentabilidad de la inversión al comparar el beneficio neto con el costo de la inversión; se expresa como un porcentaje."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál es la fórmula del ROI?",
+    options: [
+      "ROI = (Beneficio neto / Inversión inicial), y el resultado se debe multiplicar por 100.",
+      "ROI = Inversión inicial / Beneficio neto × 100.",
+      "ROI = Beneficio neto × Inversión inicial / 100.",
+      "ROI = (Beneficio neto - Inversión inicial) / 100."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cómo se calcula el beneficio neto para el ROI?",
+    options: [
+      "Inversión inicial menos la suma de los flujos de caja netos.",
+      "La suma de los flujos de caja netos durante la vida del proyecto menos la inversión inicial.",
+      "El flujo de caja del último año menos el del primer año.",
+      "El promedio de los flujos de caja anuales del proyecto."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cómo se interpreta un ROI positivo y uno negativo?",
+    options: [
+      "Un ROI positivo indica pérdidas; uno negativo indica rentabilidad.",
+      "Ambos indican que el proyecto recuperó exactamente lo invertido.",
+      "Un ROI positivo indica rentabilidad; un ROI negativo indica que el proyecto no ha generado ganancias suficientes.",
+      "El signo del ROI no tiene relación con la rentabilidad del proyecto."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "Una inversión inicial de $100.000 genera flujos de caja de $30.000, $40.000, $50.000, $60.000 y $70.000 (años 1 a 5). El beneficio neto es (30.000 + 40.000 + 50.000 + 60.000 + 70.000) - 100.000 = $150.000. ¿Cuál es el ROI simple?",
+    options: [
+      "50%.",
+      "100%.",
+      "250%.",
+      "150%."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué indica un ROI del 150% en el ejemplo anterior?",
+    options: [
+      "Que el proyecto ha generado un retorno del 150% sobre la inversión inicial.",
+      "Que el proyecto recuperó exactamente la cantidad invertida.",
+      "Que el proyecto generó pérdidas del 50%.",
+      "Que el proyecto tarda 1,5 años en recuperar la inversión."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Por qué en un análisis más riguroso de la rentabilidad se debe calcular el ROI ajustado?",
+    options: [
+      "Porque la ley exige descontar los flujos para el pago de impuestos.",
+      "Porque se debe tener en cuenta el valor del dinero en el tiempo: el dinero hoy no tiene el mismo valor que en el futuro debido a factores como la inflación y el costo de oportunidad del capital, por lo que los flujos deben ser descontados a su valor actual.",
+      "Porque el ROI simple siempre entrega resultados negativos.",
+      "Porque el ROI ajustado elimina el riesgo del proyecto."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es la fórmula del valor presente de un flujo de caja usada en el ROI ajustado?",
+    options: [
+      "Valor presente = Flujo de caja × (1 + r)^t.",
+      "Valor presente = Flujo de caja × r × t.",
+      "Valor presente = Flujo de caja / (1 + r)^t.",
+      "Valor presente = Flujo de caja + (1 + r)^t."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "Con una inversión inicial de $100.000, una tasa de descuento del 10% y flujos de $30.000, $40.000, $50.000, $60.000 y $70.000 (años 1 a 5), la suma del valor presente de los flujos es $182.342. ¿Cuál es el beneficio neto ajustado y el ROI ajustado?",
+    options: [
+      "Beneficio neto ajustado = $182.342 y ROI ajustado = 182,34%.",
+      "Beneficio neto ajustado = $150.000 y ROI ajustado = 150%.",
+      "Beneficio neto ajustado = $100.000 y ROI ajustado = 100%.",
+      "Beneficio neto ajustado = $82.342 y ROI ajustado = 82,34%."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué significa un ROI de 0%?",
+    options: [
+      "Que el proyecto ha recuperado exactamente la cantidad invertida, pero no ha generado ganancias: no hay pérdida, pero tampoco ganancia.",
+      "Que el proyecto ha perdido toda la inversión inicial.",
+      "Que el proyecto duplicó la inversión inicial.",
+      "Que el proyecto aún no ha comenzado a operar."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "Si hay varias opciones de inversión, ¿cómo se comparan generalmente según el ROI?",
+    options: [
+      "Un ROI más bajo es generalmente mejor.",
+      "Un ROI más alto es generalmente mejor.",
+      "El ROI no permite comparar opciones de inversión.",
+      "Solo se comparan proyectos con ROI negativos."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Respecto al riesgo del proyecto como factor a considerar, ¿qué puede indicar un ROI muy alto?",
+    options: [
+      "Que el proyecto está completamente libre de riesgo.",
+      "Que el proyecto tiene un plazo de recuperación menor a un año.",
+      "Una gran rentabilidad, pero también puede estar asociado con un alto riesgo; los proyectos de alto riesgo podrían justificar un ROI más alto para compensar el posible riesgo de pérdida.",
+      "Que la tasa de descuento utilizada fue demasiado alta."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "En proyectos a largo plazo, ¿junto a qué otros indicadores financieros debe evaluarse el ROI para obtener una visión más completa?",
+    options: [
+      "El EBITDA y el margen bruto.",
+      "El punto de equilibrio y el capital de trabajo.",
+      "El índice de liquidez y el nivel de endeudamiento.",
+      "El Valor Actual Neto (VAN) y la Tasa Interna de Retorno (TIR)."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Por qué es recomendable utilizar varios indicadores de rentabilidad en conjunto?",
+    options: [
+      "Para obtener una visión completa del rendimiento financiero y tomar decisiones informadas sobre la viabilidad y rentabilidad de un proyecto.",
+      "Porque ningún indicador individual puede calcularse de forma aislada.",
+      "Porque la normativa contable obliga a reportar todos los indicadores.",
+      "Para que todos los indicadores entreguen exactamente el mismo resultado."
+    ],
+    correctIndex: 0
+  }
+]} />

@@ -1,0 +1,139 @@
+# Defectos, errores y fallos según criterios de factiblidad de plan de pruebas
+
+Para abordar eficazmente la gestión de calidad en el desarrollo de software, es crucial entender la diferencia entre defectos, errores y fallos.
+
+## Defectos
+Son problemas o desviaciones en e código que afectan negativamente su funcionamiento. Estos pueden surgir debido a errores humanos durante la programación o a problemas en la intepretación de los requisitos del software.
+
+Es crucial identificar y documentar cada defecto de manera precisa, utilizando herramientas y técnicas adecuadas de gestión de pruebas. Esto no solo incluye la detección de errores en el código, sino también la captura de problemas potenciales que podrían afectar la calidad del producto final.
+
+## Errores
+Son las acciones incorrectas o la falta de precisión en el desarrollo de software que conducen directamente a la aparición de defectos. Estos errores pueden surgir en cualquier etapa del ciclo de vida del desarrollo de software, desde la concepción inicial hasta las pruebas finales.
+
+Identificar los errores implica revisar de manera exhaustiva el diseño y la implementación del software para garantizar que cumpla con los requisitos especificados y las expectativas del usuario.
+
+## Fallos
+Son las manifestaciones observables de los errores durante la ejecución del software. Estos pueden incluir comportamientos inesperados, errores de funcionamiento o, incluso, la interrupción completa del programa. La detección de fallos es crucial durante las pruebas funcionales y de aceptación del software, en las que se simulan situaciones reales para evaluar su comportamiento bajo diversas condiciones de uso.
+
+## Ciclo de Vida: de error a fallo
+Comprender cómo un error inicial puede llevar a un defecto, y finalmente, manifestarse como un fallo es crucial para prevenir y manejar problemas en el desarrollo de software. Este ciclo ilustra la progresión de los problemas y ayuda a identificar puntos de intervención
+
+1. El desarrollador malinterpreta los requisitos (**error**)
+2. Codifica una fórmula incorrecta en el programa (**defecto**)
+3. El programa se ejecuta con datos reales (**activación del defecto**)
+4. El usuario recibe un cálculo de intereses incorrecto (**fallo**)
+
+## Análisis y documentación de hallazgos
+Un informe de defecto bien estructurado debe incluir:
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Informe', 'Descripción']}
+	rows={[
+		[
+			'**Identificador único**',
+			'Para facilitar el seguimiento y referencia'
+		],
+		[
+			'**Título descriptivo**',
+			'Resumen conciso del problema'
+		],
+		[
+			'**Descripción detallada**',
+			'[Comportamiento esperado vs comportamiento observado,Pasos para reproducir el problema,Entorno (versión del software sistema operativo etc)]'
+		],
+		[
+			'**Severidad y prioridad**',
+			'Indica el impacto y la urgencia de la resolución'
+		],
+		[
+			'**Estado**',
+			'Nuevo, en progreso, resuelto, cerrado'
+		],
+		[
+			'**Asignado a**',
+			'Responsable de la investigación o resolución'
+		],
+		[
+			'**Información adicional**',
+			'[Capturas de pantalla o videos de fallo,Logs relevantes,Datos de prueba utilizados]'
+		],
+		[
+			'**Historial de cambios**',
+			'Registro de actualizaciones y comentarios'
+		]
+	]}
+/>
+
+Una vez desarrollado el análisis, se plantean las soluciones tentativas considerando **criterios de factibilidad**, que abarcan aspectos como el impacto potencial del problema en el usuario final, el esfuerzo requerido para la corrección y viabilidad dentro de los plazos establecidos por el plan de prueba.
+
+## Uso de imágenes o diagramas
+Puede ser útiles para ilustrar defectos, errores y fallos en el desarrollo de software y para representar gráficamente el ciclo de vida en un defecto. Se recomienda incluirlos para ayudar a clarificar procesos secuenciales, o documentar casos de fallos durante la ejecución del software.
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Actividad', 'Herramientas/Técnicas']}
+	rows={[
+		[
+			'**Documentación de defectos**',
+			'[Capturas de pantalla,Diagramas de flujo]'
+		],
+		[
+			'**Análisis de causa raíz**',
+			'[Diagramas de Ishikawa,Árboles de decisión]'
+		],
+		[
+			'**Planificación de soluciones**',
+			'[Diagramas UML,Wireframes]'
+		],
+		[
+			'**Comunicación con el equipo**',
+			'[Infografías,Gráficos de Gantt]'
+		]
+	]}
+/>
+
+# Actividad de Práctica 13
+
+<Quiz questions={[
+	{
+		question: "¿Qué criterio es crucial para determinar la prioridad de un defecto en el plan de prueba?",
+		options: [
+			"Historial de defectos similares.",
+			"Complejidad del defecto.",
+			"Gravedad del defecto.",
+			"Duración de la sesión de testing."
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Qué tipo de diagrama es útil para visualizar las posibles causas de un problema en el análisis de la causa raíz?",
+		options: [
+			"Diagrama de Ishikawa (espina de pescado)",
+			"Diagrama UML",
+			"Diagrama de flujo",
+			"Wireframe"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Qué elemento del ciclo de vida de un defecto de software implica la identificación inicial del problema?",
+		options: [
+			"Priorización de defectos.",
+			"Análisis de impacto.",
+			"Reproducción del defecto.",
+			"Reporte de defecto."
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿En qué etapa del ciclo de vida de desarrollo del software pueden surgir errores?",
+		options: [
+			"Solo durante la codificación",
+			"En cualquier etapa del ciclo de vida del desarrollo de software",
+			"Solo durante la implementación",
+			"Solo durante las pruebas finales"
+		],
+		correctIndex: 1
+	},
+]} />

@@ -1,0 +1,178 @@
+# Segunda Unidad
+
+## Mongo Shell
+
+1. Abrir servidor
+2. `open mongo shell`
+
+
+## CRUD en Shell
+
+1. Instalar `mongosh`
+
+- `test` es la base por defecto
+- Cambiar BD:
+
+
+## Ejemplos
+
+### Crear Base de datos
+
+```js
+use tienda
+```
+
+### Crear colección
+
+```js
+db.createCollections("productos")
+```
+
+### Mostrar colecciones
+
+```js
+show collections
+```
+
+### Insertar dato
+
+```js
+db.productos.insertOne({nombre:"Teclado Mecánico", categoria:"Accesorios", precio:80, stock:15, fechaIngreso: new Date("2024-03-10T00:00:00.00Z")})
+```
+
+- luego, devuelve lo siguiente: 
+
+```js
+{
+  acknowledged: true,
+  insertedId: ObjectId('67e1ee367be6338cc16c806a')
+}
+```
+
+### Insertar multiples datos
+
+```js
+db.productos.insertMany([
+    {
+        nombre: "Mouse Inalámbrico",
+		categoria: "Accesorios",
+		precio: 50,
+		stock: 20,
+		fechaIngreso: new Date ("2024-03-08T00:00:00Z")
+    },
+    {
+		nombre: "Monitor 27 pulgadas",
+		categoria: "Electrónica",
+		precio: 250,
+		stock: 10,
+		fechaIngreso: new Date ("2024-03-07T00:00:00Z")
+    }
+])
+```
+
+<br/>
+### Leer Datos (read)
+
+
+```js
+db.productos.find().pretty
+```
+
+`pretty()` hace que el resultado sea más legible
+
+## Ejercicios
+
+### Ejercicio 01
+Filtrar por un campo especifico. Encuentra todos los productos en la categoría "Accesorios"
+
+<Solution>
+```js
+db.productos.find({categoria:"Accesorios"}).pretty()
+```
+</Solution>
+
+### Ejercicio 02
+Filtrar productos con precio mayor a 100
+
+<Solution>
+```js
+db.productos.find({precio:{$gt:100}}).pretty()
+```
+</Solution>
+
+### Ejercicio 03
+Buscar un documento
+
+<Solution>
+```js
+db.productos.findOne({nombre:"Teclado Mecánico"})
+```
+</Solution>
+
+### Ejercicio 04 
+Actualizar un solo documento. Modificar el precio de un producto
+
+<Solution>
+```js
+db.productos.updateOne(
+    {nombre:"Teclado Mecánico"},
+    {$set:{precio:90}}
+)
+```
+</Solution>
+
+### Ejercicio 05
+Actualizar múltiples documentos. Aumentar en 5 unidades el stock de todos los productos de la categoría "Accesorios"
+
+<Solution>
+```js
+db.productos.updateMany(
+    {categoria:"Accesorios"},
+    {$inc:{stock:5}}
+)
+```
+- esto aumenta a todos los productos de la categoría Accesorios en 5 unidades
+
+</Solution>
+
+
+### Ejercicio 06
+Agregar un nuevo campo
+
+### Ejercicio 07
+Eliminar un documento específico. Elimnar el "Mouse Inalámbrico"
+
+<Solution>
+```js
+db.productos.deleteOne({nombre:"Mouse Inalámbrico"})
+```
+</Solution>
+
+### Ejercicio 08
+Eliminar múltiples documentos. Eliminar todos los productos con stock 0
+
+<Solution>
+```js
+db.productos.deleteMany({stock:0})
+```
+</Solution>
+
+## Comandos útiles
+
+1. contar documentos en una coleccion 
+
+```js
+db.productos.countDocuments()
+```
+
+2. Listar las base de datos disponibles
+
+```js
+show dbs
+```
+
+3. Ver el tamaño de la colección
+
+```js
+db.productos.stats()
+```

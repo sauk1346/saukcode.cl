@@ -1,0 +1,705 @@
+# Unidad 01: Introducción y fundamentos de testing de software
+
+<Quiz questions={[
+  {
+    question: "¿Qué es la verificación en el contexto de pruebas de software?",
+    options: [
+      "Un proceso para evaluar si el producto final satisface las necesidades del usuario",
+      "Un proceso sistemático de comprobación del software durante su desarrollo",
+      "Un mecanismo dinámico de prueba del producto real",
+      "La ejecución de código para probar la funcionalidad del software"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué es la validación en el contexto de pruebas de software?",
+    options: [
+      "Un proceso estático de revisión de documentación y código fuente",
+      "La comprobación de que se están siguiendo los procesos de desarrollo correctos",
+      "Un proceso para evaluar el software de acuerdo con las demandas del negocio o del cliente",
+      "La verificación de requisitos antes de comenzar el desarrollo"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es la principal diferencia entre verificación y validación?",
+    options: [
+      "La verificación requiere ejecución de código mientras que la validación no",
+      "La verificación se enfoca en 'construir el producto correctamente' mientras que la validación en 'construir el producto correcto'",
+      "La validación se realiza antes que la verificación en el ciclo de desarrollo",
+      "La verificación detecta errores mientras que la validación solo los documenta"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de los siguientes NO es un método utilizado en la verificación?",
+    options: [
+      "Revisiones",
+      "Inspecciones",
+      "Pruebas de caja negra",
+      "Comprobaciones de escritorio"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál de los siguientes NO es un método utilizado en la validación?",
+    options: [
+      "Pruebas de caja negra",
+      "Pruebas de caja blanca",
+      "Recorridos de código",
+      "Pruebas de sistema"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál de las siguientes afirmaciones es correcta respecto a la verificación?",
+    options: [
+      "Es un mecanismo dinámico de prueba y validación del producto real",
+      "Incluye la ejecución de código para probar la funcionalidad",
+      "Es una práctica estática de revisión del diseño, código, documentos y programas",
+      "Detecta fallos que se pasan por alto durante la validación"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "Las fases de la verificación incluyen todas las siguientes EXCEPTO:",
+    options: [
+      "Verificación de los requisitos",
+      "Verificación del diseño",
+      "Verificación del código",
+      "Verificación de la aceptación del usuario"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué tipo de actividades involucra la validación?",
+    options: [
+      "Revisiones de código y comprobaciones de escritorio",
+      "Pruebas del sistema, pruebas de funcionalidad y usabilidad",
+      "Análisis estático de documentos y especificaciones",
+      "Verificación de requisitos y especificaciones"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué diferencia existe entre error, defecto y falla en el contexto de testing de software?",
+    options: [
+      "Son sinónimos que se refieren al mismo concepto",
+      "Error es un problema en el código, defecto es un error de diseño y falla es la ausencia de funcionalidad",
+      "Error es una acción humana incorrecta, defecto es un problema en el código y falla es la manifestación de un defecto en ejecución",
+      "Error es una falla del sistema, defecto es un bug y falla es un error de configuración"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué es un error en el contexto de testing de software?",
+    options: [
+      "Una acción humana que produce un resultado incorrecto o inesperado en el software",
+      "Un problema en el código o diseño del software que provoca un funcionamiento incorrecto",
+      "La manifestación visible de un defecto durante la ejecución del software",
+      "Un fallo en la implementación de los requisitos del usuario"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué es un defecto en el contexto de testing de software?",
+    options: [
+      "Una acción humana que produce un resultado incorrecto",
+      "Una imperfección o problema en el código o diseño del software",
+      "La manifestación visible de un error durante la ejecución",
+      "Un requisito mal implementado por el equipo de desarrollo"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué es una falla en el contexto de testing de software?",
+    options: [
+      "Una acción humana que produce un resultado incorrecto",
+      "Una imperfección en el código o diseño del software",
+      "La manifestación visible de un defecto cuando el programa se ejecuta",
+      "Un error en la especificación de requisitos"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿En qué fase del ciclo de desarrollo se lleva a cabo la validación?",
+    options: [
+      "Al inicio del ciclo de desarrollo, antes de la verificación",
+      "Durante todo el ciclo de desarrollo, simultáneamente con la verificación",
+      "Una vez completada la verificación, al final del ciclo de desarrollo",
+      "En cualquier momento, independientemente de la fase de verificación"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es el objetivo de la verificación?",
+    options: [
+      "El producto real que incluye unidades, módulos y producto final",
+      "La arquitectura del software, especificaciones de requisitos y diseño",
+      "La interacción entre diferentes módulos del sistema",
+      "La satisfacción del usuario final con el producto"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué papel juega el testing de software en el ciclo de vida del desarrollo?",
+    options: [
+      "Es un componente opcional que solo se implementa en grandes proyectos",
+      "Es un proceso crítico destinado a garantizar la calidad, fiabilidad y funcionalidad del producto",
+      "Es una fase final que solo se ejecuta cuando el producto está completamente desarrollado",
+      "Es una responsabilidad exclusiva del cliente para validar el producto"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Según la ISO/IEC 25000, ¿qué es la calidad en el contexto del software?",
+    options: [
+      "El grado en que el software cumple con los requisitos especificados y las expectativas del cliente",
+      "La ausencia total de errores y defectos en el código",
+      "El cumplimiento con estándares internacionales de codificación",
+      "La capacidad del software para evolucionar con el tiempo"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál de los siguientes NO es un atributo de calidad del software según lo mencionado en el documento?",
+    options: [
+      "Correctitud",
+      "Fiabilidad",
+      "Portabilidad",
+      "Escalabilidad"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué es ISO/IEC 25000 (SQuaRE)?",
+    options: [
+      "Un estándar para la documentación de pruebas de software",
+      "Una metodología ágil para el desarrollo de software",
+      "Una familia de normas internacionales que proporciona un marco para la evaluación de calidad del software",
+      "Un certificado de calidad para profesionales de testing"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué define ISO/IEC 25010?",
+    options: [
+      "Un modelo de calidad de datos para productos de software",
+      "Un modelo de calidad para productos de software con características como adecuación funcional, fiabilidad y usabilidad",
+      "Requisitos de calidad del producto de software",
+      "El proceso para la evaluación de la calidad del software"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué proporciona ISO/IEC 12207?",
+    options: [
+      "Un conjunto de formatos para la documentación de pruebas",
+      "Un enfoque unificado para la gestión de los procesos del ciclo de vida del software",
+      "Técnicas específicas para realizar pruebas de software",
+      "Certificaciones para profesionales del testing"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuáles son los componentes principales de ISO/IEC 25000?",
+    options: [
+      "Modelo de calidad, métricas de calidad y evaluación de calidad",
+      "Verificación, validación y pruebas de software",
+      "Pruebas unitarias, pruebas de integración y pruebas de sistema",
+      "Planificación, ejecución y control de pruebas"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "Entre los estándares de testing mencionados en el documento, ¿cuál proporciona documentación para las pruebas de software?",
+    options: [
+      "ISO/IEC 29119",
+      "IEEE 829",
+      "ISTQB",
+      "OWASP"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué es ISTQB?",
+    options: [
+      "Un estándar internacional para pruebas de seguridad en aplicaciones web",
+      "Una organización que ofrece certificaciones reconocidas internacionalmente para profesionales del testing",
+      "Una metodología para documentar pruebas de software",
+      "Un marco de referencia para la evaluación de la calidad del software"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué proporciona OWASP?",
+    options: [
+      "Certificaciones para profesionales del testing",
+      "Un modelo de calidad para productos de software",
+      "Directrices y herramientas para mejorar la seguridad de aplicaciones web",
+      "Un conjunto de formatos para la documentación de pruebas"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es la principal característica de las pruebas de caja negra?",
+    options: [
+      "Se centran en la estructura interna del código",
+      "Evalúan el comportamiento del software basándose en las entradas y salidas sin conocer su estructura interna",
+      "Solo se utilizan durante la fase de verificación",
+      "No requieren la ejecución del código"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es la principal característica de las pruebas de caja blanca?",
+    options: [
+      "Evalúan el comportamiento del software basándose en las entradas y salidas sin conocer su estructura interna",
+      "Se centran en la estructura interna del código y la lógica de programación",
+      "Solo se utilizan durante la fase de validación",
+      "No requieren la ejecución del código"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué tipo de pruebas se realizan durante el proceso de validación?",
+    options: [
+      "Verificación de requisitos y revisiones de código",
+      "Pruebas de caja negra, pruebas de caja blanca, pruebas de aceptación",
+      "Comprobaciones de escritorio y recorridos",
+      "Análisis estático de documentos y código fuente"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuáles son los pasos del proceso de validación según el documento?",
+    options: [
+      "Análisis, diseño, implementación e integración",
+      "Revisión del diseño, instalación, operativa, rendimiento y preparación para producción",
+      "Planificación, ejecución, evaluación y cierre",
+      "Especificación, implementación, verificación y mantenimiento"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué proporciona ISO/IEC 29119?",
+    options: [
+      "Un conjunto de formatos para la documentación de pruebas",
+      "Un marco integral para todos los aspectos del proceso de pruebas",
+      "Una lista de las vulnerabilidades más críticas en aplicaciones web",
+      "Certificaciones para profesionales del testing"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué documento incluye la ISO/IEC 29119 Parte 3?",
+    options: [
+      "Conceptos y definiciones fundamentales del testing",
+      "Procesos para gestionar y realizar pruebas",
+      "Documentación de pruebas con plantillas y directrices",
+      "Técnicas y enfoques específicos para realizar pruebas"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuáles son las fases del proceso de verificación?",
+    options: [
+      "Diseño, implementación, pruebas y despliegue",
+      "Verificación de requisitos, verificación del diseño y verificación del código",
+      "Revisión, inspección, comprobación y recorrido",
+      "Planificación, ejecución, evaluación y documentación"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "En el contexto del testing de software, ¿qué significa 'verificación de los requisitos'?",
+    options: [
+      "Comprobar que los requisitos son correctos desde una perspectiva técnica",
+      "Verificar y confirmar que los requisitos son completos, correctos y precisos",
+      "Validar que el cliente está satisfecho con los requisitos definidos",
+      "Garantizar que los requisitos son implementables en el tiempo establecido"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿En qué consiste la verificación del diseño en el proceso de verificación?",
+    options: [
+      "Revisar que el diseño sea estéticamente agradable para el usuario final",
+      "Comprobar si la aplicación cumple con las especificaciones de diseño mencionadas en la documentación",
+      "Validar que el diseño fue aprobado por el cliente",
+      "Asegurar que el diseño cumple con las últimas tendencias tecnológicas"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué implica la verificación del código en el proceso de verificación?",
+    options: [
+      "Garantizar que el código es correcto, coherente y completo",
+      "Comprobar que el código se ejecuta sin errores",
+      "Validar que el código implementa correctamente las funcionalidades requeridas",
+      "Asegurar que el código cumple con los estándares de la industria"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué significa que la verificación sea una 'práctica estática'?",
+    options: [
+      "Que solo se realiza una vez durante el ciclo de desarrollo",
+      "Que se enfoca en aspectos invariables del software",
+      "Que no requiere la ejecución del código para llevarse a cabo",
+      "Que utiliza herramientas automatizadas para su implementación"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "Según el documento, ¿qué preguntas busca responder la verificación?",
+    options: [
+      "¿El software es eficiente y rápido?",
+      "¿El producto es fácil de usar?",
+      "¿Estamos construyendo el producto de manera precisa y según las especificaciones?",
+      "¿El producto satisface las necesidades del usuario final?"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué pregunta busca responder la validación según el documento?",
+    options: [
+      "¿Estamos construyendo el producto correctamente?",
+      "¿El producto desarrollado es correcto y cumple los requisitos del cliente?",
+      "¿El código tiene defectos o errores?",
+      "¿La documentación es completa y precisa?"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué incluye la 'revisión del diseño' en el proceso de validación?",
+    options: [
+      "La evaluación estética del diseño gráfico del software",
+      "La definición de requisitos del cliente y elaboración de un plan de pruebas",
+      "La verificación de prototipos y modelos lógicos",
+      "La comprobación de que el diseño es técnicamente factible"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué se evalúa durante la 'revisión de la instalación' en el proceso de validación?",
+    options: [
+      "La usabilidad del instalador del software",
+      "La instalación de la aplicación según el plan de pruebas y verificación del hardware esencial",
+      "La satisfacción del cliente con el proceso de instalación",
+      "La compatibilidad del software con diferentes sistemas operativos"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "En el proceso de validación, ¿qué implica la 'revisión operativa'?",
+    options: [
+      "Evaluar la eficiencia operativa del equipo de desarrollo",
+      "Someter la aplicación a diversos escenarios de prueba para evaluar su integridad",
+      "Verificar que el software cumple con los requisitos operativos del sistema",
+      "Comprobar que las operaciones de la empresa pueden continuar durante la implementación"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué evalúa la 'revisión del rendimiento' en el proceso de validación?",
+    options: [
+      "La velocidad de desarrollo del software",
+      "El rendimiento del equipo de desarrollo",
+      "La capacidad del software para funcionar según las necesidades empresariales en condiciones reales",
+      "El rendimiento de los servidores donde se alojará el software"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué implica la 'revisión de la preparación para la producción' en el proceso de validación?",
+    options: [
+      "Verificar que el equipo de producción está listo para el lanzamiento",
+      "Comprobar que todas las revisiones están completadas y el producto está listo para producción",
+      "Evaluar la capacidad de los servidores de producción",
+      "Validar que el cliente ha aprobado el lanzamiento a producción"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué significa que la validación sea un 'mecanismo dinámico'?",
+    options: [
+      "Que cambia constantemente según el proyecto",
+      "Que se adapta a diferentes metodologías de desarrollo",
+      "Que requiere la ejecución del código para llevarse a cabo",
+      "Que su enfoque varía según el tipo de software"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuándo se realiza la validación en relación con la verificación?",
+    options: [
+      "Antes de la verificación",
+      "Durante la verificación",
+      "Después de completar la verificación",
+      "Independientemente de la verificación"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué establece la ISO/IEC 12207 en relación con el ciclo de vida del software?",
+    options: [
+      "Un enfoque unificado y claro para la gestión de los procesos del ciclo de vida",
+      "Una metodología específica para el desarrollo de software",
+      "Un conjunto de herramientas para la gestión de proyectos",
+      "Un modelo de calidad para productos de software"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál es el propósito de la ISO/IEC 12207 según el documento?",
+    options: [
+      "Promover metodologías ágiles de desarrollo",
+      "Brindar una terminología precisa y fácil de referenciar para la industria del software",
+      "Definir requisitos mínimos de calidad para el software",
+      "Establecer certificaciones para profesionales del desarrollo"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué abarca la ISO/IEC 12207 en términos del ciclo de vida del software?",
+    options: [
+      "Solo las fases de desarrollo y pruebas",
+      "Desde la definición de requisitos hasta la culminación de su uso",
+      "La planificación y gestión de proyectos únicamente",
+      "Solo aspectos relacionados con la calidad del software"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "En el contexto de la ISO/IEC 12207, ¿qué papel juega el testing de software?",
+    options: [
+      "Es una actividad opcional que puede omitirse en proyectos pequeños",
+      "Es responsabilidad exclusiva del cliente",
+      "Juega un papel fundamental en varios procesos como gestión del proyecto, desarrollo, verificación y validación",
+      "Solo es relevante durante la fase final del ciclo de vida"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué actividades de testing se incluyen en el proceso de gestión del proyecto según ISO/IEC 12207?",
+    options: [
+      "Diseño de pruebas e implementación de pruebas",
+      "Planificación de pruebas y monitoreo y control de pruebas",
+      "Pruebas unitarias y pruebas de integración",
+      "Verificación y validación"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué actividades de testing se incluyen en el proceso de desarrollo según ISO/IEC 12207?",
+    options: [
+      "Análisis de requisitos, diseño de pruebas, implementación e integración",
+      "Verificación de requisitos, validación del diseño y pruebas de aceptación",
+      "Planificación, ejecución y control de pruebas",
+      "Pruebas de sistema, pruebas de carga y pruebas de rendimiento"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué actividades incluye el proceso de verificación según ISO/IEC 12207?",
+    options: [
+      "Definición de requisitos y diseño de soluciones",
+      "Revisión de código, pruebas unitarias, pruebas de integración y pruebas del sistema",
+      "Planificación, ejecución y control de pruebas",
+      "Validación de usuario y pruebas de aceptación"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué actividades incluye el proceso de validación según ISO/IEC 12207?",
+    options: [
+      "Verificación de requisitos y validación de código",
+      "Pruebas unitarias y pruebas de integración",
+      "Pruebas de aceptación del usuario y pruebas beta",
+      "Análisis estático y análisis dinámico"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué actividades de testing se incluyen en el proceso de mantenimiento según ISO/IEC 12207?",
+    options: [
+      "Pruebas unitarias y pruebas de integración",
+      "Pruebas de aceptación y pruebas beta",
+      "Pruebas de regresión y pruebas de actualización",
+      "Análisis de requisitos y diseño de pruebas"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué características define ISO/IEC 25010 para la calidad del producto software?",
+    options: [
+      "Usabilidad, eficiencia, mantenibilidad y portabilidad",
+      "Funcionalidad, fiabilidad, eficiencia y usabilidad",
+      "Adecuación funcional, fiabilidad, usabilidad, eficiencia, mantenibilidad, portabilidad, compatibilidad y seguridad",
+      "Correctitud, completitud, consistencia y adecuación"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué define ISO/IEC 25012 según el documento?",
+    options: [
+      "Un modelo de calidad para productos de software",
+      "Las características de la calidad de los datos",
+      "Requisitos de calidad del producto de software",
+      "Un proceso para la evaluación de la calidad del software"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué proporciona ISO/IEC 25020-25029?",
+    options: [
+      "Una guía para la evaluación de la calidad del software",
+      "Métricas y métodos para medir las características de calidad",
+      "Directrices para especificar requisitos de calidad",
+      "Un marco para el proceso de evaluación"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué aspectos evalúan las métricas de fiabilidad según el documento?",
+    options: [
+      "La usabilidad y accesibilidad del software",
+      "La capacidad del software para funcionar correctamente sin fallos durante un tiempo específico",
+      "La eficiencia en el uso de recursos del sistema",
+      "La facilidad de mantenimiento y mejora del software"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué incluyen las métricas de rendimiento según el documento?",
+    options: [
+      "Tiempo de respuesta, throughput y uso de recursos",
+      "Tasa de errores, tiempo medio entre fallos y tiempo de reparación",
+      "Tasa de error del usuario, tiempo de aprendizaje y satisfacción",
+      "Complejidad ciclomática, tasa de cambio y tasa de defectos"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué evalúan las métricas de usabilidad según el documento?",
+    options: [
+      "La eficiencia en el uso de recursos",
+      "La fiabilidad del software en entornos variados",
+      "Qué tan fácil es para los usuarios aprender y usar el software",
+      "La seguridad del software ante amenazas"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué evalúan las métricas de mantenibilidad según el documento?",
+    options: [
+      "La facilidad con la que el software puede ser mantenido y mejorado",
+      "La frecuencia con la que el software necesita mantenimiento",
+      "El costo de mantener el software a lo largo del tiempo",
+      "La cantidad de recursos necesarios para el mantenimiento"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué evalúan las métricas de seguridad según el documento?",
+    options: [
+      "El nivel de encriptación utilizado en el software",
+      "La capacidad del software para protegerse contra amenazas y vulnerabilidades",
+      "El cumplimiento con estándares de seguridad internacionales",
+      "La efectividad de los controles de acceso implementados"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué define la ISO/IEC 29119 Parte 1?",
+    options: [
+      "La metodología del proceso de pruebas",
+      "Las técnicas específicas para realizar pruebas",
+      "La terminología y los conceptos fundamentales del testing",
+      "La documentación relacionada con las pruebas"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué define la ISO/IEC 29119 Parte 2?",
+    options: [
+      "Los conceptos fundamentales del testing",
+      "Un conjunto de procesos para gestionar y realizar pruebas",
+      "La documentación relacionada con las pruebas",
+      "Las técnicas específicas para realizar pruebas"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué define la ISO/IEC 29119 Parte 4?",
+    options: [
+      "Los conceptos fundamentales del testing",
+      "El proceso de pruebas",
+      "La documentación relacionada con las pruebas",
+      "Las técnicas y enfoques específicos para realizar pruebas efectivas"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué define la ISO/IEC 29119 Parte 5?",
+    options: [
+      "Las técnicas de prueba",
+      "La documentación de pruebas",
+      "La gestión del testing y las responsabilidades necesarias",
+      "Los conceptos fundamentales del testing"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué documentos incluye IEEE 829 para la documentación de pruebas?",
+    options: [
+      "Plan de proyecto, especificación de requisitos y manual de usuario",
+      "Plan de pruebas, especificación de casos de prueba, informe de incidentes e informe de pruebas",
+      "Plan de calidad, informe de revisión y plan de implementación",
+      "Diagrama de flujo, diagrama de clases y diagrama de secuencia"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué niveles de certificación ofrece ISTQB para profesionales del testing?",
+    options: [
+      "Básico, Intermedio y Avanzado",
+      "Foundation, Intermediate y Expert",
+      "Certified Tester Foundation Level, Advanced Level y Expert Level",
+      "Junior, Senior y Master"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es el recurso más conocido de OWASP mencionado en el documento?",
+    options: [
+      "OWASP Testing Guide",
+      "OWASP Top Ten",
+      "OWASP ZAP",
+      "OWASP Security Framework"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué es OWASP ZAP según el documento?",
+    options: [
+      "Un marco de trabajo para el testing de seguridad",
+      "Una certificación para especialistas en seguridad",
+      "Una herramienta para encontrar vulnerabilidades de seguridad en aplicaciones web",
+      "Una lista de prácticas recomendadas de seguridad"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué beneficio aporta la adopción de estándares de testing según el documento?",
+    options: [
+      "Reduce los costos de desarrollo de software",
+      "Acelera el tiempo de comercialización del producto",
+      "Garantiza la calidad y seguridad del software y aumenta la satisfacción del cliente",
+      "Elimina la necesidad de realizar pruebas manuales"
+    ],
+    correctIndex: 2
+  }
+
+]} />

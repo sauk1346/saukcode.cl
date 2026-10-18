@@ -1,0 +1,192 @@
+# PCI DSS y Convenio de Budapest
+
+## PCI DSS
+*Payment Card Industry Data Security Standard*. Es un conjunto de estándares de seguridad diseñado para proteger la información de las tarjetas de pago y reducir el riesgo de fraude
+
+Es establecido por el *Payment Card Industry Security Standards Council (PCI SSC)*
+
+### ¿A qué Instituciones aplica?
+Se aplica a todas las entidades que almacenan, procesan o transmiten datos de tarjetas de crédito
+
+### Objetivo y alcance
+
+1. **Propósito**
+    1. **Protección de Datos de Tarjetas de Pago:** Garantizar la protección de la información sensible del titular de la tarjeta contra el robo y el fraude
+    2. **Establecimiento de Buenas Prácticas:** Proveer un marco de estándares y buenas prácticas de seguridad para todas las organizaciones que manejan datos de tarjetas de pago
+2. **Ámbito de Aplicacion**
+    1. **Entidades:** Abarca a todos los comerciantes, procesadores de pagos, intituciones financieras, y proveedores de servicios que manejan datos de tarjetas de cŕedito
+    2. **Datos:** Incluye datos del titular de la tarjeta, como el número de la tarjeta, la fecha de expiración, el código de seguridad (CVV), y cualquier otr información relacionada con la tarjeta
+
+### Requisitos Principales
+12 Requisitos fundamentales que se agrupan en 6 objetivos de control. Cada requisito incluye diversor subrequisitos y controles específicos
+
+1. **Contruir y Mantener una Red Segura**
+    1. **Instalar y Mantener una Configuración de Firewall para Proteger los Datos de los Tarjeta habientes**
+        1. Implementar firewall para restringir el acceso no autorizado y proteger la red
+        2. Establecer y mantener configuraciones seguras
+    2. **No utilizar Contraseñas y Otros Parámetros de Seguridad por Defecto de los Proveedores**
+        1. Cambiar contraseñas y configuraciones predeterminadas
+        2. Asegurar que no se utilicen configuraciones predeterminadas en dispositivos de seguridad
+2. **Proteger los Datos del Titular de la Tarjeta**
+    1. **Proteger los Datos Almacenados del Titular de la Tarjeta**
+        1. Minimizar el almacenamiento de datos sensibles y proteger los datos que se retienen
+        2. Cifrar, truncar, y tokenizar datos sensibles
+    2. **Cifrar la Transmisión de Datos del Titular de la Tarjeta a Través de Redes Abiertas y Públicas**
+        1. Usar cifrado para proteger datos en tránsito
+        2. Asegurar que la información de las tarjetas se transmita de manera segura
+3. **Investigación y Desarrollo**
+    1. Promoción de la investigación y el desarrollo en tecnologías y técnicas de ciberdefensa
+4. **Mantener un Programa de Gestión de Vulnerabilidades**
+    1. **Usar y Mantener Programas de Protección Contra Malware y Asegurar que Se Actualicen Regularmente**
+        1. Implementar software anti-malware y actualizarlo Regularmente
+        2. Monitorear y proteger los sistemas contra malware
+    2. **Desarrollar y Mantener Sistemas y Aplicaciones Seguras**
+        1. Establecer prácticas seguras de desarrollo de software
+        2. Aplicar parches de seguridad oportunamente
+5. **Implementar Medidas Fuertes de Control de Acceso**
+    1. **Restringir el Acceso a los Datos del Titular de la Tarjeta Según la Necesidad de Conocer la Información**
+        1. Limitar el acceso a datos sensibles a los empleados y sistemas con una necesidad legítima
+        2. Aplicar principios de acceso mínimo y segregación de funciones
+    2. **Identificar y Autenticar el Acceso a Componentes del Sistema**
+        1. Asignar identificadores únicos a cada persona con acceso a datos
+        2. Utilizar autenticación multifactor (MFA)
+    3. **Restringir el Acceso Físico a los Datos del Titular de la Tarjeta**
+        1. Proteger físicamente los datos almacenados
+        2. Implementar controles de acceso físico en instalaciones de datos
+6. **Monitorear y Probar Regularmente las Redes**
+    1. **Rastrear y Monitorear Todos los Accesos a Recursos de la Red y Datos del Titular de la Tarjeta**
+        1. Implementar registros de auditoría para todos los accesos y actividades
+        2. Monitorizar y revisar los registros regularmente
+    2. **Probar Regularmente los Sistemas y Procesos de Seguridad**
+        1. Realizar pruebas de vulnerabilidad y escaneos periódicos
+        2. Implementar pruebas de penetración y evaluaciones de seguridad
+7. Mantener una Política de Seguridad de la Información
+    1. **Mantener una Política que Aborde la Seguridad de la Información para Todo el Personal**
+        1. Desarrollar, mantener y comunicar políticas de seguridad
+        2. Proveer formación y concienciación en seguridad a los empleados
+
+### Principios orientadores
+
+1. **Cifrado y Protección de Datos:** Los datos del titular de la tarjeta deben cifrarse en tránsito y, cuando sea necesario, también en reposo para evitar el acceso no autorizado
+2. **Minimización de Datos:** Solo almacenar la cantidad mínima de datos necesaria para el negocio y durante el menor tiempo posible
+3. **Segmentación de la Red:** Segmentar la red para separar los sistemas de datos de tarjetas de otros sistemas, reduciendo así el alcance y el riesgo de comprometer los datos
+4. **Autenticación Fuerte:** Utilizar métodos de autenticación robustos y asegurar que los accesos se gestionen de manera controlada y monitoreada
+
+### Compliance y Validación
+
+1. **Evaluaciones Anuales:** Realizar evaluaciones de cumplimiento anuales, que pueden incluir la revición por un Auditor de Seguridad Calificado (QSA) o la realización de una autoevaluación
+2. **Reportes de Cumplimiento:** Generar y presentar Reportes de Cumplimiento (ROC) y Atestaciones de Cumplimiento (AOC) según lo requiera la entidad adquiriente o el banco
+3. **Monitoreo Continuo:** Implementar medidas de monitoreo continuo para asegurar el cumplimiento continuo con el PCI DSS y responder rápidamente a cualquier incidente de seguridad
+
+### Revisión y actualización de estándares
+1. **Versión Actualizada:** La norma PCI DSS se revisa y actualiza periódicamente para abordar nuevas amenazas y mejorar la seguridad. La versión más reciente a fecha es PCI DSS v4.0
+2. **Participación de la Comunidad:** Las actualizaciones se realizan con la contribución de la comunidad global de pagos, incluídos comerciantes, bancos y proveedores de tecnología
+
+## Convenio de Budapest
+Tambien conocido como el "Convenio sobre Ciberdelincuencia". Firmado en 2001, es el primer tratado internacional destinado a abordar los delitos cometidos a través de Internet y otras redes informáticas.
+
+Desarrollado por el Consejo de Europa con participación de Estados Unidos, Canadá, Japón y otros países, establece un marco legal común para la lucha contra la ciberdelicuencia.
+
+1. **Combatir la Ciberdelincuencia:** Proporcionar un marco común para combatir el crimen en el ciberespacio, incluyendo el acceso ilegal, la manipulación de datos y otros actos maliciosos
+2. **Armonizar Legislaciones Nacionales:** Facilitar la armonización de las legislaciones nacionales relacionadas con la ciberseguridad y la ciberdelicuencia
+3. **Promover la Cooperación Internacional:** Mejorar la cooperación entra los países signatarios para la prevención, investigación y persecución de delitos informáticos
+
+### Fundamentos Principales
+
+1. **Tipificación de Delitos Informáticos:** El convenio define y establece la necesidad de tipicar varios delitos relacionados con la informática
+    1. **Acceso Ilegal:** Acceso no autorizado a un sistema informático (Artículo 2)
+    2. **Intercepción Ilegal:** Intercepción no autorizada de datos (Articulo 3)
+    3. **Interferencia de Datos:** Daño o alteración de datos informáticos (Artículo 4)
+    4. **Interferencia de Sistemas:** Interferencia con el funcionamiento de sistemas informáticos (Artículo 5)
+    5. **Abuso de Dispositivos:** Posesión, Producción, venta, adquisición, importación o distribución de dispositivos diseñados para cometer delitos informáticos (Artículo 6)
+2. **Delitos Relacionados con el Contenido:** Tipifica actos relacionados con contenidos ilícitos
+    1. **Pornografía Infantil:** La producción, distribución, ofrecimiento y posesión de pornogradía infantil (Articulo 9)
+3. **Delitos Relacionados con la Propiedad Intelectual:** Incluye medidas para combatir infracciones relacionadas con los derechos de autor
+    1. **Infracción de Derechos de Autor:** Actos relacionados con la violación de derechos de propiedad intelectual en el entorno digital (Artículo 10)
+
+### Medidas Procesales
+
+1. **Preservación de Datos**
+    1. **Preservación de Datos Almacenados:** Obliga a los Estados a establecer procedimientos para preservar datos informáticos para investigaciones (Artículo 16)
+    2. **Preservación Rápida de Tráfico de Datos:** Preservación rápida de datos de tráfico en casos específicos (Artículo 17)
+2. **Acceso a Datos**
+    1. **Orden de Aprehensión de Datos:** Habilita la aprehensión de datos en posesión de una persona o entidad (Artículo 18)
+    2. **Acceso a Sistemas Informáticos:** Proporciona a las autoridades la capacidad de acceder a sistemas informáticos para recopilar datos (Artículo 19)
+3. **Intercepción de Datos**
+    1. **Intercepción de Datos de Contenidos:** Facilita la intercepción de datos en tiempo real, bajo ciertas condiciones (Artículo 21)
+
+### Cooperación Internacional
+1. **Cooperación Rápida**
+    1. **Asistencia Técnica y Asesoría:** Proporciona mecanismos para la asistencia mutua rápida y eficaz entre los países miembros (Artículo 25)
+    2. **Solicitud de Información:** Facilita la solicitud y obtención de Información y pruebas de otros países (Artículo 27)
+2. **Extradición**
+    1. **Extradición de Delincuentes:** Esteblece reglas para la extradición de personas acusadas de delitos informáticos entre países miembros (Artículo 24)
+
+### Principios orientadores
+1. **Proporcionalidad y necesidad:** Las medidas adoptadas en virtud del convenio deben ser proporcionales al delito y necesarias para su prevención y persecución
+2. **Protección de Derechos Humanos**
+    1. **Privacidad:** Las medidas de ciberseguridad deben respetar la privacidad y otros derechos humanos (Artículo 15)
+    2. **Transparencia:** Las acciones deben ser transparentes y acordes con los principios del estado de derecho
+
+### Organización y Seguimiento
+1. **Comité del Convenio**
+    1. **Supervición y Evaluación:** El comité supervisa la implementación del convenio y propone enmiendas para su actualización (Artículo 46)
+
+### Impacto Global
+1. **Modelo para Legislaciones Nacionales:** El convenio ha servido como modelo para legislación de muchos países, incluso de aquellos que no son miembros del Consejo de Europa
+2. **Adopción Internacional:** Más de 60 países han firmado el convenio, reflejando su importancia global en la lucha contra la ciberdelincuencia
+
+# Actividad de Práctica 04
+
+<Quiz questions={[
+  {
+    question: "¿Cuál es el principal propósito del Payment Card Industry Data Security Standard (PCI DSS)?",
+    options: [
+      "Aumentar las ventas de tarjetas de crédito",
+      "Establecer estándares de calidad para las tarjetas de crédito",
+      "Proteger la información sensible del titular de la tarjeta contra robo y el fraude",
+      "Simplificar el proceso de pago en línea"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Quién establece el Payment Card Industry Data Security Standard (PCI DSS)?",
+    options: [
+      "El gobierno de los Estados Unidos",
+      "La Organización Internacional de Normalización (ISO)",
+      "El Payment Card Industry Security Standards Council (PCI SSC)",
+      "La Asociación de Bancos Internacionales"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es el propósito de la segmentación de la red según el PCI DSS?",
+    options: [
+      "Aumentar la velocidad de las transacciones con tarjetas de crédito",
+      "Separar los sistemas de datos de tarjetas de otros sistemas para reducir el riesgo de comprometer los datos",
+      "Reducir el costo de mantenimiento de la red",
+      "Mejorar la calidad de la señal de red"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de los siguientes delitos está tipificado en el Convenio de Budapest?",
+    options: [
+      "Falsificación de documentos físicos",
+      "Producción y distribución de pornografía infantil",
+      "Robo de identidad física",
+      "Tráfico de sustancias ilegales"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es el principal objetivo del Convenio de Budapest?",
+    options: [
+      "Promover el comercio electrónico",
+      "Proporcionar un marco común para combatir el crimen en el ciberespacio",
+      "Desarrollar nuevas tecnologías de Internet",
+      "Establecer una red social internacional"
+    ],
+    correctIndex: 1
+  }
+]} />

@@ -1,0 +1,412 @@
+# Validación de formularios
+
+
+## 1. Declaración de la función
+
+```kotlin
+@Composable
+fun emailTextField() {
+    ...
+    ...
+}
+```
+
+### ¿Qué es \@Composable?
+- Es una anotación que le dice a Jetpack Compose que esta función puede dibujar UI en la pantalla
+- Todas las funciones que crean interfaz visual deben tener esta anotación
+
+### ¿Por qué se llama emailTextFiel?
+- Es el nombre que le dimos a nuestra función
+- Describe que vamos a crear un campo de texto para emails
+
+## 2. Variables de estado
+
+```kotlin
+var email by rememberSaveable { mutableStateOf("") }
+var conError by rememberSaveable { mutableStateOf(false) }
+```
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Comando", "Descripción"]}
+    lists={{
+        R1: [
+            "Variable personalizada",
+            "Guarda el texto que el usuario escribe en el campo de email",
+            "Inicia como texto vacío \"\""
+        ],
+        R2: [
+            "Crea una variable que puede cambiar de valor",
+            "Cuando cambia, la pantalla se redibuja automáticamente"
+        ],
+        R3: [
+            "Guarda el valor aunque rotemos el teléfono",
+            "Sin esto, si giras la pantalla pierdes lo que escribiste"
+        ],
+        R4: [
+            "Es \"delegación de propiedad\" en Kotlin",
+            "Nos permite escribir `email = \"nuevo\"` en lugar de `email.value = \"nuevo\"`" 
+        ],
+        R5: [
+            "Guara `true` si el email tiene errores o `false` si el email es válido",
+            "Inicia en `false` (sin error)"
+        ]
+    }}
+    rows={[
+        [
+            "`email`",
+            "@R1"
+        ],
+        [
+            "`mutableStateOf`",
+            "@R2"
+        ],
+        [
+            "`rememberSaveable`",
+            "@R3"
+        ],
+        [
+            "`by`",
+            "@R4"
+        ],
+        [
+            "`conError`",
+            "@R5"
+        ],
+    ]}
+/>
+## 3. Función de validación
+
+```kotlin
+fun validar(correo: String) {
+    //Expresiones regulares
+    conError = !correo.contains("@") || correo.length < 5
+}
+```
+
+- Revisa el correo si es válido o no
+- Cambia el valor de `conError` según el resultado
+- Hay error si el correo no contiene "arroba" o tiene menos de 5 caracteres
+
+## 4. Estructura del layout
+
+```kotlin
+Column(
+    modifier = Modifier
+        .fillMaxSize()
+        .padding(24.dp)
+) {
+```
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Comando", "Descripción"]}
+    lists={{
+        R1: [
+            "Un contenedor que apila elementos verticalmente (uno debajo del otro)",
+            "Como una columna de cajas"
+        ],
+        R2: [
+            "Nos permite modificar propiedades visuales del componente"
+        ],
+        R3: [
+            "Ocupa todo el tamaño disponible de la pantalla"
+        ],
+        R4: [
+            "Agrega un margen interno de 24dp (píxeles independientes de densidad)",
+            "Es como un \"colchón\" alrededor del contenido"
+        ],
+    }}
+    rows={[
+        [
+            "`Column`",
+            "@R1"
+        ],
+        [
+            "`modifier`",
+            "@R2"
+        ],
+        [
+            "`.fillMaxSize()`",
+            "@R3"
+        ],
+        [
+            "`.padding(24.dp)`",
+            "@R4"
+        ],
+    ]}
+/>
+
+## 5. El campo de texto: OutlinedTextField
+
+```kotlin
+OutlinedTextField(
+    value = email,
+    onValueChange = {
+        email = it
+        validar(it)
+    },
+    label = { Text("Email...") },
+    isError = conError,
+    singleLine = true,
+    supportingText = {
+        if (conError) {
+            Text(
+                text = "Correo inválido...",
+                color = MaterialTheme.colorScheme.error
+            )
+        }
+    },
+    trailingIcon = {
+        if (conError) {
+            Icon(
+                painter = painterResource(R.drawable.ic_error),
+                contentDescription = "Error"
+            )
+        }
+    },
+    modifier = Modifier.fillMaxWidth()
+)
+```
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Comando", "Descripción"]}
+    lists={{
+        R1: [
+            "Muestra el contenido de la variable `email`",
+            "Es el texto que aparece en el campo"
+        ],
+        R2: [
+            "Se ejecuta cada vez que el usuario escribe algo",
+            "`it` representa el nuevo texto que escribió el usuario"
+        ],
+        R3: [
+            "Es el texto que aparece arriba del campo",
+            "Dice \"Email...\" para indicar qué debe escribir el usuario"
+        ],
+        R4: [
+            "Si es `true`, el campo se pone rojo",
+            "Si es `false`, el campo se ve normal"
+        ],
+        R5: [
+            "Solo permite una línea de texto",
+            "El usuario no puede hacer Enter para bajar la línea",
+            "Ideal para emails que siempre son una sola línea"
+        ],
+        R6: [
+            "Muestra un texto de ayuda debajo del campo",
+            "Solo muestra el mensaje SI hay un error"
+        ],
+        R7: [
+            "Es un ícono que aparece al final (derecha) del campo",
+            "Solo muestra el ícono SI hay error"
+        ],
+        R8: [
+            "El campo ocupa todo el ancho disponible",
+            "Se estira horizontalmente"
+        ]
+    }}
+    rows={[
+        [
+            "`value = email`",
+            "@R1"
+        ],
+        [
+            "`onValueChange`",
+            "@R2"
+        ],
+        [
+            "`label`",
+            "@R3"
+        ],
+        [
+            "`isError`",
+            "@R4"
+        ],
+        [
+            "`singleLine`",
+            "@R5"
+        ],
+        [
+            "`supportingText`",
+            "@R6"
+        ],
+        [
+            "`trailingIcon`",
+            "@R7"
+        ],
+        [
+            "`fillMaxWidth`",
+            "@R8"
+        ],
+    ]}
+/>
+
+## 6. El botón
+
+```kotlin
+Button(
+    onClick = { validar(email) },
+    enabled = !conError,
+    modifier = Modifier.fillMaxWidth()
+) { Text("Enviar...") }
+```
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Comando", "Descripción"]}
+    lists={{
+        R1: [
+            "Código que se ejecuta cuando presionas el botón",
+            "Llama a `validar(email)`"
+        ],
+        R2: [
+            "`true` -> el botón está activo (puedes presionarlo)",
+            "`false` -> el botón está desactivado (gris, no puedes presionarlo)"
+        ],
+        R3: [
+            "`!conError = false` -> botón desactivado",
+            "`!conError = true` -> botón activo" 
+        ]
+    }}
+    rows={[
+        [
+            "`onClick`",
+            "@R1"
+        ],
+        [
+            "`enabled`",
+            "@R2"
+        ],
+        [
+            "`!conError`",
+            "@R3"
+        ],
+    ]}
+/>
+
+
+## 7. Código completo implementado
+
+#### Formulario.kt
+```kotlin
+package com.example.clase05
+
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+
+@Composable
+fun emailTextField() {
+    var email by rememberSaveable { mutableStateOf("") }
+    var conError by rememberSaveable { mutableStateOf(false) }
+
+    fun validar(correo: String) {
+        //Expresiones regulares
+        conError = !correo.contains("@") || correo.length < 5
+    }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(24.dp)
+    ) {
+        //region TextField
+        OutlinedTextField(
+            value = email,
+            onValueChange = {
+                val it = null
+                email = it
+                validar(it)
+            },
+            label = { Text("Email...") },
+            isError = conError,
+            singleLine = true,
+            supportingText = {
+                if (conError) {
+                    Text(
+                        text = "Correo inválido...",
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+            },
+            trailingIcon = {
+                if (conError) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_error),
+                        contentDescription = "Error"
+                    )
+                }
+            },
+            modifier = Modifier.fillMaxWidth()
+        )
+        //endregion
+
+        Button(
+            onClick = { validar(email) },
+            enabled = !conError,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Enviar...")
+        }
+    }
+}
+```
+
+#### MainActivity.kt
+```kotlin
+package com.example.myapplication
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.myapplication.ui.theme.MyApplicationTheme
+import emailTextField
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MyApplicationTheme {
+                emailTextField()  //
+            }
+        }
+    }
+}
+```
+
+<SmartFigure
+	id="correo-no-valido"
+	src="/inacap/ti3v42/images/fig02.png"
+	alt="Correo no válido"
+	caption="Correo no válido"
+	size="large"
+/>
+<SmartFigure
+	id="correo-valido"
+	src="/inacap/ti3v42/images/fig03.png"
+	alt="Correo válido"
+	caption="Correo válido"
+	size="large"
+/>

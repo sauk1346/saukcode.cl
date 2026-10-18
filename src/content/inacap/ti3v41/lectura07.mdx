@@ -1,0 +1,167 @@
+# Construyendo soluciones CRUD con Django ORM
+
+El uso de ORM (*Object-Relational Mapping*) de Django es fundamental para facilitar la interacción con bases de datos en aplicaciones web, permitiendo manejar información de forma eficiente y segura sin necesidad de escribir consultas SQL manualmente.
+
+## 1. Fundamentos de ORM en Django
+El ORM de Django es una herramienta que convierte tablas de una base de datos relaciones en clases de python, y cada fila en un objeto de esa clase.
+
+Esto permite manipular y consultar datos sin necesidad de escribir sentencias SQL directamente.
+
+1. **Crear nuevos registros**
+    ```python
+    Producto.objects.create(nombre='Mouse', precio=15990, stock=20)
+    ```
+
+2. **Consultar registros**
+    1. **Obtener todos los registros**
+        ```python
+        productos = Producto.objects.all() 
+        ```
+    2. **Filtrar por condición**
+        ```python
+        productos_baratos = Producto.objects.filter(precio__lt=20000) 
+        ```
+    3. **Obtener un único objeto**
+        ```python
+        producto = Producto.objects.get(id=1) 
+        ```
+
+3. **Actualizar registros existentes**
+    1. **Modificar un objeto individual**
+        ```python
+        producto = Producto.objects.get(id=1)
+        producto.precio = 24990
+        producto.stock = 5
+        producto.save()  
+        ```
+    2. **Actualización múltiple**
+        ```python
+        Producto.objects.filter(disponible=False).update(stock=0) 
+        ```
+
+3. **Eliminar registros**
+    1. **Eliminar un registro específico**
+        ```python
+        producto = Producto.objects.get(id=1)
+        producto.delete()  
+        ```
+    2. **Eliminar varios registros**
+        ```python
+        Producto.objects.filter(disponible=False).delete() 
+        ```
+### Ventajas ORM
+
+- Reduce errores comunes en consultas manuales
+- Mejora la legibilidad del código
+- Aumenta la productividad del desarrollo
+- Aisla el proyecto del motor de base de datos específico
+
+### Ejemplo
+
+En lugar de escribir en SQL:
+```sql
+SELECT * FROM producto WHERE stock > 0;
+```
+
+Puedes usar el ORM:
+```python
+Producto.objects.filter(stock__gt=0)
+```
+
+Django se encarga de traducir esta instrucción a SQL y ejecutarla en la base configurada.
+
+
+## 2. Integrar operaciones CRUD en vistas
+Django permite vincular las operaciones CRUD con formularios HTML mediante vistas, facilitando la interacción del usuario con la base de datos desde la interfaz de la aplicación.
+
+### Vista para agregar un producto
+```python
+from django.shortcuts import render, redirect
+from .models import Producto
+
+def agregar_producto(request):
+    if request.method == "POST":
+        nombre = request.POST.get('nombre')
+        precio = request.POST.get('precio')
+        stock = request.POST.get('stock')
+        Producto.objects.create(
+            nombre=nombre,
+            precio=precio,
+            stock=stock
+        )
+        return redirect('listar_productos')
+    
+    return render(request, 'productos/agregar.html') 
+```
+
+### Vista para listar productos
+```python
+def listar_productos(request):
+    productos = Producto.objects.all()
+    return render(request, 'productos/listar.html', {'productos': productos}) 
+```
+
+## 3. Buenas prácticas al usar el ORM
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Comando", "Recomendación"]}
+    rows={[
+        [
+            "`get()`",
+            "Usa `get()`solo si estás seguro de que habrá un único resultado"
+        ],
+        [
+            "`request.POST`",
+            "Valida los datos antes de guardarlos, especialmente si vienen de `request.POST`"
+        ],
+        [
+            "`try...except`",
+            "Captura excepciones con `try...except`, como `Producto.DoesNotExist`"
+        ],
+        [
+            "`only()` o `values()`",
+            "Evita cargar muchos datos si no los necesitas (`only()` o `values()` pueden ayudarte)"
+        ]
+    ]}
+/>
+
+# Actividad de Práctica 05
+<Quiz questions={[
+	{
+		question: "¿Cuál es el orden correcto del ciclo de vida de un dato?",
+		options: [
+			"Actualizar → Leer → Crear → Eliminar ",
+			"Crear → Leer → Actualizar → Eliminar",
+			"Leer → Crear → Eliminar → Actualizar",
+			"Eliminar → Crear → Leer → Actualizar"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Qué operación representa este código?\nProducto.objects.filter(id=2).update(precio=400) ",
+		options: [
+			"Leer",
+			"Crear",
+			"Actualizar",
+			"Eliminar"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "El método .update() es menos eficiente que iterar y llamar a .save() en cada objeto para actualizar varios registros",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "El método get() en Django ORM siempre devuelve un único objeto o lanza un error si no lo encuentra o si hay más de uno",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+]} />

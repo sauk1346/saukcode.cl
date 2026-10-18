@@ -1,0 +1,283 @@
+# Diccionarios, Ejercicios
+**Material Clase:** [clase16.pdf](/inacap/ti3v11/docs/clase16.pdf)
+
+## Diccionarios
+
+- **Dinámicos:** Se pueden añadir o eliminar elementos.
+- **Indexados:** Elementos son accesibles a través de la `key`.
+- **Anidados:** Pueden contener a otro diccionario en su campo `value`.
+
+**Ejemplo 01:** Diccionario
+
+```python
+mi_diccionario = { key1:value1, key2:value2, ..., keyN:valueN}
+```
+
+**Ejemplo 02:** Imprimir diccionario
+```python
+prueba = {'Jorge':50,'Diana':60,'Rodrigo':40,'Julia':70}
+
+print(f'prueba = {prueba}')
+print(f"prueba['Jorge'] = {prueba['Jorge']}")
+print(f"prueba['Julia'] = {prueba['Julia']}")
+```
+
+<TerminalOutput withBg>
+{`prueba = {'Jorge': 50, 'Diana': 60, 'Rodrigo': 40, 'Julia': 70}
+prueba['Jorge'] = 50
+prueba['Julia'] = 70`}
+</TerminalOutput>
+## Funciones para Diccionarios
+
+### dict()
+Constructor. Recibe diccionarios, keyword-arguments, o una lista de tuplas
+
+**Ejemplo 01:** dict(diccionario)
+```python
+tel = dict({'sape':4139,'guido':4127,'jack':4098})
+
+print(tel)
+```
+<TerminalOutput withBg>
+{`{'sape': 4139, 'guido': 4127, 'jack': 4098}`}
+</TerminalOutput>
+
+**Ejemplo 02** dict(keyword-arguments)
+```python
+tel = dict(sape=4139,guido=4127,jack=4098)
+
+print(tel)
+```
+<TerminalOutput withBg>
+{`{'sape': 4139, 'guido': 4127, 'jack': 4098}`}
+</TerminalOutput>
+
+**Ejemplo 03:** dict(lista_de_tuplas)
+```python
+tel = dict([('sape',4139),('guido',4127),('jack',4098)])
+
+print(tel)
+```
+<TerminalOutput withBg>
+{`{'sape': 4139, 'guido': 4127, 'jack': 4098}`}
+</TerminalOutput>
+
+### list()
+Genera una nueva lista con todas las `keys`.
+
+**Ejemplo**
+```python
+tel = dict([('sape',4139),('guido',4127),('jack',4098)])
+
+print(list(tel))
+```
+<TerminalOutput withBg>
+{`['sape', 'guido', 'jack']`}
+</TerminalOutput>
+
+### sorted()
+Genera una nueva lista con todas las `keys` ordenadas.
+
+**Ejemplo**
+```python
+tel = dict([('sape',4139),('guido',4127),('jack',4098)])
+
+print(sorted(tel))
+```
+<TerminalOutput withBg>
+{`['guido', 'jack', 'sape']`}
+</TerminalOutput>
+
+
+### zip()
+Genera un diccionario a partir de 2 elementos iterables (cadena, lista, tupla). Deben tener la misma cantidad de elementos.
+
+**Ejemplo**
+```python
+dic = dict(zip('abcd',[1,2,3,4]))
+
+print(dic)
+```
+<TerminalOutput withBg>
+{`{'a': 1, 'b': 2, 'c': 3, 'd': 4}`}
+</TerminalOutput>
+
+### items()
+Devuelve una lista de tuplas.
+
+**Ejemplo** 
+```python
+dic = {'a':1, 'b':2, 'c':3, 'd':4}
+salida = dic.items()
+
+print(salida)
+```
+<TerminalOutput withBg>
+{`dict_items([('a', 1), ('b', 2), ('c', 3), ('d', 4)])`}
+</TerminalOutput>
+
+
+### keys()
+Genera una lista con las `keys` del diccionario (similar a `list()`).
+
+**Ejemplo** 
+```python
+dic = {'a':1, 'b':2, 'c':3, 'd':4}
+salida = dic.keys()
+
+print(salida)
+```
+<TerminalOutput withBg>
+{`dict_keys(['a', 'b', 'c', 'd'])`}
+</TerminalOutput>
+
+
+### values()
+Genera una lista con los `values` del diccionario.
+
+**Ejemplo** 
+```python
+dic = {'a':1, 'b':2, 'c':3, 'd':4}
+salida = dic.values()
+
+print(salida)
+```
+<TerminalOutput withBg>
+{`dict_values([1, 2, 3, 4])`}
+</TerminalOutput>
+
+### clear()
+Elimina todo el contenido del diccionario.
+
+**Ejemplo** 
+```python
+dic = {'a':1, 'b':2, 'c':3, 'd':4}
+dic.clear()
+
+print(dic)
+```
+<TerminalOutput withBg>
+{`{}`}
+</TerminalOutput>
+
+### copy()
+Crea una copia del diccionario.
+
+**Ejemplo** 
+```python
+dic = {'a':1, 'b':2, 'c':3, 'd':4}
+copia = dic.copy()
+
+print(copia)
+```
+<TerminalOutput withBg>
+{`{'a': 1, 'b': 2, 'c': 3, 'd': 4}`}
+</TerminalOutput>
+
+### get()
+Devuelve el `value` de una `key`. Si no existe devuelve `None`.
+
+**Ejemplo** 
+```python
+dic = {'a':1, 'b':2, 'c':3, 'd':4}
+valor1 = dic.get('b')
+valor2 = dic.get('e')
+
+print(f'valor1 = {valor1}')
+print(f'valor2 = {valor2}')
+```
+<TerminalOutput withBg>
+{`valor1 = 2
+valor2 = None`}
+</TerminalOutput>
+
+
+### pop()
+Devuelve el `value` de una `key`. Luego elimina la `key`. Si no encuentra la `key` devuelve error.
+
+**Ejemplo** 
+```python
+dic = {'a':1, 'b':2, 'c':3, 'd':4}
+valor1 = dic.pop('b')
+valor2 = dic.pop('z',"error, valor no encontrado")
+
+print(f'valor1 = {valor1}')
+print(f'valor2 = {valor2}')
+print(f'dic = {dic}')
+```
+<TerminalOutput withBg>
+{`valor1 = 2
+valor2 = error, valor no encontrado
+dic = {'a': 1, 'c': 3, 'd': 4}`}
+</TerminalOutput>
+
+
+### setdefault()
+
+1. Funciona como `get()`, para obtener el `value` de una `key`.
+2. Funciona para agregar un nuevo elemento al diccionario.
+
+**Ejemplo 01:** como `get()`
+```python
+dic = {'a':1, 'b':2, 'c':3, 'd':4}
+valor = dic.setdefault('a')
+
+print(f'valor = {valor}')
+```
+<TerminalOutput withBg>
+{`valor = 1`}
+</TerminalOutput>
+
+
+**Ejemplo 02:** para agregar elementos
+
+```python
+dic = {'a':1, 'b':2, 'c':3, 'd':4}
+valor = dic.setdefault('e',5)
+
+print(f'dic = {dic}')
+```
+<TerminalOutput withBg>
+{`dic = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}`}
+</TerminalOutput>
+
+### update()
+
+Actualiza un `diccionario1` con un `diccionario2`.
+
+**Ejemplo**
+```python
+dic1 = {'a':1, 'b':2, 'c':3, 'd':4}
+dic2 = {'c':6, 'b':5, 'e':9, 'f':10}
+dic1.update(dic2)
+
+print(f'dic1 = {dic1}')
+```
+<TerminalOutput withBg>
+{`dic1 = {'a': 1, 'b': 5, 'c': 6, 'd': 4, 'e': 9, 'f': 10}`}
+</TerminalOutput>
+
+## Recorrer un Diccionario
+Un diccionario está compuesto por pares clave-valor, por lo que se necesitan 2 variables auxiliares para el recorrido.
+
+También se utiliza la función `items()` para así recorrer una lista de tuplas. 
+
+**Ejemplo**
+```python
+datos = {
+	'nombre':'Marcos',
+	'apellido':'Rojas',
+	'direccion':'Balmaceda #1520',
+	'ciudad':'La Serena'
+}
+
+for clave,valor in datos.items():
+	print(f'{clave} => {valor}')
+```
+<TerminalOutput withBg>
+{`nombre => Marcos
+apellido => Rojas
+direccion => Balmaceda #1520
+ciudad => La Serena`}
+</TerminalOutput>
+

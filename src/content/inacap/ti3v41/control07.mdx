@@ -1,0 +1,64 @@
+## Control 07
+
+<Quiz questions={[
+  {
+    question: "¿Qué comando instala el paquete JWT en Django REST framework?",
+    options: [
+      "pip install drf-jwt-token.",
+      "pip install djangorestframework-simplejwt.",
+      "pip install django-jwt.",
+      "pip install django-auth-jwt."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué código HTTP devuelve el servidor si el token JWT es inválido o falta?",
+    options: [
+      "404",
+      "403",
+      "401",
+      "500"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es el principal propósito de JWT?",
+    options: [
+      "Compartir datos entre bases de datos.",
+      "Codificar respuestas JSON.",
+      "Autenticar al usuario de forma segura.",
+      "Guardar cookies."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué clase de DRF se usa para proteger una vista y exigir autenticación?",
+    options: [
+      "StaffPermission.",
+      "AdminOnly.",
+      "AllowAny.",
+      "IsAuthenticated."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Dónde se define el tiempo de expiración de los tokens JWT en SimpleJWT?",
+    options: [
+      "En INSTALLED_APPS",
+      "En DATABASES",
+      "En TOKEN_SETTINGS",
+      "En SIMPLE_JWT"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué ocurre si un token JWT expira?",
+    options: [
+      "El servidor rechaza la solicitud con error.",
+      "El usuario es redirigido.",
+      "Se guarda como token temporal.",
+      "El token se renueva automáticamente."
+    ],
+    correctIndex: 0
+  }
+]} />

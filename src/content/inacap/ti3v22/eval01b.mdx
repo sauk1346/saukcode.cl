@@ -1,0 +1,181 @@
+# Evaluación 01-B
+
+## Sección 1: Selección Múltiple (40 ptos.)
+
+<Quiz questions={[
+  {
+    question: "¿Qué comando se utiliza para agregar una nueva columna a una tabla existente?",
+    options: [
+      "ADD COLUMN",
+      "INSERT COLUMN",
+      "ALTER TABLE",
+      "MODIFY COLUMN"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál de las siguientes funciones SQL devuelve la fecha y hora actual?",
+    options: [
+      "NOW()",
+      "GETDATE()",
+      "CURRENT_TIMESTAMP",
+      "SYSDATE"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es el resultado de la siguiente consulta SQL? \"SELECT LOWER('HELLO WORLD');\"",
+    options: [
+      "hello world",
+      "HELLO WORLD",
+      "Hello World",
+      "No devuelve ningún resultado"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué comando SQL se utiliza para eliminar una tabla?",
+    options: [
+      "DROP TABLE",
+      "DELETE TABLE",
+      "REMOVE TABLE",
+      "ERASE TABLE"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué tipo de clave se utiliza para garantizar que un valor en una columna sea único en todas las filas?",
+    options: [
+      "Clave Primaria",
+      "Clave Externa",
+      "Clave Única",
+      "Clave Foránea"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué tipo de función SQL se utiliza para sumar el valor de una columna en todas las filas de un grupo?",
+    options: [
+      "SUM",
+      "COUNT",
+      "AVG",
+      "MAX"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál de los siguientes comandos se utiliza para crear un nuevo índice en una tabla?",
+    options: [
+      "ADD INDEX",
+      "CREATE INDEX",
+      "NEW INDEX",
+      "GENERATE INDEX"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es el propósito de la cláusula GROUP BY en una consulta SQL?",
+    options: [
+      "Filtrar filas",
+      "Agrupar filas con valores comunes",
+      "Ordenar filas",
+      "Limitar el número de filas devueltas"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué comando SQL se utiliza para ejecutar un procedimiento almacenado?",
+    options: [
+      "CALL",
+      "EXEC",
+      "RUN",
+      "START"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué evento NO puede activar un trigger en SQL?",
+    options: [
+      "INSERT",
+      "UPDATE",
+      "DELETE",
+      "SELECT"
+    ],
+    correctIndex: 3
+  }
+]} />
+
+## Sección 2: Ejercicios de Desarrollo (60 ptos.)
+
+### Ejercicio 1: Creación y Gestión de Tablas
+
+**Enunciado:** Crea una tabla llamada `Orders` con las siguientes columnas:
+
+- `OrderID`: Número entero, clave primaria, autoincremental.
+- `OrderDate`: Fecha y hora de la orden.
+- `CustomerID`: Número entero, debe referencias a `CustomerID` en una tabla `Customers`.
+- `TotalAmount`: Decimal con dos decimales.
+
+<Solution>
+```sql
+CREATE DATABASE EVAL01B;
+
+USE EVAL01B;
+
+SET DATEFORMAT 'YMD';
+
+CREATE TABLE Customers(
+	CustomerID INT IDENTITY,
+	PRIMARY KEY(CustomerID)
+);
+
+CREATE TABLE Orders (
+	OrderID INT IDENTITY,
+	OrderDate DATETIME,
+	CustomerID INT,
+	TotalAmount DECIMAL(10,2),
+	PRIMARY KEY(OrderID),
+	FOREIGN KEY(CustomerID) REFERENCES Customers(CustomerID)
+);
+```
+</Solution>
+
+### Ejercicio 2: Creación de Vistas
+
+**Enunciado:** Crea una vista llamada `VistaOrdenesRecientes` que muestre el ID de la orden, la fecha de la orden, y el total de la orden para aquellas órdenes realizadas en el último mes.
+
+<Solution>
+```sql
+CREATE VIEW VistaOrdenesRecientes AS
+	SELECT OrderID, OrderDate, TotalAmount
+	FROM Orders
+	WHERE OrderDate BETWEEN DATEADD(MONTH, -1, GETDATE()) AND GETDATE();
+```
+</Solution>
+
+### Ejercicio 3: Creación de Índices
+
+**Enunciado:** Crea un índice en la columna `OrderDate` de la tabla `Orders` para optimizar las consultas que buscan órdenes por fecha.
+
+<Solution>
+```sql
+CREATE INDEX idx_OrderDate
+ON Orders(OrderDate);
+```
+</Solution>
+
+### Ejercicio 4: Procedimientos Almacenados
+
+**Enunciado:** Crea un procedimiento almacenado `sp_EliminarOrden` que elimine una orden dado su ID.
+
+<Solution>
+```sql
+CREATE PROCEDURE sp_EliminarOrden
+	@OrdenID INT
+AS
+BEGIN
+	DELETE FROM Orders
+	WHERE OrderID = @OrdenID;
+END;
+```
+</Solution>

@@ -1,0 +1,371 @@
+# Hablando el idioma REST: JSON y DjangoREST
+
+
+## 1. JSON, formato esencial en APIs RESTful
+
+**JSON (*JavaScript Object Notation*)** es un formato de datos **ligero, legible y fácil de escribir**, ampliamente utilizado para intercambiar información entre cliente y servidor. 
+
+Aunque su sintaxis se inspira en los objetos de JavaScript, es **independiente del lenguaje**, lo que permite emplearlo en aplicaciones desarrolladas en Python, Java, PHP y muchos otros. 
+
+```json
+{
+  "id": 4, 
+  "nombre": "Carlos", 
+  "correo": "carlos@example.com", 
+  "activo": true 
+} 
+```
+
+## 2. Serializadores en Django REST Framework
+Los serializadores son la herramienta clave para transformar datos entre modelos de Django y formatos como JSON, permitiendo el intercambio de información entre el servidor y el cliente.
+
+<SmartTable
+    tableLayout="fixed"
+    headers={["Funciones", "Descripción"]}
+    rows={[
+        [
+            "**De Python a JSON**",
+            "Convierte instancias de modelos de Django en datos JSON listos para ser enviados al cliente"
+        ],
+        [
+            "**De JSON a Python**",
+            "Recibe datos en formato JSON, los valida y los transforma en objetos de Django para ser guardados en la base de dato"
+        ],
+    ]}
+/>
+
+### Tipos principales de serializadores
+<SmartTable
+    tableLayout="fixed"
+    headers={["Serializador", "Descripción"]}
+    rows={[
+        [
+            "**Serializer (manual)**",
+            "Requiere definir explícitamente cada campo y sus validaciones"
+        ],
+        [
+            "**ModelSerializer (automático**",
+            "Genera los campos y validaciones directamente a partir de un modelo de Django"
+        ],
+    ]}
+/>
+
+**Ejemplo con ModelSerializer**
+
+Supongamos que tenemos el siguiente modelo:
+
+```python
+class Producto(models.Model): 
+    nombre = models.CharField(max_length=100) 
+    precio = models.DecimalField(max_digits=6, decimal_places=2) 
+    disponible = models.BooleanField(default=True) 
+```
+
+Podemos crear su serializador así:
+
+```python
+from rest_framework import serializers 
+class ProductoSerializer(serializers.ModelSerializer): 
+
+    class Meta: 
+        model = Producto 
+        fields = '__all__' 
+```
+
+Este serializador convierte instancias de **Producto** en JSON y, a la inversa, valida y transforma datos recibidos para crear o actualizar productos en la base de datos.
+
+## 3. Vistas y ViewSets en Django REST
+Las **vistas** son responsables de procesar las solicitudes HTTP y devolver respuestas al cliente. Son el componente que **recibe las peticiones entrantes**, aplica la lógica necesaria (por ejemplo, consultar la base de datos) y **devuelve los datos en formato JSON** u otro formato serializado. 
+
+DRF ofrece **tres enfoques principales para construir vistas**, desde el más básico hasta el más automatizado:
+
+- Vistas basadas en funciones (Function-Based-Views FBV)
+- Vistas basadas en clases (Class-Based-Views CBV)
+- ViewSets
+
+### Vistas basadas en funciones (FBV)
+Es el enfoque más simple, adecuado para APIs pequeñas o endpoints muy específicos
+
+```python
+from rest_framework.decorators import api_view 
+from rest_framework.response import Response 
+
+@api_view(['GET']) 
+def hola_mundo(request): 
+    return Response({'mensaje': 'Hola mundo desde la API'}) 
+```
+
+<SmartTable
+    tableLayout="auto"
+    headers={["FBV", "Descripción"]}
+    lists={{
+        R1: [
+            "Rápido de implementar",
+            "Fácil de entender",
+            "Ideal para prototipos o pruebas"
+        ],
+        R2: [
+            "Poco reutilizable",
+            "La lógica se vuelve extensa en vistas complejas",
+            "No se integra directamente con modelos o serializadores"
+        ]
+    }}
+    rows={[
+        [
+            "**Ventajas**",
+            "@R1"
+        ],
+        [
+            "**Desventajas**",
+            "@R2"
+        ]
+    ]}
+/>
+
+### Vistas basadas en clases (CBV)
+DRF ofrece **clases que representan los métodos HTTP** (GET, POST, PUT, DELETE) como métodos dentro de una clase Python. 
+
+Este enfoque es más organizado que las funciones decoradas y permite mayor **control y reutilización**.
+
+```python
+from rest_framework.views import APIView 
+from rest_framework.response import Response 
+
+class SaludoAPIView(APIView): 
+    def get(self, request): 
+        return Response({'mensaje': 'Hola desde una vista basada en clase'}) 
+```
+
+<SmartTable
+    tableLayout="auto"
+    headers={["CBV", "Descripción"]}
+    lists={{
+        R1: [
+            "Más estructurado",
+            "Permite lógica compleja por método",
+            "Flexible y altamente personalizable"
+        ],
+        R2: [
+            "Requiere más líneas de código",
+            "Puede ser innecesariamente detallado para operaciones CRUD simples",
+        ]
+    }}
+    rows={[
+        [
+            "**Ventajas**",
+            "@R1"
+        ],
+        [
+            "**Desventajas**",
+            "@R2"
+        ]
+    ]}
+/>
+
+### ViewSets
+Agrupan toda la lógica de un recurso en un solo lugar. DRF proporciona clases predefinidas, como *ModelViewSet*, que implementan automáticamente toda la lógica CRUD.
+
+```python
+from rest_framework import viewsets 
+from .models import Producto 
+from .serializers import ProductoSerializer 
+
+class ProductoViewSet(viewsets.ModelViewSet): 
+    queryset = Producto.objects.all() 
+    serializer_class = ProductoSerializer 
+```
+
+Con pocas líneas, DRF genera automáticamente los siguientes endpoints RESTful: 
+
+<SmartTable
+    tableLayout="fixed"
+    headers={["Método", "Ruta", "Acción"]}
+    rows={[
+        ["**GET**", "`/productos/`", "Listar todos los productos"],
+        ["**POST**", "`/productos/`", "Crear un nuevo producto"],
+        ["**GET**", "`/productos/1/`", "Obtener detalles del producto con id=1"],
+        ["**PUT**", "`/productos/1/`", "Actualizar producto"],
+        ["**PATCH**", "`/productos/1/`", "Actualización parcial"],
+        ["**DELETE**", "`/productos/1/`", "Eliminar producto"],
+    ]}
+/>
+
+> **¿Qué hace ModelViewSet exactamente?:** Hereda de múltiples clases que implementan operaciones CRUD.
+
+### Buenas Prácticas al usar ViewSets
+
+- Sobreecribe métodos como `get_queryset()` o `perform_create()` para lógica personalizada (por ejemplo, filtrar según usuario)
+- Utiliza **ModelViewSet** si el recurso tiene operaciones estándar
+- Documenta claramente los endpoints generador para mantener la API comprensible
+- Combina los ViewSets con **permissions** (como `IsAuthenticated`) para proteger recursos
+
+## 4. Routers: enlazando URL con ViewSets
+En Django tradicional, cada vez que creamos una vista, debemos agregarla manualmente en el archivo `urls.py`, asignándole una ruta y un nombre. Esto puede volverse repetitivo y propenso a errores si tienes múltiples *endpoints* para diferentes recursos (por ejemplo: listar, crear, editar, eliminar). 
+
+Cuando usamos *ViewSets* en Django REST Framework (DRF), podemos aprovechar una herramienta llamada **Router**, que se encarga de generar automáticamente todas las rutas necesarias para esos *ViewSets*, siguiendo las convenciones de una API RESTful.
+
+### ¿Qué es un router?
+Un **router** es una clase proporcionada por **Django REST Framework (DRF)** que automatiza el **enrutamiento de tus ViewSets**.
+
+En lugar de definir manualmente cada URL, el router **inspecciona el ViewSet** y genera automáticamente todas las rutas necesarias para las operaciones CRUD.
+
+**Beneficios:**
+
+- Reduce el código repetitivo
+- Mantiene la consistenciua en la API
+- Facilita el mantenimiento del proyecto
+
+### Tipos de routers disponibles
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Router", "Descripción"]}
+    rows={[
+        [
+            "**DefaultRouter**",
+            "Crea rutas estándar y añade una **vista raíz navegable** en la interfaz web de DRF"
+        ],
+        [
+            "**SimpleRouter**",
+            "Genera rutas estándar, pero **sin la vista raíz navegable**. Para la mayoría de los casos en desarrollo y pruebas, se recomienda usar **DefaultRouter**"
+        ],
+    ]}
+/>
+
+### Alias y nombres personalizados
+Puedes personalizar la ruta base usando el parámetro `basename` de `register()`:
+
+```python
+router.register(r'articulos', ArticulosViewSet, basename='articulo')
+```
+
+Esto es útil cuando:
+
+- El `queryset` no está definido directamente en el ViewSet
+- Deseas controlar el **nombre base** en las rutas generadas
+
+### Ventajas de usar routers
+El uso de routers en Django REST Framework ofrece una forma eficiente y organizada de gestionar rutas en API, aportando agilidad, seguridad y escalabilidad al desarrollo.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Ventajas", "Descripción"]}
+    rows={[
+        [
+            "**Ahorra tiempo**",
+            "No necesitas escribir manualmente cada ruta"
+        ],
+        [
+            "**Evita errores**",
+            "Las rutas se generan siguiendo el estándar REST"
+        ],
+        [
+            "**Facilita pruebas**",
+            "La interfaz de exploración de la API muestra automáticamente todos los endpoints disponibles"
+        ],
+        [
+            "**Escalable**",
+            "Puedes registrar múltiples ViewSets en un mismo router sin dificultad"
+        ],
+    ]}
+/>
+
+## 5. Consumir la API desde React o Postman
+Consumir una API implica realizar peticiones HTTP a sus endpoints y procesar las respuestas en formato JSON. 
+
+Herramientas como React, Postman o CURL permiten integrar y probar fácilmente estos servicios. 
+
+Además, el uso de clientes variados asegura flexibilidad en el desarrollo, desde pruebas iniciales hasta implementaciones en producción. 
+
+### Cómo consumir la API desde un cliente
+Una vez que tu **API devuelve datos en formato JSON**, puedes consumirla desde cualquier cliente que realice **peticiones HTTP**. Algunos ejemplos comunes:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Ejemplos", "Descripción"]}
+    rows={[
+        [
+            "**JavaScript/React**",
+            "Usando `fetch()` o `axios()`"
+        ],
+        [
+            "**Postman**",
+            "Configurando la URL, método HTTP y cabeceras necesarias"
+        ],
+        [
+            "**CURL**",
+            "Desde la línea de comandos"
+        ],
+    ]}
+/>
+
+**Ejemplo con `fetch()` en JavaScript**
+
+```js
+fetch("http://localhost:8000/productos/") 
+  .then(response => response.json()) 
+  .then(data => console.log(data)) 
+  .catch(error => console.error('Error:', error)); 
+```
+
+- `fetch()` realiza la solicitur HTTP a la URL de la API
+- `.then(response => response.json())` convierte la respuesta en JSON
+- `.then(data => console.log(data))` permite trabajar con los datos devueltos
+- `.catch()` captura posibles errores en la petición
+
+# Actividad de Práctica 08
+
+<Quiz questions={[
+	{
+		question: "¿Cuál de las siguientes afirmaciones describe correctamente el formato JSON?",
+		options: [
+			"Es un formato de datos ligero, legible y basado en texto, usado para intercambiar información entre cliente y servidor",
+			"Requiere siempre un lenguaje de programación específico para funcionar",
+			"Permite usar cualquier tipo de comillas para claves y valores",
+			"Solo puede ser usado en aplicaciones JavaScript"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "En JSON, ¿cuál es la sintaxis correcta para representar un valor booleano?",
+		options: [
+			"True o False, con mayúscula inicial",
+			"1 o 0, como enteros",
+			"\"true\" o \"false\", entre comillas",
+			"true o false, en minúsculas y sin comillas"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "En JSON, las claves siempre deben ir entre comillas dobles (\" \")",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "Un error común en JSON es dejar una coma al final del último elemento de un objeto o arreglo",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "En JSON, los valores booleanos se escriben como True y False con mayúscula inicial",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "En JSON, se pueden usar tanto comillas simples como dobles para encerrar cadenas de texto",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+]} />

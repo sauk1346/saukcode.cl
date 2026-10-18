@@ -1,0 +1,292 @@
+# Índices y Vistas
+
+- [Github TI3V22](https://github.com/ebravo930/Inacap_2024_Bases-de-Datos-Estructuradas)
+- **Material Clase:** [clase01.pdf](/inacap/ti3v22/docs/clase01.pdf)
+
+
+## Índices
+- Mejora la velocidad de las operaciones de consulta de una tabla.
+- Similar al índice de un libro, permite encontrar los datos más rápido sin tener que escanear todas las filas de la tabla.
+- Para SQL Server se utiliza el comando `INDEX`.
+
+**Ejemplo**
+
+- Supongamos que tienes una tabla *'Clientes'* con millones de registros.
+- Consultar frecuentemente por el *'Cliente_ID'* escanea **todos** los registros hasta encontrar el deseado.
+- Crear un índice en ese atributo puede mejorar el rendimiento.
+
+```sql
+CREATE INDEX ix_Cliente_ID
+ON Clientes(Cliente_ID);
+```
+
+- el prefijo `ix_` es una convención para indicar que se trata de un índice.
+
+
+## Vistas
+- Permite almacenar una consulta como si fuese una tabla más de la base de datos.
+- Para SQL Server se utiliza el comando `VIEW`.
+- Ideal cuando se hace una consulta avanzada, con muchos `JOIN` o condiciones, ya que al almacenarlo con `VIEW` no es necesario volver a realizar la misma consulta una y otra vez.
+
+**Ejemplo**
+
+1. Creo una vista `VistaInformacionEmpleados` que contiene información de ambas tablas `Empleados` y `Departamentos`.
+
+```sql
+CREATE VIEW VistaInformacionEmpleados AS
+	SELECT e.ID, e.Nombre, e.Apellido, d.Nombre AS NombreDepartamento
+	FROM Empleados e
+	JOIN Departamento d ON e.Departamento_ID = d.ID;
+```
+
+2. Si quiero conocer los empleados del departamento Ventas, puedo consultar la "vista" en vez de realizar nuevamente una consulta avanzada.
+
+```sql
+SELECT *
+FROM VistaInformacionEmpleados
+WHERE NombreDepartamento = 'Ventas';
+```
+
+# Ejercicios (1ra parte)
+
+Crear base de datos `Clase01_Parte_Uno`.
+
+```sql
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = N'Clase01_Parte_Uno')
+BEGIN
+	CREATE DATABASE Clase01_Parte_Uno;
+END;
+
+USE Clase01_Parte_Uno;
+```
+
+## Ejercicio 01
+**Creación de Tablas:** Crear una tabla llamada *Estudiantes* que contenga las siguientes columnas:
+
+- **ID** como número entero, que sea la clave primaria y que se autoincremente.
+- **Nombre** como texto (cadena de caracteres) que no puede ser nulo.
+- **Edad** como número entero.
+- **FechaIngreso** como fecha.
+
+Agregar los siguientes registros:
+
+- Juan Pérez, 20, 2022-03-15
+- Ana López, 22, 2022-05-21
+- Luis Martínez, 17, 2022-01-11
+- Carmen Ríos, 19, 2022-02-07
+- Carlos Sánchez, 23, 2022-08-25
+- Lucía Fernández, 21, 2022-09-30
+- Diego Alonso, 18, 2022-04-14
+- Isabel Mora, 25, 2022-07-19
+
+<Solution>
+```sql
+CREATE TABLE Estudiantes (
+	ID INT IDENTITY PRIMARY KEY,
+	Nombre VARCHAR(100) NOT NULL,
+	Edad INT,
+	FechaIngreso DATE
+);
+
+INSERT INTO Estudiantes (Nombre, Edad, FechaIngreso)
+VALUES
+	('Juan Pérez', 20, '2022-03-15'),
+	('Ana López', 22, '2022-05-21'),
+	('Luis Martínez', 17, '2022-01-11'),
+	('Carmen Ríos', 19, '2022-02-07'),
+	('Carlos Sánchez', 23, '2022-08-25'),
+	('Lucía Fernández', 21, '2022-09-30'),
+	('Diego Alonso', 18, '2022-04-14'),
+	('Isabel Mora', 25, '2022-07-19');
+```
+</Solution>
+
+## Ejercicio 02
+**Creación de Vistas:** Crea una vista llamada **VistaEstudiantes** que muestre el nombre y la edad de los estudiantes que tengan más de 18 años.
+
+<Solution>
+```sql
+CREATE VIEW VistaEstudiantes AS
+	SELECT Nombre, Edad
+	FROM Estudiantes
+	WHERE Edad > 18;
+```
+</Solution>
+
+## Ejercicio 03
+**Creación de Índices:** Crea un índice para la columna *Edad* en la tabla *Estudiantes* para mejorar la velocidad de las consultas que filtren por edad.
+
+<Solution>
+```sql
+CREATE INDEX ix_Edad
+ON Estudiantes(Edad);
+```
+</Solution>
+
+# Ejercicios (2da parte)
+Crear la base de datos `Clase01_Parte_Dos`, utilizando el siguiente script:
+
+```sql
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = N'Clase01_Parte_Dos')
+BEGIN
+	CREATE DATABASE Clase01_Parte_Dos;
+END;
+
+USE Clase01_Parte_Dos;
+
+SET DATEFORMAT 'YMD';
+
+CREATE TABLE Autores (
+    ID INT PRIMARY KEY,
+    Nombre VARCHAR(100),
+    Nacionalidad VARCHAR(100)
+);
+
+CREATE TABLE Libros (
+    ID INT PRIMARY KEY,
+    Titulo VARCHAR(100),
+    Autor_ID INT,
+    FOREIGN KEY (Autor_ID) REFERENCES Autores(ID)
+);
+
+INSERT INTO Autores (ID, Nombre, Nacionalidad) VALUES
+(1, 'Gabriel García Márquez', 'Colombiano'),
+(2, 'Mario Vargas Llosa', 'Peruano'),
+(3, 'Julio Cortázar', 'Argentino');
+
+INSERT INTO Libros (ID, Titulo, Autor_ID) VALUES
+(1, 'Cien años de soledad', 1),
+(2, 'La ciudad y los perros', 2),
+(3, 'Rayuela', 3);
+```
+
+## Ejercicio 01
+**Consulta Básica:** Mostrar todos los libros de la tabla "Libros".
+
+<Solution>
+```sql
+SELECT *
+FROM Libros;
+```
+</Solution>
+
+
+## Ejercicio 02
+**Consulta con Filtro:** Mostrar el nombre y nacionalidad del autor del libro con ID 2.
+
+<Solution>
+```sql
+SELECT a.Nombre, a.Nacionalidad
+FROM Autores a
+JOIN Libros l ON l.Autor_ID = a.ID
+WHERE l.ID = 2;
+```
+</Solution>
+
+## Ejercicio 03
+**Consulta con JOIN:** Mostrar el título del libro y el nombre del autor de todos los libros.
+
+<Solution>
+```sql
+SELECT l.Titulo, a.Nombre
+FROM Libros l
+JOIN Autores a ON l.Autores_ID = a.ID;
+```
+</Solution>
+
+## Ejercicio 04
+**Actualización de Datos:** Cambiar la nacionalidad del autor con ID 3 a "Argentino-Francés".
+
+<Solution>
+```sql
+UPDATE Autores
+SET Nacionalidad = 'Argentino-Francés'
+WHERE ID = 3;
+```
+</Solution>
+
+## Ejercicio 05
+**Inserción de Datos:** Agregar un nuevo autor a la tabla "Autores
+
+- ID: 4
+- nombre: Isabel Allende
+- nacionalidad: Chilena
+
+<Solution>
+```sql
+INSERT INTO Autores(ID,Nombre,Nacionalidad)
+VALUES
+    (4,'Isabel Allende','Chilena');
+```
+</Solution>
+
+## Ejercicio 06
+**Eliminación de Datos:** Eliminar el libro con ID 1 de la tabla "Libros".
+
+<Solution>
+```sql
+DELETE FROM Libros
+WHERE ID = 1;
+```
+</Solution>
+
+## Ejercicio 07
+**Crear un nuevo libro:** Inserta un nuevo registro en la tabla "Libros" con los siguientes datos:
+
+- ID: 4
+- Título: El amor en los tiempos del cólera
+- Autor_ID: 1
+
+<Solution>
+```sql
+INSERT INTO Libros(ID,Titulo,Autor_ID) 
+VALUES
+	(4,'El amor en los tiempos del cólera',1);
+```
+</Solution>
+
+## Ejercicio 08
+**Actualizar un libro:** Actualiza el título del libro con ID 2 a "Conversación en la catedral".
+
+<Solution>
+```sql
+UPDATE Libros
+SET Titulo = 'Conversación en la catedral'
+WHERE ID = 2;
+```
+</Solution>
+
+## Ejercicio 09
+**Eliminar un autor:** Elimina el autor con ID 3 de la tabla "Autores" y todos los libros asociados a este autor.
+
+<Solution>
+```sql
+DELETE FROM Libros
+WHERE Autor_ID = 3;
+
+DELETE FROM Autores
+WHERE ID = 3;
+```
+</Solution>
+
+## Ejercicio 10
+**Leer todos los libros de un autor:** Muestra todos los libros escritos por el autor con ID 1.
+
+<Solution>
+```sql
+SELECT *
+FROM Libros
+WHERE Autor_ID = 1;
+```
+</Solution>
+
+## Ejercicio 11
+**Actualizar la nacional de un autor:** Cambia la nacionalidad del autor con ID 2 a "Peruana".
+
+<Solution>
+```sql
+UPDATE Autores
+SET Nacionalidad = 'Peruana'
+WHERE ID = 2;
+```
+</Solution>

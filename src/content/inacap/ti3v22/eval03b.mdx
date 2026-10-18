@@ -1,0 +1,267 @@
+# Evaluación 03-B
+
+## Sección 1: Selección Múltiple (30 puntos)
+
+<Quiz questions= {[
+  {
+    question: "¿Qué palabra clave en PL/SQL se usa para declarar un bloque anónimo?",
+    options: [
+      "DECLARE",
+      "START",
+      "INIT",
+      "BEGIN"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué operador en PL/SQL se usa para verificar si un valor existe en un conjunto de valores?",
+    options: [
+      "EXISTS",
+      "IN",
+      "BETWEEN",
+      "LIKE"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de los siguientes es un tipo de bucle en PL/SQL?",
+    options: [
+      "WHILE",
+      "FOR",
+      "LOOP",
+      "Todas las anteriores"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué instrucción se utiliza para salir de un bucle en PL/SQL?",
+    options: [
+      "EXIT",
+      "LEAVE",
+      "BREAK",
+      "STOP"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál de las siguientes palabras clave se usa para manejar excepciones en PL/SQL?",
+    options: [
+      "EXCEPTION",
+      "WHEN",
+      "TRY",
+      "CATCH"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál es la función PL/SQL que devuelve el número de filas en una consulta?",
+    options: [
+      "SUM",
+      "COUNT",
+      "AVG",
+      "MIN"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de las siguientes es la función correcta para convertir un valor numérico a una cadena en PL/SQL?",
+    options: [
+      "TO_STRING",
+      "TO_NUMBER",
+      "TO_CHAR",
+      "TO_DATE"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es la diferencia principal entre IF...THEN y CASE en PL/SQL?",
+    options: [
+      "CASE permite múltiples condiciones, IF solo una",
+      "CASE es más eficiente para evaluar una expresión contra múltiples valores posibles",
+      "CASE no soporta valores numéricos",
+      "IF no puede manejar varios casos"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué tipo de dato se utiliza en PL/SQL para almacenar fechas?",
+    options: [
+      "DATETIME",
+      "TIME",
+      "DATE",
+      "TIMESTAMP"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es la palabra clave para crear una función en PL/SQL?",
+    options: [
+      "FUNCTION",
+      "PROCEDURE",
+      "DECLARE",
+      "EXECUTE"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué bloque en PL/SQL contiene el código que se ejecuta cuando ocurre un error?",
+    options: [
+      "BEGIN",
+      "EXCEPTION",
+      "TRY",
+      "ERROR"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es el operador correcto para concatenar cadenas en PL/SQL?",
+    options: [
+      "+",
+      "||",
+      "CONCAT",
+      "&"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué se utiliza para devolver un valor desde una función en PL/SQL?",
+    options: [
+      "OUTPUT",
+      "RETURN",
+      "SELECT",
+      "SEND"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué bloque es opcional en un bloque PL/SQL?",
+    options: [
+      "BEGIN",
+      "EXCEPTION",
+      "END",
+      "DECLARE"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de las siguientes es una declaración válida para manejar excepciones en PL/SQL?",
+    options: [
+      "WHEN OTHERS THEN",
+      "IF ERROR THEN",
+      "TRY CATCH",
+      "CATCH ERROR THEN"
+    ],
+    correctIndex: 0
+  }
+]} />
+
+
+## Sección 2: Ejercicios Prácticos (75 puntos)
+
+### Ejercicio 1
+**Calcular el Salario Anual** (25 puntos)
+
+Crea un procedimiento almacenado llamado sp_CalcularSalarioAnual que reciba el salario mensual de un empleado y calcule su salario anual (salario mensual * 12). El procedimiento debe imprimir el salario anual.
+
+Ejemplo de Entrada:
+```sql
+CALL sp_CalcularSalarioAnual(1500);
+```
+Ejemplo de Salida Esperada:
+
+<TerminalOutput withBg>
+{`El salario anual es: 18000`}
+</TerminalOutput>
+
+<Solution>
+```sql
+CREATE OR REPLACE PROCEDURE sp_CalcularSalarioAnual(
+    p_salario_mensual IN NUMBER
+) IS
+    v_salario_anual NUMBER;
+BEGIN
+    -- Calcular el salario anual
+    v_salario_anual := p_salario_mensual * 12;
+
+    -- Imprimir el salario anual
+    DBMS_OUTPUT.PUT_LINE('El salario anual es: ' || v_salario_anual);
+END;
+```
+</Solution>
+
+### Ejercicio 2
+**Verificar Si un Número es Par o Impar** (25 puntos)
+
+Crea un bloque PL/SQL que reciba un número y determine si es par o impar. Si el número es par, debe imprimir "Es par", de lo contrario, "Es impar".
+
+Ejemplo de Entrada:
+
+```sql
+DECLARE
+    v_numero NUMBER := 8;
+BEGIN
+    -- bloque para verificar si es par o impar
+END;
+```
+Ejemplo de Salida Esperada:
+
+<TerminalOutput withBg>
+{`Es par`}
+</TerminalOutput>
+
+<Solution>
+```sql
+DECLARE
+    v_numero NUMBER := 8;
+BEGIN
+    IF MOD(v_numero, 2) = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Es par');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Es impar');
+    END IF;
+END;
+```
+</Solution>
+
+### Ejercicio 3
+**Actualizar el Stock de un Producto** (25 puntos)
+
+Crea un procedimiento almacenado llamado sp_ActualizarStockProducto que reciba el ID del producto y una cantidad vendida. Debe actualizar el stock del producto restando la cantidad vendida e imprimir el stock actualizado.
+
+Ejemplo de Entrada:
+```sql
+CALL sp_ActualizarStockProducto(101, 3);
+```
+Ejemplo de Salida Esperada:
+
+<TerminalOutput withBg>
+{`El stock del producto con ID 101 es: 7`}
+</TerminalOutput>
+
+<Solution>
+```sql
+CREATE OR REPLACE PROCEDURE sp_ActualizarStockProducto(
+	p_ProductoID IN NUMBER,
+	p_cantidad_vendida IN NUMBER
+)
+IS
+	v_stock_actual NUMBER;
+BEGIN
+	-- Obtener el stock actual del producto
+  SELECT stock INTO v_stock_actual
+  FROM Productos
+  WHERE ProductoID = p_ProductoID;
+
+  -- Actualizar el stock restando la cantidad vendida
+  v_stock_actual := v_stock_actual - p_cantidad_vendida;
+
+  -- Actualizar el registro en la tabla
+  UPDATE Productos
+  SET stock = v_stock_actual
+  WHERE ProductoID = p_ProductoID;
+
+  -- Imprimir el stock actualizado
+  DBMS_OUTPUT.PUT_LINE('El stock del producto con ID ' || p_ProductoID || ' es: ' || v_stock_actual);
+END;
+```
+</Solution>

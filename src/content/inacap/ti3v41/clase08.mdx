@@ -1,0 +1,342 @@
+# (Proyecto Tienda) Vista genéricas de detalle
+
+## 1. Repaso clase anterior
+
+- Uso de Vistas genéricas de listas
+- Son clases que se implementan en el módulo `views.py`
+- Construyen internamente una vista genérica
+- Es por esto que heredan de `generic.ListView`
+
+**Ejemplo**
+
+```python
+#./tienda/views.py
+from django.shortcuts import render
+from .models import Cliente, Producto, Categoria
+from django.views import generic
+...
+...
+# Vistas genéricas de lista
+class ClienteListView(generic.ListView):
+    model = Cliente
+
+class ProductoListView(generic.ListView):
+    model = Producto
+
+class CategoriaListView(generic.ListView):
+    model = Categoria
+```
+
+- Luego se generan los templates con el mismo nombre del modelo y con sufijo `_list`
+    - Para el modelo `Cliente` su template es `cliente_list.html`
+    - Para el modelo `Producto` su template es `producto_list.html`
+    - Para el modelo `Categoria` su template es `categoria_list.html`
+
+## 2. Vistas genéricas de detalle
+
+**Ejemplo:** Implementación en el archivo `views.py`, donde se usa la clase **Book**, pero ahora para visualizar el detalle de los libros
+```python
+class BookDetailView(generic.DetailView):
+    model = Book
+```
+
+- Los templates ahora deben tener sufijo `_detail`
+    - Para el modelo `Book` su template es `book_detail.html`
+- El enrutamiento ahora es distinto:
+    ```python
+    path('book/<int:pk>', views.BookDetailView.as_view(), name='book-detail'),
+    ```
+
+## 3. Continuación Proyecto 'tienda'
+
+### Creación Vistas genéricas de detalle
+1. **Configurar Vistas:** Agregar las 'vistas genéricas de detalle' `ClienteDetailView`, `ProductoDetailView`, `CategoriaDetailView`
+    ```python
+    # ./tienda/views.py
+    from django.shortcuts import render
+    from .models import Cliente, Producto, Categoria
+    from django.views import generic
+    ...
+    ...   
+    # Vistas genéricas de detalle
+    class ClienteDetailView(generic.DetailView):
+        model = Cliente
+
+    class ProductoDetailView(generic.DetailView):
+        model = Producto
+        
+    class CategoriaDetailView(generic.DetailView):
+        model = Categoria 
+    ```
+
+2. **Configurar Templates (1):** Crear los templates `cliente_detail.html`, `producto_detail.html` y `categoria_detail.html`
+    ```html
+    <!-- ./tienda/templates/tienda/cliente_detail.html -->
+    {% extends "tienda/base.html" %}
+
+    {% block title %}
+        <title>Tienda de Productos - Detalle Clientes</title>
+    {% endblock title %}
+
+    {% block content %}
+        <h1>Información de Clientes</h1>
+        <p>Nombre: {{ cliente.nombre }} {{ cliente.apellido}}</p>
+        <p>Fecha Nac: {{ cliente.fecha_nac }}</p>
+        <p>Edad: {{ cliente.edad }}</p>
+        <p>Correo: {{ cliente.correo }}</p>
+    {% endblock content %}
+    ```
+    
+    ```html
+    <!-- ./tienda/templates/tienda/producto_detail.html -->
+    {% extends "tienda/base.html" %}
+
+    {% block title %}
+        <title>Tienda de Productos - Detalle Productos</title>
+    {% endblock title %}
+
+    {% block content %}
+        <h1>Información de Producto</h1>
+        <p>Nombre: {{producto.nombre}}</p>
+        <p>Precio: {{producto.precio}}</p>
+        <p>Stock: {{producto.stock}}</p>
+        <p>Categoría: {{producto.categoria}}</p>
+    {% endblock content %}
+    ``` 
+    ```html
+    <!-- ./tienda/templates/tienda/categoria_detail.html -->
+    {% extends "tienda/base.html" %}
+
+    {% block title %}
+        <title>Tienda de Productos - Detalle Categorías</title>
+    {% endblock title %}
+
+    {% block content %}
+        <h1>Información Categoría</h1>
+        <p>Nombre: {{categoria.nombre}}</p>
+    {% endblock content %}
+    ``` 
+
+3. **Configurar Enrutamiento:** agregar la ruta para las "vistas genéricas de detalle" `ClienteDetailView`, `ProductoDetailView` y `CategoriaDetailView`
+    ```python
+    # ./tienda/urls.py
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        ...
+        ...
+        path("cliente/<int:pk>", views.ClienteDetailView.as_view(), name="cliente-detail"),    
+        path("producto/<int:pk>", views.ProductoDetailView.as_view(), name="producto-detail"),    
+        path("categoria/<int:pk>", views.CategoriaDetailView.as_view(), name="categoria-detail"),    
+    ]
+    ```
+
+4. **Configurar Modelos:** Agregar el método `get_absolute_url()` que permita construir la url de acuerdo al objeto seleccionado
+    ```python
+    # ./tienda/models.py
+    from django.db import models
+    from django.urls import reverse
+
+    # Create your models here.
+    class Cliente(models.Model):
+        ...
+        ...
+        def get_absolute_url(self):
+            return reverse("cliente-detail", args=[str(self.id)])
+
+    class Producto(models.Model):
+        ...
+        ...
+        def get_absolute_url(self):
+            return reverse("producto-detail", args=[str(self.id)])
+
+    class Categoria(models.Model):
+        ...
+        ...
+        def get_absolute_url(self):
+            return reverse("categoria-detail", args=[str(self.id)])
+    ``` 
+
+5. **Configurar Templates (2):** agregar el método `get_absolute_url` en los templates `cliente_list.html`, `producto_list.html` y `categoria_list.html`
+    ```html
+    <!-- ./tienda/templates/tienda/cliente_list.html -->
+    {% extends "tienda/base.html" %}
+
+    {% block title %}
+        <title>Tienda de Productos - clientes</title>
+    {% endblock title %}
+
+    {% block content %}
+    <h1>Lista de clientes</h1>
+    	{% if cliente_list %}
+    		 <ul>
+    			{% for cliente in cliente_list %}
+    				<li><a href="{{cliente.get_absolute_url}}">{{cliente.nombre}} {{cliente.apellido}}</a> - ({{cliente.id}})</li>
+    			{% endfor %}
+    		 </ul>
+    	{% else %}
+    		 <p>No hay clientes registrados.</p>
+    	{% endif %}
+    {% endblock content %}
+    ```
+    ```html
+    <!-- ./tienda/templates/tienda/producto_list.html -->
+    {% extends "tienda/base.html" %}
+
+    {% block title %}
+        <title>Tienda de Productos - productos</title>
+    {% endblock title %}
+
+    {% block content %}
+    <h1>Lista de productos</h1>
+        {% if producto_list %}
+            <ul>
+                {% for producto in producto_list %}
+                    <li><a href="{{producto.get_absolute_url}}">{{producto.nombre}}</a> - ({{producto.id}})</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hay productos registrados.</p>
+        {% endif %}
+    {% endblock content %}
+
+    ```
+    ```html
+    <!-- ./tienda/templates/tienda/categoria_list.html -->
+    {% extends "tienda/base.html" %}
+
+    {% block title %}
+        <title>Tienda de Productos - categorias</title>
+    {% endblock title %}
+
+    {% block content %}
+    <h1>Lista de categorias</h1>
+        {% if categoria_list %}
+            <ul>
+                {% for categoria in categoria_list %}
+                    <li><a href="{{categoria.get_absolute_url}}">{{categoria.nombre}}</a> - ({{categoria.id}})</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hay categorias registradas.</p>
+        {% endif %}
+    {% endblock content %}
+    ```
+
+6. **Realizar Pruebas:** Levantar el servidor y verificar ruta
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    # ruta detalle cliente con id=1
+    http://127.0.0.1:8000/tienda/cliente/1
+    ```
+    <SmartFigure
+        id="pagina-cliente-id1-mediante-vistas-genericas-de-detalle"
+        src="/inacap/ti3v41/images/fig037.png"
+        alt="Página 'cliente con id=1' mediante Vistas genéricas de detalle"
+        caption="Página 'cliente con id=1' mediante Vistas genéricas de detalle"
+        size="large"
+    />
+    ```sh
+    # ruta detalle producto con id=3
+    http://127.0.0.1:8000/tienda/producto/3
+    ```
+    <SmartFigure
+        id="pagina-producto-id3-mediante-vistas-genericas-de-detalle"
+        src="/inacap/ti3v41/images/fig038.png"
+        alt="Página 'producto con id=3' mediante Vistas genéricas de detalle"
+        caption="Página 'producto con id=3' mediante Vistas genéricas de detalle"
+        size="large"
+    />
+    ```sh
+    # ruta detalle categoría con id=2
+    http://127.0.0.1:8000/tienda/categoria/2
+    ```
+    <SmartFigure
+        id="pagina-categoria-id2-mediante-vistas-genericas-de-detalle"
+        src="/inacap/ti3v41/images/fig039.png"
+        alt="Página 'categoría con id=2' mediante Vistas genéricas de detalle"
+        caption="Página 'categoría con id=2' mediante Vistas genéricas de detalle"
+        size="large"
+    />
+
+### Agregar imágenes para la lista de productos
+
+1. **Crear directorio static:** Para imágenes locales de productos y estilo bootstrap
+
+```sh
+mkdir -p ./tienda/static/tienda
+```
+
+2. **Agregar recursos locales:** Descargar [recursos_tienda.rar](/inacap/ti3v41/assets/recursos_tienda.rar) y agregarlo al directorio `static/`
+
+3. **Configurar Templates:** Actualizar el template `producto_list.html`
+    ```html
+    <!-- ./tienda/templates/tienda/producto_list.html -->
+    {% extends "tienda/base.html" %}
+    
+    {% block title %}<title>Tienda de Productos - Productos</title>{% endblock %}
+    
+    {% block content %}
+    <!-- Projects Section-->
+    {% load static %}
+    <section class="py-5">
+      <div class="container px-1 mb-5">
+          <div class="text-center mb-5">
+              <h1 class="display-5 fw-bolder mb-0">
+                <span class="text-gradient d-inline">
+                    Lista de Productos
+                </span>
+            </h1>
+          </div>
+          <!-- Se verifica si hay productos en la lista. -->
+           {% if producto_list %}
+          <div class="row gx-5 justify-content-center">
+            {% for producto in producto_list %}
+            <div class="col-md-4">
+                <div class="card mb-2 shadow-lg" style="width: 18rem;">
+                    <img src="{% static 'tienda/images/1.jpg' %}" class="card-img-top"  alt="..." />
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <strong>{{producto.nombre}}</strong>({{producto.id}})
+                        </h5>
+                        <p class="card-text">
+                            <p><strong>Stock:</strong>{{producto.stock}} </p>
+                            <p><strong>Precio</strong>{{producto.precio}}</p>
+                        </p>
+                        <a href="{{producto.get_absolute_url}}" 
+                            class="btn btn-primary col-md-12">
+                            <i class="bi bi-eye"></i> Ver Detalle
+                        </a>
+                    </div>
+                </div>
+                </div> 
+            {% endfor %}  
+          </div>
+          {% else %}
+          <div class="row gx-5 justify-content-center">
+            <p>No hay productos registrados.</p>
+          </div>  
+          {% endif %}
+      </div>
+    </section>
+    {% endblock content %}
+    ```
+
+4. **Realizar Pruebas:** Levantar servidor y verificar ruta
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/tienda/productos/
+    ```
+    <SmartFigure
+        id="pagina-productos-actualizada"
+        src="/inacap/ti3v41/images/fig040.png"
+        alt="Página 'productos' actualizada con imágenes locales"
+        lightbox={true}
+        caption="Página 'productos' actualizada con imágenes locales"
+        size="large"
+    />

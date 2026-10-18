@@ -1,0 +1,306 @@
+# Evaluación 03
+
+**Material:** [evaluacion03.pdf](docs/evaluacion03.pdf)
+
+<SmartFigure
+	src="/inacap/ti3v52/images/fig159.png"
+	alt="Topología de red"
+	caption="Topología de red"
+	lightbox={true}
+    size="large"
+/>
+
+1. Asigne nombre a cada dispositivo de acuerdo con sus datos personales, por ejemplo, si su nombre es Pedro, el primer router será PEDRO. Luego asigne IP a cada dispositivo de acuerto con la Tabla de direcciones IP siguiente:
+
+<SmartFigure
+	src="/inacap/ti3v52/images/fig160.png"
+	alt="Tabla de direcciones"
+	caption="Tabla de direcciones"
+    size="medium"
+/>
+
+<Solution title="Solución Pregunta 01">
+
+<SmartFigure
+    id="figura161"
+	src="/inacap/ti3v52/images/fig161.png"
+	alt="Cambio de hostname a router SUNOMBRE"
+	caption="Cambio de hostname a router SUNOMBRE"
+    size="large"
+/>
+
+<SmartFigure
+    id="figura162"
+	src="/inacap/ti3v52/images/fig162.png"
+	alt="Configuración g0/0, g0/1 y s0/0/0 en router SUNOMBRE"
+	caption="Configuración g0/0, g0/1 y s0/0/0 en router SUNOMBRE"
+    size="large"
+/>
+---
+<SmartFigure
+    id="figura163"
+	src="/inacap/ti3v52/images/fig163.png"
+	alt="Cambio de hostname a router PRIMERAPELLIDO"
+	caption="Cambio de hostname a router PRIMERAPELLIDO"
+    size="large"
+/>
+<SmartFigure
+    id="figura164"
+	src="/inacap/ti3v52/images/fig164.png"
+	alt="Configuración g0/0, s0/0/0 y s0/0/1 en router PRIMERAPELLIDO"
+	caption="Configuración g0/0, s0/0/0 y s0/0/1 en router PRIMERAPELLIDO"
+    size="large"
+/>
+---
+<SmartFigure
+    id="figura165"
+	src="/inacap/ti3v52/images/fig165.png"
+	alt="Cambio de hostname a router SEGUNDOAPELLIDO"
+	caption="Cambio de hostname a router SEGUNDOAPELLIDO"
+    size="large"
+/>
+<SmartFigure
+    id="figura166"
+	src="/inacap/ti3v52/images/fig166.png"
+	alt="Configuración g0/0, g0/1 y s0/0/1 en router SEGUNDOAPELLIDO"
+	caption="Configuración g0/0, g0/1 y s0/0/1 en router SEGUNDOAPELLIDO"
+    size="large"
+/>
+---
+<SmartFigure
+    id="figura167"
+	src="/inacap/ti3v52/images/fig167.png"
+	alt="Configuración PC0, PC1, PC2, PC3 y PC4"
+	caption="Configuración PC0, PC1, PC2, PC3 y PC4"
+    size="large"
+/>
+
+
+</Solution>
+
+2. Realice configuración de protocolo de enrutamiento OSPFv2 en router SUNOMBRE:
+    - ID de proceso 1000+X (ej: si X=15, ID=1015)
+    - El valor de X será entregado por su docente
+    - ID de router: 110.110.110.110
+    - Declare o publique las redes directamente conectadas con su correspondiente WildCardMask y en área 0 backbone
+    - No enviar información de enrutamiento por interfaces que no sea necesario o inseguro
+
+<Solution title="Solución Pregunta 02">
+
+<TerminalOutput 
+caption="Configuración enrutamiento OSPFv2 en router SUNOMBRE"
+withBg>
+{`ANTONIO>enable
+ANTONIO#configure terminal
+
+# El valor de X (X=21) fue entregado por el docente, ID de proceso = 1000+X = 1021
+ANTONIO(config)#router ospf 1021
+
+# ID de router: 110.110.110.110
+ANTONIO(config-router)#router-id 110.110.110.110
+
+# Declara y publica las redes directamente conectadas con su WildCardMask en área 0 backbone
+ANTONIO(config-router)#network 172.31.0.0 0.0.7.255 area 0
+ANTONIO(config-router)#network 172.31.9.0 0.0.1.255 area 0
+ANTONIO(config-router)#network 172.31.10.128 0.0.0.3 area 0
+
+# No envía información de enrutamiento por interfaces que no sean necesarias o inseguras
+ANTONIO(config-router)#passive-interface default
+ANTONIO(config-router)#no passive-interface s0/0/0`}
+</TerminalOutput>
+
+
+</Solution>
+
+3. Realice configuración de protocolo de enrutamiento OSPFv2 en router PRIMERAPELLIDO:
+    - ID de proceso: 2000+X (ej: si X=15, ID=2015)
+    - El valor de X será entregado por su docente
+    - ID del router: 220.220.220.220
+    - Declare o publique las IP de las interfaces del router con su correspondiente WildCardMask en área 0 backbone
+    - No enviar información de enrutamiento por interfaces que no sea necesario o inseguro
+
+<Solution title="Solución Pregunta 03">
+<TerminalOutput 
+caption="Configuración enrutamiento OSPFv2 en router PRIMERAPELLIDO"
+withBg>
+{`MORALES>enable
+MORALES#configure terminal
+
+# El valor de X (X=21) fue entregado por el docente, ID de proceso = 2000+X = 2021
+MORALES(config)#router ospf 2021
+
+# ID de router: 220.220.220.220
+MORALES(config-router)#router-id 220.220.220.220
+
+# Declara y publica las IP de las interfaces del router con su WildCardMask en área 0 backbone
+MORALES(config-router)#network 131.131.0.1 0.0.0.0 area 0
+MORALES(config-router)#network 172.31.10.133 0.0.0.0 area 0
+MORALES(config-router)#network 172.31.10.130 0.0.0.0 area 0
+
+# No envía información de enrutamiento por interfaces que no sean necesarias o inseguras
+MORALES(config-router)#passive-interface g0/0`}
+</TerminalOutput>
+</Solution>
+
+4. Realice configuración de protocolo de enrutamiento OSPFv2 en router SEGUNDOAPELLIDO:
+    - Agregue una Interface Loopback 190 con IP=190.190.190.1 M=255.255.255.255
+    - Agregar ruta estática por defecto que ocupe la interface loopback como salida
+    - ID de proceso: 3000+X (ej: si X=15, ID=1015)
+    - El valor de X será entregado por su docente
+    - ID del router: 30.30.30.30
+    - Habilite cada interfaz del router para ospf en área backbone
+    - No enviar información de enrutamiento por interfaces que no sea necesario o inseguro
+    - Redistribuya la ruta por defecto dentro de ospf
+
+<Solution title="Solución Pregunta 04">
+<TerminalOutput 
+caption="Configuración enrutamiento OSPFv2 en router SEGUNDOAPELLIDO"
+withBg
+>
+{`CAQUEO>enable
+CAQUEO#configure terminal
+
+# Agrega una Interface Loopback 190 con IP=190.190.190.1 M=255.255.255.255
+CAQUEO(config)#interface loopback 190
+CAQUEO(config-if)#ip address 190.190.190.1 255.255.255.255
+
+# Agrega ruta estática por defecto que ocupa la interface loopback como salida
+CAQUEO(config-if)#ip route 0.0.0.0 0.0.0.0 loopback 190
+
+# El valor de X (X=21) fue entregado por el docente, ID de proceso = 3000+X = 3021
+CAQUEO(config-if)#router ospf 3021
+
+# ID de router: 30.30.30.30
+CAQUEO(config-router)#router-id 30.30.30.30
+CAQUEO(config-router)#exit
+
+# Habilita cada interfaz del router para ospf en área backbone
+CAQUEO(config)#interface g0/0
+CAQUEO(config-if)#ip ospf 3021 area 0
+CAQUEO(config-if)#interface g0/1
+CAQUEO(config-if)#ip ospf 3021 area 0
+CAQUEO(config-if)#interface s0/0/1
+CAQUEO(config-if)#ip ospf 3021 area 0
+CAQUEO(config-if)#exit
+
+# No envía información de enrutamiento por interfaces que no sean necesarias o inseguras
+CAQUEO(config)#router ospf 3021
+CAQUEO(config-router)#passive-interface default
+CAQUEO(config-router)#no passive-interface s0/0/1
+
+# Redistribuye la ruta por defecto dentro de ospf
+CAQUEO(config-router)#default-information originate`}
+</TerminalOutput>
+
+</Solution>
+
+
+5. Modificar el tiempo hello a 8 segundos en el enlace entre PRIMERAPELLIDO y SEGUNDOAPELLIDO
+
+<Solution title="Solución Pregunta 05">
+
+<TerminalOutput
+caption="Router PRIMEAPELLIDO"
+withBg
+>
+{`MORALES(config)#interface s0/0/0
+MORALES(config-if)#ip hello-interval eigrp 3000 8`}
+</TerminalOutput>
+
+<TerminalOutput
+caption="Router SEGUNDOAPELLIDO"
+withBg
+>
+{`CAQUEO(config)#interface s0/0/1
+CAQUEO(config-if)#ip hello-interval eigrp 3000 8`}
+</TerminalOutput>
+
+</Solution>
+
+6. Modificar el ancho de banda a 8MB en enlace entre SUNOMBRE y PRIMERAPELLIDO
+<Solution title="Solución Pregunta 06">
+<TerminalOutput
+caption="Router SUNOMBRE"
+withBg
+>
+{`ANTONIO(config)#interface s0/0/0
+ANTONIO(config-if)#bandwidth 8192`}
+</TerminalOutput>
+
+<TerminalOutput
+caption="Router PRIMEAPELLIDO"
+withBg
+>
+{`MORALES(config-if)#interface s0/0/1
+MORALES(config-if)#bandwidth 8192`}
+</TerminalOutput>
+</Solution>
+
+7. Muestre la tabla de enrutamiento, de vecinos y topología:
+    - Aplique comando para mostrar tabla de enrutamiento en router SEGUNDOAPELLIDO
+    - Aplique comando para mostrar tabla de vecinos en router PRIMERAPELLIDO
+    - Aplique comando para mostrar tabla de topología en router SUNOMBRE
+    - Explique resultado de dicho comando
+    - Realice resolución de problemas en caso de errores o fallas de configuración
+
+
+<Solution title="Solución Pregunta 07">
+
+<Callout type="info" title="Tabla de enrutamiento en router SEGUNDOAPELLIDO">
+Muestra todas las rutas aprendidas por el router
+</Callout>
+
+<SmartFigure
+	id="fig168"
+	src="/inacap/ti3v52/images/fig168.png"
+	alt="Tabla de enrutamiento en router SEGUNDOAPELLIDO"
+	caption="Tabla de enrutamiento en router SEGUNDOAPELLIDO"
+	size="large"
+/>
+
+<Callout type="info" title="Tabla de vecinos en router PRIMERAPELLIDO">
+Muestra los routers adyacentes, estado, interfaces y tiempo muerto
+</Callout>
+
+<SmartFigure
+	id="fig169"
+	src="/inacap/ti3v52/images/fig169.png"
+	alt="Tabla de vecinos en router PRIMERAPELLIDO"
+	caption="Tabla de vecinos en router PRIMERAPELLIDO"
+	size="large"
+/>
+
+<Callout type="info" title="Tabla de topología en router SUNOMBRE">
+Muestra la base de datos de estados de enlace (LSDB) del área OSPF
+</Callout>
+
+<SmartFigure
+	id="fig170"
+	src="/inacap/ti3v52/images/fig170.png"
+	alt="Tabla de topología en router SUNOMBRE"
+	caption="Tabla de topología en router SUNOMBRE"
+	size="large"
+/>
+---
+
+- **Inspección con PDU List Window:** confirma conectividad extremo a extremo entre todos los PC de la topología, todas exitosas.
+
+<SmartFigure
+	id="fig171"
+	src="/inacap/ti3v52/images/fig171.png"
+	alt="Envío de paquetes PDU"
+	caption="Envío de paquetes PDU"
+	size="large"
+/>
+
+- **Ping desde dispositivo no adyacente (PC2, detrás de PRIMERAPELLIDO) hacia la Loopback190 de SEGUNDOAPELLIDO:** exitoso (0% loss), confirma que las rutas OSPF se propagaron correctamente incluso hacia un router que no es vecino directo.
+
+<SmartFigure
+	id="fig172"
+	src="/inacap/ti3v52/images/fig172.png"
+	alt="Ping desde dispositivo no adyacente a SEGUNDOAPELLIDO"
+	caption="Ping desde dispositivo no adyacente a SEGUNDOAPELLIDO"
+	size="large"
+/>
+
+</Solution>

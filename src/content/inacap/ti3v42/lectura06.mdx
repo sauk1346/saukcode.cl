@@ -1,0 +1,172 @@
+# Introducción al Desarrollo Móvil en Android
+
+Android es un sistema operativo móvil, desarrollado con el objetivo de ofrecer una plataforma abierta, flexible e innovadora, para una amplia variedad de dispositivos. Desde su creación en 2003 por Android Inc. y su posterior adquisición por Google en 2005, Android ha experimentado una evolución constante, incorporando mejoras en rendimiento, seguridad y experiencia de usuario.
+
+Su arquitectura, basada en capas bien definidas, permite una clara separación de responsabilidades y facilita la portabilidad entre distintos dispositivos. En su núcleo, el sistema se apoya en el kernel de Linux y una capa de abstracción de hardware (HAL), lo que le otorga robustez y adaptabilidad.  
+
+## 1. Arquitectura del Sistema Android
+
+El Android Open Source Project (AOSP) presenta una arquitectura en capas que proporciona una separación clara de responsabilidades y una abstracción eficiente entre hardware y software. Esta arquitectura multicapa permite la portabilidad del sistema operativo a diferentes dispositivos y facilita el desarrollo de aplicaciones.
+
+<SmartTable
+    tableLayout="auto"
+    headers={['Componentes', 'Descripción']}
+    rows={[
+        [
+            "**Kernel de Linux**",
+            "En la base de la arquitectura Android se encuentra el kernel de Linux, que actúa como la interfaz principal entre el hardware del dispositivo y las capas superiores del software. El kernel de Linux maneja todos los controladores disponibles como controladores de pantalla, cámara, Bluetooth, audio y memoria, que son necesarios durante el tiempo de ejecución."
+        ],
+        [
+            "**Capa de abstracción de hardware (HAL)**",
+            "Una HAL es una capa de abstracción con una interfaz estándar para que los proveedores de hardware la implementen. Las HAL permiten que Android sea agnóstico sobre las implementaciones de controladores de nivel inferior. Esta capa permite que Android funcione en diferentes tipos de hardware sin modificar las capas superiores del sistema."
+        ],
+        [
+            "**Android Runtime (ART)**",
+            "ART realiza la traducción del bytecode de la aplicación en instrucciones específicas del procesador, que son ejecutadas por el entorno de tiempo de ejecución del dispositivo. ART reemplazó a Dalvik Virtual Machine (DVM) en Android 5.0 (API nivel 21) y proporciona mejoras significativas en rendimiento y eficiencia energética."
+        ],
+        [
+            "**Bibliotecas nativas de C/C++**",
+            "Esta capa incluye bibliotecas principales escritas en C y C++ que proporcionan funcionalidades esenciales para el sistema Android."
+        ],
+        [
+            "**Framework de aplicaciones Java**",
+            "El framework de aplicaciones proporciona las APIs que los desarrolladores utilizan para crear aplicaciones Android. La funcionalidad expuesta por la API del framework Android se comunica con servicios del sistema para acceder al hardware subyacente."
+        ],
+        [
+            "**Capa de aplicaciones**",
+            "En la capa superior se encuentran las aplicaciones que interactúan directamente con el usuario. Una aplicación creada únicamente usando la API de Android tiene acceso a todas las funcionalidades del framework y puede interactuar con otras aplicaciones a través de intents y content providers."
+        ],
+    ]}
+/>
+
+## 2. Componentes fundamentales de aplicaciones Android
+
+<SmartFigure
+	id="componenetes-de-desarrollo-android"
+	src="/inacap/ti3v42/images/fig15.png"
+	alt="Componentes de desarrollo de aplicaciones Android"
+	caption="Componentes de desarrollo de aplicaciones Android"
+	size="large"
+/>
+
+<SmartTable
+    tableLayout="auto"
+    headers={['Componente', 'Descripción']}
+    rows={[
+        [
+            "**Activities (Actividades)**",
+            "Una actividad representa una sola pantalla con una interfaz de usuario. Es el punto de entrada para interactuar con el usuario y puede contener varios elementos de la interfaz de usuario, como botones, textos y listas."
+        ],
+        [
+            "**Services (Servicios)**",
+            "Un servicio es un componente que realiza operaciones en segundo plano sin una interfaz de usuario. Puede ejecutarse indefinidamente, incluso si la aplicación que lo inició ha sido cerrada."
+        ],
+        [
+            "**Broadcast Receivers (Receptores de difusión)**",
+            "Los receptores de difusión permiten a las aplicaciones responder a anuncios del sistema o de otras aplicaciones. Por ejemplo, una aplicación puede escuchar eventos como la llegada de un mensaje SMS o cambios en la conectividad de red."
+        ],
+        [
+            "**Content Providers (Proveedores de contenido)**",
+            "Los proveedores de contenido gestionan un conjunto estructurado de datos y proporcionan mecanismos para compartir esos datos entre diferentes aplicaciones. Permiten a las aplicaciones acceder a datos almacenados en otras aplicaciones de manera segura."
+        ],
+    ]}/>
+
+## 3. Android Studio: IDE oficial para desarrollo Android
+Android Studio representa el punto de partida esencial para cualquier desarrollador que desee crear aplicaciones móviles en el ecosistema Android. Diseñado y mantenido por Google, este entorno de desarrollo proporciona todas las herramientas necesarias para programar, probar y depurar aplicaciones en un solo lugar, integrando funcionalidades avanzadas que acompañan cada etapa del proceso de desarrollo, desde la concepción del proyecto hasta su publicación.
+
+### Características
+
+<SmartTable
+    tableLayout="auto"
+    headers={['Característica', 'Descripción']}
+    rows={[
+        [
+            "**Editor de código inteligente**",
+            "Ofrece autocompletado, refactorización y análisis de código en tiempo real."
+        ],
+        [
+            "**Sistema de construcción flexible**",
+            "Basado en Gradle, permite gestionar dependencias y configurar compilaciones personalizadas."
+        ],
+        [
+            "**Emulador integrado**",
+            "Permite probar aplicaciones en una variedad de dispositivos virtuales."
+        ],
+        [
+            "**Integración con herramientas Google Cloud**",
+            "Facilita la incorporación de servicios en la nube."
+        ],
+]}/>
+
+
+## 4. Kotlin: el lenguaje moderno para Android
+Más del 95 % de las 1000 aplicaciones principales de Android utilizan Kotlin para aumentar la productividad, satisfacción del desarrollador y seguridad del código. Google declaró a Kotlin como lenguaje preferido para desarrollo Android en Google I/O en 2019.
+
+### Ventajas de Kotlin sobre Java
+
+<SmartTable
+    tableLayout="auto"
+    headers={['Ventaja', 'Descripción']}
+    rows={[
+        [
+            "**Sintaxis concisa**",
+            "Kotlin reduce significativamente la cantidad de código boilerplate comparado con Java, permitiendo a los desarrolladores escribir código más expresivo y mantenible"
+        ],
+        [
+            "**Seguridad de Nulls**",
+            "Kotlin incluye seguridad de nulls en el sistema de tipos, eliminando la posibilidad de excepciones de referencia nula en tiempo de ejecución"
+        ],
+        [
+            "**Interoperabilidad con Java**",
+            "Kotlin es 100 % interoperable con Java, permitiendo la integración gradual en proyectos existentes y el uso de bibliotecas Java existentes"
+        ],
+        [
+            "**Programación funcional**",
+            "Kotlin soporta paradigmas de programación funcional junto con programación orientada a objetos, proporcionando flexibilidad en el diseño de software"
+        ],
+]}/>
+
+# Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "¿Qué componente de una aplicación Android permite representar una pantalla con interfaz de usuario para interactuar con el usuario?",
+		options: [
+			"Service",
+			"Content Provider",
+			"Activity",
+			"Broadcast Receiver"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Cuál de los siguientes componentes forma parte de la arquitectura del sistema Android?",
+		options: [
+			"Swift",
+			"React Native",
+			"Kernel de Linux",
+			"Node.js"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Cuál de las siguientes ventajas ofrece Kotlin frente a Java en el desarrollo de aplicaciones Android?",
+		options: [
+			"Sintaxis concisa y expresiva",
+			"Restricciones para usar bibliotecas Java existentes",
+			"Mayor consumo de memoria durante la ejecución",
+			"Uso exclusivo en dispositivos con Android 10 o superior"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Qué función cumple el sistema Graddle dentro de Android Studio?",
+		options: [
+			"Emula dispositivos físicos con distintas características",
+			"Automatiza la construcción de apps y permite gestionar configuraciones",
+			"Mejora el rendimiento de las apps en tiempo de ejecución",
+			"Solo proporciona plantillas de diseño para layouts"
+		],
+		correctIndex: 1
+	},
+]} />

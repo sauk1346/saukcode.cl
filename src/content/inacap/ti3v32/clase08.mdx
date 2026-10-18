@@ -1,0 +1,272 @@
+# Guía Práctica Avanzada - MongoDB Shell
+
+## Parte 1: Preparación del Entorno
+
+1. Abre la terminal o consola y accede a MongoDB Shell.
+2. Usa o crea la base de datos tiendaTecnologiaAvanzado.
+3. Inserta al menos 5 documentos en la colección productos con esta estructura sugerida:
+    - nombre (string)
+    - categoria (string)
+    - precio (number)
+    - stock (number)
+    - fechaIngreso (date)
+    - etiquetas (array de strings, opcional)
+    - detalles (subdocumento con marca, garantiaMeses)
+
+<Solution>
+```json
+[
+  {
+    "nombre":"teclado",
+    "categoria":"electronica",
+    "precio":10,
+    "stock":5,
+    "fechaIngreso":{"$date":"2024-03-01"},
+    "etiquetas":[],
+    "detalles":{
+    	"marca":"samsung",
+      "garantiaMeses":3
+    }
+  },
+  {
+    "nombre":"camisa",
+    "categoria":"ropa",
+    "precio":20,
+    "stock":10,
+    "fechaIngreso":{"$date":"2024-05-25"},
+    "etiquetas":[],
+    "detalles":{
+    	"marca":"corona",
+      "garantiaMeses":5
+    }
+  },
+  {
+    "nombre":"almohada",
+    "categoria":"hogar",
+    "precio":25,
+    "stock":100,
+    "fechaIngreso":{"$date":"2024-04-10"},
+    "etiquetas":[],
+    "detalles":{
+    	"marca":"dubua",
+      "garantiaMeses":10
+    }
+  },
+  {
+    "nombre":"olla",
+    "categoria":"hogar",
+    "precio":30,
+    "stock":30,
+    "fechaIngreso":{"$date":"2024-06-06"},
+    "etiquetas":[],
+    "detalles":{
+    	"marca":"hush",
+      "garantiaMeses":5
+    }
+  },
+  {
+    "nombre":"camara",
+    "categoria":"electronica",
+    "precio":100,
+    "stock":20,
+    "fechaIngreso":{"$date":"2024-07-08"},
+    "etiquetas":[],
+    "detalles":{
+    	"marca":"sony",
+      "garantiaMeses":10
+    }
+  }
+]
+```
+</Solution>
+
+## Parte 2: Ejercicios CRUD y Avanzados
+
+### Ejercicio 01
+Agrega un producto nuevo que contenga un array de etiquetas (por ejemplo: ["gaming", "nuevo", "destacado"]) y un subdocumento de detalles.
+
+<Solution>
+
+```json
+{
+  "nombre":"pantalon",
+  "categoria":"ropa",
+  "precio":50,
+  "stock":35,
+  "fechaIngreso":{"$date":"2025-03-25"},
+  "etiquetas":["ropa", "oferta", "nuevo producto"],
+  "detalles":{
+    "marca": "lacost",
+    "garantiaMeses":12
+  }
+}
+```
+</Solution>
+
+### Ejercicio 02
+Inserta al menos 2 productos con campos adicionales como proveedor y descuento.
+
+<Solution>
+```json
+[
+	{
+    "nombre":"ps5",
+    "categoria":"electronica",
+    "precio":500,
+    "stock":20,
+    "fechaIngreso":{"$date":"2025-02-03"},
+    "etiquetas":["videojuegos", "sony"],
+    "detalles":{
+      "marca": "sony",
+      "garantiaMeses":5
+  	},
+    "proveedor": "importadora Sur",
+    "descuento": 0.1
+	},
+  {
+    "nombre":"poleron",
+    "categoria":"ropa",
+    "precio":48,
+    "stock":100,
+    "fechaIngreso":{"$date":"2025-01-15"},
+    "etiquetas":["ropa", "nuevo", "original"],
+    "detalles":{
+      "marca": "DiMarco",
+      "garantiaMeses":8
+  	},
+    "proveedor": "importadora Norte",
+    "descuento": 0.3
+	}
+]
+```
+</Solution>
+
+### Ejercicio 03
+Muestra todos los productos que tengan **más de 10 unidades en stock** y un **precio menor a 200.**
+
+<Solution>
+```json
+{"stock":{$gt:10}, "precio":{$lt:200}}
+```
+</Solution>
+
+### Ejercicio 04
+Filtra productos que tengan la etiqueta "gaming" dentro del array etiquetas.
+
+<Solution>
+```json
+{"etiquetas":"gaming"}
+```
+</Solution>
+
+### Ejercicio 05
+Busca productos **cuya garantía sea de 12 meses o más** (desde el subdocumento detalles.garantiaMeses).
+
+<Solution>
+```json
+{"detalles.garantiaMeses":{$gte:12}}
+```
+</Solution>
+
+### Ejercicio 06
+Encuentra productos **ingresados entre el 1 y el 15 de marzo de 2024.**
+
+<Solution>
+```json
+{"fechaIngreso": {$gte: ISODate("2024-03-01") , $lt: ISODate("2024-03-15")}}
+```
+</Solution>
+
+### Ejercicio 07
+Muestra solo los productos de la categoría "Pantallas" **que no estén en promoción** (descuento no existe).
+
+<Solution>
+```json
+{ "categoria": "Pantallas", "descuento": { "$exists": false } }
+```
+</Solution>
+
+### Ejercicio 08
+Agrega un campo ultimaActualizacion con la fecha actual a todos los productos que tengan menos de 5 unidades en stock.
+
+<Solution>
+1. Ir a query y agregar:
+```json
+{"stock":{$lt:5}}
+```
+
+2. Ir a `update` y agregar:
+
+```json
+{
+  $set: {
+		"ultimaActualizacion": {$date: "2025-03-25"}
+  },
+}
+```
+</Solution>
+
+### Ejercicio 09
+Actualiza todos los productos de la categoría "Accesorios" para que su proveedor sea "TechGlobal" **solo si aún no tienen campo proveedor.**
+
+<Solution>
+1. Ir a query y agregar:
+
+```json
+{ "categoria": "Accesorios", "proveedor": { "$exists": false } }
+```
+2. Ir a `update` y agregar:
+
+```json
+{
+  $set: {
+		"proveedor":"TechGlobal"
+  },
+}
+```
+</Solution>
+
+### Ejercicio 10
+Aumenta el stock en 3 unidades de todos los productos que contengan la palabra "Mouse" en su nombre (usa expresión regular).
+
+<Solution>
+1. Ir a query y agregar:
+
+```json
+{
+  "nombre": { "$regex": "Mouse", "$options": "i" }
+}
+
+```
+
+2. Ir a `update` y agregar:
+
+```json
+{$inc: {"stock":3}}
+```
+</Solution>
+
+### Ejercicio 11
+Elimina todos los productos que tengan una garantía de **menos de 6 meses.**
+
+<Solution>
+```json
+{ "detalles.garantiaMeses": {$lt:6}}
+```
+- Luego, botón `delete`
+</Solution>
+
+### Ejercicio 12
+Elimina los productos **cuyo array de etiquetas esté vacío o no exista.**
+
+<Solution>
+```json
+{
+  "$or": [
+    { "etiquetas": { "$exists": false } },
+    { "etiquetas": [] }
+  ]
+}
+```
+- Luego, botón `delete`
+</Solution>

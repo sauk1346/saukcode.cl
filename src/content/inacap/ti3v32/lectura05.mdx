@@ -1,0 +1,105 @@
+# Etapas del proceso de Instalación de MongoDB
+
+- Link de instalación: [https://www.mongodb.com/try/download/community](https://www.mongodb.com/try/download/community)
+
+## Comandos básicos
+
+1. **Visualización de bases de datos existentes**
+```js
+show dbs
+```
+
+2. **Consultar la base de datos actual**
+```js
+db
+```
+
+3. **Crear una base de datos**
+```js
+use bd_datos
+```
+
+4. **Crear colecciones**
+```js
+db.createCollection("vehiculos")
+```
+
+5. **Visualizar colecciones de la base de datos actual**
+```js
+show colections
+```
+
+6. **Eliminar colecciones**
+```js
+db.vehiculos.drop()
+```
+
+7. **Eliminar base de datos activa**
+```js
+db.dropDatabase()
+```
+
+8. **Ayuda en MongoDB**
+```js
+db.help()
+```
+
+9. **Limpiar pantalla**
+```js
+cls
+```
+
+# Actividad de Práctica 03
+
+<Quiz questions={[
+  {
+    question: "¿Qué tipo de instalación se puede realizar con el asistente de MongoDB?",
+    options: [
+      "Directa o indirecta",
+      "Completa o personalizada",
+      "Parcial o Completa",
+      "Segura o personalizada"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Se necesita borrar a todos los usuarios de Santiago registrados en la colección registro de la base de datos llamada BD_Datos; ¿Cuál es el comando de MongoDB para realizar esta acción?",
+    options: [
+      "delete",
+      "deleteOne",
+      "deleteMany",
+      "dropMany"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué acción realiza sobre la colección personas la sentencia \"db.personas.updateOne({sexo:\"F\"}, { $set:{ Edad:26}})\" ?",
+    options: [
+      "Actualiza el primer documento de sexo F a la edad de 26",
+      "Borra todos los documentos de sexo F y edad 26",
+      "Actualiza todos los documentos de sexo F a la edad de 26",
+      "Borra el primer documento de sexo F y edad 26"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué acción realiza la sentencia \"db.productos.count({situacion:\"A\"})\"?",
+    options: [
+      "Muestra la cantidad total de productos",
+      "Muestra los productos con situación A ordenados",
+      "Muestra la cantidad de productos que tienen situación A",
+      "Muestra los productos que tiene situación A"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué acción realiza la sentencia \"db.dropDatabase()\"?",
+    options: [
+      "Permite eliminar la base de datos que se está ejecutando",
+      "Permite eliminar solo los documentos de la base de datos activa",
+      "Permite eliminar todas las bases de datos registradas en MongoDB",
+      "Permite eliminar solo las colecciones de la base de datos activa"
+    ],
+    correctIndex: 0
+  }
+]} />

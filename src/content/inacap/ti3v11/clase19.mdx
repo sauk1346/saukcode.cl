@@ -1,0 +1,110 @@
+# Ejercicios con Funciones
+**Material Clase:** [clase19.pdf](/inacap/ti3v11/docs/clase19.pdf)
+
+Crear un menú con una opción para:
+
+1. Sumar 2 números.
+2. Verificar si los números son par o impar.
+3. Calcular el factorial del número mayor.
+4. Sumar los valores de una lista numérica de rango de los números ingresados.
+5. Ingresar y validar rut.
+6. Salir.
+
+<Solution>
+- Se crean 2 archivos `main.py` y `funciones.py`
+- `main.py` llama a `funciones.py`
+- Todas las funciones devuelven un valor (`int` o `bool`).
+- Ninguna funcion imprime texto (esto es, para reutilizarlas más adelante)
+
+```python
+#funciones.py
+def suma(n1,n2):
+    return (n1+n2)
+
+def par(num):
+    return True if (num%2 == 0) else False
+
+def factorial(num):
+    mult = 1
+    for i in range(1,num+1):
+        mult = mult * i
+    return mult
+
+def listaNumerica(num1,num2):
+    lista = []
+    for i in range(num1,num2+1):
+        lista.append(i)
+    return lista
+
+def sumaLista(lista):
+    sum = 0
+    for i in lista:
+        sum = sum + i
+    return sum
+
+def validarRut(rut):   
+	ultDigito = rut[-1].upper()
+	rut = rut[:-2].zfill(8)
+	sum = 0
+	for i,j in zip(rut,'32765432'):
+		sum = sum + (int(i) * int(j))
+	
+	decimal = (sum/11) - int(sum/11)
+	digito = round(11-(11*decimal))
+	digito = 'K' if (digito == 10) else 0 if (digito == 11) else digito
+	return True if (str(digito) == ultDigito) else False
+```
+
+```python
+#main.py
+from funciones import *
+
+num1 = int(input("Ingrese valor del 1er número: "))
+num2 = int(input("Ingrese valor del 2do número: "))
+
+op = 1 # número random distinto de 6, para entrar a bucle
+while op!=6:
+    print('------------------------------------------------------------------------')
+    print('1. Sumar 2 números')
+    print('2. Verificar si los números son Par o Impar')
+    print('3. Factorial del número mayor')
+    print('4. Sumar valores de una lista numérica creada con los números ingresados')
+    print('5. Ingresar rut y validar')
+    print('6. Salir')
+    print('------------------------------------------------------------------------')
+    op = int(input('Ingrese su opción: '))
+
+    if op==1:
+        rsuma = suma(num1,num2)
+        print(f'--- La suma de los números es: {rsuma} ---')
+    
+    elif op==2:
+        esPar1 = par(num1)
+        esPar2 = par(num2)
+
+        print(f'--- {num1} es par ---') if esPar1 else print(f'--- {num1} es impar ---')
+        print(f'--- {num2} es par ---') if esPar2 else print(f'--- {num2} es impar ---')
+
+    elif op==3:
+        numMayor = max([num1,num2])
+        result = factorial(numMayor)
+        print(f'--- el factorial de {numMayor} es: {result} ---')
+    
+    elif op==4:
+        lista = listaNumerica(num1,num2)
+        suma = sumaLista(lista)
+        print(f'--- lista Númerica: {lista} ---')
+        print(f'--- suma elementos lista Numérica: {suma} ---')
+
+    elif op==5:
+        rut = input('Ingrese el Rut a validar(sin puntos, con guión): ')
+        rutValido = validarRut(rut)
+        if rutValido:
+            print(f'--- El rut {rut} es válido ---')
+        else:
+            print(f'--- El rut {rut} NO es válido ---')
+
+    elif op==6:
+        print('--- Salir ---')
+```
+</Solution>

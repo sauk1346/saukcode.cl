@@ -1,0 +1,489 @@
+# (Proyecto Tienda) Vistas genéricas de lista
+
+## 1. Relación entre Modelos
+Es posible crear relaciones entre modelos, para así generar tablas relacionales
+
+### Relación Producto-Categoria (N:1)
+
+1. **Configurar Modelos:** Crear relación entre los modelos `Producto` y `Categoria` utilizando `ForeignKey`
+    ```python
+    #./tienda/models.py
+    from django.db import models
+    ...
+    ...
+    class Producto(models.Model):
+        ...
+        ...
+        categoria = models.ForeignKey('Categoria', on_delete=models.SET_NULL, null=True)
+        ...
+        ...
+    class Categoria(models.Model):
+        ...
+        ...
+    ```
+
+2. **Configurar Base de datos:** Crear archivos de migración con los cambios realizados y aplicarlos a la base de datos
+    ```sh
+    python manage.py makemigrations
+    ```
+    <TerminalOutput>
+    {`Migrations for 'tienda':
+      tienda/migrations/0002_producto_categoria.py
+        + Add field categoria to producto`}
+    </TerminalOutput>
+    ```sh
+    python manage.py migrate
+    ```
+    <TerminalOutput>
+    {`Operations to perform:
+      Apply all migrations: admin, auth, contenttypes, sessions, tienda
+    Running migrations:
+      Applying tienda.0002_producto_categoria... OK`}
+    </TerminalOutput>
+
+3. **Configurar Admin:** Agregar el nuevo campo a la clase `ProductoAdmin`
+    ```python
+    #./tienda/admin.py
+    from django.contrib import admin
+    from .models import Cliente, Producto, Categoria
+    ...
+    ...
+    class ProductoAdmin(admin.ModelAdmin):
+        list_display = ('id', 'nombre', 'precio', 'stock', 'categoria')
+    ...
+    ...
+    ```
+
+4. **Realizar Pruebas:** Levantar servidor y verificar nuevo campo
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/admin/tienda/producto/1/change/
+    ```
+    <SmartFigure
+        id="relacion-modelos-campo-categoria"
+        src="/inacap/ti3v41/images/fig029.png"
+        alt="Relación entre Modelos mediante nuevo campo 'categoria'"
+        caption="Relación entre Modelos mediante nuevo campo 'categoria'"
+        size="large"
+    />
+    <SmartFigure
+        id="lista-productos-actualizados"
+        src="/inacap/ti3v41/images/fig030.png"
+        alt="Lista de Productos actualizados"
+        caption="Lista de Productos actualizados"
+        size="large"
+    />
+
+### Relación Categoria-Producto (1:N)
+- Como la relación es 1:N, sería ideal que al entrar a una categoría, se puede visualizar la lista de productos correspondiente
+- Para esto se realizan las siguientes configuraciones en `admin.py`
+
+1. **Configurar Admin** 
+    - Crear clase `ProductoInline`, que permitirá editar productos directamente desde la página de Categoría
+    - Agregar la clase `ProductoInline` a la clase `CategoriaAdmin`
+    ```python
+    #./tienda/admin.py
+    from django.contrib import admin
+    from .models import Cliente, Producto, Categoria
+
+    # Clase de definición de modelos relacionados
+    class ProductoInline(admin.TabularInline):
+        model = Producto
+        extra = 0
+    ...
+    ...
+    class CategoriaAdmin(admin.ModelAdmin):
+        list_display = ('id', 'nombre',)
+        inlines = [ProductoInline]
+    ...
+    ...   
+    ```
+
+2. **Realizar Pruebas:** Levantar servidor y verificar cambios
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/admin/tienda/categoria/1/change/
+    ```
+    <SmartFigure
+        id="categoria-abarrotes"
+        src="/inacap/ti3v41/images/fig031.png"
+        alt="Categoria Abarrotes con lista de productos"
+        caption="Categoría Abarrotes con lista de productos"
+        size="large"
+    />
+
+## 2. Template Base (Plantillas Base)
+- Una forma de evitar que los desarrolladores dupliquen texto html en cada página, es utilizando plantillas
+- El lenguaje de plantillas en Django le permite declarar una plantilla base y luego extenderla, reemplazando solo las porciones que son distintas para cada página específica
+
+**Ejemplo:** Plantilla base `base_generic.html`
+
+```html
+<!-- base_generic.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block title %}<title>Local Library</title>{% endblock %}
+</head>
+
+<body>
+    {% block sidebar %}<!-- insert default navigation text for every page -->{% endblock %}
+    {% block content %}<!-- default content text (typically empty) -->{% endblock %}
+</body>
+</html>
+```
+```html
+<!-- index.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Local Library Home</h1>
+<p>Welcome to <em>LocalLibrary</em>, a very basic Django website developed as a tutorial example on the Mozilla Developer Network.</p>
+{% endblock %}
+```
+
+- Se crea la plantilla base `base_generic.html`
+- Luego en `index.html` se carga la plantilla base, y se llena los bloques de la plantilla con los bloques de `index.html`
+
+## 3. Vistas Genéricas de lista
+- La función de vista se lleva a cabo, a través de la implementación de ésta como una clase Django
+- Se hereda desde una función de vista genérica (ListView) existente que ya hace la mayoría de lo que se requiere de una vista
+- Para las vistas basadas en clases de Django, se debe acceder a una función de vista apropiada, llama al método de clase `as_view()`
+
+> Es una alternativa a la forma de trabajo actual, vistas basadas en funciones
+
+**Ejemplo:** En `views.py` ahora se usa la clase `Book` para implementar una vista
+
+```python
+from django.views import generic
+
+class BookListView(generic.ListView):
+    model = Book
+```
+
+- La vista genérica consultará a la base de datos para obtener todos los registros del modelo **Book**
+
+## 4. Continuación Proyecto Tienda
+
+### Agregar Template Base
+
+1. **Configurar Templates (1):** Agregar template `base.html`
+    ```html
+    <!-- ./tienda/templates/tienda/base.html -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        {% block title %}<title>Tienda de Productos</title>{% endblock title %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <!-- Add additional CSS in static file -->
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+        {% block sidebar %} 
+        <ul class="sidebar-nav">
+            <li><a href="{% url "index" %}">Home</a></li>
+            <li><a href="http://localhost:8000/admin">Admin</a></li>
+            <li><a href="">Mostrar Clientes</a></li>
+            <li><a href="">Mostrar Productos</a></li>
+            <li><a href="">Mostrar Categorías</a></li>
+        </ul>
+    {% endblock sidebar %}
+        </div>
+        <div class="col-sm-9 ">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </div>
+    </div>
+    </body>
+    ```
+
+2. **Configurar Templates (2):** Modificar `index.html` para que acepte el template `base.html`
+    ```html
+    <!-- ./tienda/templates/tienda/index.html -->
+    {% extends "tienda/base.html" %}
+
+    {% block title %}
+    <title>Tienda de Productos - index</title>
+    {% endblock title%}
+
+    {% block content %}
+    <h1>Tienda de Productos - Tienda - Base</h1>
+    <p>Bienvenido a la <em><strong>Tiendita</strong></em>, la mejor tienda de productos del país.</p>
+    <h2>Contenido Dinámico</h2>
+    <p>El modelo posee los siguiente datos:</p>
+    <ul>
+        <li><strong>Clientes: {{ cant_clientes }}</strong></li>
+        <li><strong>Productos: {{ cant_productos }}</strong></li>
+        <li><strong>Todas las Categorías: {{cant_categorias }}</strong></li>
+    </ul>
+    {% endblock content%}
+    ```
+
+3. **Realizar Pruebas:** Levantar servidor y verificar ruta
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/tienda/index/
+    ```
+    <SmartFigure
+        id="pagina-index-con-template-base"
+        src="/inacap/ti3v41/images/fig032.png"
+        alt="Página 'index' con template base"
+        caption="Página 'index' con template base"
+        size="large"
+    />
+
+### Agregar Vistas genéricas de lista (1)
+
+Agregar vista genérica de lista para el modelo `Cliente`
+
+1. **Agregar Datos:** añadir datos al modelo `Cliente`
+    <SmartFigure
+        id="datos-modelo-cliente"
+        src="/inacap/ti3v41/images/fig033.png"
+        alt="Datos para el modelo Cliente"
+        caption="Datos para el modelo Cliente"
+        size="large"
+    />
+
+2. **Configurar Vistas:** Crear la 'vista genérica de lista' `ClienteListView`
+    ```python
+    #./tienda/views.py
+    from django.shortcuts import render
+    from .models import Cliente, Producto, Categoria
+    from django.views import generic
+
+    def index(request):
+        ...
+        ...
+
+    # Vistas genéricas de lista
+    class ClienteListView(generic.ListView):
+        model = Cliente
+    ```
+
+3. **Configurar Templates (1):** Agregar template `cliente_list.html` para la 'vista genérica de lista' `ClienteListView`
+    ```html
+    <!-- ./tienda/templates/tienda/cliente_list.html-->
+    {% extends "tienda/base.html" %}
+
+    {% block title %}
+        <title>Tienda de Productos - clientes</title>
+    {% endblock title %}
+
+    {% block content %}
+    <h1>Lista de clientes</h1>
+    	{% if cliente_list %}
+    		 <ul>
+    			{% for cliente in cliente_list %}
+    				<li><a href="{{cliente.id}}">{{cliente.nombre}} {{cliente.apellido}}</a> - ({{cliente.id}})</li>
+    			{% endfor %}
+    		 </ul>
+    	{% else %}
+    		 <p>No hay clientes registrados.</p>
+    	{% endif %}
+    {% endblock content %}
+    ```
+
+4. **Configurar Enrutamiento:** Agregar la ruta para la 'vista genérica de lista' `ClienteListView`
+    ```python
+    #./tienda/urls.py
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path("index/", views.index, name="index"),
+        path("clientes/", views.ClienteListView.as_view(), name="clientes"),
+    ]
+    ```
+
+5. **Configurar Templates (2):** Agregar la ruta `ClienteListView` en el template base `base.html`
+    ```html
+    <!-- ./tienda/templates/tienda/base.html -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        ...
+        ...
+    </head>
+    <body>
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+        {% block sidebar %} 
+        <ul class="sidebar-nav">
+            ...
+            ...
+            <li><a href="{% url 'clientes' %}">Mostrar Clientes</a></li>
+            ...
+            ...
+        </ul>
+    {% endblock sidebar %}
+        </div>
+        ...
+        ...
+    </div>
+    </div>
+    </body>
+    ```
+
+6. **Realizar Pruebas:** Levantar servidor y verificar ruta
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/tienda/clientes/
+    ```
+    <SmartFigure
+        id="pagina-clientes-vistas-genericas-de-lista"
+        src="/inacap/ti3v41/images/fig034.png"
+        alt="Página 'clientes' usando Vistas genéricas de lista"
+        caption="Página 'clientes' usando Vistas genéricas de lista"
+        size="large"
+    />
+
+### Agregar Vistas genéricas de lista (2)
+
+Agregar las 'vistas genéricas de lista' para los modelos `Producto` y `Categoria`
+
+1. **Configurar Vistas:** Agregar las 'vistas genéricas de lista' `ProductoListView` y `ClienteListView` en `views.py`
+    ```python
+    #./tienda/views.py
+    from django.shortcuts import render
+    from .models import Cliente, Producto, Categoria
+    from django.views import generic
+    ...
+    ...
+    # Vistas genéricas de lista
+    class ClienteListView(generic.ListView):
+        model = Cliente
+
+    class ProductoListView(generic.ListView):
+        model = Producto
+        
+    class CategoriaListView(generic.ListView):
+        model = Categoria
+    ```
+
+2. **Configurar Templates (1):** Agregar los templates `producto_list.html` y `categoria_list.html`
+    ```html
+    <!-- ./tienda/templates/tienda/producto_list.html -->
+    {% extends "tienda/base.html" %}
+
+    {% block title %}
+        <title>Tienda de Productos - productos</title>
+    {% endblock title %}
+
+    {% block content %}
+    <h1>Lista de productos</h1>
+        {% if producto_list %}
+            <ul>
+                {% for producto in producto_list %}
+                    <li><a href="{{producto.id}}">{{producto.nombre}}</a> - ({{producto.id}})</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hay productos registrados.</p>
+        {% endif %}
+    {% endblock content %}
+    ```
+    ```html
+    <!-- ./tienda/templates/tienda/categoria_list.html -->
+    {% extends "tienda/base.html" %}
+
+    {% block title %}
+        <title>Tienda de Productos - categorias</title>
+    {% endblock title %}
+
+    {% block content %}
+    <h1>Lista de categorias</h1>
+        {% if categoria_list %}
+            <ul>
+                {% for categoria in categoria_list %}
+                    <li><a href="{{categoria.id}}">{{categoria.nombre}}</a> - ({{categoria.id}})</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hay categorias registradas.</p>
+        {% endif %}
+    {% endblock content %}
+    ```
+
+3. **Configurar Enrutamiento:** Agregar las rutas para las 'vistas genéricas de lista' `ProductoViewList` y `CategoriaViewList`
+    ```python
+    #./tienda/urls.py
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path("index/", views.index, name="index"),
+        path("clientes/", views.ClienteListView.as_view(), name="clientes"),
+        path("categorias/", views.CategoriaListView.as_view(), name="categorias"),
+        path("productos/", views.ProductoListView.as_view(), name="productos"),
+    ]
+    ```
+
+4. **Configurar Templates (2):** Agregar las rutas de Producto y Categoria al template base `base.html`
+    ```html
+    <!-- ./tienda/templates/tienda/base.html -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        ...
+        ...
+    </head>
+    <body>
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+        {% block sidebar %} 
+        <ul class="sidebar-nav">
+            ...
+            ...
+            <li><a href="{% url 'productos' %}">Mostrar Productos</a></li>
+            <li><a href="{% url 'categorias' %}">Mostrar Categorías</a></li>
+        </ul>
+    {% endblock sidebar %}
+        </div>
+        ...
+        ...
+    </div>
+    </div>
+    </body>
+    ```
+
+5. **Realizar Pruebas:** Levantar servidor y verificar rutas
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/tienda/productos/
+    ```
+    <SmartFigure
+        id="pagina-productos-vistas-basadas-en-clases"
+        src="/inacap/ti3v41/images/fig035.png"
+        alt="Página 'productos' usando Vistas genéricas de lista"
+        caption="Página 'productos' usando Vistas genéricas de lista"
+        size="large"
+    />
+    ```sh
+    http://127.0.0.1:8000/tienda/categorias/
+    ```
+    <SmartFigure
+        id="pagina-categorias-vistas-basadas-en-clases"
+        src="/inacap/ti3v41/images/fig036.png"
+        alt="Página 'categorias' usando Vistas genéricas de lista"
+        caption="Página 'categorias' usando Vistas genéricas de lista"
+        size="large"
+    />

@@ -1,0 +1,96 @@
+# ARPA 2
+
+Material
+
+- [ARPA 2](docs/arpa02a.pdf)
+- [ARPA 2: Extensión](docs/arpa02b.pdf)
+
+
+## Ferrocarriles del Estado
+
+La empresa de los Ferrocarriles del Estado (EFE) está realizando un anteproyecto en el sur de Chile que deberá unir los tramos 1 y 2 de la figura adjunta
+
+<SmartFigure
+    src="/inacap/cvcd01/images/fig97.png"
+	alt="Tramos 1 y 2"
+	caption="Tramos 1 y 2"
+	size="large"
+/>
+
+Se sabe que:
+- El tramo 1 es una trayectoria lineal que pasará por las estaciones $A$ y $B$
+- El tramo 2 es una trayectoria parabólica que pasará por las estaciones $C$, $D$ y $E$
+
+Los ingenieros que trabajan en el proyecto han calculado el punto $P(13, 10)$ como el punto de continuidad entre ambos tramos. Si se considera la unidad de distancia en cientos de metros, ¿los ingenieros tendrán la razón?
+
+<Solution title="Solución ARPA 2">
+**Paso 1: Se ingresan y agrupan los puntos**
+
+<SmartFigure
+    id="fig98"
+    src="/inacap/cvcd01/images/fig98.png"
+	alt="Puntos A, B, C, D, E agrupados en l1 y l2"
+	caption="Puntos A, B, C, D, E agrupados en l1 y l2"
+	size="large"
+/>
+---
+
+**Paso 2: Ajuste lineal y cuadrático**
+
+- Se genera un modelo $f(x)$ para el Tramo 1, mediante un ajuste lineal
+- Se genera un modelo $g(x)$ para el Tramo 2, mediante un ajuste cuadrático
+
+<SmartFigure
+    id="fig99"
+    src="/inacap/cvcd01/images/fig99.png"
+	alt="Modelos f(x) para Tramo 1, y g(x) para Tramo 2"
+	caption="Modelos f(x) para Tramo 1, y g(x) para Tramo 2"
+	size="large"
+/>
+
+<SmartFigure
+    id="fig100"
+    src="/inacap/cvcd01/images/fig100.png"
+	alt="Gráficos f(x) y g(x)"
+	caption="Gráficos f(x) y g(x)"
+    lightbox={true}
+	size="large"
+/>
+---
+
+**Paso 3: Punto de continuidad**
+- De la gráfica en la figura 3, se observa 2 puntos donde los modelos $f(x)$ y $g(x)$ intersectan: punto $F$ y punto $G$
+- Se utiliza la instrucción `Interseca` para obtener sus valores
+
+<SmartFigure
+    id="fig101"
+    src="/inacap/cvcd01/images/fig101.png"
+	alt="Puntos de intersección F y G"
+	caption="Puntos de intersección F y G"
+	size="large"
+/>
+
+- El punto $G=(19,14)$ coincide exactamente con el punto $C=(19,14)$
+- El punto $P=(13,10)$ no es un punto de continuidad. Para poder serlo, ambos modelos $f(x)$ y $g(x)$ deberían pasar por ese punto.
+
+$\therefore$ Los ingenieros no tienen razón, ya que el punto $P=(13,10)$ solo pasa por el modelo $f(x)$ 
+
+</Solution>
+---
+
+## Extensión
+
+Encuentra el nuevo punto $Q$ en el que sí habría continuidad entre ambos tramos.
+
+<Solution title="Solución ARPA 2: Extensión">
+
+- Los modelos $f(x)$ y $g(x)$ intersectan en 2 puntos
+    - $F\approx(11.23, 8.82)$
+    - $G=(19,14)$
+- El punto $G$ coincide con el punto $C$, por lo que el Tramo 1 puede extenderse linealmente desde $A$ hasta $C$
+- Es la opción más conveniente
+    - maximiza la longitud del tramo recto (menor costo construcción)
+    - minimiza el uso de curva
+
+$\therefore$ El nuevo punto de continuidad es $Q=(19,14)$
+</Solution>

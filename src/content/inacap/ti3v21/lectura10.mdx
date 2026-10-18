@@ -1,0 +1,74 @@
+# Scripts Seguros en Python
+
+## Librería bcrypt
+- Diseñada para trabajar con funciones hash seguras
+- Proporciona una forma segura de almacenar y verificar contraseñas en aplicaciones
+
+### Instalación
+
+```sh
+pip install bcrypt
+```
+
+### Funcionamiento
+1. **Salt:** cuando un usuario crea una nueva contraseña, `bcrypt` genera una cadena aleatoria llamada "Salt", la cual se combina con la contraseña del usuario antes de aplicar la función hash. Esto permite que, incluso si 2 usuarios tienen la misma contraseña, sus hashes serán diferentes debido a las sales únicas.
+2. **Cost Factor:** `bcrypt` utiliza un parámetro llamado "cost factor"/"work factor" para encontrar la cantidad de tiempo tarda en generar el hash. Cuanto mayor sea el cost factor. más lento será el proceso de hash. Esto se hace para aumentar la resistencia contra ataques de fuerza bruta o de diccionario.
+3. **Generación del hash:** La contraseña del usuario y la sal se combinan. Luego se pasa a la función de hash interna de `bcrypt`, utilizando el cifrado Blowfish
+4. **Formato del hash almacenado:** El hash resultante se almacena junto con la sal y el cost factor en un formato específico.
+5. **Verificación de contraseña:** Cuando un usuario intenta iniciar sesión, la sal almacenada se extrae del hash almacenado. La contraseña ingresada por el usuario se combina con esta sal y se pasa a la misma función del hash. El hash resultante se compara con el hash almacenado. Si coinciden, la contraseña es válida.
+
+# Actividad de Práctica 10
+
+<Quiz questions={[
+  {
+    question: "¿Qué es un \"Salt\" en el contexto de la seguridad de contraseñas?",
+    options: [
+      "Un valor aleatorio único combinado con la contraseña antes de aplicar la función de hash.",
+      "Una barrera simbólica para mejorar el sabor de las contraseñas.",
+      "El resultado de una función de hash aplicada a una contraseña.",
+      "Un tipo de ataque cibernético."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál de los siguientes algoritmos de hash es comúnmente utilizado para almacenar contraseñas de manera segura?",
+    options: [
+      "MD5",
+      "SHA-256",
+      "SHA-1",
+      "CRC32"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de los siguientes enunciados corresponde el propósito principal de la autenticación de usuarios en scripts Python seguros?",
+    options: [
+      "Mejorar la velocidad de ejecución de los scripts.",
+      "Garantizar la integridad de los datos almacenados.",
+      "Ignorar cualquier error potencial.",
+      "Verificar la identidad de los usuarios que intentan acceder al sistema."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Por qué es importante utilizar funciones de hash irreversibles al almacenar contraseñas en una base de datos?",
+    options: [
+      "Facilita la recuperación de contraseñas olvidadas.",
+      "Previene el robo de identidad y proteger la confidencialidad.",
+      "Asegura que las contraseñas sean visibles en la base de datos.",
+      "Acelera el proceso de comparación de contraseñas."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cómo contribuye la aplicación de funciones hash a la seguridad de los datos sensibles almacenados en una base de datos?",
+    options: [
+      "Facilita la manipulación directa de los datos.",
+      "Aumenta el tamaño de la base de datos.",
+      "Proporciona una capa adicional de seguridad al ocultar los datos reales.",
+      "Ralentiza el acceso a los datos almacenados."
+    ],
+    correctIndex: 2
+  }
+]} />
+

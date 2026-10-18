@@ -1,0 +1,68 @@
+# Cómo detectar la complejidad del testing
+
+1. **Complejidad intrínseca:** Se refiere a la complejidad inherente del software, basada en factores como la lógica del negocio, las dependencias entre módulo y la arquitectura del sistema
+2. **Complejidad extrínseca:** Se relaciona con factores externos que afectan el proceso del testing, como los requisitos del cliente, las regulaciones de la industria y el entorno operativo del software
+
+## Criterios para detectar la complejidad del testing
+
+1. **Número de funcionalidades:** Cuantas más funcionalidades tenga el software, mayor será la complejidad del testing
+2. **Interdependencia de módulos:** La interacción entre múltiples módulos puede aumentar la complejidad debido a las posibles fallas en la integración
+3. **Tecnologías utilizadas:** El uso de tecnologías avanzadas o diversas puede complicar el proceso de testing
+4. **Requisitos no funcionales:** Aspectos como la seguridad, el rendimiento y la usabilidad añaden capas adicionales de complejidad
+
+## Métodos para clasificar la complejidad del testing
+
+1. **Análisis de puntos de funcion:** Una técnica que mide la funcionalidad del software desde la perspectiva del usuario final, proporcionando una base para estimar la complejidad del testing
+2. **Modelo de McCabe:** Calcula la complejidad ciclomática del software, lo que ayuda a determinar la cantidad de pruebas necesarias para cubrir todas las rutas posibles del código
+3. **Evaluacipon de Impacto:** Analiza cómo los cambios en el software afectan otras partes del sistema, ayudando a prioriza las pruebas en áreas más complejas
+
+## Clasificación de complejidad
+
+1. **Baja:** Sistemas con funcionalidades básicas, pocas interdependencias y uso de tecnologías estándar
+2. **Media:** Sistemas con un número moderado de funcionalidades, algunas dependencias y tecnologías mixtas
+3. **Alta:** Sistemas con muchas funcionalidades, alta interdependencia entre módulos y uso de tecnologías avanzadas o personalizadas
+
+# Actividad de Práctica 07
+
+<Quiz questions={[
+  {
+    question: "¿Qué técnica se utiliza para medir la complejidad ciclomática del software?",
+    options: [
+      "Pruebas de integración",
+      "Evaluación de impacto",
+      "Modelo de McCabe",
+      "Análisis de puntos de función"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál de los siguientes factores no contribuye a la complejidad del testing?",
+    options: [
+      "Interdependencia de módulos",
+      "Tecnologías utilizadas",
+      "Complejidad de algoritmos",
+      "Tamaño del equipo de desarrollo"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál es un ejemplo de un sistema de baja complejidad en testing?",
+    options: [
+      "Sistema con funcionalidades básicas",
+      "Sistema con funcionalidades avanzadas",
+      "Sistemas con muchas dependencias",
+      "Sistema con requisitos de alta seguridad"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál de las siguientes herramientas es comúnmente utilizada para la automatización de pruebas?",
+    options: [
+      "SonarQube",
+      "JIRA",
+      "TestRail",
+      "Selenium"
+    ],
+    correctIndex: 3
+  }
+]} />

@@ -1,0 +1,314 @@
+# Ejercicio 02
+
+**Material**
+- [Red LAN y configuraciones básicas - Ejercicio 02](docs/ejercicio02.pdf)
+
+
+## Actividad en Cisco Packet Tracer
+
+La empresa Redes2026 ubicada en Avenida Portales 21549 se encuentra en fase de planificación de su infraestructura corporativa y le ha solicitado a usted que especifique detalladamente la arquitectura de reda a implementar, considerando los siguientes requerimientos:
+
+
+1. Dibuje de manera simple y ordenada un edificio de 2 pisos, puede ser 2 rectángulos. (colores suaves)
+
+<Solution title="Solución Pregunta 1">
+- Ir al ícono "Draw Rectangle". De manera alternativa, se puede presionar la tecla `R`
+- Ir al ícono "Place Note". De manera alternativa, se puede presionar la tecla `N`
+
+<SmartFigure
+	id="edificio-de-dos-pisos"
+	src="/inacap/ti3v52/images/fig01.png"
+	alt="edificio de 2 pisos"
+	caption="edificio de 2 pisos"
+    lightbox={true}
+	size="large"
+/>
+</Solution>
+
+2. En primer piso incluya los siguientes dispositivos:
+    - 1 switch Cisco Catalyst 2960
+    - 6 PCs conectados con cable directo al switch
+    - 1 impresora en red conectada al switch con cable directo
+
+<Solution title="Solución Pregunta 2">
+Ubicación dispositivos:
+- Switch: `Network Devices` >> `Switches` >> `2960`
+- PCs: `End Devices` >> `PC`
+- Impresora: `End Devices` >> `Printers`
+- Cable directo: `Connections` >> `Copper Straight-Through`
+
+<SmartTable
+	id="tabla01"
+	caption="Cableado de dispositivos en primer piso"
+	tableLayout="auto"
+	headers={['Dispositivo A', 'Interfaz', 'Dispositivo B', 'Interfaz']}
+	rows={[
+		['**PC0**', 'FastEthernet0', '**Switch0**', 'FastEthernet0/1'],
+		['**PC1**', 'FastEthernet0', '**Switch0**', 'FastEthernet0/2'],
+		['**PC2**', 'FastEthernet0', '**Switch0**', 'FastEthernet0/3'],
+		['**PC3**', 'FastEthernet0', '**Switch0**', 'FastEthernet0/4'],
+		['**PC4**', 'FastEthernet0', '**Switch0**', 'FastEthernet0/5'],
+		['**Printer0**', 'FastEthernet0', '**Switch0**', 'FastEthernet0/6'],
+	]}
+/>
+
+<SmartFigure
+	id="instalacion-dispositivos-primer-piso"
+	src="/inacap/ti3v52/images/fig02.png"
+	alt="Instalación dispositivos en primer piso"
+	caption="Instalación dispositivos en primer piso"
+    lightbox={true}
+	size="large"
+/>
+</Solution>
+
+3. En el segundo piso incluya los siguientes dispositivos:
+    - 1 switch Cisco 2960
+    - 1 router Cisco 1941, con interfaz G0/0 conectado a la g0/1 del switch Cable directo
+    - 5 servidores etiquetados como DHCP, DNS, WEB, MAIL, TFTP conectados al switch
+
+<Solution title="Solución Pregunta 3">
+Ubicación dispositivos:
+- Switch: `Network Devices` >> `Switches` >> `2960`
+- Router: `Network Devices` >> `Routers` >> `1941`
+- Servidores: `End Devices` >> `Server`
+- Cable directo: `Connections` >> `Copper Straight-Through`
+
+<SmartTable
+	id="tabla02"
+	caption="Cableado de dispositivos en segundo piso"
+	tableLayout="auto"
+	headers={['Dispositivo A', 'Interfaz', 'Dispositivo B', 'Interfaz']}
+	rows={[
+		['**Router0**', 'GigabitEthernet0/0', '**Switch1**', 'GigabitEthernet0/1'],
+		['**Server-DHCP**', 'FastEthernet0', '**Switch1**', 'FastEthernet0/1'],
+		['**Server-DNS**', 'FastEthernet0', '**Switch1**', 'FastEthernet0/2'],
+		['**Server-WEB**', 'FastEthernet0', '**Switch1**', 'FastEthernet0/3'],
+		['**Server-MAIL**', 'FastEthernet0', '**Switch1**', 'FastEthernet0/4'],
+		['**Server-TFTP**', 'FastEthernet0', '**Switch1**', 'FastEthernet0/5'],
+	]}
+/>
+
+<SmartFigure
+	id="instalacion-dispositivos-segundo-piso"
+	src="/inacap/ti3v52/images/fig03.png"
+	alt="Instalación dispositivos en segundo piso"
+	caption="Instalación dispositivos en segundo piso"
+    lightbox={true}
+	size="large"
+/>
+</Solution>
+
+4. El switch de un piso debe estar conectado con cable cruzado al switch del siguiente piso
+
+<Solution title="Solución Pregunta 4">
+Ubicación dispositivo:
+- Cable cruzado: `Connections` >> `Copper Cross-Over` 
+
+<SmartTable
+	id="tabla03"
+	caption="Cableado cruzado entre Switch0 y Switch1"
+	tableLayout="auto"
+	headers={['Dispositivo A', 'Interfaz', 'Dispositivo B', 'Interfaz']}
+	rows={[
+		['**Switch0**', 'GigabitEthernet0/1', '**Switch1**', 'GigabitEthernet0/2'],
+	]}
+/>
+
+<SmartFigure
+	id="conexion-switches"
+	src="/inacap/ti3v52/images/fig04.png"
+	alt="Conexión entre switches con cable cruzado"
+	caption="Conexión entre switches con cable cruzado"
+    lightbox={true}
+	size="large"
+/>
+</Solution>
+
+5. Configure dirección IP, máscara de red y Gateway a cada PC:
+    - IP = 172.20.X.Y
+    - Máscara /24 = 255.255.255.0
+    - Gateway = 172.20.X.1
+
+<P indent={2}>
+X = número de subred entregado por docente, Y = Número entre 3 y 254
+</P>
+
+<Solution title="Solución Pregunta 5">
+Configuración para `PC0`
+
+- Se utiliza X=30, Y=3
+- Ir a: `PC0` >> `Desktop` >> `IP Configuration`
+- IP = 172.20.30.3
+- Máscara /24 = 255.255.255.0
+- Gateway = 172.20.30.1
+
+<SmartFigure
+	id="configuracion-pc0"
+	src="/inacap/ti3v52/images/fig05.png"
+	alt="Configuración para PC0"
+	caption="Configuración para PC0"
+	size="large"
+/>
+
+Se realiza la misma configuración para los PCs restantes:
+
+<SmartTable
+	id="tabla03"
+	caption="Configuración IP para PCs"
+	tableLayout="auto"
+	lists={{}}
+	headers={['Dispositivo', 'IPv4 Address', 'Subnet Mask', 'Default Gateway']}
+	rows={[
+		['**PC0**', '172.20.30.3', '255.255.255.0', '172.20.30.1'],
+		['**PC1**', '172.20.30.4', '255.255.255.0', '172.20.30.1'],
+		['**PC2**', '172.20.30.5', '255.255.255.0', '172.20.30.1'],
+		['**PC3**', '172.20.30.6', '255.255.255.0', '172.20.30.1'],
+		['**PC4**', '172.20.30.7', '255.255.255.0', '172.20.30.1'],
+		['**PC5**', '172.20.30.8', '255.255.255.0', '172.20.30.1'],
+	]}
+/>
+</Solution>
+
+6. En el switch:
+    - VLAN = 172.20.X.2/24
+    - Máscara /24 = 255.255.255.0
+    - Default Gateway = 172.20.X.1
+
+<Solution title="Solución Pregunta 6">
+Configuración para `Switch0` (en el primer piso)
+
+- Ir a: `Switch0` >> `CLI`
+- Escribir las siguientes instrucciones:
+<TerminalOutput withBg>
+{`# entrar al modo privilegiado
+enable
+
+# entrar al modo de configuración global
+configure terminal
+
+# entrar a la interfaz virtual de administración
+interface vlan 1
+
+# asignar IP y máscara a la interfaz VLAN 1
+ip address 172.20.30.2 255.255.255.0
+
+# activar la interfaz
+no shutdown
+
+# salir de la interfaz
+exit
+
+# definir la puerta de enlace para comunicarse fuera de la subred
+ip default-gateway 172.20.30.1`}
+</TerminalOutput>
+
+<SmartFigure
+	id="configuracion-switch0"
+	src="/inacap/ti3v52/images/fig06.png"
+	alt="Configuración para Switch0"
+	caption="Configuración para Switch0"
+	size="large"
+/>
+</Solution>
+
+7. En el router:
+    - GO/0 IP 172.20.x.1/24
+    - Asigne su propio nombre (en Mayúsculas) como nombre al router. Ejemplo: JUAN
+    - Asigne su propio apellido.cl como nombre de dominio para SSH. Ejemplo: perez.cl
+    - Crear usuario con nombre: **admin** contraseña cifrada: **cisco-admin**
+    - Contraseña cifrada para modo privilegiado: **cisco-ena**
+    - Configurar clave RSA con largo de la clave 2048 bits
+    - Habilite versión 2 de SSH
+    - Tiempo máximo de inactividad 60 seg
+    - Intentos de autenticación: 2
+    - Habilite ssh en líneas vty
+    - Al conectarse por SSH debe solicitar usuario y contraseña
+    - Desde cualquier PC del primer piso, en Command Prompt, ejecute el comando `ssh -l admin 172.20.X.1`
+    - Ingrese la contraseña de admin, debe aparecer el nombre del router
+
+<Solution title="Solución Pregunta 7">
+Configuración para `Router0` (en el segundo piso)
+
+- Ir a: `Router0` >> `CLI`
+- Escribir las siguientes instrucciones:
+<TerminalOutput withBg>
+{`# entrar al modo privilegiado
+enable
+
+# 1. configuración interfaz e IP
+# entrar al modo de configuración global
+configure terminal
+interface GigabitEthernet0/0
+ip address 172.20.30.1 255.255.255.0
+# activar la interfaz
+no shutdown
+# salir de la interfaz
+exit
+
+# 2. asignar nombre al router
+hostname ANTONIO
+
+# 3. asignar nombre de dominio para SSH
+ip domain-name morales.cl
+
+# 4. crear usuario con contraseña cifrada
+username admin secret cisco-admin
+
+# 5. contraseña cifrada para modo privilegiado
+enable secret cisco-ena
+
+# 6. generar claves RSA de 2048 bits para SSH (ingresar 2048 cuando se solicite)
+crypto key generate rsa 
+
+# 7. habilitar versión 2 de SSH
+ip ssh version 2
+
+# 8. tiempo máximo de inactividad: 60 segundos
+ip ssh time-out 60
+
+# 9. intentos máximos de autenticación
+ip ssh authentication-retries 2
+
+# 10. habilitar SSH en líneas vty y solicitar usuario/contraseña
+line vty 0 4
+# deshabilitar todos los protocolos de acceso remoto
+no transport input
+# permitir solo SSH
+transport input ssh
+login local
+# salir de las líneas vty
+exit`}
+</TerminalOutput>
+
+<SmartFigure
+	id="fig07"
+	src="/inacap/ti3v52/images/fig07.png"
+	alt="Configuración para Router0"
+	caption="Configuración para Router0"
+	size="large"
+/>
+
+Se elige `PC3` para la ejecución del comando solicitado
+
+<TerminalOutput withBg>
+{`# conectarse al router via SSH
+C:\>ssh -l admin 172.20.30.1
+
+Password: cisco-admin
+
+# elevar al modo privilegiado
+ANTONIO>enable
+Password: cisco-ena
+
+ANTONIO#>`}
+</TerminalOutput>
+
+<SmartFigure
+	id="fig08"
+	src="/inacap/ti3v52/images/fig08.png"
+	alt="Acceso remoto al router ANTONIO vía SSH desde PC3"
+	caption="Acceso remoto al router ANTONIO vía SSH desde PC3"
+	size="large"
+/>
+</Solution>

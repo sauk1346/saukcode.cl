@@ -1,0 +1,197 @@
+# TOGAF: marco estratégico para el desarrollo de planes de implementación de datos
+
+La planificación y gestión de las arquitecturas de datos se ha convertido en un elemento fundamental para las organizaciones que buscan alinear sus decisiones tecnológicas con los objetivos del negocio. En este contexto, el uso de marcos estratégicos permite estructurar de manera ordenada el diseño, implementación y evolución de las arquitecturas de información, facilitando una visión integral y coherente del entorno empresarial.
+
+## 1. Implementación de un plan de arquitectura y almacenamiento de datos
+
+La implementación de un plan de arquitectura y almacenamiento de datos representa un paso estratégico para las organizaciones que buscan gestionar la información de manera coherente y alineada con sus objetivos institucionales. Este plan permite definir una visión estructurada sobre cómo los datos serán organizados, integrados y utilizados dentro de la arquitectura empresarial, considerando tanto los aspectos tecnológicos como los organizacionales.
+
+El plan de arquitectura y almacenamiento de datos está relacionado íntimamente con el concepto de arquitectura empresarial (en inglés, Enterprise Architecture - EA).
+
+### La arquitectura empresarial (EA)
+
+La EA de una organización se refiere al proceso bajo el cual las diferentes áreas de TI de una empresa u organización se estandarizan para alinearse con sus objetivos finales de negocio. Esto quiere decir que la arquitectura empresarial está relacionada íntimamente con los conceptos, las tecnologías de la información y todos los avances tecnológicos que esto conlleva, es decir, las tecnologías cloud, machine learning, el internet de las cosas (IoT), data warehousing, data lakes, etc., todas ellas estarán consideradas dentro de la EA, de forma tal que será conveniente considerar algún tipo de marco de trabajo (en inglés, framework) para poder definirla correctamente y establecer parámetros de trabajo y de crecimiento futuro. En general, la EA nació hacia inicios de la década de 1980 como una serie de diagramas, o vistas, que definen el accionar interno/externo de la empresa, de principio a fin.
+
+### Características de la EA
+
+En CIO (2022) se comenta que el proceso de EA requiere atenerse a ciertas características que, actualmente, son muy importantes para que las organizaciones estén al día en temas de actualización rápida, respuesta oportuna, reacción frente a los cambios y evolución constante; estas características o parámetros de definición para la EA son las siguientes:
+
+1. Debe guiarse por los requerimientos de negocio de la organización.
+2. Debe ser ágil y tener un foco fuerte puesto sobre los procesos ágiles.
+3. Debe considerar las últimas tendencias e innovaciones en procesos de negocio, estructura organizacional, sistemas de información y tecnologías.
+4. Debe mejorar la comunicación al interior de la empresa.
+5. Debe mejorar el desarrollo y adopción de procesos de EA.
+6. Beneficiarse del mayor apoyo del sector administrativo de la empresa.
+7. Mayor inversión en recursos de EA.
+
+### Frameworks para EA
+
+En Gartner (2025), Ardoq (2024) y MIT (2025) se pueden encontrar más información e informes respecto de estos conceptos. Adicionalmente, se recomiendan en ellos algunos tipos de marcos de trabajo actuales para el desarrollo de Arquitecturas Empresariales, como los siguientes (Ardoq, 2024):
+
+1. TOGAF, del The Open Group.
+2. El framework Zachman (1987), utilizado para definir y clasificar componentes de TI.
+3. El conjunto de mejores prácticas entregado por Gartner.
+4. Frameworks específicos para la industria, como los frameworks FEAF, DoDAF y el de la Agencia Espacial Europea.
+
+### EA y gestión de datos
+
+Lo importante de la EA respecto del manejo y gestión de datos tiene relación con que el uso de bases de datos relacionales (OLTP) y almacenes de datos (data mart/data warehouse) junto al procesamiento OLAP son pilares fundamentales en la toma de decisiones de las empresas en el siglo XXI. Por esta razón, será útil revisar algunas técnicas generales y estándares de diseño para este tipo de tecnologías, de forma tal que beneficien y den mayor valor a la organización empresarial.
+
+## 2. Metodología de desarrollo TOGAF
+
+El *framework* de arquitectura de The Open Group (en inglés, *The Open Group Architecture Framework*) es un estándar abierto de EA que permite la planificación, diseño, implementación y la posterior administración y gestión de una arquitectura empresarial para diferentes tipos de organizaciones. De hecho, el marco de trabajo está acondicionado para la realización de diferentes tipos de arquitecturas en diferentes tipos de empresas y organizaciones, y de forma adicional, también se ha comprobado en la práctica que se acomoda muy bien en proyectos de arquitectura empresarial dentro de organizaciones de Tecnologías de la Información.
+
+El framework TOGAF se centra en cuatro áreas generales de arquitectura, que corresponden a las siguientes:
+
+1. Área de negocios de la organización.
+2. Área de tecnologías de la información de la organización.
+3. Área de datos de la empresa.
+4. Área de aplicaciones de la empresa.
+
+### El estándar TOGAF
+
+Al hablar directamente de lo que ofrece el estándar TOGAF, este permitirá definir la estructura y el flujo internos de negocios bajo los cuales se definirán las etapas de la organización, así como sus datos e información, productos, entregables y servicios, todos los cuales buscarán definir las áreas de competencia de la organización y bajo la cual operarán frente a sus clientes y sus inversores. Estas etapas se definirán en base a bloques de trabajo, un diccionario de conceptos y un conjunto de herramientas de modelado (esquemáticas, de software, etc.), para que las etapas empresariales sean conocidas y acordadas de antemano bajo reglas claras.
+
+### El método de desarrollo de arquitectura (ADM)
+
+El núcleo de TOGAF es el **Architecture Development Method (ADM)**, un método iterativo y cíclico que guía a las organizaciones a través del desarrollo de su arquitectura empresarial. El ADM está compuesto por un conjunto de fases interconectadas, todas ellas gobernadas de manera transversal por la **Gestión de Requisitos**, que actúa como eje central y garantiza que los requerimientos del negocio se consideren en cada etapa del proceso.
+
+<SmartFigure
+	id="diagrama-con-los-pasos-del-estandar-togaf"
+	src="/inacap/ti3v51/images/fig22.png"
+	alt="Diagrama con los pasos del Estándar TOGAF"
+	caption="Diagrama con los pasos del Estándar TOGAF (ADM)"
+	size="large"
+/>
+
+<SmartTable
+	tableLayout="auto"
+	headers={["Fase", "Nombre", "Descripción"]}
+	rows={[
+		[
+			"**A**",
+			"**Visión de la arquitectura**",
+			"Define el alcance, las restricciones y las expectativas del proyecto de arquitectura. Se establece una visión de alto nivel del estado futuro deseado y se obtiene la aprobación de los interesados"
+		],
+		[
+			"**B**",
+			"**Arquitectura de negocio**",
+			"Desarrolla la arquitectura de negocio objetivo que describe cómo la organización debe operar para cumplir sus metas estratégicas"
+		],
+		[
+			"**C**",
+			"**Arquitecturas de sistemas de información**",
+			"Define las arquitecturas de datos y de aplicaciones que soportan la arquitectura de negocio. Incluye tanto los sistemas que gestionan los datos como las aplicaciones que los utilizan"
+		],
+		[
+			"**D**",
+			"**Arquitectura tecnológica**",
+			"Describe la infraestructura tecnológica necesaria (hardware, software, redes) para soportar las arquitecturas definidas en las fases anteriores"
+		],
+		[
+			"**E**",
+			"**Oportunidades y soluciones**",
+			"Identifica los proyectos de implementación, evalúa alternativas de entrega y define una hoja de ruta inicial para la transición hacia la arquitectura objetivo"
+		],
+		[
+			"**F**",
+			"**Planificación de la migración**",
+			"Prioriza los proyectos identificados en la Fase E y elabora un plan de migración detallado para la transición desde la arquitectura actual a la objetivo"
+		],
+		[
+			"**G**",
+			"**Gobernanza de la implementación**",
+			"Supervisa la implementación de los proyectos para asegurar que se ajusten a la arquitectura definida y a los estándares organizacionales"
+		],
+		[
+			"**H**",
+			"**Gestión del cambio de la arquitectura**",
+			"Monitorea el entorno organizacional y tecnológico para identificar cambios que requieran actualizar la arquitectura, asegurando que esta permanezca vigente y alineada con el negocio"
+		],
+	]}
+/>
+
+## 3. TOGAF y su aplicación en la arquitectura de datos
+
+La aplicación de TOGAF en la arquitectura de datos permite integrar la gestión de la información dentro de una visión estratégica de la organización. Este marco facilita que las decisiones relacionadas con los datos no se tomen de forma aislada, sino como parte de una arquitectura empresarial coherente, alineada con los objetivos y necesidades del negocio.
+
+Desde esta perspectiva, TOGAF apoya la definición de arquitecturas de datos alineadas con la estrategia organizacional, permitiendo identificar cómo la información debe ser estructurada, almacenada y utilizada para generar valor. La metodología promueve una comprensión clara de los requerimientos del negocio y su traducción en soluciones de datos que respalden los procesos organizacionales y la toma de decisiones.
+
+Asimismo, la aplicación de TOGAF favorece la identificación de brechas entre el estado actual de la arquitectura de datos y los escenarios futuros deseados. Este análisis permite orientar la planificación de iniciativas de mejora, priorizar acciones y definir planes de implementación que aseguren una evolución controlada y sostenible de las arquitecturas de información.
+
+En el ámbito de los datos, TOGAF también contribuye a fortalecer la gobernanza y coherencia arquitectónica, estableciendo principios y lineamientos que guían el diseño y la gestión de los sistemas de información. De esta manera, la arquitectura de datos se consolida como un componente estratégico dentro de la arquitectura empresarial, apoyando el uso efectivo de la información como activo organizacional.
+
+## 4. Generalidades acerca de la construcción de un almacén de datos
+
+Ya que el estándar TOGAF tiene relación con la arquitectura completa de un sistema empresarial y no únicamente con el sistema de almacenamiento y tratamiento de datos, se revisará brevemente una metodología específicamente creada para el diseño de un almacén de datos. Esta metodología, conocida bajo el nombre de metodología o ciclo de vida de Kimball, es ampliamente utilizada para el diseño general de almacenes de datos (data warehouses y data marts) y consta internamente de un método de cuatro pasos generales (denominado generalmente como modelado dimensional), que permite definir cómo organizar los datos para formar un almacén de datos o data warehouse. 
+
+Estos cuatro pasos se enuncian a continuación:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Pasos", "Descripción"]}
+    rows={[
+        [
+            "**Definición de tablas de dimensiones**",
+            "Las dimensiones representan los aspectos descriptivos a partir de los datos; Dicho de otra forma, corresponden a una forma de clasificación de datos; Tienen atributos de texto y cuantitativos, normalmente están denormalizadas (para favorecer el acceso rápido a los registros de datos) y pueden contener jerarquías de organización de datos, según la granularidad de estos"
+        ],
+        [
+            "**Definición de tablas de hechos**",
+            "En esta etapa se definen y diseñan las tablas que almacenarán los datos cuantitativos o medidas reales, producto de una transacción o evento en el negocio; Pueden contener datos tales como ventas, cantidad, costo, etc.; Se enlazan a las tablas de dimensiones mediante llaves foráneas y también pueden contener llaves compuestas (es decir, de varias columnas) para identificar unívocamente a un registro"
+        ],
+        [
+            "**Definición de granularidad**",
+            "En esta etapa se analiza y revisa cuál es el grado de detalle que se necesita para el almacenamiento de datos en la tabla de hechos; Una alta granularidad indica que se almacenará mucho detalle en cada registro (conllevando esto utilizar más espacio de memoria en el almacén); Una baja granularidad permitirá ahorrar espacio de almacenamiento, a costo de guardar menos detalles sobre los datos importantes del negocio. "
+        ],
+        [
+            "**Estandarización vs denormalización**",
+            "En esta última etapa se tiende a favorecer la denormalización de los datos (esto conlleva a crear tablas de hechos con muchas columnas), donde la reducción en el uso de llaves foráneas favorecerá las búsquedas y transacciones de datos a mayor velocidad, pero con la desventaja de almacenar muchos datos redundantes en la misma tabla de hechos; Sin embargo, esta característica es buscada en los almacenes de datos, a diferencia de las bases de datos RDBMS convencionales, ya que la idea del proceso de análisis OLAP es dar mayor velocidad al procesamiento analítico de datos en el largo plazo."
+        ],
+    ]}
+/>
+
+---
+
+## Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es el propósito de utilizar un marco como TOGAF en una arquitectura empresarial?",
+		options: [
+            "Definir herramientas específicas para el análisis de datos",
+            "Automatizar procesos ETL dentro del almacén de datos",
+            "Alinear las decisiones tecnológicas con los objetivos del negocio",
+            "Optimizar consultas en bases de datos analíticas",
+		],
+		correctIndex: 2
+	},
+    {
+		question: "Las transformaciones en un proceso ETL se encargan de limpiar, convertir y estructurar los datos antes de cargarlos al destino",
+		options: [
+            "Verdadero",
+            "Falso",
+		],
+		correctIndex: 0 
+	},
+    {
+		question: "¿Por qué es importante contar con un plan de arquitectura y almacenamiento de datos?",
+		options: [
+            "Porque permite ejecutar transformaciones de datos automáticamente",
+            "Porque oriente la gestión de los datos de forma coherente y alineada con la organización",
+            "Porque reemplaza la necesidad de un almacén de datos",
+            "Porque define consultas analíticas específicas",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Por qué la construcción de un almacén de datos debe alinearse con la arquitectura empresarial?",
+		options: [
+            "Porque depende únicamente de la herramienta tecnológica utilizada",
+            "Porque elimina la necesidad de gobernanza de datos estratégica integrada",
+            "Porque forma parte de una visión estratégica integrada de la organización",
+            "Porque automatiza la toma de decisiones analíticas y específicas",
+		],
+		correctIndex: 2 
+	},
+]}/>
+

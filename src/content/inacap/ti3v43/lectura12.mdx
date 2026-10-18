@@ -1,0 +1,167 @@
+# Integración y revisión de proyecto
+
+## 1. Selección de metodología y ciclo de vida
+
+A continuación, se detallan los pasos esenciales para seleccionar la metodología adecuada para un proyecto:
+
+### Análisis de necesidades y recursos
+Antes de seleccionar una metodología, se debe analizar exhaustivamente los **requisitos del proyecto** (características, funcionalidad, objetivos de rendimiento), las limitaciones de tiempo, el presupuesto, el tamaño y las habilidades del equipo, y las expectativas de participación del cliente. 
+
+Además, se considera factores como la **complejidad del proyecto**, **la disponibilidad del cliente** para **recibir comentarios** y la **necesidad de flexibilidad**.
+
+### Ciclo de vida
+Incluye fases como:
+
+- Recopilación de requisitos
+- Diseño
+- Pruebas
+- Implementación
+- Mantenimiento
+
+Para la metodología ágil, esto se traduce en iteradores (*sprints*) con ciclos de retroalimentación continuos.
+
+### Selección de la metodología
+
+En función del análisis, hay una metodología adecuada. Existen diversos enfoques, se encuentran los enfoques tradicionales (cascada) y los ágiles (scrum, kanban). A continuación, profundizarás en sus ventajas:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Metodología", "Descripción"]}
+    rows={[
+        [
+            "**Cascada**",
+            "Es adecuado para proyectos con requisitos claramente establecidos."
+        ],
+        [
+            "**Ágil**",
+            "Es más **adaptable a los requisitos cambiantes** y permite un desarrollo iterativo. Adicional, es excelente para proyectos en los que la opinión del cliente es fundamental y los requisitos pueden evolucionar con el tiempo. Scrum y kanban son marcos de trabajo ágiles populares, cada uno de los cuales ofrece ventajas únicas."
+        ],
+    ]}
+/>
+
+## 2. Diseño con diagramas UML
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Diseño", "Descripción"]}
+    lists = {{
+        R4: [
+            "**Singleton:** para gestionar recursos únicos (por ejemplo, conexión a base de datos)",
+            "**Factory:** para crear objetos en base a diversos criterios, ofreciendo flexibilidad",
+            "**Observer:** para implementar actualizaciones y notificaciones en tiempo real",
+            "**Adapter:** para integrar componentes con interfaces incompatibles",
+        ]
+
+    }}
+    rows={[
+        [
+            "**Diagrama de clases**",
+            "Modela las entidades clave del sistema (clases), sus atributos, métodos y relaciones (herencia, asociación, agregación). Esto proporciona una vista estática de la estructura del sistema"
+        ],
+        [
+            "**Diagrama de caso de uso**",
+            "Ilustra las interacciones entre los usuarios (actores) y el sistema. Cada caso de uso representa una funcionalidad o tarea específica que el usuario puede realizar"
+        ],
+        [
+            "**Diagrama de secuencia**",
+            "Muestra las interacciones dinámicas entre los objetos dentro del sistema detallando el orden cronológico de los intercambios de mensajes. Esto ayuda a visualizar el comportamiento del sistema"
+        ],
+        [
+            "**Patrones de diseño**",
+            "@R4"
+        ],
+    ]}
+/>
+
+## 3. Técnicas de cocreación y levantamiento de requerimientos
+Se refiere a una combinación de técnicas para recopilar requisitos de manera eficaz, garantizando una comprensión y validación exhaustivas. Ahora observa la clasificación:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Técnicas", "Descripción"]}
+    rows={[
+        [
+            "**Entrevistas**",
+            "Entrevistas estructuradas con los stakeholders para entender sus necesidades"
+        ],
+        [
+            "**Talleres de cocreación**",
+            "Talleres colaborativos que involucran a partes interesadas y desarrolladores para cocrear soluciones"
+        ],
+        [
+            "**Encuestas y cuestionarios**",
+            "Se trata de recopilar datos cuantitativos para obtener comentarios más amplios"
+        ],
+        [
+            "**Prototipos**",
+            "Son necesarios para recopilar comentarios para refinar el diseño de manera iterativa"
+        ],
+        [
+            "**Mapeo de historias de usuario**",
+            "Referente a las historias de los usuarioes para establecer prioridades"
+        ],
+        [
+            "**Validación y participación del cliente**",
+            "Involucrar al cliente durante todo el proceso, es crucial para obtener mejores resultados"
+        ],
+    ]}
+/>
+
+## 4. Implementación de estándares de calidad
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Técnicas", "Descripción"]}
+    rows={[
+        [
+            "**Entrevistas**",
+            "Entrevistas estructuradas con los stakeholders para entender sus necesidades"
+        ],
+        [
+            "**Talleres de cocreación**",
+            "Talleres colaborativos que involucran a partes interesadas y desarrolladores para cocrear soluciones"
+        ],
+        [
+            "**Encuestas y cuestionarios**",
+            "Se trata de recopilar datos cuantitativos para obtener comentarios más amplios"
+        ],
+        [
+            "**Prototipos**",
+            "Son necesarios para recopilar comentarios para refinar el diseño de manera iterativa"
+        ],
+        [
+            "**Mapeo de historias de usuario**",
+            "Referente a las historias de los usuarioes para establecer prioridades"
+        ],
+        [
+            "**Validación y participación del cliente**",
+            "Involucrar al cliente durante todo el proceso, es crucial para obtener mejores resultados"
+        ],
+    ]}
+/>
+
+# Actividad de Práctica 10
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es uno de los factores a considerar antes de seleccionar una metodología de desarrollo?",
+		options: [
+			"Las limitaciones de tiempo",
+			"La ubicación geográfica del equipo",
+			"El color de logo del proyecto",
+			"La marca de las computadoras"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Cuál de los siguientes diagramas UML muestra las interacciones dinámicas entre los objetos dentro del sistema?",
+		options: [
+			"Diagrama de componentes",
+			"Diagrama de secuencia",
+			"Diagrama de clases",
+			"Diagrama de caso de uso"
+		],
+		correctIndex: 1
+	},
+]} />
+

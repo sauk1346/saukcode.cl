@@ -1,0 +1,62 @@
+# Diagramas de Casos de Uso
+
+## ¿Qué son?
+- Herramienta utilizada en el análisis y diseño de sistemas
+- Proporciona un visión detallada de las interacciones entre los actores y el sistema en cuestión.
+
+## Características
+1. **Representación de interacciones:** Representan las diversas interacciones entre los usuarios (llamados actores) y el sistema. Cada caso de uso describe una función o actividad específica que el sistema realiza en respuesta a una acción del actor.
+2. **Visión del usuario:** Se centra en la perspectiva del usuario, mostrando cómo los usuarios interactúan con el sistema para lograr ciertos objetivos, especialmente útiles en las etapas iniciales del desarrollo de software, al identificar y especificar los requisitos del usuario.
+3. **Actores:** Son entidades externas al sistema que intereactúan con él. Pueden ser usuarios humanos, otros sistemas, o incluso hardware. Los actores se representan como figuras externas al sistema, conectadas por líneas de asociación a los casos de uso.
+4. **Casos de uso:** Representan las diversas funciones o actividades que realiza el sistema. Cada caso de uso está asociado al menos con un actor, describe una interacción específica. Pueden ayudar a definir qué funcionalidades debe proporcionar el sistema para satisfacer las necesidades del usuario.
+5. **Relaciones de inclusión y extensión:** Los casos de uso pueden tener relaciones de inclusión o extensión entre ellos. La inclusión representa la de un caso de uso en otro, mientras que la extensión indica la extensión opcional de un caso de uso base.
+6. **Límites del sistema:** Los diagramas de caso de uso a menudo incluyen un límite que define los límites del sistema. Este límite del sistema yuda a visualizar qué está dentro y fuera del alcance del sistema que se está modelando.
+7. **Escenarios:** Los casos de uso pueden tener escenarios alternativos o excepcionales. Escenarios que describen diferentes caminos o situaciones que pueden surgir durante la ejecución del caso de uso principal.
+8. **Facilitan la comunicación:** Son una herramienta efectiva para comunicar con stakeholders no técnicos, como clientes y gerentes de proyectos, al proporcionar una visión clara de cómo el sistema de utilizará en situaciones del mundo real.
+9. **Iterativos y evolutivos:** Pueden evolucionar a medida que se comprenden mejor los requisitos del usuario y el sistema. Se pueden refinar y detallar a medida que avanza el proceso de desarrollo.
+10. **Uso de notación estándar:** Los diagrama de casos de uso utilizan notación estándar de la UML. El estándar facilita su comprensión y adopción en el desarrollo de software basado en modelos.
+
+## Inclusión de Casos de Uso
+1. **Definición:** Es utilizada cuando hay comportamientos comunes compartidos por varios casos de uso. En lugar de repetir esos comportamientos en cada caso de uso, esos comportamientos comunes se colocan en un caso de uso separado, y los casos de uso específicos incluyen este caso de uso común.
+2. **Representación Gráfica:** Se indica mediante una flecha con una etiqueda de `<<include>>` desde el caso de uso que incluye hacia el caso de uso incluido.
+3. **Ejemplo:** Si varios casos de uso, como "Realizar Pago", "Cancelar Pedido" y "Ver Detalles del Producto", comparten la funcionalidad de "Autenticación del Usuario", pueden tener un caso de uso separado llamado "Autenticación de Usuario" que es incluido por cada uno de los casos mencionados.
+
+## Exclusión de Casos de Uso
+1. **Definición:** Se utiliza cuando hay comportamientos que son excluyentes entre sí, es decir, no pueden ocurrir al mismo tiempo. Se especifíca que, si un caso de uso se ejecuta, el otro no puede ejecutarse en el mismo escenario.
+2. **Representación Gráfica:** Se indica mediante una flecha con una etiqueta `<<extend>>` desde el caso de uso que excluye hacia el caso de uso excluido.
+3. **Ejemplo:** Para casos de uso como "Cancelar Pedido" y "Modificar Pedido", puedes definir una relación de exclusión, ya que normalmente no querrías que ambos se ejecuten en el mismo escenario.
+
+# Actividad de Práctica 11
+
+<Quiz questions={[
+  {
+    question: "En el contexto de análisis y diseño de sistemas. ¿Cuál es el propósito fundamental de los Diagramas de casos de uso?",
+    options: [
+      "Representar la estructura interna del sistema",
+      "Capturar, comunicar, y validar los requisitos funcionales del sistema desde la perspectiva del usuario",
+      "Definir la implementación técnica del software.",
+      "Mostrar la secuencia exacta de procesos y acciones."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "En los diagramas de casos de uso. ¿Cuál es la función principal de la inclusión?",
+    options: [
+      "Representar comportamientos excluyentes entre diferentes casos de uso",
+      "Mostrar cómo los usuarios interactúan con el sistema",
+      "Evitar la repetición de comportamientos comunes compartidos por varios casos de uso",
+      "Indicar situaciones excepcionales durante la ejecución del caso de uso"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "En el contexto de facilitar la comunicación con stakeholders no técnicos. ¿Cuál es uno de los beneficios clave de los diagramas de casos de uso?",
+    options: [
+      "Detallar la implementación técnica del sistema",
+      "Mostrar la secuencia exacta de acciones",
+      "Proporcionar una visión clara de cómo el sistema se utilizará en situaciones del mundo real.",
+      "Centrarse en la perspectiva del desarrollador"
+    ],
+    correctIndex: 2
+  }
+]} />

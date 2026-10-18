@@ -1,0 +1,1573 @@
+# Ejercicios Propuestos
+- **Guía:** [ej_propuestos.pdf](/inacap/ti3v21/docs/ej_propuestos.pdf)
+
+## Ejercicios Básicos
+
+### Ejercicio 01
+Crear un algoritmo en diagrama de flujo que al leer un número entero positivo (asuma que el número cumple las condiciones), imprimir PAR si el número es par e IMPAR si es impar.
+
+<Solution>
+```python
+def validar_numero():
+    while True:
+        try:
+            num = float(input("Ingrese número: "))
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            return num
+
+def num_par(num):
+    return (num % 2 == 0)
+
+numero = validar_numero()
+resultado = "PAR" if num_par(numero) else "IMPAR"
+print(resultado)
+```
+</Solution>
+
+### Ejercicio 02
+Supongamos que el IPC de los meses de Febrero y Marzo fueron 0.3% y 0.6% respectivamente. Crear un algoritmo en diagrama de flujo que muestre el valor de un producto actualizado y la diferencia de precio entre el mes de Febrero y Marzo
+
+<Solution>
+El valor actualizado $(V)$ de un producto $(P)$ en función del IPC $(IPC\%)$ es:
+
+$$
+\begin{aligned}
+    V = P \cdot \left(1 + \frac{IPC\%}{100}\right)
+\end{aligned}
+$$
+
+```python
+def validar_precio():
+    while True:
+        try:
+            precio = float(input("Ingrese el valor del producto: "))
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            if (precio <= 0):
+                print("Error. Valor no válido")
+            else:
+                return precio
+
+def actualizar_precio(precio, ipc):
+    return ( precio * (1 + ipc/100) )
+
+def diferencia_precio (precio1, precio2):
+    return (abs(precio1 - precio2))
+
+ipc_feb = 0.3
+ipc_mar = 0.6
+
+precio = validar_precio()
+precio_feb = actualizar_precio(precio,ipc_feb)
+precio_mar = actualizar_precio(precio, ipc_mar)
+diferencia = diferencia_precio(precio_feb,precio_mar)
+
+print(f"\nValor producto actualizado a Febrero: {precio_feb:.2f}")
+print(f"Valor producto actualizado a Marzo: {precio_mar:.2f}")
+print(f"Diferencia precio Febrero-Marzo: {diferencia:.2f}")
+```
+</Solution>
+
+
+### Ejercicio 03
+Confeccione un algoritmo en diagrama de flujo que al leer el neto de una factura, calcule el IVA y entregue como salida el total de la factura.
+
+<Solution>
+El calculo del IVA de un producto base $(P)$, según una tasa $(t)$ es:
+
+$$
+\begin{aligned} 
+    IVA = P \cdot t
+\end{aligned}
+$$
+
+Donde t = 0.19 en Chile
+
+```python
+def validar_factura():
+    while True:
+        try:
+            neto = float(input("Ingrese el neto de la factura: "))
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            if neto <= 0:
+                print("Error. Valor no válido")
+            else:
+                return neto
+                
+def valor_iva(neto,tasa_iva):
+    return (neto * tasa_iva)
+
+tasa_IVA = 0.19
+neto_factura = validar_factura()
+total_factura = neto_factura + valor_iva(neto_factura, tasa_IVA)
+
+print(f"\nIVA: {valor_iva(neto_factura, tasa_IVA):.2f}")
+print(f"Total Factura: {total_factura:.2f}")
+```
+</Solution>
+
+### Ejercicio 04
+Crear un algoritmo en diagrama de flujo que al ingresar dos números imprima el mayor de ellos o IGUALES si son iguales
+
+<Solution>
+```python
+def validar_num(i):
+    while True:
+        try:
+            num = float(input(f"Ingrese número [{i} de 2]: "))
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            return num
+
+def comparar_numeros(numA, numB):
+    if numA > numB:
+        return numA
+    elif numA < numB:
+        return numB
+    else:
+        return "IGUALES"
+
+num1 = validar_num(1)
+num2 = validar_num(2)
+print(f"\n{comparar_numeros(num1,num2)}")
+```
+</Solution>
+
+## Ejercicios Propuestos de Alternativa Simple, Doble, y Múltiple
+
+### Ejercicio 01
+Suponga que un individuo desea invertir su capital en un banco y desea saber cuánto dinero ganará después de un mes si el banco paga a razón de 2% mensual.
+
+<Solution>
+```python
+def validar_capital():
+    while True:
+        try:
+            capital = float(input("Ingrese el monto del capital: "))
+        except ValueError:
+            print("Error. Monto no válido")
+        else:
+            if capital <= 0:
+                print("Error. Monto no válido")
+            else:
+                return capital
+
+def calculo_inversion(cap,tasa):
+    return cap * (1 + tasa / 100)
+
+tasa_mensual = 2
+capital_inicial = validar_capital()
+capital_final = calculo_inversion(capital_inicial, tasa_mensual)
+print(f"\nLuego de un mes, el monto del capital es: {capital_final:.2f}")
+```
+</Solution>
+
+### Ejercicio 02
+Un vendedor recibe un sueldo base más un 10% extra por comisión de sus ventas. El vendedor desea saber cuánto dinero obtendrá por concepto de comisiones por las tres ventas que realiza en el mes y el total que recibirá en el mes tomando en cuenta su sueldo base y comisiones.
+
+<Solution>
+```python
+def validarSueldoBase():
+    while True:
+        try:
+            sueldo = float(input("Ingrese sueldo base: "))
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            if sueldo <= 0:
+                print("Error. Valor no válido")
+            else:
+                return sueldo
+
+def validarVenta(i):
+    while True:
+        try:
+            venta = float(input(f"Ingrese venta [{i} de 3]: "))
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            if venta <= 0:
+                print("Error. Valor no válido")
+            else:
+                return venta
+
+def calcularComision(ventaA, ventaB, ventaC, tasa):
+    return ( (ventaA + ventaB + ventaC) * tasa/100 )
+
+tasa_comision = 10
+sueldo_base = validarSueldoBase()
+venta1 = validarVenta(1)
+venta2 = validarVenta(2)
+venta3 = validarVenta(3)
+comision = calcularComision(venta1, venta2, venta3, tasa_comision)
+
+sueldo_final = sueldo_base + comision
+
+print(f"\nComisión por ventas: {comision:.2f}")
+print(f"Sueldo final: {sueldo_final:.2f}")
+```
+</Solution>
+
+### Ejercicio 03
+Una tienda ofrece un descuento del 15% sobre el total de la compra y un cliente desea saber cuánto deberá pagar finalmente por su compra.
+
+<Solution>
+```python
+def validarCompra():
+    while True:
+        try:
+            compra = float(input("Ingrese el valor de su compra: "))
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            if compra <= 0:
+                print("Error. Valor no válido")
+            else:
+                return compra
+
+def calcularDescuento(compra, tasa):
+    return (compra * tasa/100)
+
+tasa_descuento = 15
+valor_compra = validarCompra()
+valor_descuento = calcularDescuento(valor_compra, tasa_descuento)
+precio_final = valor_compra - valor_descuento
+
+print(f"\nValor de descuento: {valor_descuento:.2f}")
+print(f"Valor Total a pagar: {precio_final:.2f}")
+```
+</Solution>
+
+### Ejercicio 04
+Un alumno desea saber cuál será su calificación final en la materia de Algoritmos. Dicha calificación se compone de los siguiente porcentajes:
+
+- 55% del promedio de sus tres calificaciones parciales.
+- 30% de la calificación del examen final.
+- 15% de la calificación de un trabajo final.
+
+<Solution>
+```python
+def validarNota(tipo, i=None):
+    while True:
+        try:
+            if tipo == "parcial":
+                nota = float(input(f"Ingrese nota parcial [{i} de 3]: "))
+            elif tipo == "examen":
+                nota = float(input(f"Ingrese nota de examen: "))
+            elif tipo == "trabajo":
+                nota = float(input(f"Ingrese nota de trabajo: "))
+            else:
+                raise ValueError("Error. Tipo de nota desconocido")
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            if (nota < 1.0) or (nota > 7.0):
+                print("Error. Valor no válido")
+            else:
+                return nota
+
+def calcularPromedioParciales(nota1, nota2, nota3):
+    return ( (nota1 + nota2 + nota3) / 3 )
+
+def calcularNotaFinal(notaA, notaB, notaC, pondA, pondB, pondC):
+    return ( notaA * pondA/100 + notaB * pondB/100 + notaC * pondC/100 )
+
+pond_parciales = 55
+pond_examen = 30
+pond_trabajo = 15
+
+parcial1 = validarNota("parcial",1)
+parcial2 = validarNota("parcial",2)
+parcial3 = validarNota("parcial",3)
+examen = validarNota("examen")
+trabajo = validarNota("trabajo")
+
+prom_parciales = calcularPromedioParciales(parcial1, parcial2, parcial3)
+nota_final = calcularNotaFinal(prom_parciales, examen, trabajo, pond_parciales, pond_examen, pond_trabajo)
+
+print(f"\nNota final: {nota_final:.2f}")
+```
+</Solution>
+
+
+### Ejercicio 05
+Un maestro desea saber qué porcentaje de hombres y qué porcentaje de mujeres hay en un grupo de estudiantes.
+
+<Solution>
+```python
+def validarCantidad(tipo):
+    while True:
+        try:
+            if tipo == "hombres":
+                cantidad = int(input("Ingrese el número total de hombres: "))
+            elif tipo == "mujeres":
+                cantidad = int(input("Ingrese el número total de mujeres: "))
+            else:
+                raise ValueError("Error. Tipo ingresado no válido")
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            if cantidad < 0:
+                print("Error. Valor no válido")
+            else:
+                return cantidad
+
+def calcularPorcentaje(cantidad, total):
+    return ( (cantidad / total) * 100 )
+
+hombres = validarCantidad("hombres")
+mujeres = validarCantidad("mujeres")
+total_estudiantes = hombres + mujeres
+
+if total_estudiantes == 0:
+    print("\nNo existe ningún alumno en la clase")
+else:
+    porcentaje_hombres = calcularPorcentaje(hombres, total_estudiantes)
+    porcentaje_mujeres = calcularPorcentaje(mujeres, total_estudiantes)
+    print(f"\nPorcentaje hombres: {porcentaje_hombres:.2f}%") 
+    print(f"Porcentaje mujeres: {porcentaje_mujeres:.2f}%") 
+```
+</Solution>
+
+### Ejercicio 06
+Realizar un algoritmo que calcule la edad de una persona.
+
+<Solution>
+```python
+from datetime import datetime
+
+def validarFecha():
+    while True:
+        try:
+            fecha = int(input("Ingrese el año de nacimiento: "))
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            if (fecha < datetime.now().year - 120) or (fecha > datetime.now().year):
+                print("Error. Valor no válido")
+            else:
+                return fecha 
+
+def calcularEdad(nac):
+    return ( datetime.now().year - nac )
+
+fecha_nac = validarFecha()
+edad = calcularEdad(fecha_nac)
+print(f"\nEdad: {edad} años")
+```
+</Solution>
+
+### Ejercicio 07
+Un hombre desea saber cuánto dinero se genera por concepto de intereses sobre la cantidad que tiene en inversión en el banco. El decidirá reinvertir los intereses siempre y cuando éstos excedan a $7000, y en este caso desea saber cuánto dinero tendrá finalmente en su cuenta.
+
+<Solution>
+```python
+def validarDato(tipo):
+    while True:
+        try:
+            if tipo == "tasa":
+                dato = float(input("Ingrese la tasa de interés anual (en %): "))
+            elif tipo == "inversion":
+                dato = float(input("Ingrese monto de inversión: ")) 
+            elif tipo == "tiempo":
+                dato = int(input("Ingrese el tiempo de inversión (en años): "))
+            else:
+                raise ValueError("Error. Tipo no válido")
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            if (tipo == "tasa") and (dato <= 0 or dato > 10):
+                print("Error. Valor no válido")
+            elif (tipo == "inversion" or tipo == "tiempo") and (dato <= 0):
+                print("Error. Valor no válido")
+            else:
+                return dato
+
+def calcularIntereses(inv, tasa, tiempo):
+    return ( inv * (tasa/100) * tiempo)
+
+cant_inversion = validarDato("inversion")
+tasa_interes = validarDato("tasa")
+tiempo = validarDato("tiempo")
+intereses = calcularIntereses(cant_inversion, tasa_interes, tiempo)
+
+total_cuenta = cant_inversion + intereses
+
+print(f"\nTasa Interés: {tasa_interes:.2f}%")
+print(f"Monto Inversión: ${cant_inversion:.2f}")
+print(f"Tiempo Inversion: {tiempo:.2f} años")
+print(f"Intereses: ${intereses:.2f}")
+print(f"Total Cuenta: ${total_cuenta:.2f}")
+```
+</Solution>
+
+### Ejercicio 08
+Determinar si un alumno aprueba o reprueba un curso, sabiendo que aprobará si su promedio de tres calificaciones es mayor o igual a 7.0; reprueba en caso contrario
+
+<Solution>
+```python
+def validarNota(i):
+    while True:
+        try:
+            nota = float(input(f"Ingrese nota [{i} de 3]: "))
+        except ValueError:
+            print("Error. Nota no válida")
+        else:
+            if (nota < 0) or (nota > 100):
+                print("Error. Nota no válida")
+            else:
+                return nota
+
+def calcularPromNotas (notaA, notaB, notaC):
+    return ( (notaA + notaB + notaC) / 3 )
+
+nota1 = validarNota(1)
+nota2 = validarNota(2)
+nota3 = validarNota(3)
+prom_notas = calcularPromNotas(nota1, nota2, nota3)
+estado = "APROBADO" if prom_notas >= 70 else "REPROBADO"
+
+print(f"\nPromedio notas: {prom_notas:.2f}")
+print(estado)
+```
+</Solution>
+
+### Ejercicio 09
+En un almacen se hace un 20% de descuento a los clientes cuya compra supere los $1000. ¿Cuál será la cantidad que pagará una persona por su compra?
+
+<Solution>
+```python
+def validarMonto():
+    while True:
+        try:
+            monto = float(input("Ingrese el monto neto: "))
+        except ValueError:
+            print("Error. Monto no válido")
+        else:
+            if monto <= 0:
+                print("Error. Monto no válido")
+            else:
+                return monto
+
+def calcularDescuento(monto, tasa):
+    return (monto * tasa/100) if monto > 1000 else 0
+
+tasa_descuento = 20
+monto_neto = validarMonto()
+monto_descuento = calcularDescuento(monto_neto, tasa_descuento)
+
+monto_final = monto_neto - monto_descuento
+
+print(f"\nMonto Neto: {monto_neto:.2f}")
+print(f"Descuento: {monto_descuento:.2f}")
+print(f"Monto Final: {monto_final:.2f}")
+```
+</Solution>
+
+### Ejercicio 10
+Un obrero necesita calcula su salario semanal, el cual se obtiene de la siguiente manera:
+
+- Si trabaja 40 horas o menos se le paga $16 por hora.
+- Si trabaja más de 40 horas se le paga \$16 cada una de las primeras 40 horas y \$20 por cada hora extra.
+
+<Solution>
+```python
+def validarHoras():
+    while True:
+        try:
+            horas = float(input("Ingrese horas semanales: "))
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            if horas <= 0:
+                print("Error. Valor no válido")
+            else:
+                return horas
+
+def calcularSalario(horas, ratio1, ratio2):
+    if horas <= 40:
+        return ( horas * ratio1 )
+    else:
+        return ( 40 * ratio1 + (horas-40) * ratio2)
+        
+ratio_normal = 16
+ratio_overtime = 20
+
+horas = validarHoras()
+salario_semanal = calcularSalario(horas, ratio_normal, ratio_overtime)
+
+print(f"\nSalario Semanal: {salario_semanal:.2f}")
+```
+</Solution>
+
+### Ejercicio 11
+~~Un hombre desea saber cuánto dinero se genera por concepto de intereses sobre la cantidad que tiene en inversión en el banco. El decidirá reinvertir los intereses siempre y cuando éstos excedan a \$7000, y en ese caso desea saber cuánto dinero tendrá finalmente en su cuenta.~~ (Idéntico a Ejercicio 07)
+
+### Ejercicio 12
+Que lea 2 números y los imprima de forma ascendente
+
+<Solution>
+```python
+def validarNumero(i):
+    while True:
+        try:
+            num = float(input(f"Ingrese número [{i} de 2]: "))
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            return num
+
+def ordenarTupla(numA, numB):
+    if numA > numB:
+        return numB, numA
+    else:
+        return numA, numB
+
+num1 = validarNumero(1)
+num2 = validarNumero(2)
+num_menor, num_mayor = ordenarTupla(num1, num2)
+print(f"\nNúmeros ordenados de forma ascendente: {num_menor:.2f}, {num_mayor:.2f}")
+```
+</Solution>
+
+### Ejercicio 13
+Una persona enferma, que pesa 70kg, se encuentra en reposo y desea saber cuántas calorías consume su cuerpo durante todo el tiempo que realice la misma actividad. Las actividades que tiene permitido realizar son únicamente dormir o estar sentado en reposo. Los datos que tiene son que estando dormido consume 1.08 calorías por minuto y estando sentado en reposo consume 1.66 calorías por minuto.
+
+<Solution>
+```python
+def validarDato(tipo):
+    while True:
+        try:
+            if tipo == "actividad":
+                dato = input("Ingrese actividad [dormir, sentado]: ")
+                dato = dato.lower()
+            elif tipo == "tiempo":
+                dato = float(input("Ingrese tiempo de actividad [min]: "))
+            else:
+                raise ValueError("Error. Valor no válido")
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            if (tipo == "actividad") and (dato != "dormir") and (dato != "sentado"):
+                print("Error. Valor no válido")
+            elif (tipo == "tiempo") and (dato < 0):
+                print("Error. Valor no válido")
+            else:
+                return dato
+
+def calcularCalorias(tipo, tiempo, ratio1, ratio2):
+    if tipo == "dormir":
+        return ratio1 * tiempo
+    else:
+        return ratio2 * tiempo
+
+calMin_dormido = 1.08
+calMin_sentado = 1.66
+actividad = validarDato("actividad")
+tiempo = validarDato("tiempo")
+calorias = calcularCalorias(actividad, tiempo, calMin_dormido, calMin_sentado)
+
+print(f"\nTipo actividad: {actividad}")
+print(f"Tiempo actividad: {tiempo} minutos")
+print(f"Calorías consumidas: {calorias:.2f} calorias")
+```
+</Solution>
+
+### Ejercicio 14
+Hacer un algoritmo que imprima el nombre de un artículo, clave, precio original y su precio con descuento. El descuento lo hace en base a la clave, si la clave es 01 el descuento es del 10% y si la clave es 02 el descuento es del 20% (solo existen dos claves)
+
+<Solution>
+```python
+def validarDato(tipo):
+    while True:
+        try:
+            if tipo == "clave":
+                dato = input("Ingrese clave del artículo: ")
+            elif tipo == "precio":
+                dato = float(input("Ingrese precio del artículo: "))
+            else:
+                raise ValueError("Error. Valor no válido")
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            if (tipo == "clave") and (dato != "01") and (dato != "02"):
+                print("Error. Valor no válido")
+            elif (tipo == "precio") and (dato <= 0):
+                print("Error. Valor no válido")
+            else:
+                return dato
+
+def calcularDescuento(precio, clave):
+    if clave == "01":
+        return ( precio * (1 - 0.1) )
+    else:
+        return ( precio * (1 - 0.2) )
+
+articulo = input("Ingrese nombre del articulo: ")
+clave = validarDato("clave")
+precio_neto = validarDato("precio")
+precio_final = calcularDescuento(precio_neto, clave)
+
+print(f"\nNombre artículo: {articulo}")
+print(f"Clave: {clave}")
+print(f"Precio original: ${precio_neto:.2f}")
+print(f"Precio con descuento: ${precio_final:.2f}")
+```
+</Solution>
+
+### Ejercicio 15
+Hacer un algoritmo que calcule el total a pagar por la compra de camisas. Si se compran tres camisas o más se aplica un descuento del 20% sobre el total de la compra y si son menos de tres camisas un descuento del 10%
+
+<Solution>
+```python
+def validarDato(tipo):
+    while True:
+        try:
+            if tipo == "precio":
+                dato = float(input("Ingrese el precio por camisa: "))
+            elif tipo == "camisas":
+                dato = int(input("Ingrese el número de camisas: "))
+            else:
+                raise ValueError("Error. Valor no válido")
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            if dato <= 0:
+                print("Error. Valor no válido")
+            else:
+                return dato
+
+def calcularDescuento(precio, cantidad):
+    if cantidad >= 3:
+        return ( cantidad * precio * (1 - 0.2) )
+    else:
+        return ( cantidad * precio * (1 - 0.1) )
+
+num_camisas = validarDato("camisas")
+precio_neto = validarDato("precio")
+compra_neta = precio_neto * num_camisas
+compra_final = calcularDescuento(precio_neto, num_camisas)
+
+print(f"\nCantidad camisas: {num_camisas}")
+print(f"Precio por camisa: ${precio_neto:.2f}")
+print(f"Compra neta: {compra_neta:.2f}")
+print(f"Compra Final: ${compra_final:.2f}")
+```
+</Solution>
+
+
+### Ejercicio 16
+Una empresa quiere hacer una compra de varias piezas de la misma clase a una fábrica de refacciones. La empresa, dependiendo del monto total de la compra, decidirá que hacer para pagar al fabricante.
+
+Si el monto total de la compra excede de \$500000 la empresa tendrá la capacidad de invertir de su propio dinero un 55% del monto de la compra, pedir prestado al banco un 30% y el resto lo pagará solicitando un crédito al fabricante.
+
+Si el monto total de la compra no excede de \$500000 la empresa tendrá la capacidad de invertir de su propio dinero un 70% y el restanto 30% lo pagará solicitando crédito al fabricante.
+
+El fabricante cobra por concepto de intereses un 20% sobre la cantidad que se pague a crédito.
+
+<Solution>
+```python
+def validarMonto():
+    while True:
+        try:
+            monto = float(input("Ingrese monto: "))
+        except ValueError:
+            print("Error. Monto no válido")
+        else:
+            if monto <= 0:
+                print("Error. Monto no válido")
+            else:
+                return monto
+
+def gestionarGastos(monto):
+    if monto > 500000:
+        capital = monto * 0.55
+        prestamo = monto * 0.3
+        credito =  monto * (1 - 0.55 - 0.3 ) * 1.2 
+    else:
+        capital = monto * 0.7
+        prestamo = 0
+        credito = monto * (1 - 0.7) * 1.2 
+    return capital, prestamo, credito
+
+monto_compra = validarMonto()
+dinero_propio, prestamo_banco, credito_fabricante = gestionarGastos(monto_compra)
+
+print(f"\nMonto Compra: ${monto_compra:.2f}")
+print(f"Inversión Empresa: ${dinero_propio:.2f}")
+print(f"Préstamo Bancario: ${prestamo_banco:.2f}")
+print(f"Crédito al Fabricante: ${credito_fabricante:.2f}")
+```
+</Solution>
+
+### Ejercicio 17
+Leer 2 números; si son iguales que los multiplique, si el primero es mayor que el segundo que los reste y si no que los sume.
+
+<Solution>
+```python
+def validarNumero(i):
+    while True:
+        try:
+            num = float(input(f"Ingrese número [{i} de 2]: "))
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            return num
+
+def calcularOperacion(numA, numB):
+    if numA == numB:
+        return "Multiplicación", numA * numB
+    elif numA > numB:
+        return "Resta", numA - numB
+    else:
+        return "Suma", numA + numB
+
+num1 = validarNumero(1)
+num2 = validarNumero(2)
+operacion, resultado = calcularOperacion(num1, num2)
+
+print(f"\nPrimer número: {num1:.2f}")
+print(f"Segundo número: {num2:.2f}")
+print(f"{operacion}: {resultado:.2f}")
+```
+</Solution>
+
+### Ejercicio 18
+Leer tres números diferentes e imprimir el número mayor de los tres.
+
+<Solution>
+```python
+def validarNumero(i):
+    while True:
+        try:
+            num = float(input(f"Ingrese número [{i} de 3]: "))
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            return num
+
+def calcularMayor(numA, numB, numC):
+    if (numA > numB) and (numA > numC):
+        return numA
+    elif (numB > numC):
+        return numB
+    else:
+        return numC
+
+num1 = validarNumero(1)
+num2 = validarNumero(2)
+num3 = validarNumero(3)
+num_mayor = calcularMayor(num1, num2, num3)
+print(f"\nEl número mayor es: {num_mayor:.2f}")
+```
+</Solution>
+
+### Ejercicio 19
+Determinar la cantidad de dinero que recibirá un trabajador por concepto de horas extras trabajadas en una empresa, sabiendo que cuando las horas de trabajo exceden de 40, el resto se consideran horas extras y que éstas se pagan al doble de una hora normal cuando no exceden de 8; si las horas extras exceden de 8 se pagan las primeras 8 al doble de lo que se pagan las horas normales y el resto al triple.
+
+<Solution>
+```python
+def validarDato(tipo):
+    while True:
+        try:
+            if tipo == "ratio":
+                dato = float(input("Ingrese monto pago por hora: "))
+            elif tipo == "horas":
+                dato = float(input("Ingrese horas trabajadas: "))
+            else:
+                raise ValueError("Error. Tipo no válido")    
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            if dato <= 0:
+                print("Error. Valor no válido")
+            else:
+                return dato
+
+def calcularSueldo(horas, ratio):
+    if horas <= 40:
+        return horas * ratio
+    elif (horas > 40) and (horas <= 48):
+        return ( 40 * ratio + (horas-40) * 2 * ratio )
+    else:
+        return ( 40 * ratio + 8 * 2 * ratio + (horas - 48) * 3 * ratio )
+
+pago_hora = validarDato("ratio")
+horas_trabajadas = validarDato("horas")
+sueldo = calcularSueldo(horas_trabajadas, pago_hora)
+
+print(f"\nRatio Sueldo: ${pago_hora:.2f} por hora")
+print(f"Horas trabajadas: {horas_trabajadas:.2f} horas")
+print(f"Sueldo: ${sueldo:.2f}")
+```
+</Solution>
+
+### Ejercicio 20
+Calcular la utilidad que un trabajador recibe en el reparto anual de utilidades si éste se le asigna como un porcentaje de su salario mensual que depende de su antigüedad en la empresa de acuerdo con la siguiente tabla:
+
+|Tiempo|Utilidad|
+|---|---|
+|Menos de 1 año|5% del salario|
+|1 año o más y menos de 2 años|7% del salario|
+|2 años o más y menos de 5 años|10% del salario|
+|5 años o más y menos de 10 años|15% del salario|
+|10 años o más|20% del salario|
+
+<Solution>
+```python
+def validarDato(tipo):
+    while True:
+        try:
+            if tipo == "salario":
+                dato = float(input("Ingrese Monto del salario: "))
+            elif tipo == "tiempo":
+                dato = int(input("Ingrese tiempo de antiguedad [en años]: "))
+            else:
+                raise ValueError("Error. Tipo no válido")
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            if dato <= 0:
+                print("Error. Valor no válido")
+            else:
+                return dato
+
+def calcularUtilidad(sueldo, tiempo):
+    if tiempo < 1:
+        return sueldo * 0.05
+    elif (tiempo >= 1) and (tiempo < 2):
+        return sueldo * 0.07
+    elif (tiempo >= 2) and (tiempo < 5):
+        return sueldo * 0.1
+    elif (tiempo >= 5) and (tiempo < 10):
+        return sueldo * 0.15
+    else:
+        return sueldo * 0.2
+        
+salario = validarDato("salario")
+antiguedad = validarDato("tiempo")
+utilidad = calcularUtilidad(salario, antiguedad)
+
+print(f"\nSalario: ${salario}")
+print(f"Antigüedad: {antiguedad} años")
+print(f"Utilidad: ${utilidad}")
+```
+</Solution>
+
+### Ejercicio 21
+En una tienda de descuento se efectúa una promoción en la cual se hace un descuento sobre el valor de la compra total según el color de la bolita que el cliente saque al pagar en caja. Si la bolita es de color blanco no se le hará descuento alguno, si es verde se le hará un 10% de descuento, si es amarilla un 25%, si es azul un 50% y si es roja un 100%. Determinar la cantidad final que el cliente deberá pagar por su compra. Se sabe que solo hay bolitas de los colores mencionados.
+
+<Solution>
+```python
+def validarDato(tipo):
+    while True:
+        try:
+            if tipo == "color":
+                dato = input("Ingrese color de bolita [blanco, verde, amarillo, azul, rojo]: ")
+                dato = dato.lower()
+            elif tipo == "precio":
+                dato = float(input("Ingrese Monto de la compra: "))
+            else:
+                raise ValueError("Error. Tipo no válido")
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            if (tipo == "color") and (dato not in ["blanco", "verde", "amarillo", "azul", "rojo"]):
+                print("Error. Color no válido")
+            elif (tipo == "precio") and (dato <= 0):
+                print("Error. Precio no válido")
+            else:
+                return dato
+
+def calcularDescuento(precio, color):
+    if color == "blanco":
+        return precio
+    elif color == "verde":
+        return precio * (1 - 0.1)
+    elif color == "amarillo":
+        return precio * (1 - 0.25)
+    elif color == "azul":
+        return precio * (1 - 0.5)
+    else:
+        return 0
+    
+valor_neto = validarDato("precio")
+color_bolita = validarDato("color")
+valor_final = calcularDescuento(valor_neto, color_bolita)
+
+print(f"\nValor Compra: ${valor_neto:.2f}")
+print(f"Color bolita: {color_bolita}")
+print(f"Valor Final: ${valor_final:.2f}")
+```
+</Solution>
+
+### Ejercicio 22
+El IMSS requiere clasificar a las personas que se jubilarán en el año de 1997. Existen tres tipos de jubilaciones: por edad, por antigüedad joven y por antigüedad adulta.
+
+- Las personas adscritas a la **jubilación por edad** deben tener 60 años o más y una antigüedad en su empleo de menos de 25 años.
+- Las personas adscritas a la **jubilación por antigüedad joven** deben tener menos de 60 años y una antigüedad en su empleo de 25 años o más.
+- Las personas adscritas a la **jubilación por antigüedad adulta** deben tener 60 años o más y una antigüedad en su empleo de 25 años o más.
+
+Determinar en qué tipo de jubilación quedará adscrita una persona.
+
+<Solution>
+```python
+def validarDato(tipo):
+    while True:
+        try:
+            if tipo == "edad":
+                dato = int(input("Ingrese su edad [en años]: "))
+            elif tipo == "tiempo":
+                dato = int(input("Ingrese antigüedad en su empleo [en años]: "))
+            else:
+                raise ValueError("Error. Tipo no válido")
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            if (tipo == "edad") and ( (dato < 60) or (dato > 120) ):
+                print("Error. Edad no válida")
+            elif (tipo == "tiempo") and ( (dato <= 0) or (dato > 50) ):
+                print("Error. Antigüedad no válida")
+            else:
+                return dato
+
+def calcularJubilacion(edad, tiempo):
+    if (edad >= 60) and (tiempo < 25):
+        return "por Edad"
+    elif (edad < 60) and (tiempo >= 25):
+        return "por Antiüedad Joven"
+    elif (edad >= 60) and (tiempo >= 25):
+        return "por Antigüedad Adulta"
+
+edad = validarDato("edad")
+antiguedad = validarDato("tiempo")
+jubilacion = calcularJubilacion(edad, antiguedad)
+
+print(f"\nEdad: {edad} años")
+print(f"Antigüedad: {antiguedad} años")
+print(f"Jubilación: {jubilacion}")
+```
+</Solution>
+
+## Ejercicios Propuestos de Ciclos
+
+### Ejercicio 01
+Calcular el promedio de un alumno que tiene 7 calificaciones en la materia de Diseño Estructurado de Algoritmos.
+
+
+<Solution>
+```python
+def validarNota(i, j):
+    while True:
+        try:
+            nota = float(input(f"Ingrese nota [{i} de {j}]: "))
+        except ValueError:
+            print("Error. Nota no válida")
+        else:
+            if (nota < 1.0) or (nota > 7.0):
+                print("Error. Nota no válida")
+            else:
+                return nota
+
+def calcularPromedio(ciclo):
+    suma_notas = 0
+    for i in range(ciclo):
+        nota = validarNota(i+1, ciclo)
+        suma_notas = suma_notas + nota
+    return (suma_notas / ciclo)
+
+promedio = calcularPromedio(7)
+print(f"Promedio Alumno: {promedio:.2f}")
+```
+</Solution>
+
+### Ejercicio 02
+Leer 10 números y obtener su cubo y su cuarta
+
+<Solution>
+```python
+def validarNumeros(i, j):
+    while True:
+        try:
+            numero = float(input(f"Ingrese número [{i} de {j}]: "))
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            return numero
+
+def calcularCubo(num):
+    return num ** 3
+
+def calcularCuarta(num):
+    return num ** 4
+
+numeros = ""
+cubo = ""
+cuarta = ""
+for i in range(10):
+    num = validarNumeros(i+1, 10)
+    numeros = numeros + " " + str(num)
+    cubo = cubo + " " + str(calcularCubo(num))
+    cuarta = cuarta + " " + str(calcularCuarta(num))
+
+print()
+print(f"Números: {numeros}")
+print(f"Cubos: {cubo}")
+print(f"Cuartas: {cuarta}")
+```
+</Solution>
+
+### Ejercicio 03
+Leer 10 números e imprimir solamente los números positivos.
+
+<Solution>
+```python
+def validarNumeros(i,j):
+    while True:
+        try:
+            num = float(input(f"Ingrese número [{i} de {j}]: "))
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            return num
+
+numeros = ""
+for i in range(10):
+    num = validarNumeros(i+1, 10)
+    if num > 0:
+        numeros = numeros + " " + str(num)
+
+print(numeros)
+```
+</Solution>
+
+
+### Ejercicio 04
+Leer 20 números e imprimir cuántos son positivos, cuántos negativos y cuántos neutros.
+
+<Solution>
+```python
+def validarNumeros(i, j):
+    while True:
+        try:
+            num = float(input(f"Ingrese número [{i} de {j}]: "))
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            return num
+
+numeros = ""
+num_positivos = 0
+num_negativos = 0
+num_neutros = 0
+for i in range(20):
+    num = validarNumeros(i+1, 20)
+    numeros = numeros + " " + str(num)
+    if num == 0:
+        num_neutros = num_neutros + 1
+    elif num > 0:
+        num_positivos = num_positivos + 1
+    else:
+        num_negativos = num_negativos + 1
+
+print(f"\nNúmeros ingresados: {numeros}")
+print(f"Números neutros: {num_neutros}")
+print(f"Números positivos: {num_positivos}")
+print(f"Números negativos: {num_negativos}")
+```
+</Solution>
+
+### Ejercicio 05
+Leer 15 números negativos y convertirlos a positivos e imprimir dichos números.
+
+<Solution>
+```python
+def validarNumeros(i,j):
+    while True:
+        try:
+            num = float(input(f"Ingrese número [{i} de {j}]: "))
+        except ValueError:
+            print("Error. Valor no válido")
+        else:
+            if num >= 0:
+                print("Error. Valor debe ser negativo")
+            else:
+                return num
+
+def convertirPositivo(num):
+    return num * -1
+
+numeros = ""
+for i in range(15):
+    num = validarNumeros(i+1, 15)
+    num = convertirPositivo(num)
+    numeros = numeros + " " + str(num)
+
+print(f"\nNúmeros Positivos: {numeros}")
+```
+</Solution>
+
+### Ejercicio 06
+Suponga que se tiene un conjuntao de calificaciones de un grupo de 40 alumnos. Realizar un algoritmo para calcular la calificación media y la calificación más baja de todo el grupo.
+
+<Solution>
+```python
+def calcularBaja(notas):
+    nota_baja = 7.0
+    for i in notas:
+        if i < nota_baja:
+            nota_baja = i
+    return nota_baja
+
+def calcularMedia(notas):
+    sum_notas = 0
+    cant_notas = 0
+    for i in notas:
+        sum_notas = sum_notas + i
+        cant_notas = cant_notas + 1
+    return (sum_notas / cant_notas)
+
+calificaciones = [
+    4.0, 4.5, 5.3, 5.8, 5.2, 4.0, 7.0, 3.9, 3.5, 5.5,
+    2.5, 4.0, 5.2, 6.1, 6.5, 6.6, 4.2, 4.4, 3.2, 5.0,
+    3.2, 3.3, 1.0, 5.5, 6.0, 7.0, 5.1, 5.2, 4.3, 3.2,
+    6.0, 6.1, 7.0, 4.8, 4.5, 5.7, 5.8, 3.2, 4.0, 3.9
+    ]
+
+nota_media = calcularMedia(calificaciones)
+nota_baja = calcularBaja(calificaciones)
+
+print(f"\nNota media: {nota_media:.2f}")
+print(f"Nota más baja: {nota_baja}")
+```
+<TerminalOutput withBg>
+{`Nota media: 4.78
+Nota más baja: 1.0`}
+</TerminalOutput>
+</Solution>
+
+### Ejercicio 07
+Calcular e imprimir la tabla de multiplicar de un número cualquiera. Imprimir el multiplicando, el multiplicador y el producto.
+
+<Solution>
+```python
+multiplicando = int(input("Ingrese un número: "))
+
+print("\nMultiplicando\tMultiplicador\tProducto")
+print("-------------\t-------------\t--------")
+
+for multiplicador in range(1,10+1):
+    producto = multiplicando * multiplicador
+    print(f"{multiplicando}\t\t{multiplicador}\t\t{producto}")
+```
+</Solution>
+
+### Ejercicio 08
+Simular el comportamiento de un reloj digital, imprimiendo la hora, minutos y segundos de un día desde las 0:00:00 horas hasta las 23:59:59 horas.
+
+<Solution>
+```python
+import time
+
+total_seg = 60*60*24
+
+segundo = 0
+minuto = 0
+hora = 0
+for i in range(total_seg):
+    segundo = i % 60
+    minuto = (i // 60) % 60
+    hora = (i // 3600) % 24
+
+    print(f"Reloj: {str(hora).zfill(2)}:{str(minuto).zfill(2)}:{str(segundo).zfill(2)}")
+    time.sleep(1) #opcional, retrasa la instrucción en 1 seg para simular reloj
+```
+</Solution>
+
+
+### Ejercicio 09
+Una compañía de seguros tiene contratados a `n` vendedores. Cada uno hace tres ventas a la semana. Su política de pagos es que un vendedor recibe un sueldo base, y un 10% extra por comisiones de sus ventas. El gerente de su compañía desea saber cuánto dinero obtendrá en la semana cada vendedor por concepto de comisiones por las tres ventas,y cuánto tomando en cuenta su sueldo base y sus comisiones.
+
+<Solution>
+```python
+def calcularComision(ventaA, ventaB, ventaC):
+    return ( (ventaA + ventaB + ventaC) * 0.1 )
+
+def calcularSueldo(sueldo,comision):
+    return sueldo + comision
+
+sueldo = float(input("Ingrese el sueldo base: "))
+num_vendedores = int(input("Ingrese el número de vendedores: "))
+
+comisiones=[]
+for i in range(num_vendedores):
+    venta1 = float(input(f"\nIngrese la venta 1 de 3, del vendedor {i+1}: "))
+    venta2 = float(input(f"Ingrese la venta 2 de 3, del vendedor {i+1}: "))
+    venta3 = float(input(f"Ingrese la venta 3 de 3, del vendedor {i+1}: "))
+    comision = calcularComision(venta1,venta2,venta3)
+    comisiones.append(comision)
+
+continuar = "s"
+while(continuar == "s"):
+    try:
+        id_vendedor = int(input("\nIngrese el id del vendedor a revisar: "))
+    except ValueError:
+        print("Error. Id no válido")
+    else:
+        if (id_vendedor <= 0) or (id_vendedor > len(comisiones)):
+            print("Error. Id no válido")
+        else:    
+            print(f"Vendedor id: {id_vendedor}")
+            print(f"Comisión semana: ${comisiones[id_vendedor-1]}")
+            print(f"Sueldo: ${calcularSueldo(sueldo,comisiones[id_vendedor-1])}")
+            continuar = input("¿Desea continuar? (s/n): ")
+            continuar = continuar.lower()
+```
+</Solution>
+
+### Ejercicio 10
+En una empresa se requiere calcular el salario semanal de cada uno de los `n` obreros que laboran en ella. El salario se obtiene de la siguiente forma:
+
+- Si el obrero trabaja 40 horas o menos se le paga \$20 por hora
+- Si trabaja más de 40 horas se le paga \$20 por cada una de las primeras 40 horas y \$25 por cada hora extra.
+
+<Solution>
+```python
+def calcularSueldo(horas):
+    if horas <= 40:
+        return horas * 20
+    elif horas > 40:
+        return ( 40 * 20 + (horas-40) * 25)
+
+num_trabajadores = int(input("Ingrese el número de trabajadores: "))
+
+horas = []
+sueldos = []
+for i in range(num_trabajadores):
+    hora = int(input(f"Ingrese las horas semanales del obrero [ID {i+1}]: "))
+    horas.append(hora)
+    sueldos.append(calcularSueldo(hora))
+
+continuar = "s"
+while (continuar == "s"):
+    try:
+        id_obrero = int(input("\nIngrese el id del obrero: "))
+    except ValueError:
+        print("Error. Id no válido")
+    else:
+        if id_obrero <=0 or id_obrero > len(sueldos):
+            print("Error. Id no válido")
+        else:
+            print(f"Horas Trabajadas: {horas[id_obrero-1]}")
+            print(f"Sueldo: ${sueldos[id_obrero-1]}")
+            continuar = input(f"¿Desea continuar?(s/n): ")
+            continuar = continuar.lower()
+```
+</Solution>
+
+### Ejercicio 11
+Determinar cuántos hombres y cuántas mujeres se encuentran en un grupo de `n` personas, suponiendo que los datos son extraídos alumno por alumno
+
+<Solution>
+```python
+cont_hombres = 0
+cont_mujeres = 0
+total_alumnos = 1
+while True:
+    genero = input(f"Ingrese el género del alumno id {total_alumnos} [m: masculino, f: femenino]: ")
+    genero = genero.lower()
+    if genero not in ["m","f"]:
+        print("Error. Dato ingresado no válido")
+    else:
+        if genero == "m":
+            cont_hombres += 1
+        else:
+            cont_mujeres += 1
+
+        continuar = input("¿Desea ingresar más datos?(s/n): ")
+        if continuar.lower() == "n":
+            break
+        total_alumnos += 1
+
+print(f"\nTotal Alumnos: {cont_hombres + cont_mujeres}")
+print(f"Número de hombres: {cont_hombres}")
+print(f"Número de mujeres: {cont_mujeres}")
+```
+</Solution>
+
+### Ejercicio 12
+El Depto. de Seguridad Pública y Transito de D.F. desea saber, de los `n` autos que entran a la ciudad de México, cuántos entran con calcomanía de cada color. Conociendo el último dígito de la placa de cada automóvil se puede determinar el color de la calcomanía utilizando ls siguiente relación:
+
+|Dígito|Color|
+|---|---|
+|1 o 2|amarilla|
+|3 o 4|rosa|
+|5 o 6|roja|
+|7 o 8|verde|
+|9 o 0|azul|
+
+<Solution>
+```python
+import random
+import string
+
+def generarCalcomaniasMexico(cantidad):
+    calcomanias = []
+    for _ in range(cantidad):
+        # Formato típico: 3 letras - 3 dígitos
+        letras = "".join(random.choices(string.ascii_uppercase, k=3))
+        numeros = "".join(random.choices(string.digits, k=3))
+        calcomania = f"{letras}-{numeros}"
+        calcomanias.append(calcomania)
+    return calcomanias
+
+def calcularColor(calcomanias):
+    amarilla = 0
+    rosa = 0
+    roja = 0
+    verde = 0
+    azul = 0
+    for patente in calcomanias:
+        if patente[-1] == "1" or patente[-1] == "2":
+            amarilla += 1
+        elif patente[-1] == "3" or patente[-1] == "4":
+            rosa += 1
+        elif patente[-1] == "5" or patente[-1] == "6":
+            roja += 1
+        elif patente[-1] == "7" or patente[-1] == "8":
+            verde += 1
+        elif patente[-1] == "9" or patente[-1] == "0":
+            azul += 1
+    return amarilla, rosa, roja, verde, azul
+
+cantidad = int(input("Ingrese el número de calcomanías a verificar: "))
+calcomanias = generarCalcomaniasMexico(cantidad)
+num_amarilla, num_rosa, num_roja, num_verde, num_azul = calcularColor(calcomanias)
+
+print(f"\nLista calcomanias: {calcomanias}")
+print(f"Amarillas: {num_amarilla}")
+print(f"Rosas: {num_rosa}")
+print(f"Rojas: {num_roja}")
+print(f"Verdes: {num_verde}")
+print(f"Azules: {num_azul}")
+```
+</Solution>
+
+### Ejercicio 13
+Obtener el promedio de calificaciones de un grupo de `n` alumnos.
+
+<Solution>
+```python
+import random
+
+def generar_notas(cantidad):
+    notas = [round(random.uniform(1.0, 7.0), 1) for _ in range(cantidad)]
+    return notas
+
+def calcularPromedio(notas):
+    return round( sum(notas) / len(notas), 1 ) 
+
+cant_alumnos = int(input("Ingrese el número de alumnos: "))
+ant_notas = int(input("Ingrese el número de notas por alumno: "))
+
+nota_alumno = []
+prom_alumno = []
+for i in range(cant_alumnos):
+    notas = generar_notas(cant_notas)
+    nota_alumno.append(notas)
+    prom_alumno.append(calcularPromedio(nota_alumno[i]))
+
+    print(f"\nAlumno id {i+1}")
+    print(f"Notas: {nota_alumno[i]}")
+    print(f"Promedio: {prom_alumno[i]}")
+```
+</Solution>
+
+### Ejercicio 14
+Una persona desea invertir su dinero en un banco, el cual le otorga un 2% de interés. ¿Cuál será la cantidad de dinero que esta persona tendrá al cabo de un año si la ganancia de cada mes es reinvertida?
+
+<Solution>
+```python
+def CalcularGanancia(monto):
+    return monto * 0.02
+
+monto = float(input("Ingrese el monto a invertir: "))
+ganancia = 0
+for i in range(12):
+    ganancia = CalcularGanancia(monto)
+    monto += ganancia
+
+print(f"Monto luego de 1 año: {monto:.2f}")
+```
+</Solution>
+
+### Ejercicio 15
+Calcular el promedio de edades de hombres, mujeres y de todo un grupo de alumnos
+
+<Solution>
+```python
+import random
+
+def generarGrupo(cantidad):
+    return [[random.choice(["hombre","mujer"]), int(random.uniform(15,25))] for _ in range(cantidad)]
+
+def getPromedio(grupo):
+    suma_edad_hombres = 0
+    suma_edad_mujeres = 0
+    suma_edad_grupo = 0
+    cant_hombres = 0
+    cant_mujeres = 0
+    for alumno in grupo:
+        suma_edad_grupo += alumno[1]
+        if alumno[0] == "hombre":
+            suma_edad_hombres += alumno[1]
+            cant_hombres += 1
+        else:
+            suma_edad_mujeres += alumno[1]
+            cant_mujeres += 1
+            
+    prom_h = suma_edad_hombres / cant_hombres if cant_hombres > 0 else 0
+    prom_m = suma_edad_mujeres / cant_mujeres if cant_mujeres > 0 else 0
+    prom_g = suma_edad_grupo / len(grupo) if len(grupo) > 0 else 0
+    return prom_g, prom_h, prom_m
+
+num_alumnos = int(input("Ingrese el número de alumnos: "))
+alumnos = generarGrupo(num_alumnos)
+prom_g, prom_h, prom_m = getPromedio(alumnos)
+
+print(f"\nGrupo alumnos: {alumnos}")
+print(f"Promedio edad grupo: {prom_g:.2f}")
+print(f"Promedio edad hombres: {prom_h:.2f}")
+print(f"Promedio edad mujeres: {prom_m:.2f}")
+```
+</Solution>
+
+### Ejercicio 16
+Encontrar el menor valor de un conjunto de `n` números dados
+
+<Solution>
+```python
+import random
+
+def generarNumeros(cantidad):
+    return [int(random.uniform(1,100)) for _ in range(cantidad)]
+
+def getMenor(numeros):
+    menor = numeros[0]
+    for i in range(1,len(numeros)):
+        if numeros[i] < menor:
+            menor = numeros[i]
+    return menor
+
+cant_numero = int(input("Ingrese la cantidad de números a generar: "))
+numeros = generarNumeros(cant_numero)
+num_menor = getMenor(numeros)
+
+print(f"\nNúmeros generados: {numeros}")
+print(f"Número menor: {num_menor}")
+```
+</Solution>
+
+### Ejercicio 17
+Encontrar el mayor valor de un conjunto de `n` números dados
+
+<Solution>
+```python
+import random
+
+def generarNumeros(cantidad):
+    return [int(random.uniform(1,100)) for _ in range(cantidad)]
+
+def getMayor(numeros):
+    mayor = numeros[0]
+    for i in range(1,len(numeros)):
+        if numeros[i] > mayor:
+            mayor = numeros[i]
+    return mayor
+
+cant_numero = int(input("Ingrese la cantidad de números a generar: "))
+numeros = generarNumeros(cant_numero)
+num_mayor = getMayor(numeros)
+
+print(f"\nNúmeros generados: {numeros}")
+print(f"Número mayor: {num_mayor}")
+```
+</Solution>
+
+### Ejercicio 18
+En un supermercado un cajero captura los precios de los artículos que los clientes compran e indica a cada cliente cuál es el monto de lo que deben pagar. Al final del día le indica a su supervisor cuánto fue lo que cobró en total a todos los clientes que pasaron por su caja.
+
+<Solution>
+```python
+import random
+
+def generarPrecios():
+    return [int(random.uniform(5000,10000)) for _ in range(10)]
+
+def calcularTotalCliente(cliente):
+    return sum(cliente)
+
+def calcularTotalDia(clientes):
+    return sum(clientes)
+
+num_clientes = int(input("Ingrese el número de clientes: "))
+compra_cliente = []
+total_cliente = []
+for _ in range(num_clientes):
+    compras = generarPrecios()
+    compra_cliente.append(compras)
+    total_cliente.append(sum(compras))
+
+print(f"Lista articulos clientes: {compra_cliente}")
+print(f"Lista total clientes: {total_cliente}")
+print(f"Venta total día: {calcularTotalDia(total_cliente)}")
+```
+</Solution>
+
+### Ejercicio 19
+Cinco miembros de un club contra la obesidad desean sabar cuánto han bajado o subido de peso desde la última vez que se reunieron. Para esto se debe realizar un ritual de pesaje en donde cada uno se pesa en diez básculas distintas para así tener el promedio más exacto de su peso. Si existe diferencia positiva entre este promedio de peso y el peso de la última vez que se reunieron, significa que subieron de peso. Pero si la diferencia es negativam significa que bajaron. Lo que el problema requiere es que por cada persona se imprima un letrero que diga: "SUBIO" o "BAJO" y la cantidad de kilos que subió o bajo de peso.
+
+### Ejercicio 20
+Se desea obtener el promedio de `n` grupos que están en un mismo año escolar; siendo que cada grupo puede tener `n` alumnos que cada alumnos puede llevar `m` materias y que en todas las materias se promedian 3 calificaciones para obtener el promedio de la materia. Lo que se desea es desplegar es el promedio de los grupos, el promedio de cada grupo y el promedio de cada alumno.
+
+### Ejercicio 21
+
+### Ejercicio 22
+
+### Ejercicio 23
+
+### Ejercicio 24
+
+### Ejercicio 25
+
+### Ejercicio 26
+
+### Ejercicio 27
+
+### Ejercicio 28
+
+### Ejercicio 29
+
+### Ejercicio 30
+
+### Ejercicio 31
+
+### Ejercicio 32
+
+### Ejercicio 33
+
+### Ejercicio 34
+
+### Ejercicio 35
+
+### Ejercicio 36
+
+### Ejercicio 37
+
+### Ejercicio 38

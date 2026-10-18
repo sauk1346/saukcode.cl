@@ -1,0 +1,94 @@
+# Tutorial práctico: convertir un diseño en HTML
+
+1. Análisis del diseño
+2. Estructura HTML básica
+3. Añadir el encabezado
+4. Añadir el contenido principal
+5. Añadir el pie de página
+6. Añadir estilos CSS
+
+
+## Ejemplo
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Sitio Web</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <!-- Encabezado -->
+    </header>
+    <nav>
+        <!-- Menú de navegación -->
+    </nav>
+    <main>
+        <!-- Contenido principal -->
+    </main>
+    <footer>
+        <!-- Pie de página -->
+    </footer>
+</body>
+</html>
+```
+
+Luego, el archivo `styles.css` agrega colores, modifica tamaños a los distintos selectores y clases utilizados en el archivo `html`.
+
+```css
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+header .logo img {
+    max-width: 100px;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+.banner {
+    background-color: #f4f4f4;
+    padding: 20px;
+    text-align: center;
+}
+.contenido {
+    padding: 20px;
+}
+.contenido article {
+    margin-bottom: 20px;
+}
+.contenido article img {
+    max-width: 100%;
+    height: auto;
+}
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+.redes-sociales img {
+    width: 30px;
+    margin: 0 10px;
+}
+```

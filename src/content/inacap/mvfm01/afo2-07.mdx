@@ -1,0 +1,114 @@
+# AFO 7
+
+<SmartFigure
+	id="poligono-irregular"
+	src="/inacap/mvfm01/images/fig174.png"
+	alt="Polígono irregular"
+	caption="Polígono irregular"
+	size="medium"
+/>
+
+Se sabe que:
+
+- $\angle DCF = 45°$
+- $\angle CFD = 102.1°$
+- $d(C,F) = 5\;cm$
+- $\angle BCE = 120°$
+- $d(C,E) = 4.5\;cm$
+- $d(B,E) = 7.79\;cm$
+
+**¿Cuál es el área del rectángulo ABCD?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig175.png"
+	alt="Polígono irregular con datos iniciales"
+	caption="Polígono irregular con datos iniciales"
+	size="medium"
+/>
+
+1. En el triángulo verde, se calcula el ángulo faltante
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig176.png"
+	alt="Ángulo faltante de triángulo verde"
+	caption="Ángulo faltante de triángulo verde"
+	size="medium"
+/>
+
+Ángulo faltante $\angle x = 32.9°$
+
+2. Se utiliza la ley de los senos:
+
+$$
+\begin{aligned}
+    \frac{5}{\sin(x)} = \frac{\overline{DC}}{\sin(102.1)}
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig177.png"
+	alt="Cálculo de segmento DC"
+	caption="Cálculo de segmento DC"
+	size="medium"
+/>
+
+Se obtiene el lado $\overline{DC} = 9\;cm$
+
+3. Para el triángulo rojo, se utliza la ley de los senos
+
+$$
+\begin{aligned}
+    \frac{4.5}{\sin(x)} = \frac{7.79}{\sin(120)}
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig178.png"
+	alt="Segundo ángulo de triángulo rojo"
+	caption="Segundo ángulo de triángulo rojo"
+	size="medium"
+/>
+
+El ángulo encontrado debe ser agudo, por lo que $\angle x = 30.02°$
+
+4. Se calcula el ángulo faltante
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig179.png"
+	alt="Ángulo faltante de triángulo rojo"
+	caption="Ángulo faltante de triángulo rojo"
+	size="medium"
+/>
+
+5. Se utiliza nuevamente la ley de los senos para encontrar el lado deseado
+
+$$
+\begin{aligned}
+    \frac{\overline{CB}}{\sin(y)} = \frac{7.79}{\sin(120)}
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig180.png"
+	alt="Cálculo de segmento CB"
+	caption="Cálculo de segmento CB"
+	size="medium"
+/>
+
+El lado $\overline{CB} = 4.5$
+
+6. Finalmente se calcula el área del rectángulo:
+
+$$
+\begin{aligned}
+    área\;rectángulo &= \overline{DC}\cdot\overline{CB}\\[10pt]
+    &= 9\cdot 4.5\\[10pt]
+    &= 40.5
+\end{aligned}
+$$
+
+El área del rectángulo es de `40.5` ${cm}^2$ 
+</Solution>
+

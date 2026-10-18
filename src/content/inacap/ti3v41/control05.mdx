@@ -1,0 +1,64 @@
+## Control 05
+
+<Quiz questions={[
+  {
+    question: "¿Qué método de Django ORM se usa para actualizar registros existentes?",
+    options: [
+      "Model.update() directamente sobre el objeto",
+      "Model.objects.modify()",
+      "obj.campo = valor; obj.save()",
+      "Model.objects.change()"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué método de Django ORM se usa para obtener un solo registro según una condición?",
+    options: [
+      "Model.objects.find()",
+      "Model.objects.get()",
+      "Model.objects.first()",
+      "Model.objects.fetch()"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de las siguientes consultas obtiene todos los registros de un modelo llamado Producto?",
+    options: [
+      "Producto.get()",
+      "Producto.objects.all()",
+      "Producto.all()",
+      "Producto.objects.get_all()"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es el método de Django ORM para crear un nuevo registro en la base de datos?",
+    options: [
+      "Model.add()",
+      "Model.insert()",
+      "Model.objects.create()",
+      "Model.save_new()"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué significa CRUD en el contexto de Django ORM?",
+    options: [
+      "Crear, leer, actualizar y eliminar.",
+      "Crear, leer, usar y depurar.",
+      "Consultar, reemplazar, actualizar y depurar.",
+      "Crear, reemplazar, usar y depurar."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cómo se eliminan registros en Django ORM?",
+    options: [
+      "obj.remove()",
+      "Model.remove()",
+      "Model.objects.destroy()",
+      "obj.delete()"
+    ],
+    correctIndex: 3
+  }
+]} />

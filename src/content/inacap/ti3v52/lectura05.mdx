@@ -1,0 +1,132 @@
+# Clases, tipos y taller VLSM
+
+## 1. Estrategia de segmentación y eficiencia
+
+<SmartFigure
+	id="fig108"
+	src="/inacap/ti3v52/images/fig108.png"
+	alt="Resumen VLSM"
+	caption="Resumen VLSM"
+	size="large"
+/>
+
+## 2. Tipos de direcciones y clasificación
+
+En el entorno de redes, no todas las direcciones tienen el mismo propósito. Es fundamental distinguir entre aquellas destinadas al uso interno y aquellas que permiten la visibilidad en la red global.
+
+Las direcciones privadas no se enrutan en Internet, lo que permite su reutilización dentro de diferentes organizaciones sin conflictos.
+
+<SmartTable
+  id="tabla01"
+  caption="Rangos de direcciones privadas en IPv4"
+  tableLayout="auto"
+  headers={['Rango de red', 'Prefijo', 'Uso típico']}
+  rows={[
+    ['**10.0.0.0** a **10.255.255.255**', '/8', 'Redes corporativas de gran escala.'],
+    ['**172.16.0.0** a **172.31.255.255**', '/12', 'Organizaciones medianas y laboratorios.'],
+    ['**192.168.0.0** a **192.168.255.255**', '/16', 'Redes domésticas y pequeñas oficinas.'],
+  ]}
+/>
+
+## 3. Fundamentos y algoritmo VLSM
+
+VLSM (*Variable Length Subnet Mask*) es la técnica que permite dividir una red en segmentos de diferentes tamaños, asignando a cada uno la máscara exacta que requiere según su número de hosts. Esto rompe con el esquema tradicional de subneteo de máscara fija donde todas las subredes tenían el mismo tamaño, provocando desperdicio de IPs.
+
+<SmartTable
+  id="tabla02"
+  caption="Conceptos clave de segmentación"
+  tableLayout="auto"
+  headers={['Término', 'Definición técnica', 'Impacto en el diseño']}
+  rows={[
+    ['**Prefijo /n**', 'Indica cuántos bits corresponden a la porción de red.', 'Determina el tamaño de la subred.'],
+    ['**Bloque**', 'El tamaño total de direcciones en una subred (incluye red y broadcast).', 'Define los saltos entre subredes contiguas.'],
+    ['**Traslape**', 'Error donde dos subredes comparten direcciones.', 'Provoca fallas críticas de comunicación.'],
+    ['**Rango utilizable**', 'Direcciones asignables a hosts (excluye red y broadcast).', 'Es la capacidad real de dispositivos por segmento.'],
+  ]}
+/>
+
+### Pasos
+
+1. **Priorización:** ordena tus segmentos de mayor a menor número de *hosts* requeridos para maximizar la eficiencia
+2. **Cálculo de Máscaras:** asigna prefijos específicos evitando el desperdicio. Recuerda $2^n-2$ es tu fórmula para hosts utilizables en IPv4.
+3. **Verificación de no Traslape:** asegúrate de que los rangos de cada subred no se superpongan antes de realizar la configuración física
+
+## 4. Diseño eficiente de IPv6
+
+Mientras que en IPv4 el foco está en el ahorro de direcciones individuales, en IPv6 el diseño se basa en la planificación jerárquica mediante bloques de prefijos.
+
+<SmartTable
+  id="tabla03"
+  caption="Estándares de diseño por protocolo"
+  tableLayout="auto"
+  headers={['Característica', 'Optimización en IPv4', 'Planificación en IPv6']}
+  rows={[
+    ['**Enfoque principal**', 'Ahorro de bits de host.', 'Asignación por prefijos estándar.'],
+    ['**Redes de usuarios**', 'Variable (ej. /24, /26, /27).', 'Típicamente bloques /64.'],
+    ['**Enlaces punto a punto**', 'Prefijos /30 o /31.', 'Prefijos /64 o /127.'],
+    ['**Asignación de sitios**', 'Variable según máscara.', 'Comúnmente bloques /56 o /48.'],
+  ]}
+/>
+
+### Comparación y rol en el diseño de redes
+
+Un buen plan de direccionamiento es la hoja de ruta para cualquier implementación física. La verificación constante mediante comandos de ruta permite validar que la segmentación lógica sea coherente con la topología.
+
+<SmartTable
+  id="tabla04"
+  caption="Verificación de planes de direccionamiento"
+  tableLayout="auto"
+  headers={['Comando', 'Propósito en el diseño']}
+  rows={[
+    ['`show ip route`', 'Muestra la tabla de enrutamiento y las redes conectadas'],
+    ['`show ip interface brief`', 'Valida qué IP y máscara se aplicó a cada puerto'],
+    ['`ipconfig /all`', 'Confirma que el host tiene la máscara exacta del plan VLSM'],
+  ]}
+/>
+
+---
+
+## Actividad de Práctica
+
+<Quiz questions={[
+  {
+    question: "Para la Red A (60 hosts), ¿cuál es el prefijo CIDR y la máscara decimal que optimizan el espacio sin desperdiciar direcciones?",
+    options: [
+      "/25 - 255.255.255.128",
+      "/26 - 255.255.255.192",
+      "/27 - 255.255.255.224",
+      "/28 - 255.255.255.240",
+    ],
+    correctIndex: 1,
+  },
+  {
+    question: "Tras asignar la Red A, ¿cuál es la dirección de red inicial para el segmento Red B (30 hosts) para evitar un traslape?",
+    options: [
+      "192.168.10.63",
+      "192.168.10.32",
+      "192.168.10.128",
+      "192.168.10.64",
+    ],
+    correctIndex: 3,
+  },
+  {
+    question: "La Red C requiere 10 hosts y utiliza el prefijo /28. ¿Cuál es el rango de IP utilizables para este segmento?",
+    options: [
+      "192.168.10.96 al 192.168.10.111",
+      "192.168.10.97 al 192.168.10.110",
+      "192.168.10.97 al 192.168.10.111",
+      "192.168.10.96 al 192.168.10.110",
+    ],
+    correctIndex: 1,
+  },
+  {
+    question: "¿Qué máscara decimal corresponde a la Red D, la cual utiliza un prefijo /29 para cubrir sus 5 hosts?",
+    options: [
+      "255.255.255.240",
+      "255.255.255.252",
+      "255.255.255.248",
+      "255.255.255.224",
+    ],
+    correctIndex: 2,
+  }
+]} />

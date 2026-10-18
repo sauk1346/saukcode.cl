@@ -1,0 +1,764 @@
+# Unidad 02: Técnicas de Testing
+
+<Quiz questions={[
+  {
+    question: "¿Qué son las técnicas estáticas de testing?",
+    options: [
+      "Técnicas que involucran la ejecución del software para identificar defectos",
+      "Técnicas que se centran en la revisión de la documentación y el código sin ejecutar el software",
+      "Técnicas que utilizan herramientas automatizadas para medir el rendimiento del software",
+      "Técnicas que evalúan la interacción entre componentes del software"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿En qué consiste la revisión por pares como técnica estática de testing?",
+    options: [
+      "En ejecutar el código para identificar errores en tiempo de ejecución",
+      "En la evaluación del código por otros desarrolladores para identificar posibles errores o mejoras",
+      "En utilizar herramientas automatizadas para analizar el código sin ejecutarlo",
+      "En realizar reuniones formales para revisar el código de manera sistemática"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué caracteriza a las inspecciones como técnica estática de testing?",
+    options: [
+      "Son evaluaciones informales del código por otros desarrolladores",
+      "Son análisis automatizados del código utilizando herramientas especializadas",
+      "Son reuniones formales en las que se revisa el código o la documentación de manera sistemática",
+      "Son pruebas que implican la ejecución del software para identificar defectos"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿En qué consiste el análisis estático como técnica de testing?",
+    options: [
+      "En la ejecución de pruebas automatizadas para identificar defectos en tiempo de ejecución",
+      "En la evaluación manual del código por otros desarrolladores",
+      "En el uso de herramientas automatizadas para examinar el código fuente sin ejecutarlo",
+      "En la realización de pruebas de rendimiento bajo diferentes condiciones de carga"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué son las técnicas dinámicas de testing?",
+    options: [
+      "Técnicas que se centran en la revisión de la documentación y el código sin ejecutar el software",
+      "Técnicas que implican la ejecución del software para identificar defectos que ocurren durante su funcionamiento",
+      "Técnicas que utilizan herramientas de análisis estático para evaluar el código",
+      "Técnicas que se basan en la revisión por pares y las inspecciones formales"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué tipo de testing se centra en las funcionalidades del software sin conocer su estructura interna?",
+    options: [
+      "Testing de caja blanca",
+      "Testing de caja negra",
+      "Testing de integración",
+      "Testing estático"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿En qué se basa el testing de caja blanca?",
+    options: [
+      "En las funcionalidades del software sin conocer su estructura interna",
+      "En la revisión de la documentación y el código sin ejecutar el software",
+      "En el conocimiento del código fuente para evaluar las estructuras internas del software",
+      "En la evaluación del software bajo diferentes condiciones de carga"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es el propósito principal del testing de regresión?",
+    options: [
+      "Evaluar cómo se comporta el software bajo diferentes condiciones de carga",
+      "Identificar defectos tempranos en el ciclo de vida del desarrollo",
+      "Asegurar que las modificaciones en el código no introduzcan nuevos defectos en las partes ya probadas",
+      "Verificar la interacción entre diferentes módulos del software"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿En qué consiste el testing de rendimiento?",
+    options: [
+      "En verificar que cada función del software opere conforme a los requisitos",
+      "En evaluar cómo se comporta el software bajo diferentes condiciones de carga",
+      "En asegurar que las modificaciones no introduzcan nuevos defectos",
+      "En validar la interacción entre diferentes módulos del software"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué se mide en el testing de rendimiento?",
+    options: [
+      "Solo la correctitud funcional del software",
+      "Únicamente las vulnerabilidades de seguridad",
+      "Tiempo de respuesta, estabilidad y uso de recursos",
+      "Solo la facilidad de uso del software"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué son las herramientas de testing?",
+    options: [
+      "Documentos que especifican cómo realizar las pruebas de software",
+      "Técnicas para identificar defectos en el software",
+      "Aplicaciones o programas diseñados para ayudar a evaluar la calidad y funcionamiento del software",
+      "Requisitos que debe cumplir el software para ser considerado de calidad"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué herramienta realiza análisis estático del código para detectar errores, vulnerabilidades y malos olores en el código?",
+    options: [
+      "Selenium",
+      "Checkstyle",
+      "SonarQube",
+      "JUnit"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Para qué se utiliza Checkstyle como herramienta de testing?",
+    options: [
+      "Para realizar pruebas funcionales de aplicaciones web",
+      "Para detectar errores de estilo en código Java y posibles bugs",
+      "Para medir el rendimiento del software bajo diferentes condiciones de carga",
+      "Para automatizar la ejecución de pruebas de regresión"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué herramienta se utiliza para la automatización de navegadores web en pruebas funcionales?",
+    options: [
+      "SonarQube",
+      "Selenium",
+      "Checkstyle",
+      "Jenkins"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué tipo de pruebas verifican que cada función del software opere conforme a los requisitos especificados?",
+    options: [
+      "Pruebas no funcionales",
+      "Pruebas de rendimiento",
+      "Pruebas funcionales",
+      "Pruebas de usabilidad"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué tipos de pruebas incluye el testing funcional?",
+    options: [
+      "Solo pruebas de rendimiento y seguridad",
+      "Únicamente pruebas de usabilidad",
+      "Pruebas de unidad, integración, sistema y aceptación",
+      "Solo pruebas exploratorias"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué validan las pruebas unitarias?",
+    options: [
+      "El funcionamiento de componentes individuales del software",
+      "La interacción entre diferentes módulos del software",
+      "El software completo como un todo",
+      "La satisfacción de los usuarios finales con el software"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué frameworks se utilizan comúnmente para realizar pruebas unitarias?",
+    options: [
+      "Selenium y Checkstyle",
+      "SonarQube y Jenkins",
+      "JUnit y NUnit",
+      "LoadRunner y JMeter"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué verifican las pruebas de integración?",
+    options: [
+      "El funcionamiento de componentes individuales del software",
+      "La interacción entre componentes del software",
+      "El software completo como un todo",
+      "La satisfacción de los usuarios finales con el software"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué pruebas evalúan el software completo como un todo, verificando su conformidad con los requisitos del sistema?",
+    options: [
+      "Pruebas unitarias",
+      "Pruebas de integración",
+      "Pruebas de sistema",
+      "Pruebas de aceptación"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué tipo de pruebas son realizadas por los usuarios finales para asegurar que el software cumple con sus necesidades?",
+    options: [
+      "Pruebas unitarias",
+      "Pruebas de integración",
+      "Pruebas de sistema",
+      "Pruebas de aceptación"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué tipo de pruebas evalúan aspectos como la escalabilidad, el rendimiento, la seguridad y la usabilidad?",
+    options: [
+      "Pruebas funcionales",
+      "Pruebas no funcionales",
+      "Pruebas unitarias",
+      "Pruebas de regresión"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué tipos de pruebas incluye el testing no funcional?",
+    options: [
+      "Solo pruebas unitarias y de integración",
+      "Únicamente pruebas de aceptación",
+      "Pruebas de rendimiento, seguridad y usabilidad",
+      "Solo pruebas de sistema"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué miden las pruebas de rendimiento?",
+    options: [
+      "La correctitud funcional del software",
+      "La facilidad de uso del software",
+      "Cómo el software responde bajo diferentes condiciones de carga",
+      "La seguridad del software frente a ataques"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué tipos de pruebas incluyen las pruebas de rendimiento?",
+    options: [
+      "Pruebas unitarias y de integración",
+      "Pruebas de caja blanca y caja negra",
+      "Pruebas de carga, estrés y volumen",
+      "Pruebas de aceptación y exploratorias"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué tipos de vulnerabilidades identifican las pruebas de seguridad?",
+    options: [
+      "Solo problemas de rendimiento",
+      "Únicamente errores en la interfaz de usuario",
+      "Vulnerabilidades que podrían ser explotadas por atacantes",
+      "Solo defectos en la funcionalidad del software"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué evalúan las pruebas de usabilidad?",
+    options: [
+      "La seguridad del software frente a ataques",
+      "El rendimiento del software bajo carga",
+      "La facilidad de uso del software",
+      "La correctitud funcional del software"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué es el diseño de casos de testing?",
+    options: [
+      "La ejecución de pruebas para identificar defectos",
+      "El análisis de los resultados de las pruebas",
+      "La planificación de las condiciones y escenarios que serán evaluados para asegurar la calidad del software",
+      "La documentación de los defectos encontrados durante las pruebas"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿En qué consiste la identificación de casos de prueba?",
+    options: [
+      "En la ejecución de pruebas para detectar defectos",
+      "En el proceso de determinar las condiciones y escenarios bajo los cuales se evaluará el software",
+      "En el análisis de los resultados de las pruebas",
+      "En la documentación de los defectos encontrados"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué técnica divide el conjunto de entradas posibles en clases de equivalencia, de modo que probar una entrada de cada clase sea suficiente?",
+    options: [
+      "Partición de equivalencia",
+      "Análisis de valores límite",
+      "Tablas de decisión",
+      "Inspección"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué técnica se centra en probar los valores en los límites de las clases de equivalencia?",
+    options: [
+      "Partición de equivalencia",
+      "Análisis de valores límite",
+      "Tablas de decisión",
+      "Revisión por pares"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Por qué es importante el análisis de valores límite?",
+    options: [
+      "Porque reduce el número total de pruebas necesarias",
+      "Porque es más fácil de implementar que otras técnicas",
+      "Porque es más probable encontrar defectos en los límites de las clases de equivalencia",
+      "Porque permite probar todas las posibles combinaciones de entradas"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué técnica es una representación sistemática de las reglas de negocio que afectan las condiciones y acciones en casos de prueba?",
+    options: [
+      "Partición de equivalencia",
+      "Análisis de valores límite",
+      "Tablas de decisión",
+      "Revisión por pares"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué pruebas se llevan a cabo sin un plan de prueba formal, permitiendo a los testers explorar el software de manera espontánea?",
+    options: [
+      "Pruebas de regresión",
+      "Pruebas de aceptación",
+      "Pruebas exploratorias",
+      "Pruebas de caja blanca"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es el valor principal de las pruebas exploratorias?",
+    options: [
+      "Permiten seguir estrictamente un plan de pruebas formal",
+      "Son más rápidas que las pruebas automatizadas",
+      "Permiten identificar problemas que pueden no ser evidentes en pruebas estructuradas",
+      "Requieren menos conocimiento técnico que otras pruebas"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué es la complejidad en testing?",
+    options: [
+      "La dificultad para encontrar defectos en el software",
+      "La cantidad de pruebas necesarias para cubrir todas las funcionalidades",
+      "La complejidad inherente del software y los factores externos que afectan el proceso de testing",
+      "El tiempo necesario para completar todas las pruebas"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué es la complejidad intrínseca en testing?",
+    options: [
+      "La complejidad relacionada con factores externos como los requisitos del cliente",
+      "La complejidad inherente del software, basada en factores como la lógica del negocio y las dependencias entre módulos",
+      "La complejidad relacionada con las herramientas de testing utilizadas",
+      "La complejidad asociada al entorno operativo del software"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de los siguientes corresponde a la complejidad intrínseca del software?",
+    options: [
+      "Los requisitos del cliente",
+      "Las regulaciones de la industria",
+      "El entorno operativo del software",
+      "La lógica del negocio y las dependencias entre módulos"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué es la complejidad extrínseca en testing?",
+    options: [
+      "La complejidad inherente del software basada en su arquitectura",
+      "La complejidad relacionada con las herramientas de testing utilizadas",
+      "La complejidad relacionada con factores externos como los requisitos del cliente, las regulaciones de la industria y el entorno operativo",
+      "La complejidad asociada a las dependencias entre módulos"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué criterios se utilizan para detectar la complejidad del testing?",
+    options: [
+      "Solo el número de defectos encontrados",
+      "Únicamente el tiempo necesario para completar las pruebas",
+      "Número de funcionalidades, interdependencia de módulos, tecnologías utilizadas y requisitos no funcionales",
+      "Solo la experiencia previa con sistemas similares"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué relación existe entre el número de funcionalidades y la complejidad del testing?",
+    options: [
+      "No hay relación directa entre ambos",
+      "A menos funcionalidades, mayor complejidad",
+      "Cuantas más funcionalidades tenga el software, mayor será la complejidad del testing",
+      "La complejidad depende únicamente de otros factores"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué criterio para detectar la complejidad del testing se refiere a la interacción entre múltiples módulos?",
+    options: [
+      "Número de funcionalidades",
+      "Interdependencia de módulos",
+      "Tecnologías utilizadas",
+      "Requisitos no funcionales"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Por qué la interdependencia de módulos puede aumentar la complejidad del testing?",
+    options: [
+      "Porque reduce el número total de pruebas necesarias",
+      "Porque simplifica el diseño de casos de prueba",
+      "Porque pueden ocurrir posibles fallas en la integración debido a las interacciones entre módulos",
+      "Porque no afecta a las pruebas unitarias"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué criterio para detectar la complejidad del testing se refiere al uso de tecnologías diversas o avanzadas?",
+    options: [
+      "Número de funcionalidades",
+      "Interdependencia de módulos",
+      "Tecnologías utilizadas",
+      "Requisitos no funcionales"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué criterio para detectar la complejidad del testing se refiere a aspectos como la seguridad, el rendimiento y la usabilidad?",
+    options: [
+      "Número de funcionalidades",
+      "Interdependencia de módulos",
+      "Tecnologías utilizadas",
+      "Requisitos no funcionales"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué métodos se utilizan para clasificar la complejidad del testing?",
+    options: [
+      "Solo la experiencia previa con sistemas similares",
+      "Únicamente el número de defectos encontrados",
+      "Análisis de puntos de función, Modelo de McCabe y Evaluación de impacto",
+      "Solo el tiempo necesario para completar las pruebas"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué técnica mide la funcionalidad del software desde la perspectiva del usuario final para estimar la complejidad del testing?",
+    options: [
+      "Análisis de puntos de función",
+      "Modelo de McCabe",
+      "Evaluación de impacto",
+      "Tablas de decisión"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué modelo calcula la complejidad ciclomática del software para determinar la cantidad de pruebas necesarias?",
+    options: [
+      "Análisis de puntos de función",
+      "Modelo de McCabe",
+      "Evaluación de impacto",
+      "V-Model"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué método analiza cómo los cambios en el software afectan otras partes del sistema, ayudando a priorizar las pruebas?",
+    options: [
+      "Análisis de puntos de función",
+      "Modelo de McCabe",
+      "Evaluación de impacto",
+      "Tablas de decisión"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuáles son las clasificaciones de complejidad en testing?",
+    options: [
+      "Solo alta y baja complejidad",
+      "Únicamente complejidad intrínseca y extrínseca",
+      "Baja, media y alta complejidad",
+      "Solo complejidad funcional y no funcional"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué clasificación de complejidad corresponde a sistemas con funcionalidades básicas, pocas interdependencias y uso de tecnologías estándar?",
+    options: [
+      "Baja complejidad",
+      "Media complejidad",
+      "Alta complejidad",
+      "Complejidad extrema"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué caracteriza a los sistemas de media complejidad?",
+    options: [
+      "Funcionalidades básicas, pocas interdependencias y tecnologías estándar",
+      "Un número moderado de funcionalidades, algunas dependencias y tecnologías mixtas",
+      "Muchas funcionalidades, alta interdependencia entre módulos y uso de tecnologías avanzadas",
+      "Solo tecnologías avanzadas o personalizadas"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué clasificación de complejidad corresponde a sistemas con muchas funcionalidades, alta interdependencia entre módulos y uso de tecnologías avanzadas?",
+    options: [
+      "Baja complejidad",
+      "Media complejidad",
+      "Alta complejidad",
+      "Complejidad extrema"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué herramientas de apoyo se utilizan en testing?",
+    options: [
+      "Solo herramientas de gestión de pruebas",
+      "Únicamente herramientas de automatización",
+      "Herramientas de gestión de pruebas, herramientas de automatización y herramientas de análisis estático y dinámico",
+      "Solo herramientas de análisis estático"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué herramientas facilitan la planificación, ejecución y seguimiento de pruebas?",
+    options: [
+      "Herramientas de gestión de pruebas como JIRA, TestRail y Zephyr",
+      "Herramientas de automatización como Selenium, QTP y TestComplete",
+      "Herramientas de análisis estático como SonarQube",
+      "Herramientas de análisis dinámico como JProfiler"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué herramientas ayudan a manejar pruebas repetitivas y complejas de manera eficiente?",
+    options: [
+      "Herramientas de gestión de pruebas como JIRA, TestRail y Zephyr",
+      "Herramientas de automatización como Selenium, QTP y TestComplete",
+      "Herramientas de análisis estático como SonarQube",
+      "Herramientas de análisis dinámico como JProfiler"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué modelos existentes en la industria guían las prácticas de testing?",
+    options: [
+      "Solo el Modelo en Cascada",
+      "Únicamente pruebas de caja blanca y caja negra",
+      "V-Model, Agile Testing y DevOps",
+      "Solo metodologías ágiles"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué enfoque de testing se realiza en paralelo con el desarrollo, donde cada fase de desarrollo tiene una fase de testing correspondiente?",
+    options: [
+      "V-Model",
+      "Agile Testing",
+      "DevOps",
+      "Waterfall Testing"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué enfoque integra pruebas continuas a lo largo del ciclo de desarrollo, promoviendo la colaboración entre equipos?",
+    options: [
+      "V-Model",
+      "Agile Testing",
+      "DevOps",
+      "Waterfall Testing"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué enfoque combina desarrollo y operaciones para mejorar la colaboración y la entrega continua, integrando testing automatizado?",
+    options: [
+      "V-Model",
+      "Agile Testing",
+      "DevOps",
+      "Waterfall Testing"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué problemas comunes se identifican en el desarrollo de software?",
+    options: [
+      "Solo defectos funcionales",
+      "Únicamente problemas de rendimiento",
+      "Defectos funcionales, defectos de rendimiento, problemas de usabilidad y problemas de seguridad",
+      "Solo problemas de integración"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué tipo de defectos están relacionados con la velocidad, capacidad de respuesta y eficiencia del software?",
+    options: [
+      "Defectos funcionales",
+      "Defectos de rendimiento",
+      "Problemas de usabilidad",
+      "Problemas de seguridad"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué tipo de problemas están relacionados con las dificultades que enfrentan los usuarios al interactuar con el software?",
+    options: [
+      "Defectos funcionales",
+      "Defectos de rendimiento",
+      "Problemas de usabilidad",
+      "Problemas de seguridad"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué tipo de problemas están relacionados con vulnerabilidades que pueden ser explotadas para comprometer el sistema?",
+    options: [
+      "Defectos funcionales",
+      "Defectos de rendimiento",
+      "Problemas de usabilidad",
+      "Problemas de seguridad"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué criterios de factibilidad se consideran al implementar soluciones de testing?",
+    options: [
+      "Solo disponibilidad de recursos",
+      "Únicamente costo-beneficio",
+      "Disponibilidad de recursos, costo-beneficio, impacto en el proyecto y compatibilidad con el entorno de desarrollo",
+      "Solo impacto en el proyecto"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué criterio de factibilidad analiza el costo de implementar la solución frente al beneficio que se obtendrá?",
+    options: [
+      "Disponibilidad de recursos",
+      "Costo-beneficio",
+      "Impacto en el proyecto",
+      "Compatibilidad con el entorno de desarrollo"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué criterio de factibilidad considera cómo la solución afectará el cronograma, la calidad y el alcance del proyecto?",
+    options: [
+      "Disponibilidad de recursos",
+      "Costo-beneficio",
+      "Impacto en el proyecto",
+      "Compatibilidad con el entorno de desarrollo"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué fases incluye la ejecución de técnicas de testing?",
+    options: [
+      "Solo planificación y ejecución de pruebas",
+      "Únicamente diseño y análisis de resultados",
+      "Planificación, diseño de casos de prueba, ejecución, análisis de resultados e informe de pruebas",
+      "Solo ejecución e informe de pruebas"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué fase de ejecución de técnicas de testing define los objetivos, alcance, enfoque y recursos necesarios para las pruebas?",
+    options: [
+      "Planificación de pruebas",
+      "Diseño de casos de prueba",
+      "Ejecución de pruebas",
+      "Análisis de resultados"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué fase de ejecución de técnicas de testing evalúa los resultados para identificar defectos y áreas de mejora?",
+    options: [
+      "Planificación de pruebas",
+      "Diseño de casos de prueba",
+      "Ejecución de pruebas",
+      "Análisis de resultados"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué fase de ejecución de técnicas de testing documenta los hallazgos, conclusiones y recomendaciones para futuras acciones?",
+    options: [
+      "Planificación de pruebas",
+      "Diseño de casos de prueba",
+      "Ejecución de pruebas",
+      "Informe de pruebas"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "Según las ideas fuerza del documento, ¿qué permite la combinación de técnicas estáticas y dinámicas respaldadas por herramientas avanzadas?",
+    options: [
+      "Solo detectar defectos en el software",
+      "Identificar y corregir problemas de manera eficiente, optimizando recursos y reduciendo tiempos de desarrollo",
+      "Únicamente verificar el cumplimiento de los requisitos",
+      "Solo medir el rendimiento del software"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Según las ideas fuerza del documento, ¿qué beneficios proporciona el testing al ofrecer productos más robustos y confiables?",
+    options: [
+      "Solo reduce el tiempo de desarrollo",
+      "Únicamente disminuye los costos",
+      "Mejora la satisfacción del cliente y fortalece la competitividad de las empresas en un mercado tecnológico cada vez más exigente",
+      "Solo facilita el mantenimiento del software"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "Según las ideas fuerza de la guía sobre alcances y definiciones de los tipos de testing, ¿qué es crucial para garantizar la calidad y fiabilidad del software?",
+    options: [
+      "Solo pruebas funcionales",
+      "Únicamente pruebas no funcionales",
+      "La aplicación efectiva de diferentes tipos de testing durante el ciclo de vida del software",
+      "Solo pruebas exploratorias"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "Según las ideas fuerza de la guía sobre cómo detectar la complejidad del testing, ¿qué es esencial para garantizar un proceso de pruebas efectivo?",
+    options: [
+      "Solo automatizar todas las pruebas",
+      "Únicamente utilizar herramientas avanzadas",
+      "Detectar y clasificar la complejidad del testing",
+      "Solo realizar pruebas exploratorias"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "Según las ideas fuerza de la guía sobre soluciones a problemas y criterios de factibilidad, ¿qué es clave para unas pruebas efectivas?",
+    options: [
+      "Solo tener muchas herramientas de testing",
+      "Una planificación meticulosa que defina objetivos claros, recursos adecuados y un enfoque estratégico",
+      "Únicamente automatizar todas las pruebas",
+      "Solo tener un equipo grande de testers"
+    ],
+    correctIndex: 1
+  }
+]}/>

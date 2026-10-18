@@ -1,0 +1,266 @@
+# Materia para Evaluación 01
+1. Direccionamientos de redes basada en protocolos TCP/IP
+
+    - Interconexion de dipositivos y redes par proveer comnicaciones a los usuario finales, en base a protocolos de direccionamiento TCP/IP 
+    - Clasifica las distintas direcciones IP, de acuerdo a sus valores por estandar definido por la IETF
+    - Calcula clases de dirección, a partir de direccionamiento IPV4
+    - Calcula máscaras de direcciones y cantidad de hot contenidos en cada una de las clases a partide de direccionamiento IPV4, considerando criterios de factibilidad
+    - Aplica técnicas de cálculo FLSM, a partir del direccionamiento IPV4
+
+### Contenidos mínimos
+- Dirección IPV4: descripción, clases, máscaras y funcionamiento
+- Máscaras y cantidad de host contenidos en cada una de las redes y subredes
+- Cálculo de subredes con técnica FLSM
+- Cálculo de subredes con técnico VLSM
+
+# Introducción TCP/IP
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Término', 'Definición']}
+	rows={[
+		[
+			'**Dirección MAC**',
+			'Es un identificador único asignado a la interfaz de red de un dispositivo para comunicaciones en una red física. También conocida como dirección de hardware (ej: `00:1A:2B:3C:4D:5E`)'
+		],
+		[
+			'**Dirección IPv4**',
+			'Es una dirección de 32 bits dividida en 4 octetos (grupos de 8 bits cada uno), que se representan como números decimales separados por puntos (ej: `192.168.1.1`)'
+		],
+		[
+			'**FLSM (Fixed Length Subnet Mask)**',
+			'Es un método de subneteo (división de redes IP) donde todas las subredes tienen el mismo tamaño y usan la misma máscara de subred'
+		],
+		[
+			'**VLSM (Variable Length Subnet Mask)**',
+			'Es una técnica de subneteo que permite crear subredes de diferentes tamaños según las necesidades de cada segmento de red'
+		],
+		[
+			'**DHCP (Dynamic Host Configuration Protocol)**',
+			'Es un protocolo de red que asigna direcciones IP automáticamente a los dispositivos dentro de una red. Esto significa que cuando un dispositivo se conecta a una red (como tu computadora, teléfono o impresora), no necesita configurar manualmente su dirección IP, ya que el servidor DHCP lo hace por él'
+		]
+	]}
+/>
+
+## Inet, Host y Dispositivos de Interconexión
+
+- **Host:** En una red, cualquier dispositivo que envía o recibe datos se considera un host. Esto incluye computadoras, servidores, teléfonos inteligentes, smart TVs, impresoras y otros dispositivos con capacidad de red.
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Dispositivo Interconexión', 'Descripción']}
+	rows={[
+		[
+			'**Switch**',
+			'[Funciona en la capa 2 (enlace de datos) del modelo OSI,Conecta dispositivos dentro de la misma red local (LAN),Usa direcciones MAC para enviar datos al dispositivo correcto,No asigna direcciones IP ni permite comunicación entre redes diferentes,Es el punto de conexión principal para hosts dentro de una misma red]'
+		],
+		[
+			'**Router**',
+			'[Funciona en la capa 3 (red) del modelo OSI,Conecta redes diferentes entre sí (por ejemplo tu red local con Internet),Usa direcciones IP para enrutar datos entre redes,Asigna direcciones IP a los dispositivos (función DHCP),Proporciona funciones de seguridad como firewall]'
+		],
+		[
+			'**Access Point**',
+			'[Extiende una red alámbrica a conexiones inalámbricas,Permite que dispositivos WiFi se conecten a una red existente,Puede integrarse con un router (router inalámbrico),No suele tener capacidades de enrutamiento de un router]'
+		]
+	]}
+/>
+
+## Conexiones en una Red Típica
+
+```markdown
+Internet ←→ Router ←→ Switch ←→ Hosts (computadoras, teléfonos, etc.)
+                 ↓
+              Access Points ←→ Hosts inalámbricos
+```
+
+Arquitectura típica de una red informática estructurada, mostrando cómo fluyen los datos desde Internet hasta los dispositivos finales.
+
+1. Los datos viajan desde Internet al router, que determina si están destinados a la red local
+2. El router envía el tráfico al switch o al access point según el destino
+3. El switch dirige los paquetes al dispositivo cableado específico según su dirección MAC
+4. El access point transmite los datos a los dispositivos inalámbricos correspondientes
+
+## Aclaraciones
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Afirmación', 'Detalle']}
+	rows={[
+		[
+			'[✅ **Todos los equipos se llaman host**,✅ **Todos los hosts se conectan con un switch**]',
+			'[Los hosts (equipos finales) generalmente se conectan a un switch en una red estructurada corporativa o grande,En redes domésticas pequeñas muchos dispositivos router integran las funciones de router + switch + access point en un solo equipo por lo que técnicamente los hosts se conectan a este dispositivo multifunción,**Importante:** Una red bien estructurada separa las funciones de cada dispositivo por razones de rendimiento seguridad y escalabilidad]'
+		],
+		[
+			'❌ **Un equipo se conecta directamente al router**',
+			'En redes empresariales estructuradas, esto es generalmente falso. Los hosts se conectan al switch, y el switch se conecta al router'
+		],
+		[
+			'✅ **Un equipo se conecta directamente al switch**',
+			'Correcto en redes estructuradas. El switch distribuye los datos dentro de la red local'
+		]
+	]}
+/>
+
+## Conceptos Básicos de Redes
+
+### Herramientas de Identificación IP
+- **iana.org**: Organismo que administra la asignación global de direcciones IP y otros recursos de Internet
+- **ipconfig**: Comando de Windows que muestra configuración IP local
+- **ipconfig /all**: Muestra información detallada de la configuración de red (Windows)
+- **ifconfig**: Equivalente en Linux/Mac para ver configuración de red
+- **curl ifconfig.me**: Herramienta para ver la IP pública desde terminal
+- **whatismyip.com**: Alternativa web para verificar IP pública
+
+### Rangos de IP Importantes
+- **127.0.0.0/8**: Rango completo reservado para localhost (127.0.0.1 es el más común)
+- **169.254.x.x**: Direcciones APIPA (Automatic Private IP Addressing) asignadas cuando no hay servidor DHCP disponible
+- **192.168.x.x**: Direcciones privadas comunes para redes domésticas
+- **10.x.x.x**: Direcciones privadas para redes empresariales
+- **172.16.0.0 - 172.31.255.255**: Otro rango de direcciones privadas
+
+### Puertos
+- **Total de puertos**: 65535 (numerados del 0-65535)
+- **Puertos bien conocidos**: 0-1023 (requieren privilegios de administrador)
+- **Puerto `445`**: Usado para SMB (Server Message Block), compartición de archivos en Windows
+- **Puertos básicos importantes**:
+  - `20/21`: FTP (transferencia de archivos)
+  - `22`: SSH (acceso remoto seguro)
+  - `23`: Telnet (acceso remoto no seguro)
+  - `25`: SMTP (correo saliente)
+  - `53`: DNS (resolución de nombres)
+  - `80`: HTTP (web)
+  - `443`: HTTPS (web segura)
+  - `110`: POP3 (correo entrante)
+
+### Conceptos de DNS
+- **DNS**: Sistema de nombres de dominio, traduce nombres de dominio a direcciones IP
+- **Envenenamiento DNS**: Ataque que modifica valores en la caché DNS para redirigir tráfico maliciosamente
+- **TTL (Time To Live)**: Tiempo que un registro DNS permanece en caché
+
+### Herramientas de Análisis
+- **Wireshark**: Analizador de protocolos de red que permite capturar y examinar paquetes detalladamente
+- **nmap**: Escáner de puertos y herramienta de descubrimiento de red
+- **netstat**: Muestra conexiones de red activas y puertos en escucha
+- **tcpdump**: Herramienta de línea de comandos para captura y análisis de paquetes
+
+### Seguridad
+- **Firewall**: Control de acceso que filtra tráfico de red según reglas establecidas
+- **VPN**: Red privada virtual que cifra conexiones a través de redes públicas
+
+
+## Tipos de Red
+
+### NAT (Network Address Translation)
+- **Definición**: Técnica que permite a múltiples dispositivos en una red local compartir una única dirección IP pública para conectarse a Internet.
+- **Funcionamiento**: 
+  - El router NAT asigna direcciones IP privadas (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) a dispositivos en la red local.
+  - Cuando un dispositivo envía tráfico a Internet, el router cambia la dirección IP privada de origen por su dirección IP pública.
+  - El router mantiene una tabla de seguimiento para recordar qué conexión corresponde a cada dispositivo interno.
+- **Tipos de NAT**:
+  - **NAT Estática**: Mapeo 1:1 entre IP privada e IP pública.
+  - **NAT Dinámica**: Utiliza un grupo de IPs públicas para asignarlas según demanda.
+  - **PAT (Port Address Translation)**: La forma más común, donde múltiples dispositivos comparten una única IP pública utilizando diferentes puertos.
+- **Ventajas**:
+  - Conserva direcciones IPv4 públicas
+  - Añade una capa de seguridad al ocultar las direcciones internas
+  - Facilita la administración de la red interna
+- **Observación**: Cuando se cambia la configuración NAT, a veces se mantiene conectividad con la antigua configuración temporalmente debido al caché ARP o a las tablas de estado NAT que no se actualizan inmediatamente.
+
+### Bridged Adapter (Adaptador Puente)
+- **Definición**: Modo de red que conecta una máquina virtual directamente a la red física a la que está conectado el host.
+- **Funcionamiento**:
+  - La máquina virtual obtiene su dirección IP directamente del mismo router/DHCP que el equipo físico.
+  - Aparece en la red como un dispositivo independiente con su propia dirección MAC y dirección IP.
+  - No hay traducción de direcciones entre la VM y la red externa.
+- **Características**:
+  - Permite que las VMs sean visibles para todos los equipos de la red local.
+  - Ideal para entornos de laboratorio donde se necesita visibilidad completa entre equipos.
+  - Cada máquina virtual obtiene una dirección IP única en la misma subred que el host.
+- **Caso de uso**: En entorno educativo/laboratorio, permite que todas las máquinas virtuales puedan verse entre sí y comunicarse directamente como si fueran equipos físicos independientes.
+
+## Otros Tipos de Conexión de Red (en entornos virtualizados)
+
+### Host-Only Network
+- Red privada entre el host y las máquinas virtuales
+- Las VMs pueden comunicarse entre sí y con el host, pero no con Internet directamente
+- Útil para crear entornos aislados y seguros
+
+### Internal Network
+- Conecta sólo máquinas virtuales entre sí
+- El host no puede acceder a esta red
+- Ideal para simular redes completamente aisladas
+
+### Custom NAT Networks
+- Similar al NAT normal pero permite definir reglas personalizadas
+- Útil para simular entornos de red específicos con mayor control
+
+## Máscaras de Red
+- **Definición**: Valor de 32 bits (en IPv4) que determina qué parte de una dirección IP corresponde a la red y qué parte al host.
+- **Notación**: Se puede expresar en:
+  - **Decimal punteada**: 255.255.255.0
+  - **CIDR (Classless Inter-Domain Routing)**: /24
+- **Cálculo**:
+  - Una máscara 255.255.255.0 (/24) reserva los primeros 24 bits para la red y los últimos 8 para hosts
+  - Permite 2^8 - 2 = 254 direcciones utilizables (se resta la dirección de red y broadcast)
+- **Clases comunes**:
+  - **Clase A**: 255.0.0.0 (/8) - Para redes muy grandes
+  - **Clase B**: 255.255.0.0 (/16) - Para redes medianas
+  - **Clase C**: 255.255.255.0 (/24) - Para redes pequeñas
+- **Subnetting**: Proceso de dividir una red en subredes más pequeñas ajustando la máscara
+
+## Dirección IP
+- **IPv4**: Conjunto de 4 bytes (32 bits) expresados en números decimales separados por puntos
+  - Cada octeto tiene un rango de 0 a 255
+  - Ejemplo: 192.168.1.1
+- **IPv6**: Conjunto de 128 bits expresados en hexadecimal separados por dos puntos
+  - Ejemplo: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
+- **Tipos**:
+  - **Estática**: Asignada manualmente y no cambia
+  - **Dinámica**: Asignada automáticamente por un servidor DHCP
+- **Conflictos IP**:
+  - La duplicación de IPs causa problemas de conectividad
+  - Los sistemas operativos suelen detectar conflictos mediante ARP
+
+## Ataques ARP
+- **ARP (Address Resolution Protocol)**: Protocolo que mapea direcciones IP a direcciones MAC
+- **ARP Spoofing (envenenamiento ARP)**: Ataque donde un atacante envía mensajes ARP falsificados para asociar su MAC con la IP de otro dispositivo
+  - **Consecuencias**:
+    - Facilita ataques Man-in-the-Middle (interceptación de tráfico)
+    - Permite robo de datos, modificación de tráfico o denegación de servicio
+    - Puede utilizarse para espiar comunicaciones en redes locales
+  - **Defensa**:
+    - Software de detección de ARP Spoofing
+    - Entradas ARP estáticas para dispositivos críticos
+    - Segmentación de red y VLANs
+
+## Protocolos de Transporte
+
+### TCP (Transmission Control Protocol)
+- **Características**:
+  - Orientado a conexión
+  - Garantiza la entrega de paquetes
+  - Control de flujo y congestión
+  - Reenvío de paquetes perdidos
+  - Entrega ordenada
+- **Casos de uso**:
+  - Transferencia de archivos (FTP, HTTP)
+  - Correo electrónico (SMTP, IMAP)
+  - Acceso remoto (SSH)
+  - Navegación web
+
+### UDP (User Datagram Protocol)
+- **Características**:
+  - No orientado a conexión
+  - No garantiza entrega
+  - Sin control de flujo
+  - Sin reordenamiento de paquetes
+  - Baja latencia
+  - Menos sobrecarga
+- **Casos de uso**:
+  1. **Streaming** de audio y video (no importa si se pierde algún paquete)
+  2. **Juegos en línea** (prioriza velocidad sobre la entrega garantizada)
+  3. **DNS** (consultas rápidas de resolución de nombres)
+  4. **DHCP** (descubrimiento y asignación de direcciones IP)
+  5. **VoIP** (Voice over IP) donde la latencia es más crítica que la pérdida ocasional
+  6. **SNMP** (monitoreo de red)
+  7. **Protocolos de descubrimiento** (mDNS, SSDP)

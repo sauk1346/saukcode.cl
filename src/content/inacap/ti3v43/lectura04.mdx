@@ -1,0 +1,230 @@
+# Modelos y metodologías de desarrollo de software
+
+Los modelos y metodologías de desarrollo de software son fundamentales para organizar, gestionar y ejecutar proyectos de software de manera eficiente. La elección del modelo adecuado puede influir significativamente en el éxito del proyecto, afectando la calidad del producto final, el tiempo de desarrollo y los costos asociados.
+
+## 1. Metodología en cascada
+También conocida como Waterfall, es un enfoque lineal y secuencial en el que las etapas del desarrollo de software se llevan a cabo de forma secuencial, como una cascada. Cada fase depende de la finalización exitosa de la fase anterior y no permite cambios retrospectivos.
+
+<SmartFigure
+	id="fases-modelo-cascada"
+	src="/inacap/ti3v43/images/fig05.png"
+	alt="Fases del modelo Cascada"
+	caption="Fases del modelo Cascada"
+	size="large"
+/>
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Fases", "Descripción"]}
+    rows = {[
+        [
+            "**Determinación de requisitos**",
+            "Se comienza estableciendo los requisitos de todos los elementos del sistema que son factibles de automatizar y que aportan a la solución del problema"
+        ],
+        [
+            "**Análisis de requisitos**",
+            "Se analizan los requisitos de los usuarios determinados en la fase anterior para describir la forma en que se resolverán. De esta fase surge un documento de especificación de requisitos, que contiene la especificación completa de lo que debe hacer el sistema sin entrar en detalles internos"
+        ],
+        [
+            "**Diseño**",
+            "El diseño del software se enfoca en la estructura de los datos, la arquitectura del software, el detalle de los procedimientos y las características de la interfaz. El proceso de diseño traduce los requisitos obtenidos en el análisis en una representación del software antes de que comience la codificación. El resultado se traduce en un Documento de Diseño del Software, que contiene la descripción de la estructura general del sistema y la especificación de cada una de sus partes y la forma en que se relacionan"
+        ],
+        [
+            "**Códificación**",
+            "En esta fase se elabora el código fuente, el diseño debe traducirse en instrucciones que el computador pueda interpretar"
+        ],
+        [
+            "**Pruebas**",
+            "Una vez codificado el producto de software se deben realizar pruebas que verifiquen que cumple con las especificaciones planteadas en las etapas de requisitos, que se encuentra libre de errores lógicos o de procedimientos y que además cumple criterios de calidad recomendados por los estándares relacionados. Se busca determinar que funciona correctamente antes de ser utilizado por los usuarios finales"
+        ],
+        [
+            "**Mantenimiento**",
+            "Debe contemplarse una fase que permita implementar los cambios requeridos por los usuarios una vez que el software se encuentra en explotación"
+        ]
+    ]}
+/>
+
+### Ventajas 
+- Estructura clara y fácil de entender
+- Es buena para proyectos con requisitos bien definidos y estables
+- Facilita la gestión de proyectos y la documentación
+
+### Desventajas
+- Poco flexible ante cambios en los requisitos
+- Riesgo de descubrir problemas tarde en el proceso
+- No es adecuada para proyectos complejos y de larga duración
+
+## 2. Metodología Ágil
+Es un **enfoque flexible y colaborativo** que se basa en la entrega incremental y la respuesta rápida a los cambios. Además, se centra en la interacción constante con los clientes y la adaptación continua a medida que se desarrolla el software.
+
+### Principios del manifiesto ágil
+
+1. La prioridad principal es satisfacer al cliente mediante tempranas y continuas entregas de software que le reporten un valor.
+2. Dar la bienvenida a los cambios. Los métodos ágiles capturan los cambios para que el cliente tenga una ventaja competitiva.
+3. Entregar frecuentemente un software que funcione, desde un par de semanas a un par de meses, con el menor intervalo de tiempo posible entre una entrega y la siguiente.
+4. La gente del negocio y los desarrolladores deben trabajar juntos a lo largo del proyecto.
+5. Construir el proyecto entorno a individuos motivados. Darles el entorno y el apoyo que necesitan y confiar en ellos para conseguir el trabajo.
+6. El diálogo cara a cara es el método más eficiente y efectivo para comunicar información dentro de un equipo de desarrollo.
+7. El software que funciona es la medida principal de progreso.
+8. Los procesos ágiles promueven un desarrollo sostenible. Los promotores, desarrolladores y usuarios deberían ser capaces de mantener una paz constante.
+9. La atención continua a la calidad técnica y al buen diseño mejora la agilidad.
+10. La simplicidad es esencial.
+11. Las mejores arquitecturas, requisitos y diseños surgen de los equipos organizados por sí mismos.
+12. En intervalos regulares, el equipo reflexiona respecto de cómo llegar a ser más efectivo, y según esto ajusta su comportamiento.
+
+## 3. Tipos de metodolgías ágiles
+Las metodologías ágiles son herramientas clave para gestionar proyectos de forma flexible y eficiente. A continuación, Algunos de los principales tipos y características son:
+
+### Scrum
+Está enfocada en la entrega incremental y la adaptación continua, basada en ciclos de trabajo cortos llamados sprints.
+
+La metodología se aplica bajo el supuesto que existe una unidad que controla y dirige; puede ser una gerencia. 
+
+- La gerencia debe estar atenta durante la carrera corta.
+- Todos los días el equipo sostiene una reunión corta (quince minutos), llamada scrum, donde el equipo discute sobre lo que hará al día siguiente.
+- Se presentan diariamente los problemas para progresar y que la gerencia debe resolver.
+- También informan los avances para que la gerencia actualice la información diaria del avance del proyecto.
+
+<SmartFigure
+	id="etapas-scrum"
+	src="/inacap/ti3v43/images/fig06.png"
+	alt="Etapas de trabajo bajo metodología Scrum"
+	caption="Etapas de trabajo bajo metodología Scrum"
+	size="large"
+/>
+
+### Kanban
+
+Se enfoca en la visualización y gestión del flujo de trabajo. Su objetivo principal es optimizar los procesos, reducir el tiempo de entrega y mejorar la calidad de los productos o servicios. 
+
+- El nombre "Kanban" proviene del japonés y significa "tarjeta señal".
+- Se basa en la utilización de un tablero visual, donde se representan las diferentes etapas de un proceso en columnas.
+- Cada tarea o actividad se representa con una tarjeta que se mueve a través de estas columnas a medida que avanza en el proceso.
+
+<SmartFigure
+	id="metodologia-kanban"
+	src="/inacap/ti3v43/images/fig07.png"
+	alt="Metodología Kanban"
+	caption="Metodología Kanban"
+	size="large"
+/>
+
+### Extreme Programming (XP)
+Se centra en la calidad del software y la satisfacción del cliente mediante ciclos de desarrollo cortos y lanzamientos frecuentes.
+
+Empieza con cuatro valores:
+
+1. Comunicación
+2. Retroalimentación
+3. Simplicidad
+4. Coraje
+
+
+Todo el diseño se centra en la iteración actual y no se hace nada anticipadamente para necesidades futuras. El resultado es un proceso de diseño disciplinado.
+
+<SmartFigure
+	id="proceso-xp"
+	src="/inacap/ti3v43/images/fig08.png"
+	alt="Esquema proceso Extreme Programming"
+	caption="Esquema proceso Extreme Programming"
+	size="large"
+/>
+
+## 4. Metodología Incremental
+- Está basado en el modelo secuencial, pero aquello que lo diferencia del resto es que toma los principios básicos del secuencial y los desarrolla escalonadamente. 
+    - De esta manera, a medida que se va avanzando se van obteniendo resultados, especies de versiones beta del producto software final
+    - Así, cuando se pasa de una versión a otra se le agregan nuevas funcionalidades y se reparan errores observados 
+    - El cliente usa el producto central y en base a su evaluación se desarrolla un plan para el incremento siguiente. 
+
+- Es una combinación de dos filosofías:
+    - modelo de cascada (aplicados repetitivamente)
+    - la interactiva de construcción de prototipos.
+
+- Este proceso se repite hasta que se elabora el producto completo. Con este modelo el cliente no tiene que esperar hasta que esté listo el producto completamente, además cuando él lo utiliza puede ayudar con información para la mejora del producto final.
+
+<SmartFigure
+	id="metodologia-incremental"
+	src="/inacap/ti3v43/images/fig09.png"
+	alt="Proceso Incremental del desarrollo de software"
+	caption="Proceso Incremental del desarrollo de software"
+	size="large"
+/>
+
+### Fases del modelo incremental
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Fases", "Descripción"]}
+    rows = {[
+        [
+            "**Análisis de Requisitos**",
+            "Es la recopilación de requisitos y especificaciones del software"
+        ],
+        [
+            "**Diseño**",
+            "Es la creación de un diseño de alto nivel para las funciones de cada incremento"
+        ],
+        [
+            "**Implementación**",
+            "Es el desarrollo del código fuente para cada incremento"
+        ],
+        [
+            "**Pruebas**",
+            "Es la verificación y validación de cada incremento antes de su integración"
+        ],
+        
+    ]}
+/>
+
+### Ventajas
+- Permite la entrega rápida de software funcional
+- Facilita la identificación y corrección temprana de errores
+- Flexibilidad para cambiar requisitos y alcance durante el desarrollo
+
+### Desventajas
+- Requiere una buena planificación y diseño
+- Puede ser costoso y complejo gestionar múltiples incrementos
+- Riesgo de problemas de integración entre incrementos 
+
+
+## 5. Selección de modelos y metodologías según el tipo de proyecto
+
+### Proyectos pequeños
+- Suelen beneficiarse de **metodologías ágiles** como **scrum** o **kanban**, que permiten una rápida adaptación a cambios y entregas frecuentes. 
+- Estas metodologías son ideales para proyectos donde los requisitos pueden evolucionar rápidamente y donde la interacción constante con el cliente es crucial. 
+- La flexibilidad y la capacidad de respuesta de las metodologías ágiles permiten a los equipos de desarrollo ajustar sus prioridades y enfoques según sea necesario, asegurando que el producto final cumpla con las expectativas del cliente.
+
+### Proyectos grandes
+- Pueden requerir un enfoque más estructurado como el modelo en cascada o el modelo incremental para gestionar la complejidad y asegurar la calidad. 
+- Estos proyectos suelen tener requisitos más estables y definidos, lo que facilita la planificación y la gestión de recursos a largo plazo.
+
+### Proyectos internos
+- Están desarrollados para uso dentro de la organización, pueden beneficiarse de **metodologías ágiles** debido a la necesidad de adaptarse rápidamente a los cambios internos y la colaboración constante entre los equipos. 
+- La flexibilidad y la capacidad de respuesta de las **metodologías ágiles** permiten a los equipos internos ajustar sus prioridades y enfoques según sea necesario, asegurando que el producto final cumpla con las expectativas de la organización.
+
+### Proyectos externos
+- Desarrollados para clientes o usuarios externos
+- Pueden beneficiarse de **enfoques más estructurados** como el **modelo en cascada** o el **modelo incremental**. 
+- Estos proyectos suelen tener requisitos bien definidos y contratos estrictos, lo que facilita la planificación y la gestión de recursos a largo plazo.
+
+
+# Actividad de Práctica 03
+
+<Quiz questions={[
+	{
+		question: "La metodología en cascada permite realizar cambios retrospectivos en cualquier fase del desarrollo del software",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "Una de las ventajas de la metodología ágil es que mejora la satisfacción del cliente mediante entregas frecuentes",
+		options: [
+			"Falso",
+			"Verdadero",
+		],
+		correctIndex: 1
+	},
+]} />

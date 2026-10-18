@@ -1,0 +1,42 @@
+---
+// Layout de lección: replica Container + MDXWrapper (contenido + sidebar con
+// TableOfContents) del sitio Next.
+import 'prismjs/themes/prism.css';
+import 'prismjs/themes/prism-tomorrow.css';
+import BaseLayout from './BaseLayout.astro';
+import TableOfContents from '../components/common/TableOfContents.jsx';
+import wrapperStyles from '../components/common/MDXWrapper.module.css';
+import containerStyles from '../components/mdx/Container.module.css';
+
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class={wrapperStyles.mdxLayout}>
+    <main class={wrapperStyles.mdxContent}>
+      <div class={containerStyles.container}>
+        <slot />
+      </div>
+    </main>
+    <aside class={wrapperStyles.mdxSidebar}>
+      <TableOfContents client:idle />
+    </aside>
+  </div>
+</BaseLayout>
+
+<script>
+  // Botón "Copiar" de los bloques de código (delegación de eventos)
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (!target.classList.contains('js-copy-code')) return;
+    const pre = target.parentElement?.querySelector('pre');
+    if (!pre) return;
+    navigator.clipboard.writeText(pre.textContent || '').then(() => {
+      const original = target.textContent;
+      target.textContent = '✓ Copiado';
+      setTimeout(() => {
+        target.textContent = original;
+      }, 2000);
+    });
+  });
+</script>

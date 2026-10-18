@@ -1,0 +1,514 @@
+# Unidad 03: Gestión de defectos, combinación de valores de prueba y exploración
+
+<Quiz questions={[
+  {
+    question: "¿Qué es un plan de prueba en el desarrollo de software?",
+    options: [
+      "Un documento que describe únicamente la ejecución de pruebas automatizadas",
+      "Un documento que describe el alcance, enfoque, recursos y calendario de las actividades de prueba previstas",
+      "Un informe de los defectos encontrados durante las pruebas",
+      "Una lista de verificación para los desarrolladores"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuáles son los objetivos del plan de prueba?",
+    options: [
+      "Solo verificar la compatibilidad con sistemas antiguos",
+      "Verificar requisitos, detectar defectos y asegurar el funcionamiento bajo diversas condiciones",
+      "Únicamente detectar fallos en el sistema",
+      "Solo documentar el proceso de desarrollo"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué debe detallar el alcance del plan de prueba?",
+    options: [
+      "Solo las características a probar",
+      "Únicamente las características que no se probarán",
+      "Las características a probar y aquellas que no se incluirán en las pruebas",
+      "Solo la complejidad del código"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué incluye la estrategia de pruebas?",
+    options: [
+      "Solo técnicas de prueba",
+      "Únicamente tipos de prueba",
+      "Solo criterios de prioridad",
+      "Técnicas de prueba, tipos de prueba y criterios de prioridad"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué establecen los criterios de aceptación y finalización?",
+    options: [
+      "Solo los plazos para las pruebas",
+      "Las condiciones bajo las cuales las pruebas se considerarán satisfactorias y completadas",
+      "Únicamente los recursos necesarios",
+      "Solo las herramientas a utilizar"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué debe identificar el plan de prueba respecto a los recursos?",
+    options: [
+      "Solo el equipo de pruebas",
+      "Únicamente las herramientas de pruebas",
+      "Solo el cronograma detallado",
+      "El equipo de pruebas, las herramientas y los entornos de prueba, junto con un cronograma detallado"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué aspectos incluye la gestión de defectos?",
+    options: [
+      "Solo el registro de defectos",
+      "La identificación, registro, clasificación y seguimiento de defectos hasta su resolución",
+      "Únicamente la clasificación de defectos",
+      "Solo la resolución de defectos"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué es el ciclo PDCA (Plan-Do-Check-Act)?",
+    options: [
+      "Un método exclusivo para pruebas de rendimiento",
+      "Un método para resolver problemas e implementar soluciones de forma rigurosa y metódica",
+      "Un tipo de prueba funcional",
+      "Una herramienta para el análisis de código estático"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "En el ciclo PDCA, ¿qué implica la fase 'Planificar'?",
+    options: [
+      "Verificar y documentar los resultados obtenidos",
+      "Ejecutar las actividades de prueba según el plan establecido",
+      "Definir el alcance, identificar recursos necesarios y elaborar un plan detallado de pruebas",
+      "Tomar acciones correctivas basadas en los hallazgos"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "En el ciclo PDCA, ¿qué implica la fase 'Hacer'?",
+    options: [
+      "Diseñar el plan de pruebas",
+      "Ejecutar las actividades de prueba según el plan establecido",
+      "Evaluar los resultados obtenidos",
+      "Tomar acciones correctivas basadas en los hallazgos"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "En el ciclo PDCA, ¿qué implica la fase 'Verificar'?",
+    options: [
+      "Ejecutar las actividades de prueba",
+      "Elaborar el plan de pruebas",
+      "Evaluar los resultados, analizar el cumplimiento con los criterios e identificar defectos",
+      "Implementar soluciones a los defectos encontrados"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "En el ciclo PDCA, ¿qué implica la fase 'Actuar'?",
+    options: [
+      "Evaluar los resultados obtenidos",
+      "Ejecutar las actividades de prueba",
+      "Elaborar el plan de pruebas",
+      "Tomar acciones correctivas o preventivas basadas en los hallazgos y análisis"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué son las pruebas exploratorias?",
+    options: [
+      "Pruebas que siguen scripts predefinidos estrictamente",
+      "Una técnica dinámica que se enfoca en la simultaneidad de la ejecución y el diseño de las pruebas",
+      "Pruebas que solo evalúan la interfaz de usuario",
+      "Pruebas exclusivas para el rendimiento del sistema"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿En qué se basan las pruebas exploratorias?",
+    options: [
+      "En la elaboración previa de documentación detallada",
+      "En la experiencia y el conocimiento del tester",
+      "Únicamente en el diseño detallado de casos de prueba",
+      "Solo en el análisis de requisitos"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de los siguientes NO es un principio fundamental de las pruebas exploratorias?",
+    options: [
+      "Simultaneidad de diseño y ejecución",
+      "Ciclos cortos de feedback",
+      "Creatividad y adaptabilidad",
+      "Seguimiento estricto de casos de prueba predefinidos"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué técnica de pruebas exploratorias implica recorrer diferentes áreas del software como si se estuviera en una excursión?",
+    options: [
+      "Tours de Exploración",
+      "Listas de Verificación",
+      "Matriz de Riesgos",
+      "Notaciones de Exploración"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Para qué se utilizan las listas de verificación en las pruebas exploratorias?",
+    options: [
+      "Para dictar exactamente cómo probar cada área del software",
+      "Para registrar observaciones y resultados durante las pruebas",
+      "Para proporcionar una guía general sobre qué áreas explorar, sin dictar cómo hacerlo",
+      "Para identificar la causa raíz de los defectos"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué ayuda a identificar y priorizar áreas del software más propensas a tener defectos en las pruebas exploratorias?",
+    options: [
+      "Tours de Exploración",
+      "Listas de Verificación",
+      "Matriz de Riesgos",
+      "Heurísticas de Prueba"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál NO es un beneficio de las pruebas exploratorias?",
+    options: [
+      "Mayor flexibilidad y adaptabilidad",
+      "Descubrimiento de defectos inesperados",
+      "Mejora continua",
+      "Documentación detallada y estructurada"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál NO es un desafío de las pruebas exploratorias?",
+    options: [
+      "Dependencia de la habilidad del tester",
+      "Documentación de las pruebas y resultados",
+      "Cobertura de pruebas",
+      "Costo elevado de implementación"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué es un defecto de software?",
+    options: [
+      "Exclusivamente un error de sintaxis en el código",
+      "Cualquier falla o error en el código que impide que el programa funcione correctamente",
+      "Solo un problema visible para el usuario final",
+      "Únicamente un error en la documentación"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué caracteriza al ciclo de vida de un defecto de software?",
+    options: [
+      "Es siempre un proceso lineal sin iteraciones",
+      "No puede ser repetido una vez cerrado",
+      "Es un proceso estructurado que puede ser iterativo",
+      "Solo implica la fase de detección y corrección"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Con qué fase comienza el ciclo de vida de un defecto?",
+    options: [
+      "Clasificación y priorización",
+      "Detección del defecto",
+      "Asignación y resolución",
+      "Verificación"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué se hace en la fase de clasificación y priorización de un defecto?",
+    options: [
+      "Se corrige el defecto en el código",
+      "Se documenta el defecto con capturas de pantalla",
+      "Se revisa el defecto para clasificar su tipo y asignarle una prioridad basada en su severidad e impacto",
+      "Se realiza una nueva ronda de pruebas"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué ocurre en la fase de asignación y resolución de un defecto?",
+    options: [
+      "Se documenta el defecto inicialmente",
+      "Se clasifica la severidad del defecto",
+      "Se asigna el defecto a un desarrollador para su resolución y se realizan los cambios necesarios",
+      "Se verifica que la solución funciona correctamente"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué implica la fase de verificación en el ciclo de vida de un defecto?",
+    options: [
+      "Identificar inicialmente el defecto",
+      "Comprobar que el defecto ha sido corregido y no introduce nuevos problemas",
+      "Cerrar formalmente el defecto",
+      "Asignar el defecto a un desarrollador"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿En qué fase se marca el defecto como cerrado?",
+    options: [
+      "Asignación y resolución",
+      "Verificación",
+      "Cierre",
+      "Reapertura"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuándo podría ocurrir una reapertura de un defecto?",
+    options: [
+      "Cuando se detecta inicialmente el defecto",
+      "Cuando se asigna a un desarrollador",
+      "Si se descubre que el defecto no se ha solucionado completamente o persiste bajo ciertas condiciones",
+      "Durante la fase de clasificación"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál de las siguientes NO es una mejor práctica en la gestión de defectos?",
+    options: [
+      "Proporcionar una descripción clara y concisa",
+      "Asignar correctamente la severidad y prioridad",
+      "Evitar las pruebas de regresión para ahorrar tiempo",
+      "Mantener una comunicación clara entre testers y desarrolladores"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es la diferencia principal entre defectos, errores y fallos?",
+    options: [
+      "No hay diferencia, son términos intercambiables",
+      "Los defectos son problemas en el código, los errores son acciones incorrectas y los fallos son manifestaciones observables",
+      "Solo se diferencian en su severidad",
+      "Solo varían en cómo se documentan"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué son los defectos en el software?",
+    options: [
+      "Solo errores de sintaxis en el código",
+      "Problemas o desviaciones en el código que afectan negativamente su funcionamiento",
+      "Únicamente manifestaciones visibles durante la ejecución",
+      "Solo problemas reportados por usuarios finales"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué son los errores en el contexto del desarrollo de software?",
+    options: [
+      "Las acciones incorrectas o falta de precisión que conducen a la aparición de defectos",
+      "Solo los problemas visibles durante la ejecución del software",
+      "Únicamente los defectos en el código",
+      "Solo los problemas reportados por usuarios"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué son los fallos en el desarrollo de software?",
+    options: [
+      "Las acciones incorrectas durante el desarrollo",
+      "Solo problemas en el código fuente",
+      "Las manifestaciones observables de los errores durante la ejecución del software",
+      "Únicamente defectos en la documentación"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cómo se representa el ciclo de vida 'De Error a Fallo'?",
+    options: [
+      "Fallo → Defecto → Error",
+      "Defecto → Error → Fallo",
+      "Error → Defecto → Fallo",
+      "Fallo → Error → Defecto"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué debe incluir un informe de defecto bien estructurado?",
+    options: [
+      "Solo un título descriptivo",
+      "Únicamente la severidad del defecto",
+      "Solo los pasos para reproducir el problema",
+      "Identificador único, título, descripción detallada, severidad, estado, asignación y otra información relevante"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué tipo de imágenes o diagramas son útiles para documentar defectos?",
+    options: [
+      "Solo diagramas UML",
+      "Únicamente gráficos de Gantt",
+      "Capturas de pantalla y diagramas de flujo, entre otros",
+      "Solo wireframes"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué implica el seguimiento de fallos, errores y defectos?",
+    options: [
+      "Solo documentar los defectos encontrados",
+      "Un proceso estructurado y continuo que incluye identificación, documentación, clasificación y más etapas",
+      "Únicamente corregir los errores en el código",
+      "Solo realizar pruebas de verificación"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué implica la identificación de fallos y defectos?",
+    options: [
+      "Solo analizar el código fuente",
+      "Identificar y registrar todos los fallos y defectos encontrados durante las pruebas",
+      "Únicamente clasificar los defectos por severidad",
+      "Solo asignar defectos a desarrolladores"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué incluye la documentación detallada de fallos y defectos?",
+    options: [
+      "Solo un identificador único",
+      "Únicamente los pasos para reproducir el problema",
+      "La descripción, contexto, pasos para reproducir, severidad y prioridad",
+      "Solo la asignación a un desarrollador"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿En qué se basa la clasificación y priorización de defectos?",
+    options: [
+      "Solo en la opinión del tester",
+      "Únicamente en el tiempo disponible para corregirlos",
+      "En su gravedad, impacto en el sistema, criticidad del componente afectado y plazos del proyecto",
+      "Solo en la dificultad para resolverlos"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué implica el análisis de causa raíz en la gestión de defectos?",
+    options: [
+      "Solo documentar el defecto",
+      "Investigar las razones subyacentes que han llevado a la aparición del problema",
+      "Únicamente clasificar el defecto por severidad",
+      "Solo asignar el defecto a un desarrollador"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué puede incluir la implementación de soluciones a los defectos?",
+    options: [
+      "Solo modificaciones en el código",
+      "Únicamente cambios en la documentación",
+      "Solo ajustes en los procedimientos de prueba",
+      "Modificaciones en el código, ajustes en la configuración, actualizaciones de documentación o cambios en procedimientos"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué se realiza en las pruebas de verificación?",
+    options: [
+      "Identificar inicialmente los defectos",
+      "Comprobar que los defectos han sido corregidos correctamente y no se han introducido nuevos problemas",
+      "Documentar detalladamente los defectos",
+      "Asignar los defectos a desarrolladores"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué implica el seguimiento y monitoreo continuo en la gestión de defectos?",
+    options: [
+      "Solo documentar los defectos inicialmente",
+      "Únicamente asignar defectos a desarrolladores",
+      "Realizar seguimiento de los defectos corregidos y de cualquier nueva incidencia",
+      "Solo clasificar los defectos por severidad"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué es la tasa de defectos como métrica?",
+    options: [
+      "El tiempo promedio para resolver defectos",
+      "Número de defectos encontrados en relación con el tamaño del software",
+      "La distribución de defectos según su severidad",
+      "El porcentaje de incidencias resueltas dentro de los plazos establecidos"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué mide el tiempo de resolución como métrica?",
+    options: [
+      "El tiempo promedio para resolver defectos",
+      "Cuántas veces se repiten los mismos fallos",
+      "La distribución de defectos según su severidad",
+      "El porcentaje de incidencias resueltas dentro de los plazos establecidos"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué son los sistemas de seguimiento de errores o bug trackers?",
+    options: [
+      "Herramientas que solo miden el rendimiento del software",
+      "Herramientas para crear diagramas de flujo",
+      "Herramientas que permiten registrar y gestionar fallos y errores",
+      "Herramientas utilizadas exclusivamente por los desarrolladores"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Para qué sirven los dashboards de métricas en el monitoreo de defectos?",
+    options: [
+      "Solo para diseñar casos de prueba",
+      "Para visualizar información clave sobre el estado del software y los problemas detectados",
+      "Únicamente para documentar los requisitos",
+      "Solo para medir el rendimiento de los testers"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Según las ideas fuerza del documento, ¿qué es clave para evitar fallos críticos?",
+    options: [
+      "Solo realizar pruebas de rendimiento",
+      "La identificación temprana de problemas",
+      "Únicamente documentar los defectos",
+      "Solo utilizar herramientas automatizadas"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Según las ideas fuerza del documento, ¿para qué ayuda un registro detallado de defectos?",
+    options: [
+      "Solo para cumplir con requisitos de documentación",
+      "En la resolución y análisis de futuros problemas",
+      "Únicamente para asignar responsabilidades",
+      "Solo para justificar retrasos en el proyecto"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Según las ideas fuerza del documento, ¿sobre qué informan los datos recogidos en el proceso de pruebas?",
+    options: [
+      "Solo sobre el rendimiento de los testers",
+      "Únicamente sobre los costos del proyecto",
+      "Sobre mejoras necesarias en el proceso de desarrollo",
+      "Solo sobre el rendimiento de las herramientas utilizadas"
+    ],
+    correctIndex: 2
+  }
+]}/>

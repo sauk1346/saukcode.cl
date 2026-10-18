@@ -1,0 +1,136 @@
+# Toma de Requerimientos
+
+## Requisitos
+Declaraciones que especifican lo que el sistema debe hacer o cumplir para satisfacer las necesidades y expectativas de los usuarios.
+
+<SmartFigure
+	id="tipo-requisitos"
+	src="/inacap/ti3v25/images/fig01.png"
+	alt="Tipo de Requisitos"
+	caption="Tipo de Requisitos"
+	size="large"
+/>
+
+## Ingeniería de Requerimientos
+Define y determina las necesidades de los stakeholders, para satisfacer un sistema de software nuevo o la modificación de éste.
+
+## Ingeniería del Software
+La aplicación de un enfoque sistematico, disciplinado y cuantificable para el desarrollo, operación y mantenimiento de software.
+
+### Disciplinas
+
+<SmartFigure
+	id="tipo-disciplinas"
+	src="/inacap/ti3v25/images/fig02.png"
+	alt="Tipo de Disciplinas"
+	caption="Tipo de Disciplinas"
+	size="large"
+/>
+
+## Tipos de Requerimientos
+
+### Requerimiento de los Stakeholders
+Lo que las personas o grupos que están involucrados en el proyecto necesitan o esperan del sistema.
+
+**Ejemplos**
+
+1. Usuarios finales quieren poder encontrar fácilmente los productos que buscan.
+2. Clientes quieren poder pagar sus compras de forma segura y conveniente.
+3. Proveedores quieren poder enviar productos a los clientes de forma rápida y eficiente.
+
+### Requerimientos de Solución
+- Cómo el sistema debe funcionar para cumplir con los requerimientos del negocioa y de los interesados.
+- Caracteristicas y comportamientos del sistema.
+- Componentes técnicos que se utilizarán para complementarlo.
+
+**Ejemplos**
+
+1. El sistema debe utilizar una base de datos para almacenar la información de los productos y los clientes.
+2. El sistema debe utilizar un servicio de pago para procesar los pagos de los clientes.
+3. El sistema debe estar disponible las 24 horas del día, los 7 días de la semana.
+
+### Requerimientos de Transición
+- Cómo el sistema se implementará y se pondrá en marcha.
+- Pasos necesarios para mover desde la fase de desarrollo a la fase en producción.
+
+**Ejemplos**
+
+1. El sistema debe probarse exhaustivamente antes de su implementación.
+2. El sistema debe documentarse para que los usuarios finales y los administradores puedan utilizarlo.
+3. El sistema debe integrarse con los sistemas existentes.
+
+
+### Requerimientos Funcionales
+- Describen lo que el sistema debe hacer en términos de tareas o servicios de usuario.
+- Especifican qué acciones debe realizar el sistema y qué resultados debe proporcionar.
+
+**Ejemplo:** Si el diseño de la arquitectura de la solución requiere que el sistema utilice una base de datos, el requerimiento funcional correspondiente deberá especificar qué datos se almacenarán en la base de datos y cómo se accederá a ellos.
+
+### Requerimientos No Funcionales
+- Describen las cualidadesl del sistema, como su rendimiento, seguridad, usabilidad y escalabilidad.
+- No definen lo que el sistema debe hacer, sino cómo debe hacerlo.
+
+**Ejemplo:** El sistema debe ser seguro y proteger los datos de los usuarios.
+
+## Documento de Requerimientos
+- No existe un formato estándar.
+- Sin embargo, hay algunos elementos presentes:
+	- Introducción
+	- Descripción requerimientos funcionales
+	- Descripción requerimientos no funcionales
+	- Apéndices
+
+# Actividad de Práctica 01
+
+<Quiz questions={[
+  {
+    question: "¿Cuál es el impacto del éxito de un proyecto de desarrollo de software en la calidad de los requisitos establecidos para el sistema?",
+    options: [
+      "Incrementa la complejidad del sistema.",
+      "Minimiza la importancia de los requisitos.",
+      "No tiene impacto en los requisitos.",
+      "Refleja la calidad de los requisitos definidos."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "Según la definición de IEEE, ¿Cómo se traduce la ingeniería de software?",
+    options: [
+      "Aplicación desordenada de enfoques.",
+      "Enfoque sistemático y disciplinado.",
+      "Proceso creativo sin restricciones.",
+      "Desarrollo caótico de software."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "En la estrategia iterativa e incremental, ¿Cómo se aplican las disciplinas de ingeniería de software?",
+    options: [
+      "Se completan de manera secuencial.",
+      "Se aplican repetida e incrementalmente.",
+      "Se ignoran en cada iteración.",
+      "No hay una estrategia iterative e incremental."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Según el estándar ISO/IEC/IEEE 24765-2017, ¿Cuáles son las tres categorías en las que se dividen los requerimientos?",
+    options: [
+      "Estructurales, comportamentales, y técnicos.",
+      "Funcionales, no funcionales, y de diseños.",
+      "Negocio, interesados, solución y transición.",
+      "Primarios, secundarios y operativos."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Por qué son importantes los requerimientos no funcionales en el desarrollo de software?",
+    options: [
+      "Definen las tareas o servicios de usuario.",
+      "Cuantifican o miden la calidad del sistema.",
+      "Se centran en funciones específicas del software.",
+      "Documentan la arquitectura del sistema."
+    ],
+    correctIndex: 1
+  }
+]} />

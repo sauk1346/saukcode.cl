@@ -1,0 +1,266 @@
+# Clase Rápida: Conceptos de Android con Kotlin
+
+## 1. ViewModel
+
+El **ViewModel** almacena y gestiona datos relacionados con la UI de forma que sobrevivan a cambios de configuración (como rotación de pantalla).
+
+```kotlin
+// Dependencia en build.gradle
+implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+
+// ViewModel básico
+class ContadorViewModel : ViewModel() {
+    
+    private val _contador = MutableStateFlow(0)
+    val contador: StateFlow<Int> = _contador.asStateFlow()
+    
+    fun incrementar() {
+        _contador.value++
+    }
+    
+    fun decrementar() {
+        _contador.value--
+    }
+}
+
+// Uso en Composable
+@Composable
+fun PantallaContador(viewModel: ContadorViewModel = viewModel()) {
+    val contador by viewModel.contador.collectAsState()
+    
+    Column {
+        Text("Contador: $contador")
+        Button(onClick = { viewModel.incrementar() }) {
+            Text("Sumar")
+        }
+    }
+}
+```
+
+---
+
+## 2. Data Class
+
+Las **data class** son clases diseñadas para almacenar datos. Kotlin genera automáticamente `equals()`, `hashCode()`, `toString()`, `copy()`.
+
+```kotlin
+// Definición simple
+data class Usuario(
+    val id: Int,
+    val nombre: String,
+    val email: String,
+    val activo: Boolean = true  // valor por defecto
+)
+
+// Uso
+val usuario = Usuario(1, "Antonio", "antonio@email.com")
+val copia = usuario.copy(nombre = "Antonio Silva")  // copia modificando solo nombre
+
+// Desestructuración
+val (id, nombre, email) = usuario
+```
+
+---
+
+## 3. Serializado (Parcelable y Serializable)
+
+Para pasar objetos entre Activities/Fragments necesitas serializarlos. En Android, **Parcelable** es más eficiente que Serializable.
+```kotlin
+// Opción 1: @Parcelize (recomendado)
+// En build.gradle: id("kotlin-parcelize")
+
+@Parcelize
+data class Producto(
+    val id: Int,
+    val nombre: String,
+    val precio: Double
+) : Parcelable
+
+// Opción 2: Serializable (más simple pero menos eficiente)
+data class Producto(
+    val id: Int,
+    val nombre: String,
+    val precio: Double
+) : Serializable
+```
+
+---
+
+## 4. String Resources
+
+Los strings se definen en `res/values/strings.xml` para facilitar mantenimiento y traducción.
+```xml
+<!-- res/values/strings.xml -->
+<resources>
+    <string name="app_name">Mi App</string>
+    <string name="bienvenido">Bienvenido</string>
+    <string name="saludo_nombre">Hola, %1$s</string>  <!-- con parámetro -->
+    <string name="items_count">Tienes %1$d items</string>  <!-- con número -->
+</resources>
+```
+
+```kotlin
+// En Composable
+Text(text = stringResource(R.string.bienvenido))
+Text(text = stringResource(R.string.saludo_nombre, "Antonio"))
+Text(text = stringResource(R.string.items_count, 5))
+
+// En Activity/Fragment
+getString(R.string.bienvenido)
+getString(R.string.saludo_nombre, "Antonio")
+```
+
+---
+
+## 5. Strings en Español/Inglés (Localización)
+
+Creas carpetas específicas por idioma:
+
+<TerminalOutput>
+{`res/
+├── values/
+│   └── strings.xml          (español - default)
+├── values-en/
+│   └── strings.xml          (inglés)
+└── values-pt/
+    └── strings.xml          (portugués)`}
+</TerminalOutput>
+
+
+```xml
+<!-- res/values/strings.xml (Español - default) -->
+<resources>
+    <string name="app_name">Mi Aplicación</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="bienvenido">¡Bienvenido!</string>
+</resources>
+
+<!-- res/values-en/strings.xml (Inglés) -->
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="login">Login</string>
+    <string name="bienvenido">Welcome!</string>
+</resources>
+```
+
+Android selecciona automáticamente según el idioma del dispositivo.
+
+---
+
+## 6. Enviar Datos Entre Pantallas
+
+### Con Jetpack Compose Navigation
+```kotlin
+// Dependencia
+implementation("androidx.navigation:navigation-compose:2.7.7")
+
+// Definir rutas
+sealed class Rutas(val ruta: String) {
+    object Lista : Rutas("lista")
+    object Detalle : Rutas("detalle/{productoId}") {
+        fun crearRuta(id: Int) = "detalle/$id"
+    }
+}
+
+// NavHost
+@Composable
+fun AppNavigation() {
+    val navController = rememberNavController()
+    
+    NavHost(navController, startDestination = Rutas.Lista.ruta) {
+        
+        composable(Rutas.Lista.ruta) {
+            PantallaLista(
+                onProductoClick = { id ->
+                    navController.navigate(Rutas.Detalle.crearRuta(id))
+                }
+            )
+        }
+        
+        composable(
+            route = Rutas.Detalle.ruta,
+            arguments = listOf(navArgument("productoId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val productoId = backStackEntry.arguments?.getInt("productoId") ?: 0
+            PantallaDetalle(productoId = productoId)
+        }
+    }
+}
+```
+
+### Con Intent (Activities tradicionales)
+```kotlin
+// Enviar datos
+val intent = Intent(this, DetalleActivity::class.java).apply {
+    putExtra("PRODUCTO_ID", 123)
+    putExtra("PRODUCTO_NOMBRE", "Laptop")
+    putExtra("PRODUCTO", producto)  // si es Parcelable
+}
+startActivity(intent)
+
+// Recibir datos en DetalleActivity
+val id = intent.getIntExtra("PRODUCTO_ID", 0)
+val nombre = intent.getStringExtra("PRODUCTO_NOMBRE")
+val producto = intent.getParcelableExtra<Producto>("PRODUCTO")
+```
+
+---
+
+## 7. Ejemplo Integrado
+```kotlin
+// Data class serializable
+@Parcelize
+data class Producto(
+    val id: Int,
+    val nombre: String,
+    val precio: Double
+) : Parcelable
+
+// ViewModel
+class ProductoViewModel : ViewModel() {
+    private val _productos = MutableStateFlow<List<Producto>>(emptyList())
+    val productos: StateFlow<List<Producto>> = _productos.asStateFlow()
+    
+    init {
+        cargarProductos()
+    }
+    
+    private fun cargarProductos() {
+        _productos.value = listOf(
+            Producto(1, "Laptop", 999.99),
+            Producto(2, "Mouse", 29.99)
+        )
+    }
+}
+
+// UI con strings localizados
+@Composable
+fun ListaProductos(viewModel: ProductoViewModel = viewModel()) {
+    val productos by viewModel.productos.collectAsState()
+    
+    Column {
+        Text(stringResource(R.string.titulo_productos))
+        
+        productos.forEach { producto ->
+            Text("${producto.nombre}: $${producto.precio}")
+        }
+    }
+}
+```
+
+---
+
+## Resumen Rápido
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Concepto', 'Uso Principal']}
+	rows={[
+		['ViewModel', 'Persistir datos durante cambios de configuración'],
+		['Data Class', 'Modelar datos con funciones autogeneradas'],
+		['Parcelable', 'Serializar objetos para pasar entre componentes'],
+		['strings.xml', 'Centralizar textos de la app'],
+		['values-en/', 'Localización multi-idioma'],
+		['Navigation', 'Navegar y pasar datos entre pantallas']
+	]}
+/>

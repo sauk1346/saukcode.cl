@@ -1,0 +1,138 @@
+# Aplicaciones de las Metodologías Ágiles
+
+## Métodologías Ágiles
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Tipo","Descripción"]}
+  rows={[
+    ["**SCRUM**","Organiza el desarrollo en iteraciones llamadas sprints, fomenta la colaboración y adaptación continua mediante roles y reuniones estructuradas"],
+    ["**Kanban**","Sistema visual de gestión de trabajo. Limita el trabajo en curso y mejora la eficiencia mediante la optimización continua"],
+    ["**XP**","Comunicación cercana, pruebas unitarias constantes, desarrollo incremental y simplicidad en el diseño para mejorar la calidad del software"],
+    ["**Lean**","Inspirado en el sistema de producción de Toyota, busca eliminar el desperdicio, optimizar el flujo de trabajo y mejorar la entrega de valor de manera continua"],
+    ["**Crystal**","Tien enfoques específicos, como *Crystal Clear* para equipos pequeños y *Crystal Orange* para equipos más grandes"],
+    ["**FDD**","Se centra en la construcción de características específicas, empleando modelado y diseño, con énfasis en entregas incrementales y desarrollo guiado por funcionalidades"]
+  ]}
+/>
+
+### SCRUM
+- Ejemplo de uso: "Desarrollo de una aplicación móvil para la gestión de tareas y colaboración en equipos"
+- Sprints cortos
+- Capacidad de gestionar cambios rápidos en los requisitos
+
+### Kanban
+- Ejemplo de uso: "Mentenimiento y mejoras continuas en un sistema de comercio electrónico"
+- Se ajusta al flujo constante de trabajo y facilita la gestión de prioridades en un entorno que evoluciona rápidamente
+
+### XP (Programación Extrema)
+- Ejemplo de uso: "Desarrollo de un sistema de control de versiones"
+- XP es apropiado debido a sus prácticas de desarrollo centradas en la calidad y la retroalimentación constante
+
+### Lean
+- Ejemplo de uso: "Desarrollo de un software de gestión de inventario"
+- Lean es beneficioso para optimizar procesos, eliminar desperdicios y mejorar la eficiencia en la entrega de funcionalidades
+
+### Crystal
+- Ejemplo de uso: "Creación de un sistema de reservas para una pequeña empresa"
+- Puede adaptarse a un equipo pequeño, priorizando la comunicación y la simplicidad
+
+## FDD (Feature-Driven Development)
+- Ejemplo de uso: "Construcción de un sistema de gestión de contenido"
+- Permite desarrollar características específicas de manera incremental y guiada por funcionalidades
+
+## Metología SCRUM
+Se centra en la flexibilidad y la adaptabilidad para abordar proyectos complejos de desarrollo de software y productos
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Características","Descripción"]}
+  rows={[
+    ["**Iterativo e Incremental**","Divide el proyecto en ciclos de desarrollo (sprints), de 2 a 4 semanas, donde se entregan incrementos de funcionalidades"],
+    ["**Roles Definidos**","Product Owner, Scrum Master y Equipo de Desarrollo"],
+    ["**Priorización de Product Backlog**","Permite priorizar y gestionar las funcionalidades deseadas. Permite al Product Owner tomar decisiones informadas sobre qué trabajar a continuación"],
+    ["**Reuniones Ceremoniales**","Sprint Planning, Daily Scrum, Sprint Review y Sprint Restrospective. Garantizan transparencia y colaboración"],
+    ["**Enfoque en la Colaboración**","Colaboración activa entre equipo de desarrollo, Product Owner y los stakeholders para garantizar un entendimiento común de los objetivos y requisitos"]
+  ]}
+/>
+
+### Roles
+
+<SmartTable
+  tableLayout="auto"
+  lists={{
+    PO: [
+      "Representa al cliente. Responsable de definir y priorizar las funcionalidades del producto",
+      "Toma decisiones sobre qué se debe incluir en cada iteración"
+    ],
+    SC: [
+      "Facilita el proceso Scrum",
+      "Elimina obstáculos para el equipo",
+      "Garantiza el cumplimiento de las prácticas y valores de Scrum"
+    ],
+    DT: [
+      "Encargados de llevar a cabo el trabajo para entregar las funcionalidades del producto"
+    ]
+  }}
+  headers={["Rol","Descripción"]}
+  rows={[
+    ["**Product Owner**","@PO"],
+    ["**Scrum Master**","@SC"],
+    ["**Equipo de Desarrollo**","@DT"]
+  ]}
+  
+/>
+
+# Actividad de Práctica 02
+
+<Quiz questions={[
+  {
+    question: "¿Qué metodología ágil se caracteriza por organizar el desarrollo en iteraciones llamadas sprints, fomentando la colaboración y adaptación continua mediante roles y reuniones estructuradas?",
+    options: [
+      "Kanban",
+      "Lean",
+      "Scrum",
+      "Crystal"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál de las siguientes metodologías ágiles se inspira en el sistema de producción de Toyota, buscando eliminar el desperdicio, optimizar el flujo de trabajo y mejorar la entrega de valor de manera continua?",
+    options: [
+      "XP (programación extrema)",
+      "Lean",
+      "Kanban",
+      "Crystal"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "En el desarrollo de un sistema de control de versiones, ¿qué enfoque ágil sería más apropiado debido a sus prácticas de desarrollo centradas en la calidad y la retroalimentación constante?",
+    options: [
+      "Crystal",
+      "Kanban",
+      "XP (programación extrema)",
+      "Scrum"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "Para la construcción de un software de gestión de inventario, ¿qué metodología ágil sería beneficiosa para optimizar procesos, eliminar desperdicios y mejorar la eficiencia en la entrega de funcionalidades?",
+    options: [
+      "Scrum",
+      "Crystal",
+      "Lean",
+      "No promueven la colaboración activa"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿En qué contexto una metodología ágil como Feature-Driven Development (FDD) podría ser aplicada de manera adecuada?",
+    options: [
+      "Desarrollo de una aplicación móvil",
+      "Mantenimiento y mejoras continuas en un sistema de comercio electrónico",
+      "Construcción de un sistema de gestión de contenido",
+      "Creación de un sistema de reservas para una pequeña empresa"
+    ],
+    correctIndex: 2
+  }
+]} />

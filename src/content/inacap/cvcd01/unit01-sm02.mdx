@@ -1,0 +1,721 @@
+# Ley de enfriamiento y asíntotas
+
+**Material**
+- [Ley de enfriamiento y asíntotas](docs/sm02.pdf)
+
+Fernando se prepara un rico café y entra a su habitación cuya temperatura ambiente es de 20\°C. En el momento justo en que entra a la habitación, su café está a una temperatura de 80\°C
+
+## Actividad 1
+
+Fernando sale urgente de su habitación y olvida por completo que había dejado en ella su taza de café. Suponiendo que la temperatura ambiente permanece constante, a través de la ley de enfriamiento de Newton, es posible obtener la temperatura del café a medida que transcurre el tiempo, mediante la función
+
+$$
+T(t) = 20 + 60 e^{-0.10986t}
+$$
+
+donde $t$ representa el tiempo, en minutos, y $T(t)$ la temperatura del café transcurridos $t$ minutos a partir del instante en que Fernando entra a la habitación, expresada en grados Celcius.
+
+Completa la siguiente tabla, redondeando los resultados a un lugar lugar decimal:
+
+<SmartFigure
+	src="/inacap/cvcd01/images/fig66.png"
+	alt="tabla a completar"
+	caption="tabla a completar"
+	size="large"
+/>
+
+<Solution title="Solución Actividad 01">
+
+<SmartFigure
+	id="fig67"
+  src="/inacap/cvcd01/images/fig67.png"
+	alt="Valores de temperatura T(t), redondeados a 1 decimal"
+	caption="Valores de temperatura T(t), redondeados a 1 decimal"
+	size="large"
+/>
+
+</Solution>
+
+---
+## Actividad 02
+
+Teniendo en cuenta la función $T(t)$ anterior, responde:
+
+1. ¿Qué temperatura tendrá el café transcurridos 100 minutos? ¿Tres horas? ¿Cinco horas? ¿Un día? ¿Dos días? Redondea los resultados a un lugar decimal. Si lo deseas, organízalos en una tabla como la de la actividad anterior
+2. ¿Qué podrías concluir a partir de los resultados anteriores?
+
+<Solution title="Solución Actividad 02">
+
+<SmartFigure
+  id="fig68"
+  src="/inacap/cvcd01/images/fig68.png"
+	alt="Valores de temperatura T(t), redondeados a 1 decimal"
+	caption="Valores de temperatura T(t), redondeados a 1 decimal"
+	size="large"
+/>
+
+$\therefore$ En el largo plazo, la temperatura es constante, a un valor de $20°C$
+
+</Solution>
+---
+## Actividad 03
+
+Considera la misma función $T(t)$ de la actividad anterior
+
+1. Grafica la función en GeoGebra
+2. Completa la siguiente tabla:
+
+<SmartFigure
+	src="/inacap/cvcd01/images/fig69.png"
+	alt="tabla a completar"
+	caption="tabla a completar"
+	size="large"
+/>
+
+3. ¿Podrías concluir algo diferente a lo que conluiste en la actividad 2B?
+
+<Solution title="Solución Actividad 03">
+
+<SmartFigure
+  id="fig70"
+	src="/inacap/cvcd01/images/fig70.png"
+	alt="Gráfico T(t)"
+	caption="Gráfico T(t)"
+  lightbox={true}
+	size="large"
+/>
+
+<SmartFigure
+	id="fig71"
+  src="/inacap/cvcd01/images/fig71.png"
+	alt="Valores de temperatura T(t) con 2 y 15 decimales"
+	caption="Valores de temperatura T(t) 2 y 15 decimales"
+	size="large"
+/>
+
+- Se concluye algo diferente a la actividad anterior. La temperatura **tiende** a 20°C, pero no llega a ese valor específico, ya que siempre hay decimales distintos a 0, haciendo que el valor exacto de la temperatura en el largo plazo sea ligeramente mayor a 20°C
+
+</Solution>
+
+---
+## Actividad 04
+
+Sean las siguiente funciones y límites a determinar
+
+<SmartFigure
+	src="/inacap/cvcd01/images/fig72.png"
+	alt="Funciones y límites a determinar"
+	caption="Funciones y límites a determinar"
+	size="large"
+/>
+
+1. Grafica la función
+2. Determina los límites de manera algebraica y con los comando de GeoGebra
+3. ¿Qué relación existe entre esos límites y la expresión algebraica de la función?
+4. ¿Qué relación existe entre esos límites y la gráfica de la función?
+5. ¿Cuáles son las asíntotas verticales y/u horizontales de la función?
+6. ¿Qué puedes concluir teniendo en cuenta las respuestas de las preguntas 3 a la 5?
+7. Determina las asíntotas con el comando de GeoGebra
+
+<Solution title="Solución Actividad 04">
+
+1. **Grafica la función**
+
+<SmartFigure
+	id="fig73"
+  src="/inacap/cvcd01/images/fig73.png"
+	alt="Gráfico f(x)"
+	caption="Gráfico f(x)"
+  lightbox={true}
+	size="large"
+/>
+
+<SmartFigure
+	id="fig74"
+  src="/inacap/cvcd01/images/fig74.png"
+	alt="Gráfico l(s)"
+	caption="Gráfico l(s)"
+	lightbox={true}
+    size="large"
+/>
+
+<SmartFigure
+	id="fig75"
+  src="/inacap/cvcd01/images/fig75.png"
+	alt="Gráfico p(q)"
+	caption="Gráfico p(q)"
+	lightbox={true}
+    size="large"
+/>
+
+---
+
+2. **Determina los límites de manera algebraica y con los comandos de GeoGebra**
+
+$\boxed{\displaystyle\lim_{x \to 3/4} f(x)}$
+
+Sustituimos $x = \dfrac{3}{4}$:
+
+$$
+  f\!\left(\tfrac{3}{4}\right)
+  = \frac{\tfrac{3}{4} - 2}{4\cdot\tfrac{3}{4} - 3}
+  = \frac{-\tfrac{5}{4}}{3 - 3}
+  = \frac{-\tfrac{5}{4}}{0}
+$$
+
+Forma $\dfrac{k}{0}$ con $k \neq 0$. Analizamos signos laterales.
+El denominador se factoriza como $4\!\left(x - \tfrac{3}{4}\right)$, y el numerador vale
+$-\tfrac{5}{4} < 0$ cerca del punto.
+
+$$
+  \lim_{x \to (3/4)^{-}} f(x)
+  = \frac{-5/4}{0^{-}} = +\infty
+  \qquad
+  \lim_{x \to (3/4)^{+}} f(x)
+  = \frac{-5/4}{0^{+}} = -\infty
+$$
+
+Como los límites laterales son distintos:
+
+$$
+  \lim_{x \to 3/4} f(x) = \nexists
+$$
+
+<SmartFigure
+	id="fig76"
+  src="/inacap/cvcd01/images/fig76.png"
+	alt="Límite para f(x) cuando x tiende a 3/4"
+	caption="Límite f(x) cuando x tiende a 3/4"
+	size="large"
+/>
+
+
+$\boxed{\displaystyle\lim_{x \to +\infty} f(x)}$
+
+Numerador y denominador son de grado 1. Dividimos por $x$:
+
+$$
+  \lim_{x \to +\infty} \frac{x - 2}{4x - 3}
+  = \lim_{x \to +\infty} \frac{1 - \dfrac{2}{x}}{4 - \dfrac{3}{x}}
+  = \frac{1 - 0}{4 - 0}
+  = \dfrac{1}{4}
+  = 0.25
+$$
+
+<SmartFigure
+	id="fig77"
+  src="/inacap/cvcd01/images/fig77.png"
+	alt="Límite para f(x) cuando x tiende a infinito positivo"
+	caption="Límite f(x) cuando x tiende a infinito positivo"
+	size="large"
+/>
+
+$\boxed{\displaystyle\lim_{x \to -\infty} f(x)}$
+
+El mismo procedimiento aplica para $x \to -\infty$, ya que los términos
+$\dfrac{k}{x} \to 0$:
+
+$$
+  \lim_{x \to -\infty} \frac{x - 2}{4x - 3}
+  = \frac{1 - 0}{4 - 0}
+  = \dfrac{1}{4}
+  = 0.25
+$$
+
+<SmartFigure
+	id="fig78"
+  src="/inacap/cvcd01/images/fig78.png"
+	alt="Límite para f(x) cuando x tiende a infinito negativo"
+	caption="Límite f(x) cuando x tiende a infinito negativo"
+	size="large"
+/>
+
+$\boxed{\displaystyle\lim_{s \to 0} l(s)}$
+
+Factorizamos denominador y numerador:
+
+$$
+  l(s)
+  = \frac{s^3 - 1}{4s^2 - s^3}
+  = \frac{(s-1)(s^2+s+1)}{s^2(4 - s)}
+$$
+
+Sustituimos $s = 0$:
+
+$$
+  l(0) = \frac{0 - 1}{0 - 0} = \frac{-1}{0}
+$$
+
+Forma $\dfrac{k}{0}$. Cerca de $s = 0$, el denominador $s^2(4-s) \approx 4s^2 > 0$
+por ambos lados. El numerador vale $-1 < 0$:
+
+$$
+  \lim_{s \to 0^{-}} l(s) = \frac{-1}{0^{+}} = -\infty
+  \qquad
+  \lim_{s \to 0^{+}} l(s) = \frac{-1}{0^{+}} = -\infty
+$$
+
+Ambos laterales coinciden:
+
+$$
+  \lim_{s \to 0} l(s) = -\infty
+$$
+
+<SmartFigure
+	id="fig79"
+  src="/inacap/cvcd01/images/fig79.png"
+	alt="Límite para l(s) cuando s tiende a 0"
+	caption="Límite l(s) cuando s tiende a 0"
+	size="large"
+/>
+
+$\boxed{\displaystyle\lim_{s \to 4} l(s)}$
+
+Sustituimos $s = 4$:
+
+$$
+  l(4) = \frac{64 - 1}{4(16) - 64} = \frac{63}{0}
+$$
+
+Forma $\dfrac{k}{0}$ con $k = 63 > 0$.
+El factor que se anula es $(4 - s)$:
+
+$$
+  \lim_{s \to 4^{-}} l(s)
+  = \frac{63}{16 \cdot 0^{+}} = +\infty
+  \qquad
+  \lim_{s \to 4^{+}} l(s)
+  = \frac{63}{16 \cdot 0^{-}} = -\infty
+$$
+
+Como los límites laterales difieren:
+
+$$
+  \lim_{s \to 4} l(s) = \nexists
+$$
+
+<SmartFigure
+	id="fig80"
+  src="/inacap/cvcd01/images/fig80.png"
+	alt="Límite para l(s) cuando s tiende a 4"
+	caption="Límite l(s) cuando s tiende a 4"
+	size="large"
+/>
+
+
+$\boxed{\displaystyle\lim_{s \to +\infty} l(s)}$
+
+Grado 3 en numerador y denominador. Dividimos por $s^3$:
+
+$$
+  \lim_{s \to +\infty} \frac{s^3 - 1}{4s^2 - s^3}
+  = \lim_{s \to +\infty}
+    \frac{1 - \dfrac{1}{s^3}}{\dfrac{4}{s} - 1}
+  = \frac{1 - 0}{0 - 1}
+  = -1
+$$
+
+<SmartFigure
+	id="fig81"
+  src="/inacap/cvcd01/images/fig81.png"
+	alt="Límite para l(s) cuando s tiende a infinito positivo"
+	caption="Límite l(s) cuando s tiende a infinito positivo"
+	size="large"
+/>
+
+$\boxed{\displaystyle\lim_{s \to -\infty} l(s)}$
+
+Mismo procedimiento; los términos $\dfrac{k}{s^n} \to 0$:
+
+$$
+  \lim_{s \to -\infty} \frac{s^3 - 1}{4s^2 - s^3}
+  = \frac{1 - 0}{0 - 1}
+  = -1
+$$
+
+<SmartFigure
+	id="fig82"
+  src="/inacap/cvcd01/images/fig82.png"
+	alt="Límite para l(s) cuando s tiende a infinito negativo"
+	caption="Límite l(s) cuando s tiende a infinito negativo"
+	size="large"
+/>
+
+$\boxed{\displaystyle\lim_{q \to -1} p(q)}$
+
+Factorizamos numerador y denominador:
+
+$$
+  p(q)
+  = \frac{2q^2 + 5q + 2}{2q^2 - 2q - 4}
+  = \frac{(2q + 1)(q + 2)}{2(q - 2)(q + 1)}
+$$
+
+Sustituimos $q = -1$:
+
+$$
+  p(-1)
+  = \frac{(2(-1)+1)(-1+2)}{2(-1-2)(-1+1)}
+  = \frac{(-1)(1)}{2(-3)(0)}
+  = \frac{-1}{0}
+$$
+
+El factor que se anula es $(q+1)$. El resto del denominador en $q=-1$:
+$2(q-2)\big|_{q=-1} = 2(-3) = -6 < 0$.
+
+$$
+  \lim_{q \to -1^{-}} p(q)
+  = \frac{-1}{(-6)\cdot 0^{-}}
+  = \frac{-1}{0^{+}} = -\infty
+  \qquad
+  \lim_{q \to -1^{+}} p(q)
+  = \frac{-1}{(-6)\cdot 0^{+}}
+  = \frac{-1}{0^{-}} = +\infty
+$$
+
+Como los laterales difieren:
+
+$$
+  \lim_{q \to -1} p(q) = \nexists
+$$
+
+<SmartFigure
+	id="fig83"
+  src="/inacap/cvcd01/images/fig83.png"
+	alt="Límite para p(q) cuando q tiende a -1"
+	caption="Límite p(q) cuando q tiende a -1"
+	size="large"
+/>
+
+$\boxed{\displaystyle\lim_{q \to 2} p(q)}$
+
+Sustituimos $q = 2$:
+
+$$
+  p(2)
+  = \frac{(5)(4)}{2(0)(3)}
+  = \frac{20}{0}
+$$
+
+El factor que se anula es $(q-2)$. El resto del denominador en $q=2$:
+$2(q+1)\big|_{q=2} = 2(3) = 6 > 0$.
+
+$$
+  \lim_{q \to 2^{-}} p(q)
+  = \frac{20}{6 \cdot 0^{-}} = -\infty
+  \qquad
+  \lim_{q \to 2^{+}} p(q)
+  = \frac{20}{6 \cdot 0^{+}} = +\infty
+$$
+
+Como los laterales difieren:
+
+$$
+  \lim_{q \to 2} p(q) = \nexists
+$$
+
+<SmartFigure
+	id="fig84"
+  src="/inacap/cvcd01/images/fig84.png"
+	alt="Límite para p(q) cuando q tiende a 2"
+	caption="Límite p(q) cuando q tiende a 2"
+	size="large"
+/>
+
+$\boxed{\displaystyle\lim_{q \to +\infty} p(q)}$
+
+Grado 2 en ambos. Dividimos por $q^2$:
+
+$$
+  \lim_{q \to +\infty} \frac{2q^2 + 5q + 2}{2q^2 - 2q - 4}
+  = \lim_{q \to +\infty}
+    \frac{2 + \dfrac{5}{q} + \dfrac{2}{q^2}}{2 - \dfrac{2}{q} - \dfrac{4}{q^2}}
+  = \frac{2 + 0 + 0}{2 - 0 - 0}
+  = 1
+$$
+
+<SmartFigure
+	id="fig85"
+  src="/inacap/cvcd01/images/fig85.png"
+	alt="Límite para p(q) cuando q tiende a infinito positivo"
+	caption="Límite p(q) cuando q tiende a infinito positivo"
+	size="large"
+/>
+
+$\boxed{\displaystyle\lim_{q \to -\infty} p(q)}$
+
+Mismo razonamiento; los términos $\dfrac{k}{q^n} \to 0$:
+
+$$
+  \lim_{q \to -\infty} \frac{2q^2 + 5q + 2}{2q^2 - 2q - 4}
+  = \frac{2 + 0 + 0}{2 - 0 - 0}
+  = 1
+$$
+
+<SmartFigure
+	id="fig86"
+  src="/inacap/cvcd01/images/fig86.png"
+	alt="Límite para p(q) cuando q tiende a infinito negativo"
+	caption="Límite p(q) cuando q tiende a infinito negativo"
+	size="large"
+/>
+---
+3. **¿Qué relación existe entre esos límites y la expresión algebraica de la función?**
+
+Hay una relación directa entre la estructura algebraica de la función y el comportamiento de sus límites:
+
+- **Límites en puntos finitos (asíntotas verticales)**:
+Ocurren exactamente donde el denominador se anula y el numerador no. Esos puntos son las raíces del denominador:
+
+<SmartTable
+  id="tabla01"
+  caption="Relación entre denominador, raíces y límite en las asíntotas verticales"
+  headers={["Función", "Denominador", "Raíces", "Límite"]}
+  rows={[
+    [
+      "$f(x)$",
+      "$4x - 3$",
+      "$x = 3/4$",
+      "$\\nexists$"
+    ],
+    [
+      "$l(s)$",
+      "$s^2(4 - s)$",
+      "$s = 0,\\; s = 4$",
+      "$\\nexists$"
+    ],
+    [
+      "$p(q)$",
+      "$2(q - 2)(q + 1)$",
+      "$q = 2,\\; q = -1$",
+      "$\\nexists$"
+    ]
+]}/>
+
+- **Límites en $\pm\infty$ (asíntotas horizontales)**: Dependen exclusivamente de los coeficientes líderes y los grados del numerador y denominador
+
+<SmartTable
+  id="tabla02"
+  tableLayout="auto"
+  caption="Límites en el infinito — proceso algebraico"
+  headers={["Función", "Grado num.", "Grado den.", "Forma tras dividir por potencia máxima", "Resultado"]}
+  rows={[
+    [
+      "$f(x)$",
+      "$1$",
+      "$1$",
+      "$\\displaystyle\\lim_{x \\to \\pm\\infty} \\dfrac{1 - \\frac{2}{x}}{4 - \\frac{3}{x}}$",
+      "$\\dfrac{1}{4}$"
+    ],
+    [
+      "$l(s)$",
+      "$3$",
+      "$3$",
+      "$\\displaystyle\\lim_{s \\to \\pm\\infty} \\dfrac{1 - \\frac{1}{s^3}}{\\frac{4}{s} - 1}$",
+      "$\\dfrac{1}{-1} = -1$"
+    ],
+    [
+      "$p(q)$",
+      "$2$",
+      "$2$",
+      "$\\displaystyle\\lim_{q \\to \\pm\\infty} \\dfrac{2 + \\frac{5}{q} + \\frac{2}{q^2}}{2 - \\frac{2}{q} - \\frac{4}{q^2}}$",
+      "$\\dfrac{2}{2} = 1$"
+    ]
+]}/>
+
+---
+4. **¿Qué relación existe entre esos límites y la gráfica de la función?**
+
+Cada límite se manifiesta visualmente en la gráfica:
+- **Límites que no existen**: La curva se dispara hacia $\pm\infty$ a ambos lados de ese $x$. Esto se ve como una **asíntota vertical**, la gráfica se acerca pero nunca toca esa línea.
+- **Límites en $\pm\infty$**: La curva se aplana horizontalmente a medida que $x$ crece o decrece. Esto se ve como una **asíntota horizontal**, la gráfica tiende hacia esa recta $y=k$ pero nunca la alcanza (o la alcanza solo en puntos específicos).
+
+---
+5. **¿Cuáles son las asíntotas verticales y/u horizontales de la función?**
+
+
+<SmartTable
+  id="tabla03"
+  caption="Asíntotas verticales — denominador igual a cero"
+  headers={["Función", "Denominador = 0", "Asíntotas verticales"]}
+  rows={[
+    ["$f(x)$", "$4x - 3 = 0$",       "$x = \\dfrac{3}{4}$"],
+    ["$l(s)$", "$s^2(4 - s) = 0$",   "$s = 0 \\;$ y $\\; s = 4$"],
+    ["$p(q)$", "$2(q-2)(q+1) = 0$",  "$q = -1 \\;$ y $\\; q = 2$"]
+]}/>
+
+<SmartTable
+  id="tabla04"
+  caption="Asíntotas horizontales — límite cuando x tiende a infinito positivo o infinito negativo"
+  headers={["Función", "Límite en $\\pm\\infty$", "Asíntota horizontal"]}
+  rows={[
+    ["$f(x)$", "$\\displaystyle\\lim_{x \\to \\pm\\infty} f(x) = \\dfrac{1}{4}$", "$y = \\dfrac{1}{4}$"],
+    ["$l(s)$", "$\\displaystyle\\lim_{s \\to \\pm\\infty} l(s) = -1$",            "$y = -1$"],
+    ["$p(q)$", "$\\displaystyle\\lim_{q \\to \\pm\\infty} p(q) = 1$", "$y = 1$"]
+]}/>
+
+---
+6. **¿Qué puedes concluir teniendo en cuenta las respuestas de las preguntas 3 a la 5?**
+
+- **Los límites son la herramienta algebraica que define las asíntotas**. No es necesario graficar para encontrarlas; basta con analizar el denominador y los grados
+- **Las asíntotas verticales** nacen de los valores que hacen indefinida la función (denominador = 0), y se confirman porque el límite en ese punto diverge a $\pm\infty$
+- **Las asíntotas horizontales** reflejan el comportamiento dominante de la función para valores muy grandes de $x$. En funciones racionales del mismo grado, la función siempre se estabiliza en el cociente de sus coeficientes líderes
+- **La gráfica es la representación visual de todo lo anterior**: las asíntotas actúan como "guías invisibles" que la curva sigue sin cruzar (en general)
+- Las tres funciones son racionales del mismo grado en numerador y denominador, por eso todas tienen exactamente **una asíntota horizontal** y sus límites en $\pm\infty$ coinciden en valor
+
+---
+7. **Determina las asíntotas con el comando de GeoGebra**
+
+<SmartFigure
+	id="fig87"
+  src="/inacap/cvcd01/images/fig87.png"
+	alt="Asíntotas verticales y horizontales para f(x)"
+	caption="Asíntotas verticales y horizontales para f(x)"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig88"
+  src="/inacap/cvcd01/images/fig88.png"
+	alt="Asíntotas verticales y horizontales para l(x)"
+	caption="Asíntotas verticales y horizontales para l(x)"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig89"
+  src="/inacap/cvcd01/images/fig89.png"
+	alt="Asíntotas verticales y horizontales para p(x)"
+	caption="Asíntotas verticales y horizontales para p(x)"
+	size="large"
+/>
+
+</Solution>
+---
+
+## Actividad 05
+
+¿Sabías que también pueden existir asíntotas oblicuas? Sean las siguientes funciones:
+
+<SmartFigure
+  src="/inacap/cvcd01/images/fig90.png"
+	alt="funciones"
+	size="large"
+/>
+
+1. Grafica la función
+2. Determina las asíntotas con el comando GeoGebra e indica cuáles son las asíntotas oblicuas
+3. ¿En qué se diferencias, desde el punto de vista algebraico, las asíntotas oblicuas de las asíntotas verticales y horizontales?
+
+<Solution title="Solución Actividad 05">
+
+1. **Grafica la función**
+
+<SmartFigure
+	id="fig91"
+  src="/inacap/cvcd01/images/fig91.png"
+	alt="Gráfico f(x)"
+	caption="Gráfico f(x)"
+  lightbox={true}
+	size="large"
+/>
+
+<SmartFigure
+	id="fig92"
+  src="/inacap/cvcd01/images/fig92.png"
+	alt="Gráfico l(s)"
+	caption="Gráfico l(s)"
+  lightbox={true}
+	size="large"
+/>
+
+<SmartFigure
+	id="fig93"
+  src="/inacap/cvcd01/images/fig93.png"
+	alt="Gráfico p(q)"
+	caption="Gráfico p(q)"
+  lightbox={true}
+	size="large"
+/>
+---
+2. **Determina las asíntotas con el comando GeoGebra e indica cuáles son las asíntotas oblicuas**
+
+<SmartFigure
+	id="fig94"
+  src="/inacap/cvcd01/images/fig94.png"
+	alt="Asíntotas para f(x)"
+	caption="Asíntotas para f(x)"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig95"
+  src="/inacap/cvcd01/images/fig95.png"
+	alt="Asíntotas para l(x)"
+	caption="Asíntotas para l(x)"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig96"
+  src="/inacap/cvcd01/images/fig96.png"
+	alt="Asíntotas para p(x)"
+	caption="Asíntotas para p(x)"
+	size="large"
+/>
+
+<SmartTable
+  id="tabla05"
+  tableLayout="auto"
+  caption="Asíntotas de cada función"
+  headers={["Función", "AV (verticales)", "AH (horizontal)", "AO (oblicua)"]}
+  rows={[
+    [
+      "$f(x)$",
+      "$x = 0.75$",
+      "—",
+      "$y = 0.25x - 0.3125$"
+    ],
+    [
+      "$l(x)$",
+      "$x = 0,\\; x = 4$",
+      "—",
+      "$y = -x - 4$"
+    ],
+    [
+      "$p(x)$",
+      "$x = -1,\\; x = 2$",
+      "—",
+      "$y = x + 3.5$"
+    ]
+]}/>
+---
+3. **¿En qué se diferencias, desde el punto de vista algebraico, las asíntotas oblicuas de las asíntotas verticales y horizontales?**
+
+Las tres tipos de asíntotas se originan de condiciones algebraicas distintas en la función racional:
+
+- **Asíntotas verticales** surgen del denominador. Se encuentran igualando el denominador a cero,
+cuando el numerador no se anula en ese mismo punto. Son una condición sobre el **dominio** de la función.
+- **Asíntotas horizontales** surgen cuando el grado del numerador es **igual o menor** al grado del
+denominador. Se calculan con el límite en $\pm\infty$ y el resultado es siempre una **constante** $y = k$.
+- **Asíntotas oblicuas** surgen cuando el grado del numerador es **exactamente 1 mayor** que el grado
+del denominador. No se pueden obtener simplemente con un límite — requieren **división polinomial**.
+El cociente de esa división entrega la recta $y = mx + b$ con $m \neq 0$.
+
+En las tres funciones de esta actividad se cumple exactamente esa condición:
+
+<SmartTable
+  id="tabla06"
+  caption="Condición algebraica para la asíntota oblicua"
+  headers={["Función", "Grado num.", "Grado den.", "Diferencia", "Tipo de asíntota"]}
+  rows={[
+    ["$f(x)$", "$2$", "$1$", "$1$", "Oblicua"],
+    ["$l(s)$", "$3$", "$2$", "$1$", "Oblicua"],
+    ["$p(q)$", "$3$", "$2$", "$1$", "Oblicua"]
+]}/>
+
+La diferencia clave es que una asíntota horizontal describe un comportamiento **constante** en el
+infinito, mientras que una asíntota oblicua describe un comportamiento **lineal creciente o
+decreciente** — la función se aleja indefinidamente pero siguiendo la dirección de una recta.
+
+</Solution>

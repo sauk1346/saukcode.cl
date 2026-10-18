@@ -1,0 +1,241 @@
+# Evaluación 03
+
+## Herramientas
+1. Virtual Box
+2. ISO Red Hat EnterPrise Linux 10
+
+## Rúbrica
+
+<img
+	src="/inacap/ti3v35/images/fig71.png"
+	style={{ display: 'block', margin: '0 auto', width:'90%'}}
+/>
+
+## Pasos
+
+### 1. Instalar OS
+- VirtualBox e ISO RedHat
+
+### 2. Crear 4 usuarios
+
+1. creación usuarios
+```sh
+su - root
+
+useradd maria.jose.perez.soto
+useradd claudia.ana.gonzales.lopez
+useradd juan.carlos.vargas.perez
+useradd pedro.jose.silva.castro
+```
+
+2. creación contraseña
+```sh
+passwd maria.jose.perez.soto
+passwd claudia.ana.gonzales.lopez
+passwd juan.carlos.vargas.perez
+passwd pedro.jose.silva.castro
+```
+
+### 3. comando Date
+Muestra información de fecha y hora en diferentes formatos
+
+```sh
+date
+
+date +%D
+
+date +%T
+```
+
+### 4. Archivo liga.txt y enlaces duros
+
+1. creación de liga.txt y enlace duro
+```sh
+echo "hola mundo desde Redhat" > liga.txt
+
+ln liga.txt liga.ln
+
+ls -li
+```
+
+Los enlaces duros comparten el mismo inodo, ambos archivos son equivalentes.
+
+### 5. Eliminar liga.txt
+
+```sh
+rm liga.txt
+
+cat liga.ln
+```
+
+El enlace duro mantiene el contenido, pq comparte el mismo inodo que el archivo original
+
+### 6. Enlace simbólico
+
+```sh
+# Crear nuevo archivo
+echo "contenido para enlace simbolico" > ligado.txt
+
+# Crear enlace simbólico
+ln -s ligado.txt liga2.ln
+
+# Verificar
+ls -li
+```
+
+Los enlaces simbolicos apuntan al nombre del archivo, no al inodo.
+
+### 7. Borrar archivo y verificar enlace simbolico
+
+```sh
+# Eliminar archivo original
+rm ligado.txt
+
+# Intentar leer enlace simbólico
+cat liga2.ln
+
+# Verificar estado
+ls -li
+```
+
+El enlace simbolico queda "roto" porque apunta a un archivo que ya no existe.
+
+### 8. Verifica el ordenamiento de archivos
+
+```sh
+sort -c /etc/passwd
+```
+
+- Si no está ordenado, mostrará error indicando la primera línea desordenada 
+- Si está ordenado, no mostrará output
+
+### 9. Ordenar por campos específicos
+
+```sh
+sort -t ":" -nk3 /etc/passwd > passwd_sort
+```
+
+### 10. Mezclar archivos
+
+```sh
+# Crear archivos de prueba ordenados
+echo -e "manzana\nsandia\nkiwi" > arch1
+echo -e "rojo\nazul\namarillo" > arch2
+
+# Método 1: Concatenar y ordenar
+cat arch1 arch2 | sort > merged1
+
+# Método 2: Mezclar archivos ya ordenados (más eficiente)
+sort -m arch1 arch2 > merged2
+
+# Verificar resultados
+cat merged1
+cat merged2
+```
+
+### 11. Extraer campos específicos
+
+```sh
+# Extraer UID (campo 3) y directorio home (campo 5) de /etc/passwd
+cut -d ":" -f 3,5 /etc/passwd
+
+# Ejemplo de salida:
+# 0:/root
+# 1:/bin
+# 2:/sbin
+```
+
+> `-d ":"` especifica el delimitador y `-f 3,5` selecciona campos 3 y 5.
+
+### 12. Usar cut con pipes
+
+```sh
+ls -l /home/antonio/ | cut -f 1
+```
+
+- combina ls con cut para extraer información específica
+- extrae solo la información de permisos de los archivos listados
+
+### 13. Repositorio RH y vsftpd
+
+1. Entrar al directorio
+```sh
+cd /etc/yum.repos.d/
+```
+
+2. Montar el disco en la unidad óptica
+
+3. Crear carpeta
+```sh
+mkdir /mnt/rhel10
+```
+
+4. Montar ISO en la carpeta
+```sh
+mount /dev/sr0 /mnt/rhel10
+ls /mnt/rhel10
+```
+
+5. Copiar repositorios
+
+```sh
+cp -r /mnt/rhel10/AppStream/ /
+cp -r /mnt/rhel10/BaseOS/ /
+```
+
+6. Entrar a repositorios
+```sh
+vi repositorios.repo
+```
+
+```text
+[AppStream]
+name=Repositorio Local AppStream
+baseurl=file:///AppStream/
+enabled=1
+gpgcheck=0
+[BaseOS]
+name=Repositorio LocalBaseOS
+baseurl=file:///BaseOS/
+enabled=1
+gpgcheck=0
+```
+
+7. revisar repositorio
+```sh
+cat repositorios.repo
+yum repolist all
+```
+
+8. Instalación repositorios
+```sh
+yum -y install httpd
+```
+
+9. dnf
+```sh
+dnf config-manager --add-repo file:///BaseOS
+dnf config-manager --add-repo file:///AppStream
+```
+
+10. dnf update
+```sh
+dnf update
+```
+
+11. gpgkey
+```sh
+echo "gpgkey=file:///etc/rpm-gpg/RPM-GPG-KEY-redhat-release" >> /etc/yum.repos.d/AppStream.repo
+
+echo "gpgkey=file:///etc/rpm-gpg/RPM-GPG-KEY-redhat-release" >> /etc/yum.repos.d/BaseOS.repo
+```
+
+12. Instalación vsftpd
+```sh
+dnf -y install vsftpd
+```
+
+14. verificación
+```sh
+yum history
+```

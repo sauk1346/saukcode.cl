@@ -1,0 +1,130 @@
+# Encriptación
+**Material Clase:** [clase24.pdf](/inacap/ti3v11/docs/clase24.pdf)
+
+## Conversión a bytes
+
+Muchas de las funciones y métodos utilizados en criptografía necesitan entrada de datos en formato bytes, en vez de cadenas de texto.
+
+Para pasar de tipo `str` a `bytes` existen 2 formas:
+
+**Ejemplo 01:** mediante método `.encode()`
+
+```python
+mensaje1 = 'LuisYanez'
+mensaje2 = mensaje1.encode('utf-8') #<1>
+
+print(f'mensaje2: {mensaje2}')
+print()
+print(f'mensaje1 es de tipo: {type(mensaje1)}')
+print(f'mensaje2 es de tipo: {type(mensaje2)}')
+```
+<TerminalOutput withBg>
+{`mensaje2: b'LuisYanez'
+
+mensaje1 es de tipo: <class 'str'>
+mensaje2 es de tipo: <class 'bytes'>`}
+</TerminalOutput>
+
+> El parámetro `utf-8` es opcional. Sirve para carácteres especiales como el acento español.
+
+**Ejemplo 02:** mediante prefijo `b`
+
+```python
+mensaje1 = 'Cadena de texto normal'
+mensaje2 = b'Cadena de bytes'
+
+print(f'mensaje1 es de tipo: {type(mensaje1)}')
+print(f'mensaje2 es de tipo: {type(mensaje2)}')
+```
+<TerminalOutput withBg>
+{`mensaje1 es de tipo: <class 'str'>
+mensaje2 es de tipo: <class 'bytes'>`}
+</TerminalOutput>
+
+## Librería "cryptography"
+
+Esta librería permite el encriptado con algoritmo tipo AES (*Advanced Encryption Standard*)
+
+- **Cifrado Simétrico:** utiliza la misma clave tanto para cifrar como para descifrar los datos
+- **Longitudes de clave:** soporta claves de 128, 192 y 256 bits
+- **Velocidad y eficiencia:** tanto en software como en hardware. Lo hace ideal para una amplia gama de aplicaciones
+
+## Instalación 
+
+En la línea de comandos cmd ingresar la instrucción:
+
+```sh
+pip install cryptography
+```
+
+**Ejemplo**
+
+```python
+from cryptography.fernet import Fernet #<1>
+
+password = Fernet.generate_key() #<2>
+print(f'password generado: {password}')
+
+mensaje = 'quiero encriptar este mensaje'.encode() #<3>
+
+f = Fernet(password) #<4>
+encriptado = f.encrypt(mensaje) #<5> 
+
+print(f'Mensaje encriptado: {encriptado}')
+
+desencriptado = f.decrypt(encriptado) #<6>
+print(f'Mensaje desencriptado: {desencriptado}')
+```
+<TerminalOutput withBg>
+{`password generado: b'XJnbpee6Q825FYpjn8KD1FOOS1ySi9z3s_m4XIa9x9E='
+Mensaje encriptado: b'gAAAAABoldLpPCTOSrR1VBKOjPYwOCfR-I4mx1VUvOZiUI4mZMHPORQdFibRVi-q6DRhTGvJlq4Ee34tmW6RYYVvfyTOAP8fnPa96AxYaHK-IIKoof3-6_M='
+Mensaje desencriptado: b'quiero encriptar este mensaje'`}
+</TerminalOutput>
+
+
+1. De la librería `criptography`, módulo `fernet`, importar la clase `Fernet`
+2. Genera una contraseña aleatoria mediante el método `.generate_key()`
+3. Convierte el mensaje en una secuencia de bytes, mediante el método `.encode()`
+4. Crea un objeto de clase `Fernet` con contraseña `password` creada anteriormente 
+5. Utiliza el objeto con contraseña para encriptar el mensaje
+6. Utiliza el objeto con contraseña para desencriptar el mensaje
+
+## Tablas Hash
+
+Tienen 2 propósitos en informática:
+
+1. Indexar datos y acceder a ellos rápidamente (cuando tenemos millones de datos).
+2. Seguridad y Criptografía, mediante protocolos como HMAC (*Hash-based Message Authentication*).
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Herramientas","Descripción"]}
+    rows={[
+        ["`hashlib`","Es un módulo de la librería estándar de python"],
+        ["`.sha256()`","*Secure Hash Algorithm 256-bit*. Función hash criptográfica que produce un valor de hash de 256 bits a partir de una entrada de bytes"],
+        ["`.sha224()`","Función hash criptográfica que produce un valor de hash de 224 bits a partir de una entrada de bytes"],
+        ["`.sha512()`","Función hash criptográfica que produce un valor de hash de 512 bits a partir de una entrada de bytes"],
+        ["`.hexdigest()`","Método que permite obtener una representación hexadecimal de un valor hash"],
+        ]}
+/>
+
+Las funciones `sha256()`, `sha224()` y `sha512()` no reciben cadenas de texto. En su lugar, esperan recibir datos en formato de bytes.
+
+**Ejemplo**
+
+```python
+import hashlib
+
+salida = hashlib.sha256(b'El Libro de Python').hexdigest()
+
+print(f'salida inicial: {salida}')
+print(f'salida 256: {hashlib.sha256(b'programacion segura').hexdigest()}')
+print(f'salida 224: {hashlib.sha224(b'programacion segura').hexdigest()}')
+print(f'salida 512: {hashlib.sha512(b'programacion segura').hexdigest()}')
+```
+<TerminalOutput withBg>
+{`salida inicial: 3f0eb88c12b73f8235f3bc5a19336d32a41bbe6743291c97e8fb00ea2d3520e0
+salida 256: 7292226db72b3c4be97004b91f298c963161351393e407869d660aef5e481e25
+salida 224: ce3dc026e94c6b87ed15b7d2178cecc1450caf3998e35022dc55d3b0
+salida 512: dcec6a96bea68592be67a3fac8146d82df0084898503c09dbf4bce250ac50f2a6fc0d2da37855f86daec2ccb0fb4de9b4ce6452f5cdeb50d0b28d730fa0a5ef6`}
+</TerminalOutput>

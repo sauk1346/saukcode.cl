@@ -1,0 +1,219 @@
+# Estándares IEEE 802.3 y IEEE 802.11
+
+- **Estándar 802.3** $\rightarrow$ Ethernet (Redes cableadas)
+- **Estándar 802.11** $\rightarrow$ Wi-Fi (Redes inalámbricas)
+
+Estos actúan como un idioma común, asegurando la interoperabilidad de dispositivos de distintos fabricantes en cualquier parte del mundo.
+
+## 1. El Comité IEE 802 y las Capas OSI
+
+El comité IEEE 802 define un conjunto de estándares que rigen la forma en que se envían los datos y cómo los dispositivos obtienen acceso al medio.
+
+Los estándares 802 se relacionan directamente con las dos capas inferiores del Modelo de Referencia OSI (Cisco Networking Academy, 2015):
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Estándar", "Capa 1: Física", "Capa 2: enlace de datos"]}
+    rows={[
+        [
+            "**802.3 (Ethernet)**",
+            "Cables, codificación, velocidad",
+            "MAC Ethernet"
+        ],
+        [
+            "**802.11 (Wi-Fi)**",
+            "Frecuencias, potencia",
+            "MAC Wi-Fi + control del medio (CSMA/CA)"
+        ],
+    ]}
+/>
+
+## 2. Estándar IEEE 802.3 - Ethernet (redes cableadas)
+
+Ethernet es la tecnología predominante en el mundo para redes que utilizan cableado.
+
+### Mecanismo de acceso y componentes
+
+El estándar IEEE 802.3 define el mecanismo CSMA/CD (Acceso Múltiple con Detección de Colisiones) como la forma fundamental para que los dispositivos accedan al medio compartido. (Cisco Networking Academy, 2015)
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Término", "Descripción"]}
+    rows={[
+        [
+            "**CSMA/CD**",
+            "Solo se aplica en entorno **half-duplex** (hubs o conexiones punto a punto antiguas)"
+        ],
+        [
+            "**Redes modernas**",
+            "En redes modernas, el switch (dispositivo de capa 2) opera en modo **full-duplex**, lo que elimina el dominio de colisión y permite la comunicación simultánea",
+        ],
+        [
+            "**Switch**",
+            "Es el dispositivo que conmuta tramas hacia el destino correcto basándose en la dirección MAC"
+        ],
+        [
+            "**Medios**",
+            "El cableado de cobre (UTP)(Cat5e, Cat6, etc.) se usa comúnmente, mientras que la fibra óptica se utiliza para mayor distancia y resistencia a interferencias"
+        ],
+    ]}
+/>
+
+### Velocidades y nomenclatura
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Nombre", "Velocidad", "Medio", "Ejemplo de uso"]}
+    rows={[
+        ["**10BASE-T**", "10 Mbps", "Cobre", "Redes antiguas"],
+        ["**100BASE-TX**", "100 Mbps", "Cobre", "Oficinas pequeñas"],
+        ["**1000BASE-T**", "1 Gbps", "Cobre", "Estándar actual"],
+        ["**10GBASE-T**", "10 Gbps", "Cobre", "Laboratorios avanzados"],
+        ["**10GBASE-SR**", "10 Gbps", "Fibra", "Datacenters"],
+    ]}
+/>
+
+### Formato de Trama Ethernet (Capa 2)
+
+Un paquete (Capa 3) se encapsula dentro de una trama Ethernet (Capa 2) para viajar por el medio físico (Capa 1)
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Preámbulo", "Sincronización"]}
+    rows={[
+        ["**SFD**","Inicio de trama"],
+        ["**Dirección MAC Destino**","6 bytes"],
+        ["**Dirección MAC Origen**","6 bytes"],
+        ["**Tipo/Longitud**","Identifica el protocolo"],
+        ["**Datos (Paquete IP**","Carga útil (46 a 1500 bytes)"],
+        ["**FCS**","Chequeo de errores"],
+    ]}
+/>
+
+## 3. Estándar IEEE 802.11 - WiFi (redes inalámbricas)
+
+El 802.11 define cómo viajan los datos a través del aire mediante ondas de radio.
+
+Los dispositivos Wi-Fi utilizan el mecanismo CSMA/CA (Acceso Múltiple con Evasión de Colisiones) para turnarse y acceder al medio compartido del aire.
+
+### Frecuencias y evolución
+
+Se observan los siguientes datos:
+
+- **2.4 GHz:** mayor alcance, menor velocidad y más interferencias
+- **5 GHz:** menor alcance, mayor velocidad y menos interferencias
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Estándar", "Nombre", "Velocidad", "Frecuencia"]}
+    rows={[
+        ["**802.11g**", "WiFi 3", "54 Mbps", "2.4 GHz"],
+        ["**802.11n**", "WiFi 4", "600 Mbps", "2.4 / 5 GHz"],
+        ["**802.11ac**", "WiFi 5", "> 1 Gbps", "5 GHz"],
+        ["**802.11ax**", "WiFi 6", "> 1.5 Gbps", "2.4 / 5 GHz"]
+    ]}
+/>
+
+### Dispositivo Principal: Punto de Acceso (AP)
+
+El Access Point (AP) conecta clientes inalámbricos (802.11) a la red cableada (802.3) y realiza la conversión de las tramas entre ambos estándares.
+
+### Formato de Trama WiFi (Capa 2)
+
+La **trama 802.11** es más compleja que la Ethernet debido a la necesidad de controlar el medio inalámbrico (CSMA/CA) y gestionar la movilidad, como se observa en la siguiente tabla:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Preámbulo/SFD", "Cabecera Física"]}
+    rows={[
+        ["**Control de Trama**", "Tipo de trama"],
+        ["**Duración**", "Tiempo de reserva"],
+        ["**Dirección MAC 1 (Receptor)**", "AP o Estación"],
+        ["**Dirección MAC 2 (Emisor)**", "Estación o AP"],
+        ["**Dirección MAC 3 (Destino/Origen)**", "Servidor/Router"],
+        ["**Secuencia**", "Control de orden"],
+        ["**Dirección MAC 4 (Opcional)**", "Modo Mesh/WDS"],
+        ["**Carga útil**", "Paquete de datos"],
+        ["**FCS**", "Chequeo de errores"],
+    ]}
+/>
+
+## 4. Comparación y rol en el diseño de redes
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Pregunta", "Ethernet (802.3)", "WiFi (802.11)"]}
+    rows={[
+        [
+            "**¿Cómo viajan los datos?**",
+            "Señales eléctricas u ópticas",
+            "Ondas de radio"
+        ],
+        [
+            "**¿Se necesitan cables?**",
+            "Sí",
+            "No"
+        ],
+        [
+            "**¿Interferencias?**",
+            "Muy bajas",
+            "Altas (paredes, microondas, usuarios)"
+        ],
+        [
+            "**¿Velocidad típica?**",
+            "1-10 Gbps",
+            "100-1200 Mbps"
+        ],
+        [
+            "**¿Ideal para?**",
+            "Laboratorios, empresas, servidores",
+            "Movilidad, teléfonos, tablets"
+        ],
+    ]}
+/>
+
+### Relación Integrada con OSI/TCP-IP
+
+La transmisión de datos implica la encapsulación desde Capa 7 (Aplicación) hasta Capa 2 (Trama Ethernet o Wi-Fi) utilizando las especificaciones de Capa 1 para el envío físico. El direccionamiento IP ocurre en Capa 3. 
+
+---
+
+## Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "Un administrador de redes está configurando dispositivos en un entorno híbrido. Debe identificar qué mecanismo de control de acceso utiliza el estándar IEEE 802.11 para gestionar las transmisiones en el aire y evitar el choque de datos.",
+		questionItems:[],
+        questionSuffix:"¿Qué protocolo de acceso al medio debe seleccionar para cumplir con el estándar IEEE 802.11?",
+        options: [
+            "CSMA/CD (Acceso múltiple con detección de colisiones)",
+            "Operación en modo full-duplex",
+            "CSMA/CA (Acceso múltiple con evasión de colisiones)",
+            "Conmutación de tramas por dirección MAC"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "En una oficina moderna se requiere implementar una red inalámbrica que ofrezca mayor velocidad de transmisión y sufra menos interferencias de dispositivos externos, aunque esto implique un menor alcance de cobertura física.",
+        questionItems:[],
+        questionSuffix: "¿Qué banda de frecuencia es la indicada para satisfacer estos requerimientos?",
+		options: [
+            "Banda de 2.4 GHz",
+            "Banda de 5 GHz",
+            "Banda de 900 GHz",
+            "Banda de 600 Mbps"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "Para un entorno de laboratorio técnico que requiere alta estabilidad, velocidades de 10 Gbps y mínima interferencia, el estándar IEEE 802. (Ethernet) ofrece un rendimiento superior y es más adecuado que el estándar IEEE 802.11 (WiFi).",
+        questionItems: [],
+        questionSuffix: "Está afirmación, ¿es verdadera o falsa?",
+		options: [
+            "Verdadera",
+            "Falsa",
+		],
+		correctIndex: 0
+	},
+]}/>
+

@@ -1,0 +1,156 @@
+# Selección de filtros y condiciones según requerimientos de búsqueda
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Requerimiento', 'Método']}
+	rows={[
+		['Búsqueda', '`find()`'],
+		['Actualización', '`updateMany()`'],
+		['Eliminación', '`deleteMany()`']
+	]}
+/>
+
+## Operaciones de agregaciones
+Nos ayudan a procesar documentos y retornar resultados calculados. Se utilizan mayoritariamente para:
+
+- Agrupar valores de varios documentos
+- Procesamiento y operaciones matemáticas
+- Analizar cambios de datos a lo largo del tiempo
+
+A su vez, se pueden realizar de 2 formas principales:
+
+1. Tuberías y transformaciones
+2. Métodos de agregación de propósito único
+
+### Tuberías y transformaciones
+- Este patrón consta de una o más etapas
+- Cada etapa realiza una operación
+- La salida o resultado se la entrega a la siguiente etapa para su procesamiento
+
+Para aplicar este patrón, se utiliza el método `aggregate()`, el cual recibe un array de operaciones (conocidas como tuberías). Éstas se ejecutarán en secuencia una por una hasta llegar al resultado esperado.
+
+Los operadores más utilizados en tuberías son:
+
+1. `$match`: filtrado de documentos con criterios
+2. `$sort`: orden de documentos
+3. `$project`: selección de campos en específicos
+4. `$group`: agrupación de documentos
+
+### Ejemplos
+
+1. **Mostrar los usuarios que tienen 40 años**
+```js
+db.usuarios.aggregate([
+    {$match: {edad: 40}}
+])
+```
+
+2. **Mostrar todos los usuarios ordenados por edad de forma descendente**
+```js
+db.usuarios.aggregate([
+    {$sort:{edad:-1}}
+])
+```
+
+3. **Mostrar solo la edad y el nombre de los usuarios**
+```js
+db.usuarios.aggregate([
+    {$project:{edad:0, nombre:0}}
+])
+```
+
+4. **Mostrar el promedio de las edades de los usuarios**
+```js
+db.usuarios.aggregate([{
+    $group: {
+        _id: null,
+        Promedio: ($avg: "$edad")
+    }
+}])
+```
+
+5. **Mostrar la suma de las edades de los usuarios**
+```js
+db.usuarios.aggregate([{
+    $group: {
+        _id: null,
+        Suma: {$sum, "$edad"}
+    }
+}])
+```
+
+6. **Mostrar la edad mínima de los usuarios**
+
+```js
+db.usuarios.aggregate({[
+    $group: {
+        _id: null,
+        Minimo: {$min: "$edad"}
+    }
+]})
+```
+
+7. **Mostrar la edad máxima de los usuarios**
+```js
+db.usuarios.aggregate([{
+    $group: {
+        _id: null,
+        Maximo: {$max: "$edad"}
+    }
+}])
+```
+
+# Actividad de Práctica 05
+
+<Quiz questions={[
+  {
+    question: "¿Cuál es el uso de las operaciones de agregación en MongoDB?",
+    options: [
+      "Procesar documentos y eliminar valores",
+      "Procesar documentos y retornar resultados calculados",
+      "Procesar documentos y agregar valores",
+      "Procesar documentos y retornar valores actualizados"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Se necesita calcular el promedio de los sueldos de los empleados registrados en la colección Empleados; ¿Cuál de los siguientes operadores se debe usar en la consulta?",
+    options: [
+      "$count",
+      "$match",
+      "$group",
+      "$sort"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué acción realiza sobre la colección trabajadores y el campo sueldo la consulta db.trabajadores.aggregate([{$group: { _id: null, Mínimo: {$min: \"$sueldo\"}}}]) ?",
+    options: [
+      "Muestra el menor sueldo registrado",
+      "Muestra el mayor sueldo registrado",
+      "Muestra el promedio de los sueldos registrados",
+      "Muestra la cantidad de sueldos registrados"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué acción realiza la sentencia $match en agregaciones?",
+    options: [
+      "Agrupa documentos",
+      "Ordena documentos con criterios",
+      "Filtra documentos con criterios",
+      "Selecciona grupos"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es el uso de la sentencia $project?",
+    options: [
+      "Seleccionar los campos a visualizar en la salida de una consulta",
+      "Ordenar los campos de una consulta",
+      "Agrupar los campos a visualizar en la salida de una consulta",
+      "Filtrar los campos de una consulta"
+    ],
+    correctIndex: 0
+  }
+]} />

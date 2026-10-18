@@ -1,0 +1,205 @@
+# Prueba - MongoDB Consultas Avanzadas (Versión D)
+
+## Ayuda de términos útiles para consultas en MongoDB
+- `$gt`, `$lt`, `$gte`, `$lte`, `$eq`, `$ne`: Comparaciones
+- `$and`, `$or`, `$not`, `$nor`: Lógicos
+- `$regex`: Expresiones regulares
+- `$size`, `$elemMatch`: Arrays
+- `$expr`: Comparación entre campos
+- `$avg`, `$add`, `$divide`, `$strLenCP`: Funciones dentro de $expr
+
+## Instrucciones
+- **Base de datos:** empresaDB
+- **Colección:** empleados
+- **JSON:** [empleados.json](/inacap/ti3v32/data/empleados03.json)
+
+Responde los siguientes ejercicios usando consultas en MongoDB Shell
+
+## Ejercicio 01
+Buscar empleados cuya comuna termine en vocal.
+
+<Solution>
+```js
+db.empleados.find({
+    comuna: /[aeiouáéíóú]$/i
+})
+```
+</Solution>
+
+## Ejercicio 02
+Filtrar empleados con sueldo entre \$800.000 y \$2.700.000 y edad mayor a 30.
+
+<Solution>
+```js
+db.empleados.find({
+    sueldo: { $gte: 800000, $lte: 2700000 },
+    edad: { $gt: 30 }
+})
+```
+</Solution>
+
+## Ejercicio 03
+Mostrar empleados inactivos que no pertenezcan al área de TI.
+
+<Solution>
+```js
+db.empleados.find({
+    activo: false,
+    area: { $ne: "TI" }
+})
+```
+</Solution>
+
+## Ejercicio 04
+Listar empleados con contrato anterior a 2019 y que aún estén activos.
+
+<Solution>
+```js
+db.empleados.find({
+    contratado: { $lt: "2019-01-01" },
+    activo: true
+})
+```
+</Solution>
+
+## Ejercicio 05
+Buscar empleados cuyo cargo contenga más de una palabra.
+
+<Solution>
+```js
+db.empleados.find({
+    cargo: /\s+/
+})
+```
+</Solution>
+
+## Ejercicio 06
+Mostrar empleados con exactamente 2 evaluaciones registradas.
+
+<Solution>
+```js
+db.empleados.find({
+    $expr: { 
+        $eq: [{ $size: { $objectToArray: "$evaluaciones" } }, 2] }
+})
+```
+</Solution>
+
+## Ejercicio 07
+Filtrar empleados que tengan evaluación 2021 menor que la 2022 y esta menor que la 2023.
+
+<Solution>
+```js
+db.empleados.find({
+    "evaluaciones.2021": { $exists: true },
+    "evaluaciones.2022": { $exists: true },
+    "evaluaciones.2023": { $exists: true },
+    $expr: {
+        $and: [
+            { $lt: ["$evaluaciones.2021", "$evaluaciones.2022"] },
+            { $lt: ["$evaluaciones.2022", "$evaluaciones.2023"] }
+        ]
+    }
+})
+```
+</Solution>
+
+## Ejercicio 08
+Mostrar empleados cuyo nombre tenga más de 12 caracteres.
+
+<Solution>
+```js
+db.empleados.find({
+    $expr: { 
+        $gt: [{ $strLenCP: "$nombre" }, 12] }
+})
+```
+</Solution>
+
+## Ejercicio 09
+Listar empleados que no tengan el campo 'evaluaciones'.
+
+<Solution>
+```js
+db.empleados.find({
+    evaluaciones: { $exists: false }
+})
+```
+</Solution>
+
+## Ejercicio 10
+Filtrar empleados que tengan habilidades que empiecen con 'P'.
+
+<Solution>
+```js
+db.empleados.find({ habilidades: /^P/ })
+```
+</Solution>
+
+## Ejercicio 11
+Buscar empleados cuya comuna contenga la palabra 'Condes' (ignorar mayúsculas).
+
+<Solution>
+```js
+db.empleados.find({ comuna: /Condes/i })
+```
+</Solution>
+
+## Ejercicio 12
+Mostrar empleados donde la media entre evaluación 2022 y 2023 sea mayor que 4.5.
+
+<Solution>
+```js
+db.empleados.find({
+    "evaluaciones.2022": { $exists: true },
+    "evaluaciones.2023": { $exists: true },
+    $expr: {
+        $gt: [
+            { $divide: [
+                { $add: ["$evaluaciones.2022", "$evaluaciones.2023"] },
+                2
+              ]
+            },
+            4.5
+        ]
+    }
+})
+```
+</Solution>
+
+## Ejercicio 13
+Buscar empleados con cargo que incluya 'QA' y sueldo menor a $1.000.000.
+
+<Solution>
+```js
+db.empleados.find({
+    cargo: /QA/i,
+    sueldo: { $lt: 1000000 }
+})
+```
+</Solution>
+
+## Ejercicio 14
+Mostrar empleados cuya edad sea igual al número de habilidades por 10.
+
+<Solution>
+```js
+db.empleados.find({
+    $expr: {
+        $eq: [
+            "$edad",
+            { $multiply: [{ $size: "$habilidades" }, 10] }
+        ]
+    }
+})
+```
+</Solution>
+
+## Ejercicio 15
+Filtrar empleados donde la dirección contenga al menos un número.
+
+<Solution>
+```js
+db.empleados.find({ direccion: /[0-9]/ })
+```
+</Solution>

@@ -1,0 +1,208 @@
+# Desarrollo de prototipos según requisitos de proyecto
+
+El desarrollo de prototipos es una etapa elemental en la creación de software. Permite validar ideas, entender los requerimientos y ajustar funcionalidades antes de implementar un sistema completo.
+
+## 1. ¿Qué es un prototipo?
+Es una versión inicial o parcial de un sistema de software que sirve para:
+
+- Visualizar cómo funcionará el producto final.
+- Identificar posibles problemas en etapas tempranas.
+- Validar y refinar los requerimientos junto con los interesados.
+
+## 2. Tipos de prototipos
+
+### Prototipo de baja fidelidad
+Este tipo de prototipo es una representación simple y preliminar del producto final. No incluye detalles específicos ni funcionalidades complejas, sino que se enfoca en la estructura y el flujo general del sistema.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Baja Fidelidad", "Descripción"]}
+    lists={{
+        R1: [
+            "**Bocetos:** Son dibujos a mano alzada que muestran la disposición básica de los elementos en la interfaz",
+            "**Wireframes:** Son diagramas que representan la estructura de las páginas o pantallas, indicando la ubicación de los elementos principales como botones, menús y campos de entrada"
+        ],
+        R2: [
+            "**Rápido y económico:** Se pueden crear rápidamente y con pocos recursos",
+            "**Facilita la comunicación:** Ayuda a los equipos a visualizar y discutir ideas sin invertir mucho tiempo en detalles",
+            "**Flexibilidad:** Es fácil de modificar y ajustar según la retroalimentación recibida",
+            "**Uso común:** Es ideal para las primeras etapas del diseño, cuando se están explorando diferentes conceptos y se necesita validar la dirección general del proyecto" 
+        ]
+    }}
+    rows={[
+        [
+            "**Características**",
+            "@R1"
+        ],
+        [
+            "**Ventajas**",
+            "@R2"
+        ],
+    ]}
+/>
+
+### Prototipo de alta fidelidad
+Este tipo de prototipo es una versión más avanzada y detallada del producto final. Incluye algunas funciones básicas o limitadas, y se asemeja mucho más al producto terminado en términos de diseño y funcionalidad.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Alta Fidelidad", "Descripción"]}
+    lists={{
+        R1: [
+            "**Interactividad:** Permite a los usuarios interactuar con al prototipo, simulando la experiencia de uso del producto final",
+            "**Detalles visuales:** Incluye elementos de diseño más refinados, como colores, tipografías y gráficos",
+            "**Funcionalidades básicas:** Implementa algunas de las funciones clave del sistema, aunque de manera limitada",
+        ],
+        R2: [
+            "**Validación de diseño y funcionalidad:** Ayuda a identificar problemas de usabilidad y funcionalidad antes de la implementación completa",
+            "**Retroalimentación precisa:** Proporciona una base más realista para obtener retroalimentación de los usuarios y las partes interesadas",
+            "**Demostraciones:** Es útil para presentar el proyecto a clientes o inversores, mostrando un avance tangible del producto",
+            "**Uso común:** Se utiliza en etapas posteriores del desarrollo, cuando se necesita probar y refinar aspectos específicos del diseño y la funcionalidad",
+        ]
+    }}
+    rows={[
+        [
+            "**Características**",
+            "@R1"
+        ],
+        [
+            "**Ventajas**",
+            "@R2"
+        ],
+    ]}
+/>
+
+## 3. Proceso de desarrollo del prototipo según requisitos
+El desarrollo de un prototipo efectivo requiere seguir un enfoque estructurado que asegure que las funcionalidades y objetivos del proyecto se aborden adecuadamente. 
+
+Este proceso se divide en las siguientes etapas clave:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Etapas", "Descripción"]}
+    lists={{
+        R1: [
+            "Identificar los requerimientos funcionales y no funcionales",
+            "Consultar con los interesados",
+            "Documentar los requerimientos"
+        ],
+        R2: [
+            "Identificar los módulos o funciones críticas",
+            "Determinar las dependencias y riesgos",
+            "Priorizar los sistemas críticos"
+        ],
+        R3: [
+            "Prototipos de baja fidelidad",
+            "Diagramas de arquitectura y flujo de datos",
+            "Prototipos de alta fidelidad"
+        ],
+        R4: [
+            "Seleccionar herramientas y tecnologías",
+            "Incorporar seguridad desde el inicio",
+            "Crear versiones iterativas"
+        ],
+        R5: [
+            "Pruebas de usuario",
+            "Pruebas de funcionalidad",
+            "Pruebas de seguridad inicial",
+            "Recopilación de retroalimentación"
+        ]
+
+    }}
+    rows={[
+        [
+            "**Definición de los requerimientos**",
+            "@R1"
+        ],
+        [
+            "**Análisis de sistemas críticos**",
+            "@R2"
+        ],
+        [
+            "**Diseño del prototipo**",
+            "@R3"
+        ],
+        [
+            "**Construcción del prototipo**",
+            "@R4"
+        ],
+        [
+            "**Validación del prototipo**",
+            "@R5"
+        ],
+    ]}
+/>
+
+## 4. Buenas prácticas OWASP en el desarrollo de prototipos
+La *Open Web Application Security Project* (OWASP) es una referencia clave para garantizar la seguridad en el desarrollo de software.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Buenas Prácticas", "Descripción"]}
+    lists={{
+        R1: [
+            "Utiliza bibliotecas y frameworks actualizados",
+            "Monitorea vulnerabilidades conocidas en las dependencias del proyecto"
+        ],
+        R2: [
+            "Usa contraseñas fuertes y hashing seguro (por ejemplo bcrypt)",
+            "Implementa autenticación multifactor (MFA)"
+        ],
+        R3: [
+            "No reveles detalles del sistema en mensajes de error",
+            "Registra errores de manera segura"
+        ],
+        R4: [
+            "Usa cifrado (TLS) para datos en tránsito",
+            "Evita almacenar datos sensibles innecesariamente"
+        ],
+        R5: [
+            "Asegúrate de validar todas las entradas del usuario para prevenir inyecciones de código (SQLi, XSS, etc.)"
+        ]
+    }}
+    rows={[
+        [
+            "**Actualización y mantenimiento**",
+            "@R1"
+        ],
+        [
+            "**Gestión de autenticación y sesiones**",
+            "@R2"
+        ],
+        [
+            "**Manejo de errores**",
+            "@R3"
+        ],
+        [
+            "**Protección de datos sensibles**",
+            "@R4"
+        ],
+        [
+            "**Validación de entrada**",
+            "@R5"
+        ],
+    ]}
+/>
+
+
+
+# Actividad de Práctica 14
+
+<Quiz questions={[
+	{
+		question: "El proceso de desarrollo de un prototipo efectivo incluye la identificación de requerimientos funcionales y no funcionales, la consulta con los interesados, y la documentación de los requerimientos",
+		options: [
+			"Falso",
+			"Verdadero",
+		],
+		correctIndex: ""
+	},
+    {
+		question: "El uso de cifrado TLS para datos en tránsito es opcional según las buenas prácticas OWASP",
+		options: [
+			"Falso",
+			"Verdadero",
+		],
+		correctIndex: 0
+	},
+]} />

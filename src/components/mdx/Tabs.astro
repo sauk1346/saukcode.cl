@@ -1,0 +1,53 @@
+---
+// Tabs sin React: los <Tab> renderizan paneles con data-tab-label y este
+// wrapper construye los botones con JS vanilla. (React.Children no funciona
+// a través de slots de Astro, por eso no se reusa el Tabs.jsx original.)
+import styles from './Tabs.module.css';
+---
+
+<div
+  class={`${styles.wrapper} js-tabs`}
+  data-class-tab={styles.tab}
+  data-class-active={styles.active}
+>
+  <div class={styles.tabList} role="tablist"></div>
+  <div class={styles.panel}>
+    <slot />
+  </div>
+</div>
+
+<script>
+  function initTabs() {
+    document.querySelectorAll('.js-tabs:not([data-init])').forEach((wrapper) => {
+      wrapper.setAttribute('data-init', '1');
+      const tabList = wrapper.querySelector('[role="tablist"]');
+      const panels = Array.from(wrapper.querySelectorAll(':scope > div > [data-tab-label]'));
+      const tabClass = wrapper.getAttribute('data-class-tab');
+      const activeClass = wrapper.getAttribute('data-class-active');
+
+      panels.forEach((panel, i) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.setAttribute('role', 'tab');
+        button.textContent = panel.getAttribute('data-tab-label') || `Tab ${i + 1}`;
+        button.className = tabClass;
+
+        const select = () => {
+          panels.forEach((p, j) => {
+            p.style.display = j === i ? '' : 'none';
+          });
+          tabList.querySelectorAll('button').forEach((b, j) => {
+            b.classList.toggle(activeClass, j === i);
+            b.setAttribute('aria-selected', String(j === i));
+          });
+        };
+
+        button.addEventListener('click', select);
+        tabList.appendChild(button);
+        if (i === 0) select();
+        else panel.style.display = 'none';
+      });
+    });
+  }
+  initTabs();
+</script>

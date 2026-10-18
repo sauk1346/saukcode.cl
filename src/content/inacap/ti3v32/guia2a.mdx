@@ -1,0 +1,208 @@
+# Repaso Operadores
+
+## Operadores de Comparación
+
+1. **$eq:** igual (*equal*)
+```js
+db.productos.find({ precio: { $eq: 25 } })
+
+// Equivalente a
+db.productos.find({ precio: 25 })
+```
+2. **$ne:** no igual (*not equal*)
+```js
+db.productos.find({ categoria: { $ne: "electrónica" } })
+```
+
+3. **$gt:** mayor que (*greater than*)
+```js
+db.productos.find({ precio: { $gt: 50 } })
+```
+
+4. **$gte:** mayor o igual que (*greater than or equal*)
+```js
+db.productos.find({ precio: { $gte: 50 } })
+```
+
+5. **$lt:** menor que (*less than*)
+```js
+db.productos.find({ stock: { $lt: 20 } })
+```
+
+6. **$lte:** menor o igual que (*less than or equal*)
+```js
+db.productos.find({ stock: { $lte: 20 } })
+```
+
+7. **$in:** está en arreglo (*in array*)
+```js
+db.productos.find({ categoria: { $in: ["electrónica", "computadoras"] } })
+```
+En el ejemplo, encuentra todos los productos donde `categoria` es "electrónica" **O** "computadoras"
+
+8. **$nin:** no está en arreglo (*not in array*)
+```js
+db.productos.find({ categoria: { $nin: ["ropa", "alimentos"] } })
+```
+
+## Operadores lógicos
+
+1. **$and:** (y lógico)
+```js
+db.productos.find({
+  $and: [
+    { precio: { $gt: 20 } },
+    { precio: { $lt: 50 } }
+  ]
+})
+
+// Equivalente a (forma implícita)
+db.productos.find({ precio: { $gt: 20, $lt: 50 } })
+```
+
+2. **$or:** (o lógico)
+```js
+db.productos.find({
+  $or: [
+    { categoria: "electrónica" },
+    { precio: { $lt: 20 } }
+  ]
+})
+```
+
+3. **$not:** (negación)
+```js
+db.productos.find({ precio: { $not: { $gt: 50 } } })
+
+// Equivalente a
+db.productos.find({ precio: { $lte: 50 } })
+```
+
+4. **$nor:** (ni uno ni lo otro)
+```js
+db.productos.find({
+  $nor: [
+    { categoria: "electrónica" },
+    { precio: { $gt: 100 } }
+  ]
+})
+```
+
+## Operadores de elementos
+
+1. **$exists:** verifica si existe el campo
+```js
+db.usuarios.find({ telefono: { $exists: true } })
+```
+
+2. **$type:** verifica el tipo de dato
+```js
+db.usuarios.find({ edad: { $type: "number" } })
+db.usuarios.find({ nombre: { $type: "string" } })
+```
+
+## Operadores de Evaluación
+
+1. **$regex:** buscar usando expresiones regulares 
+```js
+db.productos.find({ nombre: { $regex: /^Tel/i } })
+// Busca productos que empiecen con "Tel" (insensible a mayúsculas)
+```
+
+2. **$expr:** para expresiones de agregación
+```js
+db.pedidos.find({
+  $expr: { $gt: ["$total", "$limite_cliente"] }
+})
+// Busca pedidos donde el total supera el límite del cliente
+```
+
+
+## Operadores de Arreglos
+
+1. **$all:** todos los elementos especificados
+```js
+db.productos.find({ etiquetas: { $all: ["oferta", "nuevo"] } })
+```
+En el ejemplo, encuentra productos que posean ambas etiquetas: "oferta" **Y** "nuevo" (sin importar qué otros valores pueda contener o el orden)
+
+2. **$elemMatch:** coincidencia en elementos de arreglo
+    - Se utiliza para buscar documentos que contienen un array con al menos un elemento que cumple con todos los criterios especificados. Es especialmente útil cuando necesitas hacer coincidencias complejas en array de objetos o documentos embebidos
+    - Brilla cuando necesitas encontrar documentos donde **un mismo elemento** dentro de un array cumpla múltiples condiciones a la vez
+
+```js
+db.usuarios.find({
+  compras: {
+    $elemMatch: {
+      item: "laptop",
+      precio: { $gt: 1000 }
+    }
+  }
+})
+```
+En el ejemplo, la consulta busca un usuario que haya comprado un "laptop" y a un precio mayor a 1000 
+
+3. **$size:** tamaño del arreglo
+```js
+db.usuarios.find({ intereses: { $size: 3 } })
+// Usuarios con exactamente 3 intereses
+```
+
+## Operadores de Actualización
+
+1. **$set:** establecer valores
+```js
+db.productos.updateOne(
+  { _id: ObjectId("5f8a7b2d1c9d440000a7e621") },
+  { $set: { precio: 29.99, stock: 50 } }
+)
+```
+
+2. **$inc:** incrementar valor
+```js
+db.productos.updateOne(
+  { _id: ObjectId("5f8a7b2d1c9d440000a7e621") },
+  { $inc: { stock: -1, vendidos: 1 } }
+)
+```
+
+3. **$push:** añadir a arreglo
+```js
+db.usuarios.updateOne(
+  { nombre: "Ana" },
+  { $push: { intereses: "fotografía" } }
+)
+```
+
+4. **$pull:** eliminar de arreglo
+```js
+db.usuarios.updateOne(
+  { nombre: "Ana" },
+  { $pull: { intereses: "deportes" } }
+)
+```
+
+5. **unset:** eliminar campo
+```js
+db.usuarios.updateOne(
+  { nombre: "Ana" },
+  { $unset: { direccionAntigua: "" } }
+)
+```
+
+# Consulta compleja
+
+Buscar productos de electrónica o computación que cuesten entre \$300 y \$1000, tengan stock disponible y contengan la palabra "pro" en su nombre
+
+<Solution>
+```js
+db.productos.find({
+  $and: [
+    { $or: [{ categoria: "electrónica" }, { categoria: "computación" }] },
+    { precio: { $gte: 300, $lte: 1000 } },
+    { stock: { $gt: 0 } },
+    { nombre: { $regex: /pro/i } }
+  ]
+})
+```
+</Solution>

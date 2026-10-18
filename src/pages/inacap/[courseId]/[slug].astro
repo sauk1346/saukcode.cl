@@ -1,0 +1,58 @@
+---
+import { getCollection, render } from 'astro:content';
+import LessonLayout from '../../../layouts/LessonLayout.astro';
+import { reactMdxComponents } from '../../../components/mdx/components.js';
+import { getAllInacapLessonPaths, getCourseData } from '../../../utils/courseUtils.js';
+
+// Wrappers .astro (islas e interactivos) — importados aquí para conservar
+// el metadata de renderer de Astro
+import Solution from '../../../components/mdx/Solution.astro';
+import Tabs from '../../../components/mdx/Tabs.astro';
+import Tab from '../../../components/mdx/Tab.astro';
+import SmartFigureIsland from '../../../components/mdx/SmartFigureIsland.astro';
+import ImgFigure from '../../../components/mdx/ImgFigure.astro';
+import QuizIsland from '../../../components/mdx/QuizIsland.astro';
+import GridQuizIsland from '../../../components/mdx/GridQuizIsland.astro';
+import RevealIsland from '../../../components/mdx/RevealIsland.astro';
+import AudioPlayerIsland from '../../../components/mdx/AudioPlayerIsland.astro';
+
+export async function getStaticPaths() {
+  // Replica el ruteo de Next: solo los slugs registrados en la data del curso.
+  // Los MDX huérfanos (sin registrar) no se publican.
+  const entries = await getCollection('inacap');
+  const byId = new Map(entries.map((e) => [e.id.replace(/\.mdx$/, ''), e]));
+
+  const paths = [];
+  for (const { courseId, slug } of getAllInacapLessonPaths()) {
+    const entry = byId.get(`${courseId}/${slug}`);
+    if (!entry) continue; // slug registrado sin MDX → en Next daba 404
+    paths.push({ params: { courseId, slug }, props: { entry } });
+  }
+  return paths;
+}
+
+const { courseId, slug } = Astro.params;
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const courseData = getCourseData(courseId);
+
+const mdxComponents = {
+  ...reactMdxComponents,
+  img: ImgFigure,
+  Solution,
+  Tabs,
+  Tab,
+  Reveal: RevealIsland,
+  Quiz: QuizIsland,
+  GridQuiz: GridQuizIsland,
+  SmartFigure: SmartFigureIsland,
+  AudioPlayer: AudioPlayerIsland,
+};
+---
+
+<LessonLayout
+  title={`${slug} | ${courseData?.courseCode || 'INACAP'}`}
+  description={courseData?.courseDescription || 'Contenido educativo de INACAP'}
+>
+  <Content components={mdxComponents} />
+</LessonLayout>

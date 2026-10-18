@@ -1,0 +1,125 @@
+# Guía 01
+
+## Tipos de Datos
+
+- `NUMBER` puede almacenar enteros o decimales
+- `INTEGER` sub-tipo de NUMBER. Solo almacena enteros
+- `NVARCHAR2(size)` cadena de caracteres de longitud variable
+- `DATE` almacena fechas y horas
+- `BOOL` booleano. Verdadero o Falso
+
+## Declarar variables
+Se utiliza el bloque `DECLARE`
+
+**Ejemplo 01:** Crear una variable 'numero' con valor 15
+```sql
+DECLARE
+	v_numero NUMBER :=15;
+
+```
+
+**Ejemplo 02:** Declara una variable de cada tipo
+```sql
+DECLARE
+    v_numero INTEGER := 20;
+    v_texto VARCHAR2(50) := 'Hola, PL/SQL';
+    v_fecha DATE := SYSDATE;
+    v_booleano BOOLEAN := TRUE;
+```
+
+## Imprimir en pantalla
+- Se utiliza la instrucción `DBMS_OUTPUT.PUT_LINE('hola mundo')`
+- Cuando se quiere juntar texto y variables, se concatena utilizando el simbolo `||`
+
+**Ejemplo:** Crea una variable de valor 20, e imprimela en pantalla
+```sql
+DECLARE
+	v_numero INTEGER := 20;
+BEGIN
+	DBMS_OUTPUT.PUT_LINE('La variable es: ' || v_numero);
+END;
+```
+
+## If-Else
+Se utiliza para ejecutar diferentes bloques de código según si una condición es verdadera o falsa.
+
+**Estructura Básica**
+```sql
+IF condición THEN
+	-- código si condición es verdadera
+END IF;
+```
+
+**Estructura con ELSE**
+```sql
+IF condición THEN
+	-- código si condición es verdadera
+ELSE
+	-- código si condición es falsa
+END IF;
+```
+
+**Estructura con múltiples condiciones**
+```sql
+IF condición1 THEN
+	-- código si condicion1 es verdadera
+ELSIF condición2 THEN
+	-- código si condicion2 es verdadera
+ELSE
+	-- código si todas las condiciones anteriores son falsas
+END IF;
+```
+
+## Procedimientos
+- Bloques de código que permiten agrupar lógica y operaciones, para así reutilizarlas
+- Similares a las funciones, pero no devuelven un valor
+
+**Estructura**
+```sql
+CREATE OR REPLACE PROCEDURE sp_nombreproc (--parámetros)
+IS
+	-- Declaración de variables
+BEGIN
+	-- Cuerpo del procedimiento
+	-- Lógica del procedimiento
+END;
+```
+
+### Ejemplo 01
+Supongamos que tenemos una tabla llamada Empleados
+
+```sql
+CREATE TABLE Empleados (
+	ID NUMBER PRIMARY KEY,
+	Nombre VARCHAR2(100),
+	Salario NUMBER
+);
+```
+
+Nos piden crear un procedimiento `sp_nuevoEmpleado` que ingrese un nuevo empleado en la tabla Empleados
+```sql
+CREATE OR REPLACE PROCEDURE sp_nuevoEmpleado (
+	p_ID IN NUMBER,
+	p_Nombre IN VARCHAR2,
+	p_Salario IN NUMBER
+) 
+IS
+BEGIN
+	INSERT INTO Empleados (ID, Nombre, Salario)
+	VALUES (p_id, p_Nombre, p_Salario);
+END;
+```
+
+Luego para ejecutarlo, se ejecuta el siguiente código
+```sql
+BEGIN
+    sp_nuevoEmpleado(1, 'Juan Pérez', 50000);
+    sp_nuevoEmpleado(2, 'Ana Gómez', 60000);
+END;
+```
+
+Finalmente se corrobora si funcionó el procedimiento
+```sql
+SELECT *
+FROM Empleados;
+```

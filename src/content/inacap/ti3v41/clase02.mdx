@@ -1,0 +1,459 @@
+# Páginas Dinámicas
+
+## 1. Ejercicio de Repaso
+
+Generar un formulario de contacto
+
+1. **Configurar Vistas:** Crear una vista `contacto` en `./miapp/views.py`
+
+    ```python
+    #./miapp/views.py
+    from django.http import HttpResponse
+	...
+	...
+
+    def contacto(request):
+    	html = """
+    		<!DOCTYPE html>
+    		<html lang="en">
+    		<head>
+    		    <meta charset="UTF-8">
+    		    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    		    <title>Document</title>
+    		</head>
+    		<body>
+    			<form>
+    				<label>Nombre:</label>
+    				<input type="text" name="nombre" />
+    				<input type="submit" value="enviar" />
+    			</form>
+    		</body>
+    		</html>
+    	"""
+    	return HttpResponse(html)
+    ```
+
+2. **Configurar Enrutamiento:** Crear una ruta para la vista `contacto` en `./miapp/urls.py`
+
+    ```python
+    #./miapp/urls.py
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        ...
+		...
+        path("contacto/", views.contacto),
+    ]
+    ```
+
+3. **Realizar Pruebas:** Ejecutar el servidor y verificar rutas
+    ```sh
+    python manage.py runserver
+    ```
+
+	```sh
+	#ruta index
+	http://127.0.0.1:8000/miapp/index/
+	```
+		<SmartFigure
+        id="pagina-index"
+        src="/inacap/ti3v41/images/fig003.png"
+        alt="Página 'index'"
+        caption="Página 'index'"
+        size="large"
+    />
+	```sh
+	#ruta contacto
+	http://127.0.0.1:8000/miapp/contacto/
+	```
+	<SmartFigure
+        id="pagina-contacto"
+        src="/inacap/ti3v41/images/fig004.png"
+        alt="Página 'contacto'"
+        caption="Página 'contacto'"
+        size="large"
+    />
+
+## 2. Introducción a Páginas Dinámicas
+- Se refiere a que no muestre siempre texto estático
+- Según la **interacción** del usuario con la página, ésta cambiará de diseño (texto, color, forma, etc.)
+
+### Ejemplo: Mostrar la fecha actual
+
+1. **Configurar Vistas:** Agregar la vista `muestra_fecha` en `./miapp/views.py`
+	```python
+	#./miapp/views.py
+	from django.http import HttpResponse
+	from datetime import datetime
+	...
+	...
+	def muestra_fecha(request):
+		fecha = datetime.now()
+		html = """
+			<!DOCTYPE html>
+			<html>
+				<head>
+					<title>Página Dinámica</title>
+				</head>
+				<body>
+					<h1>Despliegue de Información Dinámica</h1>
+					<p>Fecha: %s</p>
+				</body>
+			</html>
+		""" %fecha
+		return HttpResponse(html)
+	```
+
+2. **Configurar Enrutamiento:** Agregar la ruta correspondiente a `./miapp/urls.py`
+	```python
+	#./miapp/urls.py
+	from django.urls import path
+	from . import views
+
+	urlpatterns = [
+		...
+		...
+		path("muestra_fecha/", views.muestra_fecha)
+	]
+	```
+
+3. **Realizar Pruebas:** Levantar servidor y verificar ruta
+	```sh
+	python manage.py runserver
+	```
+	```sh
+	http://127.0.0.1:8000/miapp/muestra_fecha/
+	```
+	<SmartFigure
+        id="pagina-muestrafecha"
+        src="/inacap/ti3v41/images/fig005.png"
+        alt="Página 'muestra_fecha'"
+        caption="Página 'muestra_fecha'"
+        size="large"
+    />
+
+## 3. Parámetros en las URLs
+- Para capturar un calor de la URL, se usa corchetes angulares (\< \>)
+- Los valores capturados pueden incluir opcionalmente un tipo de convertidor de ruta. por ejemplo, `<str:name>` para capturar un parámetro de tipo String. Si no se incluye un convertidor, se hace coincidir cualquier cadena excepto un caracter `/`.
+- No es necesario agregar un slash al comienzo, porque cada URL la incluye.
+
+**Tipos de parámetros**
+
+<SmartTable
+	tableLayout="auto"
+	headers={["Parámetro", "descripción"]}
+	rows={[
+		[
+			"`str`",
+			"coincide con cualquier cadena que no esté vacía, excepto el separador de ruta `/`. Este es el valor predeterminado si no es incluye un convertidor en la expresión"
+		],
+		[
+			"`int`",
+			"Coincide con un cero o cualquier número entero positivo. Devuelve un **int**"
+		],
+		[
+			"`slug`",
+			"Coincide con cualquier cadena de slug que consista en letras o números ASCII, además de los caracteres de guión y subrayado. Por ejemplo `contruyendo-su-primer-sitio-django`"
+		],
+		[
+			"`uuid`",
+			"Coincide con un UUID (Identificador Universal Unico) formateado. Para evitar que varias URL se asignen a la misma página, se deben incluir guiones y las letras deben estar en minúscular. Por ejemplo: `075194d3-6885-417e-a8a8-6c931e272f00`. Devuelve una instancia de UUID"
+		],
+		[
+			"**ruta**",
+			"Coincide con cualquier cadena que no esté vacía, incluido el separador de ruta `/`. Esto permite hacer coincidir una ruta de URL completa en lugar de un segmento de ruta de URL como con **str**"
+		],
+	]}
+/>
+
+### Ejemplo Parámetros URLs:
+
+Crear una ruta parametrizada para el nombre de usuario
+
+1. **Configurar Vistas:** Crear la vista `te_saludo` en `./miapp/views.py`
+	```python
+	#./miapp/views.py
+	from django.http import HttpResponse
+	from datetime import datetime
+	...
+	...
+	def te_saludo(request, nombre):
+		html = """
+			<!DOCTYPE html>
+			<html>
+				<head>
+					<title>Primera Web</title>
+				</head>
+				<body>
+					<h1>Iniciando en HTML</h1>
+					<p>Esta es mi primera web... que emoción.</p>
+					<p>Felicitaciones %s </p>
+				</body>
+			</html>
+		""" %nombre
+		return HttpResponse(html)
+	```
+
+2. **Configurar Enrutamiento:** Agregar la ruta de la vista `te_saludo` en `./miapp/urls.py`
+	- se utiliza parametrización **str** para la variable **nombre** : `<str:nombre>`
+	```python
+	#./miapp/urls.py
+	from django.urls import path
+	from . import views
+
+	urlpatterns = [
+		...
+		...
+		path("te_saludo/<str:nombre>/", views.te_saludo)
+	]
+	```
+
+3. **Realizar Pruebas:** Ejecutar el servidor y verificar ruta
+	```sh
+	python manage.py runserver
+	```
+	```sh
+	# ruta parametrizada
+	http://127.0.0.1:8000/miapp/te_saludo/Antonio/
+	```
+		<SmartFigure
+        id="pagina-tesaludo"
+        src="/inacap/ti3v41/images/fig006.png"
+        alt="Página 'te_saludo' con ruta parametrizada"
+        caption="Página 'te_saludo' con ruta parametrizada"
+        size="large"
+    />
+
+## 4. Introducción a Templates
+El **procedimiento correcto** es que las **vistas no generen html**, como en los ejercicios anteriores, sino que delegue esa responsabilidad a los **templates**
+
+- Un template de Django es una cadena de texto que permite  separar la presentación de la lógica de negocio
+- Define etiquetas de plantillas que permiten configurar la forma en la que el contenido del documento será presentado
+- Normalmente, son usadas con HTML, pero Django es capaz de generar cualquier formato basado en texto
+- Cualquier texto encerrado por un par de llave (por ejemplo: \{\{ nombre \}\}) es una **variable**
+- Cualquier texto que esté rodeado por llaves y porcentaje (ejemplo: \{\% if orden_pedido \%\}) es una **etiqueta de plantilla**. Estas etiquetas indican que se debe realizar una acción
+
+### Creación nuevo proyecto
+
+1. **Crear Nuevo Proyecto:** Crear `proyectotemplate`
+	```sh
+	django-admin startproject proyectotemplate
+	cd proyectotemplate
+	```
+
+2. **Crear Nueva App:** Construir aplicación `miapp`
+	```sh
+	python manage.py startapp miapp
+	```
+
+3. **Crear base de datos**
+	```sh
+	python manage.py migrate
+	```
+
+4. **Configuración Inicial:** Agregar `miapp` en `./proyectotemplate/settings.py`
+	```python
+	#./proyectotemplate/settings.py
+	from pathlib import Path
+	...
+	...
+	INSTALLED_APPS = [
+		"django.contrib.admin",
+		"django.contrib.auth",
+		"django.contrib.contenttypes",
+		"django.contrib.sessions",
+		"django.contrib.messages",
+		"django.contrib.staticfiles",
+		"miapp"
+	]
+	...
+	...
+	```
+
+5. **Crear Directorio Templates:** En `./miapp/`, crear la carpeta `templates` y su subcarpeta `miapp` (la subcarpeta es por buenas prácticas)
+	```sh
+	mkdir -p ./miapp/templates/miapp/
+	```
+
+6. **Configurar Templates:** Crear `info.html` en  `./miapp/templates/miapp/info.html`
+	```html
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+	</head>
+	<body>
+		<p>Fecha: {{ fecha }} </p>
+	</body>
+	</html>
+	```
+
+7. **Configurar Vistas:** Crear la vista `info` para mostrar la página `info.html`
+	```python
+	#./miapp/views.py
+	from django.shortcuts import render
+	from datetime import datetime
+
+	def info(request):
+		fecha = datetime.now()
+		contexto = {'fecha': fecha}
+		return render(request, 'miapp/info.html', contexto)
+	```
+
+8. **Configurar Enrutamiento:** Crear `./miapp/urls.py` y agregarlo a `./proyectotemplate/urls.py`
+	```python
+	#./miapp/urls.py
+	from . import views
+	from django.urls import path
+
+	urlpatterns = [
+		path("info/", views.info),
+	]
+	```
+	```python
+	#./proyectotemplate/urls.py
+	from django.contrib import admin
+	from django.urls import path, include
+
+	urlpatterns = [
+		path("admin/", admin.site.urls),
+		path("miapp/", include('miapp.urls')),
+	]
+	```
+
+9. **Realizar Pruebas:** Ejecutar servidor y verificar ruta
+	```sh
+	python mangage.py runserver
+	```
+	```sh
+	http://127.0.0.1:8000/miapp/info/
+	```
+	<SmartFigure
+        id="pagina-info"
+        src="/inacap/ti3v41/images/fig007.png"
+        alt="Página 'info'"
+        caption="Página 'info'"
+        size="large"
+    />
+
+
+## 5. Ejercicios
+
+### Ejercicio 01
+
+Convertir la vista `index` en página dinámica, agregando fecha y nombre de usuario.
+
+1. **Configurar Vistas:** Modificar la vista `index` ubicada en `./miapp/views.py`
+	- se agregan las variables: fecha, nombre, apellido
+	```python
+	#./miapp/views.py
+	from django.http import HttpResponse
+	from datetime import datetime
+
+	def index(request):
+		fecha = datetime.now()
+		nombre = "Claudio"
+		apellido = "Cartajena"
+
+		html = """
+			<!DOCTYPE html>
+			<html lang="en">
+			<head>
+				<meta charset="UTF-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<title>Document</title>
+			</head>
+			<body>
+				<h1>Bienvenido al mundo de Django</h1>
+				<p>Fecha: %s </p>
+				<p>Bienvenid@: %s %s</p>
+				<p>Disfruta la aventura...</p>
+			</body> 
+			</html>
+		""" %(fecha, nombre, apellido)
+		return HttpResponse(html)
+	...
+	...
+	```
+	
+2. **Realizar Pruebas:** Levantar servidor y verificar ruta
+	```sh
+	python manage.py runserver
+	```
+	```sh
+	http://127.0.0.1:8000/miapp/index/
+	```
+	<SmartFigure
+        id="pagina-dinamica-index"
+        src="/inacap/ti3v41/images/fig008.png"
+        alt="Página dinámica 'index'"
+        caption="Página dinámica 'index'"
+        size="large"
+    />
+
+### Ejercicio 02
+
+Utilizar las variables `nombre` y `apellido` para crear una ruta parametrizada.
+
+1. **Configurar Vistas:** Modificar la vista `index`, para que acepte `nombre` y `apellido` como parámetros
+	```python
+	#./mipp/views.py
+	from django.http import HttpResponse
+	from datetime import datetime
+
+	def index(request, nombre, apellido):
+		fecha = datetime.now()
+
+		html = """
+			<!DOCTYPE html>
+			<html lang="en">
+			<head>
+				<meta charset="UTF-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<title>Document</title>
+			</head>
+			<body>
+				<h1>Bienvenido al mundo de Django</h1>
+				<p>Fecha: %s </p>
+				<p>Bienvenid@: %s %s</p>
+				<p>Disfruta la aventura...</p>
+			</body> 
+			</html>
+		""" %(fecha, nombre, apellido)
+		return HttpResponse(html)
+
+	...
+	...
+	```
+
+2. **Configurar Enrutamiento:** Modificar la ruta de la vista `index` en `./miapp/urls.py` a una ruta parametrizada.
+	```python
+	#./miapp/urls.py
+	from django.urls import path
+	from . import views
+
+	urlpatterns = [
+		path("index/<str:nombre>/<str:apellido>", views.index),
+		...
+		...
+	]
+	```
+
+3. **Realizar Pruebas:** Ejecutar servidor y verificar ruta
+	```sh
+	python manage.py runserver
+	```
+	```sh
+	# ruta parametrizada
+	http://127.0.0.1:8000/miapp/index/Pepa/Pig
+	```
+	<SmartFigure
+        id="pagina-dinamica-index-parametrizada"
+        src="/inacap/ti3v41/images/fig009.png"
+        alt="Página 'index' parametrizada"
+        caption="Página 'index' parametrizada"
+        size="large"
+    />

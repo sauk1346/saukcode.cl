@@ -1,0 +1,102 @@
+# Técnicas para pruebas exploratorias
+Las pruebas exploratorias se basan en la experiencia y el conocimiento del tester. En lugar de seguir un conjunto de pasos predefinidos, los testers exploran el software de manera libre, adaptando sus pruebas en función de los que encuentran. Este enfoque se apoya en varios principios fundamentales.
+
+1. **Simultaneidad de diseño y ejecución:** El diseño y la ejecución de las pruebas ocurren al mismo tiempo. Esto permite una mayor flexibilidad y adaptabilidad durante el proceso de prueba
+2. **Ciclos cortos de feedback:** Las pruebas exploratorias generan ciclos rápidos de retroalimentación, permitiendo a los teste ajustar sus estrategias de prueba en tiempo real
+3. **Creatividad y adaptabilidad:** Los testers utilizan su creatividad y adaptan sus pruebas sobre la marcha, basándose en su experiencia y en los resultados obtenidos
+
+## Técnicas para pruebas exploratorias
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Técnica', 'Descripción']}
+	rows={[
+		[
+			'**Tours de Exploración**',
+			'Implica recorrer diferentes áreas del software como si se estuviese en una excursión. Cada "tour" se enfoca en un aspecto específico del software, como la interfaz de usuario, la funcionalidad de backend, o la integración de sistemas'
+		],
+		[
+			'**Listas de verificación (checklists)**',
+			'Proporcionan una guía general sobre qué áreas del software deben ser exploradas, pero no dictan cómo hacerlo. Esto permite a los testers mantener un enfoque flexible mientras aseguran una cobertura adecuada'
+		],
+		[
+			'**Matriz de riesgos**',
+			'Ayuda a identificar y priorizar áreas del software que son más propensas a tener defectos. La matriz considera factores como la complejidad del código, la frecuencia de uso y el impacto potencial de los defectos'
+		],
+		[
+			'**Notaciones de exploración**',
+			'Registrar observaciones y resultados durante las pruebas es crucial. Se utilizan notaciones para documentar los descubrimientos, problemas encontrados y áreas que requieren mayor atención'
+		],
+		[
+			'**Heurísticas de prueba**',
+			'Son reglas prácticas que guían a los testers en la exploración del software. Algunas heurísticas comunes incluyen: "Cada entrada debe tener una salida", "Pruebas negativas deben ser realizadas", "Pruebas de límites son esenciales"'
+		]
+	]}
+/>
+
+## Beneficios y desafíos de las pruebas exploratorias
+
+### Beneficios
+1. **Mayor flexibilidad y adaptabilidad:** Permiten ajustes rápidos y dinámicos en el enfoque de pruebas
+2. **Descubrimiento de defectos inesperados:** Al no estar limitados a scripts predefinidos, los testers pueden descubrir problemas que de otro modo pasarían desapercibidos
+3. **Mejora continua:** Los testers aprenden y mejoran sus estategias en cada ciclo de prueba
+
+### Desafíos
+
+1. **Dependencia de la habilidad del tester:** La efectividad de las pruebas exploratorias depende en gran medida de la experiencia y la creatividad del tester
+2. **Documentación:** Registrar adecuadamente las pruebas y sus resultados puede ser más complicado que con pruebas basadas en scripts
+3. **Cobertura de pruebas:** Asegurar una cobertura adecuada puede ser un desafío, ya que no sigue un plan de prueba predefinido
+
+
+## Ejemplo práctico
+Consideremos una aplicación de gestión de proyectos. Se realizan los siguientes pasos:
+
+1. Un tester podría iniciar con un **tour de exploración** enfocándose en la interfaz de usuario, verificando que todas las funciones básicas (crear, editar, eliminar proyectos) funcionen correctamente
+2. Utilizando una **lista de verificación**, el tester se asegura de cubrir todas las áreas importantes, como la gestión de usuarios y la integración con otras herramientas
+3. Una **matriz de riesgo** ayudará a priorizar la exploración de áreas complejas y críticas
+4. Las **notaciones de exploración** son fundamentales para documentar los hallazgos y problemas en tiempo real
+
+# Actividad de Práctica 11
+
+<Quiz questions={[
+	{
+		question: "¿Qué técnica de pruebas exploratorias implica recorrer diferentes áreas del software como si se estuviera en una excursión?",
+		options: [
+			"Notaciones de exploración",
+			"Tours de exploración",
+			"Matriz de riesgos",
+			"Listas de verificación"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Cuál es el principal beneficio de utilizar pruebas exploratorias en lugar de pruebas basadas en scripts?",
+		options: [
+			"Menor documentación requerida.",
+			"Eliminación de la necesidad de testers experimentados.",
+			"Mayor flexibilidad y capacidad de adaptación.",
+			"Reducción del tiempo de prueba."
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Cuál de las siguientes técnicas de pruebas exploratorias ayuda a priorizar áreas del software que son más propensas a tener defectos?",
+		options: [
+			"Tours de exploración",
+			"Notaciones de exploración",
+			"Heurísticas de prueba",
+			"Matriz de riesgos"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Cuál es la técnica que proporciona reglas prácticas que guían a los testers en la exploración del software?",
+		options: [
+			"Matriz de riesgos",
+			"Notaciones de exploración",
+			"Tours de exploración",
+			"Heurísticas de prueba"
+		],
+		correctIndex: 3
+	},
+]} />

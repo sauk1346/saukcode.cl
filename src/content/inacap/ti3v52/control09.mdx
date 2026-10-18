@@ -1,0 +1,64 @@
+## Control 09
+
+<Quiz questions={[
+  {
+    question: "¿Qué consecuencia tiene una discrepancia entre el direccionamiento IP y la tabla de enrutamiento en un router?",
+    options: [
+      "El problema solo afecta a IPv6",
+      "El tráfico se reenvía por la ruta por defecto",
+      "El router intenta resolver la ruta mediante ARP",
+      "El tráfico se descarta por falta de coincidencia de ruta"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Por qué es importante verificar la correcta activación de IPv6 (unicast-routing) al diagnosticar problemas de enrutamiento IPv6?",
+    options: [
+      "Porque activa OSPFv3 automáticamente",
+      "Porque reemplaza a los protocolos de enrutamiento",
+      "Porque define las direcciones link-local",
+      "Porque habilita el reenvío de paquetes IPv6"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál es el objetivo principal de integrar enrutamiento IPv4 e IPv6 en una red empresarial dual stack?",
+    options: [
+      "Asegurar conectividad y operación simultánea de IPv4 e IPv6",
+      "Evitar el uso de protocolos de enrutamiento dinámico",
+      "Simplificar el uso de direcciones privadas",
+      "Eliminar completamente IPv4"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál es la secuencia correcta para diagnosticar un problema de conectividad en una red integradora?",
+    options: [
+      "Revisar NAT, luego ACL y finalmente rutas",
+      "Probar servicios antes que conectividad",
+      "Verificar ACL antes que interfaces",
+      "Verificar interfaces, rutas, ACL y luego NAT"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué comando permite verificar si existen rutas hacia redes remotas en un router Cisco?",
+    options: [
+      "show access-lists",
+      "show ip nat translations",
+      "show running-config",
+      "show ip route"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué comando permite verificar el estado operativo y las direcciones IPv4 e IPv6 asignadas a las interfaces de un router?",
+    options: [
+      "show ip interface brief",
+      "show ip route",
+      "show ipv6 route",
+      "show running-config"
+    ],
+    correctIndex: 0
+  }
+]} />

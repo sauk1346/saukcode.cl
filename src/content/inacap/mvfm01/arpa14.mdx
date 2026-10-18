@@ -1,0 +1,92 @@
+# ARPA 04: La escala Richter
+
+## Material
+- [ARPA4.pdf](/inacap/mvfm01/docs/ARPA14.pdf)
+- [ARPA4_Extension.pdf](/inacap/mvfm01/docs/ARPA14_Extension.pdf)
+
+## Ejercicio 01
+
+La escala sismológica de Richter establece una **dependencia logarítmica** entre la **amplitud** del sismo, en milímetros, y la **magnitud** del sismo.
+
+Se sabe que por cada grado que aumenta la magnitud del sismo, la amplitud de éste aumenta 10 veces con respecto de la amplitud anterior. Por ejemplo, un sismo grado 5 en la escala de Richter tuvo una amplitud de 100 milímetros.
+
+**¿Cuál sería la amplitud que tuvo el terremoto del año 2010 en Chile cuya magnitud fue de 8.8 en la escala de Richter?**
+
+<Solution>
+- **1ro:** ocurre tamaño del epicentro $\rightarrow$ Amplitud
+- **2do:** en base a eso se mide $\rightarrow$ Magnitud
+
+Entonces:
+
+- $x$ es la Amplitud.
+- $f(x)$ es la Magnitud.
+
+Nos dan la siguiente información:
+
+1. La escala Richter establece una **dependencia logarítmica** entre la **amplitud** del sismo y la **magnitud** del sismo.
+2. Por cada grado que aumenta la magnitud del sismo, la amplitud de éste aumenta 10 veces con respecto de la amplitud anterior
+3. Un sismo de grado 5 tuvo una amplitud de 100 milímetros.
+
+Con esta información podemos generar una tabla
+
+<SmartTable
+  tableLayout="auto"
+  headers={["x: Amplitud (mm)","f(x): Magnitud (grados)"]}
+  rows={[
+    ["100","5"],
+    ["1000","6"]
+  ]}
+/>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig54.png"
+	alt="Modelo logarítmico f(x)"
+	caption="Modelo logarítmico f(x)"
+	size="large"
+/>
+
+$\therefore$ La amplitud, cuya **magnitud** fue de `8.8`[grados], tuvo una **amplitud** de `630957.34`[mm]
+</Solution>
+
+## Ejercicio 02
+
+Otra ecuación que nos permite analizar los sismos, es la ecuación de la energía liberada, que relaciona las variables $E$ (energía liberada en ergios) y $M$ (magnitud del sismo en la escala de Richter) mediante el siguiente modelo logarítmico:
+
+$$
+\begin{aligned}
+\log E = 1.5 \cdot M + 11.8
+\end{aligned}
+$$
+
+De acuerdo con esta información, y considerando que la bomba atómica lanzada en Hiroshima liberó una energía de $8.9 \cdot 10^{20}$ ergios, **¿cuántas veces mayor o menor fue el terremoto en Chile del año 2010 con respecto de la bomba de Hiroshima en términos de la energía liberada?** 
+
+<Solution>
+Se calcula la energía liberada del terremoto con magnitud 8.8[grados]
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig55.png"
+	alt="Cálculo de energía liberada"
+	caption="Cálculo de energía liberada"
+	size="large"
+/>
+
+La energía liberada en el terremoto fue de $1 \cdot 10^{25}$[ergios]
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Caso","Energía liberada [ergios]"]}
+  rows={[
+    ["Terremoto Chile 2010","$1 \\cdot 10^{25}$"],
+    ["Bomba atómica Hiroshima","$8.9 \\cdot 10^{20}$"]
+  ]}
+/>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig56.png"
+	alt="Cálculo de razón de energía liberadas por los terremotos"
+	caption="Cálculo de razón de energía liberada por los terremotos"
+	size="large"
+/>
+
+$\therefore$ La energía liberada en el terremoto de Chile en 2010 fue `11235.96` veces mayor que la energía liberada por la bomba atómica en Hiroshima.
+</Solution>

@@ -1,0 +1,140 @@
+# Casos de Uso
+- Sirven para capturar los requerimientos funcionales de un sistema.
+- Se componen de: escenarios y actores
+- Los escenarios y actores se visualizan mediante diagramas de casos de uso
+
+## Actores
+- Pueden ser personas, sistemas o dispositivos
+
+## Tipos de Escenarios
+- Escenario Principal
+- Escenario Alternativo
+
+## Otros elementos
+Además de los escenarios, un caso de uso puede incluir otros elementos:
+
+- **Precondición:** lo que el sistema debe asegurarse que sea verdadero antes de que comience el caso de uso.
+- **Garantía:** Describe lo que el sistema garantizará al final del caso de uso.
+- **Desencadenante:** Especifica el evento que inicia el caso de uso.
+
+
+## UML
+- *Unified Modeling Language*
+- Lenguaje de Modelado Unificado
+- Visualiza, especifica, contruye y documenta sistemas de software
+- No aborda el contenido esécífico de un caso de uso, sino que proporciona un formato de diagrama para su representación.
+
+## Notaciones de los casos de Uso
+
+<SmartFigure
+	id="notacion-casos-uso"
+	src="/inacap/ti3v25/images/fig03.png"
+	alt="Notación Casos de Uso"
+	caption="Notación Casos de Uso"
+	size="large"
+/>
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Notación","Descripción"]}
+  rows={[
+    ["**Actor**","Los roles de que los usuarios juegan con respecto al sistema. Pueden ser: personas, sistemas o dispositivos externos"],
+    ["**Caso de Uso**","Describen las interacciones entre los actores y el sistema. Cada caso de uso describe una tarea o función específica que el sistema puede realizar"],
+    ["**Límite del Sistema**","Frontera entre el sistema y su entorno"],
+    ["**Extensión**","Es un caso de uso, que puede agregar a otro caso de uso"],
+    ["**Inclusión**","Es un caso de uso que se incluye en otro caso de uso"]
+  ]}
+/>
+
+|Notación|Descripción|
+|---|---|
+|Actor|Los roles de que los usuarios juegan con respecto al sistema. Pueden ser: personas, sistemas o dispositivos externos|
+|Caso de Uso|Describen las interacciones entre los actores y el sistema. Cada caso de uso describe una tarea o función específica que el sistema puede realizar|
+|Límite del Sistema|Frontera entre el sistema y su entorno|
+|Extensión|Es un caso de uso, que puede agregar a otro caso de uso|
+|Inclusión|Es un caso de uso que se incluye en otro caso de uso|
+
+**Ejemplo**
+
+Un usuario inicia el caso de uso Abrir archivo. El sistema de gestión de archivos responde mostrando una lista de archivos. El usuario selecciona el archivo que desea abrir y el sistema de gestión de archivos abre el archivo. El sistema de gestión de archivos muestra el contenido del archivo y el usuario finaliza el caso de uso.
+
+<SmartFigure
+	id="ejemplo01"
+	src="/inacap/ti3v25/images/fig04.png"
+	alt="Caso de Uso para Sistema de Almacenamiento de Archivos"
+	caption="Caso de Uso para Sistema de Almacenamiento de Archivos"
+	size="large"
+/>
+
+## Niveles de Casos de Uso
+
+- **Casos de uso de negocio:** funciones principales del sistema desde la perspectiva de un usuario final.
+- **Casos de uso de sistema:** funciones del sistema desde la perspectiva de un desarrollador.
+- **Casos de uso de interfaz de usuario:** interacciones entre los usuarios y el sistema.
+
+## Relación entre conceptos ágiles y casos de uso
+
+### SCRUM
+- Casos de uso se utilizan para construir y priorizar *Product Backlog*.
+- Casos de uso proporcionan una narrativa clara sobre cómo los usuarios interactúan con el sistema.
+
+### Programación Extrema (XP)
+Casos de uso pueden manifestarse como "Historias de usuario"
+
+### Agilidad en General
+Casos de uso expresan los requisitos de manera clara y concisa, permitiendo que los equipos respondan rápidamente a los cambios en las necesidades del usuario.
+
+# Actividad de Práctica 03
+
+<Quiz questions={[
+  {
+    question: "¿Cuál es el propósito principal de los casos de uso en UML en el desarrollo de software?",
+    options: [
+      "Detallar la implementación técnica de un sistema.",
+      "Visualizar y especificar las interacciones entre usuarios y el sistema.",
+      "Documentar errores y fallos en el código fuente.",
+      "Definir la arquitectura física de un sistema."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué representan los actores en un caso de uso en UML?",
+    options: [
+      "Elementos adicionales que pueden incluirse opcionalmente.",
+      "Roles que los usuarios juegan con respecto al sistema.",
+      "Errores comunes en la ejecución de casos de uso.",
+      "Descripciones detalladas de las interacciones."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué describe un escenario alternativo en un caso de uso?",
+    options: [
+      "La secuencia de pasos más común para lograr el objetivo.",
+      "Detalles adicionales que no son esenciales para el caso de uso.",
+      "Una secuencia de pasos alternativa basada en circunstancias específicas.",
+      "Elementos que no deben incluirse en la documentación."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es el propósito de los diagramas de casos de uso en UML?",
+    options: [
+      "Detallar el contenido textual de los casos de uso.",
+      "Representar gráficamente las interacciones entre usuarios y el sistema.",
+      "Ignorar las relaciones entre casos de uso para simplificar la representación.",
+      "Limitar la comprensión óptima de un caso de uso."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuándo son útiles los casos de uso en el contexto de metodologías ágiles como Scrum y Programación Extrema (XP)?",
+    options: [
+      "Cuando se necesita documentación extensa y rígida.",
+      "En situaciones donde no hay cambios en las necesidades del usuario.",
+      "En proyectos que no requieren entrega continua de software funcional.",
+      "Cuando se busca una narrativa detallada sobre las interacciones usuario-sistema para facilitar la comprensión y colaboración."
+    ],
+    correctIndex: 3
+  }
+]} />

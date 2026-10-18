@@ -1,0 +1,455 @@
+# SM03: Manteniendo la continuidad en la producción
+
+**Material**
+- [Manteniendo la continuidad en la producción](docs/sm03.pdf)
+
+En la industria minera, no solo es importante el proceso de extracción del cobre, sino también todos los procesos vinculados a dicha actividad. Según un artículo publicado en la Tercera:
+
+*"En Chile se producen 5.5 o 5.6 millones de toneladas de cobre al año, sobre una masa de recursos geológicos intrínsecamente de peor calidad: sin agua, aún con costos elevados de energía, con comunidades demandantes, con una ley de base del medio ambiente que no para."*
+
+A pesar de estos desafíos, se afirma que los trabajadores chilenos no son tan eficientes en su producción como los otros países. La eficiencia en la producción es crucial para mantener la competitividad en el mercado global y mejorar la rentabilidad de la industria.
+
+## Actividad 01
+
+En Chile, además de las grandes mineras como Codelco, Escondida o Collahuasi, existe la pequeña minería donde la producción es menor y donde el cobre muchas veces no es el principal mineral a extraer. La tasa de producción anual de la minera "El chiflón del diablo", en miles de toneladas, de una cantera de caliza, tiene un comportamiento dado por la función
+
+$$
+T(x) = \begin{cases} 50 + 3x & \text{si } 0 < x < 10 \\[10pt]
+-2x + 100 & \text{si } x > 10 \end{cases}
+$$
+
+donde $x$ representa el tiempo, en años. Grafica la función de producción en GeoGebra
+
+<Solution title="Solución Actividad 01">
+
+Para ingresar una función por tramos, se utiliza la siguiente estructura:
+
+<TerminalOutput withBg>
+
+{`# Estructura de una función por tramos
+Si(<condicion1>, <tramo1>, <condicion2>, <tramo2>)
+
+# Para la Actividad 01
+T(x) = Si(0<x<10, 50+3x, x>10, -2x+100)
+`}
+</TerminalOutput>
+
+<SmartFigure
+    id="fig102"
+    src="/inacap/cvcd01/images/fig102.png"
+	alt="Gráfico T(x)"
+	caption="Gráfico T(x)"
+    lightbox={true}
+	size="large"
+/>
+
+</Solution>
+
+---
+
+## Actividad 02
+
+Teniendo en cuanta la función $T(x)$ anterior, responde:
+
+1. ¿Cuál es el límite de producción al año 10?
+2. ¿La producción es continua a través de los años? ¿Por qué?
+3. ¿En qué momento es máxima la tasa de producción?
+4. ¿Al cabo de cuántos años se extingue la cantera?
+5. Teniendo en cuenta la pregunta anterior, redefine el dominio de $T(x)$ y grafica la nueva función
+
+<Solution title="Solución Actividad 02">
+
+1. **¿Cuál es el límite de producción al año 10?**
+
+<SmartFigure
+    id="fig103"
+    src="/inacap/cvcd01/images/fig103.png"
+	alt="Límite de T(x) cuando x tiende a 10"
+	caption="Límite de T(x) cuando x tiende a 10"
+	size="large"
+/>
+
+---
+2. **¿La producción es continua a través de los años? ¿Por qué?**
+
+<SmartFigure
+    id="fig104"
+    src="/inacap/cvcd01/images/fig104.png"
+	alt="Producción T(x) en el año 10"
+	caption="Producción T(x) en el año 10"
+	size="large"
+/>
+
+<List level={1} indent={2}>
+- La producción no es continua. Esto se observa al evaluarla en el año 10 (figura 3)
+- Esto se debe a que $x=10$ no pertenece al dominio de la función $T(x)$
+</List>
+
+---
+3. **¿En qué momento es máxima la tasa de producción?**
+
+<List level={1} indent={2}>
+- Observando la gráfica (figura 1), el punto máximo ocurre cuando $x$ tiende a 10
+</List>
+
+<P indent={2}>
+$\therefore$ La tasa de producción es máxima alrededor del año 10
+</P>
+
+---
+4. **¿Al cabo de cuántos años se extingue la cantera?**
+
+<SmartFigure
+    id="fig105"
+    src="/inacap/cvcd01/images/fig105.png"
+	alt="Año x, en donde se extingue la cantera"
+	caption="Año x, en donde se extingue la cantera"
+	size="large"
+/>
+
+<P indent={2}>
+$\therefore$ La cantera se extingue al cabo de 50 años
+</P>
+---
+5. **Teniendo en cuenta la pregunta anterior, redefine el dominio de $T(x)$ y grafica la nueva función**
+
+- Para que la función sea continua, habría que agregar $x=10$ al dominio de la función $T(x)$
+- El gráfico $T(x)$ sería idéntico, solo que ahora continua
+
+<TerminalOutput withBg>
+
+{`# Antes
+T(x) = Si(0<x<10, 50+3x, x>10, -2x+100)
+
+# Ahora
+T(x) = Si(0<x<10, 50+3x, x>=10, -2x+100)
+`}
+</TerminalOutput>
+
+<SmartFigure
+    id="fig106"
+    src="/inacap/cvcd01/images/fig106.png"
+	alt="Nuevo T(x), ahora x=10 pertenece al dominio"
+	caption="Nuevo T(x), ahora x=10 pertenece al dominio"
+	size="large"
+/>
+
+</Solution>
+
+---
+
+## Actividad 03
+
+La función $g(x)$ representa la cantidad total de cobre extraído, en toneladas, en una pequeña minera del sector de San Felipe, desde 1980 hasta 1990, y $x$ representa el número de años transcurridos desde 1980.
+
+$$
+g(x) = \begin{cases} x^2 + 1 & \text{si } 0 \leq x < 3 \\[10pt]
+ax + b & \text{si } 3 \leq x \leq 6 \\[10pt] 
+\dfrac{x^2 - 36}{x - 6} & \text{si } 6 < x \leq 10 \end{cases}
+$$
+
+1. ¿Cuántas toneladas se extrajeron en el año 1988?
+2. ¿Qué valores deben tener los parámetros $a$ y $b$ para que la función sea continua en $x=3$ y en $x=6$?
+3. Grafica la función continua resultante en GeoGebra
+
+<Solution title="Solución Actividad 03">
+
+1. **¿Cuántas toneladas se extrajeron en el año 1988?**
+
+<List level={1} indent={2}>
+- año 1980: $x=0$
+- año 1981: $x=1$
+- año 1990: $x=10$
+</List>
+
+<P indent={2}>
+Entonces, el año 1988 corresponde a $x=8$
+</P>
+
+<SmartFigure
+    id="fig107"
+    src="/inacap/cvcd01/images/fig107.png"
+	alt="Valor T(8)"
+	caption="Valor T(8)"
+	size="large"
+/>
+
+<P indent={2}>
+$\therefore$ El año 1988, se extrajeron 14 toneladas de cobre
+</P>
+---
+
+2. **¿Qué valores deben tener los parámetros $a$ y $b$ para que la función sea continua en $x=3$ y en $x=6$?**
+
+<List level={1} indent={2}>
+- Se evalua la función en $x=3$
+</List>
+$$
+\begin{align*}
+
+x^2 + 1 &= ax + b\\[10pt]
+(3)^2 + 1 &= a\cdot 3 + b \\[10pt]
+10 &= 3a + b
+\end{align*}
+$$
+<List level={1} indent={2}>
+- Se evalua la función en $x=6$
+</List>
+
+$$
+\begin{align*}
+ax+b &= \frac{x^2-36}{x-6}\\[10pt]
+ax+b &= \frac{(x+6)(x-6)}{x-6}\\[10pt]
+ax+b &= (x+6)\\[10pt]
+a\cdot 6 + b &= 6 + 6 \\[10pt]
+6a + b &= 12
+\end{align*}
+$$
+<List level={1} indent={2}>
+- Se obtiene un sistema de ecuacion 2x2
+</List>
+
+$$
+\begin{align*}
+3a + b &= 10\\
+6a + b &= 12
+\end{align*}
+$$
+
+<SmartFigure
+    id="fig108"
+    src="/inacap/cvcd01/images/fig108.png"
+	alt="Valores para a y b (X e Y)"
+	caption="Valores para a y b (X e Y)"
+	size="large"
+/>
+
+<P indent={2}>
+$\therefore$ Para que $T(x)$ sea continua en $x=3$ y $x=6$, los parámetros $a$ y $b$ deben ser:
+</P>
+
+$$
+\boxed{a\approx 0.67} \text{ y } \boxed{b=8}
+$$
+---
+
+3. **Grafica la función continua resultante en GeoGebra**
+<TerminalOutput withBg>
+{`# T(x) continua con a=0.67 y b=8
+g(x) = Si(0<=x<=3, x^2+1, 3<=x<=6, 0.67x+8, 6<x<=10, (x^2-36)/(x-6))`}
+</TerminalOutput>
+<SmartFigure
+    id="fig109"
+    src="/inacap/cvcd01/images/fig109.png"
+	alt="Gráfica T(x) con valores a=0.67 y b=8"
+	caption="Gráfica T(x) con valores a=0.67 y b=8"
+    lightbox={true}
+	size="large"
+/>
+
+</Solution>
+---
+
+## Actividad 04
+Ingresa al siguiente link: https://www.geogebra.org/classic/aP69DqEJ
+
+Observa la gráfica de la función dada, denótala $f(x)$ y responde las preguntas que se enuncian a continuación
+
+1. Determina los límites de la función $f(x)$ que aparecen en la vista derecha
+2. ¿En qué puntos es discontinua la función $f(x)$?
+3. Clasifica los puntos de discontinuidad encontrados
+
+<Solution title="Solución Actividad 04">
+
+<SmartFigure
+    id="fig110"
+    src="/inacap/cvcd01/images/fig110.png"
+	alt="Gráfica f(x)"
+	caption="Gráfica f(x)"
+    lightbox={true}
+	size="large"
+/>
+---
+
+1. **Determina los límites de la función $f(x)$ que aparecen en la vista derecha**
+
+<SmartFigure
+    id="fig111"
+    src="/inacap/cvcd01/images/fig111.png"
+	alt="Limites para f(x)"
+	caption="Límites para f(x)"
+	size="large"
+/>
+
+---
+2. **¿En qué puntos es discontinua la función $f(x)$?**
+<P indent={2}>
+$f(x)$ es discontinua en:
+- $x=1$
+- $x=4$
+- $x=6$
+</P>
+---
+3. **Clasifica los puntos de discontinuidad encontrados**
+
+<P indent={2}>
+$x = 1$: Discontinuidad esencial (infinita)
+- `lim x→1⁻ = ∞` y `lim x→1⁺ = -∞`
+- Los límites laterales son **infinitos** → hay una asíntota vertical en `x = 1`
+- No es removible
+
+$x = 4$: Discontinuidad de salto finito
+- Los límites laterales **existen pero son distintos**
+- Hay círculos abiertos en ambos lados de `x = 4`
+- No es removible
+
+$x = 6$: Discontinuidad de salto finito
+- `lim x→6⁻ = -3` y `lim x→6⁺ = 5`
+- Los límites laterales **existen pero son distintos** (-3 ≠ 5)
+- No es removible
+</P>
+</Solution>
+
+---
+ 
+## Actividad 05
+
+¿Qué valores deben tomar los parámetros $a$ y $b$ para que las funciones sean continuas en todo $\mathbb{R}$?
+
+$$
+\begin{align*}
+f(x) &= \begin{cases} e^{ax} & \text{si } x \leq 0 \\[5pt] 
+x + 2a & \text{si } 0 < x < 4 \\[5pt]
+5 + \ln(b - x) & \text{si } x \geq 4 \end{cases}\\[30pt]
+
+g(x) &= \begin{cases} ax - 3 & \text{si } x \leq -2 \\[5pt]
+x^2 - 1 & \text{si } -2 < x < 3 \\[5pt]
+bx + 1 & \text{si } x \geq 3 \end{cases}\\[30pt]
+
+h(x) &= \begin{cases} 5x + 19 & \text{si } x < a \\[5pt]
+x^2 - 2x + 1 & \text{si } a \leq x < b \\[5pt]
+-3x + 7 & \text{si } x \geq b \end{cases}
+\end{align*}
+$$
+
+<Solution title="Solución Actividad 05">
+
+**Para $f(x)$:**
+
+$$
+\begin{align*}
+e^{ax} &= x+2a\\[5pt]
+e^{a\cdot 0} &= 0+2a\\[5pt]
+1 &= 2a\\[5pt]
+a &= 0.5\\[30pt]
+
+x+2a &= 5 + ln(b-x)\\[5pt]
+x+2\cdot 0.5 &= 5 + ln(b-x)\\[5pt]
+x+1 &= 5 + ln(b-x)\\[5pt]
+4+1 &= 5 + ln(b-4)\\[5pt]
+5 &= 5 + ln(b-4)\\[5pt]
+0 &= ln(b-4)\\[5pt]
+e^0 &= b-4\\[5pt]
+1 &= b-4\\[5pt]
+b &= 5
+\end{align*}
+$$
+
+<SmartFigure
+    id="fig112"
+    src="/inacap/cvcd01/images/fig112.png"
+	alt="Función f(x) con a=0.5 y b=5"
+	caption="Función f(x) con a=0.5 y b=5"
+	size="large"
+/>
+
+<SmartFigure
+    id="fig113"
+    src="/inacap/cvcd01/images/fig113.png"
+	alt="Gráfico f(x)"
+	caption="Gráfico f(x)"
+    lightbox={true}
+	size="large"
+/>
+
+<P indent={2}>
+$\therefore$ La función $\boxed{f(x)}$ es continua cuando $\boxed{a=0.5}$ y $\boxed{b=5}$
+</P>
+
+---
+
+**Para $g(x):$**
+
+$$
+\begin{align*}
+ax-3 &= x^2-1\\[5pt]
+a\cdot(-2)-3 &= (-2)^2-1\\[5pt]
+-2a-3 &= 4-1\\[5pt]
+-2a-3 &= 3\\[5pt]
+-2a &= 6\\[5pt]
+a &= -\frac{6}{2}=-3\\[30pt]
+
+x^2-1 &= bx+1\\[5pt] 
+3^2-1 &= b\cdot 3+1\\[5pt] 
+9-1 &= 3b+1\\[5pt] 
+8 &= 3b+1\\[5pt] 
+3b &= 7\\[5pt] 
+b &= \frac{7}{3}\approx 2.33\\[5pt] 
+\end{align*}
+$$
+
+<SmartFigure
+    id="fig114"
+    src="/inacap/cvcd01/images/fig114.png"
+	alt="Función g(x) con a=-3 y b=2.33"
+	caption="Función g(x) con a=-3 y b=2.33"
+	size="large"
+/>
+
+<SmartFigure
+    id="fig115"
+    src="/inacap/cvcd01/images/fig115.png"
+	alt="Gráfico g(x)"
+	caption="Gráfico g(x)"
+    lightbox={true}
+	size="large"
+/>
+
+<P indent={2}>
+$\therefore$ La función $\boxed{g(x)}$ es continua cuando $\boxed{a=-3}$ y $\boxed{b\approx 2.33}$
+</P>
+
+---
+
+**Para $h(x)$:**
+
+<SmartFigure
+    id="fig116"
+    src="/inacap/cvcd01/images/fig116.png"
+	alt="Valores para a y b"
+	caption="Valores para a y b"
+	size="large"
+/>
+
+<SmartFigure
+    id="fig117"
+    src="/inacap/cvcd01/images/fig117.png"
+	alt="Función h(x) con a=-2 y b=2"
+	caption="Función h(x) con a=-2 y b=2"
+	size="large"
+/>
+
+<SmartFigure
+    id="fig118"
+    src="/inacap/cvcd01/images/fig118.png"
+	alt="Gráfico h(x)"
+	caption="Gráfico h(x)"
+    lightbox={true}
+	size="large"
+/>
+
+<P indent={2}>
+$\therefore$ La función $\boxed{h(x)}$ es continua cuando $\boxed{a=-2}$ y $\boxed{b=2}$
+</P>
+
+</Solution>

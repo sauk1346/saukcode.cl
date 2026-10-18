@@ -1,0 +1,87 @@
+# Evaluación 01
+- **Instrucciones:** [eval01.pdf](/inacap/ti3v11/docs/eval01.pdf)
+
+## Solución Código
+
+```js
+Proceso Evaluacion01
+	Definir op Como Entero;
+	Definir rut Como Cadena;
+	Definir resp Como Cadena;
+	Definir i Como Entero;
+	Definir totalProd Como Entero;
+	Definir nombreProd Como Cadena;
+	Definir valorProd Como Real;
+	Definir sumaValor Como Real;
+	Definir promedio Como Real;
+	Definir valorMax Como Real;
+	Definir prodMax Como Cadena;
+	op = 1; //valor aleatorio para ingresar al bucle
+	Mientras op!=4 Hacer
+		Escribir '----------------------------------------------------------------------------------';
+		Escribir 'Menu: 1.Iniciar Venta | 2.Ver Total de la Venta | 3.Ver Datos de Venta| 4. Salir  ';
+		Escribir '----------------------------------------------------------------------------------';
+		Escribir Sin Saltar 'Ingrese opción';
+		Leer op;
+		Si op==1 Entonces
+			Escribir Sin Saltar 'Ingrese Rut de Cliente: ';
+			Leer rut;
+			i = 0;
+			valorMax = 0;
+			sumaValor = 0;
+			resp = 'SI';
+			Mientras resp!='NO' Hacer
+				// Ingresar nombre prod y valor
+				Escribir Sin Saltar 'Ingrese Producto';
+				Leer nombreProd;
+				Escribir Sin Saltar 'Ingrese Valor: ';
+				Leer valorProd;
+				Mientras valorProd<=0 Hacer
+					Escribir Sin Saltar 'ERROR EN VALOR Ingrese Valor correcto: ';
+					Leer valorProd;
+				FinMientras
+				// suma de todos los productos
+				sumaValor = sumaValor+valorProd;
+				// nombre y valor de producto mas alto
+				Si valorProd>valorMax Entonces
+					valorMax = valorProd;
+					prodMax = nombreProd;
+				FinSi
+				i = i+1;
+				totalProd = i;
+				// promedio valores
+				promedio = sumaValor/totalProd;
+				// agregar otro producto?
+				Escribir Sin Saltar '¿Desea agregar otro producto?(SI/NO): ';
+				Leer resp;
+			FinMientras
+		FinSi
+		Si op==2 Entonces
+			Escribir '';
+			Escribir '- El cliente rut ', rut, ' compró un total de $', sumaValor, ' en productos de nuestra tienda.';
+		FinSi
+		Si op==3 Entonces
+			Escribir '';
+			Escribir '- El producto con valor más alto comprado por el Cliente rut ', rut, ' fue ', prodMax, ', con un valor de $', valorMax;
+			Escribir '- El promedio de los valores registrados en la compra es: $', promedio;
+		FinSi
+		Si op==4 Entonces
+			Escribir '';
+			Escribir 'Sesión Finalizada';
+		FinSi
+	FinMientras
+FinProceso
+```
+
+## Solución Diagrama
+
+<SmartFigure
+	id="diagrama-eval01"
+	src="/inacap/ti3v11/images/fig04.png"
+	alt="Diagrama Evaluación 01"
+	caption="Diagrama Evaluación 01"
+	autoNumber={true}
+	center={true}
+	lightbox={true}
+	size="medium"
+/>

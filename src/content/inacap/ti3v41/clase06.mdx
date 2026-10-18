@@ -1,0 +1,320 @@
+# (Proyecto Tienda) Inicio - Módulo Admin
+
+- Desarrollar un proyecto llamado **TiendaProductos**
+- Desarrollar una aplicación llamada **Tienda**
+- Construir el modelo **Cliente** en base a la siguiente estructura:
+    - **id_cliente** (generado automáticamente)
+    - **nombre** (caracter)
+    - **apellido** (caracter)
+    - **fecha_nacimiento** (fecha)
+    - **edad** (numérico)
+    - **correo** (email)
+- Construir el modelo **Producto** en base a la siguiente estructura:
+    - **id_producto** (generado automáticamente)
+    - **nombre** (caracter)
+    - **precio** (numérico)
+    - **stock** (numérico)
+- Construir el modelo **Categoría** en base a la siguiente estructura:
+    - **id_categoria** (generado automáticamente)}
+    - **categoria** (caracter)
+
+1. **Crear Nuevo Proyecto:** Llamado `tiendaproductos`
+    ```sh
+    django-admin startproject tiendaproductos
+    cd tiendaproductos
+    ```
+
+2. **Crear App:** Llamada `tienda`
+    ```sh
+    python manage.py startapp tienda
+    ```
+
+3. **Configuración Inicial:** Agregar `tienda` en `settings.py`
+    - Realizar configuraciones extras como **idioma** y **zona horaria**
+    ```python
+    #./tiendaproductos/settings.py
+    from pathlib import Path
+    ...
+    ...
+    INSTALLED_APPS = [
+        ...
+        ...
+        "tienda",
+    ]
+    ...
+    ...
+    LANGUAGE_CODE = "es-CL"
+
+    TIME_ZONE = "America/Santiago"
+    ...
+    ...
+    ```
+
+4. **Configuración Modelos:** Crear modelos `Cliente`, `Producto` y  `Categoria` con los campos solicitados, en `models.py`
+    ```python
+    #./tienda/models.py
+    from django.db import models
+
+    # Create your models here.
+    class Cliente(models.Model):
+        nombre = models.CharField(max_length=100, help_text="Ingresa tus nombres")
+        apellido = models.CharField(max_length=100, help_text="Ingresa tus apellido")
+        fecha_nac = models.DateField(null=True, blank=True, help_text="Ingresa tu fecha de nacimiento")
+        edad = models.IntegerField(null=True, blank=True, help_text="Ingresa tu edad")
+        correo = models.EmailField(null=True, blank=True, help_text="Ingresa tu correo")
+        def __str__(self):
+            return f"{self.nombre} {self.apellido}"
+
+    class Producto(models.Model):
+        nombre = models.CharField(max_length=100, help_text="Nombre del producto")
+        precio = models.IntegerField(null=True, blank=True, help_text="Precio del producto")
+        stock = models.IntegerField(null=True, blank=True, help_text="Cantidad en stock del producto")
+        def __str__(self):
+            return f"{self.nombre}"
+
+    class Categoria(models.Model):
+        nombre = models.CharField(max_length=100, help_text="Categoría del producto")
+        def __str__(self):
+            return f"{self.nombre}"
+    ```
+
+5. **Configurar Base de datos:** Crear archivos de migración con los cambios realizados y aplicarlos a la base de datos
+    ```sh
+    python manage.py makemigrations
+    ```
+    <TerminalOutput>
+    {`Migrations for 'tienda':
+      tienda/migrations/0001_initial.py
+        + Create model Categoria
+        + Create model Cliente
+        + Create model Producto`}
+    </TerminalOutput>
+
+    ```sh
+    python manage.py migrate
+    ```
+    <TerminalOutput>
+    {`Operations to perform:
+      Apply all migrations: admin, auth, contenttypes, sessions, tienda
+    Running migrations:
+      Applying contenttypes.0001_initial... OK
+      Applying auth.0001_initial... OK
+      Applying admin.0001_initial... OK
+      Applying admin.0002_logentry_remove_auto_add... OK
+      Applying admin.0003_logentry_add_action_flag_choices... OK
+      Applying contenttypes.0002_remove_content_type_name... OK
+      Applying auth.0002_alter_permission_name_max_length... OK
+      Applying auth.0003_alter_user_email_max_length... OK
+      Applying auth.0004_alter_user_username_opts... OK
+      Applying auth.0005_alter_user_last_login_null... OK
+      Applying auth.0006_require_contenttypes_0002... OK
+      Applying auth.0007_alter_validators_add_error_messages... OK
+      Applying auth.0008_alter_user_username_max_length... OK
+      Applying auth.0009_alter_user_last_name_max_length... OK
+      Applying auth.0010_alter_group_name_max_length... OK
+      Applying auth.0011_update_proxy_permissions... OK
+      Applying auth.0012_alter_user_first_name_max_length... OK
+      Applying sessions.0001_initial... OK
+      Applying tienda.0001_initial... OK`}
+    </TerminalOutput>
+
+6. **Configurar Admin (1):** Importar los modelos a `admin.py` y crear superusuario
+    ```python
+    #./tienda/admin.py
+    from django.contrib import admin
+    from .models import Cliente, Producto, Categoria
+
+    # Register your models here.
+    admin.site.register(Cliente)
+    admin.site.register(Producto)
+    admin.site.register(Categoria)
+    ```
+    ```sh
+    python manage.py createsuperuser
+    ```
+    <TerminalOutput>
+    {`Nombre de usuario (leave blank to use 'sauk'): antonio
+    Dirección de correo electrónico: antonio@example.cl
+    Password: antoniomorales123
+    Password (again): antoniomorales123
+    Superuser created successfully.`}
+    </TerminalOutput>
+
+7. **Configurar Admin (2):** Personalizar la visualización de los modelos con las clases `...Admin`
+    ```python
+    #./tienda/admin.py
+    from django.contrib import admin
+    from .models import Cliente, Producto, Categoria
+
+    class ClienteAdmin(admin.ModelAdmin):
+        list_display = ('id', 'nombre', 'apellido', 'fecha_nac', 'edad', 'correo')
+        fieldsets = (
+            ('Identificación', {
+                'fields': ('nombre', 'apellido')
+            }),
+            ('Información Adicional', {
+                'fields': ('fecha_nac', 'edad', 'correo')
+            }),
+        )
+
+    class ProductoAdmin(admin.ModelAdmin):
+        list_display = ('id', 'nombre', 'precio', 'stock')
+
+    class CategoriaAdmin(admin.ModelAdmin):
+        list_display = ('id', 'nombre',)
+
+    # Register your models here.
+    admin.site.register(Cliente, ClienteAdmin)
+    admin.site.register(Producto, ProductoAdmin)
+    admin.site.register(Categoria, CategoriaAdmin)
+    ```
+
+8. **Agregar Datos:** Levantar servidor y agregar productos a través del módulo Admin
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/admin/
+    ```
+    <SmartFigure
+        id="categorias-ingresadas"
+        src="/inacap/ti3v41/images/fig026.png"
+        alt="Categorias ingresadas"
+        caption="Categorías ingresadas"
+        size="large"
+    />
+    <SmartFigure
+        id="productos-ingresados"
+        src="/inacap/ti3v41/images/fig027.png"
+        alt="Productos ingresados"
+        caption="Productos ingresados"
+        size="large"
+    />
+
+9. **Configurar Templates (1):** Crear directorio `./tienda/templates/tienda` y agregar template `index.html`
+    ```sh
+    mkdir -p ./tienda/templates/tiendita
+    ```
+    ```html
+    <!-- ./tienda/templates/tienda/index.html -->
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <title>Tienda de Productos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    </head>
+    <body>
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-sm-2">
+            <ul class="sidebar-nav">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="http://localhost:8000/admin">Admin</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-10 ">
+            <h1>Tienda de Productos - Tienda</h1>
+    
+            <p>Bienvenido a la <em><strong>Tiendita</strong></em>, la mejor tienda de productos del país.</p>
+    
+            <h2>Contenido Dinámico</h2>
+    
+            <p>El modelo posee los siguiente datos:</p>
+            <ul>
+                <li><strong>Clientes:</strong></li>
+                <li><strong>Productos:</strong></li>
+                <li><strong>Todas las Categorías:</strong></li>
+            </ul>
+        </div>
+        </div>
+    </div>
+    </body>
+    </html>
+    ```
+
+10. **Configurar Vistas:** Crear vista `index`
+    ```python
+    #./tienda/views.py
+    from django.shortcuts import render
+    from .models import Cliente, Producto, Categoria
+
+    def index(request):
+        # Generación de contadores
+        cant_clientes = Cliente.objects.all().count()
+        cant_productos = Producto.objects.all().count()
+        cant_categorias = Categoria.objects.all().count()
+
+        contexto = {
+            'cant_clientes': cant_clientes,
+            'cant_productos': cant_productos,
+            'cant_categorias': cant_categorias
+        }
+        return render(request, 'tienda/index.html', contexto)
+    ```
+
+11. **Configurar Enrutamiento:** Crear `./tienda/urls.py` y agregarlo a `./tiendaproductos/urls.py`
+    ```python
+    #./tienda/urls.py
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path("index/", views.index, name="index"),
+    ]
+    ```
+
+    ```python
+    #./tiendaproductos/urls.py
+    from django.contrib import admin
+    from django.urls import path, include
+
+    urlpatterns = [
+        path("admin/", admin.site.urls),
+        path("tienda/", include('tienda.urls')),
+    ]
+    ```
+
+12. **Configurar Templates (2):** Agregar los datos creados en la vista `index` (el contexto)
+    ```html
+    <!-- ./tienda/templates/tienda/index.html -->
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    ...
+    ...
+    </head>
+    <body>
+    <div class="container-fluid">
+        <div class="row">
+        ...
+        ...
+        <div class="col-sm-10 ">
+            ...
+            ...
+            <ul>
+                <li><strong>Clientes: {{ cant_clientes }}</strong></li>
+                <li><strong>Productos: {{ cant_productos }}</strong></li>
+                <li><strong>Todas las Categorías: {{cant_categorias }}</strong></li>
+            </ul>
+        </div>
+        </div>
+    </div>
+    </body>
+    </html>
+    ```
+
+13. **Verificar Datos:** Verificar que se muestran correctamente los datos (contadores) en la vista `index`
+    ```sh
+    http://127.0.0.1:8000/tienda/index/
+    ```
+   <SmartFigure
+        id="vista-index"
+        src="/inacap/ti3v41/images/fig028.png"
+        alt="Vista index con datos (contadores)"
+        caption="Vista index con datos (contadores)"
+        size="large"
+    />

@@ -1,0 +1,100 @@
+# Física y Colisiones en Motores de Videojuegos
+
+- **Material Complementario:** [Curso Introductorio de Desarrollo de Videojuegos con Godot](http:saukcode.cl/elearning/ptz001) 
+
+## 1. Motores de Juegos
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Motor", "Descripción"]}
+    lists={{
+        R1: [
+            "Motor de juegos open-source",
+            "Lenguajes: GDScript, C#, Python",
+            "Ideal para proyectos pequeños y medianos",
+            "Comunidad activa y en crecimiento"
+        ],
+        R2: [
+            "Motor de juegos comercial muy popular",
+            "Lenguajes: C#, JavaScript, Boo",
+            "Ideal para proyectos de todos los tamaños",
+            "Amplia documentación y recursos disponibles"
+        ]
+    }}
+    rows={[
+        [
+            "**Godot**",
+            "@R1"
+        ],
+        [
+            "**Unity**",
+            "@R2"
+        ]
+    ]}
+/>
+
+## 2. Conceptos Fundamentales
+
+### Cuerpo Físico (Rigid Body)
+- Permite establecer y programar colisionadores (trabajo con colliders)
+
+### Colisionador (Collider)
+- Es el nodo hijo que se adjunta al Cuerpo Físico (CharacterBody, RigidBody, etc.)
+- Define la forma exacta del collider (ej: BoxShape3D, CircleShape2D)
+- Un cuerpo físico puede tener múltiples formas de colisión
+
+### Movimiento
+- Se basa en física mediante vectores
+- Existe el concepto de gravedad
+- Anteriormente existía el concepto de "colisionador de polígonos"
+
+### Ventana de Unity
+- **Assets:** Muestra los distintos contenidos en una estructura ordenada (imágenes, fondos)
+- **Objeto:** Una imagen no es un objeto por sí misma
+    - Se convierte en objeto cuando se le asigna un componente (ej: un RigidBody2D)
+
+### Agregar Objeto
+- Ruta: `GameObject → 2D Object → Sprites → Source`
+
+### Diferencia entre 2D y 3D
+- Solo un eje adicional (el eje Z)
+
+## 3. Ejemplo Práctico
+
+### Caso: Sprite con Gravedad
+1. Si a un sprite se le agrega RigidBody y gravedad, el sprite cae
+2. Si se agrega una plataforma con RigidBody, ambos (sprite y plataforma) caen
+3. **Solución parcial:** Agregar un `BoxCollider2D` a la plataforma, pero aún así se cae
+4. **Solución completa:** Al sprite le falta un `CapsuleCollider2D`, lo que permite que el sprite no atraviese la plataforma
+
+> De esta manera, dos objetos (sprite y plataforma) pueden colisionar correctamente
+
+### Cambio de Gravedad
+- Es posible atraer o repeler según los valores asignados
+- Valor positivo → repele
+- Valor negativo → atrae
+
+### Cámara como Herencia
+- Es posible asignar la cámara como hijo del personaje
+- Esto permite que la cámara siga al personaje en todo momento
+
+## 4. Sistema de Partículas
+
+El sistema de partículas permite simular fenómenos que son inherentemente caóticos o que involucran una gran cantidad de elementos pequeños.
+
+- Godot maneja el sistema de partículas de manera unidireccional
+- **Advertencia:** No abusar de los scripts, ya que cada script se aplica a otros objetos
+
+### ¿Para Qué Sirve?
+- Dar diferentes efectos visuales
+- Simular polvo al dar pisadas
+- Simular gotas cayendo (con direcciones aleatorias)
+
+## 5. Tarea para la Próxima Clase
+
+### En Godot:
+1. Analizar el sistema de partículas
+2. Crear un efecto de "lluvia" con:
+   - Movimiento aleatorio
+   - Dirección unidireccional (hacia abajo)
+3. Entregar imágenes pegadas del escenario del juego

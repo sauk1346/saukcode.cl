@@ -1,0 +1,219 @@
+# Gestión de archivos y directorios en linux
+
+Manejar las propiedades y permisos en Linux es clave para poder operar y mantener su sistema, ya sea que utilice su servidor para la gestión de un sitio web o para la administración de grandes plataformas. 
+
+## Tipos de cuenta Linux
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Tipo de Cuenta', 'Descripción']}
+	rows={[
+		[
+			'**Root**',
+			'Cuenta administrativa más poderosa. Acceso completo a todos los archivos y directorios del sistema'
+		],
+		[
+			'**System**',
+			'Cuentas especiales para manejar procesos y servicios específicos en el sistema operativo. Se utilizan para ejecutar servicios en segundo plano, como servidores web, bases de datos, y otros dominios del sistema'
+		],
+		[
+			'**Normal**',
+			'Cuentas de usuarios estándar. Permiten a los usuarios realizar tareas comunes, como navegar por la web, editar documentos, etc. Tienen permisos limitados para proteger el sistema contra cambios no autorizados'
+		],
+		[
+			'**Network**',
+			'Diseñadas para usuarios que acceden al sistema a través de la red. Estas cuentas suelen estar asociadas a servicios de red (SSH, FTP, SAMBA), permitiendo el acceso remoto a los recursos del sistema'
+		]
+	]}
+/>
+
+## Permisos
+Los tres parámetros principales son los permisos de **lectura**, **escritura** y **ejecución**.
+
+Es posible ver los permisos utilizando la instrucción `ls -l`
+
+```sh
+sauk@homePC:~/Downloads$ ls -l
+total 2384856
+-rw-rw-r-- 1 sauk sauk     139927 Apr 29 19:50  1111946.jpg
+-rw-rw-r-- 1 sauk sauk      70957 Jul 10 07:43 '1.1.2.1 B_I + E I.pdf'
+-rw-rw-r-- 1 sauk sauk     620997 Jun 17 20:22 '1.1.2.2 A_I + E I.pdf'
+-rw-rw-r-- 1 sauk sauk     128680 Jun 17 20:22 '1.1.2.2 B I + E I.pdf'
+-rw-rw-r-- 1 sauk sauk     136951 Jun 24 22:52 '1.1.3.1 I + E I.pdf'
+```
+
+- La 1ra columna `-rw-rw-r--` muestra el tipo de archivo y sus permisos
+- La 2da columna `(1)` indica el número de enlaces al archivo
+- La 3ra columna `sauk` identifica al propietario del archivo
+- La 4ta columna `sauk` indica el grupo al que pertenece el archivo.
+
+Las columnas siguientes muestran el **tamaño** del archivo, la **fecha y hora** de la última modificación, y finalmente, el **nombre** del archivo o directorio. 
+
+## Permisos en formato numérico octal
+
+La combinación de valores de cada grupo de los usuarios forma un número octal:
+
+- El bit `x` es $2^0 = 1$.
+- El bit `w` es $2^1 = 2$.
+- El bit `r` es $2^2 = 4$. 
+
+La combinación de bits encendidos o apagados en cada grupo produce ocho posibles combinaciones de valores, que corresponden a la suma de los bits encendidos.
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Permisos', 'Valor', 'Significado']}
+	rows={[
+		['`---`', '`0`', 'No se tiene ningún permiso'],
+		['`--x`', '`1`', 'Solo permiso de ejecución'],
+		['`-w-`', '`2`', 'Solo permiso de escritura'],
+		['`-wx`', '`3`', 'Permisos de escritura y ejecución'],
+		['`r--`', '`4`', 'Solo permiso de lectura'],
+		['`r-x`', '`5`', 'Permisos de lectura y ejecución'],
+		['`rw-`', '`6`', 'Permisos de lectura y escritura'],
+		['`rwx`', '`7`', 'Todos los permisos (lectura, escritura, ejecución)']
+	]}
+/>
+
+Cuando se combinan los permisos del usuario, grupo y otros, se obtiene un número de **tres cifras** que representa los permisos del archivo o directorio
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Permisos', 'Valor', 'Significado']}
+	rows={[
+		['`rw-------`', '`600`', 'El propietario tiene permisos de lectura y escritura.'],
+		['`rwx--x--x`', '`711`', 'El propietario lectura, escritura y ejecución, el grupo y otros solo ejecución.'],
+		['`rwxr-xr-x`', '`755`', 'El propietario lectura, escritura y ejecución, el grupo y otros pueden leer y ejecutar el archivo'],
+		['`rwxrwxrwx`', '`777`', 'El archivo puede ser leído, escrito y ejecutado por quien sea.'],
+		['`r--------`', '`400`', 'Solo el propietario puede leer el archivo, pero ni el mismo puede modificarlo o ejecutarlo y por supuesto ni el grupo ni otros pueden hacer nada en él.'],
+		['`rw-r-----`', '`640`', 'El usuario propietario puede leer y escribir, el grupo puede leer el archivo y otros no pueden hacer nada.']
+	]}
+/>
+
+## chmod
+*change mod*. Comando para cambiar los permisos
+
+```sh
+chmod 755 reporte1
+chmod 511 respaldo.sh
+```
+
+## Estableciendo permisos en modo simbólico
+
+- usuario, con letra `u`
+- grupo, con letra `g`
+- otros usuarios, con letra `o`
+- a todos (usuario, grupo, otros), con letra `a`
+- para establecer permiso, con signo `+`
+- para eliminar permiso, con signo `-`
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Actual', 'chmod', 'Resultado', 'Descripción']}
+	rows={[
+		['`rw-------`', '`a+x`', '`rwx--x--x`', 'Agregar a todos (all) permisos de escritura'],
+		['`rwx--x--x`', '`go-x`', '`rwx------`', 'Se eliminan permiso de ejecución para grupo y otros'],
+		['`rwxr-xr-x`', '`u-x,go-r`', '`rw---x--x`', 'Al usuario se le quita ejecución, al grupo y otros se le quita lectura'],
+		['`rwxrwxrwx`', '`u-x,go-rwx`', '`rw-------`', 'Al usuario se le elimina ejecución, al grupo y otros se eliminan todos los permisos'],
+		['`r--------`', '`a+r,u+w`', '`rw-r--r--`', 'A todos se les agrega lectura, al usuario se le agrega escritura'],
+		['`rw-r-----`', '`u-rw,g+w,o+x`', '`---rw---x`', 'Al usuario se le eliminan lectura y escritura, al grupo se le agrega lectura y otros se le agrega ejecución']
+	]}
+/>
+
+## Cambiando propietario y grupo
+
+```sh
+$> ls -l
+                                                   9090 sep 9 14:10 presentacion
+-rw-rw-r-- 1 sergio sergio 2825990 sep 7 16:36 reporte1
+```
+
+- `chown`, comando para cambiar usuario
+- `chgrp`, comando para cambiar grupo
+
+## Bits SUID, SGID y de persistencia
+
+- **SUID:** *Set User ID* 
+- **SGID:** *Set Group ID
+- **bit de persistencia:** *sticky bit* 
+
+**Ejemplo:** veamos los permisos del comando `passwd`, que se utiliza para cambiar la contraseña de un usuario
+
+```sh
+#> ls -l /usr/bin/passwd
+-r-s--x--x 1 root root 21944 feb 12 2006 /usr/bin/passwd
+```
+**SUID**
+
+En lugar de la 'x' en el grupo del usuario, encontramos una 's' (suid). El comando 'passwd' es propiedad de root, pero debe poder ser ejecutado por otros usuarios, no solo por root. Aquí es donde entra en juego el bit SUID, que al activarse obliga al archivo ejecutable binario a ejecutarse como si hubiera sido lanzado por el usuario propietario, y no por quien realmente lo ejecutó. En otras palabras, permite invocar un comando propiedad de otro usuario (generalmente root) como si uno fuera el propietario.
+
+**SGID**
+
+El bit SGID funciona igual al bit SUID, pero se aplica al grupo del archivo. Si un usuario pertenece al grupo 'ventas' y existe un binario llamado 'reporte' cuyo grupo es 'ventas' y tiene el bit SGID activado, entonces cualquier usuario que pertenezca al grupo 'ventas' podrá ejecutarlo. Al igual que el bit SUID, el bit SGID se muestra como una 's' en lugar de la 'x' en los permisos del grupo.
+
+**Sticky bit**
+
+Este bit se aplica para directorios como en el caso de /tmp y se indica con una 't':
+
+```sh
+#> ls -ld /tmp
+drwxrwxrwt 24 root root 4096 sep 25 18:14 /tmp
+```
+
+El bit de persistencia, también conocido como sticky bit, se muestra como una 't' en lugar de la 'x' en los permisos de otros. En directorios compartidos por varios usuarios, este bit asegura que solo el propietario del archivo pueda eliminarlo o modificarlo.
+
+Es decir, otros usuarios podrán leer el contenido del archivo o ejecutarlo si es un binario, pero solo el propietario original tendrá la capacidad de eliminarlo o modificarlo. Sin el sticky bit activado, en estos directorios públicos, cualquier usuario podría eliminar o modificar los archivos de otros usuarios.
+
+# Actividad de Práctica 08
+
+<Quiz questions={[
+	{
+		question: "Si queremos asignar permisos de full control a un recurso tipo archivo utilizamos el comando:",
+		options: [
+			"chmod 666",
+			"chmod all",
+			"chomod 777",
+			"chgrp all"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Para qué se utiliza el comando mkdir en Linux?",
+		options: [
+			"Para asignar permisos",
+			"Para eliminar usuarios",
+			"Para crear directorios o subdirectorios",
+			"Para eliminar procesos"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Con qué comando Linux cambiamos el propietario de un recurso?",
+		options: [
+			"chgrp",
+			"chmod",
+			"ls",
+			"chown"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Cuál es el comando para signar una contraseña en Linux?",
+		options: [
+			"passadd",
+			"passwd",
+			"newpass",
+			"keypasswd"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Qué es el superusuario o usuario root?",
+		options: [
+			"Es un usuario especial que tiene todos los privilegios sobre el sistema",
+			"Es un comando de Linux",
+			"Es un usuario común",
+			"Usuario elevado, pero sin opciones de alterar la configuración del sistema"
+		],
+		correctIndex: 0
+	},
+]} />

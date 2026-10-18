@@ -1,0 +1,6 @@
+---
+// Wrapper Astro: hidrata el Quiz interactivo (islas por quiz, carga al entrar al viewport).
+import { Quiz } from './QuizComponent.jsx';
+const props = Astro.props;
+---
+<Quiz client:visible {...props} />

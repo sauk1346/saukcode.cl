@@ -1,0 +1,107 @@
+# Aplicando metodologías ágiles de desarrollo
+
+## ¿Qué es?
+- Es un enfoque de gestión de proyectos
+- Se centra en la flexibilidad, adaptabilidad y entregra incremental
+- Valoran la colaboración, la comunicación y la capacidad de respuesta al cambio.
+
+## Manifiesto Ágil
+1. Individuos e interacciones sobre procesos y herramientas
+2. Colaboración con el cliente sobre negociación contractual
+3. Software funcionando sobre documentación extensiva
+4. Responder al cambio sobre seguir un plan
+
+## Métodologías Ágiles Comunes
+- Scrum
+- Kanban
+- Extreme Programming
+- Lean
+
+A pesar de haber muchas, todas tienen el mismo enfoque: iteración rápida, la retroalimentación frecuente del cliente y la capacidad de respuesta a los cambios en los requisitos del proyecto
+
+## Scrum
+
+<SmartFigure
+	id="flujo-metodologia-scrum"
+	src="/inacap/ti3v21/images/fig35.png"
+	alt="Flujo Metodología SCRUM"
+	caption="Flujo Metodología SCRUM"
+	size="large"
+/>
+
+### Roles 
+
+- **Scrum Master (SM):** Se asegura que el equipo siga los principios y prácticas de Scrum, además de eliminar los obstáculos que puedan surgir durante el desarrollo del proyecto. Actúa como líder de servicio, guiando al equipo hacua la autogestión y la mejora continua.	
+- **Product Owner (PO):** Representa los intereses del cliente y del negocio. Define y prioriza los elementos del trabajo (product backlog) en función del valor para el cliente y la visión del producto.
+- **Dev Team (DT):** Son los profesionales que realizan el trabajo de desarrollo real. Son autoorganizados y multidisciplinarios. Se comprometen a entregar el trabajo acordado durante cada iteración (Sprint) y son responsables de la calidad y la entrega oportuna del producto. Trabajan con el PO para comprender los requisitos y enfoques para la implementación, y están motivados para alcanzar los objetivos del proyecto.
+
+### Eventos
+
+- **Sprint:** Es el corazón del Scrum, un período de tiempo fijo (generalmente 2 a 4 semanas) durante el cual se realiza el trabajo de desarrollo y se entrega un incremento de producto potencialmente utilizable.
+- **Sprint Planning:** Al inicio de cada sprint, el equipo Scrum se reúne para planificar el trbajo que se realizará. Seleccionan los elementos del backlog del producto que se comprometen a completar durante el sprint y crean un plan para lograrlo.
+- **Daily Scrum:** También conocida como reunión diaria, es una breve reunión diaria (generalmente de 15 minutos) donde el equipo de Scrum sincroniza su trabajo y discute cualquier obstáculo que pueda afectar su progreso hacia la meta del sprint.
+- **Sprint Review:** Al final de cada sprint, el equipo de Scrum muestra el trabajo completado al Product Owner y otras partes interesadas para recibir retroalimentación. Esto proporciona una oportunidad para revisar el trabajo realizado y adaptar el backlog del producto según sea necesario.
+- **Sprint Retrospective:** Después de la revisión del sprint, el equipo de Scrum reflexiona sobre su desempeño y busca formas de mejorar en el próximo sprint.
+
+### Artefactos
+
+- **Product Backlog:** Es una lista priorizada de todos los elementos de trabajo, como funcionalidades, mejoras y correcciones de errores, que se espera se realicen en el proyecto. Es responsabilidad del Product Owner mantener el backlog del producto actualizado y priorizado según las necesidades y objetivos del proyecto.
+- **Sprint Backlog:** Es una lista de los elementos seleccionados del backlog del producto que el equipo se compromete a completar durante el sprint actual. Sirve como la hoja de ruta para el trabajo que se realizará durante el sprint y proporciona claridad sobre las tareas a realizar.
+- **Incremento:** Es el resultado del trabajo realizado durante el sprint, que potencialmente puede entregarse al cliente o usuario final. El objetivo del equipo es entregar un incremento de producto potencialmente utilizable al final de cada sprint, asegurándose de que sea funcional y cumpla con los criterios de aceptación definidos para cada elemento de trabajo.
+- **Product Goal:** Es un objeto de alto nivel que describe por qué se está trabajando en el producto. Proporciona una visión clara y coherente de lo que se espera lograr con el producto en su conjunto. El product Ownear comunica y actualiza el Product Goal para mantener al equipo enfocado en el propósito general del producto.
+- **Sprint Goal:** Es un objetivo específico y alcanzable que el equipo se compromete a lograr durante el sprint. Proporciona una guía clara sobre lo que se espera lograr con el trabajo realizado durante el sprint y ayuda a mantener al equipo enfocado en una dirección común. El Sprint Goal se establece durante la reunión de planificación del sprint y se utiliza como punto de referencia para evaluar el éxito del sprint al finalizar.
+
+# Actividad de Práctica 16
+
+<Quiz questions={[
+  {
+    question: "¿Cuál es el rol de Scrum Master en un equipo ágil?",
+    options: [
+      "Facilita el proceso Scrum, elimina obstáculos y promueve un ambiente de trabajo colaborativo.",
+      "Representa los intereses del cliente y define los requisitos del proyecto.",
+      "Se encarga de realizar las tareas de desarrollo del proyecto.",
+      "Prioriza y gestiona el backlog del producto."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál de las siguientes opciones es la función del Product Owner en un equipo ágil?",
+    options: [
+      "Facilita el proceso Scrum y elimina obstáculos.",
+      "Realiza las tareas de desarrollo del proyecto.",
+      "Representa los intereses del cliente y define los requisitos del proyecto.",
+      "Coordina las actividades del equipo durante el Sprint."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué artefacto de Scrum contiene una lista priorizada de todos los elementos de trabajo que se espera que se realicen en el proyecto?",
+    options: [
+      "Incremento",
+      "Sprint Backlog",
+      "Sprint Goal",
+      "Backlog del Producto"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál es el objetivo de la reunión de planificación del Sprint en Scrum?",
+    options: [
+      "Revisar el trabajo realizado durante el Sprint",
+      "Identificar y seleccionar los elementos del backlog del producto que se trabajarán durante el Sprint",
+      "Demostrar el trabajo completado al Product Owner y a las partes interesadas",
+      "Reflexionar sobre el desempeño del equipo durante el Sprint"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué evento de Scrum proporciona una oportunidad para reflexionar sobre el desempeño del equipo durante el Sprint y buscar formas de mejorar en el futuro?",
+    options: [
+      "Reunión Diaria de Scrum",
+      "Revisión del Sprint",
+      "Retrospectiva del Sprint",
+      "Reunión de Planificación del Sprint"
+    ],
+    correctIndex: 2
+  }
+]} />

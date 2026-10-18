@@ -1,0 +1,485 @@
+/* ================================
+   GRID PRINCIPAL - DIMENSIONES ORIGINALES
+   ================================ */
+   .grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--spacing-sm);
+    width: 100%;
+    max-width: 80rem;
+    margin-top: var(--spacing-lg);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* ================================
+     TARJETA DE MATERIA - DIMENSIONES ORIGINALES
+     ================================ */
+  .subjectCard {
+    background: var(--background);
+    border-radius: var(--radius-lg);
+    padding: 0.75rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .subjectCard:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  .cardLink {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: var(--radius-lg);
+  }
+  
+  /* ================================
+     BARRA SUPERIOR DE CATEGORÍA - ORIGINAL
+     ================================ */
+  .categoryBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    transition: height 0.3s ease;
+  }
+  
+  .subjectCard:hover .categoryBar {
+    height: 5px;
+  }
+  
+  /* Gradientes por categoría */
+  .categoryBar.programming { 
+    background: linear-gradient(135deg, var(--primary), #60a5fa); 
+  }
+  
+  .categoryBar.database { 
+    background: linear-gradient(135deg, var(--success), #34d399); 
+  }
+  
+  .categoryBar.security { 
+    background: linear-gradient(135deg, var(--error), #f87171); 
+  }
+  
+  .categoryBar.systems { 
+    background: linear-gradient(135deg, var(--accent), #a78bfa); 
+  }
+  
+  .categoryBar.math { 
+    background: linear-gradient(135deg, var(--warning), #fbbf24); 
+  }
+  
+  .categoryBar.business { 
+    background: linear-gradient(135deg, #f97316, #fb923c); 
+  }
+  
+  .categoryBar.methodology { 
+    background: linear-gradient(135deg, #ec4899, #f472b6); 
+  }
+  
+  .categoryBar.general { 
+    background: linear-gradient(135deg, var(--secondary), #9ca3af); 
+  }
+  
+  /* ================================
+     CONTENIDO DE LA TARJETA - ORIGINAL
+     ================================ */
+  .cardContent {
+    margin-top: var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .cardLeft {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  
+  /* ================================
+     ICONO DE CATEGORÍA - ORIGINAL
+     ================================ */
+  .categoryIcon {
+    color: white;
+    padding: 0.3rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .subjectCard:hover .categoryIcon {
+    transform: scale(1.1);
+  }
+  
+  /* Gradientes por categoría para iconos */
+  .categoryIcon.programming { 
+    background: linear-gradient(135deg, var(--primary), #60a5fa); 
+  }
+  
+  .categoryIcon.database { 
+    background: linear-gradient(135deg, var(--success), #34d399); 
+  }
+  
+  .categoryIcon.security { 
+    background: linear-gradient(135deg, var(--error), #f87171); 
+  }
+  
+  .categoryIcon.systems { 
+    background: linear-gradient(135deg, var(--accent), #a78bfa); 
+  }
+  
+  .categoryIcon.math { 
+    background: linear-gradient(135deg, var(--warning), #fbbf24); 
+  }
+  
+  .categoryIcon.business { 
+    background: linear-gradient(135deg, #f97316, #fb923c); 
+  }
+  
+  .categoryIcon.methodology { 
+    background: linear-gradient(135deg, #ec4899, #f472b6); 
+  }
+  
+  .categoryIcon.general { 
+    background: linear-gradient(135deg, var(--secondary), #9ca3af); 
+  }
+  
+  /* ================================
+     INFORMACIÓN DE LA TARJETA - ORIGINAL
+     ================================ */
+  .cardInfo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+  
+  .code {
+    font-family: monospace;
+    color: var(--secondary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  
+  /* ================================
+     BADGE DE ESTADO - ORIGINAL
+     ================================ */
+  .statusBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.15rem var(--spacing-xs);
+    border-radius: var(--radius-lg);
+    font-size: 0.65rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  
+  .statusBadge.completed {
+    background: color-mix(in srgb, var(--success) 20%, transparent);
+    color: var(--success);
+  }
+  
+  .statusBadge.current {
+    background: color-mix(in srgb, var(--primary) 20%, transparent);
+    color: var(--primary);
+  }
+  
+  .statusBadge.pending {
+    background: color-mix(in srgb, var(--secondary) 20%, transparent);
+    color: var(--secondary);
+  }
+  
+  /* ================================
+     TÍTULO DE LA MATERIA - ORIGINAL
+     ================================ */
+  .cardTitle {
+    font-weight: 600;
+    color: var(--foreground);
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.3;
+    transition: color 0.3s ease;
+    font-size: 0.8rem;
+    flex: 1;
+  }
+  
+  .link {
+    color: var(--primary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  
+  .link:hover {
+    color: var(--primary-hover);
+  }
+  
+  .link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transition: width 0.3s ease;
+  }
+  
+  .link:hover::after {
+    width: 100%;
+  }
+  
+  /* ================================
+     FOOTER DE LA TARJETA - ORIGINAL
+     ================================ */
+  .cardFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .categoryLabel {
+    padding: 0.15rem var(--spacing-xs);
+    border-radius: var(--radius-lg);
+    background: var(--card-bg);
+    color: var(--secondary);
+    font-size: 0.65rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  
+  .subjectCard:hover .categoryLabel {
+    background: var(--primary);
+    color: white;
+  }
+  
+  /* ================================
+     ESTADOS DE LA TARJETA - COMO EN EL ORIGINAL
+     ================================ */
+  .subjectCard.completed {
+    /* Los estilos de estado se manejan por las barras de categoría */
+  }
+  
+  .subjectCard.current {
+    /* Los estilos de estado se manejan por las barras de categoría */
+  }
+  
+  .subjectCard.pending {
+    /* Los estilos de estado se manejan por las barras de categoría */
+  }
+  
+  /* ================================
+     ESTADO SIN RESULTADOS
+     ================================ */
+  .noResults {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-3xl) var(--spacing-xl);
+    text-align: center;
+    background: var(--background);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    margin: var(--spacing-xl) 0;
+    transition: all 0.3s ease;
+    grid-column: 1 / -1; /* Ocupa todo el ancho del grid */
+  }
+  
+  .noResultsIcon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+    opacity: 0.7;
+  }
+  
+  .noResultsTitle {
+    color: var(--secondary);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.25rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  
+  .noResultsText {
+    color: var(--secondary);
+    opacity: 0.8;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+  
+  /* ================================
+     VARIANTES DE LAYOUT - SIMPLIFICADAS
+     ================================ */
+  .compact .grid {
+    gap: var(--spacing-md);
+  }
+
+  .compact .subjectCard {
+    padding: var(--spacing-md);
+  }
+
+  .wide .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+  }
+
+  .list .grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  .list .subjectCard {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-md) var(--spacing-md);
+  }
+  
+  .list .cardContent {
+    margin: 0;
+    flex: 1;
+  }
+  
+  .list .cardHeader {
+    margin-bottom: 0;
+  }
+  
+  /* ================================
+     DARK MODE
+     ================================ */
+  :global(html.dark-mode) .subjectCard,
+  :global(html.dark-mode-override) .subjectCard {
+    background: var(--background-dark, #1e1e1e);
+    border-color: var(--border-color-dark, #4a5568);
+    color: var(--foreground-dark, #e5e7eb);
+  }
+  
+  :global(html.dark-mode) .cardTitle,
+  :global(html.dark-mode-override) .cardTitle {
+    color: var(--foreground-dark, #e5e7eb);
+  }
+  
+  :global(html.dark-mode) .code,
+  :global(html.dark-mode-override) .code {
+    color: var(--secondary-dark, #9ca3af);
+  }
+  
+  :global(html.dark-mode) .categoryLabel,
+  :global(html.dark-mode-override) .categoryLabel {
+    background: var(--card-bg-dark, #374151);
+    color: var(--secondary-dark, #9ca3af);
+  }
+  
+  :global(html.dark-mode) .noResults,
+  :global(html.dark-mode-override) .noResults {
+    background: var(--background-dark, #1e1e1e);
+    border-color: var(--border-color-dark, #4a5568);
+  }
+  
+  :global(html.dark-mode) .noResultsTitle,
+  :global(html.dark-mode) .noResultsText,
+  :global(html.dark-mode-override) .noResultsTitle,
+  :global(html.dark-mode-override) .noResultsText {
+    color: var(--secondary-dark, #9ca3af);
+  }
+  
+  :global(html.dark-mode) .link,
+  :global(html.dark-mode-override) .link {
+    color: var(--primary-light, #60a5fa);
+  }
+  
+  :global(html.dark-mode) .link:hover,
+  :global(html.dark-mode-override) .link:hover {
+    color: var(--primary-lighter, #93c5fd);
+  }
+  
+  /* ================================
+     RESPONSIVE
+     ================================ */
+  /* ================================
+     RESPONSIVE - ORIGINAL
+     ================================ */
+  @media (max-width: 768px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-sm);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-xs);
+    }
+
+    .subjectCard {
+      padding: 0.6rem;
+    }
+
+    .cardTitle {
+      font-size: 0.75rem;
+    }
+
+    .cardHeader {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-xs);
+    }
+
+    .cardLeft {
+      width: 100%;
+    }
+
+    .noResults {
+      padding: var(--spacing-xl) var(--spacing-md);
+    }
+
+    .noResultsIcon {
+      font-size: 2rem;
+    }
+
+    .noResultsTitle {
+      font-size: 1rem;
+    }
+  }
+  
+  /* ================================
+     ESTADOS DE CATEGORÍA (clases de compatibilidad)
+     ================================ */
+  .programming,
+  .database,
+  .security,
+  .systems,
+  .math,
+  .business,
+  .methodology,
+  .general {
+    /* Clases de compatibilidad para mantener funcionalidad */
+  }
+  
+  /* ================================
+     ESTADOS (clases de compatibilidad)
+     ================================ */
+  .completed,
+  .current,
+  .pending {
+    /* Clases de compatibilidad para mantener funcionalidad */
+  }

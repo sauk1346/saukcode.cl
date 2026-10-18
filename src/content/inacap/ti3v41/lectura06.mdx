@@ -1,0 +1,264 @@
+# Integrando Django: Bases de datos y administración web
+
+## 1. Configuración de la base de datos 
+
+Django viene configurado por defecto con **SQLite**, una base de datos liviana que guarda información en un archivo local dentro del proyecto.
+
+La configuración de la base de datos se define en el archivo `settings.py`, dentro del diccionario `DATABASES`.
+
+La configuración por defecto con SQL se ve así:
+
+```python
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': BASE_DIR / 'db.sqlite3',
+   }
+} 
+```
+
+Sin embargo, Django también permite trabaja con motores de bases de datos más robustos, como **PostgreSQL** o **MySQL**, simplemente modificando el valor del parámetro `ENGINE` y agregando las credenciales de conexión necesarias.
+
+### Ejemplo de configuración con PostgreSQL
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'nombre_bd',
+        'USER': 'usuario',
+        'PASSWORD': 'contraseña',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+} 
+```
+
+### Ejemplo de configuración con MySQL
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'nombre_bd',
+        'USER': 'usuario',
+        'PASSWORD': 'contraseña',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+} 
+```
+
+## 2. Modelos Django
+
+Un modelo es una clase de Python que define la estructura de una tabla en la base de datos. Cada atributo de la clase se traduce en una columna de esa tabla, y cada instancia (u objeto) del modelo representa una fila.
+
+Los modelos se definen dentro del archivo `models.py` de cada aplicación, y Django se encarga de traducir automáticamente ese modelo a sentencias SQL cuando se ejecutan las migraciones.
+
+### Ejemplo básico de un modelo en models.py
+```python
+from django.db import models
+
+class Producto(models.Model):
+    nombre = models.CharField(max_length=100)
+    precio = models.DecimalField(max_digits=8, decimal_places=2)
+    stock = models.IntegerField()
+    disponible = models.BooleanField(default=True) 
+```
+
+> Este modelo crea una tabla llamada Producto con cuatro columnas: nombre, precio, stock y disponible. 
+
+### Tipos de campos comunes en Django
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Campo", "Descripción", "Ejemplo de uso"]}
+    rows={[
+        [
+            "`CharField`",
+            "Almacena texto corto. Requiere `max_length`",
+            "`nombre = models.CharField(max_length=100)`"
+        ],
+        [
+            "`TextField`",
+            "Almacena texto largo. sin límite práctico",
+            "`descripcion = models.TextField()`"
+        ],
+        [
+            "`IntegerField`",
+            "Almacena números enteros",
+            "`stock = models.IntegerField()`"
+        ],
+        [
+            "`DecimalField`",
+            "Almacena números decimales con precisión. Requiere `max_digits` y `decimal_places`",
+            "`precio = models.DecimalField(max_digits=8, decimal_places=2)`"
+        ],
+        [
+            "`FloatField`",
+            "Almacena decimales, pero con menos precisión que `DecimalField`",
+            "`temperatura = models.FloatField`"
+        ],
+        [
+            "`BooleanField`",
+            "Almacena valores True o False",
+            "`disponible = models.BooleanField(default=True)`"
+        ],
+        [
+            "`DateField`",
+            "Almacena fechas (YYYY-MM-DD)",
+            "`fecha = models.DateField()`"
+        ],
+        [
+            "`DateTimeField`",
+            "Almacena fecha y hora",
+            "`publicado = models.DateTimeField(auto_now_add=True)`"
+        ],
+        [
+            "`EmailField`",
+            "Almacena direcciones de correo eletrónico",
+            "`correo = models.EmailField()`"
+        ],
+        [
+            "`URLField`",
+            "Almacena URLs válidas",
+            "`sitio_web = models.URLFields()`"
+        ],
+        [
+            "`ForeignKey`",
+            "Define relaciones de muchos-a-uno con otros modelos",
+            "`categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)`"
+        ]
+    ]}
+/>
+
+### Migraciones en Django
+Una migración es la manera en que Django gestiona los cambios en el esquema de la base de datos a lo largo del tiempo. Siempre que agregues, modifiques o elimines modelos o campos, necesitas crear y aplicar migraciones para que esos cambios se reflejen en la base de datos.
+
+**¿Por qué son importantes?**
+
+Porque garantizan que la base de datos se mantenga **sincronizada** con los modelos definidos en tu aplicación. Si no están alineados, la aplicación puede fallar o arrojar errores inesperados.
+
+
+## 3. Panel de administración
+Es una interfaz automática que facilita la gestión de datos del proyecto.
+
+### Verifica que esté habilitado en tu proyecto
+Asegúrate que `django.contrib.admin` esté incluido en la lista `INSTALLED_APPS` dentro de `settings.py`. Esto viene configurado por defecto en la mayoría de los proyectos Django.
+
+### Crea un superusuario
+Para acceder al panel, necesitas un usuario con privilegios administrativos. Ejecuta el siguiente comando en la terminal:
+
+```sh
+python manage.py createsuperuser 
+```
+
+Luego, completa los datos solicitados:
+
+- nombre de usuario
+- correo electrónico
+- contraseña
+
+Una vez creado el superusuario, levanta el servidor con:
+
+```sh
+python manage.py runserver
+```
+
+Accede al panel desde el navegador, ingresando a la siguiente dirección en tu navegador: http://127.0.0.1:8000/admin
+
+Allí podrás iniciar sesión con las credenciales del superusuario y comenzar a gestionar los modelos registrados.
+
+### Cambia el idioma del panel de administración
+
+Agrega o modifica esta linea en el archivo `settings.py`:
+
+```python
+LANGUAGE_CODE = 'es-es'
+```
+
+También es recomendable verificar que la configuración de `USE_I18N` esté activada:
+
+```python
+USE_I18N = True
+```
+
+Con esto, el panel de administración y otras partes del framework se mostrarán automáticamente en español, siempre que las traducciones estén disponibles.
+
+## 4. Registro de modelos en el admin
+Para que los modelos aparezcan en el **panel de administración de Django**, deben ser **registrados explícitamente** en el archivo `admin.py` de la aplicación correspondiente. Este paso le indica a Django qué modelos deben incluirse en la interfaz administrativa.
+
+### Ejemplo de registro básico
+
+```python
+from django.contrib import admin 
+from .models import Producto 
+
+admin.site.register(Producto) 
+```
+
+Con este registro, se habilita automáticamente una sección llamada **"Productos"** en el panel de administración.
+
+Desde allí podrás **crear, editar, eliminar, y visualizar** instancias del modelo `Producto` a través de una interfaz web amigable, sin necesidad de programar formularios ni vistas adicionales.
+
+A medida que tu aplicación crece, también puedes personalizar cómo se muestran los modelos en el panel admin, por ejemplo, definiendo columnas visibles, filtros o búsquedas.
+
+## 5. Personalización del panel
+Para esto se utiliza clases especiales llamadas **ModelAdmin**. Estas clases permiten definir cómo se muestran los registro, qué campos se pueden buscar, cómo se filtran y mucho más.
+
+### Ejemplo de personalización
+```python
+from django.contrib import admin 
+from .models import Producto 
+
+class ProductoAdmin(admin.ModelAdmin): 
+  list_display = ('nombre', 'precio', 'stock', 'disponible')  # Columnas visibles en la lista 
+  search_fields = ('nombre',)  # Campos habilitados para búsqueda 
+  list_filter = ('disponible',)  # Filtros laterales por campo booleano 
+
+admin.site(se abre en una nueva pestaña).register(Producto, ProductoAdmin) 
+```
+
+Esta personalización mejora significativamente la experiencia de administración, especialmente cuiando se trabaja con muchos registros.
+
+# Actividad de Práctica 04
+<Quiz questions={[
+	{
+		question: "¿Cuál es la función principal del archivo settings.py en relación con la base de datos?",
+		options: [
+			"Ejecutar migraciones de forma automática",
+			"Crear los modelos que serán utilizados en el proyecto",
+			"Configurar los permisos de los usuarios",
+			"Definir el motor de base de datos y sus parámetros de conexión"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Qué sucede si modificas un modelo sin aplicar migraciones en un proyecto Django?",
+		options: [
+			"La base de datos puede quedar desincronizada y generar errores",
+			"Django ignora los cambios hasta el próximo reinicio",
+			"Los cambios se reflejan automáticamente en la base de datos",
+			"Se eliminan automáticamente los datos antiguos"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Qué elemento indica que el modelo fue registrado correctamente en el panel de administración de Django?",
+		options: [
+			"El modelo aparece listado en el panel con su nombre",
+			"El archivo admin.py está vació",
+			"Se muestra un error de conexión a la base de datos",
+			"Hay un botón para eliminar la base de datos"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Cuál de los siguiente archivos es necesario editar para que un modelo aparezca en el admin de Django?",
+		options: [
+			"settings.py",
+			"urls.py",
+			"admin.py",
+			"models.py"
+		],
+		correctIndex: 2
+	},
+]} />

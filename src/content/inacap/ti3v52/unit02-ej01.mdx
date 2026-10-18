@@ -1,0 +1,714 @@
+# Ejercicio 01: VLSM
+
+<SmartFigure
+	id="fig39"
+	src="/inacap/ti3v52/images/fig39.png"
+	alt="Topología de red"
+	caption="Topología de red"
+    lightbox={true}
+	size="large"
+/>
+
+**Utilice Plantilla VLSM para determinar las IPs de la Red**
+
+<Solution title="Solución Ejercicio 01 VLSM">
+
+**Paso 1: IPs para la red LAN 1** 
+
+<P indent={2}>
+**a. Bits para hosts y máscara**
+
+</P>
+<SmartFigure
+	id="fig40"
+	src="/inacap/ti3v52/images/fig40.png"
+	alt="Bits para host (color gris)"
+	caption="Bits para host (color gris)"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig41"
+	src="/inacap/ti3v52/images/fig41.png"
+	alt="Bits para máscara"
+	caption="Bits para máscara"
+	size="large"
+/>
+
+<P indent={2}>
+**b. Dirección de red LAN 1**
+</P>
+
+<SmartFigure
+	id="fig42"
+	src="/inacap/ti3v52/images/fig42.png"
+	alt="Dirección de red LAN 1 (color naranja)"
+	caption="Dirección de red LAN 1 (color naranja)"
+	size="large"
+/>
+
+<P indent={2}>
+**c. Primera Dirección IP**
+</P>
+<SmartFigure
+	id="fig43"
+	src="/inacap/ti3v52/images/fig43.png"
+	alt="Primera dirección IP de host (color celeste)"
+	caption="Primera dirección IP de host (color celeste)"
+	size="large"
+/>
+
+<P indent={2}>
+**d. Dirección de Broadcast**
+</P>
+
+<SmartFigure
+	id="fig44"
+	src="/inacap/ti3v52/images/fig44.png"
+	alt="Dirección Broadcast (color verde)"
+	caption="Dirección Broadcast (color verde)"
+	size="large"
+/>
+
+<P indent={2}>
+**e. Última dirección IP**
+</P>
+<SmartFigure
+	id="fig45"
+	src="/inacap/ti3v52/images/fig45.png"
+	alt="Última dirección IP de host (color amarillo)"
+	caption="Última dirección IP host (color amarrillo)"
+	size="large"
+/>
+
+<P indent={2}>
+**f. Dirección de máscara**
+</P>
+
+<SmartTable
+	id="tabla01"
+	caption="Dirección máscara red LAN 1"
+    tableLayout="auto"
+    headers={["dirección en binario", "dirección en decimal"]}
+    rows={[
+        [
+            "$11111111.11111111.11000000.00000000$",
+            "$255.255.192.0$"
+        ]
+    ]}
+/>
+
+<SmartFigure
+	id="fig46"
+	src="/inacap/ti3v52/images/fig46.png"
+	alt="Dirección máscara de red LAN 1"
+	caption="Dirección máscara red LAN 1"
+	size="large"
+/>
+
+---
+
+**Paso 2: IPs para red LAN 2**
+
+<P indent={2}>
+**a. Bits para host y máscara**
+</P>
+
+<SmartFigure
+	id="fig47"
+	src="/inacap/ti3v52/images/fig47.png"
+	alt="Bits para host (color gris)"
+	caption="Bits para host (color gris)"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig48"
+	src="/inacap/ti3v52/images/fig48.png"
+	alt="Bits para máscara"
+	caption="Bits para máscara"
+	size="large"
+/>
+
+
+<P indent={2}>
+**b. Dirección de red LAN 2**
+</P>
+
+<SmartFigure
+	id="fig49"
+	src="/inacap/ti3v52/images/fig49.png"
+	alt="Dirección de red LAN 2(color naranjo)"
+	caption="Dirección de red LAN 2 (color naranjo)"
+	size="large"
+/>
+
+<P indent={2}>
+**c. Primera Dirección IP**
+</P>
+
+<SmartFigure
+	id="fig50"
+	src="/inacap/ti3v52/images/fig50.png"
+	alt="Primera dirección IP de host (color celeste)"
+	caption="Primera dirección IP de host (color celeste)"
+	size="large"
+/>
+
+<P indent={2}>
+**d. Dirección de Broadcast**
+</P>
+
+<SmartFigure
+	id="fig51"
+	src="/inacap/ti3v52/images/fig51.png"
+	alt="Dirección Broadcast (color verde)"
+	caption="Dirección Broadcast (color verde)"
+	size="large"
+/>
+
+<P indent={2}>
+**e. Última Dirección IP**
+</P>
+
+<SmartFigure
+	id="fig52"
+	src="/inacap/ti3v52/images/fig52.png"
+	alt="Última dirección IP de host (color amarillo)"
+	caption="Última dirección IP de host (color amarillo)"
+	size="large"
+/>
+
+<P indent={2}>
+**f. Dirección Máscara**
+</P>
+
+<SmartTable
+    id="tabla02"
+    caption="Dirección máscara red LAN 2"
+    tableLayout="auto"
+    headers={["dirección en binario", "dirección en decimal"]}
+    rows={[
+        [
+            "$11111111.11111111.11110000.00000000$",
+            "$255.255.240.0$"
+        ]
+    ]}
+/>
+
+<SmartFigure
+	id="fig53"
+	src="/inacap/ti3v52/images/fig53.png"
+	alt="Máscara de red LAN 2"
+	caption="Máscara de red LAN 2"
+	size="large"
+/>
+
+---
+
+**Paso 3: IPs para red LAN 3**
+
+<P indent={2}>
+**a. Bits para el host**
+</P>
+
+<SmartFigure
+	id="fig54"
+	src="/inacap/ti3v52/images/fig54.png"
+	alt="Bits para host (color gris)"
+	caption="Bits para host (color gris)"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig55"
+	src="/inacap/ti3v52/images/fig55.png"
+	alt="Bits para máscara"
+	caption="Bits para máscara"
+	size="large"
+/>
+
+<P indent={2}>
+**b. Dirección de red LAN 3**
+</P>
+
+<SmartFigure
+	id="fig56"
+	src="/inacap/ti3v52/images/fig56.png"
+	alt="Dirección red LAN 3 (color naranjo)"
+	caption="Dirección red LAN 3 (color naranjo)"
+	size="large"
+/>
+
+<P indent={2}>
+**c. Primera Dirección IP**
+</P>
+
+<SmartFigure
+	id="fig57"
+	src="/inacap/ti3v52/images/fig57.png"
+	alt="Primera dirección IP de host (color celeste)"
+	caption="Primera dirección IP de host (color celeste)"
+	size="large"
+/>
+
+<P indent={2}>
+**d. Dirección Broadcast**
+</P>
+
+<SmartFigure
+	id="fig58"
+	src="/inacap/ti3v52/images/fig58.png"
+	alt="Dirección Broadcast (color verde)"
+	caption="Dirección Broadcast (color verde)"
+	size="large"
+/>
+
+<P indent={2}>
+**e. Última Dirección IP**
+</P>
+
+<SmartFigure
+	id="fig59"
+	src="/inacap/ti3v52/images/fig59.png"
+	alt="Última dirección IP para host (color amarillo)"
+	caption="Última dirección IP para host (color amarillo)"
+	size="large"
+/>
+
+<P indent={2}>
+**f. Dirección Máscara**
+</P>
+<SmartTable
+    id="tabla03"
+    caption="Dirección máscara red LAN 3"
+    tableLayout="auto"
+    headers={["dirección en binario", "dirección en decimal"]}
+    rows={[
+        [
+            "$11111111.11111111.11111100.00000000$",
+            "$255.255.252.0$"
+        ]
+    ]}
+/>
+
+<SmartFigure
+	id="fig60"
+	src="/inacap/ti3v52/images/fig60.png"
+	alt="Dirección de máscara para red LAN 3"
+	caption="Dirección de máscara para red LAN 3"
+	size="large"
+/>
+
+---
+
+**Paso 4: IPs para red WAN 1**
+
+<P indent={2}>
+**a. Bits para el host**
+</P>
+
+<SmartFigure
+	id="fig61"
+	src="/inacap/ti3v52/images/fig61.png"
+	alt="Bits para host (color gris)"
+	caption="Bits para host (color gris)"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig62"
+	src="/inacap/ti3v52/images/fig62.png"
+	alt="Bits para máscara"
+	caption="Bits para máscara"
+	size="large"
+/>
+
+<P indent={2}>
+**b. Dirección de red WAN 1**
+</P>
+
+<SmartFigure
+	id="fig63"
+	src="/inacap/ti3v52/images/fig63.png"
+	alt="Dirección de red WAN 1 (color naranjo)"
+	caption="Dirección de red WAN 1 (color naranjo)"
+	size="large"
+/>
+
+<P indent={2}>
+**c. Primera Dirección IP**
+</P>
+
+<SmartFigure
+	id="fig64"
+	src="/inacap/ti3v52/images/fig64.png"
+	alt="Primera dirección IP de host (color celeste)"
+	caption="Primera dirección IP de host (color celeste)"
+	size="large"
+/>
+
+<P indent={2}>
+**d. Dirección Broadcast**
+</P>
+
+<SmartFigure
+	id="fig65"
+	src="/inacap/ti3v52/images/fig65.png"
+	alt="Dirección Broadcast (color verde)"
+	caption="Dirección Broadcast (color verde)"
+	size="large"
+/>
+
+<P indent={2}>
+**e. Última Dirección IP**
+</P>
+
+<SmartFigure
+	id="fig66"
+	src="/inacap/ti3v52/images/fig66.png"
+	alt="Última dirección IP de host (color amarillo)"
+	caption="Última dirección IP de host (color amarillo)"
+	size="large"
+/>
+
+<P indent={2}>
+**f. Dirección Máscara**
+</P>
+
+<SmartTable
+    id="tabla04"
+    caption="Dirección máscara red WAN 1"
+    tableLayout="auto"
+    headers={["dirección en binario", "dirección en decimal"]}
+    rows={[
+        [
+            "$11111111.11111111.11111111.11111100$",
+            "$255.255.255.252$"
+        ]
+    ]}
+/>
+
+<SmartFigure
+	id="fig67"
+	src="/inacap/ti3v52/images/fig67.png"
+	alt="Dirección de máscara para red WAN 1"
+	caption="Dirección de máscara para red WAN 1"
+	size="large"
+/>
+
+---
+
+<P indent={2}>
+**Paso 05: Configuración interfaces router RENCA**
+</P>
+
+<SmartTable
+  id="tabla05"
+  caption="Configuración interfaces router RENCA"
+  tableLayout="auto"
+  headers={['Interfaz', 'Asignación']}
+  rows={[
+    ['G0/0', 'Primera IP de RED LAN 1 con su correspondiente máscara'],
+    ['G0/1', 'Primera IP de RED LAN 2 con su correspondiente máscara'],
+    ['S0/0/0', 'Primera IP de RED WAN 1 con su correspondiente máscara'],
+  ]}
+/>
+
+<SmartFigure
+	id="fig68"
+	src="/inacap/ti3v52/images/fig68.png"
+	alt="Botón encendido router RENCA"
+	caption="Botón encendido router RENCA"
+	size="large"
+/>
+
+<TerminalOutput 
+	withBg
+	id="salida01"
+	caption="Configuración router RENCA en CLI"
+>
+{`# entrar al modo privilegiado
+enable
+
+# entrar al modo de configuración global
+configure terminal
+
+# 1. asignar nombre al router
+hostname RENCA
+
+# 2. configuración interfaz G0/0 (LAN 1 - 16.000 IPs)
+interface g0/0
+# asignar IP (primera IP de LAN 1, /18)
+ip address 130.130.0.1 255.255.192.0
+# activar la interfaz
+no shutdown
+# salir de la interfaz
+exit
+
+# 3. configuración interfaz G0/1 (LAN 2 - 4.000 IPs)
+interface g0/1
+# asignar IP (primera IP de LAN 2, /20)
+ip address 130.130.64.1 255.255.240.0
+# activar la interfaz
+no shutdown
+# salir de la interfaz
+exit
+
+# 4. configuración interfaz S0/0/0 (WAN 1 - 2 IPs)
+interface s0/0/0
+# asignar IP (primera IP de WAN 1, /30)
+ip address 130.130.84.1 255.255.255.252
+# activar la interfaz
+no shutdown
+# salir de la interfaz
+exit
+
+# volver al modo privilegiado
+end
+
+# guardar configuración en NVRAM
+wr`}
+</TerminalOutput>
+
+<SmartFigure
+	id="fig69"
+	src="/inacap/ti3v52/images/fig69.png"
+	alt="Configuración router RENCA"
+	caption="Configuración router RENCA"
+	size="large"
+/>
+
+---
+
+<P indent={2}>
+**Paso 06: Configuración router STGO**
+</P>
+
+<SmartTable
+  id="table06"
+  caption="Configuración interfaces router STGO"
+  tableLayout="auto"
+  headers={['Interfaz', 'Asignación']}
+  rows={[
+    ['G0/0', 'Primera IP de RED LAN 3 con su correspondiente máscara'],
+    ['S0/0/1', 'Segunda IP de RED WAN 1 con su correspondiente máscara'],
+  ]}
+/>
+
+<SmartFigure
+	id="fig70"
+	src="/inacap/ti3v52/images/fig70.png"
+	alt="Botón encendido router STGO"
+	caption="Botón encendido router STGO"
+	size="large"
+/>
+
+<TerminalOutput
+	id="salida02"
+	caption="Configuración router STGO en CLI"
+	withBg
+>
+{`# entrar al modo privilegiado
+enable
+
+# entrar al modo de configuración global
+configure terminal
+
+# 1. asignar nombre al router
+hostname STGO
+
+# 2. configuración interfaz G0/0 (LAN 3 - 1.000 IPs)
+interface g0/0
+# asignar IP (primera IP de LAN 3, /22)
+ip address 130.130.80.1 255.255.252.0
+# activar la interfaz
+no shutdown
+# salir de la interfaz
+exit
+
+# 3. configuración interfaz S0/0/1 (WAN 1 - 2 IPs)
+interface s0/0/1
+# asignar IP (segunda IP de WAN 1, /30)
+ip address 130.130.84.2 255.255.255.252
+# activar la interfaz
+no shutdown
+# salir de la interfaz
+exit
+
+# volver al modo privilegiado
+end
+
+# guardar configuración en NVRAM
+wr`}
+</TerminalOutput>
+
+<SmartFigure
+	id="fig71"
+	src="/inacap/ti3v52/images/fig71.png"
+	alt="Configuración router STGO"
+	caption="Configuración router STGO"
+	size="large"
+/>
+
+---
+
+<P indent={2}>
+**Paso 07: Configuración Server0, PC0, PC1**
+</P>
+
+<SmartTable
+  id="tabla07"
+  caption= "Configuración de hosts"
+  tableLayout="auto"
+  headers={['Dispositivo', 'Asignación']}
+  rows={[
+    ['PC0', 'Última IP de RED LAN 1, máscara y gateway correspondiente'],
+    ['PC1', 'Última IP de RED LAN 2, máscara y gateway correspondiente'],
+    ['Server0', 'Última IP de RED LAN 3, máscara y gateway correspondiente'],
+  ]}
+/>
+
+<P indent={2}>
+Se resume todas las configuraciones realizadas hasta el momento:
+</P>
+<SmartFigure
+	id="fig72"
+	src="/inacap/ti3v52/images/fig72.png"
+	alt="Configuraciones realizadas"
+	caption="Configuraciones realizadas"
+	size="large"
+/>
+<P indent={2}>
+En base a la tabla 7 y figura 34, se obtiene el siguiente resumen de configuraciones para los host
+</P>
+<SmartTable
+	tableLayout="auto"
+	headers={["Host","IPv4", "Máscara", "Default Gateway", "DNS Server"]}
+	rows={[
+		[
+			"**Server0**",
+			"130.130.83.254", 
+			"255.255.252.0", 
+			"130.130.80.1 *(g0/0 router STGO)*", 
+			"127.0.0.1"
+		],
+		[
+			"**PC0**",
+			"130.130.63.254",
+			"255.255.192.0",
+			"130.130.0.1 *(g0/0 router RENCA)*",
+			"130.130.83.254"
+		],
+		[
+			"**PC1**",
+			"130.130.79.254",
+			"255.255.240.0",
+			"130.130.64.1 *(g0/1 router RENCA)*",
+			"130.130.83.254"
+		]
+	]}
+/>
+
+<SmartFigure
+	id="fig73"
+	src="/inacap/ti3v52/images/fig73.png"
+	alt="Configuración Server0"
+	caption="Configuración Server0"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig74"
+	src="/inacap/ti3v52/images/fig74.png"
+	alt="Configuración PC0"
+	caption="Configuración PC0"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig75"
+	src="/inacap/ti3v52/images/fig75.png"
+	alt="Configuración PC1"
+	caption="Configuración PC1"
+	size="large"
+/>
+
+---
+
+<P indent={2}>
+**Paso 08: Rutas estáticas**
+</P>
+
+<P indent={3}>
+Para el enrutamiento estático se utiliza la siguiente instrucción:
+</P>
+
+<TerminalOutput withBg>
+{`# instrucción para enrutamiento estático
+ip route <red destino> <mascara destino> <IP next-hop>`}
+</TerminalOutput>
+
+<List level={1} indent={2}>
+- **red destino:** la red a la que quieres llegar 
+- **máscara destino:** la máscara de esa red
+- **IP next-hop:** la IP de la interfaz del router vecino por donde sale el tráfico
+</List>
+
+<SmartFigure
+	id="fig76"
+	src="/inacap/ti3v52/images/fig76.png"
+	alt="Configuración rutas estaticas (RENCA-> 1 ruta, STGO-> 2 rutas)"
+	caption="Configuración rutas estaticas (RENCA-> 1 ruta, STGO-> 2 rutas)"
+	size="large"
+/>
+
+<P indent={2}>
+a. **Router RENCA:** necesita ruta hacia red LAN 3 (única red que no conoce directamente) 
+</P>
+
+<SmartFigure
+	id="fig77"
+	src="/inacap/ti3v52/images/fig77.png"
+	alt="Rutas estaticas router RENCA"
+	caption="Rutas estaticas router RENCA"
+	size="large"
+/>
+
+<P indent={2}>
+b. **Router STGO:** necesita rutas hacia red LAN 1 y red LAN 2 (redes que no conoce directamente)
+</P>
+
+<SmartFigure
+	id="fig78"
+	src="/inacap/ti3v52/images/fig78.png"
+	alt="Rutas estaticas router RENCA"
+	caption="Rutas estaticas router RENCA"
+	size="large"
+/>
+
+---
+
+<P indent={2}>
+**Paso 09: Comunicación entre hosts**
+
+- Se verifica la comunicación entre los hosts de distintas redes mediante *Simple PDU*
+	- PC0 a PC1
+	- PC1 a PC0
+	- PC0 a Server0
+	- PC1 a Server0
+	- Server0 a PC0
+	- Server0 a PC1 
+</P>
+
+<SmartFigure
+	id="fig79"
+	src="/inacap/ti3v52/images/fig79.png"
+	alt="Comunicación entre los hosts de las distintas redes"
+	caption="Comunicación entre los hosts de las distintas redes"
+	size="large"
+/>
+
+
+
+</Solution>

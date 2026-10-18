@@ -1,0 +1,147 @@
+/* Wrapper para mantener el contexto de ancho */
+.tocWrapper {
+  position: fixed;
+  width: 100%;
+  max-width: 300px;
+}
+
+.tocContainer {
+  padding: var(--spacing-lg);
+  border-left: 2px solid #e2e8f0;
+  background-color: #ffffff;
+  border-radius: var(--radius-md);
+  margin-left: var(--spacing-md);
+  box-sizing: border-box;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  overflow-y: auto;
+  position: sticky;
+  top: 20px;
+}
+
+/* Contenedor TOC en modo oscuro */
+:global(html.dark-mode) .tocContainer,
+:global(html.dark-mode-override) .tocContainer {
+  background-color: #1a1a1a;
+  border-left-color: #4b5563;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+/* El resto del CSS permanece igual */
+.tocHeading {
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: var(--spacing-md);
+  font-weight: 600;
+  color: #1e40af;
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid #e2e8f0;
+  transition: color 0.3s ease, border-bottom-color 0.3s ease;
+}
+
+/* Título TOC en modo oscuro */
+:global(html.dark-mode) .tocHeading,
+:global(html.dark-mode-override) .tocHeading {
+  color: #60a5fa;
+  border-bottom-color: #4b5563;
+}
+
+.tocList {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.tocItem {
+  margin-bottom: var(--spacing-sm);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.level1 {
+  font-weight: 600;
+}
+
+.level2 {
+  margin-left: var(--spacing-sm);
+}
+
+.level3 {
+  margin-left: var(--spacing-md);
+  font-size: 0.9rem;
+}
+
+.level4 {
+  margin-left: var(--spacing-lg);
+  font-size: 0.85rem;
+}
+
+.level5, .level6 {
+  margin-left: var(--spacing-xl);
+  font-size: 0.8rem;
+}
+
+.tocLink {
+  color: #64748b;
+  text-decoration: none;
+  display: block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+/* Enlaces TOC en modo oscuro */
+:global(html.dark-mode) .tocLink,
+:global(html.dark-mode-override) .tocLink {
+  color: #94a3b8;
+}
+
+.tocLink:hover {
+  color: #2563eb;
+  background-color: #f1f5f9;
+}
+
+/* Hover de enlaces TOC en modo oscuro */
+:global(html.dark-mode) .tocLink:hover,
+:global(html.dark-mode-override) .tocLink:hover {
+  color: #60a5fa;
+  background-color: #1e293b;
+}
+
+.active {
+  color: #2563eb;
+  font-weight: 500;
+  background-color: #eff6ff;
+  border-left: 3px solid #2563eb;
+}
+
+/* Enlace activo TOC en modo oscuro */
+:global(html.dark-mode) .active,
+:global(html.dark-mode-override) .active {
+  color: #60a5fa;
+  background-color: #172554;
+  border-left: 3px solid #60a5fa;
+}
+
+/* Responsive design para TOC */
+@media (max-width: 768px) {
+  .tocWrapper {
+    max-width: 250px;
+  }
+  .tocContainer {
+    padding: var(--spacing-md);
+  }
+  .tocHeading {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tocWrapper {
+    max-width: 100%;
+  }
+}
+
+/* Clase para controlar la altura máxima y evitar tapar el footer */
+.footerSpace {
+  max-height: calc(100vh - 450px);
+}

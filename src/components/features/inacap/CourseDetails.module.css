@@ -1,0 +1,840 @@
+/* ==================== ESTILOS PRINCIPALES ==================== */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-md);
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: var(--spacing-md);
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+/* Título en modo oscuro */
+:global(html.dark-mode) .title,
+:global(html.dark-mode-override) .title {
+  color: #f3f4f6;
+}
+
+.subheading {
+  font-size: 1.25rem;
+  color: #4a4a4a;
+  margin-bottom: var(--spacing-md);
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+/* Subtítulo en modo oscuro */
+:global(html.dark-mode) .subheading,
+:global(html.dark-mode-override) .subheading {
+  color: #d1d5db;
+}
+
+.description {
+  margin-bottom: var(--spacing-lg);
+  font-size: 1.125rem;
+  color: #4a4a4a;
+  font-style: italic;
+  background-color: #f1f5f9;
+  padding: var(--spacing-md);
+  border-left: 4px solid #3b82f6;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  transition: color 0.3s ease, background-color 0.3s ease, border-left-color 0.3s ease;
+}
+
+/* Descripción en modo oscuro */
+:global(html.dark-mode) .description,
+:global(html.dark-mode-override) .description {
+  color: #d1d5db;
+  background-color: #1e293b;
+  border-left-color: #60a5fa;
+}
+
+.cardContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+/* Contenedor para tarjetas uniformes en secciones específicas */
+.uniformCardContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* Contenedor específico para mostrar las semanas de lecturas en 2 columnas */
+.twoColumnContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+}
+
+/* En pantallas pequeñas, volver a una columna */
+@media (max-width: 768px) {
+  .twoColumnContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cardGroup {
+  display: flex;
+  gap: var(--spacing-lg);
+  width: 100%;
+  max-width: 1200px;
+  justify-content: space-between;
+}
+
+.card {
+  flex: 1;
+  min-width: 0; /* Permite que las tarjetas puedan encogerse si es necesario */
+  background-color: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+/* Tarjeta en modo oscuro */
+:global(html.dark-mode) .card,
+:global(html.dark-mode-override) .card {
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.18);
+}
+
+/* ❌ ELIMINADO: Selectores .link obsoletos */
+/* Ya no se necesitan porque SmartLink maneja todos los enlaces */
+
+/* ==================== ESTILOS PARA NAVEGACIÓN POR PESTAÑAS ==================== */
+
+/* Estilos para pestañas */
+.tabNavigation {
+  width: 100%;
+  margin-bottom: var(--spacing-xl);
+}
+
+.tabButtons {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: var(--spacing-lg);
+  overflow-x: auto; /* Para pantallas pequeñas */
+}
+
+/* Estilos para modo oscuro */
+:global(html.dark-mode) .tabButtons,
+:global(html.dark-mode-override) .tabButtons {
+  border-bottom: 1px solid #374151;
+}
+
+.tabButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: none;
+  border: none;
+  color: #4a4a4a;
+  cursor: pointer;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+  font-size: 1.1rem; /* Tamaño de letra más grande */
+  font-weight: 500; /* Un poco más grueso para mejor visibilidad */
+}
+
+/* Modo oscuro para botones de pestañas */
+:global(html.dark-mode) .tabButton,
+:global(html.dark-mode-override) .tabButton {
+  color: #d1d5db;
+}
+
+.tabButton:hover {
+  color: #3b82f6;
+}
+
+.activeTab {
+  color: #3b82f6;
+  border-bottom: 2px solid #3b82f6;
+}
+
+/* Modo oscuro para pestaña activa */
+:global(html.dark-mode) .activeTab,
+:global(html.dark-mode-override) .activeTab {
+  color: #60a5fa;
+  border-bottom: 2px solid #60a5fa;
+}
+
+.tabContent {
+  width: 100%;
+}
+
+/* ==================== ESTILOS PARA TARJETAS ==================== */
+
+.cardHeader {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Modo oscuro para encabezados de tarjetas */
+:global(html.dark-mode) .cardHeader,
+:global(html.dark-mode-override) .cardHeader {
+  background-color: #1e293b;
+  border-bottom: 1px solid #374151;
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #1f2937;
+  transition: color 0.3s ease;
+}
+
+/* Modo oscuro para títulos de tarjetas */
+:global(html.dark-mode) .cardTitle,
+:global(html.dark-mode-override) .cardTitle {
+  color: #f3f4f6;
+}
+
+.cardBody {
+  padding: var(--spacing-md);
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: var(--spacing-2xl); /* Espacio generoso entre el título y el contenido */
+  color: #1f2937;
+  transition: color 0.3s ease;
+}
+
+/* Modo oscuro para títulos de sección */
+:global(html.dark-mode) .sectionTitle,
+:global(html.dark-mode-override) .sectionTitle {
+  color: #f3f4f6;
+}
+
+/* ==================== ESTILOS PARA ELEMENTOS DE INFORMACIÓN ==================== */
+
+.infoItem {
+  margin-bottom: var(--spacing-sm);
+}
+
+.infoLabel {
+  display: block;
+  font-weight: 500;
+  color: #64748b;
+  margin-bottom: var(--spacing-xs);
+  transition: color 0.3s ease;
+}
+
+/* Modo oscuro para etiquetas de información */
+:global(html.dark-mode) .infoLabel,
+:global(html.dark-mode-override) .infoLabel {
+  color: #94a3b8;
+}
+
+/* ==================== ESTILOS PARA LISTAS ==================== */
+
+.listNoStyle {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.unitItem {
+  display: grid;
+  grid-template-columns: 3rem 1fr; /* Primera columna fija para los círculos */
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.unitNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background-color: #3b82f6;
+  color: white;
+  border-radius: 9999px;
+  font-weight: 800;
+  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+  line-height: 1;
+  padding-bottom: 1px;
+}
+
+/* Modo oscuro para números de unidad */
+:global(html.dark-mode) .unitNumber,
+:global(html.dark-mode-override) .unitNumber {
+  background-color: #60a5fa;
+}
+
+.unitLink {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  background-color: #eff6ff;
+  border-radius: var(--radius-md);
+  transition: background-color 0.3s ease;
+}
+
+/* Modo oscuro para enlaces de unidad */
+:global(html.dark-mode) .unitLink,
+:global(html.dark-mode-override) .unitLink {
+  background-color: #172554;
+}
+
+/* ==================== ESTILOS PARA CONTENIDO ESTRUCTURADO ==================== */
+
+/* Contenedor para listas de contenido múltiple */
+.contentList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+/* Elemento individual de contenido */
+.contentItem {
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+/* Estilo mejorado para elementos tachados */
+.contentItem del {
+  color: #666;
+  opacity: 0.7;
+  text-decoration-color: #999;
+}
+
+/* Modo oscuro para elementos tachados */
+:global(html.dark-mode) .contentItem del,
+:global(html.dark-mode-override) .contentItem del {
+  color: #aaa;
+}
+
+/* ❌ ELIMINADO: Estilos para enlaces en contentItem */
+/* SmartLink maneja todos los estilos de enlaces ahora */
+
+/* Espaciado específico por sección */
+.evaluationDescription .contentList {
+  gap: var(--spacing-sm);
+}
+
+.guidesList .contentList {
+  gap: var(--spacing-xs);
+}
+
+.classDescription .contentList {
+  gap: 0.125rem;
+}
+
+.lectureDescription .contentList {
+  gap: 0.125rem;
+}
+
+/* Estados de enfoque para accesibilidad - SmartLink los maneja */
+
+/* ==================== ESTILOS PARA LISTA DE CLASES ==================== */
+
+.classList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.classItem {
+  padding: var(--spacing-sm);
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Modo oscuro para items de clase */
+:global(html.dark-mode) .classItem,
+:global(html.dark-mode-override) .classItem {
+  background-color: #1e1e1e;
+  border-color: #374151;
+}
+
+.classHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+  position: relative;
+  padding-right: 7.5rem; /* Para dejar espacio a la fecha */
+}
+
+.classNumber {
+  font-weight: 500;
+  color: #1f2937;
+  transition: color 0.3s ease;
+  margin-right: auto; /* Empuja la fecha hacia la derecha */
+}
+
+/* Modo oscuro para número de clase */
+:global(html.dark-mode) .classNumber,
+:global(html.dark-mode-override) .classNumber {
+  color: #e5e7eb;
+}
+
+.classDescription {
+  margin-top: var(--spacing-xs);
+}
+
+/* ==================== ESTILOS PARA LISTA DE LECTURAS ==================== */
+
+.lectureList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.lectureItem {
+  padding: var(--spacing-sm);
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Modo oscuro para items de lectura */
+:global(html.dark-mode) .lectureItem,
+:global(html.dark-mode-override) .lectureItem {
+  background-color: #1e1e1e;
+  border-color: #374151;
+}
+
+.lectureHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+  position: relative;
+  padding-right: 7.5rem; /* Para dejar espacio a la fecha */
+}
+
+.lectureNumber {
+  font-weight: 500;
+  color: #1f2937;
+  transition: color 0.3s ease;
+  margin-right: auto; /* Empuja la fecha hacia la derecha */
+}
+
+/* Modo oscuro para número de lectura */
+:global(html.dark-mode) .lectureNumber,
+:global(html.dark-mode-override) .lectureNumber {
+  color: #e5e7eb;
+}
+
+.lectureDescription {
+  margin-top: var(--spacing-xs);
+}
+
+/* ==================== ESTILOS PARA FECHAS CONSISTENTES ==================== */
+
+/* Contenedor de fecha */
+.dateContainer {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* Contenedor de fecha de evaluación */
+.evaluationDateWrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+  color: #64748b;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* Modo oscuro para contenedor de fecha */
+:global(html.dark-mode) .evaluationDateWrapper,
+:global(html.dark-mode-override) .evaluationDateWrapper {
+  color: #94a3b8;
+}
+
+/* Fecha de evaluación */
+.evaluationDate {
+  font-weight: 500;
+}
+
+/* Clases específicas para clases y lecturas */
+.classItem .evaluationDateWrapper,
+.lectureItem .evaluationDateWrapper {
+  white-space: nowrap;
+}
+
+/* ==================== ESTILOS PARA LA SECCIÓN DE EVALUACIONES ==================== */
+
+/* Grid para mostrar tarjetas de evaluación */
+.evaluationGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  width: 100%;
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Tarjeta de evaluación */
+.evaluationCard {
+  background-color: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  border-top: 4px solid #3b82f6;
+}
+
+/* Modo oscuro para tarjetas de evaluación */
+:global(html.dark-mode) .evaluationCard,
+:global(html.dark-mode-override) .evaluationCard {
+  background-color: #1e1e1e;
+  border-top: 4px solid #60a5fa;
+  box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.3);
+}
+
+/* Encabezado de tarjeta de evaluación */
+.evaluationHeader {
+  padding: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Modo oscuro para encabezado de evaluación */
+:global(html.dark-mode) .evaluationHeader,
+:global(html.dark-mode-override) .evaluationHeader {
+  border-bottom: 1px solid #374151;
+}
+
+/* Insignia de número de evaluación */
+.evaluationBadge {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: #3b82f6;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+/* Modo oscuro para insignia de evaluación */
+:global(html.dark-mode) .evaluationBadge,
+:global(html.dark-mode-override) .evaluationBadge {
+  background-color: #60a5fa;
+}
+
+/* Contenedor de metadatos de evaluación */
+.evaluationMeta {
+  flex: 1;
+}
+
+/* Título de evaluación */
+.evaluationTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+  color: #1f2937;
+}
+
+/* Modo oscuro para título de evaluación */
+:global(html.dark-mode) .evaluationTitle,
+:global(html.dark-mode-override) .evaluationTitle {
+  color: #f3f4f6;
+}
+
+/* Cuerpo de tarjeta de evaluación */
+.evaluationBody {
+  padding: var(--spacing-md);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* Descripción de evaluación */
+.evaluationDescription {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: flex-start;
+  color: #4b5563;
+}
+
+/* Modo oscuro para descripción */
+:global(html.dark-mode) .evaluationDescription,
+:global(html.dark-mode-override) .evaluationDescription {
+  color: #d1d5db;
+}
+
+/* Contenedor de guías de estudio */
+.evaluationGuides {
+  background-color: #f8fafc;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
+/* Modo oscuro para guías */
+:global(html.dark-mode) .evaluationGuides,
+:global(html.dark-mode-override) .evaluationGuides {
+  background-color: #1e293b;
+}
+
+/* Título de guías */
+.guidesTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: 0 0 var(--spacing-sm) 0;
+  color: #1f2937;
+}
+
+/* Modo oscuro para título de guías */
+:global(html.dark-mode) .guidesTitle,
+:global(html.dark-mode-override) .guidesTitle {
+  color: #f3f4f6;
+}
+
+/* Lista de guías */
+.guidesList {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+/* Modo oscuro para lista de guías */
+:global(html.dark-mode) .guidesList,
+:global(html.dark-mode-override) .guidesList {
+  color: #d1d5db;
+}
+
+/* Pie de tarjeta de evaluación */
+.evaluationFooter {
+  padding: var(--spacing-md);
+  border-top: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+}
+
+/* Modo oscuro para pie de tarjeta */
+:global(html.dark-mode) .evaluationFooter,
+:global(html.dark-mode-override) .evaluationFooter {
+  border-top: 1px solid #374151;
+  background-color: #1e293b;
+}
+
+/* Contenedor de peso */
+.weightWrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+/* Modo oscuro para contenedor de peso */
+:global(html.dark-mode) .weightWrapper,
+:global(html.dark-mode-override) .weightWrapper {
+  color: #94a3b8;
+}
+
+/* Peso de evaluación */
+.evaluationWeight {
+  font-weight: bold;
+  color: #1f2937;
+}
+
+/* Modo oscuro para peso */
+:global(html.dark-mode) .evaluationWeight,
+:global(html.dark-mode-override) .evaluationWeight {
+  color: #f3f4f6;
+}
+
+/* Contenedor de barra de peso */
+.weightBarContainer {
+  height: 0.5rem;
+  background-color: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+/* Modo oscuro para contenedor de barra */
+:global(html.dark-mode) .weightBarContainer,
+:global(html.dark-mode-override) .weightBarContainer {
+  background-color: #374151;
+}
+
+/* Barra de peso */
+.weightBar {
+  height: 100%;
+  background-color: #3b82f6;
+  border-radius: 9999px;
+}
+
+/* Modo oscuro para barra de peso */
+:global(html.dark-mode) .weightBar,
+:global(html.dark-mode-override) .weightBar {
+  background-color: #60a5fa;
+}
+
+/* ==================== ESTILOS RESPONSIVOS ==================== */
+
+@media (max-width: 1024px) {
+  .cardGroup {
+    gap: var(--spacing-md);
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .cardGroup {
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .card {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /* Responsive adjustments para contenido estructurado */
+  .contentList {
+    gap: var(--spacing-sm);
+  }
+
+  .contentItem {
+    font-size: 0.95em;
+  }
+}
+
+@media (max-width: 640px) {
+  .evaluationGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .evaluationCard {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .subheading {
+    font-size: 1.1rem;
+  }
+
+  .description {
+    padding: var(--spacing-sm);
+    font-size: 0.95rem;
+  }
+
+  .container {
+    padding: var(--spacing-sm);
+  }
+
+  .tabButtons {
+    flex-wrap: wrap;
+  }
+
+  .tabButton {
+    flex: 1 0 auto;
+    justify-content: center;
+  }
+}
+/* Flashcards tab */
+.flashcardTopic {
+  margin-bottom: 1.75rem;
+}
+
+.flashcardTopicName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-secondary, #666);
+  margin: 0 0 0.75rem;
+}
+
+.flashcardDecks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.flashcardDeckCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.9rem 1.2rem;
+  background: var(--surface, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+  min-width: 90px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.15s;
+}
+
+.flashcardDeckCard:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.flashcardDeckCount {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-secondary, #888);
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .subheading {
+    font-size: 1rem;
+  }
+}
+

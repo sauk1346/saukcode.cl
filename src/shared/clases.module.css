@@ -1,0 +1,406 @@
+/* Configuración base del contenedor */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: #334155;
+  line-height: 1.7;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Modo oscuro para contenedor */
+:global(html.dark-mode) .container,
+:global(html.dark-mode-override) .container {
+  background-color: #1a1a1a;
+  color: #e5e7eb;
+}
+
+/* Encabezados con mejor jerarquía visual */
+.container h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #1e40af;
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e2e8f0;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+:global(html.dark-mode) .container h1,
+:global(html.dark-mode-override) .container h1 {
+  color: #60a5fa;
+  border-bottom-color: #4b5563;
+}
+
+.container h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #1e3a8a;
+  transition: color 0.3s ease;
+}
+
+:global(html.dark-mode) .container h2,
+:global(html.dark-mode-override) .container h2 {
+  color: #93c5fd;
+}
+
+.container h3 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  color: #2563eb;
+  transition: color 0.3s ease;
+}
+
+:global(html.dark-mode) .container h3,
+:global(html.dark-mode-override) .container h3 {
+  color: #3b82f6;
+}
+
+/* Párrafos más legibles */
+.container p {
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+  font-size: 1.05rem;
+  transition: color 0.3s ease;
+}
+
+/* Listas no ordenadas mejoradas */
+.container ul {
+  list-style-type: disc;
+  padding-left: 2rem;
+  margin-bottom: 1.75rem;
+}
+
+/* Listas ordenadas con mejor espaciado */
+.container ol {
+  list-style-type: decimal;
+  padding-left: 2rem;
+  margin-bottom: 1.75rem;
+}
+
+/* Estilos para listas ordenadas anidadas */
+.container ol ol {
+  list-style-type: lower-alpha;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.container ol ol ol {
+  list-style-type: lower-roman;
+}
+
+/* Elementos de lista con mejor espaciado */
+.container li {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  transition: color 0.3s ease;
+}
+
+.container ol > li {
+  padding-left: 0.5rem;
+}
+
+/* Elementos de estilo de texto */
+.textBold {
+  font-weight: 700;
+  color: #1e293b;
+  transition: color 0.3s ease;
+}
+
+:global(html.dark-mode) .textBold,
+:global(html.dark-mode-override) .textBold {
+  color: #f8fafc;
+}
+
+/* Código en línea más moderno */
+.inlineCode {
+  background-color: #f1f5f9;
+  color: #3b82f6;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.375rem;
+  font-family: "Menlo", "Monaco", "Courier New", monospace;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+:global(html.dark-mode) .inlineCode,
+:global(html.dark-mode-override) .inlineCode {
+  background-color: #1e293b;
+  color: #60a5fa;
+  border-color: #4b5563;
+}
+
+/* Bloques de código */
+.container pre {
+  background-color: #f8fafc;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin-bottom: 1.75rem;
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+:global(html.dark-mode) .container pre,
+:global(html.dark-mode-override) .container pre {
+  background-color: #111827;
+  border-color: #4b5563;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.container pre code {
+  font-family: "Menlo", "Monaco", "Courier New", monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #334155;
+  transition: color 0.3s ease;
+}
+
+:global(html.dark-mode) .container pre code,
+:global(html.dark-mode-override) .container pre code {
+  color: #e5e7eb;
+}
+
+/* Separadores */
+.container hr {
+  border: 0;
+  height: 1px;
+  background-color: #e2e8f0;
+  margin: 2rem 0;
+  transition: background-color 0.3s ease;
+}
+
+:global(html.dark-mode) .container hr,
+:global(html.dark-mode-override) .container hr {
+  background-color: #4b5563;
+}
+
+/* Enlaces mejorados */
+.link {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.link:hover {
+  border-bottom: 1px solid #2563eb;
+  color: #1d4ed8;
+}
+
+:global(html.dark-mode) .link,
+:global(html.dark-mode-override) .link {
+  color: #60a5fa;
+}
+
+:global(html.dark-mode) .link:hover,
+:global(html.dark-mode-override) .link:hover {
+  border-bottom: 1px solid #60a5fa;
+  color: #93c5fd;
+}
+
+/* Espaciado vertical */
+.container br {
+  display: block;
+  margin-top: 1.25rem;
+  line-height: 1.25rem;
+}
+
+.container pre + br {
+  margin-top: 2.5rem;
+  line-height: 2.5rem;
+}
+
+/* Tablas */
+.container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.75rem;
+  border: 1px solid #e2e8f0;
+  transition: border-color 0.3s ease;
+}
+
+:global(html.dark-mode) .container table,
+:global(html.dark-mode-override) .container table {
+  border-color: #4b5563;
+}
+
+.container th {
+  background-color: #0e559c;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #ffffff;
+  border-bottom: 2px solid #e2e8f0;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+:global(html.dark-mode) .container th,
+:global(html.dark-mode-override) .container th {
+  background-color: #1e40af;
+  border-bottom-color: #4b5563;
+}
+
+.container td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  transition: border-color 0.3s ease;
+}
+
+:global(html.dark-mode) .container td,
+:global(html.dark-mode-override) .container td {
+  border-bottom-color: #4b5563;
+}
+
+.container tr:nth-child(even) {
+  background-color: #f8fafc;
+  transition: background-color 0.3s ease;
+}
+
+:global(html.dark-mode) .container tr:nth-child(even),
+:global(html.dark-mode-override) .container tr:nth-child(even) {
+  background-color: #1e293b;
+}
+
+:global(html.dark-mode) .container tr:nth-child(odd),
+:global(html.dark-mode-override) .container tr:nth-child(odd) {
+  background-color: #111827;
+}
+
+/* Bloques de citas */
+.container blockquote {
+  border-left: none;
+  padding-left: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 1.75rem;
+  font-style: normal;
+  color: #4b5563;
+  white-space: pre-wrap;
+  display: flex;
+  align-items: flex-start; /* Alinea los elementos en la parte superior */
+  transition: color 0.3s ease;
+  position: relative; /* Para posicionamiento de pseudo-elementos */
+}
+
+.container blockquote > * {
+  flex: 1;
+  padding-left: 1.5rem; /* Espacio a la izquierda del texto */
+}
+
+/* Barra lateral como pseudo-elemento con longitud controlada */
+.container blockquote::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: calc(100% - 1.1rem); /* Resta un pequeño espacio al final */
+  background-color: #3b82f6;
+  transition: background-color 0.3s ease;
+}
+
+
+:global(html.dark-mode) .container blockquote,
+:global(html.dark-mode-override) .container blockquote {
+  border-left-color: #60a5fa;
+  color: #9ca3af;
+}
+
+/* Componentes de alerta */
+.alert {
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.75rem;
+  border-left: 4px solid;
+  transition: background-color 0.3s ease, color 0.3s ease, border-left-color 0.3s ease;
+}
+
+.alert-info {
+  background-color: #eff6ff;
+  border-color: #3b82f6;
+  color: #1e40af;
+}
+
+:global(html.dark-mode) .alert-info,
+:global(html.dark-mode-override) .alert-info {
+  background-color: #172554;
+  border-color: #60a5fa;
+  color: #bfdbfe;
+}
+
+.alert-warning {
+  background-color: #fef3c7;
+  border-color: #f59e0b;
+  color: #92400e;
+}
+
+:global(html.dark-mode) .alert-warning,
+:global(html.dark-mode-override) .alert-warning {
+  background-color: #422006;
+  border-color: #f59e0b;
+  color: #fbbf24;
+}
+
+.alert-danger {
+  background-color: #fee2e2;
+  border-color: #ef4444;
+  color: #b91c1c;
+}
+
+:global(html.dark-mode) .alert-danger,
+:global(html.dark-mode-override) .alert-danger {
+  background-color: #450a0a;
+  border-color: #ef4444;
+  color: #f87171;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  .container h1 {
+    font-size: 1.875rem;
+  }
+
+  .container h2 {
+    font-size: 1.5rem;
+  }
+
+  .container h3 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .container h1 {
+    font-size: 1.5rem;
+  }
+
+  .container h2 {
+    font-size: 1.25rem;
+  }
+
+  .container h3 {
+    font-size: 1.1rem;
+  }
+}

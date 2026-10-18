@@ -1,0 +1,323 @@
+# (Proyecto Tienda) Imágenes
+
+## Continuación Proyecto
+
+### Habilitar campo 'imagen'
+
+1. **Configurar Modelos:** Agregar nuevo campo `imagen` en el modelo `Productos`
+    ```python
+    # ./tienda/models.py
+    from django.db import models
+    from django.urls import reverse
+    ...
+    ...    
+    class Producto(models.Model):
+        ...
+        ...
+        imagen = models.ImageField(upload_to='productos', null=True)
+        ...
+        ...
+    ```
+
+2. **Configurar Base de datos:** Crear archivos de migración con los cambios realizados y aplicarlos a la base de datos
+    ```sh
+    python manage.py makemigrations
+    ```
+    <TerminalOutput>
+    {`Migrations for 'tienda':
+      tienda/migrations/0003_producto_imagen.py
+        + Add field imagen to producto`}
+    </TerminalOutput>
+    ```sh
+    python manage.py migrate
+    ```
+    <TerminalOutput>
+    {`Operations to perform:
+      Apply all migrations: admin, auth, contenttypes, sessions, tienda
+    Running migrations:
+      Applying tienda.0003_producto_imagen... OK`}
+    </TerminalOutput>
+
+3. **Configurar Admin:** Agregar el campo `imagen` en la clase `ProductoAdmin`
+    ```python
+    #./tienda/admin.py
+    from django.contrib import admin
+    from .models import Cliente, Producto, Categoria
+
+    # Clase de definición de modelos relacionados
+    ...
+    ...
+    class ProductoAdmin(admin.ModelAdmin):
+        list_display = ('id', 'nombre', 'precio', 'stock', 'imagen', 'categoria')
+    ...
+    ...
+    ```
+
+4. **Realizar Pruebas:** Levantar servidor y verificar ruta
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/admin/tienda/producto/
+    ```
+    <SmartFigure
+        id="modulo-admin-con-campo-imagen"
+        src="/inacap/ti3v41/images/fig041.png"
+        alt="Módulo Admin con nuevo campo 'imagen'"
+        caption="Módulo Admin con nuevo campo 'imagen'"
+        size="large"
+    />
+    ```sh
+    http://127.0.0.1:8000/admin/tienda/producto/2/change/
+    ```
+    <SmartFigure
+        id="opcion-subir-imagen-producto-id2"
+        src="/inacap/ti3v41/images/fig042.png"
+        alt="Opción para subir imágen del producto con id=2"
+        caption="Opción para subir imágen del producto con id=2"
+        size="large"
+    />
+
+### Configurar Directorio de imágenes
+
+1. **Configuración Inicial:** Agregar las siguientes variables en `settings.py`
+    ```python
+    #.tiendaproductos/settings.py
+    from pathlib import Path
+    ...
+    ...
+    # Configuraciones de carpetas para el almacenamiento 
+    # de imágenes en el catálogo
+    MEDIA_URL = 'media/'
+    MEDIA_ROOT = BASE_DIR / 'media'
+    ```
+
+2. **Configurar Enrutamiento:** actualizar rutas en base a la 'configuración inicial'
+    ```python
+    #./tiendaproductos/urls.py
+    from django.contrib import admin
+    from django.urls import path, include
+    from django.conf import settings
+    from django.conf.urls.static import static
+    ...
+    ...
+    # Se configuran las rutas para las carpetas
+    if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+    ```
+
+3. **Actualizar catálogo de productos:** Modificar productos para que sean coherentes con las imágenes entregadas
+    <SmartFigure
+        id="productos-actualizados"
+        src="/inacap/ti3v41/images/fig043.png"
+        alt="Productos actualizados con sus respectivas imágenes"
+        caption="Productos actualizados con sus respectivas imágenes"
+        size="large"
+    />
+
+4. **Configuración Templates (1):** Actualizar el template `producto_list.html`, agregando las imágenes mediante la condición `if producto.imagen`
+    ```html
+    <!-- ./tienda/templates/tienda/producto_list.html -->
+    {% extends "tienda/base.html" %}
+    
+    {% block title %}<title>Tienda de Productos - Productos</title>{% endblock %}
+    
+    {% block content %}
+    <!-- Projects Section-->
+    {% load static %}
+    <section class="py-5">
+      <div class="container px-1 mb-5">
+          ...
+          ...
+          <!-- Se verifica si hay productos en la lista. -->
+           {% if producto_list %}
+          <div class="row gx-5 justify-content-center">
+            {% for producto in producto_list %}
+            <div class="col-md-4">
+                <div class="card mb-2 shadow-lg" style="width: 18rem;">
+                    {% if producto.imagen %}
+                        <img src="{{producto.imagen.url}}" class="card-img-top"  alt="..." />
+                    {% else %}
+                        <img src="tienda/images/1.jpg" class="card-img-top"  alt="..." />
+                    {% endif %}
+                    ...
+                    ...
+                </div>
+            </div> 
+            {% endfor %}  
+          </div>
+          {% else %}
+            ...
+            ...  
+          {% endif %}
+      </div>
+    </section>
+    {% endblock content %} 
+    ```
+
+5. **Realizar Pruebas:** Levantar servidor y verificar ruta
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/tienda/productos/
+    ```
+    <SmartFigure
+        id="pagina-productos-con-imagenes"
+        src="/inacap/ti3v41/images/fig044.png"
+        alt="Página 'productos' con imágenes correspondientes"
+        caption="Página 'productos' con imágenes correspondientes"
+        lightbox={true}
+        size="large"
+    />
+
+### Mejora estética de 'detalles de productos'
+1. **Configurar Templates:** Actualizar el template `producto_detail.html`, agregando tarjetas para mostrar productos
+    ```html
+    <!-- ./tienda/templates/tienda/producto_detail.html-->
+    {% extends "tienda/base.html" %}
+    
+    {% block title %}{% endblock title %}
+    
+    {% block content %}
+    <h1>Producto: {{producto.nombre}}</h1>
+    <hr />
+    
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-md-8">
+          {% if producto.imagen %}
+            <img src="{{producto.imagen.url}}" class="card-img-top"  
+    			alt="..." />
+          {% else %}
+            <img src="https://unsplash.it/600/450/?random" class="card-img-top" alt="...">  
+          {% endif %}  
+        </div>
+        <div class="col-md-4">
+          <div class="card-body">
+            <h5 class="card-title">{{producto.nombre}}</h5>
+            <p class="card-text">
+              <p><strong>Id: </strong>{{producto.id}}</p>
+              <p><strong>Stock: </strong>{{producto.stock}}</p>
+              <p><strong>Precio: </strong>${{producto.precio}}</p>
+            </p>
+            <div class="mb-2">
+              <a href="" class="btn btn-warning btn-sm col-md-12">
+                <i class="bi bi-pencil-square"></i> Actualizar
+              </a>
+            </div>
+            <div class="mb-2">
+              <a href="" class="btn btn-danger btn-sm col-md-12">
+                <i class="bi bi-trash"></i> Borrar</a>
+            </div>
+            <p class="card-text"><small class="text-muted">Categoría: {{producto.categoria}}</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock content %}
+    ```
+
+2. **Realizar Pruebas:** Levantar servidor y verificar ruta
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/tienda/producto/6
+    ```
+    <SmartFigure
+        id="pagina-detalle-producto-id6"
+        src="/inacap/ti3v41/images/fig045.png"
+        alt="Página 'detalle de producto' con id=6"
+        caption="Página 'detalle de producto' con id=6"
+        size="large"
+    />
+
+### Agregar bloque de 'paginación'
+Cuando los datos son demasiados, la paginación permite dividirlos en grupos más pequeños. Esto mejora el rendimiento al cargar solo los datos necesarios en cada momento, reduciendo el uso de memoria y el tiempo de respuesta.
+
+1. **Configurar Templates:** Modificar el template `base.html`, agregando el bloque de paginación
+    ```html
+    <!-- ./tienda/templates/tienda/base.html -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        ...
+        ...
+    </head>
+    <body>
+    <div class="container-fluid">
+    <div class="row">
+        ...
+        ...
+        <div class="col-sm-9 ">
+            {% block content %}
+            {% endblock content %}
+            {% block pagination %}
+                {% if is_paginated %}
+                    <div class="pagination">
+                        <span class="page-links">
+                            {% if page_obj.has_previous %}
+                              <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">Anterior</a>
+                            {% endif %}
+                            <span class="page-current">
+                              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                            </span>
+                            {% if page_obj.has_next %}
+                              <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">Siguiente</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                {% endif %}
+              {% endblock pagination %}
+        </div>
+    </div>
+    </div>
+    </body>
+    ```
+
+2. **Configurar Vistas:** Definir la paginación en la clase `ProductoListView` del módulo `views.py`
+    ```python
+    #./tienda/views.py
+    from django.shortcuts import render
+    from .models import Cliente, Producto, Categoria
+    from django.views import generic
+    ...
+    ...
+    # Vistas genéricas de lista
+    ...
+    ...
+    class ProductoListView(generic.ListView):
+        model = Producto
+        # Cantidad de productos por página
+        paginate_by = 3
+    ...
+    ...
+    ```
+
+3. **Realizar Pruebas:** Levantar servidor y verificar ruta
+    ```sh
+    python manage.py runserver
+    ```
+    ```sh
+    http://127.0.0.1:8000/tienda/productos/?page=1
+    ```
+    <SmartFigure
+        id="pagina-productos-con-paginacion1"
+        src="/inacap/ti3v41/images/fig046.png"
+        alt="Página 'productos' con paginación 1 de 2"
+        caption="Página 'productos' con paginación 1 de 2"
+        lightbox={true}
+        size="large"
+    />
+        ```sh
+    http://127.0.0.1:8000/tienda/productos/?page=2
+    ```
+    <SmartFigure
+        id="pagina-productos-con-paginacion2"
+        src="/inacap/ti3v41/images/fig047.png"
+        alt="Página 'productos' con paginación 2 de 2"
+        caption="Página 'productos' con paginación 2 de 2"
+        lightbox={true}
+        size="large"
+    />

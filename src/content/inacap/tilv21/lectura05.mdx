@@ -1,0 +1,111 @@
+# Técnicas y Herramientas de Testing
+Existen múltiplas técnicas de testing, dividias en estáticas y dinámicas, que permiten a los equipos de desarrollo identificar y corregir defectos en diferentes etapas del ciclo de vida del software.
+
+## Material Complementario
+
+- [Glosario](/inacap/tilv01/docs/glosario02.pdf)
+- [Técnicas de Testing](/inacap/tilv01/docs/guia03.pdf)
+
+## Técnicas de Testing
+Métodos sistemáticos utilizados para diseñar y ejecutar pruebas, con el objetivo de encontrar defectos en el software y aseguridad su calidad.
+
+### Técnicas Estáticas
+Se centran en la revisión de la documentación y el código sin ejecutar el software. Esenciales para identificar defectos tempranos en el ciclo de vida del desarrollo de software
+
+- Revisión por pares
+- Inspección
+- Análisis estático
+
+### Técnicas Dinámicas
+Implican la ejecución del software para identificar defectos que ocurren durante su funcionamiento
+
+- Testing de caja blanca
+- Testing de caja negra
+- Testing de regrasión
+- Testing de rendimiento
+
+## Herramientas de Testing
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Testing estático', 'Testing dinámico']}
+	rows={[
+		['sonarqube', 'selenium'],
+		['checkstyle', 'JUnit'],
+		['', 'LoadRunner']
+	]}
+/>
+
+## Alcance de los tipos de testing
+
+### Testing funcional
+Se centra en verificar que cada función del software opere conforme a los requisitos especificados
+
+1. Pruebas unitarias
+2. Pruebas de integración
+3. Pruebas de sistema
+4. Pruebas de aceptación
+
+### Testing no funcional
+Evalúa aspectos del software que no están relacionados con funciones específicas, como el rendimiento, la seguridad y la usabilidad
+
+1. Pruebas de rendimiento
+2. Pruebas de seguridad
+3. Pruebas de usabilidad
+
+## Diseño de casos de testing
+Es una fase crítica en el desarrollo de software, centrada en la planificación meticulosa de las condiciones y escenarios que serán evaluados para aseguridad la calidad y fiabilidad del producto final.
+
+### Identificación de casos de testing
+Es el proceso de determinar las condiciones y escenarios bajo los cuales se evaluará el software. Incluye la definición de entradas, acciones y resultados esperados.
+
+### Técnicas de diseño de casos de testing
+
+1. **Partición de equivalencia:** Divide el conjunto de entradas posibles en clases de equivalencia, de modo que probar una entrada de cada clase sea suficiente para evaluar el comportamiento del software
+2. **Análisis de valores límite:** Se centra en probar los valores en los límites de las clases de equivalencia, ya que es más probable que se encuentren defectos en estos puntos
+3. **Tablas de decisión:** Son una técnica sistemática para representar las reglas de negocio que afectan las condiciones y acciones en casos de prueba
+
+# Actividad de Práctica 05
+
+<Quiz questions={[
+  {
+    question: "¿Qué tipo de testing se centra en la evaluación de la facilidad de uso del software?",
+    options: [
+      "Pruebas de integración",
+      "Pruebas de seguridad",
+      "Pruebas de rendimiento",
+      "Pruebas de usabilidad"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál es la diferencia principal entre las técnicas de testing estáticas y dinámicas?",
+    options: [
+      "Las técnicas estáticas son menos costosas que las dinámicas.",
+      "Las técnicas estáticas se centran en la estructura del código, mientras que las dinámicas se centran en la funcionalidad del software.",
+      "Las técnicas estáticas se realizan después de la codificación, mientras que las dinámicas se realizan antes.",
+      "Las técnicas estáticas no requieren la ejecución del software, mientras que las dinámicas sí."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué tipo de pruebas realiza LoadRunner?",
+    options: [
+      "Pruebas de rendimiento",
+      "Pruebas de seguridad",
+      "Análisis estático del código",
+      "Pruebas de usabilidad"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál de las siguientes herramientas se utiliza para el análisis estático del código?",
+    options: [
+      "Selenium",
+      "JUnit",
+      "SonarQube",
+      "LoadRunner"
+    ],
+    correctIndex: 2
+  }
+]} />

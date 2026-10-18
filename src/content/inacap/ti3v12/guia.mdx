@@ -1,0 +1,634 @@
+# Guía Resumen
+
+## SQL Server
+
+- Es un Sistema de Gestión de Base de Datos Relacional (RDBMS).
+- RDBMS: *Relational Database Management System*.
+- Proporciona un conjunto de comandos y cláusulas para interactuar con una base de datos de forma eficiente y consistente.
+- SQL: *Structured Query Language* (Lenguaje de Consulta Estructurado)
+
+## Tipo de Datos
+
+### INT
+- Para números enteros (1, 10, 24, ...).
+- Generalmente se utiliza para el atributo *ID*.
+- También para otros atributos como: *Stock*, *Cantidad*, *Capacidad*, *Número de mesa*, etc.
+
+### DECIMAL (p,s)
+- Es una función. Se utiliza para declarar una variable a tipo decimal.
+- `p` indica el número de dígitos que puede almacenar la variable. Por lo general se deja en "10".
+- `s` indica el número de decimales que muestra la variable. Por lo general se deja en "2".
+- Entonces, para efectos del ramo se declara `DECIMAL(10,2)`.
+- Generalmente se utiliza para atributos como *Precio*, *Salario*.
+
+### DATETIME
+- Almacena valores de fecha y hora.
+- Ejemplo: `2024-05-20 14:30:00` representa el 20 de mayo de 2024, a las 2:30pm.
+- Se utiliza para atributos como *FechaReservación*.
+
+### DATE
+- Almacena solo valor de fecha.
+- Se utiliza en atributos que no requiere tanto detalle, como *FechaVenta*.
+
+### TIME
+- Almacena solo valor de hora.
+- Se utiliza en atributos como *HoraEntrada*, *HoraSalida*, etc.
+
+### VARCHAR(n)
+- Cadena de caracteres de longitud variable, con un máximo de `n` caracteres.
+- Se utiliza para atributos como *Nombre*, *Descripcion*, etc.
+
+## Alias
+- Nombres alternativos que se pueden asignar a Tablas o Atributos (columnas).
+- Se utilizan para que la lectura sea más legible. En especial para consultas complejas o cuando se unen múltiples tablas.
+- Se definen utilizando la palabra clave `AS` o simplemente colocando el alias después del nombre de la tabla o columna.
+
+### Alias para Tablas
+Generalmente se asignan a la altura de la cláusula FROM
+
+**Ejemplo:** 
+
+- Mostrar todos los atributos de la tabla Empleados. 
+- Asignar un alias E a la tabla Empleados.
+
+```sql
+-- Solución 1: sin palabra clave AS
+SELECT *
+FROM Empleados E;
+```
+
+```sql
+-- Solución 2: con palabra clave AS
+SELECT *
+FROM Empleados AS E;
+```
+
+### Alias para Atributos
+Generalmente se asignan a la altura de la cláusula `SELECT`.
+
+**Ejemplo:** Sea el atributo *Nombre* de la tabla *Empleado*. Mostrar todos los nombres de los empleados. Asignar un alias *NombreEmpleado* al atributo Nombre
+
+```sql
+-- Solución 1: sin palabra clave AS
+SELECT Nombre NombreEmpleado
+FROM Empleados;
+```
+
+```sql
+-- Solución 2: con palabra clave AS
+SELECT Nombre AS NombreEmpleado
+FROM Empleados;
+```
+
+## Funciones
+
+### IDENTITY(p,s)
+- Estrictamente no es una función, sino una propiedad.
+- Se aplica sobre una columna para generar automáticamente valores únicos.
+- `p` indica el valor inicial. Generalmente es `1`.
+- `s` indica el número de pasos (1 en 1, 2 en 2, etc.). Generalmente es `1`.
+- Puede declararse `IDENTITY(1,1)` o `IDENTITY` a secas. Ambas son equivalentes.
+- Ideal para el atributo *ID*, ya que así no hay que agregarlo manualmente (1,2,3,4,...,n).
+
+### DECIMAL(p,s)
+- Declara una variable a tipo decimal.
+- `p` indica el número de dígitos que puede almecenar la variable. Por lo general se deja en `10`.
+- `s` indica el número de decimales que muestra la variable. Por lo general se deja en `2`.
+- Entonces, para efectos del ramo se declara `DECIMAL(10,2)`.
+- Generalmente se utiliza para atributos como *Precio*, *Salario*.
+
+### SUM()
+Suma todos los valores de un atributo numérico.
+
+**Ejemplo:** Sea el atributo *Importe* de la tabla *Ventas*. Calcular la suma total de todas las ventas
+
+```sql
+SELECT SUM(Importe) AS TotalVentas
+FROM Ventas;
+```
+
+### AVG()
+Calcula el promedio de un atributo numérico.
+
+**Ejemplo:** Sea el atributo *Precio* de la tabla *Ventas*. Mostrar el promedio de las ventas.
+
+```sql
+SELECT AVG(Precio) AS PromedioVentas
+FROM Ventas;
+```
+### COUNT()
+Cuenta el número de registros (filas).
+
+**Ejemplo 1:** Calcular el número total de clientes de la tabla *Clientes*.
+
+```sql
+SELECT COUNT(*) AS TotalClientes
+FROM Clientes;
+```
+
+**Ejemplo 2:** Calcula el número total de clientes mayores de 30 años de la tabla *Clientes*.
+
+```sql
+SELECT COUNT(*) AS TotalClientes
+FROM Clientes;
+WHERE Edad > 30;
+```
+
+### MIN()
+Encuentra el valor mínimo de un atributo numérico.
+
+**Ejemplo: ** Sea el atributo *Precio* de la tabla *Productos*. Encontrar el precio mínimo.
+
+```sql
+SELECT MIN(Precio) AS PrecioMinimo
+FROM Productos;
+```
+
+### MAX()
+Encuentra el valor máximo de un atributo numérico.
+
+**Ejemplo:** Sea el atributo *Precio* de la tabla *Productos*. Encontrar el precio máximo.
+
+```sql
+SELECT MAX(Precio) AS PrecioMaximo
+FROM Productos;
+```
+
+### YEAR()
+Extrae el año de una fecha. Devuelve el año como un valor entero de 4 dígitos (INT).
+
+**Ejemplo 1:** Sea el atributo *FechaVentas* de la tabla *Ventas*. Extraer el año de cada venta.
+
+```sql
+SELECT YEAR(FechaVentas) AS AñoVenta
+FROM Ventas;
+```
+
+**Ejemplo 2:** Sea el atributo *FechaVentas* de la tabla *Ventas*. Obtener las ventas realizadas el año 2023.
+
+```sql
+SELECT *
+FROM Ventas
+WHERE YEAR(FechaVentas) = 2023;
+```
+
+### MONTH()
+Extrae el mes de una fecha. Devuelve el mes como un valor entero entre 1 y 12 (INT).
+
+**Ejemplo 1:** Sea el atributo *FechaVentas* de la tabla *Ventas*. Extraer el mes de cada venta.
+
+```sql
+SELECT MONTH(FechaVentas) AS MesVenta
+FROM Ventas;
+```
+
+**Ejemplo 2:** Sea el atributo *FechaVentas* de la tabla *Ventas*. Obtener las ventas realizadas en Mayo.
+
+```sql
+SELECT *
+FROM Ventas
+WHERE MONTH(FechaVentas) = 5;
+```
+
+### DAY()
+Extrae el día de una fecha. Devuelve el día como un valor numérico (INT).
+
+**Ejemplo:** Sea el atributo *FechaVentas* de la tabla *Ventas*. Mostrar todas las ventas realizadas a partir del día 20 del mes.
+
+```sql
+SELECT *
+FROM Ventas
+WHERE DAY(FechaVentas) >= 20;
+```
+
+## Comandos de Definición de Datos (DDL)
+
+### CREATE
+Crea base de datos y tablas.
+
+**Ejemplo 1:** Crear una base de datos llamada *Libreria*
+```sql
+CREATE DATABASE Libreria;
+
+Use Libreria;
+```
+
+**Ejemplo 2:** Crear una tabla llamada *Autores* con los siguientes atributos: ID, Titulo, Autor.
+
+```sql
+CREATE TABLE Autores (
+ID INT IDENTITY,
+Titulo VARCHAR(100),
+Autor VARCHAR(100),
+PRIMARY KEY (ID)
+);
+```
+
+### ALTER
+- Agrega, modifica o elimina columnas de una tabla ya existente.
+- Se utiliza en conjunto con los comandos `ADD`, `ALTER`, `COLUMN`, `DROP`.
+
+**Ejemplo 1:** Sea una tabla ya existente llamada *Empleados*. Agregar un nuevo atributo llamado *FechaContrato* de tipo `DATE`.
+
+```sql
+ALTER TABLE Empleados
+ADD FechaContrato DATE;
+```
+
+**Ejemplo 2:** Sea el atributo *Telefono* de la tabla *Empleados*. Eliminar el atributo *Telefono* de la tabla.
+
+```sql
+ALTER TABLE Empleados
+DROP COLUMN Telefono;
+```
+
+**Ejemplo 3:** Sea el atributo *Salario* de tipo `INT`, correspondiente a la tabla *Empleados*. Cambiar el tipo de dato del atributo *Salario* a decimal.
+
+```sql
+ALTER TABLE Empleados
+ALTER COLUMN Salario DECIMAL(10,2);
+```
+
+### DROP
+- Se utiliza para eliminar tablas, columnas o bases de datos enteros.
+- Para eliminar columnas se utiliza en conjunto con los comandos `ALTER` y `COLUMN` (como se vio anteriormente).
+
+**Ejemplo 1:** Eliminar la tabla *Clientes* de la base de datos *TiendaOnline*.
+
+```sql
+DROP TABLE Clientes;
+```
+**Ejemplo 2:** Eliminar la base de datos *TiendaOnline*.
+
+```sql
+DROP DATABASE TiendaOnline;
+```
+
+## Comandos de Manipulación de Datos (DML)
+
+### INSERT
+- Agrega nuevos registros a una tabla.
+- Se utiliza en conjunto con los comandos `INTO`, `Values`.
+
+**Ejemplo:** 
+
+- Sean los atributos *Nombre*, *Email*, *Telefono* pertenecientes a la tabla 
+- Agregar a la tabla *Clientes* los siguientes registros:
+	- Juan Perez, juan@example.com, 123456789
+	- Maria Lopez, maria@example.com, 987654321
+	- Pedro Gomez, pedro@example.com, 456789123
+
+```sql
+INSERT INTO Clientes(Nombre,Email,Telefono)
+VALUES
+	('Juan Perez','juan@example.com','123456789')
+	('Maria Lopez','maria@example.com','9876654321')
+	('Pedro Gomez','pedro@example.com','456789123'):
+```
+
+### UPDATE
+- Modifica los datos existentes de uno o más registros de una fila.
+- Se utiliza en conjunto con el comando `SET`.
+
+**Ejemplo 1:** Sea el atributo *Salario* de la tabla *Empleados*. La empresa pasa por un buen momento y ha aumentado el salario de todos los empleados en un 10%. Actualiza los registros del atributo *Salario*.
+
+```sql
+UPDATE Empleados
+SET Salario = Salario * 1.1;
+```
+
+**Ejemplo 2:** Sea el atributo *Salario* de la tabla *Empleados*. La empresa realizó una mala inversión y se fue a pérdida, por lo que reducirá el salario en un 20% a todos los empleados que ganen por sobre $3000. Actualiza los registros del atributo *Salario*.
+
+```sql
+UPDATE Empleados
+SET Salario = Salario * 0.8
+WHERE Salario > 3000;
+```
+### DELETE
+
+- Elimina uno o más registros de una tabla.
+- Se utiliza en conjunto con los comandos `FROM`, `WHERE`.
+- Si no se utiliza en conjunto con `WHERE`, entonces borra la tabla completa.
+
+**Ejemplo 1:** Sea el atributo *ID* de la tabla *Empleados*. Eliminar al empleado cuyo ID es 1001.
+
+```sql
+DELETE FROM Empleados
+WHERE ID = 1001;
+```
+
+**Ejemplo 2:** Sea el atributo *ID* de la tabla *Empleados*. La empresa se ha declarado en quiebra y está realizando un despido masivo. Eliminar a todos los empleados.
+
+```sql
+DELETE FROM Empleados;
+```
+
+## Cláusulas de Consulta
+
+### SELECT
+- Recupera datos de una o más tablas.
+- Permite mostrar columnas específicias o todas las columnas (`*`).
+
+**Ejemplo 1:** 
+- Sea la tabla *Productos* con atributos: *ID*, *Nombre*, *Descripcion*, *Precio*, *Stock*, *Categoria_ID*.
+- Mostrar solo los atributos: *Nombre*, *Precio*, *Descripcion*.
+
+```sql
+SELECT Nombre, Precio, Descripcion
+FROM Productos;
+```
+
+**Ejemplo 2:** Dadas las mismas condiciones del Ejemplo 1, mostrar todos los atributos de la tabla *Productos*.
+
+```sql
+SELECT *
+FROM Productos;
+```
+
+### WHERE
+- Se utiliza para filtrar registros.
+- Es un poco más complicado porque existen 4 casos.
+
+1. **Para selección de datos específicos de una tabla**
+
+**Ejemplo:** Sea el atributo *Departamento_ID* de la tabla *Empleados*. Mostrar todos los empleados del departamento con ID 5.
+
+```sql
+SELECT * 
+FROM Empleados
+WHERE Departamento_ID = 5;
+```
+
+2. **Para filtrado con múltiples condiciones**
+
+**Ejemplo 1:** Sean los atributos *Precio*, *Stock* pertenecientes a la tabla *Productos*. Mostrar todos los productos cuyo precio sea mayor a 100 y cuyo stock sea menor a 50.
+
+```sql
+SELECT Precio, Stock
+FROM Productos
+WHERE Precio > 100 AND Stock < 50;
+```
+
+**Ejemplo 2:** Sea el atributo *FechaPedido* de la tabla *Pedidos*. Mostrar todos los pedidos cuya fecha sea igual o posterior al 1 de enero del 2023, y anterior al 1 de enero del 2024.
+
+```sql
+SELECT *
+FROM Pedidos
+WHERE FechaPedido >= '2023-01-01' AND FechaPedido < '2024-01-01';
+```
+
+3. **Para filtrado en patrones de texto**
+
+Se utiliza en conjunto con el comando `LIKE` y el comodín `%`.
+
+**Ejemplo:** Sea el atributo *Nombre* de la tabla *Clientes*. Mostrar todos los clientes cuyo nombre comience con "S".
+
+```sql
+SELECT *
+FROM Clientes
+WHERE Nombre LIKE 'S%';
+```
+
+4. **Para uso de subconsultas**
+
+- Se agrega una consulta dentro de una condición.
+- Es una alternativa para no utilizar `JOIN` si la consulta no es tan compleja.
+
+**Ejemplo:**
+
+- Sean los atributos *Nombre*, *Cargo*, *Departamento_ID* pertenecientes a la tabla *Empleados*.
+- Sean los atributos *ID*, *Supervisor*, *NombreDepartamento* pertenecientes a la tabla *Departamentos.*
+- Mostrar todos los empleados que trabajan en los departamentos supervisados por Juan.
+
+```sql
+-- Solución 1: subconsultas
+SELECT Nombre, Cargo
+FROM Empleados e
+WHERE Departamento_ID IN (SELECT ID FROM Departamentos WHERE Supervisor = 'Juan');
+```
+
+```sql
+-- Solución 2: utilizando JOIN
+SELECT e.Nombre, e.Cargo
+FROM Empleados e
+JOIN Departamentos d ON e.Departamento_ID = d.ID
+WHERE d.Supervisor = 'Juan';
+```
+
+### ORDER BY
+- Ordena los resultados según una o muchas columnas.
+- Se utiliza con los comandos `ASC`, `DESC`.
+
+|Tipo Dato|`ASC`|`DESC`|
+|---|---|---|
+|número|menor a mayor|mayor a menor|
+|texto|A a Z|Z a A|
+|fecha|antigua a reciente|reciente a antigua|
+
+
+**Ejemplo 1:** Sean los atributos *Nombre*, *SalarioHora*, *HorasTrabajadas* pertenecientes a la tabla *Empleados*. Mostrar el salario total de todos los empleados, ordenados de mayor a menor.
+
+```sql
+SELECT Nombre, (SalarioHora * HorasTrabajadas) AS SalarioTotal
+FROM Empleados
+ORDER BY SalarioTotal DESC;
+```
+**Ejemplo 2:** Sean los atributos *Nombre*, *Apellido* pertenecientes a la tabla *Clientes*. Mostrar el nombre y apellido de todos los clientes, ordenados alfabéticamente por el apellido.
+
+```sql
+SELECT Nombre, Apellido
+FROM Clientes
+ORDER BY Apellido ASC;
+```
+
+**Ejemplo 3:** Sean los atributos *Nombre*, *Apellido*, *FechaContrato* pertenecientes a la tabla *Empleados*. Mostrar los empleados ordenados alfabéticamente por apellido y por fecha de contrato de más reciente a más antiguo.
+
+```sql
+SELECT Nombre, Apellido, FechaContrato
+FROM Empleados
+ORDER BY Apellido ASC, FechaContrato DESC;
+```
+
+### INNER JOIN
+- Combina registros de 2 tablas según la condicion relacionada entre ellas.
+- Puede utilizarse `INNER JOIN` o `JOIN` a secas. Ambas son equivalentes.
+
+
+**Ejemplo:**
+
+- Sean los atributos *ID*, *Nombre* pertenecientes a la tabla *Clientes*.
+- Sean los atributos *Nombre*, *Descripción*, *Pedido_ID*, *Cliente_ID* y *Fecha* pertenecientes a la tabla *Pedidos*.
+- Mostrar todos los pedidos con la información del cliente que realizó cada pedido.
+
+<SmartFigure
+	id="inner-join"
+	src="/inacap/ti3v12/images/fig01.png"
+	alt="Diagrama Inner Join"
+	caption="Diagrama Inner Join"
+	size="medium"
+/>
+
+```sql
+SELECT p.Nombre AS NombrePedido, p.Descripcion, p.Fecha AS FechaPedido, c.Nombre AS NombreCliente
+FROM Pedidos p
+JOIN Clientes c ON p.Cliente_ID = c.ID;
+```
+
+- Se utilizan alias para una mejor muestra de datos, ya que tanto las tablas *Clientes* y *Pedidos* tienen un atributo llamado *Nombre*, y puede generar confusión.
+
+
+### LEFT JOIN
+- Combina registros de 2 tablas según la condición relacionada entre ellas.
+- Devuelve **todos** los registros de la **tabla izquierda**, y los registros coincidentes de la tabla derecha.
+- Si no hay coincidencias, los resultados de la tabla derecha serán `NULL`.
+
+**Ejemplo**
+
+- Sean los atributos *ID*, *Nombre* pertenecientes a la tabla *Clientes*.
+- Sean los atributos *Nombre*, *Descripción*, *Pedido_ID*, *Cliente_ID* y *Fecha* pertenecientes a la tabla *Pedidos*.
+- Mostrar todos los pedidos con la información del cliente que realizó cada pedido.
+- Si hay pedidos sin un cliente asociado, aún así se deben mostrar esos pedidos (para investigar si existen fallas en el sistema).
+
+<SmartFigure
+	id="left-join"
+	src="/inacap/ti3v12/images/fig02.png"
+	alt="Diagrama Left Join"
+	caption="Diagrama Left Join"
+	size="medium"
+/>
+
+```sql
+SELECT p.Nombre AS NombrePedido, p.Descripcion, p.Fecha AS FechaPedido, c.Nombre AS NombreCliente
+FROM Pedidos p
+LEFT JOIN Clientes c ON p.Cliente_ID = c.ID;
+```
+
+### RIGHT JOIN
+- Combina registros de 2 tablas según la condición relacionada entre ellas.
+- Devuelve **todos** los registros de la **tabla derecha**, y los registros coincidentes de la tabla izquierda.
+- Si no hay coincidencias, los resultados de la tabla izquierda serán `NULL`.
+
+**Ejemplo**
+
+- Sean los atributos *ID*, *Nombre* pertenecientes a la tabla *Clientes*.
+- Sean los atributos *Nombre*, *Descripción*, *Pedido_ID*, *Cliente_ID* y *Fecha* pertenecientes a la tabla *Pedidos*.
+- Mostrar todos los clientes con la información de los pedidos que hayan realizado.
+- Si un cliente no ha realizado ningun pedido (nuevo, con deuda, vetado), aún así se debe mostrar la información del cliente.
+
+<SmartFigure
+	id="right-join"
+	src="/inacap/ti3v12/images/fig03.png"
+	alt="Diagrama Right Join"
+	caption="Diagrama Right Join"
+	size="medium"
+/>
+
+```sql
+SELECT c.ID, c.Nombre AS NombreCliente, p.Nombre AS NombrePedido, p.Descripcion, p.Fecha AS FechaPedido
+FROM Pedidos p
+RIGHT JOIN Clientes c ON c.ID = p.Cliente_ID;
+```
+
+- Si se cambia la posición de las tablas, el mismo ejemplo se puede realizar con un `LEFT JOIN`.
+
+```sql
+-- Ejemplo anterior, ahora con LEFT JOIN
+SELECT c.ID, c.Nombre AS NombreCliente, p.Nombre AS NombrePedido, p.Descripción, p.Fecha AS FechaPedido
+FROM Clientes c
+LEFT JOIN Pedidos p ON p.Cliente_ID = c.ID;
+```
+
+### DISTINCT
+- Elimina los registros duplicados en el resultado de una consulta.
+- Útil cuando se necesita obtener un conjunto único de datos.
+
+**Ejemplo:** Sea el atributo *Ciudad* de la tabla *Clientes*. Mostrar todas las ciudades donde residen los clientes.
+
+```sql
+SELECT DISTINCT Ciudad
+FROM Clientes;
+```
+
+- En el ejemplo, si no se usa `DISTINCT` se puede dar el caso que 10 clientes pertenecen a Santiago, y se repetiría Santiago 10 veces.
+
+### GROUP BY
+- Agrupa registros que tienen los mismos valores en columnas específicas.
+- Se usa en conbinación con funciones de agregación: `SUM()`, `AVG()`, `COUNT`, `MAX()`, `MIN()`.
+
+Sean los atributos *Producto*, *Cantidad*, *PrecioUnidad*, *Fecha* pertenecientes a la tabla *Ventas*.
+
+<SmartTable
+ layoutTable="auto"
+ headers={["Producto","Cantidad","PrecioUnidad","Fecha"]}
+ rows={[
+ ["A","10","5","2024-07-15"],
+ ["B","15","3","2024-07-20"],
+ ["A","5","5","2024-07-23"],
+ ["A","8","5","2024-07-23"],
+ ["C","7","8","2024-08-05"],
+ ["B","10","3","2024-08-10"],
+ ["A","8","5","2024-08-12"],
+ ]}
+/>
+
+**Ejemplo 1:** Mostrar el total de ventas para cada producto.
+
+```sql
+SELECT Producto, SUM(Cantidad * PrecioUnidad) AS TotalVentas
+FROM Ventas
+GROUP BY Producto;
+```
+|Producto|TotalVentas|
+|---|---|
+|A|115|
+|B|75|
+|C|56|
+
+**Ejemplo 2:** Mostrar el total de ventas agrupadas por producto y fecha
+
+```sql
+SELECT Producto, Fecha, SUM(Cantidad * PrecioUnidad) AS TotalVentas
+FROM Ventas
+GROUP BY Producto, Fecha
+ORDER BY Producto, Fecha;
+```
+
+<SmartTable
+ layoutTable="auto"
+ headers={["Producto","Fecha","TotalVentas"]}
+ rows={[
+ ["A","2024-07-15","50"],
+ ["A","2024-07-23","65"],
+ ["B","2024-07-20","45"],
+ ["B","2024-07-25","30"],
+ ["C","2024-07-24","56"],
+ ]}
+/>
+
+- Para el ejemplo 2, se agrega el comando `ORDER BY` para garantizar que los atributos *Producto* y *Fecha* se ordenen de forma ascendente.
+
+### HAVING
+- Se utiliza para filtrar resultados (similar a `WHERE`).
+- Su ventaja es que se puede utilizar funciones de agregación: `SUM()`, `AVG()`, `COUNT`, `MAX()`, `MIN()`. 
+- Se utiliza en conjunto con  `GROUP BY`.
+
+**Ejemplo:** Sean los atributos *Producto*, *Cantidad*, *PrecioUnidad* de la tabla *Ventas*. Mostrar todos los productos que hayan generado más de $100 en ventas totales.
+
+```sql
+SELECT Producto, SUM(Cantidad * PrecioUnidad) AS TotalVentas
+FROM Ventas
+GROUP BY Producto
+HAVING SUM(Cantidad * PrecioUnidad) > 100;
+```
+
+### TOP
+- Muestra una cantidad limitada de registros.
+- Se recomienda utilizarlo junto con `ORDER BY`, por buenas prácticas y evitar resultados inesperados.
+
+**Ejemplo:** Sea el atributo *ID* de la tabla *Empleados*. Mostrar los 3 empleados contratados recientemente en la empresa.
+
+```sql
+SELECT TOP(3) *
+FROM Empleados
+ORDER BY ID DESC;
+```

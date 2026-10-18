@@ -1,0 +1,124 @@
+# Gestión de defectos, combinación de valores de prueba y exploración
+La definición de un plan de prueba según los requerimientos del desarrollo de software es una etapa crítica en el ciclo de vida del desarrollo.
+
+## Material Complementario
+- [Glosario](/inacap/tilv01/docs/glosario03.pdf)
+- [Gestión de defectos, combinación de valores de prueba y exploración](/inacap/tilv01/docs/guia04.pdf)
+
+## Introducción al plan de pruebas
+Es un documento que describe el alcance, enfoque, recursos y calendario de las actividades de prueba previstas. Este documento es fundamental para garantizar que el producto de software se pruebe de maner adecuada y completa, asegurando su calidad y funcionalidad.
+
+Los objetivos de plan de pruebas incluyen:
+
+- Verificar que el software cumple con los requisitos especificados
+- Detectar defectos en el software antes de su liberación
+- Asegurar que el software sea confiable y funcione correctamente bajo diversas condiciones
+
+## Alcance de plan de pruebas
+Debe detallar las características del software que se probarán y aquellas que no se incluirán en las pruebas.
+
+- Características a probar
+- Características que no se pueban
+
+## Estrategia de pruebas
+
+- **Técnicas de prueba:** Pruebas estáticas (revisión de documentos, análisis estático) y dinámicas (pruebas funcionales y no funcionales)
+- **Tipos de prueba:** Pruebas unitarias, de integración, de sistema, de aceptación
+- **Criterios de prioridad:** Basados en la criticidad y el impacto de los defectos
+
+## Criterios de Aceptación y finalización
+Establecen las condiciones bajo las cuales las pruebas se consideran satisfactorias y completadas
+
+- **Criterios de entrada:** Condiciones que deben cumplirse antes de iniciar una fase de prueba (por ejemplo, disponibilidad del entorno de prueba, casos de prueba preparados)
+- **Criterios de salida:** Condiciones para finalizar una fase de prueba (por ejemplo, porcentaje de casos de prueba ejecutados y aprobados, severidad de defectos)
+
+## Recursos y cronograma
+El plan de prueba debe identificar los recursos necesarios, incluidos el equipo de pruebas, las herramientas y los entornos de prueba, así como un cronograma detallado.
+
+- Cronograma
+- Equipo de pruebas
+- Herramientas de pruebas
+
+## Gestión de defectos
+Es crucial para asegurar la calidad del software. Esto incluye la identificación, registro, clasificación y seguimiento de defectos hasta su resolución.
+
+- **Registro de defectos:** Herramientas y procesos para registrar y rastrear defectos
+- **Clasificación de defectos:** Priorización basada en la severidad y el impacto
+- **Resolución y verificación:** Procesos para la corrección y revalidación de defectos
+
+## Evaluación y revisión
+Aseguran su efectividad y relevancia a lo largo del proyecto
+
+- **Revisiones regulares:** Revisión periódica del plan de prueba para adaptarse a cambios en los requisitos o el entorno
+- **Mejora continua:** Identificación y aplicación de mejoras basadas en la experiencia de pruebas previas
+
+## PDCA (planificar, hacer, verificar, actual)
+La rueda de Deming, conocida como ciclo PDCA (plan-do-check-act) se utiliza como método para resolver e implementar soluciones de forma rigurosa y metódica. Estos principios son aplicables en la gestión de plan de prueba de software, y podrían sintetizarse de la siguiente manera:
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Fase PDCA', 'Descripción en Testing']}
+	rows={[
+		[
+			'**Planificar**', 
+			'Definir el alcance, identificar los recursos necesarios (personal, herramientas de prueba, entornos, etc.) y elaborar un plan detallado de pruebas que incluya la estrategia de pruebas, los casos de prueba y los criterios de aceptación'
+		],
+		[
+			'**Hacer**', 
+			'Ejecutar las actividades de prueba según el plan establecido. Esto incluye la ejecución de casos de prueba, la recolección de datos y la documentación de los resultados obtenidos'
+		],
+		[
+			'**Verificar**', 
+			'Evaluar los resultados obtenidos, analizar si los resultados cumplen con los criterios de aceptación definidos, identificar defectos y áreas de mejora, y recopilar métricas de calidad relevantes (por ejemplo, tasa de defectos encontrados, cobertura de pruebas, etc)'
+		],
+		[
+			'**Actuar**', 
+			'Basándose en los hallazgos y análisis de las pruebas, se toman acciones correctivas o preventivas. Esto puede incluir ajustes en los casos de prueba, mejoras en la estrategia de pruebas, corrección de defectos encontrados, actualización de la documentación, entre otros'
+		]
+	]}
+/>
+
+# Actividad de Práctica 10
+
+<Quiz questions={[
+	{
+		question: "¿Qué incluye típicamente un plan de prueba?",
+		options: [
+			"Los objetivos de la prueba y los recursos necesarios.",
+			"Objetivos, alcance, estrategias, recursos y cronograma.",
+			"Solamente el cronograma de las pruebas.",
+			"Solo los objetivos de la prueba."
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Cuál es el principal objetivo de definir un plan de prueba en el desarrollo de software?",
+		options: [
+			"Reducir el tiempo de desarrollo.",
+			"Incrementar las ventas del software.",
+			"Minimizar el uso de recursos.",
+			"Establecer un enfoque estructurado para la verificación y validación."
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Cuál de las siguientes es una actividad clave en la fase de planificación de pruebas?",
+		options: [
+			"Redacción del manual del usuario.",
+			"Identificación de los tipos de pruebas necesarias.",
+			"Publicación del software.",
+			"Codificación de nuevas características."
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Qué fase del ciclo PDSA implica la ejecución de casos de prueba y la recolección de datos en un plan de pruebas de software?",
+		options: [
+			"Do",
+			"Check",
+			"Plan",
+			"Act"
+		],
+		correctIndex: 0
+	}
+]} />

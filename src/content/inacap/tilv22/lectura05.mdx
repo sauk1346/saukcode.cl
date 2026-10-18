@@ -1,0 +1,225 @@
+# Diseño de la Arquitectura del Videojuego
+
+## 1. Motores gráficos y arquitectura
+
+En el diseño de videojuegos, el motor gráfico constituye el núcleo técnico que articula todos los sistemas del juego. Comprender sus componentes permite tomar decisiones informadas al seleccionar tecnologías según el contexto de desarrollo.
+
+### Elementos esenciales de un motor gráfico
+La arquitectura de un videojuego se compone de diversos módulos que interactúan para ofrecer una experiencia coherente y funcional. El motor gráfico, también conocido como game engine, es el núcleo que integra y gestiona estos módulos.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Componente", "Descripción"]}
+    rows={[
+        [
+            "**Motor gráfico**",
+            "Encargado de renderizar gráficos, gestionar físicas, animaciones y audio. Ejemplos: Unity, Unreal Engine, Godot"
+        ],
+        [
+            "**Lógica del juego**",
+            "Define reglas, interacciones y comportamientos mediante scripts y programación"
+        ],
+        [
+            "**Sistema de entrada**",
+            "Procesa señales del teclado, ratón, controles o pantallas táctiles"
+        ],
+        [
+            "**Módulo de física**",
+            "Simula leyes físicas como gravedad y colisiones"
+        ],
+        [
+            "**Renderizado gráfico**",
+            "Muestra los gráficos en pantalla, tanto 2D como en 3D"
+        ],
+        [
+            "**Sistema de audio**",
+            "Gestiona efectos de sonido, música y voces"
+        ],
+        [
+            "**Gestión de recursos**",
+            "Administra archivos como imágenes, modelos 3D, sonidos y niveles"
+        ],
+        [
+            "**Interfaz de usuario (UI)**",
+            "Incluye menús, botones, marcadores y otros elementos interactivos"
+        ],
+    ]}
+/>
+
+## 2. Juego educativo 2D para móviles
+El desarrollo de videojuegos educativos en 2D para dispositivos móviles requiere motores gráficos que ofrezcan eficiencia, accesibilidad y facilidad de distribución. En este contexto, Godot Engine destaca como una solución gratuita y ligera, ideal para proyectos con recursos limitados y orientados a plataformas Android. Asimismo, su capacidad para generar archivos APK directamente y su enfoque en la educación lo convierten en una herramienta adecuada para entornos escolares. 
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Característica", "Descripción"]}
+    lists={{
+        R1: [
+            "Gratuito y sin pagar por distribución",
+            "Recursos y demos educativos disponibles",
+            "Generación directa de APK"
+        ],
+        R2: [
+            "Limitaciones visuales para proyectos complejos",
+            "Requiere configuración adicional para APK",
+            "Menor automatización en eventos comparado con otros motores"
+        ]
+    }}
+    rows={[
+        [
+            "**Ventajas**",
+            "@R1"
+        ],
+        [
+            "**Desventajas**",
+            "@R2"
+        ],
+    ]}
+/>
+
+## 3. Videojuego battle royale para consola
+El desarrollo de videojuegos tipo battle royale para consolas como PS5 exige motores gráficos capaces de ofrecer alto rendimiento visual y dinámicas complejas. Este caso plantea un escenario cercano a un juego AAA, donde la calidad técnica y la optimización para consola son fundamentales.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Característica","Descripción"]}
+    lists={{
+        R3: [
+            "Desarrollo de videojuegos de alta gama con calidad gráfica avanzada",
+            "Configuración básica integrada para consolas",
+            "Amplia documentación y herramientas que agilizan el desarrollo"
+        ],
+        R4: [
+            "Regalías aplicables según ventas",
+            "Requiere hardware de alto rendimiento (tarjeta gráfica dedicada)",
+            "Necesita personal especializado en programación, diseño y texturizado"
+        ],
+        R5: [
+            "Crear cuenta en Epic Games",
+            "Instalar versión Unreal Engine 4.27 si el equipo no es de gama alta",
+            "Obtener licencia comercial de Unreal y Sony",
+            "Instalar el Kit de Desarrollo de PS5 (PlayStation 5 DevKit)",
+            "Acceder al SDK de Sony para empaquetar el juego correctamente"
+        ]
+    }}
+    rows={[
+        [
+            "**Contexto y necesidades**",
+            "Se desea desarrollar un videojuego tipo battle royale en 3D, con alta dinámica de movimientos y gráficos destacados. El objetivo es el mercado de consolas, específicamente PlayStation 5, y se cuenta con un presupuesto cercano al de un juego AAA. La distribución se realizará mediante la tienda de Sony"
+        ],
+        [
+            "**Motor recomendado: Unreal Engine**",
+            "Dado el nivel de exigencia gráfica y técnica, Unreal Engine es la opción más adecuada. Este motor permite desarrollar videojuegos de alta gama, con herramientas integradas para producción en consola y una calidad visual sobresaliente"
+        ],
+        [
+            "**Ventajas**",
+            "@R3"
+        ],
+        [
+            "**Desventajas**",
+            "@R4"
+        ],
+        [
+            "**Instalación y configuración**",
+            "@R5"
+        ],
+    ]}
+/>
+
+## 4. Exploración narrativa en PC
+En este caso, el foco del desarrollo está en la narrativa y la exploración, con destino a la plataforma PC. La historia es el eje central del videojuego, y se busca una solución técnica que permita flexibilidad sin requerir grandes recursos gráficos o de programación. Este escenario exige un motor versátil, con acceso a recursos y facilidad de implementación.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Característica","Descripción"]}
+    lists={{
+        R3: [
+            "Compatible con desarrollo 2D y 3D",
+            "Acceso a recursos gratuitos y de bajo costo",
+            "Demos especializados en exploración narrativa"
+        ],
+        R4: [
+            "Requiere conocimentos en C\#",
+            "Regalías por ventas superiores a cierto monto",
+            "Posibles problemas de portabilidad entre versiones"
+        ],
+        R5: [
+            "Crear cuenta en Unity",
+            "Descargar Unity Hub para gestionar versiones del editor",
+            "Para PC, no se requieren complementos adicionales",
+            "Considerar el espacio en disco, ya que cada versión puede ocupar gran cantidad de almacenamiento"
+        ]
+    }}
+    rows={[
+        [
+            "**Contexto y necesidades**",
+            "Se solicita el desarrollo de un videojuego centrado en la exploración narrativa, donde la historia es el elemento más importante. La plataforma de destino es PC, y no se contempla el diseño de muchos recursos adicionales"
+        ],
+        [
+            "**Motor recomendado: Unreal Engine**",
+            "Unity se presenta como una opción versátil y adecuada para este tipo de proyecto, ya que permite trabajar tanto en 2D como en 3D, y ofrece acceso a una amplia variedad de recursos gratuitos y de bajo costo a través de Unity Store"
+        ],
+        [
+            "**Ventajas**",
+            "@R3"
+        ],
+        [
+            "**Desventajas**",
+            "@R4"
+        ],
+        [
+            "**Instalación y configuración**",
+            "@R5"
+        ],
+    ]}
+/>
+
+# Actividad de Práctica 02
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es el rol principal del motor gráfico en un videojuego?",
+		options: [
+			"Controlar exclusivamente la lógica del juego",
+			"Administrar la interfaz de usuario y los menús",
+			"Diseñar los niveles y personajes del juego",
+			"Renderizar gráficos y gestionar sistemas como físicas, audio y animaciones"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "El sistema de entrada convierte señales físicas en acciones dentro del juego",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Qué plataforma usa programación visual y HTML5?",
+		options: [
+			"GameMaker",
+			"Godot",
+			"Unity",
+			"Construct"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Por qué Unreal Engine es ideal para videojuegos tipo AAA?",
+		options: [
+			"Porque es gratuito en todos los casos",
+			"Porque es el único motor compatible con PC",
+			"Porque permite gráficos avanzados y desarrollo para consolas como PS5",
+			"Porqu no requiere conocimientos técnicos para su uso"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "Unity permite desarrollar videojuegos tanto en 2D como en 3D",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+]} />

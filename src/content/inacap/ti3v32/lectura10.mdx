@@ -1,0 +1,201 @@
+# Comandos de búsqueda en subdocumentos con iteración y asociaciones lógicas
+
+## PyMongo
+Es el paquete de controladores oficial para controlar MongoDB con Python, es decir, permite unir estas dos tecnologías.
+
+Desde la consola de MongoDB, se tiene control absoluto sobre las bases de datos, colecciones y documentos. Sin embargo, cuando se quiere usar esta base de datos con aplicaciones o script desarrollados en Python, se necesita un intermediario para realizar distintas operaciones.
+
+## Intalación
+
+1. Instalación librería
+
+```sh
+pip install pymongo
+```
+
+2. Ingresar a MongoDB (con Compass por ejemplo) y conectar
+
+3. Abrir un archivo python y realizar las primeras acciones
+
+```python
+#importación librería
+from pymongo import MongoClient
+
+#conexión a MongoDB
+cliente = MongoClient('localhost')
+```
+
+4. Creación de una base de datos y colección
+
+```python
+from pymongo import MongClient
+
+cliente = MongoClient('localhost')
+
+db = cliente['db_ejemplo']
+coleccion = db['personas']
+```
+
+5. Verificar que la base de datos ha sido creada
+
+```python
+from pymongo import MongClient
+
+cliente = MongoClient('localhost')
+
+db = cliente['db_ejemplo']
+coleccion = db['personas']
+
+print(db.list_collection_names())
+```
+
+6. Crear un documento en la colección
+
+```python
+from pymongo import MongClient
+
+cliente = MongoClient('localhost')
+
+db = cliente['db_ejemplo']
+coleccion = db['personas']
+
+print(db.list_collection_names())
+
+
+coleccion.insert_one({
+    'nombre': 'Leonardo Zuñiga',
+    'edad': 20,
+    'intereses': ['Música', 'Guitarra']
+})
+```
+
+7. Verificar en MongoDB Shell
+
+```js
+show dbs
+```
+
+8. Verificar la base de datos
+
+```js
+use bd_ejemplo
+show collections
+```
+
+## Otras acciones en Python
+
+1. Ver la cantidad de documentos de la colección
+
+```python
+print(coleccion.count_documents())
+``` 
+
+2. Insertar más de un documento
+
+```python
+coleccion.insert_many([
+    {
+        'nombre': 'María Opazo'
+        'edad': 25
+        'intereses':['Canto','Baile']
+    },
+    {
+        'nombre': 'Victor Paredes'
+        'edad': 22
+        'intereses':['Deporte','Cine']
+    },
+    {
+        'nombre': 'Luis Cardenas'
+        'edad': 28
+        'intereses':['Investigación','Química']
+    },
+])
+```
+
+3. Mostrar todos los documentos
+
+```python
+for documentos in coleccion.find({}):
+    print(documentos)
+```
+
+4. Mostrar todas las personas con edad mayor a 25 años
+
+```python
+for documentos in coleccion.find({"edad":{"$gt":25}}):
+    print(documentos)
+```
+
+5. Mostrar el primer documento donde las personas tengan edad menor a 25 años
+
+```python
+doc = coleccion.find_one({"edad":{"$lt":25}})
+print(doc)
+```
+
+6. Eliminar la primera persona registrada que tiene 20 años
+
+```python
+coleccion.delete_one({"edad":20})
+```
+
+7. Actualizar la edad de las personas de 24 a 25 años
+
+```python
+coleccion.update_many({"edad":24}, {"$set":{"edad":25}})
+```
+
+# Actividad de Práctica 07
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es la instrucción que se debe ejecutar para instalar PyMongo?",
+		options: [
+			"pip run pymongo",
+			"pip install pymongo",
+			"install pymongo",
+			"run pymongo"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "Se necesita desde Python crear la colección trabajadores a la base de datos Empresa creada en MongoDB por medio de Python con la variable db ¿Cuál de las siguientes sentencias se debe ejecutar desde Python?",
+		options: [
+			"db.collection('trabajadores')",
+			"db=coleccion['trabajadores']",
+			"coleccion= db['trabajadores']",
+			"coleccion= db.collection('trabajadores')"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Qué sentencia de Phyton se puede usar para crear una consulta que retorne todos los documentos de la colección productos?",
+		options: [
+			"count",
+			"update",
+			"for",
+			"delete"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Qué acción realiza el siguiente código de Python: cliente =  MongoClient('localhost')?",
+		options: [
+			"Crea la conexión a MongoDB",
+			"Crea un documento en MongoDB",
+			"Crea una colección en MongoDB",
+			"Crea una base de datos en MongoDB"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Cuál es la forma de llamar la librería Pymongo desde el editor Python?",
+		options: [
+			"from pymongo import MongoClient",
+			"import pymongo from MongoClient",
+			"import pymongo as MongoClient",
+			"from MongoClient import pymongo"
+		],
+		correctIndex: 0
+	},
+]} />

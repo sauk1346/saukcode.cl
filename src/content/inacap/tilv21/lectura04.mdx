@@ -1,0 +1,89 @@
+# Síntesis de la Unidad 01
+
+1. Diferenciación entre: error, defecto y fallo
+2. Diferenciación entre: verificación y validación
+
+
+## Definiciones
+
+1. **Error:** problema cometido por el desarrollador
+2. **Defecto:** anomalía en el software que puede llevar a un fallo de ejecución
+3. **Fallo:** consecuencia de un defecto
+4. **Verificación:** asegura que el software se construya correctamente
+5. **Validación:** asegura que se cumpla con lo que el cliente necesita
+
+## Estándares
+Proporcionan marcos y directrices para la ejecución de pruebas, ayudando a asegurar que el software cumpla con los requisitos funcionales, no funcionales y de seguridad
+
+1. **ISO/IEC 29119**
+2. **IEEE 829**
+3. **ISTQB**
+4. **ISO 25010**
+5. **OWASP**
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Estándares', 'Descripción']}
+	rows={[
+		['ISO/IEC 29119, IEEE 829', 'Aseguran calidad'],
+		['ISO/IEC 25000', 'Ofrece un marco estructurado para especificar y evaluar la calidad del software'],
+		['ISO/IEC12207', 'Ayuda a gestionar eficientemente el ciclo de vida del ISO/IEC 25000'],
+		['ISTQB, OWASP', 'Ayudan a gestionar y ejecutar pruebas de manera eficiente, garantizando que el software sea seguro, fiable y cumpla con los requisitos establecidos']
+	]}
+/>
+
+# Actividad de Práctica 04
+
+<Quiz questions={[
+  {
+    question: "¿Cuál es la diferencia fundamental entre un error y un bug en el contexto del desarrollo de software?",
+    options: [
+      "Un error es un problema detectado durante las pruebas, mientras que un bug es un fallo en el sistema en producción.",
+      "No hay diferencia entre error y bug; ambos términos se utilizan indistintamente.",
+      "Un error es un fallo en el sistema en producción, mientras que un bug es un problema detectado durante las pruebas.",
+      "Un error es una acción humana que produce un resultado incorrecto, mientras que un bug es una imperfección en el código o diseño que causa un mal funcionamiento."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál de los siguientes procesos de la ISO/IEC 12207 incluye la planificación de pruebas?",
+    options: [
+      "Proceso de desarrollo",
+      "Proceso de gestión del proyecto",
+      "Proceso de verificación",
+      "Proceso de validación"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué proceso es parte de la norma ISO/IEC 12207 para asegurar que los módulos funcionan correctamente cuando se combinan?",
+    options: [
+      "Pruebas unitarias",
+      "Pruebas de sistemas",
+      "Pruebas de integración",
+      "Pruebas de aceptación"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál de las siguientes afirmaciones describe mejor la validación en las pruebas de software?",
+    options: [
+      "Es un proceso dinámico de evaluación del software en función de las demandas del cliente",
+      "Se realiza antes de la verificación",
+      "Es un proceso estático de revisión del diseño, el código y los documentos",
+      "No requiere la ejecución de código"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué proporciona el estándar IEEE 829?",
+    options: [
+      "Plantillas y guías para la documentación de pruebas de software",
+      "Herramientas para encontrar vulnerabilidades de seguridad en aplicaciones web",
+      "Métricas de calidad para productos de software",
+      "Certificaciones para profesionales de testing de software"
+    ],
+    correctIndex: 0
+  }
+]} />
+

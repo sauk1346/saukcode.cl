@@ -1,0 +1,200 @@
+# Condicionales y Lógica Booleana
+**Material Clase:** [clase03.pdf](/inacap/ti3v11/docs/clase03.pdf)
+
+## Lógica Booleana
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Lógica","Descripción"]}
+    rows = {[
+        ["`A = B`"  ,"igual a"],
+        ["`A != B`" ,"distinto a"],
+        ["`A > B`"   ,"mayor que"],
+        ["`A < B`"  ,"menor que"],
+        ["`A >= B`" ,"mayor o igual que"],
+        ["`A <= B`"  ,"menor o igual que"],
+        ]}
+/>
+
+# Ejercicios
+
+## Ejercicio 01
+Realizar Pseudocódigo que APRUEBA si es mayor a 4.0 o REPRUEBA si es menor a 4.0.
+
+<Solution>
+```js
+inicio
+    leer(nota)
+    si (nota > 4.0) entonces
+        escribir("aprueba")
+    finsi
+    si_no
+        escribir("reprueba")
+    finsi
+fin
+```
+</Solution>
+
+## Ejercicio 02
+Realice un algoritmo en pesudocódigo que permita identificar un número si es positivo o negativo.
+
+<Solution>
+```js
+inicio
+    leer(número)
+    si (dígito > 0) entonces
+        escribir("el número es positivo")
+    finsi
+    si (dígito < 0) entonces
+        escribir("el número es negativo")
+    finsi
+    si_no
+        escribir("el número es neutro")
+    finsi
+fin
+```
+</Solution>
+
+
+## Ejercicio 03
+Realizar pseudocódigo que indique "DEBE ASISTIR A PROGRAMACIÓN" si el día es igual a "JUEVES", de lo contrario "DEBE ASISTIR A OTRAS CLASES".
+
+<Solution>
+```js
+inicio
+    leer(día)
+    si (día = "JUEVES") entonces
+        escribir("DEBE ASISTIR A PROGRAMACIÓN")
+    finsi
+    si_no
+        escribir("DEBE ASISTIR A OTRAS CLASES")
+    finsi
+fin
+```
+</Solution>
+
+
+## Ejercicio 04
+Si a = 33, determinar si la siguiente operación es VERDADERA o FALSA.
+
+1. `NO ( (a > 10) Y (a < 20) )`
+2. `NO ( (a > 10) O NO (a < 20) )`
+
+<Solution>
+Sea $a = 33$
+- $(a > 10)$ → $verdadero$
+- $(a < 20)$ → $falso$
+
+Entonces:
+$$
+\begin{aligned}
+    1.\;NO (\,(a > 10)\,Y\,(a < 20)\,) &= NO(\,verdadero\;Y\;falso\,)\\[5pt]
+    &= NO(falso)\\[5pt]
+    &= verdadero
+\end{aligned}
+$$
+<br/>
+$$
+\begin{aligned}
+    2.\;NO (\,(a > 10)\,O\,NO(a < 20)\,) &= NO(\,verdadero\;O\;NO(falso)\,) \\[5pt]
+    &= NO(\,verdadero\;O\;verdadero\,)\\[5pt]
+    &= NO(\,verdadero\,)\\[5pt]
+    &= falso
+\end{aligned}
+$$
+</Solution>
+
+## Ejercicio 05
+- Si a = 20, b = a, c = 15, d =10
+- Determinar si la siguiente operación es VERDADERA o FALSA: `( (a = b) O (b > c) O (c < d) )`
+
+<Solution>
+Sean $a = 20$, $b =20$, $c = 15$, $d = 10$
+- $(a = b)$ → $verdadero$
+- $(b > c)$ → $verdadero$  
+- $(c < d)$ → $falso$
+
+Entonces:
+$$
+\begin{aligned}
+ ((a = b)\,O\,(b > c)\,O\,(c < d)) &= (verdadero\,O\,verdadero\,O\,falso)\\[5pt]
+ &= verdadero
+\end{aligned}
+$$
+</Solution>
+
+## Ejercicio 06
+- Siendo el valor de las variables a = 10, b = 12, c = 13, d = 10
+- Encontrar el valor de verdad de cada una de las siguientes expresiones
+
+
+1. `( (a > b) O (a < c) ) Y ( (a = c) O (a >= b) )`
+2. `( (a >= b) O (a < d) ) Y ( (a >= d) Y (c > d) )`
+3. `NO (a = c) Y (c > b)`
+
+<Solution>
+Sean $a = 10$, $b = 12$, $c = 13$, $d = 10$
+
+**Para la expresión 1:**
+- $(a > b)$ → $f$
+- $(a < c)$ → $v$
+- $(a = c)$ → $f$
+- $(a >= b)$ → $f$
+
+$$
+\begin{aligned}
+ 1.\;((a > b)\,O\,(a < c))\,Y\,((a = c)\,O\,(a >= b)) &= (f\,O\,v)\,Y\,(f\,O\,f)\\[5pt]
+ &= v\,Y\,f\\[5pt]
+ &= falso
+\end{aligned}
+$$
+
+**Para la expresión 2:**
+- $(a >= b)$ → $f$
+- $(a < d)$ → $f$
+- $(a >= d)$ → $v$
+- $(c > d)$ → $v$
+
+$$
+\begin{aligned}
+ 2.\;((a >= b)\,O\,(a < d))\,Y\,((a >= d)\,Y\,(c > d)) &= (f\,O\,f)\,Y\,(v\,Y\,v)\\[5pt]
+ &= f\,Y\,v\\[5pt]
+ &= falso
+\end{aligned}
+$$
+
+**Para la expresión 3:**
+- $(a = c)$ → $f$
+- $(c > b)$ → $v$
+
+$$
+\begin{aligned}
+ 3.\;NO(a = c)\,Y\,(c > b) &= NO(f)\,Y\,v\\[5pt]
+ &= v\,Y\,v\\[5pt]
+ &= verdadero
+\end{aligned}
+$$
+</Solution>
+
+## Ejercicio 07
+- Siendo el valor de las variables M = 8, N = 9, R = 5, S = 5, T = 4, V = 7
+- Encontrar el valor de verdad de la siguiente expresión: `NO ( ( M>N Y R>S) O (NO (T<V Y S>M)) )`
+
+<Solution>
+Sean $M = 8$, $N = 9$, $R = 5$, $S = 5$, $T = 4$, $V = 7$
+- $(M > N)$ → $f$
+- $(R > S)$ → $f$
+- $(T < V)$ → $v$
+- $(S > M)$ → $f$
+
+Entonces:
+$$
+\begin{aligned}
+ NO(\,(M>N\,Y\,R>S)\,O\,(NO(T<V\,Y\,S>M))\,) &= NO(\,(f\,Y\,f)\,O\,(NO(v\,Y\,f))\,)\\[5pt]
+ &= NO(\,f\,O\,(NO(f))\,)\\[5pt]
+ &= NO(\,f\,O\,v\,)\\[5pt]
+ &= NO(\,v\,)\\[5pt]
+ &= falso
+\end{aligned}
+$$
+</Solution>

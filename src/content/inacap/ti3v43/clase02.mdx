@@ -1,0 +1,119 @@
+# Modelos de Ciclos de Vida
+
+## 1. Cascada
+Modelo Secuencial donde cada fase debe completarse antes de pasar a la siguiente.
+
+<SmartFigure
+	id="modelo-cascada"
+	src="/inacap/ti3v43/images/fig01.png"
+	alt="Modelo Cascada"
+	caption="Modelo Cascada"
+	size="large"
+/>
+
+## 2. Modelo en V.
+Extensión del modelo en cascada que enfatiza la verificación y validación. Cada fase de desarrollo tiene una fase de prueba correspondiente.
+
+<SmartFigure
+	id="modelo-en-v"
+	src="/inacap/ti3v43/images/fig02.jpeg"
+	alt="Modelo en V"
+	caption="Modelo en V"
+	size="large"
+/>
+
+- El **lado izquierdo** representa las **fases de desarrollo**
+- El **lado derecho** representa las **fases de prueba**
+
+## 3. Ágil (Scrum, Kanban)
+Metodología que prioriza la flexibilidad, colaboración y entrega incremental.
+
+<SmartFigure
+	id="metodologia-agil"
+	src="/inacap/ti3v43/images/fig03.png"
+	alt="Metodología Ágil"
+	caption="Metodología Ágil"
+	size="large"
+/>
+
+- **Scrum** organiza el trabajo en sprints cortos con roles definidos (product owner, scrum master, equipo desarrollo)
+- **Kanban** se enfoca en el flujo continuo de trabajo utilizando tableros visuales
+
+## 4. Iterativo e incremental
+Combina desarrollo iterativo (repetición de ciclos) con entregas incrementales (funcionales añadidas progresivamente).
+
+<SmartFigure
+	id="iterativo-incremental"
+	src="/inacap/ti3v43/images/fig04.png"
+	alt="Iterativo e Incremental"
+	caption="Iterativo e Incremental"
+	size="large"
+/>
+
+Cada iteración produce una versión mejorada del software (*release*), permitiendo retroalimentación temprana y ajustes continuos. 
+
+
+# Actividad Grupal
+
+1. Clasificar si requiere un enfoque de ingeniería de software o solo desarrollo.
+2. Justificar su elección.
+3. Proponer un modelo de ciclo de vida adecuado y explicar por qué.
+4. Preparar una breve presentación (3 min por grupo).
+
+## Ejemplo
+
+- **Proyecto:** Plataforma de videollamadas para educación online
+- **Enfoque:** Requiere ingeniería de software
+- **Justificación:** Maneja alta concurrencia, necesita estabilidad de conexión, grabaciones seguras y cumplir con protección de datos.
+- **Modelo de ciclo de vida sugerido:** Ágil (Scrum), porque el proyecto puede evolucionar con retroalimentación de docentes y estudiantes, incorporando mejoras de forma iterativa.
+- **Riesgos y mitigación**
+    - **Caídas del sistema:** Implementar balanceadores de carga y redundancia en servidores
+    - **Baja calidad de video en alta concurrencia:** Optimizar comprensión y priorizar audio sobre video en redes lentas
+    - **Filtración de datos:** Encriptar transmisiones y reforzar autenticación
+
+## Caso 1: Sistema de gestión de pacientes para un hospital público
+
+- **Contexto:** El hospital necesita un sistema centralizado para registrar fichas médicas, historial de tratamientos, exámenes y coordinar con laboratorios externos.
+- **Riesgos clave:** Datos sensibles, cumplimiento de normativas, disponibilidad 24/7.
+
+<Solution>
+- **Proyecto:** Sistema de gestión de pacientes para un hospital público
+- **Enfoque:** Requiere ingeniería de software
+- **Justificación:** Maneja datos altamente sensibles (información médica), debe cumplir con estrictas normativas de salud (HIPAA, protección de datos), requiere disponibilidad 24/7, integración compleja con laboratorios externos y sistemas hospitalarios existentes.
+- **Modelo de ciclo de vida sugerido:** Modelo en V, porque necesita verificación y validación rigurosa en cada fase debido a las regulaciones sanitarias, documentación exhaustiva para auditorías y cumplimiento normativo.
+- **Riesgos y mitigación:**
+  - **Filtración de datos médicos:** Implementar encriptación end-to-end, controles de acceso basados en roles y auditorías de seguridad regulares
+  - **Incumplimiento normativo:** Involucrar asesores legales desde el diseño y realizar auditorías de cumplimiento continuas
+  - **Caída del sistema:** Implementar sistemas de respaldo redundantes, servidores en clúster y planes de recuperación ante desastres
+
+</Solution>
+
+## Caso 2: Aplicación móvil para reservar canchas deportivas en un municipio
+- **Contexto:** Los usuarios podrán consultar horarios disponibles, reservar en línea, pagar y recibir notificaciones de confirmación.
+- **Riesgos clave:** Integración de pagos, disponibilidad de horarios en tiempo real.
+
+<Solution>
+- **Proyecto:** Aplicación móvil para reservar canchas deportivas en un municipio
+- **Enfoque:** Requiere ingeniería de software
+- **Justificación:** Maneja transacciones financieras, requiere sincronización en tiempo real de disponibilidad, múltiples usuarios concurrentes, integración con sistemas de pago y notificaciones push.
+- **Modelo de ciclo de vida sugerido:** Ágil (Scrum), porque permite obtener feedback rápido de usuarios municipales y ciudadanos, adaptarse a cambios en requerimientos de la comunidad y entregar funcionalidades incrementales.
+- **Riesgos y mitigación:**
+  - **Fallas en el sistema de pagos:** Integrar múltiples proveedores de pago confiables y implementar sistema de rollback automático
+  - **Conflictos de reservas:** Implementar locks de base de datos y validación en tiempo real de disponibilidad
+  - **Baja adopción por usuarios:** Diseñar UX intuitiva y realizar pruebas de usabilidad con ciudadanos antes del lanzamiento
+</Solution>
+
+## Caso 3: Videojuego educativo para niños de 6 a 8 años
+- **Contexto:** Un juego interactivo enseña matemáticas básicas con desafíos, personajes y recompensas.
+- **Riesgos clave:** Diseño atractivo y seguro, experiencia fluída, cumplimiento de normas de protección infantil.
+
+<Solution>
+- **Proyecto:** Videojuego educativo para niños de 6 a 8 años
+- **Enfoque:** Requiere ingeniería de software
+- **Justificación:** Debe cumplir estrictas normas de protección infantil (COPPA), requiere experiencia de usuario especializada para el grupo etario, contenido educativo validado pedagógicamente y sistemas de monitoreo parental.
+- **Modelo de ciclo de vida sugerido:** Iterativo e incremental, porque necesita pruebas constantes con niños del grupo objetivo, refinamiento del contenido educativo basado en resultados de aprendizaje y ajustes de jugabilidad.
+- **Riesgos y mitigación:**
+  - **Contenido inapropiado:** Implementar filtros de contenido automáticos y revisión manual por especialistas en educación infantil
+  - **Problemas de usabilidad para niños:** Realizar sesiones de testing con niños del grupo objetivo y involucrar psicólogos infantiles en el diseño
+  - **Incumplimiento de normas de protección infantil:** Consultar con asesores legales especializados en normativas infantiles y implementar controles parentales robustos
+</Solution>

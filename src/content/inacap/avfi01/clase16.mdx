@@ -1,0 +1,121 @@
+# Unidad III: Indicadores de Rentabilidad — VAN
+
+## Ejercicio 1
+
+Una empresa evalúa un proyecto de inversión con la siguiente información:
+
+**Datos:**
+1. Inversión Inicial: \$60.000.000
+2. Flujos de Caja esperados:
+    - Año 1: \$18.000.000
+    - Año 2: \$20.000.000
+    - Año 3: \$22.000.000
+    - Año 4: \$25.000.000
+3. Tasa de descuento: 10% (Tasa de Rentabilidad exigida por el inversionista)
+
+<Solution title="Solución Ejercicio 1">
+
+**Fórmula: Valor Actual Neto (VAN)**
+
+$$
+VAN = \sum_{t=1}^{n} \frac{FC_t}{(1+i)^t} - I_0
+$$
+
+donde:
+- $FC_t$: Flujo de Caja del período $t$
+- $i$: Tasa de descuento
+- $I_0$: Inversión Inicial
+- $t$: tiempo (años)
+
+<Callout type="note" title="Criterios de decisión">
+- VAN $>$ 0 → Se **acepta** el proyecto
+- VAN $<$ 0 → Se **rechaza** el proyecto
+</Callout>
+
+---
+
+**Paso 1: Flujos de Caja traídos a Valor Presente**
+
+<P indent={2}>
+Cada flujo de caja se descuenta a su valor presente dividiéndolo por $(1+i)^t$, usando $i=10\%$ y $t$ el año correspondiente.
+</P>
+
+<SmartTable
+    id="tablaVAN"
+    tableLayout="auto"
+    caption="Valor Actual Neto"
+    headers={["Año", "Flujo de Caja", "Cálculo", "Valor Presente"]}
+    rows={[
+        ["1", "\$18.000.000", "18.000.000 ÷ (1+0,1)¹", "\$16.363.636"],
+        ["2", "\$20.000.000", "20.000.000 ÷ (1+0,1)²", "\$16.528.926"],
+        ["3", "\$22.000.000", "22.000.000 ÷ (1+0,1)³", "\$16.528.926"],
+        ["4", "\$25.000.000", "25.000.000 ÷ (1+0,1)⁴", "\$17.075.336"],
+        { cells: ["", "", "**Σ Valor Presente**", "**\$66.496.824**"], highlight: true },
+        { cells: ["", "", "**− Inversión Inicial**", "**\$60.000.000**"], highlight: true },
+        { cells: ["", "", "**= VAN**", "**\$6.496.824**"], highlight: true }
+    ]}
+/>
+
+<Callout type="tip" title="Conclusión">
+El VAN del proyecto es \$6.496.824, un valor **positivo**. Según el criterio de decisión, el proyecto se **acepta**, ya que genera más valor que el exigido por la tasa de rentabilidad del 10%.
+</Callout>
+
+<Callout type="note" title="¿De dónde sale la tasa de descuento del 10%?">
+La tasa de descuento exigida por el inversionista se compone de una tasa libre de riesgo (ej. Depósito a Plazo, DP) más un premio por riesgo del proyecto:
+
+$$
+i = DP + Riesgo = 4\% + 6\% = 10\%
+$$
+</Callout>
+
+</Solution>
+
+---
+
+## Apunte: Interés Nominal vs. Interés Real
+
+El interés nominal ($I_N$) es la suma del interés real ($I_R$) más la inflación ($\pi$):
+
+$$
+I_N = I_R + \pi
+$$
+
+<P indent={2}>
+Ejemplo con una inflación de $\pi = 3\%$:
+</P>
+
+<SmartTable
+    id="tablaInteresNominal"
+    tableLayout="auto"
+    caption="Interés Nominal vs. Interés Real"
+    headers={["Banco", "Dato entregado", "Se calcula", "Resultado"]}
+    rows={[
+        ["Banco A", "Interés Nominal = 5%", "$I_R = I_N - \\pi$", "Interés Real = 2%"],
+        ["Banco B", "Interés Real = 3%", "$I_N = I_R + \\pi$", "Interés Nominal = 6%"]
+    ]}
+/>
+
+---
+
+## Apunte: Valor Futuro (interés compuesto)
+
+$$
+VF = VA \cdot (1+i)^t
+$$
+
+<P indent={2}>
+Ejemplo: Valor Actual de \$60.000.000, tasa de interés $i=4\%$, a $t=4$ años.
+</P>
+
+<SmartTable
+    id="tablaValorFuturo"
+    tableLayout="auto"
+    caption="Valor Futuro"
+    headers={["Concepto", "Valor"]}
+    rows={[
+        ["Valor Actual (VA)", "\$60.000.000"],
+        ["Cálculo", "60.000.000 × (1+0,04)⁴"],
+        { cells: ["**Valor Futuro (VF)**", "**\$70.191.514**"], highlight: true },
+        { cells: ["**Ganancia (VF − VA)**", "**\$10.191.514**"], highlight: true }
+    ]}
+/>

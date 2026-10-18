@@ -1,0 +1,198 @@
+# Descubriendo el lenguaje del servidor
+
+La programación del lado del servidor constituye la base invisible que da vida a las aplicaciones web, permitiendo procesar datos, gestionar usuarios y generar contenido dinámico de forma segura y eficiente. 
+
+## Lenguajes de servidor
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Lenguaje', 'Descripción/Frameworks']}
+	rows={[
+		['**Python**', 'Con frameworks como Django o Flask'],
+		['**PHP**', 'Usado en WordPress y muchas páginas dinámicas'],
+		['**Node.js**', 'JavaScript en el servidor'],
+		['**Java**', 'Muy usado en sistemas corporativos'],
+		['**Ruby**', 'Especialmente con el framework Rails'],
+		['**C#**', 'Principalmente en entornos .NET']
+	]}
+/>
+
+### Características de Python como lenguaje de servidor
+Python es uno de los lenguajes más recomendados para comenzar en el desarrollo del lado del servidor por varias razones:
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Característica', 'Descripción']}
+	rows={[
+		['**Simplicidad en la sintaxis**', 'Facilita el aprendizaje y la lectura del código'],
+		['**Comunidad activa**', 'Miles de desarrolladores colaboran para mejorar librerías y documentación'],
+		['**Gran cantidad de librerías**', 'Puedes hacer desde análisis de datos hasta servidores web'],
+		['**Compatibilidad con múltiples sistemas operativos**', 'Funciona en diferentes plataformas']
+	]}
+/>
+
+### Fundamentos del patrón MVC
+El **patrón de arquitectura MVC** (modelo-vista-controlador) es un modelo de organización del código que busca **separar responsabilidades** dentro de una aplicación.
+
+Esta separación permite:
+
+- Mantener el código más limpio
+- Reutilizar componentes
+- Facilitar el mantenimiento y trabajo en equipo
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Componente', 'Descripción']}
+	rows={[
+		['**Modelo**', 'Se encarga de representar y manipular los datos. Por ejemplo, una clase "Producto" que tiene nombre, precio y stock'],
+		['**Vista**', 'Define lo que el usuario ve (HTML, CSS, imágenes, formularios)'],
+		['**Controlador**', 'Actúa como puente entre el modelo y la vista. Recibe las solicitudes del usuario, obtiene los datos del modelo y los envía a la vista']
+	]}
+/>
+
+**Ejemplo**
+
+- **Modelo:** Libro (título, autor, stock)
+- **Controlador:** Busca todos los libros disponibles y decide mostrarlos
+- **Vista:** Muestra una tabla con los títulos de los libros en formato HTML
+
+## Django MVC en Python
+
+Django es un framework de desarrollo web de código abierto construido en Python
+Creado para acelerar la construcción de aplicaciones robustas, seguras y altamente escalables. Gracias a su arquitectura de “baterías incluidas”, ofrece un potente *Object-Relational Mapping* (ORM), sistema de plantillas, enrutamiento de URL, gestión de formularios, autenticación de usuarios y panel de administración automático, lo que reduce drásticamente el tiempo de configuración y refuerza la seguridad frente a ataques comunes *Cross-Site Request Forgery* (CSRF) , inyección *Structured Query Language* (SQL) y *Cross-Site Scripting* (XSS).
+
+Empresas como *Instagram*, *Pinterest* y *Mozilla* confían en Django para proyectos de gran escala, mientras que su curva de aprendizaje accesible lo convierte en una opción ideal para desarrolladores, startups y entornos académicos. Su enfoque en el principio **DRY** (*Don’t Repeat Yourself*) y la separación clara de responsabilidades permiten codebases limpias, fáciles de mantener y escalables a largo plazo.
+
+### ¿Qué hace exactamente un framework?
+Un framework es un conjunto de herramientas, estructuras y componentes predefinidos que te ayudan a desarrollar software de forma más eficiente. En lugar de programar todo desde cero, puedes apoyarte en funcionalidades ya construidas, seguras y probadas.
+
+En el caso de Django, te ahorra trabajo en tareas como:
+
+- Enrutamiento de URL
+- Conexión y gestión de bases de datos
+- Validación de formularios
+- Control de sesiones y usuarios
+- Generación de contenido HTML dinámico
+
+> Django sigue el patrón MTV (modelo-template-vista), que es **prácticamente equivalente** al MVC
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Componente', 'Descripción']}
+	rows={[
+		['**Modelo**', 'Define la estructura de los datos'],
+		['**Template (vista)**', 'Controla como se presenta la información'],
+		['**Vista (controlador)**', 'Se encarga de la lógica']
+	]}
+/>
+
+## Estructura General de un Proyecto Django
+
+### 1. Proyecto Django
+Es la estructura general del sitio web o sistema. Cuando ejecutas:
+
+```sh
+django-admin startproject mi_sitio
+```
+
+se crea una carpeta con archivos de configuración global, como:
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Archivo', 'Descripción']}
+	rows={[
+		['`settings.py`', 'Define configuraciones del sitio (base de datos, idiomas, rutas, etc.)'],
+		['`urls.py`', 'Contiene las rutas principales del sitio'],
+		['`wsgi.py` y `asgi.py`', 'Permiten que Django se comunique con servidores web']
+	]}
+/>
+
+### 2. Aplicaciones (apps)
+
+- Un proyecto Django puede **agrupar múltiples** "apps", cada una encargada de una funcionalidad concreta y modular (ej: blog, carrito de compras o sistema de comentarios)
+- Para crear una nueva app llamada **tienda**, ejecuta:
+
+```sh
+python manage.py startapp tienda
+```
+
+### 3. Modelos (models.py)
+Aquí tienes las **tablas de tu base de datos** mediante **clases de Python**. Django se encarga de traducirlas automáticamente a SQL.
+
+### 4. Vistas (views.py)
+Las vistas definen la **lógica de la aplicación**. Es decir, qué se hace cuando el usuario visita una URL.
+
+### 5. Plantillas (templates/)
+Archivos HTML enriquecidos con etiquetas dinámicas que **insertan datos del servidor en el frontend**. Su integración con vistas y modelos permite:
+
+- Definir estructuras de presentación reutilizables
+- Renderizar contextos enviados desde la vista
+- Mantener una separación clara entre lógica y presentación
+
+
+# Actividad de Práctica 01
+
+<Quiz questions={[
+	{
+		question: "¿Cuál de los siguientes lenguajes se usa comúnmente del lado del servidor?",
+		options: [
+			"HTML",
+			"Python",
+			"CSS",
+			"SQL"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Para qué se utiliza el patrón MVC?",
+		options: [
+			"Para separar responsabilidades dentro del código",
+			"Para mejorar la apariencia visual de un sitio",
+			"Para definir los colores de la interfaz",
+			"Para diseñar animaciones en JavaScript"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "En Django, ¿basta con definir una clase en cualquier archivo para crear un modelo?",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 1
+	},
+    {
+		question: `class Producto:
+    nombre = CharField(max_length=100)
+    precio = models.DecimalField(max_digits=6, decimal_places=2)
+        
+¿Qué error presenta el modelo Producto?`,
+		options: [
+			"CharField no está importado correctamente",
+			"Le falta el parámetro blank=True",
+			"El nombre de la clase debería estar en minúsculas",
+			"No hereda de models.Model"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Cuál es la forma correcta de registrar un producto con el ORM?",
+		options: [
+			'Producto.insert(nombre="Teclado",precio=39990)',
+			'create.Producto(nombre="Teclado",precio=39990)',
+			'Producto.objects.create(nombre="Teclado",precio=39990)',
+			'Producto = Producto.create(nombre="Teclado",precio=39990)'
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Cuál de estos elementos es correcto al definir un modelo Django?",
+		options: [
+			"Uso de models.CharField() con max_length",
+			"Función def para definir atributos",
+			"Nombre de campo en minúscula y sin espacios",
+			"Clase que hereda de models.Model"
+		],
+		correctIndex: 3
+	},
+]} />

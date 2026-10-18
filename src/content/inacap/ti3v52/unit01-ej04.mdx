@@ -1,0 +1,220 @@
+# Ejercicio 04
+
+**Material**
+- [TCP/IP - Ejercicio 04](docs/ejercicio04.pdf)
+
+1. Identifique, seleccione y conecte cada dispositivo indicado a continuación:
+    - Dibuje un área cuadrada o rectangular de color suave para insertar allí los siguientes dispositivos de red en el lugar que usted estime más ordenado
+    - 1 switch Cisco 2960
+    - 1 router Cisco 1941, conecte G0/0 del ROUTER a la G0/1 del switch
+    - 1 servidor etiquetado como DHCP y conectado a la interfaz g0/2 del switch
+    - 1 teléfono IP conectado a interfaz f0/1 del switch, enciéndalo
+    - 1 computador conectado al teléfono IP
+    - 1 impresora de red conectada a interfaz f0/10 del switch
+
+<Solution title="Solución Pregunta 1">
+
+<SmartTable
+    id="tabla01"
+	caption="Ubicación dispositivos"
+    tableLayout="auto"
+	headers={['Dispositivo', 'Modelo', 'Ubicación en Packet Tracer']}
+	rows={[
+		['**Router0**', 'Cisco 1941', '`Network Devices` >> `Routers` >> `1941`'],
+		['**Switch0**', 'Cisco 2960', '`Network Devices` >> `Switches` >> `2960`'],
+		['**Server-DHCP**', 'Server-PT', '`End Devices` >> `Server`'],
+		['**IP Phone0**', 'IP 7960', '`End Devices` >> `IP Phone`'],
+		['**PC0**', 'PC-PT', '`End Devices` >> `PC`'],
+		['**Printer0**', 'Printer-PT', '`End Devices` >> `Printer`'],
+	]}
+
+/>
+
+<SmartTable
+    id="tabla02"
+    caption="Cableado de dispositivos"
+	tableLayout="auto"
+	headers={['Dispositivo A', 'Interfaz', 'Dispositivo B', 'Interfaz', 'Cable']}
+	rows={[
+		['**Router0**', 'GigabitEthernet0/0', '**Switch0**', 'GigabitEthernet0/1', 'Directo'],
+		['**Server-DHCP**', 'FastEthernet0', '**Switch0**', 'GigabitEthernet0/2', 'Directo'],
+		['**IP Phone0**', 'Switch', '**Switch0**', 'FastEthernet0/1', 'Directo'],
+		['**IP Phone0**', 'PC', '**PC0**', 'FastEthernet0', 'Directo'],
+		['**Printer0**', 'FastEthernet0', '**Switch0**', 'FastEthernet0/10', 'Directo'],
+	]}
+/>
+
+<SmartFigure
+	id="fig20"
+	src="/inacap/ti3v52/images/fig20.png"
+	alt="Topología de red inicial"
+	caption="Topología de red inicial"
+	size="large"
+/>
+</Solution>
+
+2. De acuerdo con TCP/IP, configure dirección IP, máscara de subred y Gateway a cada dispositivo según corresponda:
+
+    <SmartTable
+        caption="Tabla: Configuración IP"
+    	tableLayout="auto"
+    	headers={['Dispositivo', 'Interfaz', 'IPv4 Address', 'Subnet Mask', 'Default Gateway']}
+    	rows={[
+    		['**Router0**', 'GigabitEthernet0/0', '192.168.X.1', '255.255.255.0', '—'],
+    		['**Switch0**', 'VLAN1', '192.168.X.2', '255.255.255.0', '192.168.X.1'],
+    		['**Server-DHCP**', 'FastEthernet0', '192.168.X.3', '255.255.255.0', '192.168.X.1'],
+    		['**PC0**', 'FastEthernet0', '192.168.X.4', '255.255.255.0', '192.168.X.1'],
+    		['**Printer0**', 'FastEthernet0', '192.168.X.5', '255.255.255.0', '—'],
+    	]}
+    />
+
+<Solution title="Solución Pregunta 2">
+
+Se utiliza X=20
+
+<SmartFigure
+	id="fig21"
+	src="/inacap/ti3v52/images/fig21.png"
+	alt="Configuración IP para PC0"
+	caption="Configuración IP para PC0"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig22"
+	src="/inacap/ti3v52/images/fig22.png"
+	alt="Configuración IP para Server DHCP"
+	caption="Configuración IP para Server DHCP"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig23"
+	src="/inacap/ti3v52/images/fig23.png"
+	alt="Configuración IP para Printer0"
+	caption="Configuración IP para Printer0"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig24"
+	src="/inacap/ti3v52/images/fig24.png"
+	alt="Configuración IP para Switch0"
+	caption="Configuración IP para Switch0"
+	size="large"
+/>
+
+<TerminalOutput 
+    withBg
+    caption="Explicación de configuración IP para Router0"
+>
+{`# entrar al modo privilegiado
+enable
+
+# entrar al modo de configuración global
+configure terminal
+
+# configuración interfaz G0/0
+interface GigabitEthernet0/0
+ip address 192.168.20.1 255.255.255.0
+# activar la interfaz
+no shutdown
+# salir de la interfaz
+exit
+
+# salir del modo de configuración global
+exit`}
+</TerminalOutput>
+
+<SmartFigure
+	id="fig25"
+	src="/inacap/ti3v52/images/fig25.png"
+	alt="Configuración IP para Router0"
+	caption="Configuración IP para Router0"
+	size="large"
+/>
+
+</Solution>
+
+3. Configuraciones básicas y de seguridad SSH en el router:
+    - Asigne su propio nombre (en Mayúscula) como nombre al router, ejemplo: JUAN
+    - Asigne su propio apellido.cl como nombre de dominio para SSH, ejemplo: perez.cl
+    - Crear usuario con nombre: admin3 contraseña cifrada: cisco-e3
+    - Contraseña cifrada para modo privilegiado: cisco-e3
+    - Configurar clave RSA con largo de la clave 1024 bits
+    - Habilite versión 2 de SSH
+    - Tiempo máximo de inactividad 60 seg
+    - Intentos de autenticación: 2
+    - Habilite ssh en líneas vty
+    - Al conectarse por SSH debe solicitar usuario y contraseña
+    - Desde PC0, en Command Promtp, ejecute comando:
+ `ssh - l admin3 192.168.X.1`
+    - Ingrese la contraseña de admin3, debe aparecer el nombre del router.
+
+<Solution title="Solución Pregunta 3">
+
+<TerminalOutput 
+    withBg
+    caption="Configuraciones básicas y de seguridad SSH en Router0"
+>
+{`# entrar al modo privilegiado
+enable
+
+# entrar al modo de configuración global
+configure terminal
+
+# 1. asignar nombre al router
+hostname ANTONIO
+
+# 2. asignar nombre de dominio para SSH
+ip domain-name morales.cl
+
+# 3. crear usuario con contraseña cifrada
+username admin3 secret cisco-e3
+
+# 4. contraseña cifrada para modo privilegiado
+enable secret cisco-e3
+
+# 5. generar claves RSA de 1024 bits para SSH
+crypto key generate rsa modulus 1024
+
+# 6. habilitar versión 2 de SSH
+ip ssh version 2
+
+# 7. tiempo máximo de inactividad: 60 segundos
+ip ssh time-out 60
+
+# 8. intentos máximos de autenticación
+ip ssh authentication-retries 2
+
+# 9. habilitar SSH en líneas vty y solicitar usuario/contraseña
+line vty 0 4
+# deshabilitar todos los protocolos de acceso remoto
+no transport input
+# permitir solo SSH
+transport input ssh
+login local
+# salir de las líneas vty
+exit
+
+# salir del modo de configuración global
+exit`}
+</TerminalOutput>
+
+<SmartFigure
+	id="fig26"
+	src="/inacap/ti3v52/images/fig26.png"
+	alt="Configuración básica y SSH para Router0"
+	caption="Configuración básica y SSH para Router0"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig27"
+	src="/inacap/ti3v52/images/fig27.png"
+	alt="Conexión remota al router ANTONIO vía SSH desde PC0"
+	caption="Conexión remota al router ANTONIO vía SSH desde PC0"
+	size="large"
+/>
+
+</Solution>

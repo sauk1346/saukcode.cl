@@ -1,0 +1,106 @@
+# Introducción al Desarrollo Seguro
+**Material Clase:** [clase23.pdf](/inacap/ti3v11/docs/clase23.pdf)
+
+## Ciclo de Vida
+
+El ciclo de vida de un programa se clasifica en 6 etapas
+
+1. Análisis
+2. Diseño
+3. Implementación
+4. Pruebas
+5. Despliegue
+6. Mantenimiento
+
+## Cascada
+
+- Es otro modelo para el ciclo de vida
+- Una de sus desventajas es que existe poca relación con el cliente, para retroalimentación
+
+## SCRUM
+
+- Término proviene del rugby *scrummage*. Es una formación ordenada de jugadores que reinicia el juego, simbolizando trabajo en equipo, colaboración y avance continuo.
+- Modelo de trabajo ágil para el desarrollo de proyectos 
+- *Sprints*. Entrega periódica de avances
+- Ejemplo: 2 sprints a la semana
+
+## Desarrollo Seguro
+
+Seguridad en entrada/salida de datos. Esto es, para proteger los activos (bases de datos, información).
+
+- **confidencialidad:** restringir acceso (login, encriptación).
+- **no repudio:** prevenir que el usuario niegue responsabilidades.
+- **trazabilidad:** registrar actividades para establecer responsabilidades (archivos log).
+- **exactitud:** que el programa funcione como corresponde.
+- **previsibilidad:** que funcione correctamente frente a condiciones previstas, y pueda defenderse frente a condiciones no previstas (ataque externo, explotar fallas).
+- **confiabilidad:** que funcione de manera consistente y predecible bajo condiciones especificadas.
+- **protección:** implementar medidas y técnicas necesarias contra amenazas, ataques y vulnerabilidades.
+
+## Análisis de Riesgo
+
+- robo de información
+- pérdida de confidencialidad
+
+## Posibles Causas
+- Contraseña
+- Asignación de redes
+- Id genérica
+- Poca concientización (usuarios)
+
+# OWASP
+- *Open Web Application Security Project*
+- Organización sin fines de lucro.
+- Se dedica a mejorar la seguridad del software.
+- Proporciona recursos, herramientas y conocimientos gratuitos y abiertos.
+
+# SAMM
+- *Software Assurance Maturity Model*
+- Es un modelo de madurez desarrollado por OWASP
+- Ayuda a las organizaciones a evaluar, desarrollar y mejorar sus prácticas de seguridad en el ciclo de vida del desarrollo del software
+
+# SDL
+- *Secure Development Lifecycle*
+- Incorpora métodos de seguridad al ciclo de vida de un software.
+
+1. Validación y sanitización de datos de entrada
+2. Autentificación y autorización sólidas
+3. Protección de datos sensibles
+4. Prevenir accesos no autorizados. Garantizar privazidad de usuarios (cifrado de datos)
+5. Anonimización de datos (que los datos no permitan rastrear al usuario)
+6. Validación de datos: tipos de datos, rango de valores
+
+# Manejo de Errores
+
+Existen errores comunes y clasificados. En python se utiliza la instrucción `try-except` para capturar estos errores.
+
+**Ejemplo:** uso de `try-except`
+
+```python
+try:
+	edad = int(input('Ingrese su edad: '))
+
+except Exception as e:
+	print(f'Error: {e}')
+
+else:
+	print(f'El próximo año tendrás {edad+1} años')
+
+finally:
+	print('Este código lo ejecutaremos siempre')
+```
+
+## Tipo de errores
+
+<SmartTable
+	tableLayout="auto"
+	headers={["Error", "Descripción"]}
+	rows={[
+		["`TypeError`","Ingresar un tipo de dato inapropiado en una operación o función"],
+		["`ZeroDivisionError`","Dividir por 0"],
+		["`OverflowError`","Exceder el rango soportado por un tipo de dato numérico"],
+		["`IndexError`","Acceder a un índice que no existe"],
+		["`KeyError`","Diccionarios. Acceder a una clave que no existe"],
+		["`FileNotFoundError`","Acceder a un fichero que no existe"],
+		["`ImportError`","Importar un módulo que no existe"],
+	]}
+/>

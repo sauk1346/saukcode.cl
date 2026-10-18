@@ -1,0 +1,76 @@
+.wrapper {
+  margin: 20px 0;
+  width: 100%;
+}
+
+.tabList {
+  display: flex;
+  flex-wrap: nowrap;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 1.5rem;
+}
+
+:global(html.dark-mode) .tabList,
+:global(html.dark-mode-override) .tabList {
+  border-bottom-color: #374151;
+}
+
+.tab {
+  flex: 1;
+  padding: 8px 4px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #4a4a4a;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  text-align: center;
+  transition: color 0.3s ease, border-color 0.3s ease;
+  margin-bottom: -1px;
+}
+
+:global(html.dark-mode) .tab,
+:global(html.dark-mode-override) .tab {
+  color: #d1d5db;
+}
+
+.tab:hover {
+  color: #3b82f6;
+}
+
+.active {
+  color: #3b82f6;
+  border-bottom-color: #3b82f6;
+}
+
+:global(html.dark-mode) .active,
+:global(html.dark-mode-override) .active {
+  color: #60a5fa;
+  border-bottom-color: #60a5fa;
+}
+
+.panel > *:first-child {
+  margin-top: 0;
+}
+
+.panel > *:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+  .tabList {
+    flex-wrap: wrap;
+    overflow-x: hidden;
+  }
+
+  .tab {
+    flex: 0 0 33.33%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 8px 2px;
+    font-size: 0.8rem;
+    margin-bottom: 0;
+  }
+}

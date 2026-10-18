@@ -1,0 +1,366 @@
+# Prueba: Gestión y control de costos
+
+Responde las siguientes preguntas de alternativas basadas en el documento *Técnicas de Costos*.
+
+<Quiz questions={[
+  {
+    question: "¿De qué se encarga principalmente la contabilidad de costos?",
+    options: [
+      "De la acumulación y análisis de la información relevante para uso interno de los gerentes en la planeación, el control y la toma de decisiones.",
+      "De elaborar los estados financieros exigidos por los organismos reguladores.",
+      "De calcular los impuestos que la empresa debe pagar en cada periodo.",
+      "De registrar exclusivamente las ventas realizadas por la empresa."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿En qué se diferencia la contabilidad de costos de la contabilidad financiera respecto de los principios contables?",
+    options: [
+      "La contabilidad de costos aplica principios contables más estrictos que la financiera.",
+      "Ambas se rigen exactamente por los mismos principios generalmente aceptados.",
+      "La contabilidad de costos no se encasilla en los principios generalmente aceptados, es decir, se adapta a las necesidades de información de los gerentes.",
+      "La contabilidad financiera no sigue ningún principio contable."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "La contabilidad de costos es considerada como el proceso de:",
+    options: [
+      "Compra, almacenamiento, producción y venta de bienes y servicios.",
+      "Identificación, medición, acumulación, análisis, preparación e interpretación y comunicación de la información pertinente para la gerencia y otras personas, para usos internos y externos.",
+      "Registro, archivo y publicación de los estados financieros anuales.",
+      "Planificación estratégica de las inversiones de largo plazo de la empresa."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Según el documento, ¿para qué utiliza la gerencia la contabilidad de costos?",
+    options: [
+      "Para auditar, sancionar y fiscalizar a los trabajadores.",
+      "Para comprar, vender y distribuir los productos.",
+      "Para publicar los resultados ante los accionistas.",
+      "Para planear, evaluar, controlar y asegurar la contabilidad."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál es la diferencia entre la contabilidad financiera y la contabilidad de costos?",
+    options: [
+      "La contabilidad financiera se basa en estados financieros (balance general, estado de resultados, etc.), mientras que la contabilidad de costos es el proceso que implica todo lo relacionado a la elaboración de productos, desde materia prima, mano de obra, etc.",
+      "La contabilidad financiera analiza los procesos productivos y la de costos elabora el balance general.",
+      "No existe diferencia; son dos nombres para el mismo proceso.",
+      "La contabilidad de costos es para empresas grandes y la financiera para pymes."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "En términos de regulación, ¿qué caracteriza a la contabilidad financiera frente a la contabilidad de costos?",
+    options: [
+      "Ambas son voluntarias para las empresas.",
+      "La contabilidad financiera es obligatoria y está regulada por el Plan General de Contabilidad, mientras que la contabilidad de costos es voluntaria.",
+      "La contabilidad de costos es obligatoria y la financiera es voluntaria.",
+      "Ambas son obligatorias y reguladas por el Plan General de Contabilidad."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es el objetivo de la contabilidad de costos?",
+    options: [
+      "Determinar el monto de los dividendos a repartir entre los accionistas.",
+      "Registrar las operaciones bancarias de la empresa.",
+      "Proporcionar a la dirección los datos referentes a los costes de producir o vender un artículo o servicio, y valorar en términos medibles y comparables la eficiencia de los procesos que generan estos productos o servicios.",
+      "Elaborar el presupuesto de marketing de la organización."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué es la gestión de costos?",
+    options: [
+      "El proceso de identificar las salidas de dinero para diseñar estrategias de ahorro.",
+      "El registro contable de las pérdidas de la empresa.",
+      "El cálculo del precio de venta de los productos.",
+      "La administración de los recursos (financieros, materiales, etc.) que utiliza la empresa, importante porque le ayuda a cumplir sus objetivos."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué es el control de costos?",
+    options: [
+      "Un proceso que consiste en identificar las salidas de dinero vinculadas a la producción de bienes y servicios con el fin de diseñar estrategias de ahorro.",
+      "La administración general de los recursos financieros y materiales de la empresa.",
+      "La supervisión del personal del área de producción.",
+      "La fijación de los precios de venta según la competencia."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cómo se define el concepto de costo?",
+    options: [
+      "Un consumo utilizado para recibir un bien o servicio a cambio.",
+      "Un valor monetario que se ha pagado para producir o crear algo en particular, ya sea un producto o servicio destinado a la venta.",
+      "Una disminución de dinero aislada de las operaciones normales.",
+      "El precio final que paga el consumidor por un producto."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿De qué consta principalmente el costo de un producto?",
+    options: [
+      "Del precio de venta menos la utilidad esperada.",
+      "De los gastos de administración y los gastos de ventas.",
+      "De un precio fijo en la materia prima, la mano de obra dedicada a su elaboración y los demás costos indirectos de fabricación.",
+      "De los impuestos y aranceles pagados por la empresa."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "Desde el punto de vista de un comprador, ¿qué significa el costo de un producto?",
+    options: [
+      "La materia prima utilizada en su fabricación.",
+      "El esfuerzo económico del vendedor.",
+      "La utilidad que obtiene el vendedor.",
+      "Significa precio, ya que el vendedor cobra su producto en base a sus costos invertidos, además de incluir su aumento agregado para conseguir una ganancia."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué son los costos en la contabilidad?",
+    options: [
+      "Registros que se enfocan en determinar cada costo realizado en suministros, gastos de servicios, materia prima, mano de obra y demás factores intervinientes al logro de un producto terminado.",
+      "Las pérdidas acumuladas por la empresa durante el ejercicio.",
+      "Los dividendos pagados a los accionistas de la empresa.",
+      "Las inversiones de largo plazo en activos fijos."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cómo se define el gasto (también conocido como egreso)?",
+    options: [
+      "Un valor monetario pagado para producir un bien destinado a la venta.",
+      "Un consumo utilizado para recibir un bien o servicio a cambio; es la inversa del ingreso, por lo que afecta a la disminución de efectivo ya sea de manera infrecuente u ordinaria.",
+      "La reducción de ingresos aislada de las operaciones normales.",
+      "El aporte de capital que realizan los socios de la empresa."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de los siguientes NO es uno de los tipos de gastos que genera recurrentemente una empresa según el documento?",
+    options: [
+      "Pago de sueldos y salarios al personal.",
+      "Arrendamientos o alquileres de industria.",
+      "Pérdidas por venta de activos.",
+      "Depreciación de activos fijos."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cómo se define la pérdida?",
+    options: [
+      "Un consumo necesario para recibir un bien o servicio a cambio.",
+      "El valor monetario invertido en la producción de un bien.",
+      "El esfuerzo económico invertido para conseguir un propósito final.",
+      "Un término negativo que representa una disminución de dinero y que se aísla de las operaciones normales; resulta la reducción de ingresos o la falta de algo que se solía conseguir."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál de los siguientes es un tipo de pérdida que comúnmente sucede en las empresas según el documento?",
+    options: [
+      "Las pérdidas por venta de activos, las malas inversiones, la pérdida de materiales por devaluación y las pérdidas en demandas.",
+      "El pago de impuestos tributarios y los arriendos.",
+      "La depreciación de activos fijos y el pago de sueldos.",
+      "La compra de materia prima y el pago de servicios básicos."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál es la diferencia clave entre gastos y pérdidas?",
+    options: [
+      "Los gastos son siempre mayores que las pérdidas.",
+      "Los gastos representan recursos empleados en servicios o bienes que se adquieren y generan beneficios si son bien consumidos, mientras que las pérdidas representan gastos que no generan ningún beneficio.",
+      "Las pérdidas generan beneficios futuros y los gastos no.",
+      "No existe diferencia; ambos conceptos son equivalentes en contabilidad."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "En la gestión 2025 se usaron $100.000 en materia prima, mano de obra y demás costos para la producción de computadoras, pero se generaron ingresos por $80.000. ¿Cuál fue el resultado de la gestión?",
+    options: [
+      "Una utilidad de $20.000.",
+      "Una pérdida de $80.000.",
+      "Una pérdida de $20.000.",
+      "Una utilidad de $180.000."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "Según los elementos del costo de un producto, ¿qué es la Materia Prima Directa (M.P.D)?",
+    options: [
+      "Los costos que debe cubrir una fábrica aparte de los materiales y la mano de obra directa.",
+      "El trabajo involucrado de forma directa en la fabricación del producto terminado.",
+      "Los materiales comunes a muchos artículos que no pueden asociarse a un producto específico.",
+      "Todos los materiales sujetos a transformación, que se pueden identificar o cuantificar plenamente con los productos terminados, como por ejemplo la madera en una fábrica de muebles."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué es la Mano de Obra Directa (M.O.D)?",
+    options: [
+      "Aquella involucrada de forma directa en la fabricación del producto terminado; se trata de un trabajo que puede asociarse fácilmente al bien en cuestión.",
+      "El personal administrativo y de ventas de la empresa.",
+      "La supervisión general de la planta de producción.",
+      "El trabajo externalizado a otras empresas proveedoras."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué son los Costos Indirectos de Fabricación (C.I.F)?",
+    options: [
+      "Los materiales sujetos a transformación identificables plenamente con el producto.",
+      "Aquellos costos que debe cubrir una fábrica para la manufactura de un producto, aparte de los materiales y la mano de obra directa; por ejemplo, materiales indirectos, mano de obra indirecta, luz o electricidad.",
+      "El trabajo asociado directamente a la fabricación del bien.",
+      "Los gastos de administración y ventas de la empresa."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Según la capacidad de asociación de costos, ¿qué son los costos directos?",
+    options: [
+      "Aquellos comunes a muchos artículos y no asociables directamente a ninguno.",
+      "Los que permanecen constantes sin importar el volumen de producción.",
+      "Aquellos que la gerencia es capaz de identificar plenamente con una actividad, departamento o producto, como los materiales directos o la mano de obra directa.",
+      "Los que cambian en proporción directa a los cambios en el volumen de producción."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué caracteriza a los costos indirectos?",
+    options: [
+      "Se identifican plenamente con una actividad o departamento específico.",
+      "Cambian en proporción directa al volumen de producción.",
+      "Corresponden únicamente a la materia prima y la mano de obra.",
+      "Son comunes a muchos artículos y, por tanto, no son directamente asociables a ningún artículo o área, o su seguimiento y cuantificación no puede hacerse por una vía económicamente factible."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "Según la relación con los volúmenes de producción, ¿qué son los costos fijos?",
+    options: [
+      "Los costos que permanecen constantes dentro de un rango relevante de tiempo, sin importar si cambia el volumen de la producción; por ejemplo, la depreciación en línea recta de la maquinaria o el seguro de los equipos.",
+      "Los costos que aumentan o disminuyen según el volumen de producción.",
+      "Los costos que tienen una parte fija y una parte variable.",
+      "Los costos asociados exclusivamente a la materia prima."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "En los costos fijos, ¿qué sucede con el costo fijo total y el costo unitario frente a cambios en el volumen de producción?",
+    options: [
+      "Ambos permanecen constantes.",
+      "El costo fijo total permanece constante, mientras que el costo unitario cambia según el volumen.",
+      "El costo fijo total cambia y el costo unitario permanece constante.",
+      "Ambos cambian en proporción directa al volumen."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué caracteriza a los costos variables?",
+    options: [
+      "Permanecen constantes sin importar el volumen de producción.",
+      "Tienen una parte fija mínima y una parte variable por uso del servicio.",
+      "Cambian en proporción directa a los cambios en el volumen de producción: el costo total aumenta o disminuye según el volumen, mientras que el costo unitario permanece constante.",
+      "Solo se generan cuando la empresa tiene pérdidas."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué es un costo semivariable?",
+    options: [
+      "Un costo que solo existe cuando la producción supera un nivel determinado.",
+      "Un costo que disminuye a medida que aumenta la producción.",
+      "Un costo que permanece completamente constante en el tiempo.",
+      "Un costo que comprende una parte fija que representa un valor mínimo al hacer una determinada actividad, y una parte variable que es por usar realmente el servicio."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "En el ejemplo del costo de electricidad de un fabricante, ¿qué parte corresponde al componente variable del costo semivariable?",
+    options: [
+      "La parte del costo de la electricidad utilizada para operar el equipo de producción.",
+      "La parte utilizada para la iluminación de las instalaciones.",
+      "La parte utilizada para el aire acondicionado de las instalaciones.",
+      "El cargo fijo mensual de la cuenta de electricidad."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál es la característica principal del método de costeo por absorción (también conocido como costeo integral)?",
+    options: [
+      "Solo utiliza información relacionada con los costos variables directos o indirectos.",
+      "Todos los gastos de fabricación, ya sean directos o indirectos, se tienen en cuenta al determinar el costo final de ventas; incluso los gastos relacionados indirectamente con el producto terminan influyendo en su costo final.",
+      "Asigna los costos según las actividades realizadas por la empresa.",
+      "Excluye los costos indirectos de fabricación del costo del producto."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es la ventaja del método de costeo por absorción y cuál es su riesgo?",
+    options: [
+      "Su ventaja es la rapidez de cálculo; su riesgo es no considerar la materia prima.",
+      "Su ventaja es determinar el margen de contribución; su riesgo es que no sirve a corto plazo.",
+      "Su ventaja es que facilita la investigación del costo total de cada producto; sin embargo, puede haber distorsiones en lo que se recolecta, lo que puede desequilibrar la distribución del ingreso de algunos productos.",
+      "Su ventaja es identificar lo realmente vinculado a los costos; su riesgo es requerir estandarización de procesos."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué caracteriza al método de costeo variable?",
+    options: [
+      "Considera todos los gastos de fabricación directos e indirectos.",
+      "Asigna los costos indirectos según las actividades de la empresa.",
+      "Es un método obligatorio regulado por el Plan General de Contabilidad.",
+      "Es lo más utilizado por las empresas; solo utiliza información relacionada con los costos variables directos o indirectos, sin tener en cuenta los costos fijos."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Para qué propósito es muy beneficioso el método de costeo variable y cuál es su desventaja?",
+    options: [
+      "Es beneficioso para determinar el margen de contribución de la empresa o aclarar los costos del producto; como desventaja, los datos encontrados no son útiles a largo plazo y son inadecuados para definir la contabilidad de la empresa.",
+      "Es beneficioso para el largo plazo; como desventaja, requiere procesos estandarizados.",
+      "Es beneficioso para calcular el costo total de cada producto; como desventaja, genera distorsiones en la distribución del ingreso.",
+      "Es beneficioso para el cálculo de impuestos; como desventaja, es muy costoso de implementar."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Con qué está relacionado el método CBA / ABC (Costos Basado en las Actividades, Activity Based Costing)?",
+    options: [
+      "Con los productos terminados de la empresa.",
+      "Con las actividades de la empresa y no con los productos o servicios: los gastos de una empresa se deben a cómo se fabrican los bienes y no a lo que se produce.",
+      "Con los costos fijos exclusivamente.",
+      "Con el volumen de ventas de cada periodo."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué permite el modelo ABC respecto de los costes indirectos?",
+    options: [
+      "Eliminarlos completamente del costo del producto.",
+      "Convertirlos en costos directos de fabricación.",
+      "La asignación y distribución de los diferentes costes indirectos, de acuerdo a las actividades realizadas.",
+      "Transferirlos íntegramente al precio de venta."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué condiciones requiere el método ABC para funcionar correctamente?",
+    options: [
+      "Que la empresa tenga pocos productos y bajos costos fijos.",
+      "Que la empresa opere solo en el corto plazo.",
+      "Que la empresa esté regulada por el Plan General de Contabilidad.",
+      "Que la compañía tenga una estandarización de sus procesos, y solo funciona si el objetivo es a largo plazo."
+    ],
+    correctIndex: 3
+  }
+]} />

@@ -1,0 +1,367 @@
+# Situación de Modelación 1: Servicio Eléctrico
+
+## Material
+- [sm11.pdf](/inacap/mvfm01/docs/sm11.pdf)
+
+## Actividad 01
+Los datos que se muestran a continuación, corresponden al consumo de energía de un hogar en una región de Chile, cuyo servicio eléctrico es brindado por la empresa LUMINUS:
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Consumo estimado mensual (kWh)","Administración del servicio ($)","Electricidad consumida($)","Total a pagar en la boleta($)"]}
+  rows={[
+    ["1","1324","144","1488"],
+    ["2","1324","288","1651"],
+    ["3","1324","432","1815"],
+    ["4","1324","576","1978"],
+    ["5","1324","720","2142"]
+  ]}
+/>
+
+**Existe algún tipo de regularidad en las columnas "Administración del servicio", "Electricidad consumida" y "Total a pagar en la boleta"?**
+
+<Solution>
+- **Regularidad constante:** La columna "Administración del servicio" no depende del consumo mensual.
+- **Regularidad lineal:** La columna "Electricidad consumida" aumenta +144 por cada kWh.
+</Solution>
+
+## Actividad 02
+**¿Cuál es la expresión algebraica que modela el total a pagar en la boleta en función del consumo estimado mensual? ¿Qué parámetros están presente y cómo se interpretan?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig05.png"
+	alt="Ingreso valores y creación función lineal"
+	caption="Ingreso valores y creación función lineal"
+	size="large"
+/>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig06.svg"
+	alt="Gráfica costo mensual boleta"
+	caption="Gráfica costo mensual boleta"
+	lightbox={true}
+	size="large"
+/>
+
+$\therefore$ La expresión algebraica que modela el total a pagar en la boleta en función del consumo estimado mensual es:
+
+$$
+\begin{aligned}
+    f(x) \approx 163,5 \cdot x + 1324,3
+\end{aligned}
+$$
+
+Donde:
+
+- $x$ es el consumo estimado mensual (kWh).
+- $f(x)$ es el total a pagar (\$).
+</Solution>
+
+## Actividad 03
+Considera la función planteada en la actividad anterior.
+
+1. **¿Cuál sería el total a pagar si una persona consumiera 234 kWh?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig07.png"
+	alt="Calcular costo de 234 kwh"
+	caption="Calcular costo de 234 kwh"
+	size="large"
+/>
+
+$\therefore$ El total a pagar si una persona consume `234` kWh es \$`39583.3`
+</Solution>
+
+2. **La página de la empresa ha publicado que el total a pagar por 234 kWh es de \$35595. ¿Existe alguna diferencia con la respuesta de la pregunta anterior? Analiza.**
+
+<Solution>
+
+Si, existe una diferencia entre el resultado de $f(234)$ y el resultado publicado por la empresa:
+
+- $f(234) = 39583,3$
+- Publicación empresa: $234$ Kwh tiene un costo de \$$35595$
+
+Esto se debe a que el modelo $f(x)$ está hecho a partir de unos pocos datos. Además, estos datos están poco dispersos entre sí, lo que generará un modelo con alta precisión para valores cercanos a estos puntos, pero baja precisión para el caso contrario.
+
+Si se agrega este nuevo dato publicado, es posible mejorar el modelo. 
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig08.png"
+	alt="Ingresar nuevos datos y crear función más aproximada"
+	caption="Ingresar nuevos datos y crear función más aproximada g(x)"
+	size="large"
+/>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig09.svg"
+	alt="Gráfica nueva función de costo g(x)"
+	caption="Gráfica nueva función de costo g(x)"
+	lightbox={true}
+	size="large"
+/>
+
+El nuevo modelo $g(x)$ es:
+
+$$
+\begin{aligned}
+	g(x) \approx 146,24 \cdot x + 1375,94
+\end{aligned}
+$$
+
+Donde $g(234)$ = `35595.75` el cual se ajusta mejor al dato publicado por la empresa.
+</Solution>
+
+3. **¿Cuántos kWh se deben consumir para pagar un total de \$20000 en la boleta?**
+
+<Solution>
+
+Se utiliza el nuevo modelo $g(x)$:
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig10.png"
+	alt="Calcular kwh necesarios para pagar $20000"
+	caption="Calcular kwh necesarios para pagar $20000"
+	size="large"
+/>
+
+$\therefore$ Se deben consumir un total de `127.35` kWh para pagar un total de \$`20000` en la boleta.
+</Solution>
+
+## Actividad 04
+La empresa ha entregado la siguiente información en su página web:
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Consumo estimado mensual (kWh)","Total a pagar en la boleta ($)"]}
+  rows={[
+    ["50","9502"],
+    ["120","20950"],
+    ["210","35670"],
+    ["310","52025"],
+    ["415","69197"]
+  ]}
+/>
+
+1. **¿Cuál es la expresión algebraica que modela el total a pagar en la boleta en función del consumo estimado total?**
+
+<Solution>
+
+Se genera la función $h(x)$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig11.png"
+	alt="Función Costo mensual h(x)"
+	caption="Función Costo mensual h(x)"
+	size="large"
+/>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig12.svg"
+	alt="Gráfica función h(x)"
+	caption="Gráfica función h(x)"
+	lightbox={true}
+	size="large"
+/>
+
+$\therefore$ La expresión algebraica que modela el total a pagar en la boleta en función del consumo estimado total es:
+
+$$
+\begin{aligned}
+	h(x) \approx 163,55 \cdot x + 1324,50
+\end{aligned}
+$$
+
+Donde:
+
+- $x$ es el consumo estimado total (kWh).
+- $h(x)$ es el total a pagar (\$).
+</Solution>
+
+2. **¿Cuál sería el total a pagar si una persona consumiera 234 kWh?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig13.png"
+	alt="Calcular costo de 234 kwh"
+	caption="Calcular costo de 234 kwh"
+	size="large"
+/>
+
+$\therefore$ El total a pagar si una persona consume `234` kWh es \$`39594.94`
+</Solution>
+
+3. **¿Existe alguna diferencia entre la respuesta de la pregunta anterior y lo publicado por la empresa? Analiza.**
+
+<Solution>
+
+Si, existe una diferencia entre el resultado de $h(234)$ y el resultado publicado por la empresa:
+
+- $h(234) = 39594,94$
+- Publicación empresa: $234$ Kwh tiene un costo de \$$35595$
+
+Nuevamente, el modelo $h(x)$ está hecho a partir de unos pocos datos. Esta vez, los datos tienen una mejor dispersión en comparación con la Actividad 1, pero siguen siendo una cantidad baja.
+
+Si se agrega el dato de la empresa a este conjunto de datos, es posible seguir mejorando el modelo:
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig14.png"
+	alt="Ingresar nuevos datos y crear función más aproximada j(x)"
+	caption="Ingresar nuevos datos y crear función más aproximada j(x)"
+	size="large"
+/>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig15.svg"
+	alt="Gráfica j(x)"
+	caption="Gráfica nueva función de costo j(x)"
+	lightbox={true}
+	size="large"
+/>
+
+El nuevo modelo $j(x)$ a partir de todos los datos proporcionados por la empresa es:
+
+$$
+\begin{aligned}
+    j(x) \approx 163,04 \cdot x  + 771,26
+\end{aligned}
+$$
+</Solution>
+
+4. **¿Cuántos kWh se deben consumir para pagar \$20000 en la boleta?**
+
+<Solution>
+
+Se utiliza el nuevo modelo  $j(x)$:
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig16.png"
+	alt="Calcular kwh necesarios para pagar $20000"
+	caption="Calcular kwh necesarios para pagar $20000"
+	size="large"
+/>
+
+$\therefore$ Se deben consumir `117.94` kWh para pagar \$`20000` en la boleta.
+</Solution>
+
+## Actividad 05 
+La empresa CHISPITA tiene otros costos fijos y variables diferentes a los de la empresa LUMINUS. En la siguiente tabla se ha registrado el servicio eléctrico de cinco hogares pertenecientes a la empresa CHISPITA.
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Consumo estimado mensual (kWh)","Administración del servicio ($)","Electricidad consumida ($)","Transporte de electricidad ($)","Total a pagar en la boleta"]}
+  rows={[
+    ["70","685","8164","1124",""],
+    ["78","685","9098","1254",""],
+    ["79","685","9214","1268",""],
+    ["86","685","10031","1381",""],
+    ["113","685","13178","1816",""]
+  ]}
+/>
+
+1. **Completa la tabla anterior, considerando que el total a pagar en la boleta es la suma de la administración del servicio, la electricidad consumida y el transporte de electricidad.**
+
+<Solution>
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Consumo estimado mensual (kWh)","Administración del servicio ($)","Electricidad consumida ($)","Transporte de electricidad ($)","Total a pagar en la boleta"]}
+  rows={[
+    ["70","685","8164","1124","9973"],
+    ["78","685","9098","1254","11037"],
+    ["79","685","9214","1268","11167"],
+    ["86","685","10031","1381","12097"],
+    ["113","685","13178","1816","15679"]
+  ]}
+/>
+
+</Solution>
+
+2. **¿Cuál es la expresión algebraica que modela el total a pagar en la boleta en función del consumo estimado mensual de esta nueva empresa? Ten en cuenta cada uno de los siguientes casos:**
+    
+	- **Considera solo los 2 primeros hogares.**
+    - **Considera solo los 3 primeros hogares.**
+    - **Considera solo los 4 primeros hogares.**
+    - **Considera los 5 hogares.**
+
+<Solution>
+
+Se almacenan los puntos en distintos grupos `l1` a `l4`:
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig17.png"
+	alt="Crear distintos conjuntos de datos"
+	caption="Crear distintos conjuntos de datos"
+	size="large"
+/>
+
+Se determina el modelo según los siguientes casos:
+
+**Caso 1: solo 2 primeros hogares**
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig18.png"
+	alt="Modelo lineal f(x) creado con datos l1"
+	caption="Modelo lineal f(x) creado con datos l1"
+	size="large"
+/>
+
+**Caso 2: solo 3 primeros hogares**
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig19.png"
+	alt="Modelo lineal g(x) creado con datos l2"
+	caption="Modelo lineal g(x) creado con datos l2"
+	size="large"
+/>
+
+**Caso 3: solo 4 primeros hogares** 
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig20.png"
+	alt="Modelo lineal h(x) creado con datos l3"
+	caption="Modelo lineal h(x) creado con datos l3"
+	size="large"
+/>
+
+**Caso 4: los 5 hogares** 
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig21.png"
+	alt="Modelo lineal p(x) creado con datos l4"
+	caption="Modelo lineal p(x) creado con datos l4"
+	size="large"
+/>
+</Solution>
+
+3. **Representa gráficamente la función de la empresa CHISPITA (considerando los 5 hogares) y la función de la empresa LUMINUS (determinada en la actividad 4) en GeoGebra. Posteriormente determina la intersección entre ambas e interpreta este resultado en los contextos gráfico y algebraico.**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig22.png"
+	alt="Gráfico comparativo f4 vs f5"
+	caption="Gráfico comparativo f4 vs f5"
+	lightbox={true}
+	size="large"
+/>
+
+Se resumen los siguientes resultados:
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Empresa","Modelo de costo"]}
+  rows={[
+    ["LUMINUS","$f_4(x) \\approx 163,55 \\cdot x + 1324,50$"],
+    ["CHISPITA","$f_5(x) \\approx 132,68 \\cdot x + 685,93$"]
+  ]}
+/>
+
+- De la gráfica se observa que el punto de intersección $K$ es $(-20,69 ; -2059,20)$
+- En el contexto gráfico, $K$ representa el pto. donde el mismo consumo en kWh tiene el mismo costo (\$) en ambas empresas.
+- En el contexto algebraico, los valores encontrados no tienen sentido, ya que el consumo de energía $x$ no puede ser negativo (los hogares no generan energía). Por lo tanto, los costos de la empresa no se igualan dentro de un rango de consumo $x$ razonable, donde $x \in [0,\infty)$
+</Solution>

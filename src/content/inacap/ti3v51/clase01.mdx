@@ -1,0 +1,139 @@
+# Introducción al Data Warehouse
+
+## 1. ¿Qué es un Data Warehouse?
+
+Un **Data Warehouse (DW)** es un repositorio unificado que centraliza todos los datos recopilados por los distintos sistemas de una empresa. Puede ser físico o lógico, y su principal propósito es capturar datos de diversas fuentes para fines analíticos y de acceso.
+
+Los datos provienen de sistemas **OLTP (Online Transaction Processing)** y otras fuentes, y son extraídos selectivamente para ser utilizados por aplicaciones analíticas y de consulta. Normalmente se aloja en un servidor corporativo o en la nube.
+
+> El Data Warehouse es una arquitectura de almacenamiento que permite a los ejecutivos organizar, comprender y utilizar sus datos para tomar decisiones estratégicas.
+
+## 2. ¿Qué es un Datamart?
+
+Un **Datamart** es una base de datos departamental, especializada en el almacenamiento de datos de un área de negocio específica. Dispone de una estructura óptima para analizar la información desde todas las perspectivas que afectan a los procesos de ese departamento.
+
+Un Datamart puede ser:
+- Alimentado desde los datos de un Data Warehouse central.
+- Integrado por sí mismo a partir de distintas fuentes de información.
+
+### Ventajas de un Datamart
+
+<SmartTable
+    tablelayout="auto"
+    headers={['Ventaja', 'Descripción']}
+    rows={[
+        ["**Poco volumen de datos**", "Contiene solo la información relevante del área"],
+        ["**Mayor rapidez de consulta**", "Al ser más pequeño, las queries son más rápidas"],
+        ["**Consultas SQL/MDX sencillas**", "Menos complejidad en las consultas analíticas"],
+        ["**Validación directa**", "Más fácil de verificar la calidad del dato"],
+        ["**Facilidad para historiales**", "Permite llevar registros históricos del área"]
+    ]}
+/>
+
+## 3. Características de un Data Warehouse
+
+### a. Integrado
+
+Los datos almacenados en el DW deben integrarse en una estructura consistente. Las inconsistencias entre los distintos sistemas operacionales deben ser eliminadas. La información se estructura además en distintos niveles de detalle para adecuarse a las necesidades de los usuarios.
+
+```sql
+-- Ejemplo: integración de datos de clientes desde dos sistemas distintos
+-- Sistema A tiene RUT como "rut_cliente", Sistema B lo tiene como "id_rut"
+-- En el DW se unifican bajo un mismo estándar
+
+INSERT INTO dw.dim_cliente (rut, nombre, email)
+SELECT
+    COALESCE(a.rut_cliente, b.id_rut) AS rut,
+    COALESCE(a.nombre_completo, b.nombre) AS nombre,
+    COALESCE(a.correo, b.email) AS email
+FROM sistema_a.clientes a
+FULL OUTER JOIN sistema_b.usuarios b
+    ON a.rut_cliente = b.id_rut;
+```
+
+### b. Temático
+
+Solo los datos necesarios para la generación de conocimiento del negocio se integran desde el entorno operacional. Los datos se organizan por temas para facilitar su acceso y entendimiento. Por ejemplo, todos los datos sobre clientes pueden consolidarse en una única tabla, haciendo más fácil responder consultas sobre ellos.
+
+```sql
+-- Ejemplo: tabla temática de ventas en el DW
+-- Agrupa todo lo relacionado con ventas en un único lugar
+
+SELECT
+    c.nombre        AS cliente,
+    p.descripcion   AS producto,
+    t.anio,
+    t.mes,
+    SUM(f.monto)    AS total_ventas
+FROM dw.fact_ventas f
+JOIN dw.dim_cliente  c ON f.id_cliente  = c.id_cliente
+JOIN dw.dim_producto p ON f.id_producto = p.id_producto
+JOIN dw.dim_tiempo   t ON f.id_tiempo   = t.id_tiempo
+GROUP BY c.nombre, p.descripcion, t.anio, t.mes
+ORDER BY t.anio, t.mes;
+```
+
+### c. Histórico
+
+El tiempo es parte implícita de la información en un DW. A diferencia de los sistemas operacionales (que reflejan el estado actual), el DW almacena los distintos valores que toma una variable a lo largo del tiempo, permitiendo análisis de tendencias y comparaciones históricas.
+
+```sql
+-- Ejemplo: consulta de tendencia histórica de ventas por año
+SELECT
+    t.anio,
+    SUM(f.monto) AS total_ventas,
+    LAG(SUM(f.monto)) OVER (ORDER BY t.anio) AS ventas_anio_anterior,
+    ROUND(
+        (SUM(f.monto) - LAG(SUM(f.monto)) OVER (ORDER BY t.anio))
+        / LAG(SUM(f.monto)) OVER (ORDER BY t.anio) * 100, 2
+    ) AS variacion_pct
+FROM dw.fact_ventas f
+JOIN dw.dim_tiempo t ON f.id_tiempo = t.id_tiempo
+GROUP BY t.anio
+ORDER BY t.anio;
+```
+
+### d. No Volátil
+
+El almacén de información de un DW existe para ser **leído, no modificado**. La información es permanente. Actualizar el DW significa incorporar los últimos valores de las variables, sin alterar lo que ya existía.
+
+```sql
+-- En un DW NO se hacen UPDATE ni DELETE sobre datos históricos
+-- Solo se hace INSERT de nuevos registros
+
+-- ❌ Incorrecto en un DW:
+UPDATE dw.fact_ventas SET monto = 5000 WHERE id_venta = 101;
+
+-- ✅ Correcto: se inserta el nuevo estado sin borrar el anterior
+INSERT INTO dw.fact_ventas (id_venta, id_cliente, id_tiempo, monto, estado)
+VALUES (102, 45, 20240101, 5000, 'correccion');
+```
+
+
+## Resumen Visual
+
+<TerminalOutput>
+{`Sistemas OLTP (fuentes)
+    │
+    ▼
+[Proceso ETL]  ──►  Data Warehouse (centralizado, histórico, integrado)
+                          │
+              ┌───────────┼───────────┐
+              ▼           ▼           ▼
+          Datamart     Datamart    Datamart
+          Ventas       RRHH        Finanzas`}
+</TerminalOutput>
+
+## Diferencia clave: OLTP vs Data Warehouse
+
+<SmartTable
+    tablelayout="auto"
+    headers={['Característica', 'OLTP', 'Data Warehouse']}
+    rows={[
+        ["**Propósito**", "Procesar transacciones", "Análisis y reportes"],
+        ["**Datos**", "Actuales", "Históricos"],
+        ["**Operaciones**", "INSERT, UPDATE, DELETE", "Principalmente SELECT"],
+        ["**Usuarios**", "Operativos", "Analistas, ejecutivos"],
+        ["**Volumen de consultas**", "Muchas, pequeñas", "Pocas, grandes y complejas"]
+    ]}
+/>

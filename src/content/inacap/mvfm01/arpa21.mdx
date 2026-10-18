@@ -1,0 +1,74 @@
+# ARPA 1: La plaza de skate
+
+## Material
+- [ARPA1.pdf](/inacap/mvfm01/docs/ARPA21.pdf)
+- [ARPA1_extensión.pdf](/inacap/mvfm01/docs/ARPA21_Extension.pdf)
+
+
+## Ejercicio 01
+
+<SmartFigure
+	id="plaza-skate"
+    src="/inacap/mvfm01/images/fig143.png"
+	alt="Gran plaza de skate"
+	caption="Gran plaza de skate"
+	size="large"
+/>
+
+Se ha construido una gran plaza de skate en una ciudad, con una forma circular, que contará con una notable cantidad de árboles, para mejorar las condiciones medioambientales de toda la ciudad. Como símbolo de este nuevo pulmón verde, se ha colocado un gran árbol en el centro del parque.
+
+En la imagen, se observa que en el pto. $B\;$ hay una cámara de seguridad, y además en el árbol también hay una cámara oculta. 
+
+La cámara situada en el pto. $B$, enfocada hacia el pto. $C$, forma un ángulo $\beta$, medido en grados, con respecto al centro de la plaza. Si un guardia ha detectado un movimiento sospechoso en ese punto
+
+¿Cuántos grados debe girar la cámara que se encuentra en el centro del árbol, actualmente dirigida al pto. $A$, para obtener una mejor visualización del pto. $C$ ?
+
+**Nota:** El segmento $\overline{AB}$ para por el centro de la plaza de skate.
+
+<Solution>
+
+<SmartFigure
+    src="/inacap/mvfm01/images/fig144.svg"
+	alt="Ángulos alfa y beta"
+	caption="Ángulos alfa y beta"
+	size="large"
+/>
+
+- Sea el ángulo $\angle \alpha$ el ángulo central de la circunferencia (plaza).
+- Sea el ángulo $\angle \beta$ un ángulo inscrito de la circunferencia (plaza).
+
+la relación entre un ángulo inscrito y el ángulo central, que comparten el mismo arco de circunferencia es:
+
+$$
+\begin{aligned}
+ángulo\; inscrito  = \frac{ángulo\; central}{2}
+\end{aligned}
+$$
+
+Entonces
+
+$$
+\begin{aligned}
+    \angle \alpha = \angle2\beta
+\end{aligned}
+$$
+</Solution>
+
+
+## Ejercicio 02
+Si el programa de la cámara sólo permite ingresar las medidas de los ángulos en radianes para realizar los giros, ¿Cuál sería la expresión algebraica para convertir el ángulo de giro de grados a radianes, considerando que $\pi$ radianes son equivalentes a 180°?
+
+<Solution>
+Si $\pi$ radianes equivalen a 180° , se obtiene el factor de conversión $\frac{\pi}{180}[rad/grados]$
+
+Luego el resultado encontrado se multiplica por este factor
+
+$$
+\begin{aligned}
+    giro &= \angle2\beta\;[grados]\\[5pt] 
+    &= \angle2\beta\;[grados] \cdot \frac{\pi}{180}\;\left[\frac{rad}{grados}\right]\\[5pt] 
+    &= \angle\frac{\pi\beta}{90} [rad] 
+\end{aligned}
+$$
+</Solution>
+

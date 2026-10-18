@@ -1,0 +1,64 @@
+## Control 02
+
+<Quiz questions={[
+  {
+    question: "¿Cuál de los siguientes tipos de campo representa una relación de muchos-a-uno en Django?",
+    options: [
+      "ManyToManyField",
+      "OneToOneField",
+      "CharField",
+      "ForeignKey"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué librería se utiliza para incluir archivos estáticos en una plantilla HTML de Django?",
+    options: [
+      "{% include css %}",
+      "{% staticfile %}",
+      "{% load static %}",
+      "{% media load %}"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué debe hacerse para que los archivos estáticos funcionen correctamente en un proyecto Django?",
+    options: [
+      "Crear una carpeta media/",
+      "No es necesario hacer nada",
+      "Configurar STATICFILES_DIRS y usar {% static %}",
+      "Colocar CSS en views.py"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué representa una ruta como esta en Django: path('producto/<int:id>/', ...)?",
+    options: [
+      "Un filtro por nombre.",
+      "Un bucle de carga.",
+      "Una URL para imágenes.",
+      "Una ruta que acepta un parámetro numérico."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál es la estructura básica para crear un formulario HTML que envíe datos a Django?",
+    options: [
+      "<form> ... </form>",
+      "<form method=\"GET\">...</form>",
+      "<input name=\"formulario\">",
+      "<form method=\"POST\">{% csrf_token %}...</form>"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué valor se necesita para hacer que un campo no pueda quedar vacío en un formulario?",
+    options: [
+      "required=True",
+      "value=\"\"",
+      "null=False",
+      "blank=False"
+    ],
+    correctIndex: 3
+  }
+]} />

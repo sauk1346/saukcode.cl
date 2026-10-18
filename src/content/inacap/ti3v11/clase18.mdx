@@ -1,0 +1,167 @@
+# Funciones
+**Material Clase:** [clase18.pdf](/inacap/ti3v11/docs/clase18.pdf)
+
+Es un bloque de código "encapsulado". Esto permite que pueda ser reutilizable, y llamarlo las veces que sea necesario.
+
+**Ejemplo:** función `miSuma()`
+
+```python
+def miSuma(a,b):
+	return (a + b)
+
+sum = miSuma(1,2)
+print(f'la suma es: {sum}')
+
+sum = miSuma(15,15)
+print(f'ahora la suma es: {sum}')
+```
+<TerminalOutput withBg>
+{`la suma es: 3
+ahora la suma es: 30`}
+</TerminalOutput>
+
+## Características
+1. Al crear una función, inicia con la palabra `def`.
+2. *Parámetros*. La función puede o no recibir Parámetros. Éstos van dentro del paréntesis.
+3. *Valor de retorno*. La función puede o no devolver un valor. Si devuelve un valor, se utiliza la palabra clave `return` al final.
+
+## Modularización
+El propósito de las funciones es poder dividir un código principal en bloques más pequeños, reutilizar ciertas partes sin tener que escribir todo de nuevo.
+
+Estos bloques más pequeños se llaman *módulos*. Cada módulo es una unidad independiente que realiza una acción específica del programa.
+
+La modularización permite además separar el código principal en distintos archivos, para una mejor organización.
+
+**Ejemplo:**
+
+```python
+#saludos.py
+def imprimeHola():
+	print('HOLA')
+
+def imprimeChao():
+	print('CHAO')
+```
+
+```python
+#main.py
+from saludos import *
+
+imprimeHola()
+imprimeChao()
+```
+<TerminalOutput withBg>
+{`HOLA
+CHAO`}
+</TerminalOutput>
+
+
+- **saludos.py:** contiene las funciones `imprimeHola()` y `imprimeChao()`
+- **main.py:**: ejecuta las funciones del archivo `saludos.py`. Para esto, primero importa todas las funciones (*) del archivo 'saludos' (`from saludos import *`)
+
+## Parámetros variables
+- No hay restricción en la cantidad de parámetros que se pueden pasar a una función.
+- Sin embargo, si necesito crear una función con muchos parámetros, se puede utilizar `*args`
+
+**Ejemplo 01**
+
+```python
+def miSuma(*args):
+	sum = 0
+	for i in args:
+		sum += i
+	return sum
+
+resultado = miSuma(1,2,3,4,5,6,7,8,9,10)
+print(f'La suma es: {resultado}')
+```
+<TerminalOutput withBg>
+{`La suma es: 55`}
+</TerminalOutput>
+
+
+- `*args`: representa el nombre de la lista de elementos variables. Puede llamarse de cualquier otra forma, pero por convención se deja como `args` (arguments). Lo importante es el `*`. Este comodín indica que el argumento (parámetro) es una lista de elementos variables
+
+**Ejemplo 02:** reemplazando el nombre `args`
+
+```python
+def miMultiplicacion(*saukCode):
+	mult = 1
+	for i in saukCode:
+		mult = mult * i
+	return mult
+
+result = miMultiplicacion(1,2,3,4,5)
+print(f'la multiplicación es: {result}')
+```
+<TerminalOutput withBg>
+{`la multiplicación es: 120`}
+</TerminalOutput>
+
+# Ejercicios
+
+## Ejercicio 01
+
+1. Crear un archivo `operaciones.py` con las funciones
+	- `suma(n1,n2)`
+	- `factorial(elemento)`
+	- `par(elemento)`
+
+2. Crear un archivo principal `main.py` que ejecute las funciones de `operaciones.py`
+
+<Solution>
+```python
+#operaciones.py
+def suma(n1,n2):
+	return (n1+n2)
+
+def factorial(elemento):
+	fact = 1
+	i = 1
+	while (i <= elemento):
+		fact = i * fact
+		i += 1
+	return fact
+
+def par(elemento):
+	if (elemento%2 == 0):
+		resp = 'El número es PAR'
+	else:
+		resp = 'El número es IMPAR'
+	return resp
+```
+
+```python
+#main.py
+from operaciones import *
+
+num = int(input('Ingrese el número: '))
+
+print(par(num)) # verificar si num es par
+print(f'Factorial es: {factorial(num)}')
+print(f'Suma +5: {suma(num,5)}')
+```
+</Solution>
+
+## Ejercicio 02
+1. Crear un archivo `media.py` que calcule el promedio de los números ingresados.
+2. Crear un archivo principal `main.py` que ejecute la(s) función(es) de `media.py`
+
+<Solution>
+```python
+#media.py
+def calcularMedia(*args):
+	return ( sum(args)/len(args) )
+```
+
+```python
+#main.py
+from media import *
+
+result = calcularMedia(1,2,3,4,5,6)
+print(f'La media de los números es: {result}')
+```
+<TerminalOutput withBg>
+{`La media de los números es: 3.5`}
+</TerminalOutput>
+</Solution>

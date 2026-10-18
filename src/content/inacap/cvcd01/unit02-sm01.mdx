@@ -1,0 +1,204 @@
+# SM01: Velocidad instantánea
+
+**Material**
+- [SM01: Velocidad instantánea](docs/unit02-sm01.pdf)
+
+La velocidad instantánea es un concepto fundamental en la física y la ingeniería que describe la rapidez con la que un objeto se mueve en un momento específico. A diferencia de la velocidad promedio, que se calcula sobre un intervalo de tiempo, la velocidad instantánea se refiere a la velocidad en un punto preciso. Imagina un auto en una carretera: en un instante dado, su velocidad instantánea puede ser diferente de la velocidad promedio durante todo el trayecto.
+
+## Actividad 01
+
+Eduardo debe realizar un viaje en auto desde el punto $A$ (Santiago) hasta el punto $F$ (lugar cercado a Viña del Mar). La ubicación del auto en seis instantes distintos está dada por los puntos de la gráfica adjunta
+
+<SmartFigure
+    src="/inacap/cvcd01/images/fig176.png"
+	alt="Gráfica adjunta"
+	caption="Gráfica adjunta"
+    size="large"
+/>
+
+A modo de ejemplo, el punto $D=(0.6, 80.16)$ significa que el auto en el instante $0.6$ horas (36 minutos) ha recorrido 80.16 kilómetros.
+
+Suponiendo que el avance del auto se comporta como un modelo cuadrático, utiliza los puntos $A$, $C$ y $F$ para encontrar el modelo $f(x)$
+
+<Solution title="Solución Actividad 01">
+
+<SmartFigure
+    id="fig178"
+    src="/inacap/cvcd01/images/fig178.png"
+	alt="Puntos A, C, F y modelo cuadrático f(x)"
+	caption="Puntos A, C, F y modelo cuadrático f(x)"
+    size="large"
+/>
+
+<SmartFigure
+    id="fig179"
+    src="/inacap/cvcd01/images/fig179.png"
+	alt="Gráfico de f(x)"
+	caption="Gráfico de f(x)"
+    lightbox={true}
+    size="large"
+/>
+
+</Solution>
+
+---
+
+## Actividad 02
+
+Teniendo en cuentra el modelo $f(x)$ encontrado en la actividad anterior y los seis puntos dados, responde:
+
+1. Con respecto a la velocidad del auto, se puede calcular la velocidad promedio entre los puntos cualesquiera por medio de la expresión:
+
+$$
+\text{ velocidad promedio (VP)} = \dfrac{\triangle\text{posición}}{\triangle\text{tiempo}} = \dfrac{\text{posición final}-\text{posición inicial}}{\text{tiempo final}-\text{tiempo inicial}}
+$$
+
+Calcula la velocidad promedio entre los puntos que aparecen en la siguiente tabla:
+
+<SmartFigure
+    src="/inacap/cvcd01/images/fig177.png"
+	alt="Tabla a completar"
+	caption="Tabla a completar"
+    size="large"
+/>
+
+2. ¿Qué se puede deducir respecto de la velocidad promedio a medida que los puntos se acercan al punto $B$?
+
+<Solution title="Solución Actividad 02">
+
+**Calcula la velocidad promedio entre los puntos que aparecen en la tabla**
+
+<SmartFigure
+    id="fig180"
+    src="/inacap/cvcd01/images/fig180.png"
+	alt="Tabla de puntos y Tabla de VP (velocidades promedios)"
+	caption="Tabla de puntos y Tabla de VP (velocidades promedios)"
+    size="large"
+/>
+---
+
+**¿Qué se puede deducir respecto de la velocidad promedio a medida que los puntos se acercan al punto $B$?**
+
+<P indent={2}>
+De la tabla se puede deducir que a medida que los puntos se acercan al punto $B$, la velocidad promedio aumenta, y tiende a $108.4$ Km/h
+</P>
+
+</Solution>
+
+---
+
+## Actividad 03
+
+Eduardo viaja por una autopista donde la velocidad máxima permitida es de 120 km/h en toda su extensión. Al pasar por el punto $B$, una cámara de radar, ubicada a 100 metros de distancia, captura una imagen de la matrícula de su auto para medir su velocidad. ¿Recibirá Eduardo una multa por exceso de velocidad?
+
+<Solution title="Solución Actividad 03">
+
+Datos:
+    - velocidad máxima permitida: 120 km/h
+    - existe una cámara de radar, a 100 metros del pto B
+    - la cámara captura la velocidad de Eduardo en el pto B
+
+
+Pasos:
+    - Se agrega el punto B al modelo f(x)
+    - Se calcula la recta tangente L que pasa por el punto B
+    - Se calcula la pendiente de la recta tangente L (corresponde a la velocidad en el punto B)
+
+<SmartFigure
+    id="fig181"
+    src="/inacap/cvcd01/images/fig181.png"
+	alt="Velocidad en el punto B"
+	caption="Velocidad en el punto B"
+    size="large"
+/>
+
+$\therefore$ Eduardo pasa por el punto $B$ a una velocidad de 116.8 km/h, por lo que al ser menor a 120 km/h **no recibirá una multa** por exceso de velocidad. 
+
+</Solution>
+
+---
+
+## Actividad 04
+
+Considerando todos los aspectos anteriores, responde
+1. ¿Con qué velocidad se mueve el auto en el punto $A$?
+2. ¿Con qué velocidad llega el auto al punto $F$?
+
+
+<Solution title="Solución Activida 04">
+
+Se utilizará el concepto de **derivada**
+
+Sea:
+- $X(t)$: modelo de distancia en el tiempo $t$
+- $V(t)$: modelo de velocidad en el tiempo $t$
+- $A(t)$: modelo de aceleración en el tiempo $t$
+
+La derivada permite pasar de un modelo al siguiente:
+- $\text{Derivada}(X(t)) = X'(t) = V(t)$
+- $\text{Derivada}(V(t)) = V'(t) = A(t)$
+
+---
+
+1. **¿Con qué velocidad se mueve el auto en el punto $A$?**
+
+- $f(x)$ es el modelo de distancia en el tiempo $x$
+- necesitamos el modelo de velocidad y evaluarlo en el pto $A$
+- es posible pasar del modelo $f(x)$ a $f'(x)$ utilizando derivada
+
+<SmartFigure
+    id="fig182"
+    src="/inacap/cvcd01/images/fig182.png"
+	alt="Cálculo de velocidad en el punto A"
+	caption="Cálculo de velocidad en el punto A"
+    size="large"
+/>
+
+<P indent={2}>
+$\therefore$ El auto se mueve con una velocidad de 184 km/h en el punto $A$
+</P>
+---
+
+2. **¿Con qué velocidad llega el auto al punto $F$?**
+
+<SmartFigure
+    id="fig183"
+    src="/inacap/cvcd01/images/fig183.png"
+	alt="Cálculo de velocidad en el punto F"
+	caption="Cálculo de velocidad en el punto F"
+    size="large"
+/>
+
+<P indent={2}>
+$\therefore$ El auto llega al punto $F$ con una velocidad de 16 km/h
+</P>
+
+</Solution>
+
+---
+
+## Actividad 05
+
+¿Es posible deducir si la aceleración del auto fue positiva o negativa? ¿Cuál fue el valor?
+
+<Solution title="Solutión Actividad 05">
+
+- $f(x)$ es el modelo de posición en el tiempo $x$
+- Si derivamos una vez: $f'(x)$, obtenemos el modelo de velocidad en el tiempo $x$
+- Si derivamos nuevamente $f''(x)$, obtenemos el modelo de aceleración en el tiempo $x$
+
+<SmartFigure
+    id="fig184"
+    src="/inacap/cvcd01/images/fig184.png"
+	alt="Modelo de aceleración en el tiempo x"
+	caption="Modelo de aceleración en el tiempo x"
+    size="large"
+/>
+
+- Se observa que el modelo de aceleración $f''(x) = -168$, es constante
+
+<P indent={2}>
+$\therefore$ La aceleración fue negativa, de -168 km/h². Esto quiere decir que durante todo el trayecto el auto fue disminuyendo la velocidad
+</P>
+
+</Solution>

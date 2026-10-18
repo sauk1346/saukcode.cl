@@ -1,0 +1,95 @@
+# Estrategias de datos en AWS: optimización y evaluación del rendimiento
+
+## 1. La metodología agile data warehousing
+
+Ya que el desarrollo ágil (*agile development*) o la metodología ágil se ha incorporado hace años dentro del desarrollo de software convencional en las empresas, también ha ocurrido el mismo fenómeno dentro del desarrollo orientado a manejo de datos y data warehousing. Recordemos que *agile* parte como un movimiento en el año 2001, resumido en el llamado **manifiesto ágil** que revoluciona el pensamiento acerca de cómo crear software, poniento en primer lugar al cliente como foco del desarrollo y enfatizando la comunicación entre los miembros del equipo de la empresa, la colaboración y la capacidad de respuesta rápida ante el cambio.
+
+Todo esto buscaba derribar la antigua concepción de que los procesos de desarrollo de software debían ser rígidos, controlados en forma vertical y dándole mayor importancia al proceso que el cliente y los inversores. 
+
+De esta forma, varias metodologías van apareciendo a lo largo de los años, inspiradas en los principios de *agile*, tales como Scrum, Kanban, Lean-Agile, Extreme Programming y otras, tratando de maximizar el resultado hacia el cliente, mediante el desarrollo iterativo y la respuesta rápida ante cambios.
+
+El diseño e implementación de almacenes de datos (*data warehouses*, *data marts*, *data lakes* y otros) ha sido también alcanzado por el uso de las metodologías ágiles, destacando en este caso lo denominado como *agile data warehousing*. El desarrollo ágil de data warehouses consiste en aplicar los mismo principios del manifiesto ágil sogbre el diseño e implementación de *data warehouses*:
+
+1. Individuos e interacciones por sobre procesos y herramientas
+2. Sistemas de data warehousing e inteligencia de negocios funcionales por sobre documentación comprensiva
+3. Colaboración con los usuarios finales y los inversores por sobre negociación de contratos
+4. Respuesta al cambio por sobre seguir un plan detallado
+
+Sin embargo, las metodologías basadas en los principios ágiles son adaptativas a la realidad de cada organización, por lo que no es necesario seguirlas al pie de la letra, aunque sí sea importante tender a cumplirlas en algún momento para mejorar el proceso ágil. 
+
+En resumen, la idea es permitir que todos estos conceptos tomen forma dentro del proceso de creación y mantención de los sistemas de almacenes de datos como un proceso continuo e iterativo, sin fin, buscando siempre maximizar el valor final hacia el usuario.
+
+<SmartFigure
+	id="esquema-de-siete-pasos-ofrecido-por-software-de-creacion-de-datawearinghousing-de-astera-dw-builder"
+	src="/inacap/ti3v51/images/fig28.png"
+	alt="Esquema de siete pasos ofrecido por el software de creación de data warehousing de Astera DW Builder"
+	caption="Esquema de siete pasos ofrecido por el software de creación de data warehousing de Astera DW Builder"
+	size="large"
+/>
+
+## 2. Herramientas para la implementación de un sistema de almacenamiento de datos
+
+La implementación de sistemas de almacenamiento de datos puede verse significativamente facilitada mediante el uso de herramientas especializadas que permiten automatizar total o parcialmente el proceso de construcción de un data warehouse. Estas herramientas apoyan tareas como el modelamiento de datos, la definición de esquemas dimensionales, la carga de información y la orquestación de los procesos asociados
+
+A partir de los revisado, se vuelve relevante considerar el uso de sistemas de software que permite implementar almacenes de datos de forma automatizada o semiautomatizada, apoyando una gestión más eficiente de la información.
+
+Por ejemplo, Astera (2025) indica que, a través de su sistema comercial de creación de data warehouses (Astera DW Builder), se puede construir un sistema de almacén de datos en 7 pasos generales:
+
+1. Modelar los datos fuentes
+2. Construir el modelo dimensional
+3. Configurar tablas de dimensiones y de hechos
+4. Desplegar el modelo
+5. Cargar datos en las tablas de dimensiones y de hechos, mediante procesamiento ETL
+6. Orquestar (administrar o gestionar) el proceso completo
+7. Consumo de los datos a través de reportes y dashboards, hacia los usuarios
+
+<SmartFigure
+	id="ejemplo-de-proceso-iterativo-para-la-creacion-de-un-data-warehouse"
+	src="/inacap/ti3v51/images/fig28.png"
+	alt="Ejemplo de proceso iterativo para la creación de un data warehouse"
+	caption="Ejemplo de proceso iterativo para la creación de un data warehouse"
+	size="large"
+/>
+
+---
+
+## Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es un principio del agile data warehousing?",
+		options: [
+            "La eliminación del modelado de datos",
+            "La agilidad aplicada al manejo de datos",
+            "El uso exclusivo de procesos manuales",
+            "La centralización rígida de los sistemas",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "Data vault y DMBOK apoyan sistema orientados a datos",
+		options: [
+            "Verdadero",
+            "Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Cuál es un principio del agile data warehousing?",
+		options: [
+            "Diseño completo antes de implementar",
+            "Documentación exhaustiva previa",
+            "Entrega iterativa de soluciones funcionales",
+            "Evitar cambios durante el proyecto",
+		],
+		correctIndex: 2
+	},
+    {
+		question: "Agile data warehousing considera los sistema como evolutivos",
+		options: [
+            "Verdadero",
+            "Falso",
+		],
+		correctIndex: 0
+	},
+]}/>

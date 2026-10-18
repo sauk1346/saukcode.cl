@@ -1,0 +1,131 @@
+# Conceptos Básicos de POO
+
+## POO
+- OOP: **Oriented Object Programming**
+- Es un paradigma de la programación, radicalmente diferente al enfoque clásico
+
+## Clases
+- Es similar a una plantilla. A partir de la clase, se crearán objetos
+- Ejemplo: Clase Auto, puede crear distintos objetos autos, todos diferentes unos de los otros
+
+<SmartFigure
+	id="clase-automovil"
+	src="/inacap/ti3v21/images/fig08.png"
+	alt="Clase Automovil"
+	caption="Clase Automovil"
+	size="large"
+/>
+
+### Jerarquía de Clases
+- Las clases de más arriba se llaman **super-clases** o **clases-padre**
+- Las clases de más abajo se llaman **sub-clases** o **clases-hijos**
+- Las clases padres engloban una idea más general
+- Las clases hijos son más detalladas
+
+<SmartFigure
+	id="jerarquia-clases"
+	src="/inacap/ti3v21/images/fig09.png"
+	alt="Jerarquía de Clases"
+	caption="Jerarquía de Clases"
+	size="large"
+/>
+
+## Objetos
+- Si las Clases son las "plantillas", los Objetos son la creación de esas "plantillas"
+- Otro nombre que recibe un objeto es **instancia** de una clase
+- Un objeto tiene **atributos** y **métodos**
+	- atributos: son características (análogo a variables)
+	- métodos: son acciones (análogo a funciones)
+
+<SmartFigure
+	id="instancias-clase-automovil"
+	src="/inacap/ti3v21/images/fig10.png"
+	alt="Instancias de Clase Automovil"
+	caption="Instancias de Clase Automovil"
+	size="large"
+/>
+
+## Herencia
+- Es una característica de las Clases
+- Una clase-padre puede heredar sus **atributos** y **métodos** a sus clases-hijos
+- Esto permite que la clase-hijo no comience desde cero
+
+<SmartFigure
+	id="herencia-clases"
+	src="/inacap/ti3v21/images/fig11.png"
+	alt="Herencia de Clases"
+	caption="Herencia de Clases"
+	size="large"
+/>
+
+## Polimorfismo
+- Se refiere a sobreescribir los métodos de un objeto
+- Esto se aplica, ya que para un objeto1, un mismo método de utiliza de forma distinta que para un objeto2
+
+<SmartFigure
+	id="polimorfismo-clases"
+	src="/inacap/ti3v21/images/fig12.png"
+	alt="Polimorfirsmo de Clases"
+	caption="Polimorfirsmo de Clases"
+	size="large"
+/>
+
+- En el ejemplo, los métodos `avanzar()` y `detenerse()` responden de forma distinta para cada objeto
+
+## Clases Abstractas
+- Se pueden definir métodos y atributos, pero no se pueden instanciar objetos
+- Son usadas para construir subclases y con éstas instancias objetos
+
+# Actividad de Práctica 01
+<Quiz questions={[
+  {
+    question: "¿Qué es una clase en programación orientada a objetos?",
+    options: [
+      "Un modelo o plantilla para crear objetos.",
+      "Una instancia de un objeto.",
+      "Un conjunto de variables.",
+      "Un método que realiza operaciones."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál es el propósito de la herencia en programación orientada a objetos?",
+    options: [
+      "Definir variables en una clase.",
+      "Crear múltiples instancias de una clase.",
+      "Permitir que una clase herede atributos y métodos de otra.",
+      "Combinar varias clases en una."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué es el polimorfismo en programación orientada a objetos?",
+    options: [
+      "La capacidad de una clase para heredar de múltiples clases.",
+      "La capacidad de una clase para tener múltiples instancias.",
+      "La capacidad de una clase para cambiar su estructura interna.",
+      "La capacidad de una clase para tomar diferentes formas y comportarse de manera diferente."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué son los atributos en programación orientada a objetos?",
+    options: [
+      "Funciones que realizan operaciones.",
+      "Variables que almacenan datos.",
+      "Métodos que definen la estructura de una clase.",
+      "Instrucciones para crear objetos."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es el propósito de los métodos en programación orientada a objetos?",
+    options: [
+      "Definir variables en una clase.",
+      "Almacenar datos en una instancia.",
+      "Realizar operaciones o acciones en un objeto.",
+      "Crear instancias de una clase."
+    ],
+    correctIndex: 2
+  }
+]} />

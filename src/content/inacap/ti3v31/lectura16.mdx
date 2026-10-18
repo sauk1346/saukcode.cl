@@ -1,0 +1,205 @@
+# Acceso a datos externos con Fetch y Axios en JS
+
+Las API, o interfaces de programación de aplicaciones, son un conjunto de protocolos y herramientas que permiten que diferentes aplicaciones se comuniquen entre sí de manera eficiente. Existen varios tipos de API, cada una diseñada para cumplir funciones específicas y facilitar la integración de servicios y datos externos en nuestras aplicaciones. Entre las más comunes se encuentran:
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Tipo API","Descripción"]}
+  rows={[
+    ["**REST APIs**","Se utilizan **HTTP requests** para acceder y manipular datos. Los métodos comunes incluyen GET, POST, PUT, DELETE"],
+    ["**SOAP APIs**","Se utilizan **XML** para transferir datos y son más estrictas en términos de estructura"]
+  ]}
+/>
+
+## Introducción a Fetch
+Fetch es una API nativa de JavaScript para realizar solicitudes HTTP. Es una alternativa moderna a XMLHttpRequest.
+
+- Está basada en promesas.
+- Simplifica la realización de solicitudes HTTP.
+- Proporciona una sintaxis más limpia y legible.
+
+**Ejemplo sintáxis Fetch**
+
+```js
+fetch('https://api.example.com/data') 
+  .then(response => response.json()) 
+  .then(data => console.log(data)) 
+  .catch(error => console.error('Error:', error)); 
+```
+
+## Introducción a Axios
+Axios es una biblioteca de terceros que simplifica las solicitudes HTTP.
+
+Es muy popular debido a su simplicidad y capacidad para manejar solicitudes más complejas. 
+
+Axios es una biblioteca de JavaScript ampliamente utilizada para realizar solicitudes HTTP, que destaca por su facilidad de uso y características avanzadas. Sus principales características incluyen:
+
+- Está basada en promesas.
+- Manejo automático de JSON.
+- Interceptores de solicitudes y respuestas.
+- Cancelación de solicitudes.
+
+**Instalación Axios**
+```sh
+npm install axios
+```
+
+**Ejemplo sintaxis Axios**
+
+```js
+import axios from 'axios';  
+
+axios.get('https://api.example.com/data') 
+  .then(response => console.log(response.data)) 
+  .catch(error => console.error('Error:', error)); 
+```
+
+
+## Comparación entre Fetch y Axios
+Al comparar Fetch y Axios es importante destacar las fortalezas y diferencias clave de cada herramienta, para comprender mejor cuándo utilizar una sobre la otra.
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Característica","Fetch","Axios"]}
+  rows={[
+    ["**Soporte Nativo**","Sí","No"],
+    ["**Basado en promesas**","Sí","Sí"],
+    ["**Manejo de JSON**","Necesita `response.json`","Automático"],
+    ["**Intercepción de solicitudes**","No","Sí"],
+    ["**Cancelación de solicitudes**","No","Sí"],
+    ["**Compatibilidad**","Todos los navegadores modernos","Todos los navegadores modernos"]
+  ]}
+/>
+
+## Ejemplo
+En el siguiente ejemplo, construirás una aplicación React que obtiene datos de una API externa utilizando fetch.
+
+### 1. Configurar el proyecto
+
+```sh
+npm create vite@latest fetch-example --template react
+cd fetch-example
+npm install
+npm run dev
+```
+
+### 2. Crear componentes (1)
+Crea el componente App.js
+
+```jsx
+import React, { useState, useEffect } from 'react';
+
+function App() {
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        fetch('https://jsonplaceholder.typicode.com/posts')
+            .then(response => response.json())
+            .then(data => {
+                setData(data);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error('Error fetching data:',error);
+                setError(error);
+                setLoading(false);
+            });
+    },[]);
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error fetching data</p>;
+    
+    return (
+        <div>
+            <h1>Posts</h1>
+            <ul>
+                {data.map(post => (
+                    <li key={post.id}>{post.title}</li>
+                ))}
+            </ul>
+        </div>
+    );
+}
+export default App;
+```
+
+### 3. Crear componentes (2)
+Crea el componente main.jsx
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import './index.css';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
+);
+```
+
+### 4. Ejecutar la aplicación
+Inicia el servidor de desarrollo y abre http://localhost:3000 en tu navegador, para ver la lista de posts obtenidos de la API. 
+
+# Actividad de Práctica 09
+
+<Quiz questions={[
+	{
+		question: "¿Qué significan las siglas API en el contexto de desarrollo de software?",
+		options: [
+			"Advanced Programming Integration",
+			"Application Programming Interface",
+			"Advanced Protocol Interface",
+			"Application Protocol Interface"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Qué es una API en el contexto de desarrollo web?",
+		options: [
+			"Un lenguaje de programación.",
+			"Un conjunto de definiciones y protocolos que permiten que dos aplicaciones se comuniquen entre sí.",
+			"Una herramienta de depuración para JS.",
+			"Un tipo de base de datos relacional."
+		],
+		correctIndex: 1
+	},
+    {
+		question: `¿Qué es lo que hace el siguiente código de Fetch?:
+            fetch('https:/api.example.com/data')
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:',error));
+        `,
+		options: [
+			"Realiza una solicitud HTTP PUT a la URL especificada, convierte la respuesta a JSON y luego actualiza los datos en el DOM.",
+			"Realiza una solicitud HTTP POST a la URL especificada, convierte la respuesta a XML y luego guarda los datos en Local storage.",
+			"Realiza una solicitud HTTP DELETE a la URL especificada, convierte la respuesta a texto y luego imprime los datos en la consola.",
+			"Realiza una solicitud HTTP GET a la URL especificada, convierte la respuesta a JSON y luego imprime los datos en la consola."
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Cuál es la diferencia principal entre Fetch y Axios en cuanto al manejo de JSON?",
+		options: [
+			"Fetch necesita response.json() para manejar JSON, mientras que Axios maneja JSON automáticamente.",
+			"Ambos manejan JSON automáticamente.",
+			"Ninguno de los dos maneja JSON automáticamente.",
+			"Fetch maneja JSON automáticamente, mientras que Axios necesita response.json()."
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Qué método de HTTP se utiliza comúnmente para recuperar datos de una API?",
+		options: [
+			"GET",
+			"DELETE",
+			"POST",
+			"PUT"
+		],
+		correctIndex: 0
+	},
+]} />

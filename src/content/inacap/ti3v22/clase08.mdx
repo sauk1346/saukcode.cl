@@ -1,0 +1,99 @@
+# Puntaje Adicional
+
+## Desarrollo de un Script SQL para Gestión de Inventarios
+
+**Objetivo de la actividad:** Desarrollar un script SQL completo que permita gestionar el inventario de una tienda. El script debe incluir la creación de tablas, inserción de datos, consultas para obtener información específica, y un procedimiento almacenado para actualizar el inventario.
+
+### Creación de tablas
+Crea una tabla llamada `Productos` que contenga las siguientes columnas:
+		
+- `ProductoID` (INT, clave primaria, autoincremental)
+- `NombreProducto` (VARCHAR(50))
+- `Categoria` (VARCHAR(30))
+- `Precio` (DECIMAL(10,2))
+- `Stock` (INT)
+
+<Solution>
+```sql
+CREATE DATABASE Tienda;
+
+USE Tienda;
+
+-- Se utiliza el formato de fecha 'Year-Month-Day'
+SET DATEFORMAT 'YMD';
+
+-- Creación de tabla Producto con sus 
+-- respectivos atributos
+CREATE TABLE Productos(
+	ProductoID INT IDENTITY,
+	NombreProducto VARCHAR(50),
+	Categoria VARCHAR(30),
+	Precio DECIMAL (10,2),
+	Stock INT,
+	PRIMARY KEY(ProductoID)
+);
+```
+</Solution>
+
+### Inserción de Datos
+Inserta al menos 5 productos con datos ficticios en la tabla `Productos`.
+
+<Solution>
+```sql
+INSERT INTO Productos(NombreProducto,Categoria,Precio,Stock)
+VALUES
+('azucar','alimentos',1000,10),
+('pan','alimentos',2500,20),
+('pilaAA','electronica',5000,15),
+('cableUSB','electronica',500,5),
+('papel higienico','limpieza',3000,8);
+```
+</Solution>
+
+### Consultas SQL
+
+- Escribe una consulta para listar todos los productos cuyo stock sea menor a 10 unidades.
+- Escribe una consulta que calcule el valor total del inventario por categoría (precio * stock).
+
+<Solution>
+```sql
+SELECT *
+FROM Productos
+WHERE Stock < 10;
+```
+
+```sql
+SELECT Categoria, SUM(Precio * Stock) AS ValorTotalInventario
+FROM Productos
+GROUP BY Categoria;
+```
+</Solution>
+
+### Prodecimiento Almacenado
+Crea un procedimiento almacenado llamado `sp_ActualizarStock` que reciba como parámetros el `ProductoID` y la cantidad a añadir al stock. El procedimiento debe:
+
+- Verificar si el `ProductoID` existe.
+- Si existe, aumentar la cantidad al `Stock` actual.
+- Si no existe, retornar un mensaje de error.
+
+<Solution>
+```sql
+CREATE PROCEDURE sp_ActualizarStock
+	@ProductoID INT,
+	@NuevaStock INT
+AS
+BEGIN
+	IF EXISTS(SELECT * FROM Productos WHERE ProductoID = @ProductoID)
+		BEGIN
+			UPDATE Productos
+			SET Stock = @NuevaStock
+			WHERE ProductoID = @ProductoID;
+		END;
+	ELSE
+		BEGIN
+			PRINT 'ERROR El producto no existe'
+		END;
+END;
+```
+</Solution>
+

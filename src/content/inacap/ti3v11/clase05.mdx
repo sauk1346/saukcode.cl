@@ -1,0 +1,199 @@
+# Ejercicios con Bucles (1)
+**Material Clase:** [clase05.pdf](/inacap/ti3v11/docs/clase05.pdf)
+
+## Ejercicio 01
+Ingresar por teclado NUMERO cantidad de números, sumarlos y mostrar el resultado por pantalla.
+
+<Solution>
+**Opción 1:** utilizando "while"
+```js
+Proceso Ejercicio01_while
+    Definir num Como Entero;
+    Definir sum Como Entero;
+    Definir i Como Entero;
+    sum = 0;
+    i = 1;
+
+    Escribir Sin Saltar "Ingresar la cantidad de números: ";
+    Leer num;
+    Mientras i <= num Hacer
+        sum = sum + i;
+        i = i + 1;
+    FinMientras
+    Escribir "La suma de 1 a ", num, " es: ", sum;
+FinProceso
+```
+
+**Opción 2:** utilizando "for"
+```js
+Proceso Ejercicio01_for
+    Definir num Como Entero;
+    Definir sum Como Entero;
+    Definir i Como Entero;
+    sum = 0;
+
+    Escribir Sin Saltar "Ingresar la cantidad de números: ";
+    Leer num;
+    Para i = 1 Hasta num Con Paso 1 Hacer
+        sum = sum + i;
+    FinPara
+    Escribir "La suma de 1 a ", num, " es: ", sum;
+FinProceso
+```
+</Solution>
+
+## Ejercicio 02
+Mostrar en pantalla los números desde 0 hasta NUMERO.
+
+<Solution>
+**Opción 1:** utilizando "while"
+```js
+Proceso Ejercicio02_while
+    Definir num Como Entero;
+    Definir i Como Entero;
+    i = 0;
+    
+    Escribir Sin Saltar "Ingresar el número a iterar: ";
+    Leer num;
+    Mientras i <= num Hacer
+    	Escribir i;
+    	i = i + 1;
+    FinMientras
+FinProceso
+```
+
+**Opción 2:** utilizando "for"
+```js
+Proceso Ejercicio02_for
+    Definir num Como Entero;
+    Definir i Como Entero;
+	
+    Escribir Sin Saltar "Ingresar el número a iterar: ";
+    Leer num;
+    Para i = 0 Hasta num Con paso 1 Hacer
+        Escribir i;
+    FinPara
+FinProceso
+```
+</Solution>
+
+## Ejercicio 03
+Mostrar la tabla de multiplicar de NUMERO hasta el 10.
+
+<Solution>
+**Opción 1:** utilizando "while"
+```js
+Proceso Ejercicio03_while
+    Definir num Como Entero;
+    Definir i Como Entero;
+    Definir tabla Como Entero;
+    Escribir Sin Saltar "Ingrese el valor de la tabla: ";
+    Leer num;
+    i = 1;	
+    
+    Mientras i <= 10 Hacer
+        tabla = i * num;
+        Escribir i, " * " , num, " = ", tabla;
+        i = i + 1;
+    FinMientras
+FinProceso
+```
+
+**Opción 2:** utilizando "for"
+```js
+Proceso Ejercicio03_for
+    Definir num Como Entero;
+    Definir i Como Entero;
+    Definir tabla Como Entero;
+    Escribir Sin Saltar "Ingrese el valor de la tabla: ";
+    Leer num;
+	
+    Para i = 1 Hasta 10 Con Paso 1 Hacer 
+        tabla = i * num;
+        Escribir i, " * " , num, " = ", tabla;
+    FinPara
+FinProceso
+```
+</Solution>
+
+## Ejercicio 04
+Mostrar el factorial de NUMERO.
+
+<Solution>
+**Opción 1:** utilizando "while"
+```js
+Proceso Ejercicio04_while
+    Definir num Como Entero;
+    Definir i Como Entero;
+    Definir factorial Como Entero;
+    Escribir Sin Saltar "Ingrese el valor del número: ";
+    Leer num;
+    i = 1;
+    factorial = 1;
+
+    Mientras i <= num Hacer
+    	factorial = factorial * i;
+    	i = i + 1;
+    FinMientras
+    Escribir "El factorial de ", num, " es: ", factorial;
+FinProceso
+```
+
+**Opción 2:** utilizando "for"
+```js
+Proceso Ejercicio04_for
+	Definir num Como Entero;
+	Definir i Como Entero;
+	Definir factorial Como Entero;
+	Escribir Sin Saltar "Ingrese el valor del número: ";
+	Leer num;
+	factorial = 1;
+	
+	Para i = 1 Hasta num Con Paso 1 Hacer
+		factorial = factorial * i;
+	FinPara
+	Escribir "El factorial de ", num, " es: ", factorial;
+FinProceso
+```
+</Solution>
+
+## Ejercicio 05
+Mostrar los números pares que hay entre 0 y NUMERO.
+
+<Solution>
+**Opción 1:** utilizando "while"
+```js
+Proceso Ejercicio05_while
+    Definir num Como Entero;
+    Definir i Como Entero;
+    Escribir Sin Saltar "Ingrese un número: ";
+    Leer num;
+    i = 1;
+	
+    Escribir "Los números pares entre 0 y ", num, " son:";
+    Mientras i < num Hacer
+        Si i mod 2 = 0 Entonces
+            Escribir i;
+        FinSi
+        i = i + 1;
+    FinMientras
+FinProceso
+```
+
+**Opción 2:** utilizando "for"
+```js
+Proceso Ejercicio05_for
+    Definir num Como Entero;
+    Definir i Como Entero;
+    Escribir Sin Saltar "Ingrese un número: ";
+    Leer num;
+	
+    Escribir "Los números pares entre 0 y ", num, " son:";
+    Para i = 1 Hasta num - 1 Con Paso 1 Hacer
+        Si i mod 2 = 0 Entonces
+            Escribir i;
+        FinSi
+    FinPara
+FinProceso
+```
+</Solution>

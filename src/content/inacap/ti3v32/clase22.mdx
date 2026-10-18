@@ -1,0 +1,177 @@
+# Python, MongoDB y APIs
+
+La relación entre Python, MongoDB y APIs representa un stack tecnológico muy común en el desarrollo moderno de Aplicaciones
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Tecnología","Características y Funciones"]}
+  rows={[
+    ["Python","Es un lenguaje versátil que sirve como \"pegamento\" entre las APIs y MongoDB; Proporciona bibliotecas potentes para trabajar con ambos componentes; Es ampliamente utilizado para el desarrollo backend, ciencia de datos y automatización"],
+    ["MongoDB","Python se conecta a MongoDB mediante bibliotecas como `pymongo` o ODMs como `mongoengine`; Perfecta para almacenar datos con estructura flexible como los que suelen provenir de APIs (JSON)"],
+    ["APIs","Python permite consumir APIs externas a través de bibliotecas como `requests`; Crear APIs propias con frameworks como Flask, FastAPI o Django REST Framework; Procesar y transformar datos obtenidos de APIs antes de almacenarlos en MongoDB"]
+  ]}
+/>
+
+## Métodos HTTP
+Comandos estandarizados del protocolo de transferencia HTTP, que definen las acciones que pueden realizarse sobre recursos de la web.
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Método HTTP","Equivalente DB","Descripción"]}
+  rows={[
+    ["`GET`","`READ`","Recupera datos sin modificarlos"],
+    ["`POST`","`CREATE`","Crea nuevos registros o documentos"],
+    ["`PUT`","`UPDATE`","Actualiza reemplazando el recurso completo"],
+    ["`PATCH`","`UPDATE`","Actualiza parcialmente un recurso"],
+    ["`DELETE`","`DELETE`","Elimina recursos existentes"]
+  ]}
+/>
+
+# Ejemplo API
+
+1. En la terminal, instalar las siguientes dependencias:
+
+```sh
+python.exe -m pip install --upgrade pip
+
+pip install fastapi uvicorn motor
+```
+
+2. Una vez creada la API (paso final), ejecutarla con la siguiente instrucción:
+
+```sh
+uvicorn main:app --reload
+```
+
+3. Crear un archivo `main.py` y agregar lo siguiente:
+
+```python
+from fastapi import FastAPI, HTTPException
+from motor.motor_asyncio import AsyncIOMotorClient
+
+app = FastAPI()
+
+# Conexión a MongoDB
+MONGO_DETAILS = "mongodb://localhost:27017"  
+client = AsyncIOMotorClient(MONGO_DETAILS, serverSelectionTimeoutMS=5000)  # Timeout de conexión
+database = client.test_database
+collection = database.items  
+
+@app.get("/")
+async def read_root():
+    return {"message": "Bienvenido a la API de MongoDB con FastAPI"}
+
+@app.get("/items/")
+async def get_items():
+    items = []
+    async for item in collection.find():
+        items.append(item)
+    return items
+
+@app.post("/items/")
+async def create_item(item: dict):
+    new_item = await collection.insert_one(item)
+    created_item = await collection.find_one({"_id": new_item.inserted_id})
+    return created_item
+
+@app.get("/pingdb/")
+async def ping_database():
+    try:
+        # Intentar hacer ping a la base de datos
+        await client.admin.command('ping')
+        return {"message": "Conexión a MongoDB exitosa"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"No se pudo conectar a MongoDB: {str(e)}")
+```
+
+El script `main.py` crea una API web utilizando FastAPI que se conecta a una base de datos MongoDB. A continuación, se deglosa el código para entender su funcionamiento.
+
+## Configuración inicial
+
+```python
+from fastapi import FastAPI, HTTPException
+from motor.motor_asyncio import AsyncIOMotorClient
+app = FastAPI()
+``` 
+
+Importa las dependencias necesarias:
+
+- **FastAPI** para crear la API
+- **HTTPException** para manejar errores
+- **AsyncIOMotorClient** para conectarse a MongoDB de forma asíncrona
+
+Luego crea una instancia de la aplicación FastAPI.
+
+## Conexión a MongoDB
+
+```python
+MONGO_DETAILS = "mongodb://localhost:27017"  
+client = AsyncIOMotorClient(MONGO_DETAILS, serverSelectionTimeoutMS=5000)
+database = client.test_database
+collection = database.items
+```
+
+1. Define la URL de conexión a MongoDB local (puerto 27017)
+2. Crea un cliente de MongoDB asíncrono con un tiempo límite de conxión de 5 segundos
+3. Selecciona la base de datos `test_database` y la colección `items` donde se guardarán los datos
+
+## Endpoints de la API
+
+### Ruta raíz
+
+```python
+@app.get("/")
+async def read_root():
+    return {"message": "Bienvenido a la API de MongoDB con FastAPI"}
+```
+
+Define un endpoint en la ruta principal que devuelve un mensaje de bienvenida.
+
+### Obtener todos los elementos
+
+```python
+@app.get("/items/")
+async def get_items():
+    items = []
+    async for item in collection.find():
+        items.append(item)
+    return items
+```
+
+- Crea un endpoint GET en `/items/` que:
+    - Busca todos los documentos de la colección "items"
+    - Los agrega a una lista (usando un bucle asíncrono)
+    - Devuelve la lista completa como respuesta
+
+### Crear un nuevo elemento
+
+```python
+@app.post("/items/")
+async def create_item(item: dict):
+    new_item = await collection.insert_one(item)
+    created_item = await collection.find_one({"_id": new_item.inserted_id})
+    return created_item
+```
+
+- Crea un endoint POST en `/items/` que:
+    - Recibe un diccionario como cuerpo de la petición
+    - Inserta el diccionario en la colección de MongoDB
+    - Busca el elemento recién insertado para devolverlo como respuesta
+
+
+### Verificar conexión a la base de datos
+
+```python
+@app.get("/pingdb/")
+async def ping_database():
+    try:
+        await client.admin.command('ping')
+        return {"message": "Conexión a MongoDB exitosa"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"No se pudo conectar a MongoDB: {str(e)}")        
+```
+
+- Crea un endpoint GET a `/pingdb/` que:
+    - Intenta hacer ping a la base de datos MongoDB
+    - Si tiene éxito, devuelve un mensaje exitoso
+    - Si falla, lanza una excepción HTTP 500 con el detalle del error

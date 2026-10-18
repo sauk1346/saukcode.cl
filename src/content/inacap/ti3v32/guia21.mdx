@@ -1,0 +1,207 @@
+# Guía Práctica MongoDB Shell
+
+- **Base de datos:** evaluacionMongo
+- **Colecciones:** usuarios, productos
+- **JSONs:** [usuarios.json](/inacap/ti3v32/data/usuarios02.json), [productos.json](/inacap/ti3v32/data/productos02.json) 
+
+## Ejercicio 01
+Buscar todos los usuarios cuya edad sea mayor a 40
+
+<Solution>
+```js
+db.usuarios.find({ edad: { $gt: 40 } })
+```
+</Solution>
+
+## Ejercicio 02
+Filtrar los usuarios que tengan la etiqueta "newsletter"
+
+<Solution>
+```js
+db.usuarios.find({ etiquetas: "newsletter" })
+```
+</Solution>
+
+## Ejercicio 03
+Mostrar los usuarios cuya cuidad sea "Puerto Montt"
+
+<Solution>
+```js
+db.usuarios.find({ "direccion.ciudad": "Puerto Montt" })
+```
+</Solution>
+
+## Ejercicio 04
+Buscar usuarios que hayan comprado una "Tablet"
+
+<Solution>
+**Opción 1**
+```js
+db.usuarios.find({ 
+  "compras.producto": "Tablet"  
+})
+```
+
+**Opción 2**
+```js
+db.usuarios.find({ 
+  compras: { 
+    $elemMatch: { producto: "Tablet" } 
+  } 
+})
+```
+</Solution>
+
+## Ejercicio 05
+Filtrar usuarios con más de 2 etiquetas
+
+<Solution>
+```js
+db.usuarios.find({ 
+    $expr: { $gt: [ { $size: "$etiquetas" }, 2 ] } 
+})
+```
+</Solution>
+
+## Ejercicio 06
+Buscar usuarios registrados despues del "1 de febrero de 2024"
+
+<Solution>
+```js
+db.usuarios.find({ 
+    fechaRegistro: { $gt: "2024-02-01T00:00:00Z" }
+})
+```
+</Solution>
+
+## Ejercicio 07
+Mostrar usuarios que hayan comprado un producto con precio menor a 100.000
+
+<Solution>
+**Opción 1**
+```js
+db.usuarios.find({ 
+  "compras.precio": { $gt: 100000 }  
+})
+```
+
+**Opción 2**
+```js
+db.usuarios.find({ 
+  compras: { 
+    $elemMatch: { precio: { $gt: 100000 } } 
+  } 
+})
+```
+</Solution>
+
+## Ejercicio 08
+Buscar usuarios que vivan en la región "Los Ríos" y tengan la etiqueta "preferente"
+
+<Solution>
+**Opción 1**
+```js
+db.usuarios.find({ 
+  "direccion.region": "Los Ríos", 
+  etiquetas: "preferente" 
+})
+```
+
+**Opción 2**
+```js
+db.usuarios.find({
+  $and: [
+    { "direccion.region": "Los Ríos" },
+    { etiquetas: "preferente" }
+  ]
+})
+```
+</Solution>
+
+## Ejercicio 09
+Mostrar usuarios sin compras registradas
+
+<Solution>
+**Opción 1**
+```js
+db.usuarios.find({
+  compras: { $in: [null, []] }
+})
+```
+
+**Opción 2**
+```js
+db.usuarios.find({ 
+  $or: [
+    { compras: { $size: 0 } },
+    { compras: { $exists: false } }
+  ] 
+})
+```
+</Solution>
+
+## Ejercicio 10
+Mostrar usuarios con edad entre 25 y 35 años inclusive
+
+<Solution>
+```js
+db.usuarios.find({ 
+  edad: { $gte: 25, $lte: 35 } 
+})
+```
+</Solution>
+
+## Ejercicio 11
+Mostrar productos que estén en stock menor a 10 unidades
+
+<Solution>
+```js
+db.productos.find({ 
+  stock: { $lt: 10 } 
+})
+```
+</Solution>
+
+## Ejercicio 12
+Mostrar productos con más de una etiqueta
+
+<Solution>
+```js
+db.productos.find({ 
+  $expr: { $gt: [ { $size: "$etiquetas" }, 1 ] } 
+})
+```
+</Solution>
+
+## Ejercicio 13
+Buscar productos con etiquetas "oferta" o "destacado"
+
+<Solution>
+**Opción 1**
+```js
+db.productos.find({ 
+  etiquetas: { $in: ["oferta", "destacado"] } 
+})
+```
+
+**Opción 2**
+```js
+db.productos.find({
+  $or: [
+    { etiquetas: "oferta" },
+    { etiquetas: "destacado" }
+  ]
+})
+```
+</Solution>
+
+## Ejercicio 14
+Buscar productos agregados después de "marzo de 2024"
+
+<Solution>
+```js
+db.productos.find({ 
+  fechaIngreso: { $gte: "2024-04-01T00:00:00Z" } 
+})
+```
+</Solution>

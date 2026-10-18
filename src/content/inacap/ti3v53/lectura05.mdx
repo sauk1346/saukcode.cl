@@ -1,0 +1,213 @@
+# Fundamentos de la Arquitectura en Cloud Computing
+
+La alta disponibilidad y la continuidad operacional son pilares esenciales en el diseño de arquitecturas en la nube, especialmente en entornos distribuidos y multicloud, donde la resiliencia del servicio resulta crítica para garantizar operaciones confiables y sostenibles.
+
+## 1. Puntos únicos de falla
+
+Cuando se diseña una arquitectura en la nube, uno de los principales riesgos es la existencia de puntos únicos de falla, es decir, componentes cuya caída puede **interrumpir por completo un servicio**. Para evitarlos, se deben aplicar estrategias de alta disponibilidad, redundancia y continuidad operacional.
+
+### Niveles de redundancia geográfica
+
+La Alta disponibilidad (HA) se construye en capas, asegurando que un servicio pueda sobrevivir tanto al fallo de un componente individual como a la caída total de una región
+
+**Redundancia de zona (Availability Zona - AZ)**
+
+Consiste en desplegar recursos en múltiples centros de datos físicamente aislados dentro de una misma región. Si un data center sufre un corte eléctrico o falla de hardware, los demás continúan operando.
+
+**Redundancia regional**
+
+Implica replicar la arquitectura completa en regiones geográficas distintas, por ejemplo, este de Estados Unidos y oeste de Europa, mitigando riesgos asociados a desastres naturales o interrupciones masivas de red.
+
+### Componentes clave de una solución altamente disponible
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Componentes", "Descripción"]}
+    rows={[
+        [
+            "**Balanceo de carga (load balancing)**",
+            "Distribuye las solicitudes entrantes entre múltiples servidores disponibles"
+        ],
+        [
+            "**Health checks**",
+            "Permiten detectar automáticamente instancias fallidas y redirigir el tráfico"
+        ],
+        [
+            "**Global server load balancing (GSLB)**",
+            "Distribuye el tráfico a nivel mundial según la cercanía del usuario"
+        ],
+        [
+            "**Auto-scaling**",
+            "Ajusta dinámicamente la capacidad según la demanda"
+        ],
+        [
+            "**Estrategias de bases de datos multi-az deployment**",
+            "Incluyen una instancia principal y una secundaria sincronizada"
+        ],
+        [
+            "**Read replicas**",
+            "Optimizan el rendimiento descargando el tráfico de lectura"
+        ],
+        [
+            "**Backups inmutables**",
+            "Protegen las copias de seguridad contra borrados accidentales o ransomware"
+        ],
+    ]}
+/>
+
+Estos componentes trabajan de forma coordinada para garantizar continuidad, rendimiento y protección de datos incluso ante picos de carga o fallos inesperados.
+
+## 2. Normativas y buenas prácticas
+
+Además del diseño técnico, es fundamental cumplir con normativas internacionales y buenas prácticas reconocidas.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Normativas", "Descripción"]}
+    rows={[
+        [
+            "**Infraestructura como código (IAC)**",
+            "Uso de Terraform o CloudFormation para entornos reproducibles y sin errores humanos"
+        ],
+        [
+            "**RTO y RPO**",
+            "Defininicion de tiempos y puntos objetivos de recuperación alineados al negocio"
+        ],
+        [
+            "**Observabilidad**",
+            "Monitoreo proactivo con herramientas como CloudWatch o Prometheus"
+        ],
+        [
+            "**Principio de mínimo privilegio**",
+            "Restricción de accesos mediante políticas IAM estrictas"
+        ],
+    ]}
+/>
+
+## 3. Continuidad operacional: *disaster recovery (DR)*
+
+La continuidad operacional se apoya en estrategias de recuperación ante desastres, cuya elección depende del nivel de criticidad de la aplicación.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Normativas", "Descripción"]}
+    rows={[
+        [
+            "**Backup and restore**",
+            "Económica, pero con tiempos de recuperación elevados"
+        ],
+        [
+            "**Pilot light**",
+            "Solo los datos permanecen activos y la infraestructura se levanta en emergencias"
+        ],
+        [
+            "**Warm standby**",
+            "Infraestructura reducida siempre encendida"
+        ],
+        [
+            "**Multi-site active/active**",
+            "Operación completa en 2 ubicaciones simultáneamente, sin tiempo de caída"
+        ],
+
+    ]}
+/>
+
+## 4. Arquitectura activo-pasivo
+
+Una vez comprendidos los principios de alta disponibilidad, surge una pregunta clave: ¿cómo implementar estos conceptos en un entorno multicloud real?
+
+### Arquitectura multicloud (AWS + OCI)
+
+En este escenario, AWS actúa como la región primaria, mientras que Oracle Cloud Infrastructure (OCI) funciona como sitio de contingencia para recuperación ante desastres.
+
+Se utiliza Amazon Route 53 o Cloudflare con políticas de Health Check. Si AWS deja de responder, el tráfico se redirige automáticamente hacia OCI.
+
+**Conectividad entre nubes**
+
+
+Para la replicación de datos, se emplea una VPN Site-to-Site o conexiones dedicadas como AWS *Direct Connect* y *Oracle FastConnect*, asegurando comunicación privada y segura.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Componente", "AWS (primario)", "OCI (contingencia)"]}
+    rows={[
+        [
+            "**Cómputo**",
+            "EC2 con auto-scaling",
+            "OCI Compute Instance"
+        ],
+        [
+            "**Balanceador**",
+            "Application Load Balancer",
+            "OCI Flexible Load Balancer"
+        ],
+        [
+            "**Base de datos**",
+            "Amazon RDS",
+            "OCI Database Service"
+        ],
+        [
+            "**Almacenamiento**",
+            "Amazon S3",
+            "OCI Object Storage"
+        ],
+    ]}
+/>
+
+> Esta arquitectura permite separar cargas críticas y asegurar continuidad operativa entre proveedores distintos.
+
+### Estrategia de replicación de datos
+
+Uno de los mayores desafíos en *multicloud* es mantener la consistencia de los datos.
+
+- **Bases de datos:** se recomienda replicación a nivel de motor, como Oracle Data Guard o replicación lógica en PostgreSQL/MySQL
+
+- **Archivos (storage):** herramientas como RCLONE permite sincronizar *buckets* entre nubes en intervalos cortos
+
+
+---
+
+## Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "Durante el diseño de una arquitectura cloud crítica, ¿qué riesgo representa un punto único de falla?",
+		options: [
+            "Interrupción total del servicio ante la caída de un componente",
+            "Interrupciones parciales limitadas a funciones no críticas",
+            "Aumento temporal de latencia sin afectar disponibilidad",
+            "Degradación progresiva del rendimiento bajo alta demanda",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Qué práctica reduce errores humanos mediante entornos reproducibles y automatizados?",
+		options: [
+            "Monitoreo proactivo con métricas y alertas centralizadas",
+            "Infraestructura como código usando herramientas declarativas",
+            "Definición de RTO y RPO alineados al negocio",
+            "Restricción de accesos mediante políticas de seguridad",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "Si AWS deja de responder, ¿qué mecanismo redirige tráfico automáticamente hacia OCI?",
+		options: [
+            "Replicación de datos mediante herramientas de sincronización",
+            "Conexiones dedicadas entre nubes para baja latencia",
+            "Pruebas periódicas de conmutación manual planificada",
+            "DNS con health checks configurados en Route 53 o Cloudflare",
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Qué opción asegura comunicación privada y segura entre AWS y OCI?",
+		options: [
+            "Servicios DNS globales con políticas de proximidad",
+            "Herramientas de sincronización de archivos en intervalos cortos",
+            "VPN Site-to-Site o enlace dedicados entre proveedores cloud",
+            "Replicación lógica a nivel de motor de base de datos",
+		],
+		correctIndex: 2
+	},
+]}/>

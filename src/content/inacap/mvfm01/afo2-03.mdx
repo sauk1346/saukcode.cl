@@ -1,0 +1,107 @@
+# AFO 3
+
+Emi y Luisa están en Italia observando la Torre de Pisa.
+
+La distancia entre ellos es de 123.95 metros y cada uno se encuentra a un lado de la torre. Si Emi observa bajo un ángulo de 30.93° y Luisa bajo un ángulo de 62.14°.
+
+¿Cuál es su altura? ¿A qué distancia está cada uno de ellos de la torre?
+
+<Solution>
+Se representa el problema mediante un triangulo
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig155.svg"
+	alt="Representación Emi, Luisa y Torre de Pisa"
+	caption="Representación Emi, Luisa y Torre de Pisa"
+	size="large"
+/>
+
+Se calcula el ángulo faltante 
+
+$$
+\begin{aligned}
+    180° = 30.93° + 62.14° + \alpha\\[5pt]
+    \alpha = 180° - 30.93° - 62.14°\\[5pt]
+    \alpha = 86.93°
+\end{aligned}
+$$
+
+Ley de los senos
+
+$$
+\begin{aligned}
+\frac{B}{\sin(30.93)} = \frac{C}{\sin(62.14)} = \frac{A}{\sin(\alpha)}\\[15pt]
+\frac{B}{\sin(30.93)} = \frac{C}{\sin(62.14)} = \frac{123.95}{\sin(86.93)}\\[15pt]
+
+B = \sin(30.93)\cdot\frac{123.95}{\sin(86.93)}\\[15pt]
+C = \sin(62.14)\cdot\frac{123.95}{\sin(86.93)}\\[15pt]
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig156.png"
+	alt="Distancia Emi a altura máxima Torre de Pisa"
+	caption="Distancia Emi a altura máxima Torre de Pisa"
+	size="large"
+/>
+
+Luego $H$ se puede calcular de 2 formas
+
+- **Primera forma:** $H = C\cdot\sin(30.93)$
+- **Segunda forma:** $H = B\cdot\sin(62.14)$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig157.png"
+	alt="Altura Torre de Pisa"
+	caption="Altura Torre de Pisa"
+	size="large"
+/>
+
+Para las distancias con respecto a la torre, se puede utilizar coseno
+
+Para $D_1$
+
+$$
+\begin{aligned}
+    D_1 = C\cdot\cos(30.93)
+\end{aligned}
+$$
+
+Para $D_2$
+
+$$
+\begin{aligned}
+    D_2 = B\cdot\cos(62.14)
+\end{aligned}
+$$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig158.png"
+	alt="Cálculo distancias horizontales D1 y D2"
+	caption="Cálculo distancias horizontales D1 y D2"
+	size="large"
+/>
+
+Se verifica mediante un gráfico
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig159.png"
+	alt="Cálculo para esquema situación"
+	caption="Cálculo para esquema situación"
+	size="large"
+/>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig160.svg"
+	alt="Esquema Emi-Torre Pisa-Luisa"
+	caption="Esquema Emi-Torre Pisa-Luisa"
+	lightbox={true}
+	size="large"
+/>
+
+Se obtiene entonces que:
+
+- La altura de la torre es de `56.41` metros
+- Emi está a una distancia de `94.14` metros con respecto a la torre
+- Luisa está a una distancia de `29.81` metros con respecto a la torre
+</Solution>

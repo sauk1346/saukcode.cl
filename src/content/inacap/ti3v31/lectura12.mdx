@@ -1,0 +1,222 @@
+# Evolución de los frameworkd de JS en el desarrollo web moderno
+
+## Material adicional
+
+- [frameworkJS.pdf](/inacap/ti3v31/docs/frameworkJS.pdf)
+
+## ¿Qué es un framework de JS?
+Es una biblioteca de código que proporciona una estructura predefinida para desarrollar aplicaciones web.
+
+- Facilita el desarrollo y mantenimiento de aplicaciones web.
+- Mejora la organización del código y la productividad del desarrollador.
+- Proporciona herramientas y funcionalidades listar para usar.
+
+### 1. React
+Es una biblioteca de JavaScript de código abierto, desarrollada y mantenida por **Facebook**, utilizada para construir interfaces de usuario.
+
+Se destaca por su enfoque en la creación de componentes reutilizables, lo que permite a los desarrolladores construir aplicaciones web dinámicas y altamente interactivas de manera más eficiente y estructurada.
+
+1. **Componentes:** Corresponde a bloques de construcción reutilizables que encapsulan lógica y presentación.
+2. **JSX:** Es la sintaxis que permite escribir HTML dentro de JS.
+3. **Estado y Props:** Son el manejo del estado local de componentes y paso de datos entre componentes.
+
+**Ejemplo de componente básico**
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+function App() {
+    return <h1>¡Hola Mundo!</h1>;
+}
+
+ReactDOM.render(<App/>, document.getElementById('root'));
+```
+
+**Ejemplo de manejo de estado con hooks**
+
+```jsx
+import React, { useState } from 'react';
+
+function Contador() {
+    const [contador, setContador] = useState(0);
+
+    return (
+        <div>
+            <p>Contador: {contador}</p>
+            <button onClick={()=> setContador(contador + 1)}>Incrementar</button>
+        </div>
+    );
+}
+export default Contador;
+```
+
+### 2. Vue
+Es un framework progresivo de JavaScript para la construcción de interfaces de usuario. Fue creado por **Evan You** y es conocido por su simplicidad y flexibilidad, permitiendo a los desarrolladores adoptar gradualmente sus características según las necesidades del proyecto.
+
+1. **Componenetes:** Es una estructura modular que facilita la reutilización del código.
+2. **Directivas:** Son instrucciones especiales en el HTML que se enlazan con el DOM.
+3. **Reactividad:** Es el sistema que actualiza automáticamente el DOM cuando cambian los datos.
+
+**Ejemplo de componente básico**
+
+```html
+<div id="app">
+    <h1>{{ mensaje }}</h1>
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            mensaje: '¡Hola Mundo!'
+        }
+    });
+</script>
+```
+
+**Ejemplo del manejo de estado**
+
+
+```html
+<div id="contador">
+    <p>Contador: {{ contador }}</p>
+    <button @click="incrementar">Incrementar</button>
+</div>
+
+<script>
+    var contador = new Vue({
+        el: '#contador',
+        data: {
+            contador: 0
+        },
+        methods: {
+            incrementar: function() {
+                this.contador++;
+            }
+        }
+    });
+</script>
+```
+
+### 3. Angular
+Es un framework de desarrollo web de código abierto mantenido por **Google**, diseñado para facilitar la construcción de aplicaciones web robustas y de gran escala.
+
+Proporciona una plataforma completa con un conjunto de herramientas y bibliotecas que permiten desarrollar aplicaciones dinámicas de una sola página (SPA) con un rendimiento y escalabilidad óptimos.
+
+1. **Componentes:** Son unidades independientes de la interfaz de usuario.
+2. **Templates:** HTML con directivas que permiten mostrar datos y manejar eventos.
+3. **Inyección de dependencias:** Es un sistema que permite gestionar servicios y dependencias de manera eficiente.
+
+**Ejemplo de componente básico**
+
+```js
+import { Component } from '@angular/core';
+
+@Component({
+    selector: 'app-root',
+    template: '<h1>{{ mensaje }}</h1>',
+})
+export class AppComponent{
+    mensaje = '¡Hola Mundo!';
+}
+```
+
+**Ejemplo del manejo del estado**
+
+```js
+import { Component } from '@angular/core';
+
+@Componente({
+    selector: 'app-contador',
+    template:`
+        <div>
+            <p>Contador: {{ contador }}</p>
+            <button (click)="incrementar()">Incrementar</button>
+        </div>
+    `,
+})
+export class ContadorComponent {
+    contador = 0;
+
+    incrementar() {
+        this.contador++;
+    }
+}
+```
+
+## Uso actual de los frameworks de JS
+**React** sigue siendo uno de los *frameworks* más populares debido a su flexibilidad y gran ecosistema de herramientas y bibliotecas. En la actualidad, existen varias empresas que utilizan *framewoks* para programar sus códigos, React por ejemplo es utilizado por:
+
+- **Facebook:** React fue desarrollado por Facebook y se utiliza ampliamente en sus aplicaciones.
+- **Instagram:** Utiliza React para su interfaz de usuario interactiva y rápida.
+- **Netflix:** Usa React para su alto rendimiento y capacidad de modularidad.
+
+**Vue.js** ha ganado popularidad por su enfoque progresivo y facilidad de integración en proyectos existentes. En la actualidad, existen varias empresas que utilizan *framewoks* para programar sus códigos, Vue.js, por ejemplo, es utilizado por:
+
+- **Alibaba:** Utiliza Vue.js para su plataforma de comercio electrónico.
+- **Xiaomi:** Emplea Vue.js en diversas aplicaciones y sitios web.
+- **GitLab:** Usa Vue.js para su interfaz de usuario.
+
+**Angular** sigue siendo popular en entornos empresariales debido a su robustez y características completas para el desarrollo de aplicaciones web a gran escala. En la actualidad, existen varias empresas que utilizan **framewoks** para programar sus códigos.Angular, por ejemplo, es utilizado por:
+
+- **Google:** Angular es desarrollado y mantenido por Google, y se utiliza en muchas de sus aplicaciones internas.
+- **Microsoft:** Utiliza Angular en varias de sus aplicaciones empresariales.
+- **IBM:** Emplea Angular para desarrollar aplicaciones empresariales robustas.
+
+
+# Actividad de Práctica 05
+
+<Quiz questions={[
+	{
+		question: "¿Qué framework de JavaScript fue desarrollado por Google y se utiliza ampliamente en sus aplicaciones internas?",
+		options: [
+			"React",
+			"Vue.js",
+			"Angular",
+			"Svelte"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Cuál de las siguientes empresas utiliza Vue.js en sus plataformas?",
+		options: [
+			"Alibaba",
+			"Google",
+			"Netflix",
+			"Facebook"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Cuál es una ventaja principal de utilizar frameworks de JavaScript en el desarrollo web?",
+		options: [
+			"Aumentan la complejidad del código.",
+			"Facilitan el desarrollo y mantenimiento de aplicaciones web.",
+			"Eliminan la necesidad de usar HTML y CSS.",
+			"Reducen el tamaño de las aplicaciones web."
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Qué es un framework de JavaScript?",
+		options: [
+			"Una herramienta de diseño gráfico para crear interfaces de usuario.",
+			"Un lenguaje de programación para desarrollar aplicaciones móviles.",
+			"Un servidor web para lojar aplicacione web.",
+			"Una biblioteca de código que proporciona una estructura predefinida para desarrollar aplicaciones web."
+
+		],
+		correctIndex: 3 
+	},
+    {
+		question: "¿Qué sintaxis especial permite escribir HTML dentro de JavaScript en React?",
+		options: [
+			"TypeScript",
+			"ES6",
+			"JSX",
+			"JQuery"
+		],
+		correctIndex: 2
+	},
+]} />

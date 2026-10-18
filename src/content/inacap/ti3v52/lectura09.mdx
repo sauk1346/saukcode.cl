@@ -1,0 +1,132 @@
+# Enrutamiento dinámico con OSPFv3
+
+## 1. Diseño jerárquico, configuración de interfaces y estrategias de implementación Dual Stack
+
+IPv6 revoluciona el diseño de red con su direccionamiento jerárquico y enfoque en multicast, optimizando la eficiencia de los protocolos dinámicos. Su operación paralela con IPv4 en entornos dual stack permite una migración gradual, transformando la forma en que las redes modernas funcionan y evolucionan.
+
+## 2. Anatomía del Direccionamiento IPv6
+
+<SmartFigure
+	id="fig158"
+	src="/inacap/ti3v52/images/fig158.png"
+	alt="Estructura jerárquica de una dirección IPv6 de 128 bits"
+	caption="Estructura jerárquica de una dirección IPv6 de 128 bits"
+	size="large"
+/>
+
+### Global Unicast
+
+Las direcciones Global Unicast, identificadas por el prefijo 200::/3, son enroutables en Internet y sirven como el principal mecanismo de direccionamiento para redes IPv6. Estas direcciones son globalmente únicas y están estructuradas jerárquicamente para soportar un enrutamiento eficiente y la agregación de direcciones, lo que mejora la escalabilidad de la red.
+
+En IPv6, el diseño jerárquico de las direcciones Global Unicast incluye componentes como el Global Routing Prefix, Subnet e Interface ID. Esta estructura permite una mejor sumarización de rutas y reduce el tamaño de las tablas de enrutamiento, convirtiéndose en una característica crítica para los diseño de red modernos.
+
+### Unique Local
+
+Las direcciones Unique Local, denotadas por el prefijo FC00::/7, son similares a las direcciones privadas de IPv4 pero con unicidad global dentro de redes internas. Estas direcciones no son enroutables en Internet pública, lo que las hace ideales para la comunicación interna dentro de una organización o un entorno de red específico.
+
+Uno de los principales beneficios de las direcciones Unique Local es su capacidad para proporcionar un direccionamiento consistente entre diferentes sitios mientras se evitan conflictos con direcciones IPv6 públicas. Esto asegura una conectividad interna fluida y simplifica la gestión de redes en entornos complejos.
+
+### Link-local
+
+Las direcciones Link-local, identificadas por el prefijo FE80::/10, son obligatorias en IPv6 y desempeñan un papel crucial en los protocolos de enrutamiento dinámico como OSPFv3 y EIGRPv6. Estas direcciones se generan automáticamente para cada interfaz habilitada para IPv6 y se utilizan para la comunicación entre nodos en el mismo enlace.
+
+En el enrutamiento dinámico, las direcciones link-local son esenciales para establecer relaciones de vecindad e intercambiar información de enrutamiento. Se utilizan como la dirección next-hop en las tablas de enrutamiento, asegurando una comunicación eficiente y confiable dentro de los segmentos locales de la red.
+
+## 3. Habilitación de IPv6 en interface y coherencia de prefijos
+
+Habilitar IPv6 no es automático, requiere acciones explícitas tanto globales como por interfaz. Además, la coherencia de prefijos es fundamental para que el enrutamiento funcione.
+
+### Habilitación de routers
+
+1. Para activar de forma global el enrutamiento IPv6, es necesario aplicar el siguiente comando:
+
+```cisco
+ipv6 unicast-routing
+```
+
+2. Para la configuración en cada interfaz, en caso de que la configuración sea manual, aplicar el siguiente comando:
+
+```cisco
+ipv6 address 2001:DB8:1:1::1/64
+```
+<P indent={2}>
+Y en caso de que sea autoconfiguración basada en RA, aplicar el siguiente comando:
+</P>
+```cisco
+ipv6 enable
+```
+
+3. Las direcciones link-local se generan automáticamente, pero también pueden configurarse manualmente. Son críticas porque los protocolos dinámicos usan link-local como next-hop y para adyacencias
+
+### 4. Por qué es importante la coherencia de prefijos
+
+<SmartTable
+    id="tabla01"
+    caption="Importancia coherencia prefijos"
+    tableLayout="auto"
+    headers={["Característica", "Descripción"]}
+    rows={[
+        [
+            "**SLAAC y coherencia de prefijos**",
+            "La coherencia permite a los hosts formar direcciones correctas automáticamente, evitando problemas de conectividad en redes IPv6"
+        ],
+        [
+            "**NDP y prefijos consistentes**",
+            "El protocolo de Descubrimiento de Vecinos depende de prefijos coherentes para resolver direcciones y mantener la comunicación estable"
+        ],
+        [
+            "**DAD y prefijos únicos**",
+            "La Detección de Direcciones Duplicadas asegura que no existan conflictos de direcciones, requiriendo prefijos únicos en cada enlace"
+        ],
+        [
+            "**Adyacencias en OSPFv3**",
+            "OSPFv3 utiliza direcciones link-local y prefijos consistentes para establecer y mantener adyacencias entre routers en IPv6"
+        ],
+        [
+            "**Impacto de prefijos incorrectos**",
+            "Prefijos desalineados causan direcciones inválidas, rutas incorrectas y fallas en protocolos dinámicos como RIPng y EIGRPv6"
+        ],
+    ]}
+/>
+
+## 5. Consistencia: estrategia dual stack
+Dual stack es la estrategia principal de migración, y tiene implicancias directas en el enrutamiento dinámico:
+
+### Operación Paralela de IPv4 e IPv6
+En redes dual stack, las interfaces operan simultáneamente con IPv4 e IPv6, cada una manteniendo su propia tabla de ruteo. Esto permite que los protocolos de enrutamiento funcionen de manera independiente para cada familia, como OSPFv2 para IPv4 y OSPFv3 para IPv6.
+
+Esta operación paralela asegura que las rutas, adyacencias y métricas no se mezclen entre los dos protocolos, facilitando una migración gradual hacia IPv6 sin interrumpir los servicios existentes en IPv4.
+
+### Comparativa de Protocolos de Enrutamiento
+
+Los protocolos de enrutamiento dinámico están diseñados para operar de manera autónoma en IPv4 e IPv6. Por ejemplo, OSPFv2 se utiliza exclusivamente para IPv4, mientras que OSPFV3 es específico para IPv6. De manera similar, EIGRP y RIP tienen versiones separadas para cada familia de direcciones.
+
+Esta independencia asegura que cada protocolo pueda optimizarse según las características únicas de IPv4 o IPv6, como el uso de direcciones link-local en IPv6 para adyacencias y next-hop.
+
+### Mecanismos de Transición en Redes
+
+La coexistencia de IPv4 e IPv6 en redes dual stack se complementa con mecanismos de transición como túneles y traducción. Los túneles, como 6to4 y GRE, permiten encapsular tráfico IPv6 dentro de redes IPv4 existentes.
+
+Por otro lado, la traducción, como NAT64, facilita la comunicación en tre dispositivos que operan exlusivamente en IPv4 o IPv6, asegurando interoperabilidad durante el proceso de migración.
+
+### Impacto de Direcciones Link-local
+
+En IPv6, las dirección link-local son esenciales para el funcionamiento de los protocolos de enrutamiento dinámico como OSPFv3, EIGRPv6 y RIPng. Estas direcciones se generan automáticamente y se utilizan para establecer adyacencias y determinar el next-hop.
+
+El uso exclusivo de direcciones link-local en IPv6 simplifica la configuración y mejora la eficiencia, aunque requiere una planificación cuidadosa para evitar conflictos en redes complejas.
+
+## 6. Verificación y troubleshooting
+La configuración, verificación y troubleshooting se hace por separado del stack IPv4 y con estos comandos
+
+```cisco
+show ipv6 protocols
+```
+
+```cisco
+show ipv6 route
+```
+
+```cisco
+show ipv6 ospf neighbor
+```
+

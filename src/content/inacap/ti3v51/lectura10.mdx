@@ -1,0 +1,177 @@
+# DMBOK y TOGAF: estándares para la gestión y arquitectura de datos
+
+La arquitectura empresarial se entiende como el diseño integral del sistema organizacional, abarcando no solo los componentes tecnológicos, sino también los procesos, los productos y las propuestas de valor del negocio. Desde esta perspectiva, los datos se transforman en un activo transversal que conecta todas las capas de la organización.
+
+## 1. La metodología del desarrollo TOGAF
+
+los *data vaults*, o bóvedas de datos, corresponden a un patrón de diseño de modelado de datos que permite la implementación de un almacén de datos, para análisis a escala empresarial. 
+
+En este sentido, un *data vault* corresponde a un *data warehouse* general, pero acondicionado para realizar análisis más profundos de datos y con mayor rapidez.
+
+Es necesario indicar que un data vault no es necesariamente la competencia de los data warehouses clásicos, sino que más bien viene a constituir una mejora a partir de ellos.
+
+> Los data vaults permiten almacenar datos históricos acumulativos, sin necesidad de actualizaciones o eliminaciones de registros, aplicando una metodología ágil e incremental, sin embargo, a diferencia de los data warehouses normales, los data vaults se compondrán de 3 capas distintivas:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Capas", "Descripción"]}
+    rows={[
+        [
+            "**La bóveda en crudo (raw vault)**",
+            "Corresponde a la capa que contiene los datos en crudo, es decir, idénticos a los datos originales, solo insertados, sin actualizaciones o eliminaciones. También en esta capa se almacenarán metadatos e información de autoría sobre los datos originales"
+        ],
+        [
+            "**La bóveda del negocio (business vault)**",
+            "Corresponde a la capa que aplica cálculos, fórmulas, transformaciones, limpieza de datos y reglas de negocio sobre los datos de la capa anterior"
+        ],
+        [
+            "**La bóveda de información (information vault)**",
+            "Conocida también como almacén de información, o information mart, corresponde a la capa de presentación que permitirá que los usuarios reciban información analítica y reportes. Se contruye normalmente a partir de esquemas estrella (star schemes) que representen data marts. Esta capa también puede aplicar nuevas transformaciones a los datos para alimentar otros softwares de inteligencia de negocios, según sea requerido"
+        ],
+    ]}
+/>
+
+<SmartFigure
+	id="diagrama-con-los-pasos-del-estandar-togaf"
+	src="/inacap/ti3v51/images/fig23.png"
+	alt="Diagrama con los pasos del Estándar TOGAF"
+	caption="Diagrama con los pasos del Estándar TOGAF"
+	size="large"
+/>
+
+### Elementos internos de un data vault
+
+Para complementar la introducción a los data vaults, es correcto también señalar que en la capa de bóbeda en crudo (o raw vault) existen 3 tipos de elementos nuevos, que le dan a la data vault su característica distintiva de ser muy escalable en el tiempo. Estos 3 elementos se conocen como:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Elementos", "Descripción"]}
+    rows={[
+        [
+            "**Hubs**",
+            "Son tablas que representan conceptos claves del negocio, como productos, vehículos, usuarios, clientes, etc. Almacenan llaves primarias respecto de los datos originales y metadatos para identificar características únicas sobre los datos originales. Puede tener uno o varios satélites"
+        ],
+        [
+            "**Enlaces (links)**",
+            "Representan las relaciones entre las tablas de tipo hub. Los enlaces también son tablas, pero que almacenan llaves primarias de negocio y datos relevantes sobre ambos hubs enlazados. Puede tener uno o varios satélites"
+        ],
+        [
+            "**Satélites (satellites)**",
+            "Estas tablas guardan información descriptiva acerca de las tablas de tipo hub y link. Contendrán atributos que describirán los estados o características de los hubs y links en el tiempo. Un satélite no puede conectarse directamente a otro satélite"
+        ],
+    ]}
+/>
+
+<SmartFigure
+	id="esquema-de-organizacion-de-los-elementos-internos-de-un-data-vault"
+	src="/inacap/ti3v51/images/fig24.png"
+	alt="Esquema de organización de los elementos internos de un data vault"
+	caption="Esquema de organización de los elementos internos de un data vault"
+	size="large"
+/>
+
+### Características de los data vault
+
+- Ser inherentemente ágiles, en el sentido de su forma de diseño
+- Tienen estructura extensible en el tiempo y son muy flexibles en su diseño
+- Pueden escalarse para manejar petabytes de datos
+- Usan patrones que favorecen la aplicación de procesos de tipo ETL
+- Usan una arquitectura común, basada en capas, esquema estrella y procesamiento ETL
+- Utilizan las ventajas de la tercera forma normal y el equema estrella
+
+## 2. La metodología de desarrollo DMBOK
+
+Existe una organización de lucro, llamada la Data Administration Management Association (DAMA) que fue formada hacia 1980 para dedicarse al avance en conceptos y prácticas relacionadas con el manejo y gestión de datos e información. La asociación DAMA International publica un documento conocido como *Data Management Body of Knowledge* (DMBOK) y que entrega una serie de recomendaciones para el diseño e implementación de sistemas de manejo de datos empresariales.
+
+Según lo indicado en su página web, DAMA-DMBOK puede ayudar a las organizaciones a diseñar, estructurar y organizar sus entidades de datos, en pos de que puedan ser utilizadas junto a otras tecnologías avanzadas, como la inteligencia artificial y el machine learning.
+
+### Áreas del marco DAMA-DMBOK
+
+DAMA-DMBOK organiza la disciplina de manejo de datos en 11 áreas diferentes, que son:
+
+1. Gobernanza de datos
+2. Arquitectura de datos
+3. Modelamiento y diseño de datos
+4. Almacenamiento y operaciones sobre datos
+5. Seguridad sobre datos
+6. Integración e interoperación sobre datos
+7. Gestión y manejo de documentos y contenidos
+8. Data warehousing e inteligencia de negocios
+9. Manejo de metadatos
+10. Manejo de datos maestros y de referencia
+11. Manejo de calidad de datos
+
+<SmartFigure
+	id="esquema-con-las-areas-de-manejo-de-datos"
+	src="/inacap/ti3v51/images/fig25.png"
+	alt="Esquema con las áreas de manejo de datos, señaladas por el framework DATA-DMBOK"
+	caption="Esquema con las áreas de manejo de datos, señaladas por el framework DATA-DMBOK"
+	size="large"
+    lightbox={true}
+/>
+
+**DAMA-DMBOK** entrega conceptos, información y sugerencias de aplicación para cada una de estas áreas de manejo de datos, de forma tal que los diseñadores de sistemas de gestión y almacenamiento de datos cuenten con un estándar sobre el cual basar su proceso de análisis, diseño e implementación de soluciones. Winks (2025) también se refiere a las ventajas ofrecidas al seguir el framework DMBOK, entre las cuales se cuentan:
+
+- Ámbito de aplicacion comprensivo y conocido de antemano
+- Uso de terminología estandarizada
+- Claridad en los roles de usuarios y administradores
+- Mapeo apropiado de la madurez del proceso
+- Uso de las mejores prácticas independientes
+- Solida base de gobernanza
+
+### Implementación del marco DAMA-DMBOK
+
+Los pasos para la implementación del framework DAMA-DMBOK, van desde una autevaluación de la madurez del proceso de gestión de datos actual, identificación de áreas de mejora, desarrollo de un plan de mejora, asignación de roles, entrenamiento y monitorización actual y futura dentro de la organización
+
+<SmartFigure
+	id="pasos-para-la-implementacion-de-damadmbok-en-una-organizacion"
+	src="/inacap/ti3v51/images/fig26.png"
+	alt="Pasos para la implementación de DAMA-DMBOK en una organización"
+	caption="Pasos para la implementación de DAMA-DMBOK en una organización"
+	size="large"
+/>
+
+---
+
+## Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "Cuál es el propósito principal de los estándares de arquitectura de datos",
+		options: [
+            "Aumentar la velocidad del hardware utilizado",
+            "Eliminar la necesidad de modelar datos",
+            "Asegurar coherencia y escalabilidad en soluciones de datos",
+            "Reemplazar completamente los sistemas existentes",
+		],
+		correctIndex: 2
+	},
+    {
+		question: "La arquitectura empresarial integra procesos, tecnología y datos",
+		options: [
+            "Verdadero",
+            "Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Por qué es importante contar con un plan de arquitectura y almacenamiento de datos?",
+		options: [
+            "Porque permite ejecutar transformaciones de datos automáticamente",
+            "Porque orienta la gestión de los datos de forma coherente y alineada con la organización",
+            "Porque reemplaza la necesidad de un almacén de datos",
+            "Porque define consultas analíticas específicas",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Por qué la construcción de un almacen de datos debe alinearse con la arquitectura empresarial?",
+		options: [
+            "Porque depende únicamente de la herramienta tecnológica utilizada",
+            "Porque elimina la necesidad de gobernanza de datos estratégica integrada",
+            "Porque forma parte de una visión estratégica integrada en la organización",
+            "Porque automatiza la toma de decisiones analíticas y específicas",
+		],
+		correctIndex: 2
+	},
+]}/>

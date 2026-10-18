@@ -1,0 +1,242 @@
+# Ampliando tu código con Django
+
+# 1. Instalación Django
+
+1. Crear y activar un entorno virtual
+
+```sh
+python -m venv env
+```
+
+2. Activar entorno
+
+    1. **Desde Windows**
+    ```sh
+    \env\Scripts\activate
+    ```
+
+    2. **Desde macOS o Linux**
+    ```sh
+    source env/bin/activate
+    ```
+
+## 2. Estructura básica de un proyecto Django
+
+1. Crear un nuevo proyecto
+
+```sh
+django-admin startproject mi_sitio
+```
+
+2. Se genera la siguiente estructura inicial:
+
+<TerminalOutput>
+{`mi_sitio/
+├── manage.py
+├── mi_sitio/
+│ ├── init.py
+│ ├── settings.py
+│ ├── urls.py
+│ ├── asgi.py
+│ └── wsgi.py`}
+</TerminalOutput>
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Archivo", "Descripción"]}
+    rows = {[
+        [
+            "`manage.py`",
+            "Script de utilidad para administrar el proyecto. Permite ejecutar comandos como iniciar el servidor, migrar bases de datos o crear aplicaciones"
+        
+        ],
+        [
+            "`mi_sitio/`",
+            "Carpeta principal del proyecto. Contiene la configuración central"
+        ],
+        [
+            "`__init__.py`",
+            "Indica que esta carpeta es un paquete de python"
+        ],
+        [
+            "`settings.py`",
+            "Archivo clave que define la configuración del proyecto: base de datos, aplicaciones instaladas, zona horaria, idioma, rutas de archivos estáticos, etc."
+        ],
+        [
+            "`urls.py`",
+            "Define las rutas (URL) principales del sitio. Es el punto de entrada para la navegación y el enrutamiento de vistas"
+        ],
+        [
+            "`asgi.py`",
+            "Archivo que actúa como interfaz entre el proyecto. Es una alternativa moderna, diseñada para manejar aplicaciones asincrónicas (WebSockets, tareas en tiempo real, etc.)"
+        ],
+        [
+            "`wsgi.py`",
+            "Archivo que actúa como interfaz entre el proyecto. Se utiliza con servidores tradicionales como Gunicorn (Green Unicorn) o uWSGI (Web Server Gateway Interface)  "
+        ]
+    ]}
+/>
+
+## 3. Creación de una aplicación
+En Django, una aplicación (app) representa una parte funcional y reutilizable del sistema. Cada app se enfoca en una tarea o módulo específico, como un blog, un carrito de compras, un sistema de autenticación o un panel de administración. Un proyecto puede contener múltiples apps y una app puede ser usada en varios proyectos. 
+
+1. Desde la raíz del proyecto, ejecutar:
+
+```sh
+python manage.py startapp blog
+```
+
+Esto crea una nueva carpeta llamada `blog/`, que incluye la estructura básica para comenzar a desarrollar funcionalidades:
+
+<TerminalOutput>
+{`blog/
+├── admin.py
+├── apps.py
+├── migrations/
+│ └── init.py
+├── models.py
+├── tests.py
+├── views.py
+└── init.py`}
+</TerminalOutput>
+
+<SmartTable
+    tableLayout = "auto"
+    headers = {["Archivo", "Descripción"]}
+    rows = {[
+        [
+            "`models.py`",
+            "Aquí se definen los modelos, es decir, las estructuras de datos que Django convierte en tablas en las bases de datos"
+        
+        ],
+        [
+            "`views.py`",
+            "Contiene las funciones o clases que controlan la lógica de las respuestas HTTP: qué mostrar cuando un usuario accede a determinada URL"
+        ],
+        [
+            "`admin.py`",
+            "Permite registrar modelos para gestionarlos desde el panel de administración de Django"
+        ],
+        [
+            "`apps.py`",
+            "Archivo de configuración de la app, utilizado por Django para registrar la aplicación dentro del proyecto"
+        ],
+        [
+            "`tests.py`",
+            "Archivo destinado a pruebas automatizadas de las funcionalidades de la app"
+        ],
+        [
+            "`migrations/`",
+            "Carpeta donde Django guarda los archivos que representan cambios en los modelos (estructuras de bases de datos)"
+        ],
+        [
+            "`urls.py` (no se crea por defecto)",
+            "Si quieres que la app gestione sus propias rutas, es recomendable crear este archivo manualmente. Esto permite modularizar las URL y mantener una mejor organización"
+        ]
+    ]}
+/>
+
+## 5. Registro de la aplicación
+Para que Django reconozca una nueva app, es necesario agregarla en el archivo `settings.py` del proyecto, dentro de la lista `INSTALLED_APPS`:
+
+```python
+#mi_sitio/settings.py
+
+INSTALLED_APPS = [
+    ...
+    'blog'
+]
+```
+## 4. Rutas y Vistas
+
+### Definición de rutas
+Django utiliza un sistema llamado URLconf para mapear las URL que recibe el navegador con las vistas que deben ejecutarse
+
+1. Crear un archivo `urls.py` en la app
+
+```python
+#blog/urls.py
+from . import views
+
+urlpatterns = [
+    path('', views.inicio, name='inicio'),
+] 
+```
+
+Esto define una ruta vacía ('', es decir, la raíz de la app) que se vincula con una vista llamada **inicio**.
+
+2. Conectar las rutas de la app en el archivo principal
+
+```python
+#mi_sitio/urls.py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('blog.urls')), # ruta base para la app blog
+]
+```
+
+Con esto, cualquier solicitud al sitio (por ejemplo, http://localhost:8000/) será derivada a las rutas definidas en `blog/urls.py`
+
+### Vistas
+
+Las vistas en Django son funciones o clases que procesan una solicitud HTTP y devuelven una respuesta. Su función principal es  manejar la lógica del servidor: acceder a datos, procesarlos y determinar qué mostrar al usuario.
+
+1. En el archivo `views.py` se la app `blog/`, se puede crear una vista simple que devuelva un texto plano:
+
+```python
+#blog/views.py
+from django.http import HttpResponse
+
+def inicio(request):
+    return HttpResponse("¡Hola! Esta es la página de inicio del blog.") 
+```
+
+Esta vista toma una solicitud (`request`) y responde con un texto que será mostrado directamente en el navegador.
+
+Cuando accedas a la URL raíz del sitio (`\`), se ejecutará esta vista gracias al enrutamiento definido en los pasos anteriores.
+
+
+
+# Actividad de Práctica 02
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es la forma recomendada de instalar Django?",
+		options: [
+			"Desde una página web",
+			"Usando un servidor externo",
+			"Dentro de un entorno virtual",
+			"Instalando directamente en el sistema operativo"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Qué archivo es esencial para que los usuarios puedan acceder a las vistas de una app Django a través del navegador?",
+		options: [
+			"urls.py",
+			"settings.py",
+			"asgi.py",
+			"manage.py"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "Una app en Django puede funcionar sin estar registrada en settings.py",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "El archivo urls.py dentro de la app debe crearse manualmente si quieres modularizar las rutas",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+]} />

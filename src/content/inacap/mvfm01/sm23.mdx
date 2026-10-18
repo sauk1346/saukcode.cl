@@ -1,0 +1,276 @@
+# Situación de Modelación 3: Análisis de ondas sonoras
+
+## Material
+- [sm23.pdf](/inacap/mvfm01/docs/sm23.pdf)
+
+## Resumen
+
+- **Función de Onda Sinusoidal**
+
+$$
+\begin{aligned}
+    f(x) = a \cdot \sin(b \cdot x + c) + d
+\end{aligned}
+$$
+
+- $a$ **(amplitud):** El máximo (o mínimo) que alcanza la onda respecto a su posición media. Al aumentar el valor de $a$ hace que la onda se "estire" verticalmente, mientras que reducirlo hace que la onda sea más "baja"
+- $b$ **(frecuencia angular):** Controla la frecuencia de la onda, es decir, cuántas oscilaciones ocurren en una unidad de distancia. Cuanto mayor es el valor de $b$, más rápida es la oscilación. La frecuencia angular está relacionada con el período $P$ de la onda (la distancia entre 2 puntos consecutivos) según la fórmula:
+
+$$
+\begin{aligned}
+    P = \frac{2\pi}{b}
+\end{aligned}
+$$
+
+- $\frac{c}{b}$ **(desplazamiento horizontal o fase):** Representa el desplazamiento horizontal o fase de la onda. Si $\frac{c}{b}$ es positivo, la onda se desplaza hacia la izquierda, y si es negativo, hacia la derecha.
+- $d$ **(desplazamiento vertical):** Mueve la onda hacia arriba o hacia abajo en el eje y.
+
+
+## Enunciado
+
+En un instituto Superior Técnico, el departamento de Ingeniería Acústica está trabajando en un proyecto para diseñar un nuevo sistema de parlantes para conciertos al aire libre. Uno de los principales desafíos es ajustar las propiedades de las ondas sonoras emitidas para asegurar una calidad óptima del sonido en diferentes condiciones ambientales. Los ingenieros deben comprender cómo las modificaciones en la amplitud, el período, y las traslaciones de las ondas afectan la propagación y la percepción del sonido.
+
+A partir de ahora, en cada una de las experiencias que se presenten, $x$ representará el tiempo transcurrido durante la propagación de la onda sonora, medido en segundos (s), mientras que $f(x)$ indicará la intensidad del sonido o la amplitud de la onda en un momento específico, medida en decibeles (dB).
+
+## Actividad 01
+Un parlante emite una onda sonora modelada por la función $f(x) = a \cdot \sin(x)$. Inicialmente, se establece el valor $a = 1$, lo que representa una onda con una intensidad de sonido estándar.
+
+1. **Representa gráficamente en GeoGebra la onda sonora para $a = 1$. Luego, en el mismo plano cartesiano, grafica las ondas sonoras para varios valores de $a$, probando con valores tanto mayores como menores que uno.**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig205.png"
+	alt="Funciones sinusoidales con distinta amplitud"
+	caption="Funciones sinusoidales con distinta amplitud"
+	size="large"
+/>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig206.svg"
+	alt="Gráficas de funciones sinusoidales"
+	caption="Gráficas de funciones sinusoidales"
+	lightbox={true}
+	size="large"
+/>
+</Solution>
+
+2. **¿Qué efecto tiene el cambio en el valor del parámetro $a$ en la representación gráfica de la onda sonora?**
+
+<Solution>
+	
+- Para un valor $a = 1$, la amplitud de la onda es 1
+- Para un valor $a = 0.5$, la amplitud de la onda es 0.5
+- Para un valor $a = 2$, la amplitud de la onda es 2
+
+$\therefore$ el valor $a$ es equivalente a la amplitud de la onda
+</Solution>
+
+3. **¿Cómo crees que afecta el cambio en el valor del parámetro $a$ en la percepción del sonido?**
+
+<Solution>
+- Afecta de manera proporcional a la intensidad del sonido. 
+- Para una onda con $a > 1$, el sonido será más fuerte que para otra onda con $a < 1$
+</Solution>
+
+4. **Ingresa al siguiente link de GeoGebra: https://www.geogebra.org/m/gzGZMXgq**
+
+**¿Cómo afectaría el cambio en el valor del párámetro $a$ en la percepción del sonido?¿Coincide con lo que pensaste en la pregunta anterior?**
+
+<Solution>
+- El cambio en el valor del parámetro $a$ afecta proporcionalmente a la intensidad de la onda.
+- Para un $a$ grande, el volumen del sonido será mayor.
+</Solution>
+
+## Actividad 02
+Un ingeniero acústico está investigando cómo el cambio en la frecuencia de una onda sonora, modelada por la función $f(x) = a \cdot \sin(b \cdot x)$, afecta la percepción del sonido.
+
+1. **Representa gráficamente en GeoGebra la onda sonora para $a=1$ y $b=1$. Luego, en el mismo plano cartesiano, grafica las ondas sonoras para $a=1$ y varios valores de $b$, probando con valores mayores como menores que uno.**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig207.png"
+	alt="Funciones sinusoidales con distinta frecuencia angular"
+	caption="Funciones sinusoidales con distinta frecuencia angular"
+	size="large"
+/>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig208.svg"
+	alt="Gráficas de funciones sinusoidales"
+	caption="Gráficas de funciones sinusoidales"
+	lightbox={true}
+	size="large"
+/>
+</Solution>
+
+2. **¿Qué efecto tiene el cambio en el valor del parámetro $b$ en la representación gráfica de la onda sonora?**
+
+<Solution>
+- Para $b = 1$, el número de ciclos dura un periodo $P = \frac{2\pi}{b}$ 
+- Para $b = 0.5$ , el número de ciclos disminuye a la mitad, y su período se duplica
+- Para $b = 2$, el número de ciclos se duplica, y su período disminuye a la mitad.
+
+$\therefore$ El parámetro $b$ representa la frecuencia angular de la onda
+</Solution>
+
+3. **¿Cómo crees que afecta el cambio en el valor del parámetro $b$ en la percepción del sonido?**
+
+<Solution>
+- Un cambio en el valor del parámetro $b$ afecta en si un sonido es grave o agudo
+- Para un $b$ alto, el sonido tiende a ser más agudo
+- Para un $b$ bajo, el sonido tiende a ser más grave
+</Solution>
+
+4. **Ingresa nuevamente al link de GeoGebra: https://www.geogebra.org/m/gzGZMXgq**
+
+**¿Cómo afectaría el cambio en el valor del parámetro $b$ en la percepción del sonido?¿Coincide con lo que pensaste en la pregunta anterior?**
+
+<Solution>
+- Si, el cambio en el parámetro $b$ coincide con la resolución anterior
+- Para $b$ altos, el sonido es más agudo
+- Para $b$ bajos, el sonido es más grave
+</Solution>
+
+## Actividad 03
+El ingeniero ahora desea investigar cómo el parámetro $c$ en una onda sonora, modelada por la función $f(x) = a \cdot \sin(b \cdot x + c)$, afecta la percepción del sonido.
+
+1. **Representa gráficamente en GeoGebra la onda sonora para $a = 1$, $b = 1$ y $c = 0$. Luego, en el mismo plano cartesiano, grafica las ondas sonoras para $a = 1$, $b = 1$ y varios valores de $c$, probando con valores tanto positivos como negativos, todos expresados en radianes. No olvides cambiar las unidades del eje $x$ para que la distancia sea de $\frac{\pi}{2}$**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig209.png"
+	alt="Funciones sinusoidales con distinto desplazamiento de fase"
+	caption="Funciones sinusoidales con distinto desplazamiento de fase"
+	size="large"
+/>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig210.svg"
+	alt="Gráficas de funciones sinusoidales"
+	caption="Gráficas de funciones sinusoidales"
+	lightbox={true}
+	size="large"
+/>
+</Solution>
+
+2. **¿Qué efecto tiene el cambio de valor del parámetro $c$ en la representación gráfica de la onda sonora?**
+
+<Solution>
+- Para un valor de $c = \frac{\pi}{2} \rightarrow \frac{c}{b} = \frac{\pi}{2}$, la función está desplazada $\frac{\pi}{2}$ unidades a la izquierda.
+- Para un valor de $c = -3\pi \rightarrow \frac{c}{b} = -3\pi$, la función está desplazada $3\pi$ unidades a la derecha
+</Solution>
+
+3. **¿Cómo piensas que el cambio en el valor del parámetro $c$ afecta la percepción del sonido? Consulta con tu profesor para confirmar si tu suposición es correcta.**
+
+<Solution>
+Al no haber cambios en la amplitud o frecuencia, no existe un efecto directo en cómo percibimos el sonido si solo modificamos el parámetro $c$, ya que solo afecta el desplazamiento de fase (solo cambia cuándo empieza la oscilación)
+</Solution>
+
+## Actividad 04
+Finalmente, el ingeniero pretende analizar cómo el parámetro $d$ en una onda sonora, modelada por la función $f(x) = a \cdot \sin(b \cdot x + c) + d$, afecta la percepción del sonido.
+
+1. **Representa gráficamente en GeoGebra la onda sonora para $a = 1$, $b = 1$, $c = 0$, y $d = 0$. Luego en el mismo plano cartesiano, grafica las ondas sonoras para $a = 1$, $b = 1$, $c = 0$ y varios valores de $d$, probando con valores tanto positivos como negativos.**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig211.png"
+	alt="Funciones sinusoidales con distinta traslación vertical"
+	caption="Funciones sinusoidales con distinta traslación vertical"
+	size="large"
+/>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig212.svg"
+	alt="Gráficas de funciones sinusoidales"
+	caption="Gráficas de funciones sinusoidales"
+	lightbox={true}
+	size="large"
+/>
+</Solution>
+
+2. **¿Qué efecto tiene el cambio en el valor del parámetro $d$ en la representación gráfica de la onda sonora?**
+
+<Solution>
+- Para $d = 1$, la función se traslada 1 unidad positiva en el eje vertical
+- Para $d = -1$, la función se traslada 1 unidad negativa en el ejer vertical
+</Solution>
+
+3. **¿Cómo piensas que el cambio en el valor del parámetro $d$ afecta la percepción del sonido? Consulta con tu profesor para confirmar si tu suposición es correcta.**
+
+<Solution>
+- El parámetro $d$ representa el movimiento vertical de la onda
+- Si $d$ es mayor, la intensidad base de la onda aumenta
+- Si $d$ es menor, la intensidad base de la onda disminuye
+</Solution>
+
+## Actividad 05
+El ingeniero desea ajustar la onda sonora emitida por un parlante para que la intensidad del sonido pase por los puntos $(0,0)$, $(\frac{\pi}{4},\frac{3}{2})$, $(\frac{\pi}{2},3)$, $(\frac{3\pi}{4},\frac{3}{2})$ y $(\pi,0)$. Se conoce que la onda sonora es modelada mediante una función seno de la forma $f(x) = a \cdot \sin(b \cdot x + c) + d$.
+
+1. **¿Cuáles son los valores de $a$, $b$, $c$ y $d$ que mejor ajustan la función a los puntos dados, asegurando que el sonido tenga la intensidad y la frecuencia deseadas en los momentos críticos?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig213.png"
+	alt="Modelo sinusoidal f(x)"
+	caption="Modelo sinusoidal f(x)"
+	size="large"
+/>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig214.svg"
+	alt="Gráfica de modelo sinusoidal f(x)"
+	caption="Gráfica de modelo sinusoidal f(x)"
+	lightbox={true}
+	size="large"
+/>
+</Solution>
+
+2. **¿La función obtenida pasa exactamente por los puntos dados?¿Cómo puedes comprobarlo?**
+
+<Solution>
+Se puede comprobar ingresando un $x$ para $f(x)$, y verificar que el resultado $f(x)$ es el deseado
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig215.png"
+	alt="Evaluación modelo sinusoidal f(x) en puntos dados"
+	caption="Evaluación modelo sinusoidal f(x) en puntos dados"
+	size="large"
+/>
+
+$\therefore$ La función $f(x)$ pasa exactamente por los puntos dados
+</Solution>
+
+3. **¿Cuál es la amplitud, el período, la frecuencia, el desplazamiento horizontal y el desplazamiento vertical de la onda sonora?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig216.png"
+	alt="Modelo sinusoidal f(x)"
+	caption="Modelo sinusoidal f(x)"
+	size="large"
+/>
+
+- **Amplitud:** $a = 1.5[dB]$ 
+- **Frecuencia:** $f = \frac{b}{2\pi} = \frac{2}{2\pi} = \frac{1}{\pi}[Hz]$ 
+- **Período:** $P = \frac{1}{f} = \pi[s]$
+- **Desplazamiento horizontal:** $\frac{c}{b} = \frac{-1.5708}{2} = -0.79$. (0.79 unidades a la derecha)
+- **Desplazamiento vertical:** 1.5 unidades hacia arriba
+
+</Solution>
+
+4. **Considerando el análisis realizado en las actividades anteriores, ¿Cómo se percibiría el sonido emitido por este parlante en comparación con el de la onda sonora modelada por la función $f(x) = \sin(x)$?**
+
+<Solution>
+- **a:** es 1.5 veces mayor, por lo que se escucharía más alto
+- **b:** es 2 veces mayor, por lo que se escucharía más agudo
+- **c:** no influye en el efecto sonoro
+- **d:** es 1.5 mayor, por lo que aumenta el sonido base (más alto)
+
+$\therefore$ El sonido emitido por este parlante se escucharía 3 veces más alto y 2 veces más agudo que la onda sonora modelada por la función $f(x) = \sin(x)$. 
+</Solution>

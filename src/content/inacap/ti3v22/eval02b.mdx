@@ -1,0 +1,288 @@
+# Evaluación 02-B
+
+## Sección 1: Selección Múltiple
+
+<Quiz questions={[
+  {
+    question: "¿Qué tipo de JOIN en SQL devuelve todas las filas de la tabla derecha y solo las filas coincidentes de la tabla izquierda?",
+    options: [
+      "INNER JOIN",
+      "LEFT JOIN",
+      "RIGHT JOIN",
+      "FULL OUTER JOIN"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál de las siguientes funciones en SQL devuelve el número de filas en una tabla?",
+    options: [
+      "SUM",
+      "COUNT",
+      "AVG",
+      "MIN"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué operador se utiliza para realizar una conversión explícita de tipos de datos en SQL Server?",
+    options: [
+      "CAST",
+      "CONVERT",
+      "FORMAT",
+      "TO_CHAR"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál de las siguientes estructuras de control se utiliza para evaluar múltiples condiciones en SQL?",
+    options: [
+      "IF",
+      "CASE",
+      "WHILE",
+      "FOR"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué tipo de JOIN incluye todas las filas en ambas tablas, incluso si no tienen coincidencias?",
+    options: [
+      "LEFT JOIN",
+      "INNER JOIN",
+      "RIGHT JOIN",
+      "FULL OUTER JOIN"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál de las siguientes funciones matemáticas devuelve el valor máximo de un conjunto de datos?",
+    options: [
+      "MIN",
+      "AVG",
+      "MAX",
+      "SUM"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es la función en SQL que se utiliza para convertir una fecha a una cadena de caracteres?",
+    options: [
+      "CONVERT",
+      "CAST",
+      "TO_DATE",
+      "FORMAT"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué función en SQL devuelve la suma total de una columna?",
+    options: [
+      "SUM",
+      "COUNT",
+      "MAX",
+      "AVG"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué estructura en SQL se utiliza para evaluar condiciones y devolver diferentes valores?",
+    options: [
+      "CASE",
+      "IF",
+      "ELSE",
+      "FOR"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué tipo de JOIN devuelve solo las filas coincidentes de ambas tablas?",
+    options: [
+      "LEFT JOIN",
+      "RIGHT JOIN",
+      "INNER JOIN",
+      "FULL OUTER JOIN"
+    ],
+    correctIndex: 2
+  }
+]} />
+
+## Sección 2: Desarrollo en Base de Datos
+
+**script sql-server**
+
+```sql
+-- Crear tabla Clientes
+CREATE TABLE Clientes (
+ClienteID INT IDENTITY(1,1) PRIMARY KEY,
+Nombre NVARCHAR(50),
+Apellido NVARCHAR(50),
+Email NVARCHAR(100),
+Telefono NVARCHAR(20),
+FechaRegistro DATE
+);
+-- Crear tabla Productos
+CREATE TABLE Productos (
+ProductoID INT IDENTITY(1,1) PRIMARY KEY,
+NombreProducto NVARCHAR(100),
+Categoria NVARCHAR(50),
+Precio DECIMAL(10, 2),
+Stock INT
+);
+-- Crear tabla Ventas
+CREATE TABLE Ventas (
+VentaID INT IDENTITY(1,1) PRIMARY KEY,
+FechaVenta DATE,
+ClienteID INT,
+TotalVenta DECIMAL(10, 2),
+FOREIGN KEY (ClienteID) REFERENCES Clientes(ClienteID)
+);
+-- Crear tabla DetallesVentas
+CREATE TABLE DetallesVentas (
+DetalleID INT IDENTITY(1,1) PRIMARY KEY,
+VentaID INT,
+ProductoID INT,
+Cantidad INT,
+TotalLinea DECIMAL(10, 2),
+FOREIGN KEY (VentaID) REFERENCES Ventas(VentaID),
+FOREIGN KEY (ProductoID) REFERENCES Productos(ProductoID)
+);
+-- Insertar datos ficticios en la tabla Clientes
+INSERT INTO Clientes (Nombre, Apellido, Email, Telefono, FechaRegistro) VALUES ('Juan',
+'Pérez', 'juan.perez@example.com', '123456789', GETDATE());
+INSERT INTO Clientes (Nombre, Apellido, Email, Telefono, FechaRegistro) VALUES ('Ana',
+'López', 'ana.lopez@example.com', '987654321', GETDATE());
+INSERT INTO Clientes (Nombre, Apellido, Email, Telefono, FechaRegistro) VALUES ('Carlos',
+'Ramírez', 'carlos.ramirez@example.com', '555111222', GETDATE());
+INSERT INTO Clientes (Nombre, Apellido, Email, Telefono, FechaRegistro) VALUES ('María',
+'Fernández', 'maria.fernandez@example.com', '666333444', GETDATE());
+INSERT INTO Clientes (Nombre, Apellido, Email, Telefono, FechaRegistro) VALUES ('Elena',
+'Martínez', 'elena.martinez@example.com', '777888999', GETDATE());
+INSERT INTO Clientes (Nombre, Apellido, Email, Telefono, FechaRegistro) VALUES ('Luis',
+'González', 'luis.gonzalez@example.com', '444555666', GETDATE());
+-- Insertar datos ficticios en la tabla Productos
+INSERT INTO Productos (NombreProducto, Categoria, Precio, Stock) VALUES ('Laptop',
+'Electrónica', 1500, 10);
+INSERT INTO Productos (NombreProducto, Categoria, Precio, Stock) VALUES ('Smartphone',
+'Electrónica', 1000, 5);
+INSERT INTO Productos (NombreProducto, Categoria, Precio, Stock) VALUES ('Lavadora',
+'Electrodomésticos', 800, 4);
+INSERT INTO Productos (NombreProducto, Categoria, Precio, Stock) VALUES ('Refrigerador',
+'Electrodomésticos', 1200, 3);
+INSERT INTO Productos (NombreProducto, Categoria, Precio, Stock) VALUES ('Sofá',
+'Muebles', 600, 7);
+INSERT INTO Productos (NombreProducto, Categoria, Precio, Stock) VALUES ('Mesa de
+comedor', 'Muebles', 300, 6);
+-- Insertar datos ficticios en la tabla Ventas
+INSERT INTO Ventas (FechaVenta, ClienteID, TotalVenta) VALUES (GETDATE(), 1, 1500);
+INSERT INTO Ventas (FechaVenta, ClienteID, TotalVenta) VALUES (GETDATE(), 2, 1000);
+INSERT INTO Ventas (FechaVenta, ClienteID, TotalVenta) VALUES (GETDATE(), 3, 2400);
+INSERT INTO Ventas (FechaVenta, ClienteID, TotalVenta) VALUES (GETDATE(), 4, 1800);
+INSERT INTO Ventas (FechaVenta, ClienteID, TotalVenta) VALUES (GETDATE(), 5, 600);
+INSERT INTO Ventas (FechaVenta, ClienteID, TotalVenta) VALUES (GETDATE(), 6, 300);
+-- Insertar datos ficticios en la tabla DetallesVentas
+INSERT INTO DetallesVentas (VentaID, ProductoID, Cantidad, TotalLinea) VALUES (1, 1, 1,
+1500);
+INSERT INTO DetallesVentas (VentaID, ProductoID, Cantidad, TotalLinea) VALUES (2, 2, 1,
+1000);
+INSERT INTO DetallesVentas (VentaID, ProductoID, Cantidad, TotalLinea) VALUES (3, 3, 1,
+800);
+INSERT INTO DetallesVentas (VentaID, ProductoID, Cantidad, TotalLinea) VALUES (3, 4, 1,
+1200);
+INSERT INTO DetallesVentas (VentaID, ProductoID, Cantidad, TotalLinea) VALUES (4, 5, 2,
+1200);
+INSERT INTO DetallesVentas (VentaID, ProductoID, Cantidad, TotalLinea) VALUES (5, 6, 2,
+600);
+INSERT INTO DetallesVentas (VentaID, ProductoID, Cantidad, TotalLinea) VALUES (6, 1, 1,
+300);
+```
+
+### Ejercicio 01
+**Procedimiento Almacenado para Actualizar Productos**
+
+Crea un procedimiento almacenado llamado `sp_ActualizarProducto` que reciba el ID del producto y el nuevo precio, y actualice el precio del producto en la tabla Productos. El procedimiento debe devolver un mensaje que indique si el producto fue actualizado correctamente.
+
+<Solution>
+```sql
+CREATE PROCEDURE sp_ActualizarProducto
+@ProductoID INT,
+@Precio DECIMAL(10,2)
+AS
+BEGIN
+	UPDATE Productos
+	SET Precio = @Precio
+	WHERE ProductoID = @ProductoID
+	PRINT 'El producto fue actualizado correctamente'
+END;
+```
+</Solution>
+
+### Ejercicio 02
+**Consultas Complejas con JOINs**
+
+#### Consulta 1
+Muestra el nombre del cliente, la cantidad total de productos comprados y el total de ventas para aquellos clientes que han realizado más de dos transacciones.
+
+<Solution>
+```sql
+SELECT
+	c.Nombre,
+	SUM(dv.Cantidad) AS CantTotalVendida,
+	SUM(v.TotalVenta) AS TotalVentas
+FROM Clientes c
+JOIN Ventas v ON c.ClienteID = v.ClienteID
+JOIN DetallesVentas dv ON v.VentaID = dv.VentaID
+GROUP BY c.Nombre
+HAVING COUNT(v.VentaID) > 2;
+```
+</Solution>
+
+#### Consulta 2
+Muestra el nombre del producto, la cantidad total vendida, y el promedio de ventas por producto. Incluye solo productos que han sido vendidos en más de 3 transacciones.
+
+<Solution>
+```sql
+SELECT
+	p.NombreProducto,
+	SUM(dv.Cantidad) AS CantTotalVendida,
+	AVG(v.TotalVenta) AS PromedioVentas
+FROM Productos p
+JOIN DetallesVentas dv ON p.ProductoID = dv.ProductoID
+JOIN Ventas v ON dv.VentaID = v.VentaID
+GROUP BY p.NombreProducto
+HAVING COUNT(v.VentaID) > 3;
+```
+</Solution>
+
+
+### Ejercicio 03
+**Subconsultas Complejas**
+
+#### Subconsultas 1
+Encuentra el nombre del cliente que ha realizado la venta con el mayor total de venta.
+
+<Solution>
+```sql
+SELECT c.Nombre, c.Apellido
+FROM Clientes c
+JOIN Ventas v ON c.ClienteID = v.ClienteID
+WHERE v.TotalVenta = (
+    SELECT MAX(TotalVenta)
+    FROM Ventas
+);
+```
+</Solution>
+
+
+#### Subconsulta 2
+Encuentra el nombre de los productos que tienen un precio mayor que el promedio del precio de todos los productos en la misma categoría.
+
+<Solution>
+```sql
+SELECT p.NombreProducto, p.Precio, p.Categoria
+FROM Productos p
+WHERE p.Precio > (
+	SELECT AVG(Precio) 
+	FROM Productos 
+	WHERE Categoria = p.Categoria
+);
+```
+</Solution>

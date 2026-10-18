@@ -1,0 +1,165 @@
+# Introducción a Python
+**Material Clase:** [clase09.pdf](/inacap/ti3v11/docs/clase09.pdf)
+
+## Variables
+- Nombres descriptivos y en minúsculas.
+- Para nombres compuestos, separar por guiones bajos.
+
+**Ejemplos**
+```python
+# Correcto
+mi_variable = 12
+```
+
+```python
+# Incorrecto
+MiVariable = 12
+mivariable = 12
+mi_variable=12
+```
+
+## Constantes
+- Mismas reglas que 'variables', pero en mayúsculas.
+
+```python
+MI_CONSTANTE = 12
+```
+
+## Asignación de múltiples variables
+Esto es, declarar muchas variables dentro de una sola línea
+
+**Ejemplo**
+```python
+#declarar a,b,c como: string, entero, booleano
+a, b, c = 'string', 15, True
+```
+
+## Entrada y salida de datos
+
+- `input()`: función para entrada de datos (leer desde teclado).
+- `print()`: función para salida de datos (imprimir en pantalla).
+
+**Ejemplo 01:** salida de datos
+
+```python
+mi_cadena = "Hola Mundo!"
+print(mi_cadena)
+```
+
+<TerminalOutput withBg>
+{`Hola Mundo!`}
+</TerminalOutput>
+
+**Ejemplo 02:** salida de datos multilínea
+
+```python
+mi_cadena_multilinea = """
+Esta es una cadena
+de varias líneas
+"""
+print(mi_cadena_multilinea)
+```
+
+<TerminalOutput withBg>
+{`Esta es una cadena
+de varias líneas`}
+</TerminalOutput>
+
+**Ejemplo 03:** entrada de cadena de texto
+
+```python
+cadena = input('Introduce una cadena de texto: ') # ==SaukCode==
+print('La cadena que ingresó es:\n', cadena)
+```
+
+<TerminalOutput withBg>
+{`La cadena que ingresó es: 
+==SaukCode==`}
+</TerminalOutput>
+
+## Entrada de números reales y flotantes
+- La función input sólo captura cadenas de texto.
+- Para leer número es necesario convertir al tipo de dato deseado utilizando una función.
+
+**Ejemplo 01:** leer un número entero
+
+```python
+# int(): convierte input a entero
+numero = int( input("Introduce un número: ") ) # 5
+print("El número que ingresó es:\n", numero)
+```
+<TerminalOutput withBg>
+{`El número que ingresó es:
+5`}
+</TerminalOutput>
+
+
+
+**Ejemplo 02:** leer un número flotante (decimal)
+```python
+numero = float( input("Introduce un número: ") ) #3.14
+print("El número que ingresó es:\n", numero)
+```
+<TerminalOutput withBg>
+{`El número que ingresó es:
+3.14`}
+</TerminalOutput>
+
+
+## Operadores
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Símbolo","Significado","Ejemplo","Resultado"]}
+    rows={[
+        ["`+`","suma","`a = 10 + 5`","`15`"],
+        ["`-`","resta","`a = 12 - 7`","`5`"],
+        ["`-`","negación","`a = -5`","`-5`"],
+        ["`*`","multiplicación","`a = 7 * 5`","`35`"],
+        ["`**`","exponente","`a = 2 ** 3`","`8`"],
+        ["`/`","división","`a = 12.5 / 2`","`6.25`"],
+        ["`//`","división entera","`a = 12.5 // 2`","`6.0`"],
+        ["`%`","módulo","`a = 27 % 3`","`3`"],
+    ]}
+/>
+
+# Ejercicios
+
+## Ejercicio 01
+Realice un algoritmo para sumar 3 números que se ingresan por teclado y mostrar el resultado.
+
+<Solution>
+```python
+# función float(): convierte input a núm decimales
+num1 = float( input("Ingrese el primer número: ") )
+num2 = float( input("Ingrese el segundo número: ") )
+num3 = float( input("Ingrese el tercer número: ") )
+sum = num1 + num2 + num3
+print("La suma de los 3 números es: ", sum)
+```
+</Solution>
+
+## Ejercicio 02
+Realice un algoritmo para calcular el área de un triángulo.
+
+<Solution>
+```python
+base = float( input("Ingrese base: ") )
+altura = float( input("Ingrese altura: ") )
+area = (base * altura) / 2
+print("El área del triángulo es: ", area)
+```
+</Solution>
+
+## Ejercicio 03
+Realice un algoritmo para promediar 3 números ingresados
+
+<Solution>
+```python
+num1 = float( input("Ingrese el primer número: ") )
+num2 = float( input("Ingrese el segundo número: ") )
+num3 = float( input("Ingrese el tercer número: ") )
+prom = (num1 + num2 + num3) / 3
+print("El promedio de los 3 números es: ", prom)
+```
+</Solution>

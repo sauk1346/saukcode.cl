@@ -1,0 +1,75 @@
+# Protegiendo nuestros datos: protocolos esenciales en la nube
+
+La seguridad y la protección de datos en cloud computing son pilares esenciales para garantizar la confianza, la continuidad operativa y el cumplimiento normativo en los entornos digitales actuales, especialmente en procesos formativos vinculados a la tecnología y la gestión de la información.
+
+
+## 1. Buenas prácticas de seguridad en cloud computing
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Buenas prácticas", "Descripción"]}
+    rows={[
+        [
+            "**Modelo de responsabilidad compartida**",
+            "El proveedore protege la infraestructura global mientras que el cliente asegura sus datos, aplicaciones y configuraciones internas"
+        ],
+        [
+            "**Principio de mínimo privilegio**",
+            "Garantiza que los usuarios y servicios tengan solo los permisos estrictamente necesarios para sus funciones"
+        ],
+        [
+            "**Autenticación de múltiples factores (MFA)**",
+            "Minimiza el riesgo de robo de credenciales"
+        ],
+    ]}
+/>
+
+La seguridad debe ser tratada de forma integral mediante el **cifrado de datos**, tanto cuando están almacenados como cuando se transmiten a través de la red, asegurando que la información sea ilegible para terceros no autorizados. Es imperativo utilizar herramientas de **gestión de la postura de seguridad en la nube** (CSPM, según sus siglas en inglés) para monitorizar continuamente posibles configuraciones erróneas y vulnerabilidades en tiempo real, lo que permite una respuesta rápida ante incidentes y el cumplimiento constante de estándares internacionales de ciberseguridad.
+
+## 2. Normativas de protección de datos
+
+Las normativas de protección de datos en cloud computing se rigen principalmente por el **Reglamento General de Protección de Datos** (RGPD) en la Unión Europea, el cual establece estándares globales de privacidad que obligan a los proveedores de nube a garantizar la transparencia en el tratamiento de la información y la soberanía de los datos de los usuarios.
+
+A nivel técnico, esto se complementa con estándares internacionales como ISO/IEC 27017, que ofrece controles específicos de seguridad para la nube e ISO/IEC 27018, que se enfoca específicamente en la protección de la información de identificación personal (PII) en entornos de nube pública.
+
+En el año 2025, el cumplimiento normativo ha evolucionado hacia la soberanía digital, exigiendo que las organizaciones no solo aseguren los datos, sino que también tengan claridad sobre la ubicación física de los mismos y las leyes locales que les afectan.
+
+### Cómo cumplir con RGDP
+
+1. Registro de actividades de tratamiento
+2. Informar a los interesados
+3. Consentimiento de los clientes para el tratamiento de datos 
+4. Contratos para empleados y terceros
+5. Derechos de los usuarios
+6. Análisis de riesgos
+7. Evaluación del impacto
+8. Delegación de protección de datos
+9. Notificación de incidencias de seguridad a la autoridad competente
+10. Incluir textos legales en la página web
+
+---
+
+## Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "¿Qué estrategia permite a una empresa limitar accesos innecesarios y asegurar que cada usuario posea únicamente los permisos estrictamente necesarios?",
+		options: [
+            "Uso exclusivo de firewalls y perimetrales",
+            "Aplicación del principio de mínimo privilegio",
+            "Monitoreo de logs sin gestión de accesos",
+            "Cifrado de datos en tránsito y reposo",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Qué estándar internacional ayuda e una empresa a proteger información personal en la nube pública, enfocándose en datos de identificación individual?",
+		options: [
+            "NIST CSF",
+            "ISO/IEC 27017",
+            "GDPR Compliance Framework",
+            "ISO/IEC 27018",
+		],
+		correctIndex: 3
+	},
+]}/>

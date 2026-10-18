@@ -1,0 +1,114 @@
+# Registra data obtenida en base de datos
+
+## ¿Qué es una API?
+- Interfaz de Programación de Aplicaciones
+- Es un conjunto de reglas y protocolos que permite que dos aplicaciones se comuniquen entre sí.
+
+## ¿Qué se puede hacer con una API?
+1. Acceder a datos y servicios
+2. Integración de Sistemas
+3. Desarrollo de aplicaciones
+4. Automatización de tareas
+5. Análisis de datos
+6. Creación de widgets y herramientas
+
+## Instalación
+
+1. Instalar librería `pymysql`
+
+```sh
+pip install pymysql
+```
+
+2. Importar biblioteca y establecer conexión con la base de datos
+
+```python
+import pymysql
+
+conn = pymysql.connect(
+	host='localhost', user= 'ABC', password= '1234', database='basededatos'
+)
+```
+
+3. Obtener los datos de la API con Request y convertir los datos a JSON
+
+```python
+import request
+import json
+
+url = 'https://mindicador.cl/api/dolar/22-01-2024'
+respuesta = request.get(url)
+datos_json = respuesta.json()
+```
+
+4. Registrar los datos en la base de datos
+
+```python
+cursor = conn.cursor()
+
+for clave,valor in datos_json.items():
+	if clase == 'serie':
+		fecha = valor[0]['fecha']
+		valor = valor[0]['valor']
+		cursor.execute('INSERT INTO dolar (fecha, valor) VALUES (%s, %s)', (fecha, valor))
+
+conn.commit()
+
+cursor.close()
+conn.close()
+```
+
+# Actividad de Práctica 13
+
+<Quiz questions={[
+  {
+    question: "De los siguientes enunciados, ¿cuál es el propósito principal de la biblioteca Requests en Python?",
+    options: [
+      "Interactuar con APIs y realizar solicitudes HTTP",
+      "Realizar consultas a bases de datos relacionales",
+      "Generar gráficos y visualizaciones de datos",
+      "Realizar operaciones matemáticas avanzadas"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "De los siguientes enunciados, ¿cuál es el propósito de la función json.loads() en Python?",
+    options: [
+      "Realizar una solicitud HTTP a una API",
+      "Convertir una cadena de texto JSON en un objeto Python",
+      "Insertar datos en una base de datos MySQL",
+      "Crear un archivo JSON a partir de un diccionario de Python"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de las siguientes bibliotecas de Python se utiliza para interactuar con bases de datos MySQL?",
+    options: [
+      "pandas",
+      "requests",
+      "json",
+      "pymysql"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué método de los siguientes se utiliza para insertar datos en una tabla de una base de datos MySQL utilizando PyMySQL?",
+    options: [
+      "execute_query()",
+      "execute()",
+      "fetchall()",
+      "insert_data()"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de los siguientes enunciados es el propósito principal de la deserialización de datos en Python al interactuar con APIs y bases de datos?",
+    options: [
+      "Convertir objetos Python en formato JSON",
+      "Enviar solicitudes HTTP a APIs",
+      "Convertir datos en formato JSON en objetos Python para su manipulación",
+      "Crear gráficos y visualizaciones de datos"
+    ],
+    correctIndex: 2
+  }
+]} />

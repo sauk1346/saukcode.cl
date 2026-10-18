@@ -1,0 +1,158 @@
+/* TerminalOutput.module.css */
+
+/* Clase base con todas las propiedades comunes */
+.terminal {
+  font-family: "Menlo", "Monaco", "Courier New", "Consolas", monospace;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 1.75rem 1.7rem;
+  padding: var(--spacing-md) 0;
+  background: transparent;
+  border: none;
+  color: #334155;
+  overflow-x: auto;
+  overflow-y: hidden;
+  transition: color 0.3s ease;
+  scrollbar-width: thin;
+}
+
+/* Variante con fondo - Extiende la clase base */
+.terminalWithBg {
+  composes: terminal;
+  line-height: 1.2; /* Ajuste específico para la variante con bg */
+  margin: 1.75rem 1.7rem;
+  background-color: #1a1a1a;
+  color: #00ff00;
+  border: 1px solid #333;
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Modo oscuro */
+:global(html.dark-mode) .terminal,
+:global(html.dark-mode-override) .terminal {
+  color: #e5e7eb;
+}
+
+:global(html.dark-mode) .terminalWithBg,
+:global(html.dark-mode-override) .terminalWithBg {
+  background-color: #0d0d0d;
+  color: #00ff00;
+  border-color: #444;
+}
+
+/* Wrapper cuando hay caption */
+.figure {
+  margin: 1.75rem 1.7rem;
+}
+
+.withCaption {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.caption {
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-align: left;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+:global(html.dark-mode) .caption,
+:global(html.dark-mode-override) .caption {
+  color: #9ca3af;
+}
+
+/* Referencias cruzadas */
+.terminalRef {
+  color: #3b82f6;
+  text-decoration: none;
+  font-style: italic;
+}
+
+.terminalRef:hover {
+  text-decoration: underline;
+}
+
+.terminalRefError {
+  color: #dc2626;
+  font-style: italic;
+}
+
+:global(html.dark-mode) .terminalRef,
+:global(html.dark-mode-override) .terminalRef {
+  color: #60a5fa;
+}
+
+/* Comentarios: líneas que empiezan con # */
+.comment {
+  color: #6b7280;
+  font-style: italic;
+}
+
+:global(html.dark-mode) .comment,
+:global(html.dark-mode-override) .comment {
+  color: #9ca3af;
+}
+
+.terminalWithBg .comment {
+  color: #4ade80;
+  opacity: 0.6;
+  font-style: italic;
+}
+
+/* Scrollbars para ambas clases */
+.terminal::-webkit-scrollbar,
+.terminalWithBg::-webkit-scrollbar {
+  height: 6px;
+}
+
+.terminal::-webkit-scrollbar-track,
+.terminalWithBg::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terminal::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.3);
+  border-radius: 3px;
+}
+
+.terminalWithBg::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 255, 0, 0.3);
+  border-radius: 3px;
+}
+
+.terminal::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.5);
+}
+
+.terminalWithBg::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 255, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .terminal,
+  .terminalWithBg {
+    margin: 0.75rem 0;
+    touch-action: pan-x;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .figure {
+    margin: 0.75rem 0;
+  }
+}
+
+/* Scrollbars en modo oscuro */
+:global(html.dark-mode) .terminal::-webkit-scrollbar-thumb,
+:global(html.dark-mode-override) .terminal::-webkit-scrollbar-thumb {
+  background-color: rgba(229, 231, 235, 0.2);
+}
+
+:global(html.dark-mode) .terminal::-webkit-scrollbar-thumb:hover,
+:global(html.dark-mode-override) .terminal::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(229, 231, 235, 0.4);
+}

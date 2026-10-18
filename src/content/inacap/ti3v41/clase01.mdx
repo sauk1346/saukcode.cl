@@ -1,0 +1,341 @@
+# Introducción
+
+## Material clase
+- [Introducción Ambiente](/inacap/ti3v41/docs/ppt01.pdf)
+- [Ambiente Virtual](/inacap/ti3v41/docs/ppt02.pdf)
+
+
+## 1. Resumen Asignatura 
+
+<SmartTable
+	tableLayout = "auto"
+	headers = {["Unidades", "Descripción"]}
+	lists = {{
+		R1: [
+			"Tecnologías del lado del servidor, protocolos, servicios de hosting y dominios",
+			"Introducción a la programación del lado del servidor",
+			"Modelo Template Vista (MTV)",
+			"Python Avanzado (Módulo, Packages, Exceptions)",
+			"Django (Configuración, Rutas y Vista)",
+			"Django Templates"
+		],
+		R2: [
+			"Conexión a una base de datos a través del Framework",
+			"Operaciones CRUD a través del Framework",
+			"Django Models"
+		],
+		R3: [
+			"Concepto Restful API",
+			"Arquitectura REST",
+			"Seguridad / Autenticación"
+		]
+	}}
+	rows = {[
+		["**U1: Tecnologías del lado del servidor**", "@R1"],
+		["**U2: Framework Backend**", "@R2"],
+		["**U3: API RESTful con Integración de Base de Datos**", "@R3"]
+	]}
+/>
+
+## 1. Modelo Vista Controlador
+
+<SmartFigure
+	id="modelo-vista-controlador"
+	src="/inacap/ti3v41/images/fig001.png"
+	alt="Modelo Vista Controlador"
+	caption="Modelo Vista Controlador"
+	size="large"
+/>
+
+<SmartTable
+	tableLayout = "auto"
+	headers = {["Patrón Diseño MVC", "Descripción"]}
+	rows = {[
+		["**Modelo**", "Datos y lógica de negocio"],
+		["**Vista**", "Presentación y formato de salida"],
+		["**Controlador**", "Coordinación y flujo de control"],
+	]}
+/>
+
+### Flujo MVC
+
+1. El **Usuario** realiza una **petición HTTP** desde el **navegador** (cliente)
+2. El `Controlador` recibe la petición en el servidor
+3. El `Controlador` determina qué hacer y delega al `Modelo` la lógica de negocio
+4. El `Modelo`:
+	1. Accede a la base de datos
+	2. Consume servicios externos
+	3. Procesa la lógica de negocio
+	4. Maneja validaciones
+5. El `Modelo` devuelve los **datos procesados** al `Controlador`
+6. El `Controlador` pasa estos **datos** a la `Vista`
+7. La `Vista` genera la **respuesta** (HTML, JSON, XML, etc.)
+8. La **respuesta** se envía de vuelta al **navegador**
+
+## 2. Modelo Template Vista
+En el caso de Django es muy parecido, pero con algunas diferencias:
+
+<SmartTable
+ tableLayout = "auto"
+ headers = {["Patrón Diseño MTV", "Descripción"]}
+ rows = {[
+  ["**Model**", "Datos y lógica de negocio"],
+  ["**Template**", "Estructura HTML y presentación visual"],
+  ["**View**", "Lógica de presentación y manejo de peticiones HTTP"],
+ ]}
+/>
+
+> **View** en Django hace lo que el **Controller** hace en MVC
+> **Template** en Django hace lo que la **View** hace en MVC
+
+### Flujo MTV
+
+1. El **Usuario** realiza una **petición HTTP** desde el **navegador**
+2. **Django** recibe la petición a través del **servidor web**
+3. El `URLconf` (**urls.py**) mapea la **URL** a una función/clase `Vista` específica
+4. La `Vista` (**views.py**) recibe la **petición HTTP** (request)
+5. La `Vista` determina qué hacer y puede interactuar con el `Modelo`:
+   1. Consulta datos de la base de datos
+   2. Ejecuta lógica de negocio
+   3. Procesa formularios
+   4. Realiza validaciones
+6. El `Modelo` (**models.py**):
+   1. Maneja el acceso a datos
+   2. Ejecuta consultas a la base de datos
+   3. Aplica reglas de negocio
+   4. Devuelve datos a la Vista
+7. La `Vista` toma los **datos** del Modelo y los prepara como **contexto**
+8. La `Vista` renderiza un `Template` (**templates/**) pasándole el **contexto**
+9. El `Template`:
+   1. Genera la **estructura HTML**
+   2. Aplica el **diseño visual**
+   3. Incorpora los **datos dinámicos** del contexto
+10. El **Template renderizado** se convierte en una **respuesta HTTP**
+11. La **respuesta** se envía de vuelta al **navegador** del usuario
+
+## 3. Instalación Django
+Ingresar el siguiente comando en la terminal:
+```sh
+python -m pip install Django
+```
+
+### Creación Ambiente Virtual (opcional)
+Los ambientes virtuales en Python sivern para **aislar las dependencias** de diferentes proyectos. 
+
+Permiten resolver:
+
+<SmartTable
+	tableLayout = "auto"
+	headers = {["Resuelve", "Descripción"]}
+	rows = {[
+		["**Conflictos de versiones**", "Proyecto A necesita Django 3.2, proyecto B necesita Django 4.1"],
+		["**Dependencias innecesarias**", "`pip list` muestra 200+ paquetes mezclados de todos los proyectos"],
+		["**Problemas de portabilidad**", "Tu colega no puede reproducir tu entorno fácilmente"],
+	]}
+/>
+
+1. Crear un ambiente virtual "denv1"
+	```sh
+	python -m venv denv1
+	```
+ 
+2. Activar ambiente virtual "denv1"
+ 	```sh
+	# Desde Windows
+ 	denv1\Scripts\activate
+ 	```
+	```sh
+	# Desde Linux
+	source denv1/bin/activate
+	```
+
+3. Guardar dependencias
+	```sh
+	pip freeze > requirements.txt
+	```
+
+4. Salir de ambiente virtual (denv1)
+	```sh
+	denv1\Scripts\deactivate
+	```
+
+## 4. Ejercicios
+
+### Ejercicio 01: Mi Primer Proyecto
+
+Crear un proyecto Django y levantar el servidor
+
+1. **Crear Nuevo Proyecto:** Llamado "primerproyecto"
+	```sh
+	django-admin startproject primerproyecto
+	cd miprimerproyecto
+	```
+
+	<TerminalOutput>
+	{`.
+	├── primerproyecto
+	│   ├── asgi.py
+	│   ├── __init__.py
+	│   ├── settings.py
+	│   ├── urls.py
+	│   └── wsgi.py
+	└── manage.py`}
+	</TerminalOutput>
+
+	`./primerproyecto/` es un package, porque dentro contiene un `__init__.py`
+
+2. **Crear base de datos:** Construir la base de datos, que dará soporte a la aplicación
+	```sh
+	py manage.py migrate
+	```
+
+	<TerminalOutput>
+	{`.
+	├── primerproyecto
+	│   ├── __pycache__
+	│   │   ├── __init__.cpython-313.pyc
+	│   │   ├── settings.cpython-313.pyc
+	│   │   └── urls.cpython-313.pyc
+	│   ├── asgi.py
+	│   ├── __init__.py
+	│   ├── settings.py
+	│   ├── urls.py
+	│   └── wsgi.py
+	├── db.sqlite3
+	└── manage.py`}
+	</TerminalOutput>
+
+3. **Realizar Pruebas:** Levantar el servidor
+	```sh
+	py manage.py runserver
+	```
+	<TerminalOutput>
+	{`Watching for file changes with StatReloader
+	Performing system checks...
+
+	System check identified no issues (0 silenced).
+	September 03, 2025 - 04:00:12
+	Django version 5.2.5, using settings 'primerproyecto.settings'
+	Starting development server at http://127.0.0.1:8000/
+	Quit the server with CONTROL-C.`}
+	</TerminalOutput>
+	<SmartFigure
+        id="pagina-incio-django"
+        src="/inacap/ti3v41/images/fig002.png"
+        alt="Página de inicio Django"
+        caption="Página de inicio Django"
+        size="large"
+    />
+
+### Ejercicio 02
+
+Crear una nueva aplicación dentro del proyecto
+
+1. **Crear nueva app:** Crear aplicación "miapp"
+	```sh
+	python manage.py startapp miapp
+	```
+
+	<TerminalOutput>
+	{`.
+	├── db.sqlite3
+	├── manage.py
+	├── miapp
+	│   ├── admin.py
+	│   ├── apps.py
+	│   ├── __init__.py
+	│   ├── migrations
+	│   │   └── __init__.py
+	│   ├── models.py
+	│   ├── tests.py
+	│   └── views.py
+	└── primerproyecto
+	    ├── asgi.py
+	    ├── __init__.py
+	    ├── __pycache__
+	    │   ├── __init__.cpython-313.pyc
+	    │   ├── settings.cpython-313.pyc
+	    │   ├── urls.cpython-313.pyc
+	    │   └── wsgi.cpython-313.pyc
+	    ├── settings.py
+	    ├── urls.py
+	    └── wsgi.py`}
+	</TerminalOutput>
+
+2. **Configuración inicial:** Agregar `./miapp/` en `./miprimerproyecto/settings.py` para que el proyecto lo reconozca
+
+	```python
+	#./miprimerproyecto/settings.py
+	...
+	...
+	INSTALLED_APPS = [
+    	"django.contrib.admin",
+    	"django.contrib.auth",
+    	"django.contrib.contenttypes",
+    	"django.contrib.sessions",
+    	"django.contrib.messages",
+    	"django.contrib.staticfiles",
+    	"miapp"
+	]
+	...
+	...
+	```
+
+3. **Configurar Vistas:** Crear una vista llamada `index` en `./miapp/views.py`
+	```python
+	#./miapp/views.py
+	from django.http import HttpResponse
+
+	def index(request):
+		html = """
+			<!DOCTYPE html>
+			<html lang="en">
+			<head>
+			    <meta charset="UTF-8">
+			    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+			    <title>Document</title>
+			</head>
+			<body>
+				<h1>Bienvenido al mundo de Django</h1>
+				<p>Disfruta la aventura...</p>
+			</body>
+			</html>
+		"""
+		return HttpResponse(html)
+	```
+
+4. **Configurar Enrutamiento:** Crear `./miapp/urls.py` y agregarlo a `./primerproyecto/urls.py`
+	```python
+	#./miapp/urls.py
+	from django.urls import path
+	from . import views
+
+	urlpatterns = [
+    path("index/", views.index),
+	]
+	```
+	```python
+	#./primerproyecto/urls.py
+	from django.contrib import admin
+	from django.urls import path, include
+
+	urlpatterns = [
+    	path("admin/", admin.site.urls),
+    	path("miapp/", include('miapp.urls')),
+	]
+	```
+
+5. **Realizar Pruebas:** Ejecutar el servidor y verificar ruta
+	```sh
+	python manage.py runserver
+	```
+	```sh
+	http://127.0.0.1:8000/miapp/index/
+	```
+	<SmartFigure
+        id="aplicacion-miapp"
+        src="/inacap/ti3v41/images/fig003.png"
+        alt="Aplicación 'miapp'"
+        caption="Aplicación 'miapp'"
+        size="large"
+    />

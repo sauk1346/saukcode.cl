@@ -1,0 +1,626 @@
+# Prueba: Evaluación financiera de proyectos
+
+Responde las siguientes preguntas de alternativas basadas en el documento *Evaluación Financiera* (Unidad 3).
+
+<Quiz questions={[
+  {
+    question: "¿En qué consiste evaluar financieramente un proyecto?",
+    options: [
+      "En determinar si una inversión genera valor económico suficiente para justificar el uso de recursos, considerando el riesgo asociado y las alternativas disponibles.",
+      "En aplicar mecánicamente fórmulas financieras para obtener indicadores numéricos.",
+      "En calcular únicamente las ventas y los márgenes esperados del proyecto.",
+      "En verificar que el proyecto cumpla con la normativa tributaria vigente."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "Según el documento, la evaluación financiera NO es un ejercicio mecánico de aplicación de fórmulas, sino:",
+    options: [
+      "Un trámite administrativo exigido por los bancos.",
+      "Un proceso de análisis que exige comprensión de conceptos económicos, validación de supuestos, construcción coherente de información y criterio profesional para interpretar resultados.",
+      "Una simulación computacional que reemplaza el juicio del evaluador.",
+      "Un informe contable que resume las utilidades del periodo."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Un proyecto puede parecer atractivo en términos de ventas o márgenes, pero puede no ser conveniente desde una perspectiva financiera si:",
+    options: [
+      "Tiene demasiados clientes potenciales.",
+      "Su inversión inicial es financiada con capital propio.",
+      "No genera flujos de efectivo positivos o si el riesgo es excesivo respecto a la rentabilidad esperada.",
+      "Su periodo de evaluación es menor a un año."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué representa el costo de oportunidad?",
+    options: [
+      "El desembolso directo que exige una inversión.",
+      "La rentabilidad mínima que exigen los acreedores de un proyecto.",
+      "El total de gastos operacionales de un proyecto.",
+      "El valor de la mejor alternativa sacrificada al tomar una decisión de inversión."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál de las siguientes afirmaciones sobre el costo de oportunidad es correcta?",
+    options: [
+      "Es un concepto económico fundamental que no aparece en estados financieros tradicionales, pero es crítico para tomar decisiones racionales.",
+      "Aparece registrado en el balance general como un pasivo de largo plazo.",
+      "Solo aplica a inversiones financiadas con deuda bancaria.",
+      "Es equivalente al total de egresos operacionales del proyecto."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "Una persona dispone de $1.000.000 y debe decidir entre: (A) depósito a plazo fijo con rentabilidad segura del 6% anual, o (B) comprar mercadería para revender con ganancia esperada del 10% anual pero con mayor riesgo. Si elige la opción A, ¿cuál es su costo de oportunidad?",
+    options: [
+      "$60.000 (la ganancia segura del depósito).",
+      "$100.000 (la ganancia que deja de obtener en la opción B).",
+      "$40.000 (la diferencia entre ambas ganancias).",
+      "$1.000.000 (el capital invertido)."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "En el mismo ejemplo anterior, si la persona elige la opción B (mercadería), ¿cuál es su costo de oportunidad?",
+    options: [
+      "$100.000, correspondiente a la ganancia esperada de la mercadería.",
+      "$160.000, correspondiente a la suma de ambas ganancias.",
+      "$60.000, correspondiente a la ganancia segura del depósito (6%).",
+      "$0, porque eligió la alternativa de mayor retorno."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué es el costo de capital?",
+    options: [
+      "El total de la inversión inicial de un proyecto.",
+      "El valor de la mejor alternativa rechazada al invertir.",
+      "El monto de los intereses pagados al banco durante el primer año.",
+      "La rentabilidad mínima que un proyecto debe generar para compensar a quienes aportan el dinero (dueños y acreedores), considerando el riesgo que asumen."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "Si un proyecto no alcanza al menos la rentabilidad del costo de capital, entonces:",
+    options: [
+      "No compensa a los dueños, no cubre el costo de la deuda, y no conviene realizarlo aunque genere utilidades contables.",
+      "Conviene realizarlo igualmente si genera utilidades contables.",
+      "Debe financiarse completamente con deuda para reducir el riesgo.",
+      "Debe aumentarse la tasa de descuento para que el VAN sea positivo."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cómo se calcula el costo de capital mediante el costo de capital promedio ponderado (WACC)?",
+    options: [
+      "Costo de Capital = Costo Deuda + Costo Capital Propio.",
+      "Costo de Capital = (%Deuda × Costo Deuda) + (%Capital Propio × Costo Capital Propio).",
+      "Costo de Capital = %Deuda × %Capital Propio.",
+      "Costo de Capital = (Costo Deuda - Costo Capital Propio) / 2."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Un proyecto de $10.000.000 se financia con 60% capital propio (los dueños exigen 12%) y 40% deuda (el banco cobra 8%). ¿Cuál es su costo de capital?",
+    options: [
+      "12%.",
+      "8%.",
+      "10,4%.",
+      "20%."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué efecto tiene la estructura de financiamiento sobre un proyecto?",
+    options: [
+      "No tiene ningún efecto sobre la rentabilidad mínima exigida.",
+      "Un proyecto financiado con capital propio tiene menor costo de capital y mayor riesgo de insolvencia.",
+      "Un proyecto financiado mayormente con deuda tiene mayor costo de capital y menor riesgo financiero.",
+      "Un proyecto financiado mayormente con deuda tendrá menor costo de capital, pero mayor riesgo financiero; uno financiado con capital propio tendrá mayor costo de capital, pero menor riesgo de insolvencia."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "En el contexto del uso de IA para analizar el costo de oportunidad y el costo de capital, ¿cuál es el rol de la IA según el documento?",
+    options: [
+      "La IA no decide, solo apoya el análisis.",
+      "La IA toma la decisión final de inversión de manera autónoma.",
+      "La IA valida la veracidad de los datos ingresados por el usuario.",
+      "La IA evalúa las motivaciones personales del inversionista."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "Según el documento, la IA facilita la comparación de alternativas de inversión, pero tiene limitaciones. ¿Cuáles?",
+    options: [
+      "No puede calcular el WACC ni simular estructuras de financiamiento.",
+      "No evalúa motivaciones personales y no mide bien beneficios cualitativos como el aprendizaje o la reputación.",
+      "No puede generar tablas de resultados ni comparar retornos.",
+      "No puede trabajar con más de dos alternativas a la vez."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué es el flujo de fondos?",
+    options: [
+      "Un informe contable que resume las utilidades anuales de la empresa.",
+      "El listado de activos y pasivos del proyecto a una fecha determinada.",
+      "Un registro ordenado y cronológico del dinero que entra y sale de un proyecto a lo largo del tiempo.",
+      "El presupuesto de marketing del proyecto."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué representa la inversión inicial (Año 0) en la estructura del flujo de fondos?",
+    options: [
+      "Los ingresos generados durante el primer año de operación.",
+      "El valor de rescate de los activos al final del proyecto.",
+      "Los egresos operacionales del primer periodo.",
+      "Todos los desembolsos necesarios antes de comenzar la operación: activos fijos, capital de trabajo inicial, estudios, permisos y otros gastos preoperacionales; se expresa con signo negativo porque representa salida de efectivo."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué son los ingresos operacionales en el flujo de fondos y qué se debe considerar al proyectarlos?",
+    options: [
+      "Flujos de entrada de efectivo generados por la actividad principal del proyecto; deben proyectarse considerando volumen de ventas, precios y condiciones de cobro (contado o crédito).",
+      "Los aportes de capital de los socios; deben proyectarse según la estructura de financiamiento.",
+      "Los préstamos bancarios obtenidos; deben proyectarse según la tasa de interés.",
+      "La venta de activos usados al cierre; deben proyectarse según su valor contable."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué incluyen los egresos operacionales del flujo de fondos?",
+    options: [
+      "Solo el pago de impuestos del proyecto.",
+      "Compras de insumos, remuneraciones, gastos administrativos y de comercialización, impuestos y otros gastos operacionales, proyectados considerando condiciones de pago.",
+      "Únicamente la inversión en activos fijos.",
+      "La recuperación del capital de trabajo al final del proyecto."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué es el valor de rescate o salvamento en el flujo de fondos?",
+    options: [
+      "El monto de la inversión inicial ajustado por inflación.",
+      "La pérdida registrada si el proyecto fracasa antes de su cierre.",
+      "Los ingresos por venta de activos usados y recuperación de capital de trabajo que se incorporan al finalizar el proyecto, sumándose al flujo neto del último año.",
+      "El seguro contratado para proteger los activos del proyecto."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "En el ejemplo de la juguería de jugos naturales, la inversión inicial es de $3.000.000, los flujos netos anuales son de $1.700.000 y en el año 3 (cierre) se agregan la venta de la máquina usada ($300.000) y la recuperación del capital de trabajo ($700.000). ¿Cuál es el flujo total del año 3?",
+    options: [
+      "$1.700.000.",
+      "$1.000.000.",
+      "$3.000.000.",
+      "$2.700.000."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Por qué los flujos futuros de un proyecto deben traerse a valor presente mediante una tasa de descuento?",
+    options: [
+      "Porque los flujos son futuros y el dinero hoy vale más que el dinero en el futuro.",
+      "Porque la ley exige descontar todos los flujos para efectos tributarios.",
+      "Porque los flujos futuros siempre son negativos.",
+      "Porque el banco lo solicita como requisito para otorgar créditos."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué es la tasa de descuento?",
+    options: [
+      "El porcentaje de ganancia que ofrece un depósito a plazo fijo.",
+      "El porcentaje que se usa para traer al presente el dinero que se recibirá en el futuro.",
+      "El interés que cobra el banco por un préstamo de consumo.",
+      "El porcentaje de descuento aplicado a los precios de venta del proyecto."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Por qué no se pueden sumar directamente los flujos de distintos años de un proyecto?",
+    options: [
+      "Porque los flujos están expresados en monedas diferentes.",
+      "Porque la suma directa solo es válida en proyectos de menos de un año.",
+      "Porque $1.000.000 hoy no es igual a $1.000.000 en 3 años: el dinero disponible hoy puede depositarse y ganar intereses, mientras que el dinero futuro puede no llegar (riesgo).",
+      "Porque los flujos futuros siempre incluyen impuestos no pagados."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "En un enfoque didáctico, ¿cómo se determina la tasa de descuento?",
+    options: [
+      "Tasa de descuento = Inflación + Impuestos.",
+      "Tasa de descuento = Costo de deuda × Costo de capital propio.",
+      "Tasa de descuento = Rentabilidad esperada - Inversión inicial.",
+      "Tasa de descuento = Tasa base + Primas de riesgo."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué representa la tasa base en la determinación de la tasa de descuento?",
+    options: [
+      "Una rentabilidad segura, sin riesgo, como un depósito a plazo, un bono del Estado o un instrumento financiero de bajo riesgo.",
+      "La rentabilidad máxima que puede alcanzar el proyecto.",
+      "El porcentaje de utilidades que exige el directorio.",
+      "La tasa de inflación proyectada para el periodo."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué es una prima de riesgo?",
+    options: [
+      "El seguro que se contrata para proteger la inversión inicial.",
+      "Un porcentaje adicional que se suma a la tasa base para compensar la incertidumbre del proyecto: a mayor riesgo, mayor rentabilidad exigida y mayor tasa de descuento.",
+      "Un descuento que se aplica a la tasa base cuando el proyecto es riesgoso.",
+      "El pago extraordinario que reciben los socios al cierre del proyecto."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es la fórmula para calcular el valor presente de un flujo futuro?",
+    options: [
+      "Valor Presente = Flujo × (1 + tasa)^n.",
+      "Valor Presente = Flujo + tasa × n.",
+      "Valor Presente = Flujo / (1 + tasa)^n, donde n es el número de períodos.",
+      "Valor Presente = Flujo × tasa / n."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué indica el Valor Actual Neto (VAN)?",
+    options: [
+      "El número de años que tarda el proyecto en recuperar la inversión.",
+      "La rentabilidad porcentual que genera el proyecto.",
+      "El total de ventas proyectadas del proyecto.",
+      "Cuánto valor gana o pierde un proyecto hoy, después de recuperar la inversión inicial y exigir una rentabilidad mínima (tasa de descuento)."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿En qué unidad se expresa el VAN y qué rol cumple en la decisión de inversión?",
+    options: [
+      "Se expresa en dinero ($) y es el indicador principal para tomar decisiones de inversión, ya que mide directamente la creación de valor económico.",
+      "Se expresa en porcentaje (%) y es un indicador complementario.",
+      "Se expresa en años y es un indicador de apoyo enfocado en liquidez.",
+      "Se expresa en unidades producidas y mide la eficiencia operativa."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué es la Tasa Interna de Retorno (TIR)?",
+    options: [
+      "El monto en dinero que gana el proyecto después de recuperar la inversión.",
+      "La rentabilidad porcentual que genera un proyecto; es la tasa de interés que el proyecto paga por la inversión realizada y, matemáticamente, es el valor de r que hace VAN = 0.",
+      "El tiempo que tarda el proyecto en recuperar la inversión inicial.",
+      "La tasa de interés que cobra el banco por financiar el proyecto."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es la limitación de la TIR como indicador según el documento?",
+    options: [
+      "No puede calcularse si el proyecto tiene más de dos años.",
+      "Solo sirve para proyectos financiados completamente con deuda.",
+      "Muestra qué tan rentable es el proyecto, pero no cuánto valor crea; es un indicador complementario al VAN.",
+      "Se expresa en dinero, por lo que no permite comparar proyectos de distinto tamaño."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué indica el Período de Recuperación Actualizado (PRA)?",
+    options: [
+      "La rentabilidad porcentual máxima exigible al proyecto.",
+      "El valor económico creado por el proyecto al día de hoy.",
+      "El nivel de riesgo crítico del proyecto en la matriz de riesgos.",
+      "Cuánto tiempo tarda un proyecto en recuperar la inversión, considerando el valor del dinero en el tiempo."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cómo se interpreta el PRA?",
+    options: [
+      "PRA corto: menor riesgo, más atractivo; PRA largo: mayor riesgo, menos atractivo.",
+      "PRA corto: mayor riesgo; PRA largo: menor riesgo.",
+      "PRA positivo: se acepta el proyecto; PRA negativo: se rechaza.",
+      "PRA mayor que la tasa de descuento: se acepta el proyecto."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿En qué se enfoca el PRA como indicador?",
+    options: [
+      "En la rentabilidad total del proyecto.",
+      "En liquidez y riesgo, no en rentabilidad total; es un indicador de apoyo para decisiones de inversión.",
+      "En la creación de valor económico medida en dinero.",
+      "En la estructura de financiamiento del proyecto."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Según el documento, ¿cuál es la jerarquía de importancia entre VAN, TIR y PRA?",
+    options: [
+      "TIR es el principal, VAN es complementario y PRA es de apoyo.",
+      "PRA es el principal, TIR es complementario y VAN es de apoyo.",
+      "VAN es el indicador principal (decisión), TIR es indicador complementario (rentabilidad porcentual) y PRA es indicador de apoyo (riesgo y liquidez).",
+      "Los tres indicadores tienen exactamente la misma importancia en la decisión."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué determina el presupuesto de materias primas?",
+    options: [
+      "Las horas de trabajo directo necesarias para la producción.",
+      "Los costos de producción no atribuibles a unidades específicas.",
+      "Los flujos de efectivo período a período.",
+      "La cantidad de materiales necesarios para la producción y las compras requeridas para mantener los niveles de inventario establecidos por la política."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál de los siguientes elementos considera el presupuesto de mano de obra?",
+    options: [
+      "Horas estándar por unidad producida, unidades a producir, costo por hora de mano de obra, y disponibilidad de personal y turnos.",
+      "Consumo por unidad producida e inventario final deseado de materias primas.",
+      "Depreciación de maquinaria, mantenimiento y servicios básicos de planta.",
+      "Períodos de superávit o déficit de efectivo."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué proyecta el presupuesto de costos indirectos de fabricación?",
+    options: [
+      "Las compras de materias primas del periodo.",
+      "Los costos de producción que no son directamente atribuibles a unidades específicas, como depreciación de maquinaria, mantenimiento, servicios básicos de planta, supervisión y materiales indirectos.",
+      "Los sueldos del personal de ventas y administración.",
+      "Los ingresos operacionales esperados del proyecto."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Por qué el presupuesto de caja es el presupuesto financiero más crítico, especialmente en pymes?",
+    options: [
+      "Porque determina el precio de venta de los productos.",
+      "Porque reemplaza al balance general y al estado de resultados.",
+      "Porque proyecta los flujos de efectivo período a período, permitiendo identificar períodos de superávit o déficit, planificar financiamiento temporal, evaluar viabilidad financiera y evitar situaciones de iliquidez que comprometan la operación.",
+      "Porque es el único presupuesto exigido por el Servicio de Impuestos Internos."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué son las matrices de análisis de riesgo?",
+    options: [
+      "Fórmulas matemáticas que calculan automáticamente el VAN de un proyecto.",
+      "Tablas contables que registran las pérdidas históricas de la empresa.",
+      "Software especializado que elimina los riesgos de un proyecto.",
+      "Herramientas visuales que permiten identificar, evaluar y priorizar los riesgos de un proyecto, considerando la probabilidad de que el riesgo ocurra y el impacto que tendría si ocurre."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuáles son los dos factores clave que considera una matriz de riesgo?",
+    options: [
+      "La probabilidad de que el riesgo ocurra y el impacto que tendría si ocurre.",
+      "La rentabilidad y la liquidez del proyecto.",
+      "El costo de capital y el costo de oportunidad.",
+      "La inversión inicial y el valor de rescate."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "Según la combinación de probabilidad e impacto, ¿cuándo un riesgo se clasifica como 'Crítico'?",
+    options: [
+      "Cuando tiene baja probabilidad y bajo impacto.",
+      "Cuando tiene alta probabilidad y alto impacto.",
+      "Cuando tiene alta probabilidad y bajo impacto.",
+      "Cuando no puede ser identificado ni medido."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué logran las matrices de riesgo respecto del riesgo de un proyecto?",
+    options: [
+      "Eliminan completamente el riesgo del proyecto.",
+      "Garantizan que el VAN del proyecto sea positivo.",
+      "No eliminan el riesgo, pero ayudan a gestionarlo mejor mediante identificación sistemática y priorización racional.",
+      "Transfieren el riesgo a los acreedores del proyecto."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "Según el documento, ¿cómo se relacionan las matrices de riesgo con los indicadores financieros?",
+    options: [
+      "Reemplazan al VAN y la TIR en la decisión de inversión.",
+      "Reducen la tasa de descuento de los proyectos riesgosos.",
+      "Convierten automáticamente un VAN negativo en positivo.",
+      "Ayudan a explicar por qué la tasa de descuento es más alta en proyectos riesgosos, justificar la construcción de escenarios pesimistas, entender por qué un proyecto con VAN positivo igual puede ser riesgoso y diseñar planes de contingencia."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "Según el documento, 'un proyecto rentable no siempre es seguro'. ¿Qué integra la evaluación financiera completa?",
+    options: [
+      "Rentabilidad y riesgo.",
+      "Ventas y costos.",
+      "Activos y pasivos.",
+      "Ingresos y patrimonio."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué es el análisis de sensibilidad?",
+    options: [
+      "Una técnica para medir la satisfacción de los clientes del proyecto.",
+      "Una herramienta que permite evaluar qué tan sensible es un proyecto frente a cambios en sus variables clave, respondiendo a la pregunta: ¿qué pasa con el resultado del proyecto si algo cambia?",
+      "Un método contable para registrar las variaciones del tipo de cambio.",
+      "Un informe que mide el clima laboral del equipo del proyecto."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿En qué consiste el análisis univariado?",
+    options: [
+      "En cambiar todas las variables del proyecto al mismo tiempo.",
+      "En evaluar un único escenario optimista del proyecto.",
+      "En cambiar una sola variable a la vez y mantener todas las demás constantes, para entender el impacto individual de cada variable sobre el resultado del proyecto (generalmente el VAN).",
+      "En analizar el proyecto considerando una sola fuente de financiamiento."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuáles son las variables típicas que se analizan en evaluación financiera básica mediante análisis de sensibilidad?",
+    options: [
+      "Número de empleados, horarios de trabajo, clima organizacional y rotación.",
+      "Tipo de cambio, inflación, PIB y tasa de desempleo.",
+      "Activos corrientes, pasivos de largo plazo, patrimonio y reservas.",
+      "Ventas (ingresos), costos operacionales, inversión inicial y tasa de descuento."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué sucede si mediante el análisis univariado una variable crítica cambia desfavorablemente y el VAN se vuelve negativo?",
+    options: [
+      "Se identifica un riesgo importante que requiere estrategias de mitigación.",
+      "El proyecto debe abandonarse de inmediato sin más análisis.",
+      "Se debe reducir la tasa de descuento para que el VAN vuelva a ser positivo.",
+      "Se debe ignorar esa variable y continuar con el escenario base."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿En qué se diferencia el análisis de escenarios del análisis univariado?",
+    options: [
+      "El análisis de escenarios cambia una variable a la vez, mientras el univariado cambia varias.",
+      "El análisis de escenarios evalúa simultáneamente múltiples variables bajo supuestos optimistas, base y pesimistas, visualizando situaciones integrales donde varias variables cambian al mismo tiempo.",
+      "No hay diferencia: ambos métodos son idénticos.",
+      "El análisis de escenarios solo aplica a proyectos tecnológicos."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuáles son los tres escenarios típicos en el análisis de escenarios?",
+    options: [
+      "Escenario inicial, intermedio y final.",
+      "Escenario de corto, mediano y largo plazo.",
+      "Escenario base (supuestos más probables), escenario optimista (variables favorables) y escenario pesimista (variables desfavorables).",
+      "Escenario contable, financiero y tributario."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "Según el documento, ¿qué es un proyecto robusto?",
+    options: [
+      "Aquel que tiene la mayor inversión inicial del portafolio.",
+      "Aquel cuya TIR supera el 50% anual.",
+      "Aquel que se financia completamente con capital propio.",
+      "Aquel que genera VAN positivo incluso en escenarios pesimistas razonables."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál de los siguientes es un beneficio del uso de IA en evaluación financiera según el documento?",
+    options: [
+      "Cálculo rápido y preciso de indicadores financieros (VAN, TIR, PRA), simulación de escenarios, reducción de errores matemáticos, comparación rápida de alternativas y generación de visualizaciones.",
+      "Validación automática de la veracidad de los datos ingresados.",
+      "Detección de la intencionalidad ética del usuario.",
+      "Reemplazo completo del criterio profesional del evaluador."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuáles son las limitaciones de la IA en evaluación financiera según el documento?",
+    options: [
+      "No puede calcular el VAN ni la TIR de proyectos complejos.",
+      "No decide por sí misma, no valida la veracidad de los datos ingresados, no evalúa motivaciones o beneficios cualitativos, y no detecta intencionalidad ética.",
+      "Solo funciona con proyectos de menos de tres años.",
+      "No permite generar tablas ni visualizaciones de resultados."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuándo ocurre un dilema ético en la evaluación con IA?",
+    options: [
+      "Cuando la IA comete errores de cálculo en los indicadores.",
+      "Cuando el proyecto tiene VAN negativo en el escenario base.",
+      "Cuando una persona debe elegir entre usar la IA de manera responsable y transparente, o usarla de forma conveniente pero incorrecta, aunque el resultado se vea bien.",
+      "Cuando se usan dos herramientas de IA diferentes para el mismo cálculo."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Cuál es 'la tentación' descrita en el dilema ético del uso de IA en evaluación de proyectos?",
+    options: [
+      "Usar la IA para automatizar los cálculos repetitivos del flujo de fondos.",
+      "Presentar los tres escenarios (base, optimista y pesimista) a los inversionistas.",
+      "Pedirle a la IA que genere visualizaciones más atractivas de los resultados.",
+      "Ajustar supuestos (aumentar ventas, reducir costos, bajar tasa de descuento) para que los resultados sean más atractivos ante inversionistas o bancos, aunque no reflejen la realidad."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "Según el documento, ¿cuál es el verdadero problema ético en el uso de IA para evaluación financiera?",
+    options: [
+      "No es usar IA, sino manipular supuestos, omitir escenarios negativos o no transparentar cómo se obtuvieron los resultados.",
+      "Usar IA en cualquier etapa de la evaluación financiera.",
+      "Utilizar herramientas de IA gratuitas en lugar de versiones pagadas.",
+      "Compartir los resultados de la IA con los inversionistas."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Cuál de las siguientes conductas forma parte del uso ético de la IA en evaluación financiera?",
+    options: [
+      "Presentar únicamente el escenario optimista para asegurar el financiamiento.",
+      "Presentar escenario base, pesimista y optimista; justificar la tasa de descuento con base en riesgo real; declarar explícitamente los supuestos; transparentar limitaciones y riesgos; y validar resultados con criterio profesional.",
+      "Ocultar los riesgos identificados para no alarmar a los inversionistas.",
+      "Dejar que la IA tome la decisión final de inversión."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "Según el documento, ¿cuáles son las consecuencias del uso irresponsable de la IA en evaluación financiera a mediano y largo plazo?",
+    options: [
+      "Mayor rapidez en la aprobación de nuevos proyectos.",
+      "Obtención inmediata de financiamiento sin consecuencias posteriores.",
+      "El proyecto no alcanza los resultados prometidos, pérdida de confianza de inversionistas, problemas financieros y daño reputacional; el error no fue técnico, fue ético.",
+      "Reducción de los costos operacionales del proyecto."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "En el cierre del documento se señala que la presupuestación es una competencia técnica fundamental que también requiere desarrollar otras capacidades. ¿Cuáles?",
+    options: [
+      "Velocidad de cálculo, memorización de fórmulas, manejo de planillas y dominio de software contable.",
+      "Liderazgo, negociación, oratoria y manejo de redes sociales.",
+      "Conocimiento legal, tributario, laboral y ambiental.",
+      "Pensamiento crítico (validar supuestos), visión sistémica (relaciones causa-efecto), responsabilidad ética (transparencia) y criterio profesional (balance entre rentabilidad y liquidez)."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "Según la reflexión final del documento, el uso de herramientas de inteligencia artificial puede potenciar los procesos de presupuestación y evaluación, pero nunca debe reemplazar:",
+    options: [
+      "El juicio profesional, la comprensión contextual y la responsabilidad en la toma de decisiones financieras.",
+      "Las planillas de cálculo tradicionales.",
+      "Los informes impresos exigidos por la gerencia.",
+      "Los sistemas contables heredados de la empresa."
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "Según el cierre del documento, ¿de qué depende el valor del presupuesto como herramienta dinámica de apoyo a la toma de decisiones?",
+    options: [
+      "Del tamaño de la empresa y su número de empleados.",
+      "De la coherencia de sus supuestos, del control continuo y de la capacidad de adaptación frente a cambios del entorno.",
+      "Del software utilizado para elaborarlo.",
+      "De la cantidad de páginas y el nivel de detalle del documento."
+    ],
+    correctIndex: 1
+  }
+]} />

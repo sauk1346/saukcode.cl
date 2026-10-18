@@ -1,0 +1,7 @@
+---
+// Mapping de <img> markdown → SmartFigure con lightbox, como en
+// mdx-components.jsx del sitio Next.
+import SmartFigure from './SmartFigure.jsx';
+const props = Astro.props;
+---
+<SmartFigure client:visible lightbox={true} center={true} {...props} />

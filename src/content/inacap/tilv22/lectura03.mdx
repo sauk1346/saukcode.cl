@@ -1,0 +1,159 @@
+# Desentrañando el ADN del videojuego
+
+Existen múltiples plataformas que permiten desarrollar videojuegos, cada una con características particulares que las hacen más adecuadas según el tipo de proyecto, la experiencia del desarrollador y los objetivos del juego.
+
+## 1. Motores de juego Principales
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Motor", "Descripción"]}
+    rows={[
+        [
+            "**Unity**",
+            "Se ha consolidad como una de las opciones más populares gracias a su versatilidad multiplataforma. Utiliza C\# como lenguaje de programación y cuenta con una comunidad masica, lo que facilita encontrar recursos y soluciones. Es ideal tanto para desarrolladores principiantes como experimentados",
+        ],
+        [
+            "**Unreal Engine**",
+            "Desarrollado por Epic Games, destaca por su capacidad de generar gráficos de alta calidad. Trabaja con C++ y su sistema de Blueprint permite programar visualmente sin código. Es la opción preferida para juegos AAA y proyectos que requieren fidelidad visual excepcional",
+        ],
+        [
+            "**Godot**",
+            "Es un motor open source que ha ganado popularidad recientemente. Utiliza su propio lenguaje GDScript (similar a Python) y es especialmente ligero, haciéndolo excelente para desarrolladores independientes y proyectos 2D",
+        ],
+    ]}
+/>
+
+## 2. Plataformas especializadas
+
+- **GameMaker Studio:** Para desarrollo 2D, ofrece una curva de aprendizaje suave con su lenguaje GML
+- **Construct:** Va aún más lejos con su enfoque visual sin código, perfecto para quienes están dando sus primeros pasos
+
+### Herramientas que complementan el desarrollo
+Múltiples herramientas útiles existen para el desarrollo de videojuegos. 
+
+- Una de las más importantes es **Blender**, un software muy flexible que permite, entre otras funciones, el desarrollo de modelos 3D, texturización y animaciones 3D.
+- Para la edición de imágenes, las más populares en el ámbito de los videojuegos son **Photoshop** y **Krita**. Esta última es una elección bastante recurrente.
+- Para la edición de sonido, **FMOD** y **Audacity** son opciones robustas. 
+
+## 3. Motores y Estructuras clave en los videojuegos
+Como se ha mencionado antes, existen diversos públicos objetivos que consumen productos y servicios de la industria de los videojuegos. Unos prefieren las súper producciones, mientras que otros se inclinan por proyectos más íntimos, de menor escala, pero dedicados a la innovación y la creatividad. 
+
+### Juegos AAA
+<SmartTable
+    tableLayout="auto"
+    headers={["Caracteristica", "Descripción"]}
+    rows={[
+        [
+            "**Presupuesto y financiación**",
+            "La cantidad de presupuesto invertida en todos los procesos de desarrollo de un videojuego es muy alta, financiada por grandes conglomerados empresariales (Microsoft, Nintendo, Sony, por ejemplo). El recurso humano asociado está distribuido en varios países y es altamente especializado"
+        ],
+        [
+            "**Creatividad**",
+            "Existen muchos casos en los que la creatividad en los juegos AAA ha sido recortada por razones comerciales. Tratando de minimizar los riesgos, se repiten fórmulas ya probadas para tratar de garantizar el éxito"
+        ],
+        [
+            "**Distribución**",
+            "En la mayoría de los casos de los juegos AAA la empresa desarrolladora no es la misma que distribuye el juego, ya que la distribución es una etapa altamente especializada, por lo cual existen empresas dedicadas exclusivamente a llevar esto a cabo"
+        ],
+        [
+            "**Calidad visual**",
+            "La calidad gráfica en este caso no es una opción sino una obligación. La calidad de los efectos es de alto rendimiento. En ocasiones, se considera el máximo del presupuesto en este aspecto"
+        ],
+        [
+            "**Motor de desarrollo**",
+            "Parte de los elementos estructurales antes mencionados se ven afectados directa o indirectamente por el motor de desarrollo. En el caso de los juegos AAA, algunos de los motores de desarrollo preferidos son: Unreal Engine, Unity, RE Engine (Capcom), Decima Engine (Guerrilla Games / PlayStation Studios), RAGE (Rockstar Advanced Game Engine) y Frostbite (DICE / EA)"
+        ],
+
+    ]}
+/>
+
+### Juegos Indie
+<SmartTable
+    tableLayout="auto"
+    headers={["Caracteristica", "Descripción"]}
+    rows={[
+        [
+            "**Presupuesto y financiación**",
+            "En este aspecto los presupuestos son bastante acotados y generalmente autofinanciados por los propios desarrolladores. No obstante, también suelen apoyarse en plataformas que promueven los emprendimientos como, por ejemplo, Kickstarter"
+        ],
+        [
+            "**Creatividad**",
+            "Es uno de los aspectos más destacados, ya que la mayoría de los equipos de desarrollo tratan de utilizar elementos creativos e innovadores, explorando nuevas líneas de crecimiento para la industria"
+        ],
+        [
+            "**Distribución**",
+            "Es manejada por los propios equipos desarrolladores, pero también por plataformas especializadas que dejan espacio para su distribución digital, por ejemplo, Steam, Itch.io y Epic Store"
+        ],
+        [
+            "**Calidad visual**",
+            "Generalmente es más simple, pero puede llegar a tener un alto valor artístico. El pixel art ya es considerado uno de sus elementos más característicos"
+        ],
+        [
+            "**Motor de desarrollo**",
+            "Los preferidos son Unity, Godot Engine, GameMaker Studio, RPG Maker y Construct"
+        ],
+
+    ]}
+/>
+
+
+## Actividad de Práctica 01
+
+<Quiz questions={[
+	{
+		question: "Qué caracteriza a los juegos AAA",
+		options: [
+			"Estilo visual pixelado",
+			"Distribución solo en plataformas móviles",
+			"Desarrollo sin motores gráficos",
+			"Alto presupuesto y calidad gráfica"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "Los juegos indie suelen tener distribución digital propia",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Qué motor es común en juegos indie?",
+		options: [
+			"Frostbite",
+			"RAGE",
+			"Godot Engine",
+			"Decima Engine"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Qué lenguaje usa Unity como base?",
+		options: [
+			"JavaScript",
+			"GML",
+			"C++",
+			"Python"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "RPG Maker permite crear juegos sin recursos adicionales",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Qué plataforma usa programación visual y HTML5?",
+		options: [
+			"Unity",
+			"Construct",
+			"GameMaker",
+			"Godot"
+		],
+		correctIndex: 1
+	},
+]} />

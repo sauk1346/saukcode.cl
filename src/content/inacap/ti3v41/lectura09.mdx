@@ -1,0 +1,197 @@
+# Iniciando tu camino RESTful con Django
+
+Una **API** (interfaz de programación de aplicaciones) actúa como un puente que permite que dos sistemas, aplicaciones o componentes de software se comuniquen de forma clara y estructurada. En el desarrollo web moderno, las API son fundamentales porque facilitan la separación entre el *frontend* (la parte visual e interactiva que ve y utiliza el usuario) y el *backend* (donde se gestionan la lógica de negocio, la autenticación y el acceso a la base de datos).
+
+Gracias a las API, una aplicación creada en **JavaScript** o **React** puede conectarse fácilmente con un servidor construido en **Django**, que se encarga de procesar solicitudes, almacenar datos y devolver respuestas precisas.
+
+## 1. ¿Qué es una API RESTful?
+
+Es un tipo particular de API que sigue los principios de la arquitectura REST (*Representational State Transfer*), un estándar ampliamente adoptado para diseñar servicios web escalables, simples y eficientes.
+
+- En REST, todo se considera un recurso único, identificado mediante una URL.
+- Generalmente, los datos se devuelven en JSON, un formato estructurado, liviano y fácil de interpretar por aplicaciones cliente.
+- *Stateless* (sin estado). Cada solicitud del cliente al servidor incluye toda la información necesaria para procesarla, sin depender de solicitudes anteriores. El servidor no almacena el estado de la comunicación entre peticiones.
+
+## 2. Ejemplo de diseño
+
+Un *endpoint* en una API es como una “puerta” específica a través de la cual un cliente (por ejemplo, una aplicación web o móvil) puede acceder a un recurso y realizar acciones sobre él. En otras palabras, es la **URL exacta** donde se recibe la solicitud y desde donde se envía la respuesta.
+
+En el caso de una **API RESTful**, los *endpoints* son esenciales porque definen las operaciones que se pueden realizar sobre los recursos disponibles en el servidor. Cada *endpoint* está asociado a un **método HTTP** (GET, POST, PUT, DELETE, etc.) que indica la acción a ejecutar.
+
+Imagina que estamos desarrollando una API para una biblioteca digital. Así podrían verse sus *endpoints*:
+
+<SmartTable
+    tableLayout="fixed"
+    headers={["Endpoints","Descripción"]}
+    rows={[
+        [
+            "**GET** /api/libros/",
+            "Obtener la lista completa de libros"
+        ],
+        [
+            "**POST** /api/libros/",
+            "Crear un nuevo libro"
+        ],
+        [
+            "**GET** /api/libros/5/",
+            "Obtener la información detallada del libro con ID 5"
+        ],
+        [
+            "**PUT** /api/libros/5/",
+            "Reemplazar toda la información del libro con ID 5"
+        ],
+        [
+            "**DELETE** /api/libros/5",
+            "Eliminar el libro con ID 5"
+        ]
+    ]}
+/>
+
+Este tipo de estructura estandarizada permite que las APIs RESTful sean fáciles de entender, utilizar, mantener y escalar, ya que cualquier desarrollador familiarizado con REST puede interactuar con ellas de forma intuitiva.
+
+## 3. Ventajas de Django para API RESTful
+
+1. Este tipo de estructura estandarizada permite que las APIs RESTful sean fáciles de entender, utilizar, mantener y escalar, ya que cualquier desarrollador familiarizado con REST puede interactuar con ellas de forma intuitiva. 
+
+2. En aplicaciones modernas —como una SPA (Single Page Application) hecha en React o una app móvil— no basta con que el servidor envíe páginas HTML completas. Lo más eficiente es que el backend (por ejemplo, Django) funcione como servidor de datos y el frontend actúe como consumidor de esos datos. Para lograrlo, se construyen API RESTful, que permiten esta comunicación de forma estándar y escalable.
+
+3. Aunque es posible crear una API RESTful en Django puro usando vistas convencionales (HttpResponse, JsonResponse), el proceso se complica rápidamente cuando se requiere manejar múltiples endpoints, autenticación, validación de datos, serialización, paginación y otros elementos propios de una API profesional. Django REST Framework (DRF) es un conjunto de herramientas que amplía las capacidades de Django, facilitando la creación de APIs RESTful robustas, seguras y eficientes.
+
+**Principales Ventajas**
+
+<SmartTable
+    tableLayout="fixed"
+    headers={["Ventajas","Descripción"]}
+    rows={[
+        [
+            "**Reutilización de modelos y lógica existente**",
+            "Si ya tienes modelos en Django (por ejemplo, Producto, Usuario, Pedido), puedes exponerlos como recursos de la API sin duplicar código"
+        ],
+        [
+            "**Serialización automática de datos**",
+            "Los *serializers* de DRF convierten objetos de Django a JSON (y viceversa), simplificando el intercambio de datos entre *backend* y *frontend*"
+        ],
+        [
+            "**Vistas especializadas para APIs**",
+            "DRF ofrece *views* y *viewsets* (APIView, GenericAPIView, ModelViewSet) que agilizan la creación de *endpoints* CRUD"
+        ],
+        [
+            "**Sistema integrado de autenticación y permisos**",
+            "Incluye autenticación por token, JWT, permisos por roles, y más, sin tener que desarrollarlo desde cero"
+        ],
+        [
+            "**Filtros, búsquedas y paginación integrados**",
+            "Permite implementar búsquedas por nombre, filtros por categoría, y resultados paginados de forma sencilla"
+        ],
+        [
+            "**Interfaz web de pruebas**",
+            "Ofrece un panel explorador para probar *endpoints* desde el navegador, sin herramientas externas como Postman"
+        ],
+        [
+            "**Documentación clara y comunidad activa**",
+            "DRF cuenta con una documentación extensa y una comunidad que comparte soluciones y ejemplos"
+        ],
+    ]}
+/>
+
+## 4. Configuración inicial de Django REST Framework (DRF)
+
+### Paso 1: Instalar el paquete
+```sh
+pip install djangorestframework
+```
+
+### Paso 2: Agregar DRF a la configuración del proyecto
+
+En tu archivo `settings.py`, incluye `rest_framework` dentro de `Installed_APPS`
+```python
+#settings.py
+INSTALLED_APPS = [
+    ...
+    ...
+    ...
+    'rest_framework',
+]
+```
+
+### Paso 3: Crear una vista básica con DRF
+
+En `views.py`, define tu primera vista utilizando los decoradores de DRF:
+
+```python
+#views.py
+from rest_framework.decorators import api_view 
+from rest_framework.response import Response 
+
+@api_view(['GET']) 
+def saludo(request): 
+  return Response({"mensaje": "¡Hola desde tu primera API RESTful con Django!"}) 
+```
+
+### Paso 4: Registrar la vista en las rutas
+En `urls.py` agrega la ruta para acceder a tu vista:
+
+```python
+#urls.py
+from django.urls import path 
+from .views import saludo 
+
+urlpatterns = [ 
+    path('api/saludo/', saludo), 
+] 
+```
+
+### Paso 5: Probar la API
+Inicia el servidor y visita en tu navegador o cliente API:
+
+```sh
+http://localhost:8000/api/saludo/ 
+```
+
+Verás como respuesta:
+
+```sh
+{"mensaje": "¡Hola desde tu primera API RESTful con Django!"} 
+```
+
+
+# Actividad de Práctica 06
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es una ventaja de Django REST Framework?",
+		options: [
+			"Reemplaza el sistema de modelos de Django por completo",
+			"Transforma Django en un framework de frontend",
+			"Evitar el uso de autenticación y permisos",
+			"Permite la serialización automática de datos entre Django y JSON"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Para qué sirve una API RESTful en desarrollo web?",
+		options: [
+			"Facilitar la comunicación estándar entre frontend y backend",
+			"Almacenar archivos multimedia del usuario",
+			"Generar únicamente páginas HTML completas en el servidor",
+			"Evitar que se utilicen métodos HTTP en el backend"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "La ruta configurada para la vista saludo es /api/saludos/",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "Para usar Django REST Framework debes instalar djangorestframework e incluirlo en INSTALLED_APPS",
+		options: [
+			"Verdadero",
+			"Falso",
+		],
+		correctIndex: 0
+	},
+]} />

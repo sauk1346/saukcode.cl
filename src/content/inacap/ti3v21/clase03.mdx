@@ -1,0 +1,57 @@
+# Ejercicios Python (3)
+
+## Ejercicio 01
+
+Desarrolle una funcion que reciba 3 números como arugmento y retorne el mayor de los 3. No utilizar listas
+
+<Solution>
+```python
+def numero_mayor(num1, num2, num3):
+    if (num1 > num2) and (num1 > num3):
+        num_max = num1
+    elif (num2 > num3):
+        num_max = num2
+    else:
+        num_max = num3
+
+    return num_max
+
+print(numero_mayor(2,3,1))
+```
+<TerminalOutput withBg>
+{`3`}
+</TerminalOutput>
+</Solution>
+
+## Ejercicio 02
+
+Desarrolle un programa que ingrese 10 notas, del 1 al 7.
+
+- Debe validar cada nota
+- Si está fuera del rango vuelva a solicitar
+- Permita sacar promedio
+- No utilizar listas
+
+<Solution>
+```python
+cant_notas = 10
+suma_notas = 0
+
+for i in range(cant_notas):
+    nota_valida = False
+    while(not nota_valida):
+        try:
+            nota = float(input(f"Ingrese nota [{i+1} de 10]: "))
+            if (nota < 1.0) or (nota > 7.0):
+                print("Error. Valor no válido")
+            else:
+                suma_notas = suma_notas + nota
+                nota_valida = True
+        except ValueError:
+            print("Error. Valor no válido")
+
+prom_notas = suma_notas / cant_notas
+
+print(f"Promedio Notas: {prom_notas:.2f}")
+```
+</Solution>

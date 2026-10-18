@@ -1,0 +1,133 @@
+# Calculo de clases de dirección
+
+El objetivo principal de la utilización de diversas técnicas de gestión es **maximizar el uso de los recursos de red**.
+
+## Direccionamiento
+
+Existe una diferencia en nombre de host, direcciones IP y rutas de redes
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Términos', 'Descripción']}
+	rows={[
+		['Nombre de Host', 'Indica un nombre lógico de un host dentro de la red'],
+		['Dirección', 'Indica dónde se encuentra ubicado el host'],
+		['Ruta', 'Indica cómo es posible llegar a acceder al host']
+	]}
+/>
+
+- El **protocolo IP** solo administra las direcciones IP, lo que corresponde a **Dirección**. Hacer corresponder **Nombres** es función de los protocolos de mayor nivel.
+
+## Dirección IP
+
+1. Permite **identificar la red** en la que se encuentra el host.
+2. Permite **ubicar la posición** del host dentro de la red.
+
+La dirección IP consiste en un **dígito binario** de 32 bits, que se pueden abreviar como 4 octetos o 4 Bytes
+
+<SmartFigure
+	id="direccion-ip-en-bits-y-bytes"
+	src="/inacap/ti3v35/images/fig02.png"
+	alt="Dirección IP en bits y bytes"
+	caption="Dirección IP en bits y bytes"
+	size="medium"
+/>
+
+## Subredes y Máscaras de subred
+
+1. **¿Cuándo se necesitan subredes?:** Cuando la red es muy grande y el número de hosts dentro de ella es significativo, o cuando se necesita instalar una nueva red adicionoal a la existente, se puede mejorar la funcionalidad dividiendo la red en subredes mediante la técnica de *subnetting*.
+
+2. **Técnica de Subnetting:** Consiste en dividir el número de hosts en 2 partes
+    1. Una parte para identificar la red
+    2. Otra parte para identificar la máquina
+
+La decisión de cómo realizar la división depende del responsable de red, Sin la intervención del ISP (*Internet Solutions Provider*)
+
+3. **Comunicación de las subredes:** Podemos tener asignadas una identificación de red que, normalment, son de las clases B o C y dividirla en dos o más subredes (según nuestras necesidades). Estas subredes serán comunicadas por dispositivos tipo routers.
+
+**Consideraciones:**
+- El conjunto formado por la subred y el número de hosts se conoce como dirección o partes locales.
+- Un host remoto verá la dirección local como el número de hosts.
+- El número de bits correspondientes a la subred y al número de hosts son elegidos libremente por el administrador.
+
+
+### Máscara de subred
+Parte de la técnica de subnetting. Indica a los dispositivos qué parte de la dirección IP es el número de red, incluyendo la subred, y qué parte es la correspondiente al host
+
+**Ejemplo**
+
+1. Me dan el siguiente dato: 10.0.0.0/8
+2. Puedo obtener la máscara de red mediante `/8`, el cual indica que la máscara está formada por 8 bits de izquierda a derecha
+3. Entonces la máscara en binario es: `11111111.00000000.00000000.00000000`
+4. Transformándola a número decimal, la máscara es: `255.0.0.0.0`
+
+## Tipos de Redes
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Clase', 'Máscara', 'Binario']}
+	rows={[
+		['A', '255.0.0.0', '11111111.00000000.00000000.00000000'],
+		['B', '255.255.0.0', '11111111.11111111.00000000.00000000'],
+		['C', '255.255.255.0', '11111111.11111111.11111111.00000000']
+	]}
+/>
+
+- Si tomamos una dirección IP clase "B" y queremos dividirla en subredes, tomaremos los 16 bits de la parte local y pondremos en estado "1" la parte que queremos represente a las subredes.
+- Por ejemplo, si queremos 8 subredes 
+
+
+# Actividad de Práctica 02
+
+<Quiz questions={[
+	{
+		question: "Un administrador desea crear cuatro subredes a partir de la dirección de red 192.168.1.0/24. ¿Cuál es la dirección de red y la máscara de subred de la segunda subred utilizable?",
+		options: [
+			"Subred 192.168.1.32 Máscara de subred 255.255.255.240",
+			"Subred 192.168.1.8 Máscara de subred 255.255.255.224",
+			"Subred 192.168.1.128 Máscara de subred 255.255.255.192",
+			"Subred 192.168.1.64 Máscara de subred 255.255.255.193"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Cuántas direcciones de host se encuentran disponibles en la red 192.168.10.128/27?",
+		options: [
+			"30",
+			"32",
+			"60",
+			"62"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Cuántas direcciones de host están disponibles en la red 142.19.128.0 con la máscara de subred 255.255.252.0?",
+		options: [
+			"510",
+			"512",
+			"1022",
+			"1024"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "El administrador de un sitio debe hacer que una red específica del sitio debe admitir 126 hosts. ¿Cuál de las siguientes máscaras de subred tiene la cantidad de bits de host requerida?",
+		options: [
+			"255.255.255.224",
+			"255.255.255.240",
+			"255.255.255.0",
+			"255.255.255.128"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Cuál es la cantidad de direcciones IP de host disponibles en una red que tiene la máscara /26?",
+		options: [
+			"62",
+			"16",
+			"254",
+			"32"
+		],
+		correctIndex: 0
+	},
+]} />

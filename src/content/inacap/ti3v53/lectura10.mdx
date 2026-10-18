@@ -1,0 +1,88 @@
+# Asegurando el acceso: protocolos de protección de cuentas
+
+El control de acceso en cloud computing es un componente esencial de la seguridad moderna, ya que **protege los recursos digitales** y garantiza que solo identidades autorizadas interactúen con la información en entornos cada vez más complejos y distribuidos.
+
+## 1. Controles de acceso en cloud computing
+
+Los controles de acceso en la nube se fundamentan en la **identidad** y en la asignación precisa de **permisos**. Su propósito es comprender la evolución hacia modelos más dinámicos que fortalecen la seguridad, reducen riesgos y permiten una gestión eficiente en entorno *cloud* y *multicloud*.
+
+### Control de acceso: Identidad y mínimo privilegio
+
+El control de acceso en cloud computing ha evolucionado desde modelos perimetrales tradicionales hacia un enfoque dinámico centrado en la identidad. En este contexto, el **modelo de mínimo privilegio** (**PoLP**, según sus siglas en inglés) se consolida como el pilar fundamental, estableciendo que cada usuario, dispositivo o servicio debe contar únicamente con los permisos estrictamente necesarios para cumplir su función, sin accesos adicionales.
+
+La aplicación de este enfoque en entornos multicloud permite **reducir de forma significativa la superficie de ataque**, limitando el impacto potencial ante la posible exposición de credenciales. Al restringir y segmentar los accesos, se dificulta la propagación de amenazas y se fortalece la postura de seguridad general de la organización.
+
+Para una gestión eficiente de identidades y permisos, las organizaciones implementan modelos como el control de acceso basado en roles (RBAC, según sus siglas en inglés) y el control de acceso basado en atributos (ABAC, según sus siglas en inglés). Mientras el RBAC asigna permisos según funciones laborales definidas, el ABAC incorpora un nivel adicional de inteligencia al evaluar condiciones dinámicas en tiempo real, como la ubicación del usuario, el momento del acceso o el estado del dispositivo. La combinación de ambos modelos permite diseñar **políticas de seguridad flexibles**, adaptativas y altamente rigurosas frente a comportamientos anómalos.
+
+## 2. Gestión de identidades en la nube
+
+Las organizaciones modernas gestionan de forma segura las identidades y los accesos en entornos cloud complejos. Se enfoca en la centralización de la autenticación, el fortalecimiento de mecanismos de seguridad y la verificación continua como pilares fundamentales del control de acceso en la nube.
+
+### Federación de identidades e inicio de sesión único
+
+La federación de identidades y el inicio de sesión único (SSO), constituyen un **componente crítico en arquitecturas modernas** de **cloud computing**, especialmente en entornos **multicloud** como AWS, Azure y GCP, donde la gestión de credenciales resulta ineficiente y riesgosa.
+
+**Pasos**
+
+1. Centralización de la autenticación en un único proveedor de identidad confiable
+2. Uso de protocolos estándar como SAML 2.0 y OpenID Connect
+3. Reducción de la gestión de múltiples contraseñas por plataforma
+4. Mejora de la experiencia del usuario y disminución de errores operativos
+5. Aplicación centralizada de autenticación de múltiples factores (MFA)
+
+### Auditoría de accesos y gestión de identidades
+
+El control de acceso no finaliza con la asignación de permisos, requiere de **supervisión constante** mediante procesos de revisión de acceso y gestión de identidades privilegiadas, fundamentales para mantener la seguridad en la nube. Esta supervisión constante implica:
+
+- Monitoreo continuo del uso de permisos asignados
+- Revocacióń automática de accesos no utilizados
+- Registro de intentos de acceso y cambios de configuración
+- Generación de logs para auditoría y trazabilidad
+- Cumplimiento de normativas internacionales como ISO 27001
+- Implementación de un ciclo de verificación continua como base de la seguridad moderna
+
+### Arquitectura para el control de accesos en cloud
+
+La arquitectura de control de accesos en la nube define cómo se gestionan las identidades y cómo estas se relacionan con los proveedores de servicios cloud.
+
+Existen distintos enfoques arquitectónicos que permiten habilitar la autenticación y autorización de manera segura y eficiente
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Arquitecturas", "Descripción"]}
+    rows={[
+        [
+            "**Free-Form**",
+            "Los proveedores o fuentes de identidad internas, generalmente servidores de directorio, se **conectan directamente** con los proveedores de servicios en la nube; Cada sistema establece su propia relación de confianza de forma individual, lo que puede resultar funcional en entornos simples, pero complejo en administrar a gran escala"
+        ],
+        [
+            "**Hub and Spoke**",
+            "Los proveedores o fuentes de identidad unternos se comunican promero con un **intermediario central** o repositorio; Este componente actúa como proveedor de identidad principal y se encarga de la federación con los distintos proveedores de servicios en la nube, facilitando una gestión centralizada, coherente y más segura de los accesos"
+        ],
+    ]}
+/>
+
+---
+
+## Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "En una empresa multicloud, ¿qué principio limita permisos para reducir impactos ante credenciales comprometidas?",
+		options: [
+            "Modelo perimetral tradicional con controles generales",
+            "Asignación amplia de permisos por conveniencia operativa",
+            "Modelo de mínimo privilegio aplicado estrictamente",
+            "Gestión manual de accesos sin segmetación",
+		],
+		correctIndex: 2
+	},
+    {
+		question: "En una empresa multicloud, ¿la centralización de autenticación reduce riesgos operativos y de seguridad?",
+		options: [
+            "Verdadero",
+            "Falso",
+		],
+		correctIndex: 0
+	},
+]}/>

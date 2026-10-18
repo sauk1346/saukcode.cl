@@ -1,0 +1,203 @@
+# Técnicas de levantamiento de requerimientos y co-creación
+
+Los requerimientos se puede definir como:
+
+> Descripción de los servicios que ofrece un sistema y sus restricciones operativas. Tambien reflejan las necesidades de los clientes.
+
+## 1. Tipos de Requerimientos
+
+### Funcionales
+Son declaraciones de los servicios que debe proporcionar el sistema, de la manera en que éste debe reaccionar a entradas particulares.
+
+También pueden declarar explícitamente lo que el sistema no debe hacer. Es importante que describa el **"¿qué?"**
+
+### No funcionales
+Resctricciones de los servicios o funciones ofrecidos por el sistema.
+
+Incluyen:
+
+- Restricciones de tiempo
+- sobre el proceso de desarrollo y estándares.
+
+Dentro de estos requerimientos encontramos todo lo referente a fiabilidad, el tiempo de respuesta y la capacidad de almacenamiento. Características que de una u otra forma pueden limitar al sistema.
+
+<SmartFigure
+	id="requerimientos-no-funcionales"
+	src="/inacap/ti3v43/images/fig11.png"
+	alt="Requerimientos No funcionales"
+	caption="Requerimientos No funcionaless"
+	size="large"
+/>
+
+Entonces, los requerimientos no funcionales suelen referir a:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Referencia", "Descripción"]}
+    rows={[
+        [
+            "**Usabilidad**",
+            "factores humanos, ayuda, documentación"
+        ],
+        [
+            "**Confiabilidad**",
+            "frecuencia de fallas, tiempo de recuperación"
+        ],
+        [
+            "**Performance**",
+            "tiempo de respuesta, tasa de procesamiento, precisión, capacidad de carga"
+        ],
+        [
+            "**Soportabilidad**",
+            "adaptabilidad, mantenibilidad, configurabilidad"
+        ],
+        [
+            "**Interfaz**",
+            "restricciones en la comunicación con sistemas externos"
+        ]
+    ]}
+/>
+
+## 2. Requerimientos del software
+Un requisitos del software es una **propiedad** que debe ser exhibida por algo, con el fin de **resolver** algún **problema en el mundo real**.
+
+Una propiedad esencial de todos los requerimientos de software es que sean **verificables** aun cuando sea difícil o costoso verificarlos. Por ejemplo:
+
+- La verificación del requisito de productividad en un centro de llamadas puede requerir el desarrollo de software de simulación.
+
+Típicamente, los requerimientos de software se identifican de forma única para que puedan ser sometidos a **control de la gestión** de la configuración durante todo el ciclo de vida del software.
+
+## 3. Técnicas de co-creación y levantamiento de requerimientos
+
+Son fundamentales en el desarrollo de productos y sistemas, ya que permiten recopilar información precisa sobre las necesidades de los usuarios y los objetivos del proyecto.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Técnicas co-creación", "Descripción"]}
+    rows={[
+        [
+            "**Entrevistas**",
+            "Reuniones estructuradas con stakeholders para obtener información sobre sus necesidades y expectativas"
+        ],
+        [
+            "**Talleres de co-creación**",
+            "Sesiones colaborativas. Desarrolladores y clientes trabajan juntos para generar ideas y soluciones, asegurando que todas las partes tengan voz en el proceso"
+        ],
+        [
+            "**Encuestas y cuestionarios**",
+            "Para recopilar información de un gran número de usuarios, obteniendo datos cualitativos/cuantitativos sobre las necesidades y preferencias del cliente"
+        ],
+        [
+            "**Observación**",
+            "Estudio del entorno y actividades del usuario, para comprender mejor sus necesidades y cómo interactúan con el sistema"
+        ],
+        [
+            "**Focus groups**",
+            "Permiten explorar diferentes perspectivas y obtener insights valiosos"
+        ],
+        [
+            "**Análisis de documentación**",
+            "Manuales, reportes y especificaciones. Permite extraer información relevante sobre los requerimientos del sistema"
+        ],
+        [
+            "**Mapeo de historias de usuario**",
+            "Organizar historias de usuario en un mapa visual. Ayuda a priorizar las funcionalidades y entender el flujo del sistema"
+        ],
+        [
+            "**Prototipos**",
+            "Creación de versiones preliminares del sistema que permiten a los clientes visualizar y probar funcionalidades antes de la implementación final. Facilitan la retroalimentación temprana y la validación de los requerimientos"
+        ]
+    ]}
+/>
+
+## 4. Validación y participación del cliente
+Son esenciales para asegurar que los requerimientos capturados sean precisos y completos. Algunas prácticas recomendadas son
+
+### Revisiones periódicas
+Mediante reuniones regulares con el cliente para mantener una comunicación abierta y continua.
+
+- Revisar el progreso
+- Validar requerimientos
+- Identificar problemas tempranos
+- Fomentar la transparencia
+
+### Feedback iterativo
+Ciclos de retroalimentación para asegurar que el producto final cumpla con las expectativas del cliente.
+
+- Prototipos y demostraciones
+- Ciclos de retroalimentación
+- Adaptabilidad
+- Mejora continua
+
+### Documentación clara
+Asegura que todas las partes tengan una comprensión común del proyecto.
+
+- Registro de requerimientos
+- Historial de cambios
+- Accesibilidad
+- Claridad y precisión
+
+### Beneficios de validación y participacion cliente
+
+- Alineación de expectativas
+- Reducción de riesgos
+- Mejora de la calidad
+- Satisfacción del cliente
+
+## 5. Actores del proceso
+Funciones de las personas que participan en el proceso de requerimientos. Este proceso es **fundamentalmente interdisciplinario**, y el especialista de requerimientos tiene que mediar entre el dominio de la parte interesada y la del ingeniero del software.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Actores", "Descripción"]}
+    rows={[
+        [
+            "**Usuarios**",
+            "Los que van a operar el software. A menudo es un grupo heterogeneo que involucra a personas con diferentes roles y necesidades"
+        ],
+        [
+            "**Clientes**",
+            "Los que han encargado el software o que representan el mercado objetivo de software"
+        ],
+        [
+            "**Analistas de mercado**",
+            "A menudo la gente de marketing es necesaria para establecer las necesidades del mercado y para actuar como clientes de prueba o filtro"
+        ],
+        [
+            "**Reguladores**",
+            "Muchos campos de aplicación, como la banca y el transporte público, están regulados. El software en estos dominios debe cumplir con los requerimientos de las autoridades reguladoras"
+        ],
+        [
+            "**Ingenieros de software**",
+            "Tienen un interés legítimo en sacar provecho de desarrollo de software, por ejemplo, la reutilización de componentes o de otros productos"
+        ],
+    ]}
+/>
+
+No siempre es posible satisfacer perfectamente las necesidades de todas las partes interesadas, y es el trabajo del ingeniero de software **negociar compensaciones** que sean aceptables para los principales grupos de interés y dentro de las limitaciones presupuestarias, técnicas, normativas y otros.
+
+
+# Actividad de Práctica 06
+
+<Quiz questions={[
+	{
+		question: "¿Cuál de las siguientes técnicas se utiliza para organizar las historias de usuario en un mapa visual, mostrando cómo se relacionan entre sí y con objetivos del proyecto?",
+		options: [
+			"Focus Groups",
+			"Mapeo de historias de usuario",
+			"Análisis de documentación",
+			"Talleres de cocreación"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Cuál de las siguientes técnicas implica la creación de versiones preliminares del sistema para que los clientes puedan visualizar y probar funcionalidades antes de la implementación final?",
+		options: [
+			"Encuestas y cuestionarios",
+			"Entrevistas",
+			"Prototipos",
+			"Observación"
+		],
+		correctIndex: 2
+	},
+]} />

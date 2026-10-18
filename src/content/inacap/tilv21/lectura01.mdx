@@ -1,0 +1,96 @@
+# Conceptos básicos en el Desarrollo de Software
+
+## Material Complementario
+
+- [Glosario](/inacap/tilv01/docs/glosario01.pdf)
+- [Introducción y Fundamentos de Testing y Software](/inacap/tilv01/docs/guia01.pdf)
+- [Principales Diferencias entre Verificación y Validación](/inacap/tilv01/docs/guia02.pdf)
+
+
+## ¿Qué es la Verificación?
+Es un proceso sistemático de comprobación del software durante su desarrollo. Este proceso incluye reuniones, inspecciones, revisiones y recorridos, para evaluar planos, códigos, documentos, especificaciones y requisitos, entre otros aspectos
+
+**Pasos**
+
+1. Verificación de los requisitos
+2. Verificación del diseño
+3. Verificación del código
+
+## ¿Qué es la Validación?
+Es un proceso utilizado para evaluar el software de acuerdo con las demandas del negocio o del cliente, tanto durante como al final del proceso de desarrollo. Este proceso revisa la aplicación final para comprobar si cumple las expectativas y los requisitos de los clientes.
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Tipo de prueba', 'Descripción']}
+	rows={[
+		[
+			'**Pruebas de caja blanca**',
+			'Ayudan a validar la aplicación mediante una serie de entradas de datos predefinidas. Los probadores comparan la salida de la aplicación con los valores de entrada para verificar si el software produce los resultados esperados'
+		],
+		[
+			'**Pruebas de caja negra**',
+			'Se consideran 3 variables importantes: los valores de entrada, los valores de salida esperados y los valores de salida reales'
+		]
+	]}
+/>
+
+## Errores, defectos y fallas
+
+- **Errores:** Son acciones humanas que conducen a problemas potenciales de software
+- **Defectos:** Son problemas reales en el código o diseño del software que pueden detectarse durante las pruebas
+- **Fallas:** son problemas observados por los usuarios finales cuando utilizan el software en un entorno de producción
+
+# Actividad de Práctica 01
+
+<Quiz questions={[
+  {
+    question: "¿Cuál es la diferencia principal entre un defecto y una falla en el software?",
+    options: [
+      "Un defecto se produce durante la ejecución del software, mientras que una falla ocurre durante la fase de desarrollo.",
+      "Un defecto es un resultado esperado, mientras que una falla es un resultado inesperado.",
+      "Un defecto es una acción humana incorrecta, mientras que una falla es un problema de diseño.",
+      "Un defecto es la causa de un problema, mientras que una falla es su manifestación visible durante la ejecución del software."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué métodos se utilizan comúnmente en el proceso de validación?",
+    options: [
+      "Evaluación de planos y especificaciones.",
+      "Revisiones, inspecciones y recorridos.",
+      "Verificación de requisitos y verificación del diseño.",
+      "Pruebas de caja negra y pruebas de caja blanca."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál de las siguientes afirmaciones describe mejor la validación en las pruebas de software?",
+    options: [
+      "Se realiza antes de la verificación.",
+      "Es un proceso estático de revisión del diseño, el código y los documentos.",
+      "Es un proceso dinámico de evaluación del software en función de las demandas del cliente.",
+      "No requiere la ejecución de código."
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué es un error en el contexto del desarrollo de software?",
+    options: [
+      "La manifestación visible de un problema cuando el software se ejecuta.",
+      "Una acción humana que produce un resultado incorrecto o inesperado.",
+      "Una imperfección en el código que causa un mal funcionamiento del software.",
+      "Un problema que surge durante la fase de pruebas del software."
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué pregunta clave debe responderse durante las pruebas de verificación?",
+    options: [
+      "¿El software funciona correctamente y cumple los requisitos del cliente?",
+      "¿Estamos desarrollando el producto preciso, según las especificaciones?",
+      "¿El software funciona correctamente en el entorno real?",
+      "¿El producto final es efectivo y cumple con las especificaciones?"
+    ],
+    correctIndex: 1
+  }
+]} />

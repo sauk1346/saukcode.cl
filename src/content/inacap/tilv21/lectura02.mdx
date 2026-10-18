@@ -1,0 +1,157 @@
+# Requisitos y calidad de software según Estándar ISO/IEC 25000
+
+Requisitos y calidad juegan roles cruciales en la planificación y ejecución de pruebas
+
+## Requisitos
+Sirven como base para desarrollar casos de prueba y escenarios de prueba. Los testers los utilizan para asegurarse de que el software se comporta según lo esperado y cumple con las necesidades de usuario final.
+
+1. **Funcionales:** Describen qué debe hacer el sistema. Incluyen funciones, características y comportamientos que el software debe implementar
+2. **No Funcionales:** Describen cómo debe comportarse el sistema. Incluyen aspectos como rendimiento, seguridad, usabilidad, fiabilidad, etc.
+
+<SmartFigure
+	id="requisitos-funcionales-no-funcionales"
+	src="/inacap/tilv21/images/fig01.png"
+	alt="Requisitos funcionales y No funcionales"
+	caption="Requisitos funcionales y No funcionales"
+	size="large"
+/>
+
+## Calidad
+- Grado en que el software cumple con los requisitos especificados y las expectativas del cliente.
+- Se evalúa en términos de varios **atributos**
+
+1. **Correctitud:** El software hace lo que se supone que debe hacer*
+2. **Fiabilidad:** El software funciona de manera consistente sin fallos bajo condiciones específicas
+3. **Usabilidad:** El software es fácil de usar y entender para el usuario final
+4. **Eficiencia:** El software utiliza de manera óptima los recursos del sistema, como el tiempo de procesamiento y la memoria
+5. **Mantenibilidad:** El software es fácil de mantener, corregir y mejorar
+6. **Portabilidad:** El software puede usarse en diferentes entornos o plataformas
+
+
+## Medición de Calidad: Métodos
+
+### Revisiones y auditorías
+1. **Revisiones de código:** Evaluación manual del código fuente para identificar errores, defectos y áreas de mejora
+2. **Revisiones de diseño:** Análisis de la arquitectura y el diseño del software para asegurar que se cumplen los principios y patrones adecuados
+3. **Auditorías de procesos:** Evaluación del proceso de desarrollo de software para asegurar que se siguen las prácticas y estándares establecidos
+
+### Pruebas de software
+1. **Pruebas unitarias:** Verificación de componentes individuales del software para asegurar que funcionan correctamente
+2. **Pruebas de integración:** Evaluación de la interacción entre diferentes módulos o componentes para asegurar que funcionan juntos sin problemas
+3. **Pruebas de sistema:** Evaluación del sistema completo para asegurar que cumpĺe con los requisitos funcionales y no funcionales
+4. **Pruebas de aceptación:** Validación del software con respecto a los requisitos del usuario final para asegurar que cumple con sus expectativas
+
+### Análisis estático y dinámico
+1. **Análisis estático:** Evaluación del código fuentes sin ejecutarlo para identificar posibles errores, vulnerabilidades de seguridad y violaciones de estándares de codificación
+2. **Análisis dinámico:** Evaluación del software en ejecución para medir su comportamiento y rendimiento bajo diferentes condiciones
+
+### Evaluación de mantenibilidad
+1. **Medición de complejidad:** Evaluación de la complejidad del código utilizando métricas como la complejidad ciclomática
+2. **Análisis de modularidad:** Evaluación de la modularidad y cohesión del código para asegurar que es fácil de mantener y extender
+
+## Medición de Calidad: Métricas
+
+### Métricas de fiabilidad
+Se usan para medir la capacidad del software para funcionar correctamente y sin fallos durante un tiempo específico
+
+1. **Tasa de fallos:** Número de fallos por unidad de tiempo durante la operación del software
+2. **Tiempo medio entre fallos (MTBF):** *Mean Time Between Failures*. Promedio del tiempo entre fallos del sistema
+3. **Tiempo medio para reparar (MTTR)**: *Mean Time To Repair*. Promedio de tiempo necesario para reparar un fallo 
+
+### Métricas de rendimiento
+Evalúan cómo responde y se comporta el software bajo diversas condiciones de carga
+
+1. **Tiempo de respuesta:** Tiempo que tarda el sistema en responder una solicitud
+2. **Throughput (rendimiento):** Número de transacciones o tareas que el sistema puede procesar en un tiempo determinado
+3. **Uso de recursos:** Medición del uso de CPU, memoria, ancho de banda, etc
+
+### Métricas de usabilidad
+Miden qué tan fácil es para los usuarios aprender y usar el software
+
+1. **Tasa de error del usuario:** Número de errores cometidos por el usuario al interactuar con el software
+2. **Tiempo de aprendizaje:** Tiempo necesario para que los usuarios aprendan a usar el software de manera efectiva
+3. **Satisfacción del usuario:** Evaluación de la satisfacción del usuario mediante encuestas y retroalimentación
+
+### Métricas de mantenibilidad
+Evalúan la facilidad con la que el software puede ser mantenido y mejorado
+
+1. **Complejidad ciclomática:** Medición de la complejidad de código en términos de número de caminos de ejecución
+2. **Tasa de cambio:** Frecuencia con la que el código es modificado
+3. **Tasa de defectos:** Número de defectos encontrados por línea de código
+
+### Métricas de seguridad
+Miden la capacidad del software para protegerser contra amenazas y vulnerabilidades
+
+1. **Número de vulnerabilidades:** Número de vulnerabilidades de seguridad identificadas en el software
+2. **Tiempo de resolución de vulnerabilidades:** Tiempo necesario para identificar y corregir las vulnerabilidades
+
+## ISO/IEC 25000
+
+- Conocida como SQuaRE (*Software product quality requirements and evaluation*)
+- Proporciona un marco de referencia para la evaluación de la calidad del software
+- Guía a las organizaciones en la especificación y evaluación de la calidad del software mediante un conjunto coherente de normas, modelos y prácticas
+
+# Actividad de Práctica 02
+
+<Quiz questions={[
+  {
+    question: "Según ISO/IEC 25010, ¿cuál de las siguientes no es una subcaracterística de la calidad del software?",
+    options: [
+      "Portabilidad",
+      "Seguridad",
+      "Correctitud",
+      "Eficiencia de rendimiento"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué son los requisitos en el contexto del desarrollo de software?",
+    options: [
+      "Las herramientas utilizadas para desarrollar el software",
+      "Las especificaciones y condiciones que el software debe cumplir",
+      "Las métricas para medir la calidad del software",
+      "Las actividades realizadas durante las pruebas de software"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál de las siguientes no es una característica evaluada para medir la calidad del software?",
+    options: [
+      "Fiabilidad",
+      "Complejidad",
+      "Correctitud",
+      "Usabilidad"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Qué tipo de requisitos describen qué debe hacer el sistema?",
+    options: [
+      "Requisitos de rendimiento",
+      "Requisitos de usabilidad",
+      "Requisitos funcionales",
+      "Requisitos no funcionales"
+    ],
+    correctIndex: 2
+  },
+  {
+    question: "¿Qué se evalúa durante una auditoría de proceso en el contexto del testing de software?",
+    options: [
+      "El cumplimiento de prácticas y estándares establecidos",
+      "La arquitectura del software",
+      "El diseño del software",
+      "El código fuente del software"
+    ],
+    correctIndex: 0
+  },
+  {
+    question: "¿Qué es el ciclo de vida del software según la norma ISO/IEC 12207?",
+    options: [
+      "Un conjunto de procesos para el desarrollo y mantenimiento del software",
+      "Un sistema para el control de versiones del software",
+      "Una metodología específica de desarrollo ágil",
+      "Una secuencia de pruebas de software"
+    ],
+    correctIndex: 0
+  }
+]} />

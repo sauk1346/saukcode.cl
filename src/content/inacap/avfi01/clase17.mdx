@@ -1,0 +1,172 @@
+# Ejercicio 2: Indicadores de Rentabilidad
+
+Calcule los indicadores de rentabilidad de un proyecto de inversión, considerando los siguientes datos:
+
+**Datos:**
+1. Flujos de Caja estimados:
+    - Año 1: \$3.000.000, Año 2: \$3.300.000, Año 3: \$3.700.000, Año 4: \$4.100.000
+2. Inversión Inicial: \$6.000.000
+3. Tasa de descuento: 20\%
+
+**Calcule:**
+1. Valor Actual Neto (VAN)
+2. Tasa Interna de Retorno (TIR)
+3. Período de Recuperación de la Inversión (PRI / Payback)
+4. Retorno sobre la Inversión (ROI)
+
+<Solution title="Solución Ejercicio 2">
+
+**Paso 1: Valor Actual Neto (VAN)**
+
+<P indent={2}>
+El VAN trae todos los flujos de caja futuros a valor presente, descontándolos a la tasa exigida (20%), y les resta la inversión inicial.
+</P>
+
+$$
+VAN = \sum_{t=1}^{n} \dfrac{FC_t}{(1+i)^t} - I_0
+$$
+
+<SmartTable
+    id="tablaVAN"
+    tableLayout="auto"
+    caption="Flujos de Caja Descontados al 20%"
+    headers={["Año", "Flujo de Caja", "Cálculo", "Flujo Descontado"]}
+    rows={[
+        ["1", "\$3.000.000", "$\\dfrac{3.000.000}{(1,2)^1}$", "\$2.500.000"],
+        ["2", "\$3.300.000", "$\\dfrac{3.300.000}{(1,2)^2}$", "\$2.291.667"],
+        ["3", "\$3.700.000", "$\\dfrac{3.700.000}{(1,2)^3}$", "\$2.141.204"],
+        ["4", "\$4.100.000", "$\\dfrac{4.100.000}{(1,2)^4}$", "\$1.977.238"],
+        { cells: ["**Suma Flujos Descontados**", "", "", "**\$8.910.109**"], highlight: true }
+    ]}
+/>
+
+$$
+\begin{align*}
+VAN &= 8.910.109 - 6.000.000\\[6pt]
+VAN &= \$2.910.109
+\end{align*}
+$$
+
+<Callout type="tip" title="Decisión">
+Como **VAN > 0** (\$2.910.109), se **acepta el proyecto**: los flujos futuros descontados superan la inversión inicial.
+</Callout>
+
+---
+
+**Paso 2: Tasa Interna de Retorno (TIR)**
+
+<P indent={2}>
+La TIR es la tasa de descuento que hace que el VAN sea exactamente **0**; representa la rentabilidad máxima que se le puede exigir al proyecto. No se despeja algebraicamente (requiere iteración o calculadora financiera), por lo que se comprueba probando con una tasa candidata.
+</P>
+
+$$
+0 = -I_0 + \sum_{t=1}^{n} \dfrac{FC_t}{(1+TIR)^t}
+$$
+
+<SmartTable
+    id="tablaDecisionTIR"
+    tableLayout="auto"
+    caption="Criterio de Decisión (TIR vs. tasa exigida i)"
+    headers={["Condición", "Decisión"]}
+    rows={[
+        ["TIR > i", "Acepta Proyecto"],
+        ["TIR < i", "Rechaza Proyecto"]
+    ]}
+/>
+
+<P indent={2}>
+**Prueba (solo teoría):** se verifica qué ocurre si la tasa fuera **30%**.
+</P>
+
+<SmartTable
+    id="tablaPruebaTIR"
+    tableLayout="auto"
+    caption="Prueba de flujos descontados al 30%"
+    headers={["Año", "Flujo de Caja", "Cálculo", "Flujo Descontado"]}
+    rows={[
+        ["1", "\$3.000.000", "$\\dfrac{3.000.000}{(1,3)^1}$", "\$2.307.692"],
+        ["2", "\$3.300.000", "$\\dfrac{3.300.000}{(1,3)^2}$", "\$1.952.663"],
+        ["3", "\$3.700.000", "$\\dfrac{3.700.000}{(1,3)^3}$", "\$1.684.115"],
+        ["4", "\$4.100.000", "$\\dfrac{4.100.000}{(1,3)^4}$", "\$1.435.524"],
+        { cells: ["**Suma Flujos Descontados**", "", "", "**\$7.379.994**"], highlight: true }
+    ]}
+/>
+
+$$
+7.379.994 - 6.000.000 = \$1.379.994
+$$
+
+<Callout type="note" title="Interpretación">
+Al descontar al 30% el resultado sigue siendo **positivo** (\$1.379.994), es decir, el VAN todavía no llega a 0. Esto confirma que la **TIR real es mayor a 30%** (y, en cualquier caso, mayor a la tasa exigida del 20%), por lo que el proyecto se **acepta** también bajo este criterio.
+</Callout>
+
+---
+
+**Paso 3: Período de Recuperación de la Inversión (PRI / Payback)**
+
+<P indent={2}>
+Indica el número de años que tarda el proyecto en recuperar la inversión inicial, usando los flujos **ya descontados** del Paso 1.
+</P>
+
+$$
+PB = a + \dfrac{I_0 - b}{FC_n}
+$$
+
+<P indent={3}>
+donde $a$ = año anterior a la recuperación, $b$ = flujo acumulado hasta el año $a$, y $FC_n$ = flujo descontado del año en que se recupera la inversión.
+</P>
+
+<SmartTable
+    id="tablaAcumuladoPRI"
+    tableLayout="auto"
+    caption="Flujo Descontado Acumulado"
+    headers={["Año", "Flujo Descontado", "Acumulado", "¿Cubierta la inversión?"]}
+    rows={[
+        ["1", "\$2.500.000", "\$2.500.000", "No"],
+        ["2", "\$2.291.667", "\$4.791.667", "No"],
+        { cells: ["3", "\$2.141.204", "\$6.932.871", "**Sí**"], highlight: true }
+    ]}
+/>
+
+<P indent={2}>
+La inversión (\$6.000.000) queda cubierta entre el año 2 (\$4.791.667 acumulados) y el año 3 (\$6.932.871 acumulados), por lo que $a = 2$, $b = $ \$4.791.667 y $FC_3 = $ \$2.141.204.
+</P>
+
+$$
+\begin{align*}
+PB &= 2 + \dfrac{6.000.000 - 4.791.667}{2.141.204}\\[8pt]
+PB &= 2 + \dfrac{1.208.333}{2.141.204}\\[8pt]
+PB &= 2 + 0,56\\[8pt]
+PB &= 2,56 \text{ años}
+\end{align*}
+$$
+
+<Callout type="tip" title="Conclusión">
+La inversión se recupera en **2,56 años** (2 años y aproximadamente 7 meses).
+</Callout>
+
+---
+
+**Paso 4: Retorno sobre la Inversión (ROI)**
+
+<P indent={2}>
+El ROI mide, en términos porcentuales, el beneficio neto obtenido (el VAN) respecto a la inversión total realizada.
+</P>
+
+$$
+ROI = \left(\dfrac{\text{Beneficio Neto}}{\text{Inversión Total}}\right) \times 100
+$$
+
+$$
+\begin{align*}
+ROI &= \left(\dfrac{2.910.109}{6.000.000}\right) \times 100\\[8pt]
+ROI &= 0,485 \times 100\\[8pt]
+ROI &= 48,5\%
+\end{align*}
+$$
+
+<Callout type="tip" title="Conclusión">
+Por cada peso invertido, el proyecto genera un **48,5%** de retorno neto, confirmando —junto con el VAN positivo, la TIR superior al 20% exigido y un payback de 2,56 años— que conviene **aceptar el proyecto**.
+</Callout>
+
+</Solution>

@@ -1,0 +1,478 @@
+# Modelos
+
+- Es la fuente única y definitiva de información sobre sus datos
+- Contiene los campos y comportamientos esenciales de los datos que está almacenando
+- Generalmente, cada modelo se asigna a una sola tabla de base de datos
+
+> En `models.py` se construirán **clases y atributos**. Esas clases y atributos representarán **tablas y campos** de una base de datos
+
+**Ejemplo:**
+```python
+#./models.py
+from django.db import models
+
+class Person(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length30) 
+```
+
+- `first_name` y `last_name` son atributos de la clase `Person`
+- Django los convierte en **campos** del modelo **Person**, por lo que cada una representará una columna de la base de datos
+
+
+## 1. Creación de Modelo
+Crear un nuevo proyecto llamado `proyectomodelo`. Agregar un modelo llamado `Person`.
+
+1. **Crear nuevo proyecto:** Llamarlo `proyectomodelo`  
+    ```sh
+    django-admin startproject proyectomodelo
+    cd proyectomodelo
+    ```
+
+2. **Crear app:** Llamarla `core`
+    ```sh
+    python manage.py startapp core
+    ```
+
+3. **Configuración Inicial:** Agregar `core` a `proyectomodelo` en `settings.py`
+    ```python
+    #./proyectomodelo/settings.py
+    from pathlib import Path
+    ...
+    ...
+    INSTALLED_APPS = [
+        ...
+        ...
+        "core"
+    ...
+    ...
+    ```
+
+4. **Configurar Modelos:** Crear una clase `Person`
+    ```python
+    #./core/models.py
+    from django.db import models
+
+    class Person(models.Model):
+        nombre = models.CharField(max_length=50, help_text="Indica tus 2 nombres")
+        apellido = models.CharField(max_length=50, help_text="Indica tus 2 apellidos")
+        edad = models.IntegerField(help_text="Indica tu edad")
+    ```
+
+5. **Configuración Base de datos (1):** Generar un script intermedio entre las clases de modelos y bases de datos
+    > Este comando debe ser ejecutado cada vez que se cree un nuevo modelo, o se realice una modificación a un modelo existente
+    ```sh
+    python manage.py makemigrations
+    ```
+    <TerminalOutput>
+    {`Migrations for 'core':
+    core/migrations/0001_initial.py
+        + Create model Person`}
+    </TerminalOutput>
+
+6. **Configuración Base de datos (2):** Subir el script generado anteriormente a la base de datos
+    ```sh
+    python manage.py migrate
+    ```
+    <TerminalOutput>
+    {`Operations to perform:
+        Apply all migrations: admin, auth, contenttypes, core, sessions
+    Running migrations:
+        Applying core.0001_initial... OK`}
+    </TerminalOutput>
+
+## 2. Modificar Modelo
+Cambiar el nombre del modelo `Person` a `Persona`
+
+1. **Configurar Modelos:** Se utiliza la clase `Meta`, para realizar cambios sin destruir el historial modificaciones
+    - se crea la clase `Meta` dentro de la clase a modificar
+    - se utiliza el atributo `db_table` para cambiar el nombre
+    ```python
+    #./core/models.py
+    from django.db import models
+
+    class Person(models.Model):
+        nombre = models.CharField(max_length=50, help_text="Indica tus 2 nombres")
+        apellido = models.CharField(max_length=50, help_text="Indica tus 2 apellidos")
+        edad = models.IntegerField(help_text="Indica tu edad")
+
+        class Meta:
+            db_table = 'Persona'
+    ```
+
+2. **Configurar Base de datos (1):** Generar un script con los cambios realizados
+    ```sh
+    python manage.py makemigrations
+    ```
+    <TerminalOutput>
+    {`Migrations for 'core':
+        core/migrations/0002_alter_person_table.py
+          ~ Rename table for person to Persona`}
+    </TerminalOutput>
+
+3. **Configurar Base de datos (2):** Subir el script con los cambios, a la base de datos
+    ```sh
+    python manage.py migrate
+    ```
+    <TerminalOutput>
+    {`Operations to perform:
+        Apply all migrations: admin, auth, contenttypes, core, sessions
+      Running migrations:
+        Applying core.0002_alter_person_table... OK`}
+    </TerminalOutput>
+
+## 3. Módulo Admin de Django
+- Una forma de acceder a la información de una base de datos es a través de aplicativos externos, como algún gestor de Base de datos (DB Browser SQLite)
+- Otra alternativa es acceder a través del módulo de administración Django (Admin)
+- Se puede ahorrar mucho tiempo de desarrollo, facilitando las pruebas de los modelos y sus datos
+
+### Importar Modelos a módulo Admin
+Agregar los modelos creados a `admin.py`
+
+```python
+#./core/admin.py
+from django.contrib import admin
+from .models import Person
+
+# Register your models here.
+admin.site.register(Person)
+```
+
+### Acceso al módulo Admin
+
+1. **Crear Superusuario:** Utilizar el comando `createsuperuser` y llenar los campos solicitados
+    ```sh
+    python manage.py createsuperuser
+    ```
+    <TerminalOutput>
+    {`Username (leave blank to use 'sauk'): antonio
+    Email address: antonio@example.cl
+    Password: antoniomorales123
+    Password (again): antoniomorales123
+    Superuser created successfully.`}
+    </TerminalOutput>
+
+2. **Realizar Pruebas:** Levantar el servidor y verificar la ruta de admin
+    ```sh
+    http://localhost:8000/admin/
+    ```
+
+### Agregar Datos en el Admin
+
+- Una vez accedido al módulo Admin, se pude agregar manualmente los datos a través del GUI
+
+<SmartFigure
+	id="modulo-admin"
+	src="/inacap/ti3v41/images/fig015.png"
+	alt="Módulo Admin"
+	caption="Módulo Admin"
+	size="large"
+/>
+
+### Modificar Presentación Lista de Datos en el Admin
+Al agregar datos de personas, éstas aparecen en la lista como objetos:
+
+<SmartFigure
+	id="lista-defecto"
+	src="/inacap/ti3v41/images/fig016.png"
+	alt="Lista por defecto"
+	caption="Lista por defecto"
+	size="large"
+/>
+
+Para mejorar la presentación, se necesita modificar la clase `Person` utilizando el método `__str__`
+
+```Python
+#./core/models.py
+from django.db import models
+
+class Person(models.Model):
+    nombre = models.CharField(max_length=50, help_text="Indica tus 2 nombres")
+    apellido = models.CharField(max_length=50, help_text="Indica tus 2 apellidos")
+    edad = models.IntegerField(help_text="Indica tu edad")
+
+    class Meta:
+        db_table = 'Persona'
+
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}"
+```
+
+<SmartFigure
+	id="lista-mejorada"
+	src="/inacap/ti3v41/images/fig017.png"
+	alt="Lista mejorada"
+	caption="Lista mejorada"
+	size="large"
+/>
+
+### Modificar Presentación del Nombre del Modelo en el Admin
+<SmartFigure
+	id="nombre-con-mas-datos"
+	src="/inacap/ti3v41/images/fig018.png"
+	alt="Nombre por defecto con 2 o más datos"
+	caption="Nombre 'persons' por defecto con 2 o más datos"
+	size="large"
+/>
+
+- Por defecto, Django muestra el nombre del modelo en inglés: **Person** (singular) y **Persons** (plural)
+- En el menú lateral del admin aparece **"Persons"** (plural en inglés)
+- Para tener nombres en español como **"Persona"** y **"Personas"**, usamos `verbose_name` y `verbose_name_plural` en la clase `Meta`
+
+```python
+#./core/models.py
+from django.db import models
+
+class Person(models.Model):
+    nombre = models.CharField(max_length=50, help_text="Indica tus 2 nombres")
+    apellido = models.CharField(max_length=50, help_text="Indica tus 2 apellidos")
+    edad = models.IntegerField(help_text="Indica tu edad")
+
+    class Meta:
+        db_table = 'Persona'
+        # Modificar el nombre del modelo en el admin
+        verbose_name = 'Persona'
+        verbose_name_plural = 'Personas'
+
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}"
+```
+
+<SmartFigure
+	id="nombre-modificado-en-admin"
+	src="/inacap/ti3v41/images/fig019.png"
+	alt="Nombre modificado en Admin"
+	caption="Nombre modificado en Admin"
+	size="large"
+/>
+
+### Modificar la Presentación de Campos en Admin
+- Es posible mejorar la Presentación de los campos en Admin, para que se muestren como si fuera una tabla de base de datos
+- Para esto se crea una clase `PersonAdmin` en `admin.py`
+
+```python
+#./core/admin.py
+from django.contrib import admin
+from .models import Person
+
+# Clase para la definición de los modelos
+class PersonAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'nombre',
+        'apellido',
+        'edad'
+    )
+
+# Register your models here.
+admin.site.register(Person, PersonAdmin)
+```
+
+<SmartFigure
+	id="modificar-campos-en-admin"
+	src="/inacap/ti3v41/images/fig020.png"
+	alt="Modificar Campos en Admin"
+	caption="Modificar Campos en Admin"
+	size="large"
+/>
+
+### Agregar Filtro en Admin
+Se agrega `list_filter` en la clase `PersonAdmin`, para así filtrar por un campo en específico
+
+```python
+#./core/admin.py
+from django.contrib import admin
+from .models import Person
+
+# Clase para la definición de los modelos
+class PersonAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'nombre',
+        'apellido',
+        'edad'
+    )
+    list_filter = (
+        'apellido',
+    )
+
+# Register your models here.
+admin.site.register(Person, PersonAdmin)
+```
+
+<SmartFigure
+	id="filtrado-por-apellido"
+	src="/inacap/ti3v41/images/fig021.png"
+	alt="Filtrado por apellido"
+	caption="Filtrado por apellido"
+	size="large"
+/>
+
+### Organizar y Agrupar Campos en Admin
+
+- `fieldsets`: Divide el formulario en seccciones con títulos, haciendo más legible y organizado el formulario cuando se agrega o edita un objeto
+
+```python
+#./core/admin.py
+from django.contrib import admin
+from .models import Person
+
+# Clase para la definición de los modelos
+class PersonAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'nombre',
+        'apellido',
+        'edad'
+    )
+    list_filter = (
+        'apellido',
+    )
+    fieldsets= (
+        ('Datos Personales', {'fields': ('nombre', 'apellido')}),
+        ('Datos Adicionales', {'fields': ('edad',)}),
+    )
+
+# Register your models here.
+admin.site.register(Person, PersonAdmin)
+```
+
+Ahora es posible acceder a los datos agrupados haciendo click en la **ID**
+
+<SmartFigure
+	id="campos-agrupados"
+	src="/inacap/ti3v41/images/fig022.png"
+	alt="Campos Agrupados"
+	caption="Campos Agrupados"
+	size="large"
+/>
+
+Por ejemplo, si se hace click en **ID=2**
+<SmartFigure
+	id="fieldsets-en-id2"
+	src="/inacap/ti3v41/images/fig023.png"
+	alt="Click en ID=2"
+	caption="fieldsets para ID=2"
+	size="large"
+/>
+
+### Modificar Idioma y Hora en Admin
+Para esto es necesario modificar algunos parámetros en el archivo `settings.py`
+
+```python
+#./proyectomodelo/settings.py
+from pathlib import Path
+...
+...
+LANGUAGE_CODE = "es-CL"
+
+TIME_ZONE = "America/Santiago"
+...
+...
+```
+
+### Modificar Nombre de App en Admin
+Es posible modificar el nombre de la app `core`
+
+<SmartFigure
+	id="nombre-app-defecto"
+	src="/inacap/ti3v41/images/fig024.png"
+	alt="Nombre de App por defecto (core)"
+	caption="Nombre de App por defecto (core)"
+	size="large"
+/>
+
+Para esto es necesario ingresar a `apps.py` y agregar la variable `verbose_name`
+
+```python
+#./core/apps.py
+from django.apps import AppConfig
+
+class CoreConfig(AppConfig):
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "core"
+    verbose_name = "Aplicación de Personas"
+```
+
+<SmartFigure
+	id="nombre-app-modificado"
+	src="/inacap/ti3v41/images/fig025.png"
+	alt="Nombre de App modificado"
+	caption="Nombre de App modificado"
+	size="large"
+/>
+
+## 4. Ejercicios
+
+### Ejercicio 01
+
+Agregar el campo `email` al modelo `Persona`
+
+1. **Configurar Modelos:** agregar atributo `email` a clase `Person`
+    ```python
+    #./core/models.py
+    from django.db import models
+
+    class Person(models.Model):
+        nombre = models.CharField(max_length=50, help_text="Indica tus 2 nombres")
+        apellido = models.CharField(max_length=50, help_text="Indica tus 2 apellidos")
+        edad = models.IntegerField(help_text="Indica tu edad")
+        email = models.EmailField(null=True, blank=True, help_text="Ingresa tu correo")
+        
+        class Meta:
+            db_table = 'Persona'
+            # Modificar el nombre del modelo en el admin
+            verbose_name = 'Persona'
+            verbose_name_plural = 'Personas'
+
+        def __str__(self):
+            return f"{self.nombre} {self.apellido}"
+    ```
+
+2. **Configurar Admin:** Agregar el campo `email` a la clase `PersonAdmin`
+    ```python
+    #./core/admin.py
+    from django.contrib import admin
+    from .models import Person
+
+    # Clase para la definición de los modelos
+    class PersonAdmin(admin.ModelAdmin):
+        list_display = (
+            'id',
+            'nombre',
+            'apellido',
+            'edad',
+            'email'
+        )
+        list_filter = (
+            'apellido',
+        )
+        fieldsets= (
+            ('Datos Personales', {'fields': ('nombre', 'apellido')}),
+            ('Datos Adicionales', {'fields': ('edad','email')}),
+        )
+
+    # Register your models here.
+    admin.site.register(Person, PersonAdmin)
+    ```
+
+3. **Configurar Base de datos:** Crear archivos de migración con los cambios realizados y aplicarlos a la base de datos
+    ```sh
+    python manage.py makemigrations
+    ```
+    <TerminalOutput>
+    {`Migrations for 'core':
+    core/migrations/0003_alter_person_options_person_email.py
+        ~ Change Meta options on person
+        + Add field email to person`}
+    </TerminalOutput>
+
+    ```sh
+    python manage.py migrate
+    ```
+    <TerminalOutput>
+    {`Operations to perform:
+    Apply all migrations: admin, auth, contenttypes, core, sessions
+    Running migrations:
+    Applying core.0003_alter_person_options_person_email... OK`}
+    </TerminalOutput>

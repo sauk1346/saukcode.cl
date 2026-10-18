@@ -1,0 +1,115 @@
+# Técnicas de cálculo VLSM
+
+1. Identificar los Requisitos de la Red: Determinar el número de subredes y la cantidad de hosts por subred.
+2. Asignar Direcciones a las Subredes: Comenzar con la subred más grande y usar la máscara de subred adecuada.
+3. Calcular la Máscara de Subred: Usar la fórmula, donde es el número de bits de host.
+
+## Ejemplo 01
+Supongamos que necesitamos **dividir la red** `192.168.1.0/24` en 3 subredes con los siguientes requisitos:
+
+- Subred A: 50 hosts
+- Subred B: 25 hosts
+- Subred C: 10 hosts
+
+1. **Ordenar por tamaño** (mayor a menor)
+
+	1. Subred A: 50 hosts
+	2. Subred B: 25 hosts
+	3. Subred C: 10 hosts
+
+2. **Calcular bits necesarios para cada subred**
+
+$$
+\begin{aligned} 
+    (2^n - 2) \ge hosts\, requeridos
+\end{aligned}
+$$
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Subred', 'Hosts Req.', 'Cálculo', 'Bits Host (n)', 'Hosts Disponibles', 'Máscara']}
+	rows={[
+		['A', '50', '$2^6 - 2 = 62$', '6', '62', '/26'],
+		['B', '25', '$2^5 - 2 = 30$', '5', '30', '/27'],
+		['C', '10', '$2^4 - 2 = 14$', '4', '14', '/28']
+	]}
+/>
+
+3. **Calcular saltos para cada máscara**
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Subred', 'Máscara', 'Valor octeto', 'Salto (256 - valor)', 'Direcciones totales']}
+	rows={[
+		['A', '/26', '192', '256 - 192 = 64', '64'],
+		['B', '/27', '224', '256 - 224 = 32', '32'],
+		['C', '/28', '240', '256 - 240 = 16', '16']
+	]}
+/>
+
+4. **Asignar subredes secuencialmente**
+
+<SmartTable
+	tableLayout="fixed"
+	headers={['Subred', 'Red', 'Primera Útil', 'Última Útil', 'Broadcast', 'Hosts Útiles']}
+	rows={[
+		['A', '192.168.1.0', '192.168.1.1', '192.168.1.62', '192.168.1.63', '62'],
+		['B', '192.168.1.64', '192.168.1.65', '192.168.1.94', '192.168.1.95', '30'],
+		['C', '192.168.1.96', '192.168.1.97', '192.168.1.110', '192.168.1.111', '14']
+	]}
+/>
+
+# Actividad de Práctica 03
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es el primer paso para aplicar VLSM en una red?",
+		options: [
+			"Asignar direcciones a las subredes",
+			"Calcular la máscara de subred",
+			"Configurar los ruteadores",
+			"Identificar los requisitos de la red"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Cuál es la máscara de subred adecuada para una subred que necesita 50 hosts?",
+		options: [
+			"/25 (255.255.255.128)",
+			"/26 (255.255.255.192)",
+			"/27 (255.255.255.224)",
+			"/28 (255.255.255.240)"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Qué significa CIDR en el contexto del direccionamiento IP?",
+		options: [
+			"Configuración de Dispositivos de Red",
+			"Classless Inter-Domain Routing",
+			"Conexión de Internet para Redes",
+			"Control de Direcciones de Red"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Cuál es la máscara de subred en notación CIDR para 255.255.255.224?",
+		options: [
+			"/24",
+			"/25",
+			"/27",
+			"/28"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Cuál es el rango de IPs para una subred con máscara de subred /27 en una red 192.168.10.0?",
+		options: [
+			"192.168.10.0 - 192.168.10.31",
+			"192.168.10.0 - 192.168.10.63",
+			"192.168.10.32 - 192.168.10.63",
+			"192.168.10.0 - 192.168.10.127"
+		],
+		correctIndex: 0
+	},
+]} />

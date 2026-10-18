@@ -1,0 +1,271 @@
+# Situación de Modelación 04: Crecimiento de Bacterias
+
+## Material
+- [sm14.pdf](/inacap/mvfm01/docs/sm14.pdf)
+
+## Actividad 01
+La persona que lleva a cabo el experimento registra, en cada una de las primeras cinco horas, el número de bacterias existentes en la placa Petri. Al revisar los valores, se percata de que la tasa de crecimiento es de 20% respecto de la cantidad de bacterias en la hora anterior.
+
+**Completa la siguiente tabla, a partir de la información entregada:**
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Hora","Número de bacterias"]}
+  rows={[
+    ["0","100"],
+    ["1",""],
+    ["2",""],
+    ["3",""],
+    ["4",""],
+    ["5",""]
+  ]}
+/>
+
+<Solution>
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Hora","Número de bacterias"]}
+  rows={[
+    ["0","100"],
+    ["1","120"],
+    ["2","133"],
+    ["3","172.8"],
+    ["4","207.36"],
+    ["5","248.83"]
+  ]}
+/>
+
+</Solution>
+## Actividad 02
+
+1. **¿Cuál es la expresión algebraica que modela el número de bacterias en la placa Petri en función del tiempo? ¿Existe una única expresión?**
+
+<Solution>
+La expresión del modelo es:
+
+$$
+\begin{aligned}
+    f(t) = 100 \cdot 1,2^t
+\end{aligned}
+$$
+
+Donde:
+
+- $t$: es el tiempo (horas)
+- $f(t)$: es el número de bacterias
+
+No es la única expresión. Es posible expresar el modelo utilizando la constante Euler como factor de crecimiento utilizando la siguiente fórmula de conversión:
+
+$$
+\begin{aligned}
+    b = e^{\ln(b)}
+\end{aligned}
+$$
+
+La nueva expresión queda entonces:
+
+$$
+\begin{aligned}
+    g(t) &= 100 \cdot e^{\ln(1,2) \cdot t}\\[5pt]
+    &= 100 \cdot e^{0,18 \cdot t}
+\end{aligned}
+$$
+
+Donde:
+
+- $t$: es el tiempo (horas)
+- $g(t)$: es el número de bacterias
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig44.png"
+	alt="Comprobación modelo exponencial g(t)"
+	caption="Comprobación modelo exponencial g(t)"
+	size="large"
+/>
+</Solution>
+
+2. **En la representación gráfica de la función en GeoGebra, identifica e interpreta cada una de las constantes en la expresión.**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig45.svg"
+	alt="Gráfica de modelo exponencial g(t) (ahora f(t))"
+	caption="Gráfica de modelo exponencial g(t) (ahora f(t))"
+	lightbox={true}
+	size="large"
+/>
+
+$$
+\begin{aligned}
+    f(t) =  100 \cdot 1,2^{t}
+\end{aligned}
+$$ 
+
+<SmartTable
+  tableLayout="auto"
+  headers={["Constante","Descripción"]}
+  rows={[
+    ["100","población inicial de bacterias"],
+    ["1,2","factor de crecimiento"]
+  ]}
+/>
+</Solution>
+
+## Actividad 03
+Considera la función planteada en la actividad anterior cuya forma es $f(x)=a \cdot b^x$
+
+1. **¿Cuál será la población de bacterias después de ocho horas?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig46.png"
+	alt="Población bacterias en 8 horas"
+	caption="Población bacterias en 8 horas"
+	size="large"
+/>
+
+$\therefore$ Luego de `8` horas, la población de bacterias es alrededor de `430`.
+</Solution>
+
+2. **¿A qué hora la población como mínimo será de 2800 bacterias?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig47.png"
+	alt="Tiempo mínimo para una población de 2800 bacterias"
+	caption="Tiempo mínimo para una población de 2800 bacterias"
+	size="large"
+/>
+
+$\therefore$ La población será como mínimo de `2800` bacterias luego de `18.28` horas.
+</Solution>
+
+3. **¿Existe algún instante de tiempo específico en el que se alcance exactamente dicha cantidad de bacterias?**
+
+<Solution>
+No, debido a que el tiempo encontrado $t \approx$ `18.28` es una aproximación de un número irracional. Por lo que no es un tiempo exacto.
+</Solution>
+
+## Actividad 04
+Si en el laboratorio desearan una población de 5000 bacterias en 10 horas, responde cada una de las siguientes preguntas de manera independiente:
+
+1. **¿Cuál tendría que ser la población inicial de bacterias?**
+
+<Solution>
+- Se desea una población de 5000 bacterias en 10 horas: $f(10) = 5000$
+- El modelo que describe la tasa de crecimiento de bacterias es: $f(t) = a \cdot 1,2^t$ 
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig48.png"
+	alt="Cálculo de población inicial"
+	caption="Cálculo de población inicial"
+	size="large"
+/>
+
+$\therefore$ La población inicial de bacterias debe ser $a \approx$ `807.53`
+</Solution>
+
+2. **¿Cuál tendría que ser la tasa de crecimiento óptima de las bacterias?**
+
+<Solution>
+- Se utiliza la población inicial de bacterias de Actividad 1: $100$
+- Se desea una población de 5000 bacterias en 10 horas: $f(10) = 5000$
+- El modelo que describe la tasa de crecimiento de bacterias es: $f(t) = 100 \cdot b^t$
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig49.png"
+	alt="Cálculo de tasa de crecimiento"
+	caption="Cálculo de tasa de crecimiento"
+	size="large"
+/>
+
+$\therefore$ La tasa de crecimiento óptima de las bacterias es $\approx$ `1.48`.
+</Solution>
+
+## Actividad 05
+El crecimiento exponencial puede ocurrir durante un tiempo, si hay pocos individuos y muchos recursos. Cuando el número de individuos es lo suficientemente grande, los recursos empiezan a agotarse, haciendo que se desacelere la tasa de crecimiento y provocando, por lo tanto, que el tamaño de la población se nivele o se estabilice.
+
+En este caso, el modelo exponencial es:
+
+$$
+\begin{aligned}
+P(t) = \frac{K \cdot P_0 \cdot e^{rt}}{K+P_{0} \cdot (e^{rt}+1)}
+\end{aligned}
+$$
+
+donde
+
+- $P(t)$ es la población en el instante $t$
+- $K$ es la capacidad de resistencia o de carga en la población o sistema, es decir, el valor máximo que la población puede alcanzar
+- $P_0$ es la población inicial
+- $r$ es la tasa de crecimiento de la población (en tanto por uno)
+- $t$ es el tiempo, en horas
+
+Considera los mismo valores de la población inicial y tasa de crecimiento del modelo de la Actividad 3 y una capacidad de resistencia de 10000 bacterias.
+
+1. **¿Cuál es la expresión algebraica que modela el número de bacterias en la placa Petri en función del tiempo?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig50.png"
+	alt="Modelo exponencial P(t) con población inicial y tasa de crecimiento"
+	caption="Modelo exponencial P(t) con población inicial y tasa de crecimiento"
+	size="large"
+/>
+</Solution>
+
+2. **Representa gráficamente la función en GeoGebra.**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig51.svg"
+	alt="Gráfica de modelo exponencial P(t)"
+	caption="Gráfica de modelo exponencial P(t)"
+	lightbox={true}
+	size="large"
+/>
+</Solution>
+
+3. **¿Cuál será la población de bacterias transcurridas ocho horas? ¿Y transcurridas 40 horas?Compara el modelo con el de la Actividad 03.**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig52.png"
+	alt="Comparación modelos P(t) y f(t)"
+	caption="Comparación modelos P(t) y f(t)"
+	size="large"
+/>
+
+<SmartTable
+  tableLayout="auto"
+  headers={["$t$","$f(t)$","$P(t)$"]}
+  rows={[
+    ["`8`","`429.98`","`93650.81`"],
+    ["`40`","`146977.16`","`100000`"]
+  ]}
+/>
+
+$\therefore$ El modelo $P(t)$ es mucho más rápido, pero el modelo $f(t)$ no tiene límite de crecimiento.
+</Solution>
+
+4. **¿En qué tiempo aproximadamente se podría alcanzar la capacidad de resistencia de la población?**
+
+<Solution>
+
+<SmartFigure
+	src="/inacap/mvfm01/images/fig53.png"
+	alt="Tiempo en que la población llega al límite"
+	caption="Tiempo en que la población llega al límite"
+	size="large"
+/>
+
+- La población alcanza un valor cercano a `10000` luego de `17.27` horas.
+- El modelo nunca llega a un valor exacto de `10000`. Sin embargo, tiende a ese valor para $t \rightarrow \infty$
+</Solution>

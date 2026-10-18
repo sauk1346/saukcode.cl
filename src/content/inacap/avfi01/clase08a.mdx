@@ -1,0 +1,138 @@
+# Ejercicio 03 (Estado Resultado/Pto Equilibrio)
+## Enunciado
+
+Una empresa tiene actualmente unas ventas totales de **\$200.000.000**, el costo de venta total es de **\$100.000.000** y el costo de venta unitario es de **\$10.000**. El costo fijo es de **\$120.000.000**.
+
+**Calcule:**
+1. Punto de equilibrio
+2. Cantidad a vender para obtener una utilidad de $20.000.000
+3. Demuestre en el estado de resultados:
+    1. Punto de equilibrio
+    2. Utilidad
+    3. Situación actual
+
+
+<Solution title="Solución Ejercicio 03">
+
+**Paso 0: Organizar datos del enunciado**
+
+<SmartTable
+    id="tabla01"
+    tableLayout="auto"
+    caption="Datos del enunciado"
+    headers={["Variables", "Valor"]}
+    rows={[
+        ["**Ventas totales $(V_T$)**","\$200.000.000"],
+        ["**Costo de venta total $(CV_T)$**", "\$100.000.000"],
+        ["**Costo de venta unitario $(CV_u)$**", "\$10.000"],
+        ["**Costo Fijo $(C_F)$**", "\$120.000.000"]
+    ]}
+/>
+
+---
+
+**Paso 1: Obtener datos que faltan**
+<P indent={2}>
+Antes de calcular el punto de equilibrio necesitamos conocer el **precio unitario ($P_u$)** y la **cantidad actual ($Q$)**, ya que el enunciado solo da valores totales.
+</P>
+1. **Cálculo de $Q$**
+$$
+\begin{align*}
+CV_T &= CV_u \cdot Q\\[6pt]
+100.000.000 &= 10.000 \cdot Q\\[6pt]
+Q &= \dfrac{100.000.000}{10.000} = 10.000 \text{ unidades}
+\end{align*}
+$$
+
+2. **Cálculo de $P_u$**
+
+$$
+\begin{align*}
+V_T &= P_u \cdot Q\\[6pt]
+200.000.000 &= P_u \cdot 10.000\\[6pt]
+P_u &= \frac{200.000.000}{10.000} = 20.000
+\end{align*}
+$$
+
+<SmartTable
+    id="tabla02"
+    tableLayout="auto"
+    caption="Datos actualizados"
+    headers={["Variables", "Valor"]}
+    rows={[
+        ["**Ventas totales $(V_T$)**","\$200.000.000"],
+        ["**Costo de venta total $(CV_T)$**", "\$100.000.000"],
+        ["**Costo de venta unitario $(CV_u)$**", "\$10.000"],
+        ["**Costo Fijo $(C_F)$**", "\$120.000.000"],
+        ["**Cantidad actual $(Q)$**", "10.000 unidades"],
+        ["**Precio unitario $(P_u)$**", "\$20.000"],
+    ]}
+/>
+
+---
+
+**Pregunta 1: Punto de Equilibrio**
+<P indent={2}>
+El punto de equilibrio $(Q^*)$ es la cantidad de unidades donde la empresa **no gana ni pierde** (utilidad = 0).
+</P>
+$$
+\begin{align*}
+Q^* &= \dfrac{C_F}{P_u - CV_u} = \dfrac{120.000.000}{20.000 - 10.000} = \dfrac{120.000.000}{10.000}\\[10pt]
+
+Q^* &= 12.000 \text{ unidades}
+\end{align*}
+$$
+
+---
+
+**Pregunta 2: Cantidad a vender para obtener una utilidad de \$20.000.000**
+<P indent={2}>
+Se usa la misma fórmula del punto de equilibrio, pero sumando la utilidad deseada (UT) al costo fijo:
+</P>
+
+$$
+\begin{align*}
+Q &= \dfrac{U_T + C_F}{P_u - CV_u} = \dfrac{20.000.000 + 120.000.000}{20.000 - 10.000} = \dfrac{140.000.000}{10.000}\\[10pt]
+
+Q &= 14.000 \text{ unidades}
+\end{align*}
+$$
+
+---
+
+**Pregunta 03: Demuestre en el estado de resultados: punto de equilibrio, utilidad, situación final**
+
+<TerminalOutput>
+{`   
+   ESTADO DE RESULTADOS
+
+     Ventas                (Pu  · Q)
+   - Costo de Ventas       (CVu · Q)
+     ----------------------
+   = Margen de Contribución
+   - Costo Fijo
+     ----------------------
+   = Utilidad / Pérdida`}
+</TerminalOutput>
+
+<P indent={2}>
+Se arma para las tres cantidades relevantes: el punto de equilibrio, la cantidad necesaria para la utilidad pedida, y la situación actual.
+</P>
+<SmartFigure
+	id="fig08"
+	src="/inacap/avfi01/images/fig08.png"
+	alt="Estado de Resultado para punto de equilibrio, utilidad pedid y situación actual"
+	caption="Estado de Resultado para punto de equilibrio, utilidad pedida y situación actual"
+    lightbox={true}
+	size="large"
+/>
+
+- **En el punto de equilibrio (12.000 unidades):** la utilidad es exactamente **0**, confirmando que la fórmula de la pregunta 01 es correcta.
+- **Vendiendo 14.000 unidades:** la empresa obtiene la utilidad objetivo de **$20.000.000**, confirmando el resultado de la pregunta 02.
+- **En la situación actual (10.000 unidades):** la empresa está **por debajo** del punto de equilibrio (10.000 < 12.000), por lo que registra una **pérdida de $20.000.000**.
+
+<Callout type="tip" title="Conclusión">
+La empresa necesita aumentar sus ventas de 10.000 a al menos 12.000 unidades solo para no perder dinero, y llegar a 14.000 unidades si quiere obtener una utilidad de $20.000.000.
+</Callout>
+
+</Solution>

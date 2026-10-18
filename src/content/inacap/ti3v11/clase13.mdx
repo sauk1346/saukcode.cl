@@ -1,0 +1,216 @@
+# Revisión Tarea, Listas, Ejercicios
+**Material Clase:** [clase13.pdf](/inacap/ti3v11/docs/clase13.pdf)
+
+## Revisión Tarea
+
+<SmartFigure
+	id="ej03"
+	src="/inacap/ti3v11/images/fig07.png"
+	alt="Validar rut"
+	caption="Validar rut"
+	autoNumber={true}
+	center={true}
+	size="small"
+/>
+
+```python
+rut = '10066612-k'
+
+# almacenar digitos rut 
+n0 = int(rut[0])
+n1 = int(rut[1])
+n2 = int(rut[2])
+n3 = int(rut[3])
+n4 = int(rut[4])
+n5 = int(rut[5])
+n6 = int(rut[6])
+n7 = int(rut[7])
+
+# multiplicar digitos por factores
+m0 = n0 * 3
+m1 = n1 * 2
+m2 = n2 * 7
+m3 = n3 * 6
+m4 = n4 * 5
+m5 = n5 * 4
+m6 = n6 * 3
+m7 = n7 * 2
+
+# sumar productos y dividir por 11
+suma = (m0 + m1 + m2 + m3 + m4 +m5 +m6 + m7) / 11
+
+# tomar solo parte decimal
+d1 = suma - int(suma)
+
+# aplicar formula 
+d2 = 11 - ( 11 * d1)
+digito = round(d2)
+
+# caso especial: digito = 10 o 11
+if (digito == 10):
+		digito = 'K'
+elif (digito == 11):
+    digito = 0
+
+print(digito)
+```
+## Listas
+Secuencia de valores encerrados entre corchetes y separados por comas
+
+- **Ordenadas:** los elementos de una lista tienen un orden específico que se mantiene (índices).
+- **Mutables:** puedes cambiar, agregar o eliminar elementos después de que la lista ha sido creada.
+- **Permiten elementos duplicados**
+
+**Ejemplo:** Listas
+```python
+edades = [] # lista vacía
+
+edades = [1,2,3,4,"5"] # lista con elementos tipo int y string
+
+nombres = ["luis",2,"ana"] # lista con elementos tipo int y string
+```
+
+<SmartTable
+	tableLayout="auto"
+	headers={["Operación","Resultado"]}
+	rows={[
+		["`x in s`","indica si variable `x` se encuentra en `s`"],
+		["`s + t`","concatena las secuencias `s` y `t`"],
+		["`s * n`","contatena *n* copias de `s`"],
+		["`s[i]`","elemento `i` de `s`, empezando por `0`"],
+		["`s[i:j]`","Porción de la secuencia `s` desde `i` hasta `j` (no inclusivo)"],
+		["`s[i:j:k]`","Porción de la secuencia `s` desde `i` hasta `j` (no inclusivo) con paso `k`"],
+		["`len(s)`","cantidad de elementos de la secuencia `s`"],
+		["`min(s)`","mínimo elemento de la secuencia `s`"],
+		["`max(s)`","máximo elemento de la secuencia `s`"],
+		]}
+/>
+
+# Ejercicios
+
+## Ejercicio 01
+
+Analizar qué hacen y qué valor arrojan las siguienes instrucciones:
+
+```python
+edades = [1,2,3,4,"5"]
+nombres = ["luis",2,"ana"]
+
+len(edades)     
+len(nombres)    
+
+nombre[1:2]     
+edades[3:5]     
+
+edades.index(3) 
+```
+
+<Solution>
+<SmartTable
+	tableLayout="auto"
+	headers={['Código', 'Valor', 'Descripción']}
+	rows={[
+		["`len(edades)`"    , "`5`"       , "Cuenta la cantidad de elementos de la lista `edades`"],
+		["`len(nombres)`"   , "`3`"       , "Cuenta la cantidad de elementos de la lista `nombres`"],
+		["`nombres[1:2]`"   , "`[2]`"     , "Entrega los elementos desde la posición 1 (inclusivo) hasta la posición 2 (no inclusivo) de la secuencia `nombres`"],
+		["`edades:[3:5]`"   , "`[4, '5']`", "Entrega los elementos desde la posición `3` (inclusivo) hasta la posición `5` (no inclusivo) de la secuencia `edades`"],
+		["`edades.index(3)`", "`2`"       , "Entrega la posición del elemento con valor `3` de la secuencia `edades`"],
+	]}
+/>
+</Solution>
+
+## Ejercicio 02
+Analizar qué hacen las siguientes instrucciones:
+
+- `3 in edades`
+- `9 in edades`
+
+Aplicarlas a las siguientes listas:
+
+```python
+edades = [1,2,3,4,"5"]
+nombre = ["luis",2,"ana"]
+```
+
+<Solution>
+<SmartTable
+	tableLayout="auto"
+	headers={['Código', 'Descripción']}
+	rows={[
+		["`3 in edades`", "Condición. Evalúa si existe el elemento con valor `3` en la secuencia `edades`"],
+		["`9 in edades`", "Condición. Evalúa si existe el elemento con valor `9` en la secuencia `edades`"],
+	]}
+/>
+</Solution>
+
+## Ejercicio 03
+
+Recorrer la lista `edades = [1,2,3,4,"5"]` utilizando `for()`.
+
+<Solution>
+```python
+edades = [1,2,3,4,"5"]
+for i in edades:
+	print(f'número: {i}')
+```
+<TerminalOutput withBg>
+{`número: 1
+número: 2
+número: 3
+número: 4
+número: 5`}
+</TerminalOutput>
+</Solution>
+
+## Ejercicio 04
+
+Buscar el valor mayor de la lista numérica `edades = [1,7,3,4,9]`.
+
+<Solution>
+```python
+edades = [1,7,3,4,9]
+print(f'valor mayor: {max(edades)}')
+```
+<TerminalOutput withBg>
+{`valor mayor: 9`}
+</TerminalOutput>
+</Solution>
+
+## Ejercicio 05
+
+Ordenar de menor a mayor la lista numérica `edades = [1,7,3,4,9]` y recorrer la lista ordenada.
+
+<Solution>
+```python
+edades = [1,7,3,4,9]
+edades.sort()
+for i in edades:
+	print(f'número: {i}')
+```
+<TerminalOutput withBg>
+{`número: 1
+número: 3
+número: 4
+número: 7
+número: 9`}
+</TerminalOutput>
+</Solution>
+
+## Ejercicio 06
+
+Recorrer la lista `edades = [1,2,"3",4,"5",6]` e imprimir solo los elementos de tipo numérico
+
+<Solution>
+```python
+edades = [1,2,"3",4,"5",6]
+for i in edades:
+	if type(i) == int:
+		print(f'número: {i}')
+```
+<TerminalOutput withBg>
+{`número: 1
+número: 2
+número: 4
+número: 6`}
+</TerminalOutput>
+</Solution>

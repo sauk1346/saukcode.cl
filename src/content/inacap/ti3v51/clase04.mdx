@@ -1,0 +1,316 @@
+# Arquitectura de DW: Kimball, Inmon y ETL
+
+Una arquitectura adecuada es fundamental para el éxito de cualquier proyecto de DataWarehouse. El DW es un repositorio centralizado de datos para el análisis y la toma de decisiones. Antes de diseñarlo, se deben considerar tres factores clave:
+
+- **Objetivos del proyecto:** ¿qué preguntas de negocio debe responder?
+- **Necesidades de los usuarios finales:** ¿qué tipo de análisis necesitan?
+- **Disponibilidad de datos:** ¿qué fuentes de información existen?
+
+## 1. Planificación de Infraestructura
+
+La planificación sigue las etapas de la comprensión del negocio:
+
+1. **Definición de objetivos de negocio** y criterios de éxito.
+2. **Evaluación de la situación:** inventario de recursos, requisitos, riesgos y costos/beneficios.
+3. **Definición de los objetivos del DW:** qué datos, con qué granularidad y para qué usuarios.
+4. **Realización del plan del proyecto:** cronograma, herramientas y técnicas.
+
+## 2. Modelo de Kimball
+
+El modelo de Kimball se basa en el **Ciclo de Vida Dimensional del Negocio (Business Dimensional Lifecycle - BDLc)**. Su enfoque es ascendente (*bottom-up*): primero se construyen los datamarts por área de negocio, y estos conforman el DW.
+
+### Los 4 principios de Kimball
+
+#### Centrarse en el negocio
+Identificar los requerimientos del negocio y su valor asociado. Desarrollar relaciones sólidas con los usuarios para entender profundamente sus necesidades analíticas.
+
+#### Construir una infraestructura adecuada
+Diseñar una base de información única, integrada, fácil de usar y de alto rendimiento que refleje la amplia gama de requerimientos identificados.
+
+#### Realizar entregas en incrementos significativos
+Crear el DW en entregas de **6 a 12 meses**. Similar a las metodologías ágiles: cada incremento entrega valor real al negocio, priorizado por su importancia.
+
+#### Ofrecer la solución completa
+Entregar no solo el DW, sino también: herramientas de consulta ad hoc, aplicaciones de reportes, análisis avanzado, capacitación, soporte y documentación.
+
+### Ciclo de vida Kimball
+
+<TerminalOutput>
+{`Planificación del Proyecto
+        │
+        ▼
+Definición de Requisitos del Negocio
+        │
+   ┌────┴────┐
+   ▼         ▼
+Diseño     Diseño
+Técnico    Dimensional (Modelo Estrella / Copo de Nieve)
+   │         │
+   └────┬────┘
+        ▼
+Diseño e Implementación ETL
+        │
+        ▼
+Diseño de Aplicaciones para Usuarios Finales
+        │
+        ▼
+Implementación → Mantenimiento y Crecimiento`}
+</TerminalOutput>
+
+### Tabla de Hechos (Fact Table)
+
+La **tabla de hechos** es la tabla central del modelo dimensional. Almacena los **eventos medibles del negocio** (ventas, compras, visitas, transacciones), y está compuesta por:
+
+- **Claves foráneas (FK):** apuntan a cada tabla de dimensión, contextualizando el evento (¿cuándo?, ¿qué?, ¿quién?, ¿dónde?).
+- **Medidas:** valores numéricos que cuantifican el evento (monto, cantidad, descuento, costo).
+
+<TerminalOutput>
+{`fact_ventas
+┌─────────────┬─────────────┬─────────────┬─────────────┬──────────┬─────────┐
+│ id_tiempo   │ id_producto │ id_cliente  │ id_sucursal │ cantidad │  monto  │
+│   (FK) ───► │   (FK) ───► │   (FK) ───► │   (FK) ───► │ medida   │ medida  │
+└─────────────┴─────────────┴─────────────┴─────────────┴──────────┴─────────┘
+      │               │             │              │
+      ▼               ▼             ▼              ▼
+ dim_tiempo    dim_producto    dim_cliente    dim_sucursal`}
+</TerminalOutput>
+
+**Características clave:**
+- Puede contener millones o miles de millones de filas.
+- Las medidas deben ser **aditivas** (sumables a través de todas las dimensiones), **semi-aditivas** (sumables solo en algunas) o **no aditivas** (como ratios o porcentajes).
+- Normalmente es la tabla más grande del DW.
+
+### Esquema Estrella (Kimball)
+
+```sql
+-- Tabla de hechos (centro del esquema estrella)
+CREATE TABLE fact_ventas (
+    id_venta    BIGINT      PRIMARY KEY,
+    id_tiempo   INT         NOT NULL,
+    id_producto INT         NOT NULL,
+    id_cliente  INT         NOT NULL,
+    id_sucursal INT         NOT NULL,
+    cantidad    INT         NOT NULL,
+    monto       DECIMAL(12,2) NOT NULL,
+    descuento   DECIMAL(5,2)  DEFAULT 0,
+    FOREIGN KEY (id_tiempo)   REFERENCES dim_tiempo(id_tiempo),
+    FOREIGN KEY (id_producto) REFERENCES dim_producto(id_producto),
+    FOREIGN KEY (id_cliente)  REFERENCES dim_cliente(id_cliente),
+    FOREIGN KEY (id_sucursal) REFERENCES dim_sucursal(id_sucursal)
+);
+
+-- Dimensiones (radios del esquema estrella)
+CREATE TABLE dim_tiempo (
+    id_tiempo INT PRIMARY KEY,
+    fecha     DATE NOT NULL,
+    dia       INT,
+    mes       INT,
+    trimestre INT,
+    anio      INT,
+    dia_semana VARCHAR(15)
+);
+
+CREATE TABLE dim_producto (
+    id_producto  INT          PRIMARY KEY,
+    nombre       VARCHAR(100) NOT NULL,
+    categoria    VARCHAR(50),
+    subcategoria VARCHAR(50),
+    marca        VARCHAR(50)
+);
+
+CREATE TABLE dim_cliente (
+    id_cliente INT          PRIMARY KEY,
+    nombre     VARCHAR(100) NOT NULL,
+    ciudad     VARCHAR(50),
+    region     VARCHAR(50),
+    segmento   VARCHAR(30)
+);
+```
+
+## 3. Modelo de Inmon
+
+El modelo de Inmon se basa en la **Corporate Information Factory (CIF)** y es descendente (*top-down*): primero se construye el DW centralizado y luego se alimentan los datamarts desde él.
+
+Su premisa clave es que la información se almacene al **máximo nivel de detalle** (granularidad), permaneciendo invariable y no volátil.
+
+### Principios de Inmon
+
+- **Granularidad máxima:** cada transacción se almacena en su nivel más atómico.
+- **No volatilidad:** los datos históricos nunca se modifican ni eliminan.
+- **Centralización:** el DW actúa como fuente única de verdad.
+- **Datamarts temáticos:** cada departamento accede a su propio datamart, alimentado desde el DW central.
+
+### Arquitectura CIF (Inmon)
+
+<TerminalOutput>
+{`Fuentes OLTP
+    │
+    ▼
+[ETL]
+    │
+    ▼
+┌─────────────────────────────┐
+│   DATA WAREHOUSE CENTRAL    │  ← Todos los datos al máximo nivel de detalle
+│   (Modelo 3FN / Inmon)      │
+└─────────────┬───────────────┘
+              │ Alimenta
+    ┌─────────┼─────────┐
+    ▼         ▼         ▼
+Datamart   Datamart  Datamart
+Ventas     RRHH      Finanzas
+(Reporting)(Reporting)(Reporting)`}
+</TerminalOutput>
+
+```sql
+-- En Inmon el DW se modela en 3FN (normalizado), no en estrella
+-- Ejemplo: tabla de ventas al máximo nivel de detalle
+CREATE TABLE dw_venta_detalle (
+    id_venta         BIGINT        PRIMARY KEY,
+    fecha_hora       TIMESTAMP     NOT NULL,
+    id_cliente       INT           NOT NULL,
+    id_producto      INT           NOT NULL,
+    id_vendedor      INT           NOT NULL,
+    id_sucursal      INT           NOT NULL,
+    cantidad         INT           NOT NULL,
+    precio_unitario  DECIMAL(10,2) NOT NULL,
+    descuento_pct    DECIMAL(5,2)  DEFAULT 0,
+    monto_final      DECIMAL(12,2) NOT NULL,
+    canal_venta      VARCHAR(30),  -- 'presencial', 'web', 'telefono'
+    fecha_carga      TIMESTAMP     DEFAULT CURRENT_TIMESTAMP
+    -- No se hacen UPDATE: cada cambio es un nuevo INSERT
+);
+```
+
+## 4. Kimball vs Inmon
+
+<SmartTable
+    tablelayout="auto"
+    headers={['Aspecto', 'Kimball', 'Inmon']}
+    rows={[
+        ["**Enfoque**", "Bottom-up (datamarts primero)", "Top-down (DW central primero)"],
+        ["**Modelo de datos**", "Dimensional (estrella/copo)", "Relacional (3FN)"],
+        ["**Granularidad**", "Puede ser agregada", "Máximo detalle"],
+        ["**Tiempo de implementación**", "Más rápido (entregas parciales)", "Más lento (requiere DW completo)"],
+        ["**Complejidad inicial**", "Menor", "Mayor"],
+        ["**Flexibilidad futura**", "Limitada (puede fragmentarse)", "Alta (fuente única de verdad)"],
+        ["**Ideal para**", "Proyectos ágiles, empresas medianas", "Grandes empresas con datos complejos"]
+    ]}
+/>
+
+
+## 5. Procesos ETL y ETT
+
+### ETL (Extracción, Transformación y Carga)
+
+El proceso ETL es el puente entre las fuentes de datos y el DW.
+
+<TerminalOutput>
+{`Fuentes OLTP → [Extracción] → [Staging Area] → [Transformación] → [Carga] → DW`}
+</TerminalOutput>
+
+#### Fase 1: Extracción
+
+Identificar las fuentes de datos (APIs, archivos, bases de datos) y extraerlos al área de staging.
+
+```sql
+-- Ejemplo: extracción incremental (solo registros nuevos o modificados)
+INSERT INTO staging.ventas_nuevas
+SELECT *
+FROM oltp.ventas
+WHERE fecha_modificacion >= (
+    SELECT MAX(fecha_ultima_carga)
+    FROM control.log_etl
+    WHERE proceso = 'ventas'
+);
+```
+
+#### Fase 2: Transformación
+
+Limpieza, integración y enriquecimiento de los datos.
+
+```sql
+-- Limpieza: eliminar duplicados y corregir nulos
+INSERT INTO staging.ventas_limpias
+SELECT DISTINCT
+    id_venta,
+    COALESCE(id_cliente, -1)         AS id_cliente,   -- -1 = "desconocido"
+    UPPER(TRIM(nombre_producto))     AS nombre_producto,
+    ROUND(monto, 2)                  AS monto,
+    CASE
+        WHEN canal IS NULL THEN 'no_especificado'
+        ELSE LOWER(canal)
+    END                              AS canal,
+    fecha_venta::DATE                AS fecha_venta
+FROM staging.ventas_nuevas
+WHERE monto > 0;  -- Filtrar registros inválidos
+
+-- Enriquecimiento: calcular métricas derivadas
+ALTER TABLE staging.ventas_limpias ADD COLUMN monto_con_iva DECIMAL(12,2);
+UPDATE staging.ventas_limpias
+SET monto_con_iva = ROUND(monto * 1.19, 2);
+```
+
+#### Fase 3: Carga
+
+Cargar los datos transformados al DW.
+
+```sql
+-- Carga incremental (SCD Tipo 1: sobrescribir)
+INSERT INTO dw.fact_ventas (id_venta, id_tiempo, id_cliente, id_producto, monto)
+SELECT
+    v.id_venta,
+    t.id_tiempo,
+    c.id_cliente,
+    p.id_producto,
+    v.monto
+FROM staging.ventas_limpias v
+JOIN dw.dim_tiempo   t ON t.fecha = v.fecha_venta
+JOIN dw.dim_cliente  c ON c.rut   = v.rut_cliente
+JOIN dw.dim_producto p ON p.sku   = v.sku_producto
+ON CONFLICT (id_venta) DO NOTHING;  -- Ignorar si ya existe
+
+-- Registrar la carga en el log de control
+INSERT INTO control.log_etl (proceso, fecha_ultima_carga, registros_cargados)
+VALUES ('ventas', CURRENT_TIMESTAMP, (SELECT COUNT(*) FROM staging.ventas_limpias));
+```
+
+### ETT (Extracción, Transformación y Transferencia)
+
+Similar al ETL, pero orientado a la **transferencia de datos entre sistemas o entornos** (por ejemplo, del DW central a un datamart departamental, o de un ambiente de producción a uno de análisis).
+
+```sql
+-- Ejemplo ETT: transferir datos del DW central al datamart de ventas
+INSERT INTO dm_ventas.fact_ventas_mensual (id_tiempo, id_producto, id_region, total_ventas, total_unidades)
+SELECT
+    t.id_tiempo,
+    p.id_producto,
+    c.id_region,
+    SUM(f.monto)    AS total_ventas,
+    SUM(f.cantidad) AS total_unidades
+FROM dw_central.fact_ventas f
+JOIN dw_central.dim_tiempo   t ON f.id_tiempo   = t.id_tiempo
+JOIN dw_central.dim_producto p ON f.id_producto = p.id_producto
+JOIN dw_central.dim_cliente  c ON f.id_cliente  = c.id_cliente
+WHERE t.anio = EXTRACT(YEAR FROM CURRENT_DATE)
+GROUP BY t.id_tiempo, p.id_producto, c.id_region;
+```
+
+## 6. Escalabilidad y Rendimiento
+
+Para garantizar el rendimiento del DW a largo plazo:
+
+```sql
+-- Índices sobre claves foráneas en fact tables (mejoran los JOINs)
+CREATE INDEX idx_fact_ventas_tiempo    ON fact_ventas(id_tiempo);
+CREATE INDEX idx_fact_ventas_producto  ON fact_ventas(id_producto);
+CREATE INDEX idx_fact_ventas_cliente   ON fact_ventas(id_cliente);
+
+-- Particionamiento por fecha (mejora consultas históricas)
+CREATE TABLE fact_ventas_2024
+    PARTITION OF fact_ventas
+    FOR VALUES FROM ('2024-01-01') TO ('2025-01-01');
+
+CREATE TABLE fact_ventas_2025
+    PARTITION OF fact_ventas
+    FOR VALUES FROM ('2025-01-01') TO ('2026-01-01');
+```

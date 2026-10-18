@@ -1,0 +1,68 @@
+# Ejercicio 02: determinar DR y BDR
+
+<SmartFigure
+	id="fig144"
+	src="/inacap/ti3v52/images/fig144.png"
+	alt="Topología de red"
+	caption="Topología de red"
+	size="large"
+/>
+
+## Parte 1: Examine DR y BDR Cambio de roles
+
+### Paso 1: Espera hasta que las luces de enlace ámbar se vuelvan verdes
+
+Cuando abra por primera vez el archivo, puede observar que las luces de enlace para el switch son ámbar. Estas luces de enlace permanecerán en ámbar durante 50 segundos mientras que el protocolo STP en el switch se asegura que no de los routers no sea de otro switch. O bien, haga click en **Fast Forward Time** para eludir estos procesos.
+
+### Paso 2: Verificar los estados actuales de los vecinos OSPF
+
+Use el comando correcto en cada router para examinar el DR y BDR actuales. Si un router muestra "FULL/DROTHER" significa que el router no es un DR o un BDR
+
+- ¿Qué router es el DR?
+- ¿Qué router es el BDR?
+- ¿Cuál es el estado OSPF del router RA?
+
+<Solution title="Solución Parte 1 (Paso 2)">
+
+<SmartFigure
+	id="fig145"
+	src="/inacap/ti3v52/images/fig145.png"
+	alt="Examinar router RA"
+	caption="Examinar router RA"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig146"
+	src="/inacap/ti3v52/images/fig146.png"
+	alt="Examinar router RB"
+	caption="Examinar router RB"
+	size="large"
+/>
+
+<SmartFigure
+	id="fig147"
+	src="/inacap/ti3v52/images/fig147.png"
+	alt="Examinar router RC"
+	caption="Examinar router RC"
+	size="large"
+/>
+---
+
+- **¿Qué router es el DR?**
+<P indent={3}>
+**Resp:** RC (192.168.31.33), con router id más alto
+</P>
+- **¿Qué router es el BDR?**
+<P indent={3}>
+**Resp:** RA (192.168.31.11). Aunque tiene el router-id más bajo, resultó BDR en la elección real; entre RA y RB empatados en prioridad 1.
+</P>
+- **¿Cuál es el estado OSPF del router RA?**
+<P indent={3}>
+**Resp:** BRD
+</P>
+</Solution>
+
+### Paso 3: Activar la depuración de adyacencias OSPF IP
+
+Se puede controlar el proceso de elección del DR y el BDR con un comando debug en RA y RB. Ingrese el siguiente comando

@@ -1,0 +1,257 @@
+# Restricciones de Integridad en SQL
+
+Las restricciones de integridad en SQL son mecanismos formales del lenguaje para garantizar la validez y consistencia de los datos. Se clasifican en **3 categorías principales**, cada una con un ámbito de acción diferente:
+
+1. Restricciones de Dominio
+2. Restricciones de Tabla Base
+3. Restricciones Generales (Aserciones)
+
+
+## 1. Restricciones de Dominio
+
+Las Restricciones de Dominio en SQL **no son exactamente lo mismo** que las restricciones de tipo vistas en la clase anterior. SQL no soporta restricciones de tipo puras; en cambio, implementa una forma generalizada de restricciones de atributo.
+
+Una **Restricción de Dominio** en SQL se aplica a **toda columna** definida sobre ese dominio, no solo a una columna en particular.
+
+```sql
+-- Definición de un dominio personalizado
+CREATE DOMAIN tipo_rut AS VARCHAR(12)
+    CHECK (VALUE ~ '^\d{1,8}-[\dkK]$');  -- Formato RUT chileno
+
+CREATE DOMAIN tipo_email AS VARCHAR(150)
+    CHECK (VALUE LIKE '%@%.%');
+
+CREATE DOMAIN tipo_porcentaje AS DECIMAL(5,2)
+    CHECK (VALUE BETWEEN 0 AND 100);
+
+-- Uso del dominio en tablas
+CREATE TABLE empleado (
+    id_empleado   INT              PRIMARY KEY,
+    rut           tipo_rut         NOT NULL UNIQUE,
+    email         tipo_email       NOT NULL,
+    comision_pct  tipo_porcentaje  DEFAULT 0
+);
+
+CREATE TABLE proveedor (
+    id_proveedor INT          PRIMARY KEY,
+    rut          tipo_rut     NOT NULL UNIQUE,  -- mismo dominio reutilizado
+    email        tipo_email,
+    nombre       VARCHAR(100) NOT NULL
+);
+```
+
+> **Ventaja clave:** al modificar la definición del dominio `tipo_rut`, el cambio se aplica automáticamente a todas las columnas que lo usan (`empleado.rut` y `proveedor.rut`).
+
+```sql
+-- Modificar un dominio
+ALTER DOMAIN tipo_porcentaje
+    DROP CONSTRAINT tipo_porcentaje_check;
+
+ALTER DOMAIN tipo_porcentaje
+    ADD CONSTRAINT tipo_porcentaje_check
+    CHECK (VALUE BETWEEN 0.00 AND 100.00);
+
+-- Eliminar un dominio (solo si no está en uso)
+DROP DOMAIN tipo_rut;
+```
+
+## 2. Restricciones de Tabla Base
+
+Las Restricciones de Tabla Base equivalen a nuestras restricciones de varrel y de base de datos tomadas en conjunto. Cualquiera de las siguientes definiciones es una Restricción de Tabla Base en SQL:
+
+- Definición de **Clave Candidata** (`PRIMARY KEY`, `UNIQUE`)
+- Definición de **Clave Foránea** (`FOREIGN KEY`)
+- **Restricción de Verificación** (`CHECK`) a nivel de tabla
+
+> **¿Qué es una varrel?** En el modelo relacional formal, una *variable de relación* (varrel) es lo que coloquialmente llamamos "tabla". Las varrels base son las tablas originales de la BD; las vistas son varrels derivadas.
+
+```sql
+-- Restricciones de tabla base: ejemplo completo
+CREATE TABLE sucursal (
+    id_sucursal INT          PRIMARY KEY,
+    nombre      VARCHAR(100) NOT NULL UNIQUE,   -- Clave candidata alternativa
+    ciudad      VARCHAR(50)  NOT NULL,
+    saldo_total DECIMAL(15,2) DEFAULT 0
+);
+
+CREATE TABLE cuenta (
+    id_cuenta   INT           PRIMARY KEY,
+    id_sucursal INT           NOT NULL,
+    saldo       DECIMAL(12,2) NOT NULL DEFAULT 0,
+    tipo        VARCHAR(20)   NOT NULL,
+    -- Restricción de verificación a nivel de tabla (puede referenciar varias columnas)
+    CONSTRAINT ck_saldo_tipo CHECK (
+        (tipo = 'ahorro'   AND saldo >= 0) OR
+        (tipo = 'corriente' AND saldo >= -500000)  -- Línea de crédito permitida
+    ),
+    -- Clave foránea
+    CONSTRAINT fk_cuenta_sucursal
+        FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE prestamo (
+    id_prestamo INT           PRIMARY KEY,
+    id_sucursal INT           NOT NULL,
+    monto       DECIMAL(12,2) NOT NULL,
+    CONSTRAINT ck_monto_positivo CHECK (monto > 0),
+    CONSTRAINT fk_prestamo_sucursal
+        FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal)
+);
+```
+
+```sql
+-- Agregar y eliminar restricciones de tabla base
+ALTER TABLE cuenta
+    ADD CONSTRAINT ck_tipo_valido
+    CHECK (tipo IN ('ahorro', 'corriente', 'vista'));
+
+ALTER TABLE cuenta
+    DROP CONSTRAINT ck_tipo_valido;
+```
+
+## 3. Restricciones Generales (Aserciones)
+
+Las Aserciones son predicados que expresan condiciones que la base de datos debe satisfacer **siempre**, independientemente de la tabla o la operación que se realice.
+
+Son más poderosas que las restricciones de dominio y de tabla base porque pueden involucrar **múltiples tablas** en una sola condición.
+
+### Sintaxis
+
+```sql
+-- Crear una aserción
+CREATE ASSERTION <nombre_restriccion>
+CHECK (<expresión_condicional>);
+
+-- Eliminar una aserción
+DROP ASSERTION <nombre_restriccion>;
+```
+
+### Ejemplos
+
+```sql
+-- Ejemplo 1:
+-- La suma de todos los préstamos de una sucursal debe ser
+-- menor o igual a la suma de todos los saldos de esa sucursal
+
+CREATE ASSERTION ck_solvencia_sucursal
+CHECK (
+    NOT EXISTS (
+        SELECT id_sucursal
+        FROM sucursal s
+        WHERE (
+            SELECT COALESCE(SUM(monto), 0)
+            FROM prestamo p
+            WHERE p.id_sucursal = s.id_sucursal
+        ) > (
+            SELECT COALESCE(SUM(saldo), 0)
+            FROM cuenta c
+            WHERE c.id_sucursal = s.id_sucursal
+        )
+    )
+);
+```
+
+```sql
+-- Ejemplo 2:
+-- Cada préstamo debe tener al menos un cliente con saldo mínimo de $200.000
+
+CREATE TABLE cliente_prestamo (
+    id_cliente  INT,
+    id_prestamo INT,
+    PRIMARY KEY (id_cliente, id_prestamo),
+    FOREIGN KEY (id_cliente)  REFERENCES cliente(id_cliente),
+    FOREIGN KEY (id_prestamo) REFERENCES prestamo(id_prestamo)
+);
+
+CREATE ASSERTION ck_garantia_prestamo
+CHECK (
+    NOT EXISTS (
+        SELECT p.id_prestamo
+        FROM prestamo p
+        WHERE NOT EXISTS (
+            SELECT 1
+            FROM cliente_prestamo cp
+            JOIN cuenta c ON cp.id_cliente = c.id_cliente
+            WHERE cp.id_prestamo = p.id_prestamo
+              AND c.saldo >= 200000
+        )
+    )
+);
+```
+
+```sql
+-- Ejemplo 3:
+-- El stock de un producto nunca puede ser negativo
+CREATE ASSERTION ck_stock_no_negativo
+CHECK (
+    NOT EXISTS (
+        SELECT 1 FROM producto WHERE stock < 0
+    )
+);
+```
+
+> ⚠️ **Nota práctica:** Las aserciones (`CREATE ASSERTION`) son parte del estándar SQL pero tienen soporte limitado en motores como PostgreSQL o MySQL. En la práctica, se implementan mediante **TRIGGERS** que verifican las condiciones después de cada operación.
+
+```sql
+-- Implementación equivalente con TRIGGER en PostgreSQL
+CREATE OR REPLACE FUNCTION fn_verificar_solvencia()
+RETURNS TRIGGER AS $$
+DECLARE
+    total_prestamos DECIMAL;
+    total_saldos    DECIMAL;
+BEGIN
+    SELECT COALESCE(SUM(monto), 0) INTO total_prestamos
+    FROM prestamo WHERE id_sucursal = NEW.id_sucursal;
+
+    SELECT COALESCE(SUM(saldo), 0) INTO total_saldos
+    FROM cuenta WHERE id_sucursal = NEW.id_sucursal;
+
+    IF total_prestamos > total_saldos THEN
+        RAISE EXCEPTION 'Los préstamos superan los saldos de la sucursal %', NEW.id_sucursal;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER tg_solvencia_sucursal
+AFTER INSERT OR UPDATE ON prestamo
+FOR EACH ROW EXECUTE FUNCTION fn_verificar_solvencia();
+```
+
+## 4. Comparativa de las 3 Categorías
+
+<SmartTable
+    tablelayout="auto"
+    headers={['Característica', 'Dominio', 'Tabla Base', 'Aserciones']}
+    rows={[
+        ["**Ámbito**", "Una columna (por dominio)", "Una tabla", "Toda la BD"],
+        ["**Puede cruzar tablas**", "❌", "❌", "✅"],
+        ["**Sintaxis**", "`CREATE DOMAIN`", "`CHECK`, `FK`, `PK`", "`CREATE ASSERTION`"],
+        ["**Soporte en PostgreSQL**", "✅", "✅", "⚠️ Parcial (usar triggers)"],
+        ["**Cuándo se evalúa**", "Al insertar/actualizar la columna", "Al insertar/actualizar la fila", "En cualquier operación relevante"]
+    ]}
+/>
+
+## 5. Resumen del flujo de validación SQL
+
+<TerminalOutput>
+{`INSERT / UPDATE
+      │
+      ▼
+[Restricción de Dominio]  → ¿El valor pertenece al dominio?
+      │ ✅
+      ▼
+[Restricción de Tabla Base]
+  ├── ¿Cumple el CHECK de la fila?
+  ├── ¿La PK es única y no nula?
+  └── ¿La FK apunta a un registro existente?
+      │ ✅
+      ▼
+[Aserciones / Triggers]   → ¿Se mantienen las condiciones globales?
+      │ ✅
+      ▼
+ Dato almacenado correctamente ✅`}
+</TerminalOutput>

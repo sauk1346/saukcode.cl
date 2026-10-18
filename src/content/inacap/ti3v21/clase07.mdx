@@ -1,0 +1,82 @@
+# Ejercicios Listas
+
+## Ejercicio 01
+
+Desarrolle una función que reciba como argumento el tamaño de una lista (cantida de elementos) de la lista y retorne la lista poblada de la siguiente forma:
+
+<TerminalOutput>
+{`[0,1,0,0,1,...]`}
+</TerminalOutput>
+
+<Solution>
+```python
+def poblarLista(cantidad):
+    lista = []
+    for x in range(cantidad):
+        lista.append(x % 2)
+    
+    return lista
+
+print(poblarLista(10))
+```
+<TerminalOutput withBg>
+{`[0, 1, 0, 1, 0, 1, 0, 1, 0, 1]`}
+</TerminalOutput>
+</Solution>
+
+## Ejercicio 02
+Desarrolle una función que reciba como argumento el tamaño de una lista (cantidad de elementos) de la lista y retorne la lista poblada de la siguiente forma:
+<TerminalOutput>
+{`[0,0,0,0,1,1,1,1]`}
+</TerminalOutput>
+
+La primera mitad con 0 y la segunda mitad con 1.
+
+<Solution>
+```python
+def tamano(cantidad):
+    mitad = cantidad/2
+    mi_lista = []
+    for i in range(cantidad):
+        if i < mitad:
+            mi_lista.append(0)
+        else:
+            mi_lista.append(1)
+    return mi_lista
+
+print(tamano(10))
+```
+<TerminalOutput withBg>
+{`[0, 0, 0, 0, 0, 1, 1, 1, 1, 1]`}
+</TerminalOutput>
+</Solution>
+
+## Ejercicio 03
+Desarrolle un programa que permita ingresar 10 numeros en una lista.
+
+**Nota:** El programa debe asegurarse de que no se ingresen numeros repetidos. No se debe utilizar operador in pero se puede usar ciclo for con range.
+
+**Profe:** sería ideal que el programa incluya una funcion que reciba dos argumentos y devuelva True si un numero está presente en la lista o False si no lo está.
+
+
+<Solution>
+```python
+def validarNumero(numero, lista):
+    for i in lista:
+        if i == numero:
+            return False
+    return True
+
+mi_lista = []
+for i in range(10):
+    while True:
+        numero = int(input(f"Ingrese número [{i+1} de 10]: "))
+        if not validarNumero(numero, mi_lista):
+            print("Error. Número repetido")
+        else:
+            break
+    mi_lista.append(numero)
+
+print(mi_lista)
+```
+</Solution>

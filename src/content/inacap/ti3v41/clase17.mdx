@@ -1,0 +1,316 @@
+# DRF: Autenticación
+
+## 1. Proyectos necesarios
+- `proyectotienda`: versión vista en la **clase 12**
+- `proyectoapi`: versión vista en la **clase 16**
+
+## 2. Página Login
+Se utilizará `proyectotienda` para agregar una página de login
+
+1. **Configurar Admin:** Crear un usuario en el módulo admin
+
+2. **Configurar Templates (1):** Crear directorio templates, y agregar los siguiente templates:
+    - `login.html`
+    - `logged_out.html`
+    - `password_reset_complete.html`
+    - `password_reset_confirm.html`
+    - `password_reset_done.html`
+    - `password_reset_email.html`
+    - `password_reset_form.html`
+    ```sh
+    mkdir -p ./templates/registration
+    ```
+    ```html
+    <!-- ./templates/registration/login.html -->
+    {% extends 'base.html' %}
+ 
+    {% load static %}
+    {% load form_tags %}
+    
+    {% block content %}
+    <!--div class="container d-flex justify-content-center align-items-center"-->
+    <div class="shadow p-3 mb-5 bg-white rounded w-50">
+        <div class="card shadow p-4" style="min-width: 400px;">
+            <h2 class="text-center mb-4">Iniciar sesión</h2>
+    
+            {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div>{{ error }}</div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div>{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+    
+            <form method="post" novalidate>
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="{{ form.username.id_for_label }}" class="form-label">Usuario</label>
+                    {{ form.username|add_class:"form-control" }}
+                </div>
+    
+                <div class="mb-3">
+                    <label for="{{ form.password.id_for_label }}" class="form-label">Contraseña</label>
+                    {{ form.password|add_class:"form-control" }}
+                </div>
+    
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                </div>
+            </form>
+    
+            <div class="text-center mt-3">
+                <a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+    ```
+    ```html
+    <!-- ./templates/registration/logged_out.html -->
+    {% extends "base.html" %}
+ 
+    {% block content %}
+    <h1>Tienda de Productos - Tiendita</h1>
+    
+    <p>Bienvenido a la <em><strong>Tiendita</strong></em>, la mejor tienda de productos del país.</p>
+    
+    <div class="shadow p-3 mb-5 bg-white rounded w-50" >
+    <div class="alert alert-success" role="alert">
+        <h2>Logged out!</h2>
+        <a href="{% url 'login'%}">Click here to login again.</a>
+    </div>
+    </div>
+    {% endblock %}
+    ```
+    ```html
+    <!-- ./templates/registration/password_reset_complete.html -->
+    {% extends "base.html" %}
+ 
+    {% block content %}
+    <h1>Tienda de Productos - Tiendita</h1>
+    
+    <p>Bienvenido a la <em><strong>Tiendita</strong></em>, la mejor tienda de productos del país.</p>
+    
+    <div class="shadow p-3 mb-5 bg-white rounded w-50" >
+    
+    <div class="alert alert-primary" role="alert">
+        <h3>¡Tu password ha sido modificada!</h3>
+        <p><a href="{% url 'login' %}">login?</a></p>
+    </div>
+    </div>
+    {% endblock %}
+    ```
+    ```html
+    <!-- ./templates/registration/password_reset_confirm.html -->
+    {% extends "base.html" %}
+ 
+    {% block content %}
+    
+    
+    <h1>Tienda de Productos - Tiendita</h1>
+    
+    <p>Bienvenido a la <em><strong>Tiendita</strong></em>, la mejor tienda de productos del país.</p>
+    
+        {% if validlink %}
+        <div class="shadow p-3 mb-5 bg-white rounded w-50" >
+            <div class="alert alert-primary" role="alert">
+                <p>Ingresa y confirma tu nueva contraseña.</p>
+            </div>
+            <form method="post" action="" class="form-group">
+                {% csrf_token %}
+                {% if form.new_password1.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ form.new_password1.errors }}
+                    </div>
+                {% endif %}
+                <div class="form-group mb-3">
+                    <label for="exampleInputNewPass1">Ingresa tu nueva password</label>
+                    <input type="password" name={{ form.new_password1.name }} class="form-control" id="exampleInputNewPass1" aria-describedby="inputNewPass1" placeholder="Ingrese password"|>
+                    <small id="inputNewPass1" class="form-text text-muted"></small>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="exampleInputNewPass2">Ingresa nuevamente tu nueva password</label>
+                    <input type="password" name={{ form.new_password2.name }} class="form-control" id="exampleInputNewPass2" aria-describedby="inputNewPass2" placeholder="Repite password"|>
+                    <small id="inputNewPass2" class="form-text text-muted"></small>
+                </div>
+                <button type="submit" class="btn btn-primary">Cambiar mi password</button>
+        </div>
+        {% else %}
+        <div class="shadow p-3 mb-5 bg-white rounded w-50" >
+            <div class="alert alert-danger" role="alert">
+                <h2>Password reset failed</h2>
+                <p>The password reset link was invalid, possibly because it has already been used. Please request a new password reset.</p>
+            </div>
+        </div>
+        {% endif %}
+    
+    {% endblock content %}
+    ```
+    ```html
+    <!-- ./templates/registration/password_reset_done.html -->
+    {% extends "base.html" %}
+ 
+    {% block content %}
+    <h1>Tienda de Productos - Tiendita</h1>
+    
+    <p>Bienvenido a la <em><strong>Tiendita</strong></em>, la mejor tienda de productos del país.</p>
+    
+    <div class="shadow p-3 mb-5 bg-white rounded w-50" >
+    <div class="alert alert-success" role="alert">
+        <p>Si tienes una cuenta registrada con ese correo, recibirás un 
+        enlace para restablecer tu contraseña. Revisa tu bandeja de 
+        entrada o spam en unos minutos.</p>
+    </div>
+    </div>
+    
+    {% endblock %}
+    ```
+    ```html
+    <!-- ./templates/registration/password_reset_email.html -->
+    {% autoescape off %}
+    Hola {{ user.get_username }},
+    
+    Has solicitado restablecer tu contraseña en {{ site_name }}.
+    
+    Por favor, haz clic en el enlace siguiente o cópialo en tu navegador para completar el proceso:
+    {{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+    
+    Si no solicitaste este cambio, por favor ignora este mensaje.
+    
+    Gracias,
+    El equipo de {{ site_name }}
+    {% endautoescape %}
+    ```
+    ```html
+    <!-- ./templates/registration/password_reset_form.html -->
+    {% extends "base.html" %}
+ 
+    {% block content %}
+    <h1>Tienda de Productos - Tiendita</h1>
+    
+    <p>Bienvenido a la <em><strong>Tiendita</strong></em>, la mejor tienda de productos del país.</p>
+    
+    <div class="shadow p-3 mb-5 bg-white rounded w-50" >
+        {% if form.email.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ form.email.errors }}
+        </div>
+        {% endif %}
+        <form method="post" action="" class="form-group">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleInputEmail1">Ingresa tu correo electrónico</label>
+            <input type="text" name={{ form.email.name }} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">Nunca compartas tu correo.</small>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+    </div>
+    {% endblock %}
+    ```
+
+3. **Configurar Templates (2):** Modificar template `base.html`, restringiendo el despliegue del **navbar** antes y después de logear
+    ```html
+    <!-- ./tienda/templates/tienda/base.html-->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        ...
+        ...
+    </head>
+    <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3">
+          {% block sidebar %}
+          <ul class="sidebar-nav">
+            <li><a href="{% url "index" %}">Home</a></li>
+            {% if user.is_authenticated %}
+              <li><a href="http://localhost:8000/admin">Admin</a></li>
+              <li><a href="{% url 'clientes' %}">Mostrar Clientes</a></li>
+              <li><a href="{% url 'productos' %}">Mostrar Productos</a></li>
+              <li><a href="{% url 'categorias' %}">Mostrar Categorías</a></li>
+              <li><a href="{% url 'buscar' %}">Buscar Productos</a></li>
+              <li><a href="{% url 'contacto' %}">Formulario Contacto</a></li>
+              <li>
+                <form action="{% url 'logout' %}" method="POST">
+                  {% csrf_token %}
+                  <input type="submit" value="Logout" class="btn btn-link">
+                </form>
+              </li>
+            {% else %}
+              <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+              <li><a href="{% url 'contacto' %}">Formulario Contacto</a></li>
+            {% endif%}
+        </ul>
+    {% endblock sidebar %}
+        </div>
+        ...
+        ...
+      </div>
+    </div>
+    </body>
+    ```
+
+4. **Configurar Templates (3):** Agregar el siguiente directorio [templatetags.rar](/inacap/ti3v41/assets/templatetags.rar) en la ruta `./tienda/templatetags/`
+
+5. **Configuración Inicial (1):** Agregar carpeta `templates/` al modulo `settings.py` 
+    ```python
+    #./proyectoalgo/settings.py
+    from pathlib import Path
+    ...
+    ...
+    TEMPLATES = [
+        {
+            ...
+            ...
+            'DIRS': [ BASE_DIR / 'templates' ],
+            ...
+            ...
+        },
+    ]
+    ```
+
+6. **Configuración Inicial (2):** Agregar redireccionamiento luego de logear, en el módulo `settings.py`
+    ```python
+    #./proyectoalgo/settings.py
+    from pathlib import Path
+    ...
+    ...
+    # Redirecciona al home/index luego del login.
+    # Por defecto va a la ruta /accounts/profile/
+    LOGIN_REDIRECT_URL = 'index'
+    LOGOUT_REDIRECT_URL = 'index'
+    ```
+
+7. **Configuración Enrutamiento:** Agregar la ruta de autenticación en el módulo `urls.py` del proyecto
+    ```python
+    #./proyectotienda/urls.py
+    from django.contrib import admin
+    from django.urls import path, include
+    from django.conf import settings
+    from django.conf.urls.static import static
+
+    urlpatterns = [
+        ...
+        ...
+        # Rutas de autenticación
+        path('accounts/', include('django.contrib.auth.urls')),
+    ]
+    ...
+    ...
+    ```
+
+8. **Realizar Pruebas:** Levantar servidor y verificar ruta antes y despues de logear
+
+```sh
+python manage.py runserver
+```
+```sh
+http://127.0.0.1:8000/tienda/index/
+``` 

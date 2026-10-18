@@ -1,0 +1,84 @@
+# Tipos de Vulnerabilidades (2)
+
+**Material Clase:** [tipo-vulnerabilidades.pdf](/inacap/ti3v34/docs/ppt31.pdf)
+
+## Identificación de Activos
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Tipo de Activo', 'Características y Evaluación']}
+	rows={[
+		[
+			'**Hardware**',
+			'[Inventario de aplicaciones sistemas operativos y herramientas,Evaluación de la criticidad basada en la función y los datos que manejan]'
+		],
+		[
+			'**Redes** (Servidores)',
+			'[Registro de servidores equipos de red dispositivos de almacenamiento,Evaluación del valor en función de la operación y datos almacenados]'
+		],
+		[
+			'**Redes** (Dispositivos)',
+			'[Mapeo de dispositivos de red segmentos de red y configuraciones,Identificación de puntos críticos y nodos vulnerables]'
+		],
+		[
+			'**BD**',
+			'[Inventario de BDs sistemas de gestión de bases de datos (DBMS),Clasificación según la sensibilidad y el volumen de datos]'
+		],
+		[
+			'**Humanos**',
+			'[Listado de usuarios roles y permisos,Evaluación de la criticidad basada en acceso y roles desempeñados]'
+		]
+	]}
+/>
+
+## Clasificación de Activos
+Ayuda a determinar las prioridades de protección y asignar los recursos adecuados para salvaguardad los activos más críticos.
+
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Tipo', 'Descripción']}
+	rows={[
+		['**Críticos**', 'Son esenciales para la operación continua de la organización'],
+		['**Activos Sensibles**', 'Manejan información confidencial o personal'],
+		['**Activos No críticos**', 'Su pérdida no afectaría severamente las operaciones']
+	]}
+/>
+
+## Identificación de riesgos de relación
+Varía considerablemente según
+
+- Tipo de industria
+- Activos de información involucrados
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Industria', 'Activos', 'Riesgos']}
+	rows={[
+		[
+			'Financiera',
+			'Datos financieros, sistemas de transacciones',
+			'Fraude y robo de identidad, ataques de phishing, robo de datos'
+		],
+		[
+			'Salud',
+			'Registros de salud electrónicos (EHR), sistemas de diagnóstico y tratamiento',
+			'Exposición de datos de pacientes, interrupción de servicios médicos'
+		],
+		[
+			'Tecnología y Telecomunicaciones',
+			'Datos de usuario, infraestructura de red',
+			'Interceptación de datos, compromiso de infraestructura'
+		],
+		[
+			'Comercio Electrónico',
+			'Datos de clientes, plataformas de comercio',
+			'Robo de información de pago, fraude de comercio electrónico'
+		]
+	]}
+/>
+
+## Ejemplos
+
+- **Caso Equifax (2017):** Equifax sufrió una violación de datos que expuso la información personal de millones de personas. Los piratas informáticos accedieron a los sistemas de la empresa durante varios meses antes de que la empresa se diera cuenta.
+- **Caso Yahoo (2013-2014):** Robaron información de más de 3 millones de cuentas de usuario debido a la explotación de vulnerabilidades en su infraestructura. 

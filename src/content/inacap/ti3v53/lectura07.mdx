@@ -1,0 +1,129 @@
+# Diseño estratégico de pruebas en cloud computing
+
+La resiliencia de la infraestructura multicloud es un factor esencial para garantizar la continuidad operativa, la disponibilidad de los servicios y la protección de los datos en entornos distribuidos críticos para el negocio.
+
+## 1. Resiliencia de la infraestructura multicloud
+
+Para garantizar la **resiliencia de la infraestructura** multicloud entre AWS y OCI, se implementa un plan de pruebas integral que valida **alta disponibilidad**, **continuidad de datos** y **conectividad de red global** bajo escenarios de fallo masivo. La infraestructura se diseña para soportar interrupciones locales o regionales, utilizando balanceadores de carga, grupos de **auto-escalado** y replicación de datos crítica, asegurando que los servicios permanezcan operativos y los datos estén siempre disponibles.
+
+Este enfoque combina técnicas de ingeniería de caos, *failover* controlado y monitoreo constante para cumplir con *RPO* y *RTO* definidos, garantizando operaciones confiables y seguras.
+
+### Beneficios del plan de pruebas
+
+- Asegura servicios initerrumpidos entre fallos de infraestructura o regionales
+- Garantiza la recuperación automática de nodos y bases de datos con mínima intervención
+- Mantiene la integridad, seguridad y disponibilidad de datos críticos
+- **Arquitectura de tecnología:** se enfoca en la arquitectura de los sistemas de TI a utilizar, especialmente en hardware y telecomunicaciones
+
+## 2. Plan de pruebas
+
+El plan de pruebas se organiza en **fases secuenciales** que permiten evaluar la resiliencia de la infraestructura desde distintos ángulos. Cada fase simula escenarios críticos que podrían afectar cómputo, almacenamiento y conectividad.
+
+Se ejecutan fallos forzados en nodos de AWS y OCI, interrupciones de zonas de disponibilidad y pruebas de *failover* de bases de datos, garantizando que el tráfico se redirija correctamente y que los datos se mantengan íntegros. Además, se valida la propagación del **sistema de nombre de dominio (DNS)** y el cumplimiento de políticas de seguridad bajo escenarios de contingencia. Esta metodología asegura que la infraestructura no solo sea redundante, sino operativamente confiable. 
+
+### Fases del plan de pruebas
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Fases", "Descripción"]}
+    lists={{
+        R1: [
+            "Se emplean ténicas de ingeniería de caos para simular fallas en instancias EC2 y nodos de OCI, incluyendo apagados repentinos y cortes de zonas de disponibilidad",
+            "Se verifica qué grupos de autoescalado y balanceadores de carga redirigirán tráfico automáticamente, manteniendo la experiencia del usuario sin interrupciones",
+            "El éxito se mide por la capacidad del sistema para restaurar nodos fallidos en menos de 90 segundos, cumpliendo con los SLA establecidos"
+        ],
+        R2: [
+            "Se fuerza la conmutación de roles entre el nodo primario en AWs y el standby en OCI mediante Oracle Data Guard, asegurando que el RPO sea igual a cero y que no haya pérdida de transacciones",
+            "Se mide la latencia de replicación entre Amazon S3 (Simple Storage Service) y OCI Object Storage para confirmar que los archivos y backups críticos estén disponibles",
+            "Se verifica la integridad de los datos y la consistencia de permisos de acceso y cifrado tras la transacción"
+        ],
+        R3: [
+            "Se simula un apagón total del proveedor principal, conometrando la propagación del DNS y la redirección de tráfico hacia OCI",
+            "Se asegura que el RTO sea inferior a 5 minutos y que las políticas de seguridad y firewalls permitan acceso solo a usuarios autorizados",
+            "Se documentan los resultados en una matriz de auditoría, garantizando que la infraestructura sea operativamente capaz de resistir fallos masivos según las normativas técnicas vigentes"
+        ]
+    }}
+    rows={[
+        [
+            "**Validación de resiliencia de cómputo y alta disponibilidad**",
+            "@R1"
+        ],
+        [
+            "**Pruebas críticas de failover y continuidad de datos**",
+            "@R2"
+        ],
+        [
+            "**Validación de acceso y conectividad de red global**",
+            "@R3"
+        ],
+    ]}
+/>
+
+---
+
+## Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "Una empresa sufre un fallo de nodo en AWS. ¿Cuál es el objetivo principal del autoescalado en infraestructura multicloud?",
+		options: [
+            "Reducir los costos operativos sin impactar la continuidad",
+            "Mantener automáticamente la disponibilidad de servicios",
+            "Limitar la cantidad de usuarios simultáneos en el sistema",
+            "Evitar la replicación de datos entre regiones",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "Un nodo de base de datos primario falla en AWS. ¿Cómo asegura el plan de pruebas la continuidad de datos?",
+		options: [
+            "Eliminando nodos antiguos de manera automática",
+            "Ajustando los permisos de acceso de usuarios",
+            "Failover controlado con replicación a nodo standby",
+            "Desconectando temporalmente la red global",
+		],
+		correctIndex: 2
+	},
+    {
+		question: "Durante una caída regional simultánea, ¿qué mecanismo resulta clave para mantener los servicios operativos?",
+		options: [
+            "Respaldos periódicos restaurados tras la interrupción regional",
+            "Políticas manuales de recuperación aplicadas por el equipo técnico",
+            "Configuraciones locales independientes sin replicación activa",
+            "Balanceadores de carga y grupos de autoescalado distribuidos",
+		],
+		correctIndex: 3
+	},
+    {
+		question: "Un nodo EC2 falla repentinamente. ¿La ingeniería de caos se utiliza para simular este tipo de fallos en la nube?",
+		options: [
+            "Verdadero",
+            "Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "El RPO puede ser igual a cero para garantizar que no se pierdan transacciones",
+		options: [
+            "Verdadero",
+            "Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "La propagación del DNS y la redirección de tráfico no influyen en mantener el acceso global",
+		options: [
+            "Verdadero",
+            "Falso",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "Se realiza auditoría de políticas de seguridad. ¿Un RTO superior a 5 minutos asegura restauración rápida de servicios críticos?",
+		options: [
+            "Verdadero",
+            "Falso",
+		],
+		correctIndex: 1
+	},    
+]}/>

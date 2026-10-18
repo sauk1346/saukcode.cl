@@ -1,0 +1,194 @@
+# Integración de Microcontrolador con Aplicación Android
+
+
+## 1. Fundamentos de la comunicación inalámbrica (Bluetooth)
+La comunicación inalámbrica mediante Bluetooth constituye uno de los pilares fundamentales en la interacción entre microcontroladores y aplicaciones móviles. Este tipo de conexión permite transmitir datos de manera sencilla y confiable, eliminando la necesidad de cables físicos y favoreciendo la creación de proyectos más versátiles y portátiles.
+
+### Arquitectura del sistema
+La comunicación entre microcontoladores y aplicaciones móviles requiere:
+
+- **capa física:** módulo bluetooth (HC-05/HC-06)
+- **capa de enlace:** protocolo *bluetooth* classic/BLE
+- **capa de aplicación:** protocolo personalizado con validación
+- **interfaz de usuario:** Jetpack Compose para Android
+
+**Consideraciones de seguridad**
+
+- **Autenticación:** Verificación de identidad del dispositivo
+- **Cifrado:** Protección de datos en tránsito
+- **Validación:** Sanitización de datos recibidos
+- **Control de acceso:** Permisos granulares
+
+
+### Explicación del código Arduino
+La explicación del código Arduino incluye las medidas de seguridad diseñadas para proteger la comunicación y garantizar un uso controlado del dispositivo. Estas prácticas refuerzan la autenticación, validación y cierre seguro de las conexiones.
+
+**Medidas de seguridad implementadas**
+
+- Autenticación mediante ID de dispositivo y clave secreta
+- Validación de longitud de comandos
+- Lista blanca de comandos permitidos
+- Desconexión segura con cierre de sesión
+
+
+### Implementación Android con Jetpack Compose
+Para implementar una aplicación Android con **Jetpack Compose**, primero debes incorporar las dependencias necesarias y configurar los permisos correspondientes. Luego, deberás desarrollar una clase que establezca una conexión segura con el dispositivo Bluetooth y crea un **ViewModel** encargado de gestionar la interfaz gráfica en Compose para controlar y visualizar el estado del dispositivo de manera clara y funcional.
+
+- Agregar dependencias
+- Agregar permisos
+- Agregar Clase de conexión segura
+- Agregar Clase ViewModel que gestiona la lógica de interacción con el dispositivo Bluetooth
+- Crear interfaz gráfica
+
+### Prácticas de seguridad implementadas
+Abarcan distintas capas del sistema para proteger la comunicación entre el microcontrolador y la aplicación. Incluyen autenticación de credenciales, validación de comandos y listas blancas en el dispositivo; manejo de estados, sanitización de datos y *timeouts* en la aplicación Android
+
+<SmartTable
+    tableLayout="auto"
+    lists={{
+        R1: [
+            "**Autenticación: verificación de credenciales antes de procesar comandos**",
+            "**Validación de entrada: límites de longitud y formato de comandos**",
+            "**Lista blanca:** solo comandos predefinidos son aceptados",
+            "**Sesiones:** control de estado de autenticación"
+        ],
+        R2: [
+            "**Validación de comandos:** verificación antes del envío",
+            "**Manejo de estados:** control robusto del estado de conexión",
+            "**Timeouts:** gestión de conexiones colgadas",
+            "**Sanitización:** limpieza de datos recibidos"
+        ],
+        R3: [
+            "**Formato estructurado:** mensajes con prefijos identificables",
+            "**Códigos de error:** respuestas claras para situaciones anómalas",
+            "**Desconexión segura:** cierre ordenado de sesiones"
+        ]
+    }}
+    headers={["Capa", "Descripción"]}
+    rows={[
+        [
+            "**Microcontrolador**",
+            "@R1"
+        ],
+        [
+            "**Aplicación Android**",
+            "@R2"
+        ],
+        [
+            "**Protocolo de comunicación**",
+            "@R3"
+        ],
+    ]}
+/>
+
+## 2. Fundamentos de la comunicación inalambrica (WiFi)
+La comunicación inalámbrica mediante WiFi es una de las soluciones más utilizadas para conectar microcontroladores con aplicaciones móviles, debido a su alcance, velocidad y flexibilidad. En este esquema, la arquitectura del sistema se organiza en distintas capas: desde la física, representada por módulos como el **ESP8266 (Wemos D1)**, hasta la de aplicación, donde intervienen **APIs REST** con autenticación básica para el intercambio de datos.
+
+Entre ambas se integra la capa de red, que utiliza protocolos como **HTTP sobre WiFi**, y finalmente la interfaz de usuario, que puede diseñarse en Android con herramientas modernas como **Jetpack Compose**. Este conjunto de elementos permite construir proyectos seguros y escalables, en los que las medidas de autenticación, validación de entradas y control de accesos resultan esenciales para proteger la comunicación y garantizar un funcionamiento confiable.
+
+### Arquitectura del sistema
+La comunicación entre microcontroladores WiFi y aplicaciones móviles requiere una capa física basada en el módulo WiFi integrado ESP8266 (Wemos D1), una capa de red que utiliza el protocolo HTTP sobre WiFi, una capa de aplicación estructurada en una API REST con autenticación básica, y finalmente, una interfaz de usuario desarrollada en Android mediante Jetpack Compose.
+
+### Consideraciones de Seguridad WiFi
+Al trabajar con microcontroladores y aplicaciones móviles, la seguridad de la red WiFi resulta fundamental para proteger la comunicación y prevenir accesos no autorizados. Estas consideraciones establecen prácticas básicas para fortalecer la conexión.
+
+- **Autenticación simple:** *Token* básico
+- **Validación de entrada:** verificación de comandos
+- **Control de acceso:** solo comandos permitidos
+- **Timeouts:** gestión de conexiones
+
+### Arduino
+Su uso en proyectos con WiFi facilita la implementación práctica de la comunicación entre microcontroladores y aplicaciones móviles. Su diseño permite integrar medidas básicas de autenticación, validación y control de acceso, preparando la base para que el dispositivo interactúe de forma confiable con la aplicación Android.
+
+### Implementación Android con Jetpack Compose
+
+- Primero debes incorporar las dependencias necesarias y configurar los permisos correspondientes
+- Luego, establece la configuración de red adecuada para permitir la comunicación segura
+- A continuación, desarrolla una clase que gestione la conexión con el dispositivo y crea un ViewModel encargado de la lógica de interacción
+- Finalmente, diseña la interfaz gráfica en Compose para controlar y visualizar el estado del dispositivo de forma intuitiva y confiable
+
+### Prácticas de seguridad implementadas
+Garantizan que la comunicación entre el microcontrolador y la aplicación móvil se realice de manera confiable y protegida. En el caso de Wemos D1, incluyen el uso de tokens de autenticación, la validación de parámetros y el control de los estados permitidos.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Caso", "Descripción"]}
+    lists={{
+        R1: [
+            "**Token de autenticación:** verificación simple antes de ejecutar comandos",
+            "**Validación de parámetros:** verificación de argumentos recibidos",
+            "**Control de sesión:** variable booleana para autenticación"
+        ],
+        R2: [
+            "**Verificación de estado:** no envía comandos sin autenticación",
+            "**Manejo de errroes:** respuestas claras para diferentes escenarios",
+            "**Timeout implícito:** OkHttp maneja timeouts automáticamente",
+            "**Validación de IP:** campo editable para configurar dispositivo"
+        ],
+        R3: [
+            "**URLs claras:** /auth, /led, /sensor",
+            "**Parámetros simples:** token, state",
+            "**Respuestas directas:** \"Ok\", \"ERROR\", valores numéricos"
+        ]
+    }}
+    rows={[
+        [
+            "**En el Wemos D1**",
+            "@R1"
+        ],
+        [
+            "**En la Aplicación Android**",
+            "@R2"
+        ],
+        [
+            "**Protocolo Simple**",
+            "@R3"
+        ],
+    ]}
+/>
+
+
+# Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "¿Cuál de las siguientes afirmaciones describe mejor una ventaja principal de usar Bluetooth en proyectos IoT con Arduino y Android?",
+		options: [
+			"Permite el acesso global a través de Internet",
+			"Requiere un router para establecer la conexión",
+			"Soporta múltiples usuarios simultáneos a alta velocidad",
+			"Presenta bajo consumo energético y simplicidad de configuración"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Cuál de las siguientes opciones representa una ventaja clave de la comunicación vía internet antre Arduino y Android usando wifi?",
+		options: [
+			"Bajo consumo energético",
+			"Alta velocidad de transmisión",
+			"Acceso global a los dispositivos",
+			"Escalabilidad para múltiples usuarios"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Cuál de las siguiente opciones corresponde a la capa de red en la arquitectura de comunicación WiFi?",
+		options: [
+			"HTTP sobre WiFi",
+			"Token de autenticación",
+			"API REST",
+			"ESP89266 (Wemos D1)"
+		],
+		correctIndex: 0
+	},
+    {
+		question: "¿Cuáles de las siguientes medidas forman parte de las consideraciones de seguridad en WiFi?",
+		options: [
+			"Uso de cableado estructurado para conexión física",
+			"Autenticación simple con token",
+			"Configuración del brillo de la pantalla del dispositivo",
+			"Organización de carpetas en el sistema operativo"
+		],
+		correctIndex: 1
+	},
+]} />

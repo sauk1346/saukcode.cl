@@ -1,0 +1,349 @@
+# Ejercicio tipo Prueba
+
+<SmartFigure
+	id="clase-usuario-y-entrada-datos"
+	src="/inacap/ti3v42/images/fig04.png"
+	alt="Clase Usuario y entrada de datos"
+	caption="Clase Usuario y entrada de datos"
+	size="large"
+/>
+
+- Crear una clase Usuario que tenga los siguientes atributos: 
+    - id
+    - nombre
+    - correo
+    - código postal
+    - clave
+- Al presionar el boton enviar:
+    - se debe crear un objeto de la clase Usuario con los datos ingresados.
+    - se debe crear un log en la consola con la información del usuario.
+
+<Solution>
+**MainActivity.kt**
+```kotlin
+package com.example.myapplication
+
+import android.os.Bundle
+import android.util.Log
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.example.myapplication.ui.theme.MyApplicationTheme
+
+class MainActivity : ComponentActivity() {
+
+    companion object {
+        private const val TAG = "MainActivity"
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            MyApplicationTheme {
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    FormularioUsuario(modifier = Modifier.padding(innerPadding))
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun FormularioUsuario(modifier: Modifier = Modifier) {
+
+    var id by remember { mutableStateOf("") }
+    var correo by remember { mutableStateOf("") }
+    var postal by remember { mutableStateOf("") }
+    var clave by remember { mutableStateOf("") }
+    var mensaje by remember { mutableStateOf("") }
+
+    // Estados de error para cada campo
+    var idError by remember { mutableStateOf(false) }
+    var correoError by remember { mutableStateOf(false) }
+    var postalError by remember { mutableStateOf(false) }
+    var claveError by remember { mutableStateOf(false) }
+
+    // Verificar si todos los campos son válidos para habilitar el botón
+    val formularioValido = id.isNotEmpty() && !idError &&
+            correo.isNotEmpty() && !correoError &&
+            postal.isNotEmpty() && !postalError &&
+            clave.isNotEmpty() && !claveError
+
+    Column(
+        modifier = modifier
+            .padding(16.dp)
+            .fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+
+        // ID
+        OutlinedTextField(
+            value = id,
+            onValueChange = {
+                id = it
+                val idNum = it.toIntOrNull()
+                idError = it.isNotEmpty() && (idNum == null || idNum <= 0)
+            },
+            label = { Text("ID") },
+            isError = idError,
+            supportingText = {
+                if (idError) {
+                    Text(
+                        text = "ID debe ser un número mayor que 0",
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+            },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Number
+            ),
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        // Correo
+        OutlinedTextField(
+            value = correo,
+            onValueChange = {
+                correo = it
+                correoError = it.isNotEmpty() && !it.contains("@")
+            },
+            label = { Text("Correo") },
+            isError = correoError,
+            supportingText = {
+                if (correoError) {
+                    Text(
+                        text = "Correo debe contener @",
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+            },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email
+            ),
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        // Postal
+        OutlinedTextField(
+            value = postal,
+            onValueChange = {
+                postal = it
+                postalError = it.isNotEmpty() && (it.length != 5 || !it.all { c -> c.isDigit() })
+            },
+            label = { Text("Código Postal") },
+            isError = postalError,
+            supportingText = {
+                if (postalError) {
+                    Text(
+                        text = "Código postal debe ser 5 dígitos",
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+            },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Number
+            ),
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        // Clave
+        OutlinedTextField(
+            value = clave,
+            onValueChange = {
+                clave = it
+                claveError = it.isNotEmpty() && it.length < 4
+            },
+            label = { Text("Clave") },
+            isError = claveError,
+            supportingText = {
+                if (claveError) {
+                    Text(
+                        text = "Clave debe tener mínimo 4 caracteres",
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+            },
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password
+            ),
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        // Botón enviar
+        Button(
+            onClick = {
+                // Crear usuario si todo es válido
+                val usuario = Usuario(id.toInt(), correo)
+                usuario.postal = postal
+                usuario.clave = clave
+
+                // Mostrar en Logcat que el usuario se creó correctamente
+                Log.d("MainActivity", "Usuario creado exitosamente")
+                usuario.mostrarInformacion()
+
+                mensaje = "Usuario creado correctamente"
+            },
+            enabled = formularioValido,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("ENVIAR")
+        }
+
+        // Mensaje en pantalla
+        Text(text = mensaje)
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun FormularioUsuarioPreview() {
+    MyApplicationTheme {
+        FormularioUsuario()
+    }
+}
+```
+
+**Usuario.kt**
+```kotlin
+package com.example.myapplication
+
+import android.util.Log
+
+class Usuario(id: Int, correo: String) {
+
+    companion object {
+        private const val TAG = "Usuario"
+    }
+
+    var id: Int = id
+        set(value) {
+            if (value > 0) {
+                field = value
+            } else {
+                Log.e(TAG, "ID inválido (debe ser mayor que 0)")
+            }
+        }
+
+    var correo: String = correo
+        set(value) {
+            if (value.contains("@")) {
+                field = value
+            } else {
+                Log.e(TAG, "Correo inválido")
+            }
+        }
+
+    var postal: String = ""
+        set(value) {
+            if (value.length == 5 && value.all { it.isDigit() }) {
+                field = value
+            } else {
+                Log.e(TAG, "Código postal inválido (deben ser 5 dígitos)")
+            }
+        }
+
+    var clave: String = ""
+        set(value) {
+            if (value.length >= 4) {
+                field = value
+            } else {
+                Log.e(TAG, "Clave inválida (mínimo 4 caracteres)")
+            }
+        }
+
+    /**
+     * Método para mostrar la información del usuario en el Log
+     */
+    fun mostrarInformacion() {
+        Log.i(TAG, "=== Información del Usuario ===")
+        Log.i(TAG, "ID: $id")
+        Log.i(TAG, "Correo: $correo")
+        Log.i(TAG, "Código Postal: $postal")
+        Log.i(TAG, "Clave: ${"*".repeat(clave.length)}")
+    }
+}
+```
+<SmartFigure
+	id="ingreso-incorrecto-id"
+	src="/inacap/ti3v42/images/fig05.png"
+	alt="Ingreso incorrecto de ID"
+	caption="Ingreso incorrecto de ID"
+	size="large"
+/>
+<SmartFigure
+	id="ingreso-correcto-id"
+	src="/inacap/ti3v42/images/fig06.png"
+	alt="Ingreso correcto de ID"
+	caption="Ingreso correcto de ID"
+	size="large"
+/>
+<SmartFigure
+	id="ingreso-incorrecto-correo"
+	src="/inacap/ti3v42/images/fig07.png"
+	alt="Ingreso incorrecto de correo"
+	caption="Ingreso incorrecto de correo"
+	size="large"
+/>
+<SmartFigure
+	id="ingreso-correcto-correo"
+	src="/inacap/ti3v42/images/fig08.png"
+	alt="Ingreso correcto de correo"
+	caption="Ingreso correcto de correo"
+	size="large"
+/>
+<SmartFigure
+	id="ingreso-incorrecto-codigo-postal"
+	src="/inacap/ti3v42/images/fig09.png"
+	alt="Ingreso incorrecto de código postal"
+	caption="Ingreso incorrecto de código postal"
+	size="large"
+/>
+<SmartFigure
+	id="ingreso-correcto-codigo-postal"
+	src="/inacap/ti3v42/images/fig10.png"
+	alt="Ingreso correcto de código postal"
+	caption="Ingreso correcto de código postal"
+	size="large"
+/>
+<SmartFigure
+	id="ingreso-incorrecto-clave"
+	src="/inacap/ti3v42/images/fig11.png"
+	alt="Ingreso incorrecto de clave"
+	caption="Ingreso incorrecto de clave"
+	size="large"
+/>
+<SmartFigure
+	id="ingreso-correcto-clave"
+	src="/inacap/ti3v42/images/fig12.png"
+	alt="Ingreso correcto de clave"
+	caption="Ingreso correcto de clave"
+	size="large"
+/>
+<SmartFigure
+	id="verificacion-boton-enviar"
+	src="/inacap/ti3v42/images/fig13.png"
+	alt="Verificación botón enviar"
+	caption="Verificación botón enviar"
+	size="large"
+/>
+<SmartFigure
+	id="verificacion-usuario-creado-catlog"
+	src="/inacap/ti3v42/images/fig14.png"
+	alt="Verificación Usuario creado (catlog)"
+	caption="Verificación Usuario creado (catlog)"
+    lightbox={true}
+	size="large"
+/>
+</Solution>
+

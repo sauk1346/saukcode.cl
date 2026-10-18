@@ -1,0 +1,219 @@
+# Listas
+
+## Crear una lista
+```python
+numeros = [4,7,9,2,3]
+
+print(numeros)
+```
+<TerminalOutput withBg>
+{`[4, 7, 9, 2, 3]`}
+</TerminalOutput>
+
+## Crear una lista vacía
+```python
+numeros = []
+
+print(numeros)
+```
+<TerminalOutput withBg>
+{`[]`}
+</TerminalOutput>
+
+## Agregar elemento a la cola
+
+`.append(x)`: agrega el elemento-x al final de la lista
+
+```python
+numeros = [4,7,9,2,3]
+numeros.append(1)
+
+print(numeros)
+```
+<TerminalOutput withBg>
+{`[4, 7, 9, 2, 3, 1]`}
+</TerminalOutput>
+
+## Agregar elemento en posición específica
+
+`.insert(x,y)`: agrega en el índice-x, el elemento-y
+
+```python
+numeros = [4,7,9,2,3]
+numeros.insert(2,"cinco")
+
+print(numeros)
+```
+<TerminalOutput withBg>
+{`[4, 7, 'cinco', 9, 2, 3]`}
+</TerminalOutput>
+
+## Eliminar elemento(s)
+
+1. `del numeros[x]` Elimina el elemento en el índice-x, de la lista numeros
+
+```python
+numeros = [4,7,8,2,3]
+del numeros[2]
+
+print(numeros)
+```
+<TerminalOutput withBg>
+{`[4, 7, 2, 3]`}
+</TerminalOutput>
+
+2. `del numeros[:]` elimina todos los elementos de la lista numeros
+
+```python
+numeros = [4,7,8,2,3]
+del numeros[:]
+
+print(numeros)
+```
+<TerminalOutput withBg>
+{`[]`}
+</TerminalOutput>
+
+## Contar elementos
+`len(x)` cuenta todos los elementos de la lista-x
+
+```python
+numeros = [4,7,8,2,3]
+
+print(f"Total elementos: {len(numeros)}")
+```
+<TerminalOutput withBg>
+{`Total elementos: 5`}
+</TerminalOutput>
+
+## Referenciar lista
+`lista2 = numeros`
+
+- Puede parecer que `lista2` es una copia de `numeros`, pero es una referencia
+- Una referencia significa que, los cambios que se hagan en ella, modifican a la original
+
+```python
+numeros = [4,7,8,2,3]
+lista2 = numeros
+
+del lista2[:]
+
+print(numeros)
+```
+<TerminalOutput withBg>
+{`[]`}
+</TerminalOutput>
+
+## Copiar lista
+
+`copia = numeros[:]`
+
+- Los cambios que se hagan en la lista `copia`, no afectan a la lista `numeros`
+
+```python
+numeros = [4,7,8,2,3]
+copia_lista = numeros[:]
+
+del copia_lista[:]
+
+print(numeros)
+```
+<TerminalOutput withBg>
+{`[4, 7, 8, 2, 3]`}
+</TerminalOutput>
+
+## Copiar un rango de elementos
+
+`copia_rango = numeros[i,j]`
+
+- Copia elementos desde el índice-i (inclusivo) hasta el índice-j (exclusivo)
+
+```python
+numeros = [4,7,8,2,3]
+copia_rango = numeros[1:3]
+
+print(copia_rango)
+```
+<TerminalOutput withBg>
+{`[7, 8]`}
+</TerminalOutput>
+
+## Recorrer lista
+Se realiza con ayuda de un ciclo `for`
+
+```python
+numeros = [4,7,9,2,3]
+for elem in numeros:
+	print("Elemento ->", elem)
+```
+<TerminalOutput withBg>
+{`Elemento -> 4
+Elemento -> 7
+Elemento -> 9
+Elemento -> 2
+Elemento -> 3`}
+</TerminalOutput>
+
+## Calcular Índices
+Se utiliza el ciclo `for` y el método `len()`
+
+```python
+numeros = [4,7,8,2,3]
+for indice in range(len(numeros)):
+	print("Elemento en índice", indice, "->", numeros[indice])
+```
+<TerminalOutput withBg>
+{`Elemento en índice 0 -> 4
+Elemento en índice 1 -> 7
+Elemento en índice 2 -> 8
+Elemento en índice 3 -> 2
+Elemento en índice 4 -> 3`}
+</TerminalOutput>
+
+## Último elemento
+
+1. `numeros[len(numeros)-1]`
+2. `numeros[-1]`
+
+Ambas instrucciones entregan el último elemento de una lista
+
+```python
+numeros = [4,7,8,2,3]
+
+ultimo_ele = numeros[len(numeros)-1]
+ult_elem = numeros[-1]
+
+print(ultimo_ele)
+print(ult_elem)
+```
+<TerminalOutput withBg>
+{`3
+3`}
+</TerminalOutput>
+
+# Ejercicios
+
+## Ejercicio 01
+Crear una lista con 10 números aleatorios del 0 al 9. Desplegar solo los números mayores al último número
+
+<Solution>
+```python
+import random
+
+numeros = [random.randint(0,9) for e in range(10)]
+
+print(f"Números aleatorios: {numeros}")
+
+ultimo = numeros[-1]
+
+print(f"Números mayores que {ultimo}: ", end="")
+
+for e in numeros:
+    if e > ultimo:
+        print(str(e) +" ", end="")
+```
+<TerminalOutput withBg>
+{`Números aleatorios: [1, 0, 3, 7, 9, 3, 9, 7, 4, 8]
+Números mayores que 8: 9 9 `}
+</TerminalOutput>
+</Solution>

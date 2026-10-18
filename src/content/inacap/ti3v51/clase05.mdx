@@ -1,0 +1,431 @@
+# OLAP: Cubos de Datos, Tipos y Diseño
+
+**OLAP (*Online Analytical Processing*)** es una tecnología utilizada para el **análisis interactivo de datos multidimensionales desde múltiples perspectivas**. Está optimizada para consultas e informes, a diferencia de OLTP que está optimizado para transacciones.
+
+Su objetivo es proporcionar una visión rápida y flexible de los datos para apoyar la **toma de decisiones empresariales**.
+
+## 1. OLTP vs OLAP
+
+<SmartTable
+    tablelayout="auto"
+    headers={['Característica', 'OLTP', 'OLAP']}
+    rows={[
+        ["**Propósito**", "Procesar transacciones", "Analizar datos"],
+        ["**Tipo de consultas**", "Simples, frecuentes", "Complejas, ocasionales"],
+        ["**Datos**", "Actuales, detallados", "Históricos, agregados"],
+        ["**Estructura**", "Normalizada (3FN)", "Desnormalizada (dimensional)"],
+        ["**Usuarios**", "Operativos", "Analistas, ejecutivos"],
+        ["**Ejemplo**", "Registrar una venta", "Analizar ventas por región/trimestre"]
+    ]}
+/>
+
+## 2. Características de OLAP
+
+### Análisis Multidimensional
+Permite ver los datos desde diferentes perspectivas simultáneas (tiempo, producto, región, cliente, etc.).
+
+### Respuesta Rápida
+Consultas y resultados en tiempo real gracias a estructuras optimizadas (cubos precalculados).
+
+### Consolidación de Datos (Roll-Up)
+Agrega datos para obtener resúmenes y totales: de días a meses, de ciudades a regiones.
+
+### Drill-Down y Roll-Up
+- **Drill-Down:** moverse hacia mayor detalle (año → trimestre → mes → día).
+- **Roll-Up:** moverse hacia menor detalle / mayor agregación (día → mes → año).
+
+### Slice y Dice
+- **Slice:** filtrar una sola dimensión (ej: solo Q1 2024).
+- **Dice:** filtrar múltiples dimensiones (ej: Q1 2024 + Región Norte + Producto A).
+
+### Pivot (Rotación)
+Rotar la vista del cubo para visualizar los datos desde otra perspectiva, similar a las tablas dinámicas de Excel pero más eficiente.
+
+## 3. Componentes de un Cubo OLAP
+
+### Cubo OLAP
+Estructura multidimensional que almacena datos y las relaciones entre ellos. No es literalmente un cubo; puede tener N dimensiones (hipercubo).
+
+### Dimensiones
+Categorías que describen los datos. Ejemplos: Tiempo, Producto, Cliente, Región, Vendedor.
+
+### Medidas
+Datos numéricos que se analizan dentro del cubo. Ejemplos: monto de venta, cantidad de unidades, margen de ganancia.
+
+### Jerarquías
+Organización de las dimensiones en niveles de detalle:
+
+<TerminalOutput>
+{`Dimensión Tiempo
+├── Año
+│   └── Trimestre
+│       └── Mes
+│           └── Semana
+│               └── Día
+
+Dimensión Geografía
+├── País
+│   └── Región
+│       └── Ciudad
+│           └── Sucursal`}
+</TerminalOutput>
+
+```sql
+-- Ejemplo: operaciones OLAP con SQL puro
+
+-- ROLL-UP: de mes a trimestre (agregación hacia arriba)
+SELECT
+    t.anio,
+    t.trimestre,
+    SUM(f.monto) AS total_ventas
+FROM fact_ventas f
+JOIN dim_tiempo t ON f.id_tiempo = t.id_tiempo
+GROUP BY ROLLUP(t.anio, t.trimestre)  -- ROLLUP genera subtotales automáticamente
+ORDER BY t.anio, t.trimestre;
+
+-- DRILL-DOWN: de trimestre a mes (más detalle)
+SELECT
+    t.anio,
+    t.trimestre,
+    t.mes,
+    SUM(f.monto) AS total_ventas
+FROM fact_ventas f
+JOIN dim_tiempo t ON f.id_tiempo = t.id_tiempo
+WHERE t.anio = 2024 AND t.trimestre = 1  -- Drill-down al Q1 2024
+GROUP BY t.anio, t.trimestre, t.mes
+ORDER BY t.mes;
+
+-- SLICE: solo una dimensión filtrada (producto = 'Monitor')
+SELECT
+    t.anio,
+    t.mes,
+    SUM(f.monto) AS ventas_monitor
+FROM fact_ventas f
+JOIN dim_tiempo   t ON f.id_tiempo   = t.id_tiempo
+JOIN dim_producto p ON f.id_producto = p.id_producto
+WHERE p.nombre = 'Monitor'  -- SLICE por producto
+GROUP BY t.anio, t.mes
+ORDER BY t.anio, t.mes;
+
+-- DICE: múltiples dimensiones filtradas
+SELECT
+    t.trimestre,
+    r.nombre AS region,
+    p.categoria,
+    SUM(f.monto) AS total_ventas
+FROM fact_ventas f
+JOIN dim_tiempo   t ON f.id_tiempo   = t.id_tiempo
+JOIN dim_producto p ON f.id_producto = p.id_producto
+JOIN dim_cliente  c ON f.id_cliente  = c.id_cliente
+JOIN dim_region   r ON c.id_region   = r.id_region
+WHERE t.anio      = 2024              -- DICE: filtro tiempo
+  AND r.nombre    IN ('Norte','Sur')  -- DICE: filtro región
+  AND p.categoria = 'Electrónica'     -- DICE: filtro categoría
+GROUP BY t.trimestre, r.nombre, p.categoria;
+
+-- PIVOT: rotar filas a columnas (comparar trimestres como columnas)
+SELECT
+    p.nombre AS producto,
+    SUM(CASE WHEN t.trimestre = 1 THEN f.monto ELSE 0 END) AS Q1,
+    SUM(CASE WHEN t.trimestre = 2 THEN f.monto ELSE 0 END) AS Q2,
+    SUM(CASE WHEN t.trimestre = 3 THEN f.monto ELSE 0 END) AS Q3,
+    SUM(CASE WHEN t.trimestre = 4 THEN f.monto ELSE 0 END) AS Q4,
+    SUM(f.monto) AS total_anual
+FROM fact_ventas f
+JOIN dim_producto p ON f.id_producto = p.id_producto
+JOIN dim_tiempo   t ON f.id_tiempo   = t.id_tiempo
+WHERE t.anio = 2024
+GROUP BY p.nombre
+ORDER BY total_anual DESC;
+```
+
+## 4. Tipos de OLAP
+
+### ROLAP (Relational OLAP)
+Utiliza una base de datos relacional como backend y realiza consultas SQL para el análisis.
+
+- **Ventajas:** escalable, sin límite de dimensiones, usa infraestructura existente.
+- **Desventajas:** más lento en consultas complejas (depende del motor SQL).
+- **Motores:** PostgreSQL, SQL Server Analysis Services (modo relacional).
+
+```sql
+-- ROLAP: todo el análisis se hace con SQL sobre tablas relacionales
+SELECT
+    t.anio,
+    p.categoria,
+    COUNT(DISTINCT f.id_cliente) AS clientes_unicos,
+    SUM(f.monto)                 AS total_ventas,
+    AVG(f.monto)                 AS ticket_promedio
+FROM fact_ventas f
+JOIN dim_tiempo   t ON f.id_tiempo   = t.id_tiempo
+JOIN dim_producto p ON f.id_producto = p.id_producto
+GROUP BY CUBE(t.anio, p.categoria);  -- CUBE genera todas las combinaciones posibles
+```
+
+### MOLAP (Multidimensional OLAP)
+Almacena los datos en un formato multidimensional propio, optimizado para análisis rápido (cubos precalculados).
+
+- **Ventajas:** muy rápido en consultas, excelente para datos frecuentes.
+- **Desventajas:** limitado en volumen, requiere precalcular agregaciones.
+- **Motores:** Microsoft SSAS (modo multidimensional), Oracle Essbase.
+
+```sql
+-- En MOLAP las agregaciones se precalculan y almacenan
+-- Simulación: tabla de agregados precalculados (materialización)
+CREATE MATERIALIZED VIEW mv_ventas_mensual AS
+SELECT
+    t.anio,
+    t.mes,
+    p.id_producto,
+    p.categoria,
+    c.id_region,
+    SUM(f.monto)    AS total_ventas,
+    SUM(f.cantidad) AS total_unidades,
+    COUNT(*)        AS num_transacciones
+FROM fact_ventas f
+JOIN dim_tiempo   t ON f.id_tiempo   = t.id_tiempo
+JOIN dim_producto p ON f.id_producto = p.id_producto
+JOIN dim_cliente  c ON f.id_cliente  = c.id_cliente
+GROUP BY t.anio, t.mes, p.id_producto, p.categoria, c.id_region;
+
+-- Índice para acelerar las consultas sobre la vista materializada
+CREATE INDEX idx_mv_ventas_anio_mes ON mv_ventas_mensual(anio, mes);
+
+-- Actualizar la vista materializada con nuevos datos
+REFRESH MATERIALIZED VIEW mv_ventas_mensual;
+```
+
+### HOLAP (Hybrid OLAP)
+Combina ROLAP y MOLAP: los datos de resumen se guardan en formato multidimensional y los datos de detalle permanecen en la base relacional.
+
+- **Ventajas:** equilibrio entre velocidad y flexibilidad.
+- **Desventajas:** mayor complejidad de administración.
+
+<TerminalOutput>
+{`Consulta de alto nivel (totales anuales) → MOLAP (rápido, precalculado)
+Consulta de detalle (transacción específica) → ROLAP (SQL sobre tablas relacionales)`}
+</TerminalOutput>
+
+
+## 5. Diseño de Cubos de Datos
+
+### Evaluación de Requisitos
+
+Antes de diseñar el cubo se deben identificar:
+- Los **KPIs** y métricas relevantes (¿qué se va a medir?).
+- Las **dimensiones** de análisis (¿desde qué perspectivas?).
+- El **nivel de granularidad** requerido (¿cuán detallado?).
+
+### Estructura Dimensional
+
+```sql
+-- Identificar dimensiones clave y sus jerarquías
+-- Ejemplo: DW para análisis de ventas de retail
+
+-- Dimensión Tiempo con jerarquía completa
+CREATE TABLE dim_tiempo (
+    id_tiempo   INT  PRIMARY KEY,
+    fecha       DATE NOT NULL UNIQUE,
+    dia         SMALLINT,       -- 1-31
+    dia_semana  VARCHAR(10),    -- 'Lunes', 'Martes', ...
+    semana      SMALLINT,       -- 1-53
+    mes         SMALLINT,       -- 1-12
+    nombre_mes  VARCHAR(10),
+    trimestre   SMALLINT,       -- 1-4
+    semestre    SMALLINT,       -- 1-2
+    anio        SMALLINT,
+    es_feriado  BOOLEAN DEFAULT FALSE,
+    es_fin_sem  BOOLEAN DEFAULT FALSE
+);
+
+-- Dimensión Producto con jerarquía de categorías
+CREATE TABLE dim_producto (
+    id_producto  INT          PRIMARY KEY,
+    sku          VARCHAR(50)  NOT NULL UNIQUE,
+    nombre       VARCHAR(100) NOT NULL,
+    subcategoria VARCHAR(50),
+    categoria    VARCHAR(50),
+    linea        VARCHAR(50),   -- nivel más alto
+    marca        VARCHAR(50),
+    precio_lista DECIMAL(10,2)
+);
+```
+
+### Tabla de Hechos en el contexto OLAP
+
+En el diseño de cubos OLAP, la **tabla de hechos** es la estructura central que registra los **eventos cuantificables del negocio**. A diferencia de las dimensiones (que describen el contexto), la tabla de hechos almacena los **números que se quieren analizar**.
+
+Cada fila representa un evento único (una venta, una visita, una transacción) y se conecta a las dimensiones mediante claves foráneas:
+
+<SmartTable
+    tablelayout="auto"
+    headers={['Columna', 'Tipo', 'Rol']}
+    rows={[
+        ["`id_tiempo`", "FK", "¿Cuándo ocurrió?"],
+        ["`id_producto`", "FK", "¿Qué se vendió?"],
+        ["`id_cliente`", "FK", "¿A quién?"],
+        ["`id_sucursal`", "FK", "¿Dónde?"],
+        ["`monto`", "Medida aditiva", "¿Cuánto en dinero?"],
+        ["`cantidad`", "Medida aditiva", "¿Cuántas unidades?"],
+        ["`descuento_pct`", "Medida no aditiva", "¿Qué % de descuento? (no se suma)"]
+    ]}
+/>
+
+**Tipos de medidas:**
+- **Aditivas:** se pueden sumar en cualquier dimensión (`monto`, `cantidad`). Son las más comunes.
+- **Semi-aditivas:** solo sumables en algunas dimensiones (`stock_actual` se puede sumar por producto, pero no en el tiempo).
+- **No aditivas:** no tienen sentido al sumarlas (`precio_unitario`, `margen_pct`). Se analizan con `AVG` o calculadas.
+
+```sql
+-- Tabla de hechos con los 3 tipos de medidas
+CREATE TABLE fact_ventas (
+    -- Claves foráneas (contexto del evento)
+    id_tiempo    INT           NOT NULL,
+    id_producto  INT           NOT NULL,
+    id_cliente   INT           NOT NULL,
+    id_sucursal  INT           NOT NULL,
+    -- Medidas aditivas (se pueden SUM en cualquier dimensión)
+    monto        DECIMAL(12,2) NOT NULL,
+    cantidad     INT           NOT NULL,
+    costo        DECIMAL(12,2) NOT NULL,
+    -- Medida no aditiva (usar AVG, no SUM)
+    descuento_pct DECIMAL(5,2) DEFAULT 0,
+    PRIMARY KEY (id_tiempo, id_producto, id_cliente, id_sucursal),
+    FOREIGN KEY (id_tiempo)    REFERENCES dim_tiempo(id_tiempo),
+    FOREIGN KEY (id_producto)  REFERENCES dim_producto(id_producto),
+    FOREIGN KEY (id_cliente)   REFERENCES dim_cliente(id_cliente),
+    FOREIGN KEY (id_sucursal)  REFERENCES dim_sucursal(id_sucursal)
+);
+
+-- Consulta OLAP sobre la tabla de hechos
+-- Medida aditiva: SUM funciona bien
+SELECT p.categoria, SUM(f.monto) AS total_ventas FROM fact_ventas f
+JOIN dim_producto p ON f.id_producto = p.id_producto GROUP BY p.categoria;
+
+-- Medida no aditiva: se calcula como derivada, no se suma directamente
+SELECT p.categoria,
+    SUM(f.monto - f.costo) / NULLIF(SUM(f.monto), 0) * 100 AS margen_pct_real
+FROM fact_ventas f
+JOIN dim_producto p ON f.id_producto = p.id_producto GROUP BY p.categoria;
+```
+
+### Modelos de Cubo
+
+#### Cubo Básico (Esquema Estrella)
+Diseño simple: una tabla de hechos rodeada de dimensiones planas. Ideal para análisis menos complejos.
+
+```
+         dim_tiempo
+              │
+dim_cliente──fact_ventas──dim_producto
+              │
+         dim_sucursal
+```
+
+#### Cubo con Agregados
+Incorpora tablas de agregados precalculados para mejorar el rendimiento en grandes volúmenes.
+
+```sql
+-- Tabla de agregados por mes y categoría
+CREATE TABLE agg_ventas_mes_categoria (
+    id_anio_mes  INT         NOT NULL,  -- ej: 202401 para enero 2024
+    id_categoria INT         NOT NULL,
+    total_monto  DECIMAL(15,2),
+    total_units  INT,
+    num_clientes INT,
+    PRIMARY KEY (id_anio_mes, id_categoria)
+);
+```
+
+#### Cubo con Particiones
+División lógica de los datos para mejorar rendimiento y facilitar la administración en proyectos con gran escala y largo plazo.
+
+```sql
+-- Tabla de hechos particionada por año
+CREATE TABLE fact_ventas (
+    id_venta    BIGINT        NOT NULL,
+    id_tiempo   INT           NOT NULL,
+    id_producto INT           NOT NULL,
+    id_cliente  INT           NOT NULL,
+    monto       DECIMAL(12,2) NOT NULL,
+    fecha_venta DATE          NOT NULL
+) PARTITION BY RANGE (fecha_venta);
+
+CREATE TABLE fact_ventas_2023 PARTITION OF fact_ventas
+    FOR VALUES FROM ('2023-01-01') TO ('2024-01-01');
+
+CREATE TABLE fact_ventas_2024 PARTITION OF fact_ventas
+    FOR VALUES FROM ('2024-01-01') TO ('2025-01-01');
+
+CREATE TABLE fact_ventas_2025 PARTITION OF fact_ventas
+    FOR VALUES FROM ('2025-01-01') TO ('2026-01-01');
+```
+
+---
+
+## 6. Diseño de Medidas y Cálculos
+
+```sql
+-- Medidas simples (aditivas: se pueden sumar en cualquier dimensión)
+SUM(f.monto)         AS total_ventas,
+SUM(f.cantidad)      AS total_unidades,
+COUNT(f.id_venta)    AS num_transacciones
+
+-- Medidas semi-aditivas (solo se suman en algunas dimensiones)
+-- Ejemplo: el stock se puede sumar por producto pero NO en el tiempo
+AVG(i.stock_actual)  AS stock_promedio  -- No SUM
+
+-- Medidas derivadas (calculadas a partir de otras medidas)
+SUM(f.monto) / NULLIF(SUM(f.cantidad), 0)          AS precio_promedio,
+SUM(f.monto) / NULLIF(COUNT(DISTINCT f.id_cliente),0) AS ticket_por_cliente,
+(SUM(f.monto) - SUM(f.costo)) / NULLIF(SUM(f.monto),0) * 100 AS margen_pct
+
+-- Medidas con ventana temporal (comparaciones)
+SUM(f.monto) AS ventas_actuales,
+LAG(SUM(f.monto), 12) OVER (ORDER BY t.anio, t.mes) AS ventas_mismo_mes_anterior,
+SUM(f.monto) - LAG(SUM(f.monto), 12) OVER (ORDER BY t.anio, t.mes) AS variacion_yoy
+```
+
+## 7. Casos de Uso OLAP
+
+<SmartTable
+    tablelayout="auto"
+    headers={['Área', 'Caso de Uso', 'Dimensiones Típicas']}
+    rows={[
+        ["**Ventas**", "Análisis de rendimiento comercial", "Tiempo, Producto, Cliente, Región"],
+        ["**Finanzas**", "Seguimiento de ingresos y costos", "Tiempo, Centro de Costo, Cuenta"],
+        ["**Marketing**", "Segmentación y conversión", "Tiempo, Canal, Segmento, Campaña"],
+        ["**Supply Chain**", "Gestión de inventario", "Tiempo, Producto, Bodega, Proveedor"],
+        ["**RRHH**", "Métricas de personal", "Tiempo, Departamento, Cargo, Sucursal"]
+    ]}
+/>
+
+## 8. Resumen de la arquitectura
+
+<TerminalOutput>
+{`Fuentes OLTP (sistemas transaccionales)
+          │
+          ▼
+    Proceso ETL/ETT
+    ├── Extracción
+    ├── Transformación (limpieza, integración)
+    └── Carga
+          │
+          ▼
+  DATA WAREHOUSE (Kimball o Inmon)
+  ├── Tablas de Hechos
+  ├── Dimensiones (con jerarquías)
+  └── Integridad garantizada (PKs, FKs, CHECKs, Dominios)
+          │
+          ▼
+     Cubos OLAP
+     ├── ROLAP (SQL sobre tablas relacionales)
+     ├── MOLAP (cubos precalculados)
+     └── HOLAP (híbrido)
+          │
+          ▼
+Análisis: Drill-Down, Roll-Up, Slice, Dice, Pivot
+          │
+          ▼
+  Toma de Decisiones Empresariales 📊`}
+</TerminalOutput>

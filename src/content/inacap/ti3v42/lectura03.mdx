@@ -1,0 +1,219 @@
+# Conectando el futuro: Estándares y programación del IoT
+
+La comunicación serial sigue siendo fundamental en aplicaciones del IoT industriales (IIoT) y domésticas, especialmente cuando se trabaja con plataformas como Arduino. A continuación, explorarás los principales estándares, protocolos y mejores prácticas para implementar soluciones del IoT robustas, utilizando interfaces seriales como UART, RS-232 y RS-485.
+
+## 1. Protocolos seriales en entornos del IoT
+Conocer los protocolos seriales más empleados en entornos del IoT permite seleccionar la tecnología adecuada para cada aplicación. Esta sección analiza los principales estándares industriales que utilizan comunicación serial para lograr conexiones estables y eficientes entre dispositivos. 
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Protocolo", "Descripción"]}
+    rows={[
+        [
+            "**UART/RS-232**",
+            "Ideal para distancias cortas y comunicación punto a punto"
+        ],
+        [
+            "**RS-485**",
+            "Soporta multidrop y mayores distancias (hasta 1200m)"
+        ],
+        [
+            "**Modbus RTU**",
+            "Protocolo estándar industrial que opera sobre RS-485"
+        ],
+        [
+            "**CAN Bus**",
+            "Ampliamente utilizado en automoción y sistemas embebidos"
+        ],
+    ]}
+/>
+
+## 2. Ventajas de la comunicación serial en el IoT
+<SmartTable
+    tableLayout="auto"
+    headers={["Ventaja", "Descripción"]}
+    rows={[
+        [
+            "**Compatibilidad**",
+            "Conexión con equipos legacy y sistemas industriales existentes"
+        ],
+        [
+            "**Simplicidad**",
+            "Implementación directa en microcontroladores como Arduino"
+        ],
+        [
+            "**Costo**",
+            "Soluciones más económicas que alternativas inalámbricas o ethernet"
+        ],
+        [
+            "**Fiabilidad**",
+            "Menor susceptibilidad a interferencias electromagnéticas"
+        ],
+    ]}
+/>
+
+## 3. Implementación práctica con Arduino
+Arduino es una plataforma versátil para implementar una comunicación serial en proyectos del IoT, ya que permite configurar fácilmente interfaces como UART mediante puertos hardware o mediante SoftwareSerial. Para lograr una comunicación estable, es esencial definir correctamente parámetros como el baud rate, bits de datos, paridad y bits de parada. Además, se recomienda usar delimitadores y checksums para estructurar y validar los mensajes.  
+
+En aplicaciones más avanzadas, Arduino se integra con protocolos industriales como Modbus RTU, utilizando transceptores como el MAX485 para operar sobre RS-485. Esto permite que funcione como maestro de red, gateway hacia protocolos IP o controladores locales.
+
+Para implementar una comunicación serial efectiva en Arduino es necesario:
+
+1. Seleccionar el puerto serial adecuado (hardware o software)
+2. Configurar parámetros de comunicación (baud rate, bits de datos o paridad)
+3. Implementar mecanismos de sincronización y control de flujo
+4. Establecer protocolos de mensajería
+
+### Aplicaciones industriales
+Arduino se ha convertido en una solución accesible y eficiente para múltiples aplicaciones industriales, especialmente cuando se utiliza junto a protocolos como RS-485 o Modbus RTU. Su capacidad para monitorear sensores en tiempo real permite recolectar datos ambientales o de proceso en entornos como fábricas, invernaderos o almacenes.
+
+#### Ejemplo: Sistema de monitoreo ambiental
+Un sistema de monitoreo ambiental con Arduino permite supervisar variables como temperatura o humedad en entornos industriales mediante sensores conectados vía RS-485, una red robusta y confiable para múltiples dispositivos. Arduino actúa como concentrador de datos, recopilando la información y transformándola a protocolos modernos como MQTT o HTTP, lo que permite enviarla a la nube para su análisis remoto.
+
+Los datos se visualizan en tiempo real mediante paneles SCADA o dashboards web, facilitando la toma de decisiones y el control automatizado en sistemas ambientales. 
+
+
+## 4. Arduino
+Arduino es una plataforma de hardware y software libre diseñada para facilitar el prototipado electrónico y el desarrollo de proyectos interactivos. Su enfoque en la accesibilidad la ha convertido en la herramienta preferida de educadores, aficionados y profesionales para crear dispositivos inteligentes.  
+
+Gracias a su arquitectura abierta, una amplia variedad de placas y módulos, y una comunidad activa, Arduino permite integrar sensores, actuadores y sistemas de comunicación en soluciones tangibles. Además, es ampliamente utilizado en proyectos del IoT por su capacidad de conectarse con redes, recopilar datos del entorno y ejecutar acciones automatizadas de forma eficiente y económica.
+
+<SmartFigure
+	id="componentes-placa-arduino"
+	src="/inacap/ti3v42/images/fig01.png"
+	alt="Componentes de placa Arduino"
+	caption="Componentes de placa Arduino"
+	size="large"
+/>
+
+### Funciones Principales
+Arduino dispone de funciones predefinidas que permiten interactuar con el hardware de forma simple y directa. Entre las más utilizadas están:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Función", "Descripción"]}
+    rows={[
+        [
+            "`pinMode()`",
+            "configura un pin como entrada/salida"
+        ],
+        [
+            "`digitalWrite()`",
+            "escribe el valor HIGH/LOW en pin digital"
+        ],
+        [
+            "`analogRead()`",
+            "lee el valor de pin analógico (0-1023)"
+        ],
+        [
+            "`Serial.begin()`",
+            "inicia comunicación serial"
+        ],
+    ]}
+/>
+
+### Flujo de Trabajo
+El proceso de trabajo con Arduino sigue una secuencia clara: se conecta la placa al computador vía USB, se selecciona el modelo de placa y el puerto correspondiente en el IDE, se escribe el código, se compila y se sube la placa. Posteriormente, se puede usar el monitor serial para observar datos en tiempo real, validar el funcionamiento y ajustar el comportamiento del sistema según sea necesario.
+
+- Conectar la placa vía USB
+- Seleccionar el modelo de placa y el puerto COM
+- Escribir el código en el IDE
+- Verificar (compilar) y subir el programa
+- Elegir el monitor serial para la depuración
+
+### Comunicación Serial
+La comunicación entre Arduino y otros dispositivos es fundamental para muchas aplicaciones, y uno de los métodos más utilizados es la comunicación serial. Esta permite el intercambio de información entre la placa y el computador o entre placas, facilitando la visualización de datos, el control externo o la interacción con sensores y módulos.
+
+Gracias a su integración nativa y su fácil implementación, se convierte en una herramienta clave para depurar programas, enviar comandos o recolectar datos en tiempo real. Su uso es especialmente relevante en prototipos educativos, automatización básica y proyectos del IoT que requieren intercambio constante de información
+
+Arduino incluye comunicación serial por defecto (UART)
+<SmartTable
+    tableLayout="auto"
+    headers={["Función", "Descripción"]}
+    rows={[
+        [
+            "`Serial.print()`",
+            "envía datos al computador"
+        ],
+        [
+            "`Serial.available()`",
+            "verifica datos entrantes"
+        ],
+        [
+            "`Serial.read()`",
+            "lee datos recibidos"
+        ],
+        [
+            "**Velocidades típicas**",
+            "9600, 115200 baudios"
+        ],
+    ]}
+/>
+
+### Ventajas
+- Curva de aprendizaje suave
+- Gran comunidad y documentación
+- Amplia variedad de shields (módulos adicionales)
+- Compatibilidad con múltiples sensores y actuadores
+- Multiplataforma (Windows, macOS, Linux)
+
+### Limitaciones
+- Potencia limitada para proyectos complejos
+- Memoria restringida para programas extensos
+- Velocidad de procesamiento moderada
+- Requiere hardware adicional para aplicaciones profesionales
+
+# Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "¿Qué norma internacional es específica para la seguridad de sistemas de control industrial?",
+		options: [
+			"ISO 9001",
+			"Bluetooh 5.0",
+			"IEC 62443",
+			"USB 3.0"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Qué estructura de programación en Arduino permite tomar decisiones basadas en condiciones?",
+		options: [
+			"pinMode()",
+			"if-else",
+			"loop()",
+			"Serial.begin()"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Cuál de estos protocolos No es seguro para la comunicación de OT según NIST SP 800-82?",
+		options: [
+			"HTTPS",
+			"Modbus RTU sin cifrado",
+			"OPC UA con TLS",
+			"MQTT con autenticación"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Qué comando en Arduino lee un valor analógico?",
+		options: [
+			"Serial.print()",
+			"analogRead()",
+			"digitalWrite()",
+			"pinMode()"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "Según NERC CIP, ¿qué requieren los sistemas de OT críticos?",
+		options: [
+			"Sensores de temperatura",
+			"Cables de colores",
+			"LED parpadeantes",
+			"Autenticación multifactor"
+		],
+		correctIndex: 3
+	},
+]} />

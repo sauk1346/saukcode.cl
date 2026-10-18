@@ -1,0 +1,66 @@
+# Alcances y definiciones de los tipos de testing
+
+## Pruebas funcionales
+Verifican que el software cumpla con las funciones especificadas en los requisitos del sistema
+
+- Pueden ser **estáticas** o **dinámicas**
+- En las **pruebas de caja negra**, se evalúa el software desde una perspectiva externa, probando entradas y salidas sin conocer la estructura interna del sistema
+- En las **pruebas de caja blanca**, se analiza la lógica interna del software mediante inspección del código fuente y la ejecución de rutas de códito específicas
+
+## Pruebas de integración
+Verifican la interoperabilidad entre diferentes módulos o subsistemas del software, para garantizar que funcionen juntos de manera cohesiva como un sistema completo
+
+## Pruebas de aceptación
+Son realizadas por los usuarios finales o stakeholders para validar que el software cumpla con sus necesidades y expectativas.
+
+Aseguran que el software sea intuitivo, fácil de usar y cumpla con los requisitos funcionales y no funcionales acordados.
+
+## Pruebas exploratorias
+Se llevan a cabo sin un plan de prueba formal. Permite a los testers explorar el software y descubrir errores de manera espontánea.
+
+Son valiosas para identificar problemas que no pueden ser evidentes en pruebas estructuradas y para mejorar la calidad general del software
+
+# Actividad de práctica 06
+
+<Quiz questions={[
+  {
+    question: "¿Cuál es el principal objetivo de las pruebas de regresión en el desarrollo de software?",
+    options: [
+      "Detectar defectos en las funciones básicas del software.",
+      "Validar la interoperabilidad entre componentes.",
+      "Verificar que el software cumpla con los requisitos del usuario.",
+      "Asegurar que los cambios recientes no hayan introducido errores en el software."
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Qué tipo de testing se centra en evaluar cómo responde el software bajo diferentes niveles de carga y estrés?",
+    options: [
+      "Pruebas de integración",
+      "Pruebas de seguridad",
+      "Pruebas de usabilidad",
+      "Pruebas de rendimiento"
+    ],
+    correctIndex: 3
+  },
+  {
+    question: "¿Cuál de las siguientes afirmaciones describe mejor las pruebas exploratorias?",
+    options: [
+      "Pruebas para verificar la seguridad del software",
+      "Pruebas realizadas sin un plan de prueba formal",
+      "Pruebas para validar la facilidad de uso del software",
+      "Pruebas para evaluar el rendimiento del software"
+    ],
+    correctIndex: 1
+  },
+  {
+    question: "¿Cuál es el tipo de testing que se enfoca en verificar que diferentes módulos o subsistemas de software funcionen juntos correctamente como un sistema integrado?",
+    options: [
+      "Pruebas unitarias",
+      "Pruebas de integración",
+      "Pruebas de regresión",
+      "Pruebas de aceptación"
+    ],
+    correctIndex: 1
+  }
+]} />

@@ -1,0 +1,35 @@
+/* Indentación alineada con el texto real de cada nivel de lista en MDX puro:        */
+/* nivel 1: sin indent (texto normal)                                                 */
+/* nivel 2: padding-left ul nivel 1 = 32px                                           */
+/* nivel 3: nivel 2 + padding-left ul nivel 2 (1.75rem) = 60px                       */
+/* nivel 4: nivel 3 + padding-left ul nivel 3 (1.5rem)  = 84px                       */
+.pContainer[data-indent="1"] { margin-left: 0; }
+.pContainer[data-indent="2"] { margin-left: var(--spacing-xl); }
+.pContainer[data-indent="3"] { margin-left: calc(var(--spacing-xl) + 1.75rem); }
+.pContainer[data-indent="4"] { margin-left: calc(var(--spacing-xl) + 1.75rem + 1.5rem); }
+
+/* El <p> interno no debe sumar margin-left adicional */
+.pContainer p { margin-left: 0; }
+
+@media (max-width: 768px) {
+  .pContainer[data-indent="2"] { margin-left: var(--spacing-lg); }
+  .pContainer[data-indent="3"] { margin-left: calc(var(--spacing-lg) + var(--spacing-md)); }
+  .pContainer[data-indent="4"] { margin-left: calc(var(--spacing-lg) + var(--spacing-md) * 2); }
+}
+
+@media (max-width: 480px) {
+  .pContainer[data-indent="2"] { margin-left: var(--spacing-md); }
+  .pContainer[data-indent="3"] { margin-left: calc(var(--spacing-md) * 2); }
+  .pContainer[data-indent="4"] { margin-left: calc(var(--spacing-md) * 3); }
+}
+
+/* Párrafos más legibles */
+.paragraph {
+    line-height: 1.8;
+    margin-bottom: var(--spacing-md);
+    font-size: 1.05rem;
+    transition: color 0.3s ease;
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }

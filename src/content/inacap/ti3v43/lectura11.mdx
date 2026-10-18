@@ -1,0 +1,273 @@
+# Estándares de calidad en software
+
+Son varias las organizaciones internacionales que se dedican a redactar estándares de calidad para unificar las buenas prácticas en torno a la industria del software.
+
+- **ISO:** *International Organization for Standarization*. Organización Internacional de Normalización.
+- **IEC:** *International Electrotechnical Commision*. Comisión Electrotécnica Internacional. 
+
+
+## 1. ISO/IEC 12207: Procesos de ciclo de vida del software
+
+Se trata de un estándar para los procesos de ciclo de vida del software, entendidos como un conjunto de actividades y tareas relacionadas. Hace el recorrido desde que surge la necesidad o nueva idea hasta la retirada del software.
+
+La conformidad se mide según el nivel de adecuación de los procesos al estándar definido en la norma. Este estándar establece un marco completo para los procesos involucrados en el ciclo de vida del software, incluyendo:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Procesos", "Descripción"]}
+    rows={[
+        [
+            "**Procesos Primarios**",
+            "Adquisición, suministro, desarrollo, operación y mantenimiento"
+        ],
+        [
+            "**Procesos de Soporte**",
+            "Gestión de configuración, verificación, validación, aseguramiento de la calidad, etc." 
+        ],
+        [
+            "**Procesos organizativos**",
+            "Gestión de proyectos, infraestructura, mejora continua"
+        ],
+        [
+            "**Aplicación en los requerimientos**",
+            "ISO 12207 enfatiza la importancia de los procesos de gestión de requerimientos durante todo el ciclo de vida, asegurando que los requisitos sean claros, trazables y validados"
+        ]
+    ]}
+/>
+
+## 2. ISO 33000 Calidad de los procesos de desarrollo de software
+
+Sustituye a las ISO 15504. También llamada *Process Improvement and Capability Determination* (SPICE), aporta una líneas de trabajo para la evalución de procesos software.
+
+Adicionalmente, proporciona una base que permite evaluar el punto en el que se encuentra una empresa. De esta manera, es posible comprobar la evolución en el tiempo, hacer un seguimiento de la situación respecto a la competencia y determinar posibles estrategias de mejora.
+
+Este marco permite evaluar la capacidad y madurez de los procesos en el desarrollo de software. Además, incluye:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Procesos", "Descripción"]}
+    rows={[
+        [
+            "**Niveles de madurez**",
+            "Desde el nivel 1 (procesos realizados) hasta nivel 5 (procesos optimizados)"
+        ],
+        [
+            "**Modelo de referencia**",
+            "Evalúa la conformidad de los procesos con respecto a los objetivos organizacionales" 
+        ],
+        [
+            "**Aplicación en los requerimientos**",
+            "Garantiza que el proceso de levantamiento de requerimientos sea medible y mejora su eficiencia a través de evaluaciones continuas"
+        ],
+    ]}
+/>
+
+## 3. ISO 9001 - Gestión de la calidad
+Es el certificado ISO más común y mejor reconocido y sus requisitos son genéricos y aplicables a cualquier organización.
+
+Aunque no está específicamente diseñado para el software, este estándar es ampliamente utilizado en la gestión de la calidad de los procesos organizacioneles.
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Principios Clave", "Descripción"]}
+    rows={[
+        [
+            "**Enfoque en el cliente**",
+            "Los productos debe cumplir con las necesidades del cliente"
+        ],
+        [
+            "**Mejora continua**",
+            "Optimizar procesod de manera constante"
+        ],
+        [
+            "**Liderazgo**",
+            "Asegurar que haya una dirección clara en la implementación de los procesos de calidad"
+        ],
+        [
+            "**Aplicación en los requerimientos**",
+            "Ayuda a alinear los requerimientos con las expectativas de los clientes y fomenta la mejora de las metodologías usadas para su captura y validación"
+        ],
+    ]}
+/>
+
+## 4. ISO IEC 25000
+Esta norma sustituye a ISO 9126 e ISO/IEC 14598. También conocida como SQuaRE (*System and Software Quality Requirements and Evaluation*), se trata de una familia de normas para evaluar la calidad del producto software.
+
+Está compuesta por las siguientes divisiones:
+
+- Gestión de calidad
+- Modelo de calidad
+- Mediciones de calidad
+- Requisitos de calidad
+- Evaluación de la calidad
+- Estándares de extensión
+
+Además, sirve para medir **ocho características de los productos** software, que pueden descomponerse en subcaracterísticas para un análisis en detalle:
+
+- Adecuación funcional
+- Fiabilidad
+- Usabilidad
+- Eficiencia
+- Compatibilidad
+- Seguridad
+- Mantenibilidad
+- Portabilidad
+
+Sus principales dimensiones son:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Dimensiones", "Descripción"]}
+    rows={[
+        [
+            "**Calidad en uso**",
+            "Eficiencia, satisfacción, seguridad"
+        ],
+        [
+            "**Modelo de calidad del producto**",
+            "Funcionalidad, fiabilidad, usabilidad, mantenibilidad, portabilidad"
+        ],
+        [
+            "**Modelo de calidad de datos**",
+            "Exactitud, completitud, consistencia"
+        ],
+        [
+            "**Aplicación en los requerimientos**",
+            "Proporciona criterios para definir requisitos funcionales y no funcionales basados en atributos de calidad"
+        ],
+    ]}
+/>
+
+## 5. Relación entre estándares y metodologías de desarrollo
+
+Los estándares de calidad pueden integrarse con metodologías de desarrollo ágil y tradicionales
+
+### Desarrollo ágil
+Prioriza la entrega rápida de valor al cliente mediante iteraciones cortas, enfoque en la colaboración y flexibilidad en los procesos. Sin embargo, la calidad no puede ser sacrificada en favor de la rapidez. 
+
+Algunas metodologías incluyen:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Características", "Descripción"]}
+    rows={[
+        [
+            "**Scrum y kanban**",
+            "Estas metodologías, al centrarse en entregas incrementales, pueden beneficiarse de la aplicación de estándares como ISO/IEC 25000 para definir los criterios de aceptación en las historias de usuario. Estos criterios aseguran que las entregas parciales cumplan con atributos clave como usabilidad, rendimiento y seguridad"
+        ],
+        [
+            "**Integración de estándares**",
+            "En scrum, los eventos como la planificación del sprint y la retrospectiva pueden utilizarse para validar la conformidad de los entregables con estándares de calidad. Por ejemplo, la verificación y validación del software pueden alinearse con ISO/IEC 12207"
+        ]
+    ]}
+/>
+
+### Cascada y modelos tradicionales
+
+El modelo cascada se caracteriza por su enfoque secuencial, lo que lo hace ideal para proyectos con requisitos claros y bien definidos desde el inicio. Aunque puede carecer de la flexibilidad de los enfoques ágiles, su estructura metódica permite una integración más formal de los estándares de calidad.
+
+Algunas características incluyen:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Características", "Descripción"]}
+    rows={[
+        [
+            "**Estándares alineados**",
+            "ISO/IEC 12207 se adapta perfectamente al modelo Cascada porque define procesos detallados para cada etapa del ciclo de vida del software. La documentación extensa, una característica inherente al modelo Cascada, también facilita la aplicación de ISO 9001, garantizando que se cumplan los requisitos organizacionales"
+        ],
+        [
+            "**Requerimientos y calidad**",
+            "ISO/IEC 25000 puede emplearse para evaluar los requisitos iniciales bajo criterios de calidad (funcionalidad, fiabilidad, mantenibilidad, etc.), asegurando que el software cumpla con los objetivos previstos al final del desarrollo"
+        ],
+    ]}
+/>
+
+### Híbridos
+
+Los enfoques híbridos combinan lo mejor de las metodologías tradicionales y ágiles para adaptarse a las necesidades cambiantes del proyecto. Esto permite una mayor flexibilidad en los procesos, mientras se mantienen niveles elevados de trazabilidad y calidad.
+
+Algunas características incluyen:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Características", "Descripción"]}
+    rows={[
+        [
+            "**Definición y adaptación**",
+            "Al integrar ISO/IEC 33000 en procesos híbridos, las organizaciones pueden realizar evaluaciones periódicas de la madurez de los procesos, ajustándolos según las necesidades del proyecto. Por ejemplo, la fase de levantamiento de requerimientos puede utilizar técnicas iterativas propias del enfoque ágil, complementadas con revisiones exhaustivas propias del enfoque en cascada"
+        ],
+        [
+            "**Optimización continua**",
+            "La mejora continua, uno de los principios fundamentales de ISO 9001, puede integrarse para refinar los ciclos de iteración, asegurando que cada entrega incrementa la calidad global del producto"
+        ],
+        [
+            "**Criterios claros y medibles**",
+            "Los atributos de calidad definidos en ISO/IEC 25000 pueden emplearse como guía tanto en las entregas iterativas como en los hitos clave del proyecto, garantizando que cada fase cumpla con los requisitos esperados"
+        ],
+    ]}
+/>
+
+## 6. Implementación práctica
+La implementación práctica del levantamiento de requerimientos bajo estándares busca garantizar la calidad y trazabilidad en el desarrollo de proyectos.
+
+### Levantamiento de requerimientos bajo estándares
+<SmartTable
+    tableLayout="auto"
+    headers={["Características", "Descripción"]}
+    rows={[
+        [
+            "**Definición inicial**",
+            "Utilizar principios de ISO 12207 para categorizar los requerimientos (funcionales, no funcionales, técnicos, etc.)"
+        ],
+        [
+            "**Trazabilidad**",
+            "Implementar herramientas que aseguren el seguimiento desde la captura hasta la implementación"
+        ],
+        [
+            "**Validación**",
+            "Apoyarse en métricas de ISO/IEC 25000 para evaluar la calidad de los requerimientos"
+        ],
+    ]}
+/>
+
+### Cocreación de requerimientos
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Características", "Descripción"]}
+    rows={[
+        [
+            "**Participación de stakeholders**",
+            "Integrar a todas las partes interesadas siguiendo un enfoque colaborativo"
+        ],
+        [
+            "**Workshops y prototipos**",
+            "Apoyarse en metodologías como design thinking"
+        ],
+    ]}
+/>
+
+# Actividad de Práctica 09
+<Quiz questions={[
+	{
+		question: "¿Cuál es el propósito principal de la norma ISO/IEC 12207?",
+		options: [
+			"Evaluar la calidad del producto de software",
+			"Gestionar la calidad de los procesos organizacionales",
+			"Definir los requisitos de seguridad en el software",
+			"Establecer un marco en el ciclo de vida del sofware"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Qué característica distingue a ISO/IEC 25000 (SQuaRE?) de otros estándares?",
+		options: [
+			"Proporciona niveles de madurez para procesos de software",
+			"Mostrar la estructura lógica del sistema",
+			"Evalúa la calidad del producto de software",
+			"Centrarse en la gestión de la calidad organizacional"
+		],
+		correctIndex: 2
+	},
+]} />

@@ -1,0 +1,197 @@
+# Auto-estudio: Introducción a Godot
+
+## 1. ¿Qué es Godot?
+- Es un motor de videojuegos gratuito y open-source
+- Usa su propio lenguaje GDScript (similar a Python)
+- También soporta C# y C++
+
+## 2. Conceptos Fundamentales
+
+### Nodo (Node)
+Es la unidad básica de Godot. Todo en un juego es un nodo.
+
+**Ejemplo:** un sprite, un sonido, un área, una cámara, etc.
+
+### Escena (Scene)
+Una escena es un **árbol de nodos**
+- Puede ser un personaje, un nivel, un menú, un enemigo, etc.
+- Puedes **instanciar escenas** dentro de otras (por ejemplo, poner enemigos dentro del nivel)
+
+### Árbol de nodos (Scene Tree)
+Estructura jerárquica donde los nodos "hijos" dependen de sus "padres"
+
+**Ejemplo:** 
+```text
+Player
+ ├── Sprite2D
+ └── CollisionShape2D
+```
+
+### GDScript
+Lenguaje de programación similar a Python
+
+```gdscript
+func _process(delta):
+    print("Hola!")
+```
+
+### Señales (Signals)
+Sistema de eventos. Permiten que un nodo "le avise" a otro que algo ocurrió (similar a eventos)
+
+```gdscript
+signal vida_cero
+
+func perder_vida():
+    emit_signal("vida_cero")
+```
+
+### Inspector
+Panel donde editas propiedades de los nodos sin programar (posición, tamaño, color, texturas, etc.)
+
+### Input Map
+Sistema donde configuras los controles del juego
+
+**Ejemplo:** "move_left", "move_right", "jump", "ui_accept"
+
+## 3. Flujo básico de trabajo en Godot
+
+1. Crear una **escena**
+2. Añadir **nodos** (Sprite2D, Area2D, CharacterBody2D, etc.)
+3. Añadir un **script** a un nodo
+4. Configurar colisiones, sprites, animaciones, etc.
+5. Instanciar escenas entre sí
+6. Ejecutar el juego (F5)
+
+## 4. Ejemplo básico: "Evita los enemigos"
+
+Este ejemplo muestra:
+- Cómo mover al jugador
+- Cómo detectar colisiones
+- Cómo instanciar enemigos
+
+### a) Crear la escena del jugador
+
+1. Crear una nueva escena
+   ```text
+   CharacterBody2D -> renombrar a Player
+   ```
+
+2. Añadir nodos hijos
+   - `Sprite2D` (añadir una textura)
+   - `CollisionShape2D` (con una forma RectangleShape2D o CapsuleShape2D)
+
+3. Agregar un script a Player
+   ```gdscript
+   extends CharacterBody2D
+
+   const SPEED = 200
+
+   func _physics_process(delta):
+       var dir = Vector2.ZERO
+       
+       if Input.is_action_pressed("ui_right"):
+           dir.x = 1
+       if Input.is_action_pressed("ui_left"):
+           dir.x = -1
+       if Input.is_action_pressed("ui_down"):
+           dir.y = 1
+       if Input.is_action_pressed("ui_up"):
+           dir.y = -1
+       
+       velocity = dir.normalized() * SPEED
+       move_and_slide()
+   ```
+
+### b) Crear un enemigo simple
+
+1. Nueva escena 
+   ```text
+   Area2D -> renombrar a Enemy
+   ```
+
+2. Añadir nodos:
+   - `Sprite2D` (con textura diferente al jugador)
+   - `CollisionShape2D` (CircleShape2D)
+   - `Timer` (para cambiar dirección aleatoriamente)
+
+3. Script del enemigo
+   ```gdscript
+   extends Area2D
+
+   var speed = 100
+   var direction = Vector2.ZERO
+
+   func _ready():
+       randomize()
+       direction = Vector2(randf() * 2 - 1, randf() * 2 - 1).normalized()
+       $Timer.start()
+
+   func _process(delta):
+       position += direction * speed * delta
+
+   func _on_Timer_timeout():
+       direction = Vector2(randf() * 2 - 1, randf() * 2 - 1).normalized()
+   ```
+
+4. Conectar señal del Timer
+   - En el Inspector, seleccionar el nodo `Timer`
+   - Ir a la pestaña "Node" (al lado de Inspector)
+   - Hacer doble clic en la señal `timeout()`
+   - Conectar a `Enemy` y nombrar la función `_on_Timer_timeout`
+
+### c) Detectar colisión del jugador con enemigo
+
+En el nodo Enemy, conectar la señal: `body_entered(body)`
+
+```gdscript
+func _on_body_entered(body):
+    if body.name == "Player":
+        print("¡Has perdido!")
+        get_tree().reload_current_scene()
+```
+
+### d) Crear la escena principal
+
+1. Nueva escena: `Node2D` -> `Main`
+
+2. Añadir:
+   - Instancia de Player (arrastrar la escena Player.tscn)
+   - Varias instancias de Enemy (arrastrar Enemy.tscn)
+
+3. Configurar Main como escena principal
+   - `Project -> Project Settings -> Application -> Run -> Main Scene`
+
+## 5. Explicación rápida de funcionamiento
+
+- Godot ejecuta tu juego como un **árbol de nodos**
+- Cada nodo puede tener un comportamiento propio a través de **scripts**
+- Cada frame, Godot llama automáticamente a funciones como:
+  - `_process(delta)` → lógica general del juego
+  - `_physics_process(delta)` → lógica de físicas (más estable para movimiento)
+  - `_ready()` → se ejecuta una vez al iniciar el nodo
+- Puedes crear distintas escenas y usarlas como "plantillas" reutilizables
+- Las señales permiten que los nodos se comuniquen sin acoplarse directamente
+
+## 6. Funciones importantes de GDScript
+
+### Funciones del ciclo de vida
+```gdscript
+func _ready():
+    # Se ejecuta una vez al cargar el nodo
+    pass
+
+func _process(delta):
+    # Se ejecuta cada frame
+    pass
+
+func _physics_process(delta):
+    # Se ejecuta en cada frame de física (60 FPS por defecto)
+    pass
+```
+
+### Acceso a nodos
+```gdscript
+$NombreNodo        # Acceso a nodo hijo directo
+get_node("Ruta")   # Acceso por ruta
+get_tree()         # Acceso al árbol de escenas
+```

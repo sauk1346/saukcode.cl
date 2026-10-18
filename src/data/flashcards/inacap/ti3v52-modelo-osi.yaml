@@ -1,0 +1,21 @@
+topic: Modelo OSI
+slug: ti3v52-modelo-osi
+courseId: ti3v52
+layout: default
+cards:
+  - front: |
+      ¿Cuántas capas tiene el modelo OSI?
+    back: |
+      **7 capas:**
+      
+      1. Física
+      2. Enlace de datos
+      3. Red
+      4. Transporte
+      5. Sesión
+      6. Presentación
+      7. Aplicación
+  - front: |
+      ¿Qué protocolo opera en la capa de red?
+    back: |
+      IP (Internet Protocol)

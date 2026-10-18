@@ -1,0 +1,169 @@
+# Pruebas de testing y estándares de calidad
+El proceso de testing y la aplicación de estándares de calidad son fundamentales para garantizar el éxito de un prototipo de desarrollo.
+
+Esto permite detectar y corregir errores en el código antes de su implementación final. Al integrar las pruebas de testing con estándares de seguridad como los definidos en la norma ISO 27000, se asegura también la protección de la información y la gestión adecuada de riesgos.
+
+## 1. Pruebas de testing
+Son un conjunto de actividades diseñadas para **garantizar la calidad, funcionalidad y seguridad de un sistema**.
+
+Estas se dividen en varias etapas, cada una con un enfoque específico para identificar y resolver problemas:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Etapas", "Descripción"]}
+    rows={[
+        [
+            "**Pruebas unitarias**",
+            "Evaluación de componentes individuales del código"
+        ],
+        [
+            "**Pruebas de integración**",
+            "Valoración de la interacción entre diferentes módulos del sistema"
+        ],
+        [
+            "**Pruebas de sistema**",
+            "Comprobación del sistema en su conjunto"
+        ],
+        [
+            "**Pruebas de aceptación**",
+            "Validación por parte de los usuarios finales"
+        ],
+        [
+            "**Pruebas de seguridad**",
+            "Detección de vulnerabilidades en el sistema"
+        ],
+        [
+            "**Pruebas de rendimiento**",
+            "Medición del comportamiento del sistema bajo diferentes niveles de carga"
+        ],
+        [
+            "**Pruebas de regresión**",
+            "Aseguramiento de que los cambios recientes no introducen nuevos errores"
+        ],
+    ]}
+/>
+
+## 2. Estándares de seguridad ISO 27000
+
+La familia de estándares ISO 27000 proporciona un marco para gestionar la seguridad de la información. Para este caso, se destacan los siguientes principios:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Etapas", "Descripción"]}
+    rows={[
+        [
+            "**Confidencialidad**",
+            "Garantizar que la información sea accesible solo para las personas autorizadas"
+        ],
+        [
+            "**Integridad**",
+            "Asegurar la precisión y completitud de la información y los métodos de procesamiento"
+        ],
+        [
+            "**Disponibilidad**",
+            "Asegurar que la información esté disponible para los usuarios autorizados cuando sea necesario"
+        ],
+    ]}
+/>
+
+## 3. Corrección del código
+A partir de los resultados obtenidos en las pruebas, se deben realizar las siguientes correcciones:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Etapas", "Descripción"]}
+    lists={{
+        R1: [
+            "Eliminar redundancias y optimizar funciones",
+            "Asegurarse de que cada componente cumpla con su objetivo"
+        ],
+        R2: [
+            "Implementar control de excepciones robusto",
+            "Validar entradas del usuario para evitar ataques como inyección SQL o XSS"
+        ],
+        R3: [
+            "Encriptar datos sensibles utilizando algoritmos robustos como AES o RSA",
+            "Implementar autenticación multifuncional"
+        ],
+        R4: [
+            "Documentar las políticas y procedimientos de seguridad",
+            "Realizar auditorías regulares para garantizar el cumplimiento continuo"
+        ]
+    }}
+    rows={[
+        [
+            "**Refactorización del código**",
+            "@R1"
+        ],
+        [
+            "**Gestión de errores**",
+            "@R2"
+        ],
+        [
+            "**Fortalecimiento de la seguridad**",
+            "@R3"
+        ],
+        [
+            "**Cumplimiento con ISO 27000**",
+            "@R4"
+        ],
+    ]}
+/>
+
+
+## 4. Resumen: Estándares de calidad y seguridad del software
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Estándar", "Descripción", "Ejemplo de Uso"]}
+    rows={[
+        [
+            "**ISO 12207**",
+            "Define procesos para el ciclo de vida del software, desde la planificación hasta el mantenimiento",
+            "Empresas de desarrollo estructuran sus procesos de planificación, diseño, desarrollo y pruebas para asegurar la calidad y sostenibilidad del software"
+        ],
+        [
+            "**ISO 33000 (ex 15504)**",
+            "Evalúa la madurez de los procesos de desarrollo de software",
+            "Una empresa que busca certificación en calidad de software utiliza esta norma para medcir y mejorar sus procesos de desarrollo"
+        ],
+        [
+            "**ISO 9001**",
+            "Marco para la gestión de calidad en cualqueir industria, incluyendo el desarrollo de software",
+            "Una empresa de software implementa ISO 9001 para garantizar que su software cumple con requisitos de clientes y mejora continuamente sus procesos"
+        ],
+        [
+            "**ISO 25000**",
+            "Establece caraterísticas para evaluar la calidad de software, como usabilidad, eficiencia y mantenibilidad",
+            "Un equipo de desarrollo utiliza ISO 25000 para garantizar que una aplicación móvil tenga alta usabilidad y rendimiento"
+        ],
+        [
+            "**ISO 27000**",
+            "Define estándares para la gestión de la seguridad de la información en sistemas informáticos",
+            "Empresas que manejan datos sensibles, como bancos o aseguradoras, implementan ISO 27000 para proteger datos de clientes contra amenazas cibernéticas"
+        ],
+    ]}
+/>
+
+# Actividad de Práctica 16
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es uno de los beneficios principales de integrar las pruebas de testing con los estándares de seguridad como los definidos en la norma ISO 27000?",
+		options: [
+			"Aumentar la complejidad del código para mejorar su rendimiento",
+			"Reducir el tiempo de desarrolo sin importar la calidad del producto final",
+			"Asegurar la protección de la información y la gestión adecuada de riesgos",
+			"Evitar la integración de estándares de seguridad para acelerar el proceso de testing"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "La familia de estándares ISO 27000 proporciona un marco para gestionar la seguridad de la información",
+		options: [
+			"Falso",
+			"Verdadero",
+		],
+		correctIndex: 1
+	},
+]} />

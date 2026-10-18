@@ -1,0 +1,200 @@
+# Procedimientos de auditoría en arquitecturas cloud
+
+La ciberseguridad en entornos de cloud computing es un componente esencial para proteger la información y garantizar la continuidad de los servicios digitales frente a amenazas cada vez más sofisticadas.
+
+## 1. Procedimientos de ciberseguridad en cloud computing
+
+En **3 grandes pasos** se puede estructurar un procedimiento de ciberseguridad en un ambiente de *cloud computing*.
+
+### A. Evaluación y gestión de riesgos
+
+El primer paso consiste en realizar una evaluación exhaustiva de riesgos, que incluye:
+
+- **Identificación de activos críticos**, vulnerabilidades y amenazas potenciales que puedan afectar la infraestructura en la nube.
+- Aplicación de **políticas de seguridad basadas en estándares**, como:
+    - ISO 27001
+    - NIST
+- Definición de **controles** para garantizar la:
+    - Confidencialidad de los datos
+    - Integridad de la información
+    - Disponibilidad de los servicios
+- Implementación de un **modelo de responsabilidad compartida**, donde:
+    - El proveedor de servicios cloud entiende su rol en la seguridad
+    - El cliente conoce y aplica sus responsabilidades en la protección de la información
+
+### B. Control de acceso y autenticación
+
+Este paso busca esteblecer **mecanismos robustos de control de acceso**, incluyendo:
+
+- **Autenticación multifactor (MFA)** para fortalecer la verificación de usuarios
+- **Gestión de identidades y privilegios**, asegurando que cada usuario tenga acceso solo a lo necesario
+- **Segmentación de usuarios según funciones**, siguiendo el principio de **mínimo privilegio**
+- Protección de credenciales mediante **cifrado** y **políticas de rotación periódica**
+- **Monitoreo continuo de sesiones** y detección de comportamientos anómalos para prevenir:
+    - Robo de credenciales
+    - Escalamiento de privilegios
+
+### C. Protección de datos y monitoreo continuo
+
+La seguridad en la nube requiere **medidas técnicas y de resiliencia**, tales como:
+
+- **Cifrado de datos** en tránsito y reposo, usando:
+    - Protocolos seguros como TLS
+    - Algoritmos robustos
+- **Copias de seguridad automáticas** y planes de recuperación ante desastres
+- **Despliegue de herramientas de monitoreo y auditoría** para:
+    - Detectar incidentes en tiempo real
+    - Implementar sistemas de respuesta automatizada
+- **Cumplimiento normativo**, asegurando que la gestión de datos cumpla regulaciones como:
+    - GDPR  
+    - HIPAA
+
+### D. Formación continua y cultura de seguridad
+
+Un aspecto crítico en los procedimientos de ciberseguridad es la **capacitación del personal**:
+
+- Usuarios y administradores deben poder **reconocer amenazas**, incluyendo:
+    - Phishing
+    - Ataques de ingeniería social
+    - Malas prácticas en la gestión de credenciales
+- La organización debe garantizar el **cumplimiento de normativas internacionales y locales**, mediante:
+    - Auditorías periódicas
+    - Políticas claras
+- La **cultura de seguridad** debe integrarse al negocio, asegurando que cada actor entienda su **responsabilidad en la protección de la información**
+
+## 2. Auditoría en multicloud y normativas internacionales
+
+La auditoría en entornos *cloud*, y particularmente en arquitecturas *multicloud*, es un proceso sistemático a evaluar controles de seguridad, configuraciones técnicas y **prácticas operativas**, con el fin de **garantizar la confidencialidad, integridad y disponibilidad** de la información. La auditoría *cloud* debe adaptarse a infraestructuras altamente virtualizadas y dinámicas, donde el control se distribuye entre la organización usuaria y los proveedores de servicios en la nube bajo el modelo de responsabilidad compartida.
+
+En este contexto, las normativas internacionales proporcionan marcos de referencia estandarizados que permiten evaluar el cumplimiento y desempeño de la seguridad de forma objetiva y comparable.
+
+Entre las más relevantes se encuentran:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Normativas", "Descripción"]}
+    rows={[
+        [
+            "**ISO/IEC 27001**",
+            "Establece los requisitos para implementar y auditar un sistema de gestión de seguridad de la información (SGSI)"
+        ],
+        [
+            "**ISO/IEC 27017**",
+            "Amplía ISO 27001 con controles específicos para servicios cloud y define responsabilidades entre cliente y proveedor"
+        ],
+        [
+            "**ISO/IEC 27018**",
+            "Orientada a la protección de datos personales en nubes públicas"
+        ],
+        [
+            "**ISO/IEC 27007**",
+            "Proporciona directrices metodológicas para la planificación y ejecución de auditorías de seguridad de la informática"
+        ],
+    ]}
+/>
+
+## 3. Procedimientos de auditoría en arquitecturas cloud
+
+El procedimiento de auditoría en cloud se desarrolla en fases estructuradas, adaptadas a la naturaleza elástica de la nube:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Procedimientos", "Descripción"]}
+    rows={[
+        [
+            "**Definición del alcance y criterios**",
+            "Se determinan los servicios, los proveedores y las normativas aplicables, identificando claramente las responsabilidades compartidas"
+        ],
+        [
+            "**Revisión documental**",
+            "Se analizan políticas de seguridad, acuerdos SLA, inventarios de activos y evidencias de cumplimiento",
+            
+        ],
+        [
+            "**Evaluación técnica y operativa**",
+            "Se verifican controles como cifrado, autenticación, registro de eventos, monitoreo continuo y automatizaciones de seguridad"
+        ],
+        [
+            "**Informe y seguimiento**",
+            "Se documentan hallazgos, riesgos y planes de mejora, con auditorías periódicas de verificación"
+        ],
+    ]}
+/>
+
+## 4. Puntos que considerar al asegurar un entorno cloud
+
+Al asegurar un entorno cloud, es fundamental abordar la seguridad desde una perspectiva integral que combine controles técnicos, cumplimiento normativo y factores organizativos. La **auditoría** en multicloud requiere consideraciones adicionales debido a la heterogeneidad de plataformas. Los siguientes puntos resumen los pilares clave que deben considerarse para una estrategia de seguridad en la nube eficaz:
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Puntos", "Descripción"]}
+    rows={[
+        [
+            "**Gestión de identidades y accesos (IAM)**",
+            "Controla quién puede acceder a qué recursos, aplicando principios como mínimo privilegio, autenticación multifactor y gestión centralizada de identidades"
+        ],
+        [
+            "**Cumplimiento normativo**",
+            "Garantiza que el uso de cloud cumpla con regulaciones y estándares aplicables (por ejemplo, GDPR, ISO 2700, ISO/IEC 27018), reducienco riesgos legales y reputacionales"
+        ],
+        [
+            "**Prevención de pérdidad de datos (DLP)**",
+            "Protege la información sensible frente a fugas, accesos no autorizados o uso indebido mediante políticas de clasificación, monitoreo y cifrado de datos."
+        ],
+        [
+            "**Información de seguridad y administración de eventos (SIEM)**",
+            "Centraliza logs y eventos de seguridad para detectar, correlacionar y responder de forma temprana a incidentes en el entorno cloud"
+        ],
+        [
+            "**Iniciativas de formación en ciberseguridad**",
+            "Refuerza la postura de seguridad mediante la concienciación y capacitación continua de usuarios y equipos técnicos"
+        ],
+        [
+            "**Infraestructura de clave pública (PKI)**",
+            "Soporta el uso de certificados digitales para cifrado, autenticación y comunicaciones seguras dentro y fuera del entorno cloud"
+        ],
+    ]}
+/>
+
+---
+
+## Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "¿Cuál es el primer paso crucial en la ciberseguridad en la nube?",
+		options: [
+            "Control de acceso y autenticación",
+            "Protección de datos y monitoreo continuo",
+            "Evaluación y gestión de riesgos",
+            "Formación continua y cultura de seguridad",
+		],
+		correctIndex: 2
+	},
+    {
+		question: "En el contexto de la protección de datos, ¿qué protocolo asegura la transmisión segura de información?",
+		options: [
+            "HTTPS",
+            "TLS",
+            "FTP",
+            "SSH",
+		],
+		correctIndex: 1
+	},
+    {
+		question: "ISO/IEC 27001 establece requisitos para auditar la seguridad de la información",
+		options: [
+            "Verdadero",
+            "Falso",
+		],
+		correctIndex: 0
+	},
+    {
+		question: "La prevención de pérdida de datos (DLP) protege la información sensible",
+		options: [
+            "Verdadero",
+            "Falso",
+		],
+		correctIndex: 0
+	},
+]}/>

@@ -1,0 +1,93 @@
+# Búsqueda avanzada usando expresiones regulares
+
+Las expresiones regulares (regex) son una poderosa herramienta utilizada en MongoDb para realizar búsquedas avanzadas y complejas en bases de datos NoSQL.
+
+Permiten encontrar patrones específicos dentro de documentos, proporcionando una mayor flexibilidad y precisión en la extracción de información.
+
+MongoDB usa la librería **Perl Compatible Regular Expression (PCRE)** para gestionar las expresiones regulares.
+
+## Aplicaciones prácticas 
+
+1. **Búsqueda de texto**
+    - Permiten encontrar y extraer patrones específicos de texto dentro de grandes conjuntos de datos
+    - Facilitan la búsqueda de coincidencias parciales o exactas, como palabras clave o frases
+2. **Validación de datos**
+    - Verifican que los datos ingresados cumplan con un formato específico, como correos electrónicos o números de teléfono
+    - Ayudan a asegurar la integridad y consistencia de los datos en aplicaciones y bases de datos
+3. **Filtrado avanzado**
+    - Permiten buscar patrones dentro de grande volúmenes de datos, lo que es particularmente útil en análisis de datos y minería de datos
+    - Esto es crucial en situaciones donde las búsquedas simples no son suficientes para identificar la información relevante
+4. **Manipulación de cadenas de texto**
+    - Facilitan la edición y transformación de texto, como reemplazar patrones específicos o extraer partes de una cadena
+    - Se pueden utilizar en tareas de limpieza y preprocesamiento de datos
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Patrón', 'Definición']}
+	rows={[
+		['`/ /`', 'Se utiliza para delimitar una expresión regular'],
+		['`^`', 'Se utiliza para iniciar desde el principio el patrón'],
+		['`$`', 'Se utiliza para aplicar un patrón con carácter de término'],
+		['`.`', 'Cualquier carácter'],
+		['`*`', 'Cualquier carácter 0 o más veces'],
+		['`[a-z]`', 'Letra a-z'],
+		['`[0-9]`', 'Números 0-9'],
+		['`In`', 'Especificar más de un patrón'],
+		['`i`', 'Deshabilita sensibilidad a mayúscula y minúscula']
+	]}
+/>
+
+# Actividad de Práctica 06
+
+<Quiz questions={[
+    {
+        question: "¿Cuál es el patrón que se utiliza para delimitar una expresión regular?",
+        options:[
+            "¿* *?",
+            "/ /",
+            "[ ]",
+            "( )"
+        ],
+        correctIndex: 1
+    },
+    {
+        question:"Se necesita buscar a los trabajadores donde su apellido comience con S ¿Cuál de las siguientes expresiones regulares incluirías en la consulta?",
+        options:[
+            "i",
+            "*",
+            "^",
+            "$"
+        ],
+        correctIndex: 2
+    },
+    {
+        question:"¿Qué acción realiza sobre la colección trabajadores y el campo nombre la expresión regular de la consulta db.trabajadores.find({nombre:{$regex:/l$/}},{_id:0,nombre:1})?",
+        options:[
+            "Busca el o los nombre(s) de los trabajadores que terminen con la letra l",
+            "Busca el o los nombre(s) de los trabajadores que contengan la letra l",
+            "Busca el o los nombre(s) de los trabajadores que comiencen con la letra l",
+            "Busca el o los nombre(s) de los trabajadores que contengan una letra",
+        ],
+        correctIndex: 0
+    },
+    {
+        question:"¿Cuál es el uso del patrón $in en las expresiones regulares?",
+        options:[
+            "Permitir la búsqueda solo de letras de letras en la consulta",
+            "Permitir especificar más de un patrón en la consulta",
+            "Permitir especificar el uso de mayúsculas o minúsculas en la consulta",
+            "Permitir la búsqueda solo de números en la consulta",
+        ],
+        correctIndex: 1
+    },
+    {
+        question:"¿Cuál es la función del patrón [A-Z] en las expresiones regulares?",
+        options:[
+            "Permite buscar letras desde A hasta Z mayúsculas",
+            "Permite buscar solo las letras A y Z mayúsculas",
+            "Permite buscar solo las letras A y Z minúsculas ",
+            "Permite buscar las letras desde A hasta Z minúsculas",
+        ],
+        correctIndex: 0
+    }
+]} />

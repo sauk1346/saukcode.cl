@@ -1,0 +1,245 @@
+# Manejo de arreglos y objetos en JS
+
+Los **arreglos** en JavaScript son listas ordenadas de elementos que pueden ser accedidos mediante índices y son útiles para manejar colecciones de datos homogéneos, como listas de nombres o números.
+
+Por otro lado, los **objetos** en JavaScript son estructuras que nos permiten almacenar pares de clave-valor, lo que facilita la organización y acceso a datos relacionados. Los objetos son fundamentales para representar entidades del mundo real en nuestras aplicaciones, como usuarios, productos o configuraciones.
+
+## Creación y manipulación de arreglos
+La creación y manipulación de arreglos en JavaScript implica definir listas ordenadas de elementos y realizar operaciones sobre ellas.
+
+
+### 1. Declaración de arreglos
+consiste en crear una estructura de datos que puede almacenar múltiples valores en una sola variable.
+
+```js
+let numeros = [1,2,3,4,5];
+
+let frutas = ["manzana","naranja","plátano"];
+```
+
+### 2. Acceso a elementos del arreglos
+Se realiza utilizando índices que comienzan en 0.
+
+```js
+let primeraFruta = frutas[0] //"manzana"
+```
+
+### 3. Métodos comúnes de arreglos
+
+1. `push` : se utiliza para añadir un elemento al final del arreglo.
+
+```js
+frutas.push("uva");
+
+console.log(frutas); //["manzana","naranja","plátano","uva"];
+```
+
+2. `pop` : se utiliza para eliminar el último elemento del arreglo
+
+```js
+frutas.pop();
+
+console.log(frutas); //["manzana","naranja","plátano"];
+```
+
+3. `shift` : se utiliza para eliminar el primer elemento del arreglo.
+
+```js
+frutas.shift();
+
+console.log(frutas); //["naranja","plátano"];
+```
+
+4. `unshift` : añade un elemento al inicio del arreglo.
+
+```js
+frutas.unshift("fresa");
+
+console.log(frutas); //["fresa","naranja","plátano"];
+```
+
+5. `map` : crea un nuevo arreglo con los resultados de la llamada a una función para cada elemento.
+
+```js
+let numeros = [1,2,3,4,5];
+
+let numerosDobles = numeros.map(num => num *2);
+
+console.log(numerosDobles) // [2,4,6,8,10];
+```
+
+6. `filter` : crea un nuevo arreglo con todos los elementos que cumplan una condición.
+
+```js
+let numeros = [1,2,3,4,5];
+
+let numerosPares = numeros.filter(num => num%2 === 0);
+
+console.log(numerosPares); //[2,4];
+```
+
+7. `reduce` : aplica una función a un acumulador y a cada valor del arreglo (de izquierda a derecha) para reducirlo a un único valor.
+
+```js
+let numeros = [1,2,3,4,5];
+
+let suma = numeros.reduce((acum, num) => acum + num,0);
+
+console.log(suma) // 15
+```
+
+## Objetos en JS
+La creación y manipulación de **objetos** en JavaScript implica definir estructuras de datos que almacenan **pares de clave-valor**, permitiendo organizar datos relacionados.
+
+### 1. Declaración de objetos
+Consiste en crear estructuras de datos que almacenan pares de clave-valor.
+
+```js
+let persona = { 
+  nombre: "Juan", 
+  edad: 30, 
+  profesion: "Desarrollador"
+}; 
+``` 
+
+### 2. Acceso a propiedades del objeto
+Se realiza utilizando la notación de punto o la notación de corchetes.
+
+```js
+//notación de punto
+let nombre = persona.nombre; // "Juan"
+
+//notación de corchetes
+let edad = persona["edad"]; // 30
+```
+
+### 3. Modificación de propiedades
+Cambiar el valor de una propiedad existente de un objeto.
+
+```js
+persona.edad = 35;
+
+persona["profesion"] = "Ingeniero de Software";
+```
+
+### 4. Añadir nuevas propiedades
+Incorporar pares de clave-valor adicionales a un objeto existente.
+
+```js
+persona.pais = "España";
+```
+
+### 5. Eliminar propiedades
+Quitar un par de clave-valor del objeto.
+
+```js
+delete persona.profesion;
+```
+
+## Aplicaciones CRUD utilizando arreglos y objetos
+CRUD se refiere a las operaciones crear, leer, actualizar y eliminar. Estas operaciones son fundamentales en muchas aplicaciones web.
+
+### 1. Crear (Create)
+Imaginemos una aplicación de gestión de tareas. Para ello, deberás crear la tarea.
+
+```js
+let tareas = []; 
+
+function crearTarea(nombre, descripcion) { 
+
+  let nuevaTarea = {
+    id: Date.now(), 
+    nombre: nombre, 
+    descripcion: descripcion, 
+    completada: false 
+  }; 
+
+  tareas.push(nuevaTarea); 
+} 
+```
+
+### 2. Leer (Read)
+En segundo lugar, deberás leer tareas.
+
+```js
+function leerTareas() { 
+  return tareas; 
+} 
+```
+
+### 3. Actualizar (Update)
+En tercer lugar, deberás actualizar tareas.
+
+```js
+function actualizarTarea(id, datosActualizados) { 
+  let tarea = tareas.find(t => t.id === id); 
+
+  if (tarea) { 
+    Object.assign(tarea, datosActualizados); 
+  } 
+} 
+```
+
+### 4. Eliminar (Delete)
+En cuarto y último lugar, deberás eliminar tareas.
+
+```js
+function eliminarTarea(id) { 
+  tareas = tareas.filter(t => t.id !== id); 
+} 
+``` 
+
+# Actividad de Práctica 04
+
+<Quiz questions={[
+	{
+		question: "¿Qué operación CRUD corresponde a la función de actualizar datos en un arreglo u objeto en JavaScript?",
+		options: [
+			"Crear",
+			"Eliminar",
+			"Actualizar",
+			"Leer"
+		],
+		correctIndex: 2
+	},
+    {
+		question: "¿Cuál de los siguientes métodos de arreglo en JavaScript crea un nuevo arreglo con todos los elementos que cumplen con una condición?",
+		options: [
+			"forEach",
+			"map",
+			"reduce",
+			"filter"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Cómo se accede a una propiedad de un objeto en JavaScript?",
+		options: [
+			"objeto(propiedad) o objeto<propiedad>",
+			"objeto->propiedad o objeto[propiedad]",
+			"objeto[propiedad] o objeto{propiedad}",
+			"objeto.propiedad o objeto[\"propiedad\"]"
+		],
+		correctIndex: 3
+	},
+    {
+		question: "¿Cuál de las siguientes opciones es una forma correcta de declarar un arreglo en JavaScript?",
+		options: [
+			"let frutas = (manzana, naranja, plátano);",
+			"let frutas = [\"manzana\", \"naranja\", \"plátano\"];",
+			"let frutas = {\"manzana\", \"naranja\", \"plátano\"}; ",
+			"let frutas = \"manzana\", \"naranja\", \"plátano\";"
+		],
+		correctIndex: 1
+	},
+    {
+		question: "¿Qué método de JavaScript se utiliza para agregar un elemento al final de un arreglo?",
+		options: [
+			"push",
+			"pop",
+			"unshift",
+			"shift"
+		],
+		correctIndex: 0
+	},
+]} />

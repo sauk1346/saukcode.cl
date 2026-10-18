@@ -1,0 +1,79 @@
+# Planificación de Recuperación ante Desastres (DRP)
+
+**Material Clase:** [drp.pdf](/inacap/ti3v34/docs/ppt33.pdf)
+
+*Disaster Recovery Plan*. Es un conjunto de políticas, herramientas y procedimientos diseñados para:
+
+- Restaurar rápidamente sistemas críticos de TI y operaciones después de un desastre
+- Minimizar el impacto en la continuidad del negocio
+- Proteger datos importantes y servicios esenciales
+
+## Beneficios DRP
+
+1. Atención continua de clientes y proveedores
+2. Minimizar pérdidas por inactividad
+3. Minimizar estrés de toma de decisiones
+4. Asegurar acceso de información
+
+## BCP
+*Business Continuity Plan*. Plan de Continuidad del Negocio.
+
+Es un plan estratégico que define cómo una empresa seguirá operando durante y después de una interrupción significativa (como desastres naturales, ciberataques, pandemias, cortes eléctricos, etc.)
+
+Su objetivo es garantizar que los servicios críticos del negocio continúen funcionando o se reanuden rápidamente, minimizando el impacto en las operaciones, finanzas y reputación
+
+## Diferencias entre BCP y DRP
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Aspecto', 'BCP', 'DRP']}
+	rows={[
+		[
+			'**Enfoque**',
+			'Continuidad general del negocio',
+			'Recuperación de sistemas y datos de TI'
+		],
+		[
+			'**Alcance**',
+			'Toda la organización',
+			'Infraestructura tecnológica'
+		],
+		[
+			'**Objetivo Principal**',
+			'Seguir operando con interrupciones',
+			'Restaurar rápidamente sistemas de TI'
+		],
+		[
+			'**Ejemplos**',
+			'Teletrabajo, plan de comunicación',
+			'Backup y restauración de datos, failover'
+		]
+	]}
+/>
+
+## RTO y RPO
+Son métricas que ayudan a definir los objetivos de recuperación de sistemas, datos y operaciones
+
+<SmartTable
+	tableLayout="auto"
+	headers={['Métrica', 'Definición', 'Ejemplo']}
+	rows={[
+		[
+			'**Recovery Time Objective (RTO):** Objetivo de Tiempo de Recuperación',
+			'Es el tiempo máximo permitido para restaurar una función, sistema o servicio después de una interrupción, antes de que cause un impacto inaceptable en el negocio',
+			'Si el RTO de tu sistema de ventas es de 4 horas, significa que debe estar funcionando de nuevo en ese plazo para evitar daños importantes'
+		],
+		[
+			'**Recovery Point Objective (RPO):** Objetivo de Punto de Recuperación',
+			'Es la cantidad máxima de datos (medida en tiempo) que puedes perder en caso de una interrupción',
+			'Si tu RPO es de 1 hora, entonces puedes tolerar perder los datos generados en la última hora antes del incidente. Esto afecta la frecuencia de los respaldos'
+		]
+	]}
+/>
+
+## Cómo se calcula el RPO
+
+- Frecuencia de respaldos
+- Tolerancia de empresas a la pérdida de datos
+- Tipos de datos
+- Capacidades de técnicas y presupuestos

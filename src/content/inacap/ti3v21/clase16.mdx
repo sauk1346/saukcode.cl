@@ -1,0 +1,37 @@
+# Instrucciones Proyecto
+
+## Descripción de la Situación
+
+La empresa "Buses Ríos del Sur S.A." se encarga del transporte regional de pasajeros zona centro sur, y lo llama a Usted y a su equipo para que desarrollen un sistema informático que permita registrar las ventas de pasajes, mantener la coordinación de buses, choferes y pasajeros.
+
+Es requerimiento de la empresa que el sistema sea una **aplicación Python**, para que puedan ingresar desde cualquier punto de venta de pasajes de la empresa, los vendedores, choferes y jefe de operaciones, previa autentificación.
+
+Respecto de algunas funciones básicas se indica lo siguiente:
+
+- El chofer puede consultar por la asignación de ruta, marcar asistencia (que asistió para conducir el bus) y lista de pasajeros.
+- Los vendedores deben ingresar las ventas de pasajes y anulaciones, tienen acceso a la planificación de buses y sus pasajeros.
+- El jefe de operaciones crea las salidas de buses, sus destinos, chofer y auxiliar asignado. Además, es requerimiento de la empresa que el boleto tenga impreso los datos del pasajero, origen-destino, fecha y hora de salida.
+
+En relación a la situación antes presentada, Usted deberá desarrollar los siguientes ejercicios
+
+## Punto A
+Diseñar en SQLite, un esquema que satisfaga las necesidades planteadas anteriormente. El esquema debe incluir:
+
+- Un control de acceso a la aplicación.
+- Tablas con algunos campos auto incrementales.
+- Creación de claves foráneas.
+
+## Punto B
+Realizar la codificación de una aplicación con las siguientes funcionalidades:
+
+- **CREAR VENTA DE PASAJE:** El usuario vendedor deberá ingresar la venta del pasaje. Por lo que la aplicación deberá permitir
+	- Agregar la venta y su detalle en las tablas correspondientes.
+  - Considerar que la venta de un pasaje ocupa una vacante en un bus.
+- **EMITIR PASAJE:** El usuario vendedor debe generar en pantalla un pasaje.
+	- El pasaje muestra los siguientes datos: folio, fecha, hora, nombre pasajero, origen-destino, hora de salida, patente del bus, chofer, auxiliar y precio
+- **PLANIFICACIÓN DE VIAJES:** El usuario jefe de operaciones, al entrar a la aplicación, puede realizar lo siguiente:
+	- Agregar, a la base de datos, nuevas salidas con: destino, hora salida, chofer y auxiliar.
+	- Controlar las horas de conducción de los choferes, dato a considerar en el puesto anterior.    
+- **REPORTES:** Los usuarios tienen acceso a diferentes reportes
+	- Mostrar en pantalla las ventas realizadas en una fecha específica (solo tienen acceso el jefe de operaciones)
+  - Listados de pasajeros en bus (tienen acceso el chofer, vendedor y jefe de operaciones)  

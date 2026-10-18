@@ -1,0 +1,273 @@
+# POO en en Kotlin
+
+## 1. Creación de una Clase en Android
+
+Se crea una clase llamada Persona con atributos nombre y apellido
+
+```kotlin
+class Persona(val nombre: String, val apellido: String)
+```
+
+- `val` es una propiedad inmutable (no se puede cambiar)
+- `nombre` y `apellido` son parámetros del constructor
+- Esto crea automáticamente las propiedades de la clase
+
+## 2. Uso de la Clase
+
+```kotlin
+var persona1 = Persona("Juan", "Pérez")
+println(persona1.nombre)
+println(persona1.apellido)
+```
+
+## 3. Agregar una propiedad con validación (Getter y Setter)
+
+```kotlin
+class Persona(val nombre: String, val apellido: String){
+    
+    var edad: Int = 0  // Valor inicial
+        get() = field  // field es la variable interna real
+        set(value){    // value es el nuevo valor que intentan asignar
+            if(value in 1..130){
+                println("Paso por set con valor $value")
+                field = value  // Asignamos el valor
+            }else{
+                field = 0  // Si es inválido, ponemos 0
+            }
+        }
+}
+```
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Comando", "Descripción"]}
+    rows={[
+        [
+            "`get()`",
+            "Se ejecuta al leer `persona.edad`"
+        ],
+        [
+            "`set()`",
+            "Se ejecuta al escribir `persona.edad = 25`"
+        ],
+        [
+            "`field`",
+            "Es la variable \"real\" que guarda el valor internamente"
+        ],
+        [
+            "`value`",
+            "Es el parámetro que recibe el nuevo valor"
+        ],
+    ]}
+
+/>
+
+## 4. Constructor Secundario
+Responde al caso en el que se quiera crear un objeto con distinta cantidad de parámetros iniciales
+
+> Por ejemplo, si quiero crear una "persona" CON edad y otras veces SIN edad
+
+```kotlin
+class Persona(val nombre: String, val apellido: String){
+
+    var edad: Int = 0
+        get() = field
+        set(value){
+            if(value in 1..130){
+                println("Paso por set con valor $value")
+                field = value
+            }else{
+                field = 0
+            }
+        }
+
+    // Constructor secundario que SÍ recibe edad
+    constructor(nom: String, ap: String, edad: Int) :
+            this(nombre = nom, apellido = ap) {  // Llama al constructor primario
+                this.edad = edad  // Luego asigna la edad
+    }
+}
+```
+
+### Ejemplo de Uso
+
+```kotlin
+// Usando constructor primario (sin edad)
+var persona1 = Persona("Carlos", "Ruiz")
+println(persona1.edad)  // 0 (valor por defecto)
+
+// Usando constructor secundario (con edad)
+var persona2 = Persona("María", "Silva", 30)
+println(persona2.edad)  // 30
+```
+
+## 5. Estructuras de control en Kotlin
+
+### Bucle For ascendente con rangos
+
+```kotlin
+for(x in 1..10){
+    print("$x,")
+}
+```
+<TerminalOutput>
+{`1,2,3,4,5,6,7,8,9,10,`}
+</TerminalOutput>
+
+### Bucle For descendente con STEP
+
+```kotlin
+println("Mayor a menor")
+
+for(x in 6 downTo 0 step 2)  // Sin llaves porque es UNA sola instrucción
+    println(x)
+```
+<TerminalOutput>
+{`Mayor a menor
+6
+4
+2
+0`}
+</TerminalOutput>
+
+### Bucle While
+
+```kotlin
+println("While")
+var x: Int = 1
+while (x <= 10){
+    println(x)
+    x = x + 1
+}
+```
+<TerminalOutput>
+{`While
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10`}
+</TerminalOutput>
+
+## 6. Arreglos (Arrays)
+
+```kotlin
+val numeros = Array(100){0}
+```
+
+<SmartTable
+    tableLayout="auto"
+    headers={["Comando", "Descripción"]}
+    rows={[
+        [
+            "`Array(100)`",
+            "Crea un arreglo de 100 elementos"
+        ],
+        [
+            "`\{0\}`",
+            "Inicializa todos los elementos con el valor 0"
+        ],
+        [
+            "`val`",
+            "El arreglo no puede cambiar de referencia, pero SI su contenido"
+        ],
+    ]}
+/>
+
+### Propiedades de los Arreglos
+
+```kotlin
+println("Tamaño arreglo ${numeros.size}")
+println("Indices ${numeros.indices}")
+```
+<TerminalOutput>
+{`Tamaño arreglo 100
+Indices 0..99`}
+</TerminalOutput>
+
+## 7. Ejercicios
+
+### Ejercicio 01
+Crear un arreglo de 50 elementos y llenarlo con números pares del 2 al 100
+<Solution>
+```kotlin
+fun main() {    
+    val pares = Array(50){0}
+    
+    for(i in pares.indices){
+        pares[i] = (i + 1) * 2 
+    }
+    
+    println("Contenido del arreglo:")
+    println(pares.contentToString())
+    println("Primer elemento: ${pares[0]}")
+    println("Último elemento: ${pares[49]}")
+    println()
+}
+```
+<TerminalOutput>
+{`Contenido del arreglo:
+[2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100]
+Primer elemento: 2
+Último elemento: 100`}
+</TerminalOutput>
+</Solution>
+
+
+
+### Ejercicio 02
+Imprimir números impares del 1 al 20
+<Solution>
+```kotlin
+fun main() {    
+    for(i in 1..20 step 2){
+    	print("$i ")
+    }
+}
+```
+<TerminalOutput>
+{`1 3 5 7 9 11 13 15 17 19`}
+</TerminalOutput>
+</Solution>
+
+
+### Ejercicio 03
+Contar de 100 a 0 de 10 en 10
+<Solution>
+```kotlin
+fun main() {    
+    for(i in 100 downTo 0 step 10){
+    	print("$i ")
+    }
+}
+```
+<TerminalOutput>
+{`100 90 80 70 60 50 40 30 20 10 0`}
+</TerminalOutput>
+</Solution>
+
+
+### Ejercicio 04
+Usar while para sumar números del 1 al 100
+<Solution>
+```kotlin
+fun main() {    
+    var suma = 0
+    var n = 1
+    
+    while(n <= 100){
+        suma += n
+        n += 1        
+    }
+    println("La suma de los números del 1 al 100 es: $suma")
+}
+```
+<TerminalOutput>
+{`La suma de los números del 1 al 100 es: 5050`}
+</TerminalOutput>
+</Solution>
