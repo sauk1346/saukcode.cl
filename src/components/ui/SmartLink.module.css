@@ -42,41 +42,42 @@
 
 /* Chips de tipo de recurso: [video] [pdf] [audio], en el lenguaje de
    los kbd del sitio. Van inline, nunca se separan de su enlace. */
+/* Tag sólido invertido en octágono pixel: color pleno + texto papel/tinta */
 .chip {
   display: inline-block; /* corta el subrayado del enlace y la sangría heredada */
   text-indent: 0;
   font-family: var(--font-mono);
   font-size: 0.68em;
   line-height: 1;
-  padding: 0.2em 0.45em;
+  padding: 0.25em 0.5em;
   margin-left: 0.5em;
-  border: 1px solid var(--border-color);
-  background-color: var(--card-bg);
-  color: var(--secondary);
+  background-color: var(--secondary);
+  color: var(--background);
   white-space: nowrap;
   vertical-align: 0.1em;
+  clip-path: polygon(
+    2px 0, calc(100% - 2px) 0, 100% 2px,
+    100% calc(100% - 2px), calc(100% - 2px) 100%,
+    2px 100%, 0 calc(100% - 2px), 0 2px
+  );
 }
 
-/* Al hover del enlace, el chip se aviva en su propio tinte */
+/* Al hover del enlace, el chip se aviva */
 .link:hover .chip {
-  border-color: currentColor;
-  background-color: color-mix(in srgb, currentColor 10%, var(--card-bg));
+  filter: brightness(1.12);
 }
 
 /* Tinte por formato: refuerzo visual, el texto sigue diciendo qué es */
 .chipVideo {
-  color: var(--error);
-  border-color: color-mix(in srgb, var(--error) 45%, var(--border-color));
+  background-color: var(--error);
 }
 
 .chipPdf {
-  color: var(--orange);
-  border-color: color-mix(in srgb, var(--orange) 45%, var(--border-color));
+  background-color: var(--orange);
 }
 
 .chipAudio {
-  color: var(--cyan);
-  border-color: color-mix(in srgb, var(--cyan) 45%, var(--border-color));
+  background-color: var(--cyan);
 }
 
 /* Flecha de enlace externo: carácter tipográfico, no icono */

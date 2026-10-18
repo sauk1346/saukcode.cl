@@ -168,7 +168,6 @@
 .selected .calendarioEvent {
   background: color-mix(in srgb, var(--background) 25%, transparent);
   color: var(--background);
-  border-color: transparent;
 }
 
 /* CASO ESPECIAL: Si un día es HOY Y ESTÁ SELECCIONADO */
@@ -187,12 +186,16 @@
   gap: 2px;
 }
 
-/* Pastilla de evento: chip pixel teñido con el área del ramo */
+/* Pastilla de evento: tag sólido en octágono con el color del área */
 .calendarioEvent {
-  background: color-mix(in srgb, var(--event-accent, var(--primary)) 14%, var(--background));
-  color: var(--event-accent, var(--primary));
-  border: 1px solid color-mix(in srgb, var(--event-accent, var(--primary)) 50%, var(--border-color));
+  background: var(--event-accent, var(--primary));
+  color: var(--background);
   padding: 1px var(--spacing-xs);
+  clip-path: polygon(
+    2px 0, calc(100% - 2px) 0, 100% 2px,
+    100% calc(100% - 2px), calc(100% - 2px) 100%,
+    2px 100%, 0 calc(100% - 2px), 0 2px
+  );
   font-family: var(--font-mono);
   font-size: 0.7rem;
   white-space: nowrap;
@@ -204,7 +207,6 @@
 .today .calendarioEvent {
   background: color-mix(in srgb, var(--background) 25%, transparent);
   color: var(--background);
-  border-color: transparent;
 }
 
 .eventIndicator {

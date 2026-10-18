@@ -37,10 +37,13 @@
   font-family: var(--font-mono);
   font-size: 0.8rem;
   letter-spacing: 0.05em;
-  color: var(--course-accent, var(--primary));
-  border: 2px solid
-    color-mix(in srgb, var(--course-accent, var(--primary)) 55%, var(--border-color));
-  background-color: var(--surface);
+  background-color: var(--course-accent, var(--primary));
+  color: var(--background);
+  clip-path: polygon(
+    3px 0, calc(100% - 3px) 0, 100% 3px,
+    100% calc(100% - 3px), calc(100% - 3px) 100%,
+    3px 100%, 0 calc(100% - 3px), 0 3px
+  );
   padding: 0.2rem 0.6rem;
   margin-bottom: var(--spacing-md);
 }
