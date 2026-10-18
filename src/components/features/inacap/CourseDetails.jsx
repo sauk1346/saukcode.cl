@@ -164,12 +164,12 @@ const CourseDetails = ({
 
   return (
     <div className={styles.container}>
-      {/* Encabezado con Hero Section */}
-      <div className={styles.description}>
+      {/* Encabezado: carátula del ramo (código + título + descripción) */}
+      <header className={styles.courseHeader}>
+        <p className={styles.courseCode}>{courseCode}</p>
         <h1 className={styles.title}>{courseTitle}</h1>
-        <p className={styles.subheading}>{courseCode}</p>
-        <p>{courseDescription}</p>
-      </div>
+        <p className={styles.description}>{courseDescription}</p>
+      </header>
 
       {/* Navegación por pestañas */}
       <div className={styles.tabNavigation}>
