@@ -60,35 +60,35 @@
   
   /* Gradientes por categoría */
   .categoryBar.programming { 
-    background: linear-gradient(135deg, var(--primary), #60a5fa); 
+    background: var(--primary); 
   }
   
   .categoryBar.database { 
-    background: linear-gradient(135deg, var(--success), #34d399); 
+    background: var(--success); 
   }
   
   .categoryBar.security { 
-    background: linear-gradient(135deg, var(--error), #f87171); 
+    background: var(--error); 
   }
   
   .categoryBar.systems { 
-    background: linear-gradient(135deg, var(--accent), #a78bfa); 
+    background: var(--accent); 
   }
   
   .categoryBar.math { 
-    background: linear-gradient(135deg, var(--warning), #fbbf24); 
+    background: var(--warning); 
   }
   
   .categoryBar.business { 
-    background: linear-gradient(135deg, #f97316, #fb923c); 
+    background: #f97316; 
   }
   
   .categoryBar.methodology { 
-    background: linear-gradient(135deg, #ec4899, #f472b6); 
+    background: #ec4899; 
   }
   
   .categoryBar.general { 
-    background: linear-gradient(135deg, var(--secondary), #9ca3af); 
+    background: var(--secondary); 
   }
   
   /* ================================
@@ -131,35 +131,35 @@
   
   /* Gradientes por categoría para iconos */
   .categoryIcon.programming { 
-    background: linear-gradient(135deg, var(--primary), #60a5fa); 
+    background: var(--primary); 
   }
   
   .categoryIcon.database { 
-    background: linear-gradient(135deg, var(--success), #34d399); 
+    background: var(--success); 
   }
   
   .categoryIcon.security { 
-    background: linear-gradient(135deg, var(--error), #f87171); 
+    background: var(--error); 
   }
   
   .categoryIcon.systems { 
-    background: linear-gradient(135deg, var(--accent), #a78bfa); 
+    background: var(--accent); 
   }
   
   .categoryIcon.math { 
-    background: linear-gradient(135deg, var(--warning), #fbbf24); 
+    background: var(--warning); 
   }
   
   .categoryIcon.business { 
-    background: linear-gradient(135deg, #f97316, #fb923c); 
+    background: #f97316; 
   }
   
   .categoryIcon.methodology { 
-    background: linear-gradient(135deg, #ec4899, #f472b6); 
+    background: #ec4899; 
   }
   
   .categoryIcon.general { 
-    background: linear-gradient(135deg, var(--secondary), #9ca3af); 
+    background: var(--secondary); 
   }
   
   /* ================================
@@ -239,7 +239,7 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
+    background: var(--primary);
     transition: width 0.3s ease;
   }
   

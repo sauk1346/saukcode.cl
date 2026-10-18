@@ -43,7 +43,7 @@
   display: block;
   width: 60px;
   height: 4px;
-  background: linear-gradient(90deg, var(--primary, #3b82f6), var(--accent, #8b5cf6));
+  background: var(--primary);
   margin: 0.5rem auto 0;
   border-radius: var(--radius-sm, 4px);
   transition: width 0.3s ease;

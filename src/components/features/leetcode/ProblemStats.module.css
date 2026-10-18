@@ -16,7 +16,7 @@
     text-align: center;
     padding: var(--spacing-md);
     border-radius: var(--radius-lg);
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    background: var(--card-bg);
     box-shadow: var(--shadow-md);
     min-width: 130px;
     transition: all 0.3s ease;
@@ -35,7 +35,7 @@
     display: block;
     font-size: 2.25rem;
     font-weight: 800;
-    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    background: var(--primary);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -60,7 +60,7 @@
      ================================ */
   :global(html.dark-mode) .statItem,
   :global(html.dark-mode-override) .statItem {
-    background: linear-gradient(135deg, #1e1e1e 0%, #2d3748 100%);
+    background: var(--surface);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
     border-color: #4a5568;
   }
@@ -72,7 +72,7 @@
   
   :global(html.dark-mode) .statNumber,
   :global(html.dark-mode-override) .statNumber {
-    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    background: var(--primary);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

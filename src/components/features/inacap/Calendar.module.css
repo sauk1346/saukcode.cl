@@ -33,7 +33,7 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--spacing-lg);
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background: var(--primary);
   color: white;
   position: relative;
   overflow: hidden;
@@ -154,7 +154,7 @@
 
 /* DÍA ACTUAL - Color azul/púrpura (original) */
 .today {
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  background: var(--primary);
   color: white;
 }
 
@@ -169,7 +169,7 @@
 
 /* DÍA SELECCIONADO - Color verde/esmeralda (nuevo) */
 .selected {
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: var(--success);
   color: white;
   transform: scale(1.02);
   z-index: 3;
@@ -188,7 +188,7 @@
 
 /* CASO ESPECIAL: Si un día es HOY Y ESTÁ SELECCIONADO */
 .calendarioDay.today.selected {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
+  background: var(--warning);
   border: 2px solid #fbbf24;
 }
 
@@ -203,7 +203,7 @@
 }
 
 .calendarioEvent {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background: var(--primary);
   color: white;
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--radius-sm);
@@ -317,7 +317,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, transparent, rgba(var(--primary-rgb), 0.05));
+  background: color-mix(in srgb, var(--primary) 5%, transparent);
   pointer-events: none;
 }
 

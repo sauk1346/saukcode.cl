@@ -172,7 +172,7 @@
 
   .currentProgressFill {
     height: 100%;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
+    background: var(--primary);
     border-radius: var(--radius-full);
   }
 
@@ -219,7 +219,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: transparent;
     transition: left 0.5s;
   }
   
@@ -237,17 +237,17 @@
      ================================ */
   .semesterButton.completed { 
     border-color: var(--success);
-    background: linear-gradient(135deg, var(--background) 0%, color-mix(in srgb, var(--success) 5%, transparent) 100%);
+    background: color-mix(in srgb, var(--success) 5%, var(--background));
   }
   
   .semesterButton.current { 
     border-color: var(--primary);
-    background: linear-gradient(135deg, var(--background) 0%, color-mix(in srgb, var(--primary) 5%, transparent) 100%);
+    background: color-mix(in srgb, var(--primary) 5%, var(--background));
   }
   
   .semesterButton.pending { 
     border-color: var(--secondary);
-    background: linear-gradient(135deg, var(--background) 0%, color-mix(in srgb, var(--secondary) 5%, transparent) 100%);
+    background: color-mix(in srgb, var(--secondary) 5%, var(--background));
   }
   
   /* ================================
@@ -320,7 +320,7 @@
 
   .semesterProgressFill {
     height: 100%;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
+    background: var(--primary);
     border-radius: var(--radius-sm);
     transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
@@ -333,7 +333,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    background: transparent;
     animation: progressShimmer 2s infinite;
   }
   
@@ -348,7 +348,7 @@
   }
   
   .semesterButton.selected .semesterProgressFill {
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+    background: rgba(255, 255, 255, 0.85);
   }
   
   .semesterPercent {
@@ -399,14 +399,14 @@
     height: 2px;
   }
 
-  .categoryBar.programming { background: linear-gradient(135deg, var(--primary), #60a5fa); }
-  .categoryBar.database { background: linear-gradient(135deg, var(--success), #34d399); }
-  .categoryBar.security { background: linear-gradient(135deg, var(--error), #f87171); }
-  .categoryBar.systems { background: linear-gradient(135deg, var(--accent), #a78bfa); }
-  .categoryBar.math { background: linear-gradient(135deg, var(--warning), #fbbf24); }
-  .categoryBar.business { background: linear-gradient(135deg, #f97316, #fb923c); }
-  .categoryBar.methodology { background: linear-gradient(135deg, #ec4899, #f472b6); }
-  .categoryBar.general { background: linear-gradient(135deg, var(--secondary), #9ca3af); }
+  .categoryBar.programming { background: var(--primary); }
+  .categoryBar.database { background: var(--success); }
+  .categoryBar.security { background: var(--error); }
+  .categoryBar.systems { background: var(--accent); }
+  .categoryBar.math { background: var(--warning); }
+  .categoryBar.business { background: #f97316; }
+  .categoryBar.methodology { background: #ec4899; }
+  .categoryBar.general { background: var(--secondary); }
 
   .cardContent {
     margin-top: 0.1rem;
@@ -441,14 +441,14 @@
     justify-content: center;
   }
 
-  .categoryIcon.programming { background: linear-gradient(135deg, var(--primary), #60a5fa); }
-  .categoryIcon.database { background: linear-gradient(135deg, var(--success), #34d399); }
-  .categoryIcon.security { background: linear-gradient(135deg, var(--error), #f87171); }
-  .categoryIcon.systems { background: linear-gradient(135deg, var(--accent), #a78bfa); }
-  .categoryIcon.math { background: linear-gradient(135deg, var(--warning), #fbbf24); }
-  .categoryIcon.business { background: linear-gradient(135deg, #f97316, #fb923c); }
-  .categoryIcon.methodology { background: linear-gradient(135deg, #ec4899, #f472b6); }
-  .categoryIcon.general { background: linear-gradient(135deg, var(--secondary), #9ca3af); }
+  .categoryIcon.programming { background: var(--primary); }
+  .categoryIcon.database { background: var(--success); }
+  .categoryIcon.security { background: var(--error); }
+  .categoryIcon.systems { background: var(--accent); }
+  .categoryIcon.math { background: var(--warning); }
+  .categoryIcon.business { background: #f97316; }
+  .categoryIcon.methodology { background: #ec4899; }
+  .categoryIcon.general { background: var(--secondary); }
 
   .cardInfo {
     display: flex;
@@ -648,19 +648,19 @@
   :global(html.dark-mode) .semesterButton.completed,
   :global(html.dark-mode-override) .semesterButton.completed {
     border-color: var(--success-dark, #059669);
-    background: linear-gradient(135deg, var(--background-dark, #1e1e1e) 0%, color-mix(in srgb, var(--success-dark, #059669) 10%, transparent) 100%);
+    background: color-mix(in srgb, var(--success) 10%, var(--background));
   }
   
   :global(html.dark-mode) .semesterButton.current,
   :global(html.dark-mode-override) .semesterButton.current {
     border-color: var(--primary-dark, #2563eb);
-    background: linear-gradient(135deg, var(--background-dark, #1e1e1e) 0%, color-mix(in srgb, var(--primary-dark, #2563eb) 10%, transparent) 100%);
+    background: color-mix(in srgb, var(--primary) 10%, var(--background));
   }
   
   :global(html.dark-mode) .semesterButton.pending,
   :global(html.dark-mode-override) .semesterButton.pending {
     border-color: var(--secondary-dark, #6b7280);
-    background: linear-gradient(135deg, var(--background-dark, #1e1e1e) 0%, color-mix(in srgb, var(--secondary-dark, #6b7280) 10%, transparent) 100%);
+    background: color-mix(in srgb, var(--secondary) 10%, var(--background));
   }
   
   :global(html.dark-mode) .semesterButton.selected.completed,

@@ -8,8 +8,8 @@ const { title, description, image, link } = Astro.props;
   <div
     class="relative flex h-full flex-col overflow-hidden rounded-md border border-(--border-color) bg-(--card-bg) p-2 text-center shadow-(--shadow-md) transition-all duration-200 group-hover:-translate-y-1"
   >
-    <!-- Línea de gradiente superior (como withGradientLine del sitio Next) -->
-    <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-(--primary) to-(--accent) opacity-0 transition-opacity duration-200 group-hover:opacity-100"></div>
+    <!-- Línea superior sólida al hover (el gradiente era ajeno al sistema pixel) -->
+    <div class="absolute inset-x-0 top-0 h-[3px] bg-(--primary) opacity-0 transition-opacity duration-150 group-hover:opacity-100"></div>
     <div class="flex h-[100px] w-full items-center justify-center overflow-hidden">
       <img
         src={image}
