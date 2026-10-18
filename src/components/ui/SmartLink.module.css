@@ -51,15 +51,26 @@
   padding: 0.2em 0.45em;
   margin-left: 0.5em;
   border: 1px solid var(--border-color);
-  background-color: var(--surface);
+  background-color: var(--card-bg);
   color: var(--secondary);
   white-space: nowrap;
   vertical-align: 0.1em;
 }
 
-.link:hover .chip {
-  color: var(--foreground);
-  border-color: var(--secondary);
+/* Tinte por formato: refuerzo visual, el texto sigue diciendo qué es */
+.chipVideo {
+  color: var(--error);
+  border-color: color-mix(in srgb, var(--error) 45%, var(--border-color));
+}
+
+.chipPdf {
+  color: var(--orange);
+  border-color: color-mix(in srgb, var(--orange) 45%, var(--border-color));
+}
+
+.chipAudio {
+  color: var(--cyan);
+  border-color: color-mix(in srgb, var(--cyan) 45%, var(--border-color));
 }
 
 /* Flecha de enlace externo: carácter tipográfico, no icono */

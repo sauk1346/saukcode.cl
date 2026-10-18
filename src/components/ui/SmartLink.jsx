@@ -39,9 +39,9 @@ export const SmartLink = ({ href, children, newTab, className, ...props }) => {
         {children}
         
         {/* Chips de tipo de recurso: dicen qué se abre antes del click */}
-        {(isYouTube || isVideoFile) && <span className={styles.chip}>video</span>}
-        {isPdfFile && <span className={styles.chip}>pdf</span>}
-        {isAudioFile && <span className={styles.chip}>audio</span>}
+        {(isYouTube || isVideoFile) && <span className={`${styles.chip} ${styles.chipVideo}`}>video</span>}
+        {isPdfFile && <span className={`${styles.chip} ${styles.chipPdf}`}>pdf</span>}
+        {isAudioFile && <span className={`${styles.chip} ${styles.chipAudio}`}>audio</span>}
 
         {/* Enlace externo común: flecha tipográfica */}
         {isExternal && !isFileLink && !isYouTube && (
