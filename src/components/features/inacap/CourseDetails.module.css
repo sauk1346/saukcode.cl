@@ -280,8 +280,8 @@
   word-wrap: break-word;
   /* Sangría colgante: las líneas envueltas se alinean con el texto,
      no con la viñeta "- " que antecede */
-  padding-left: 1.05em;
-  text-indent: -1.05em;
+  padding-left: 0.62em; /* ancho real de "- " en Atkinson */
+  text-indent: -0.62em;
 }
 
 /* Estilo mejorado para elementos tachados */
