@@ -9,9 +9,12 @@ import { sectionsOrder } from '../data/homeData.js';
     <section id={section.id} class="mx-auto max-w-6xl px-4 py-16">
       <h1 class="mb-2 text-center text-3xl font-bold text-(--foreground)">{section.title}</h1>
       <p class="mb-10 text-center text-(--secondary)">{section.description}</p>
-      <div class="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2">
+      <!-- Como en el sitio Next: cards de ancho fijo 160px, fila flex centrada -->
+      <div class="flex w-full flex-wrap justify-center gap-4">
         {Object.entries(section.cardsData).map(([key, card]) => (
-          <Card title={card.name} description={card.description} image={card.image} link={card.link} />
+          <div class="w-[calc(50%-0.5rem)] min-[480px]:w-[calc(33.333%-0.667rem)] min-[900px]:w-40">
+            <Card title={card.name} description={card.description} image={card.image} link={card.link} />
+          </div>
         ))}
       </div>
     </section>

@@ -1,17 +1,26 @@
 ---
+// Dimensiones fieles al sitio Next: card de 160px en fila flex centrada,
+// imagen de 100px de alto, textos text-base/text-sm.
 const { title, description, image, link } = Astro.props;
 ---
 
 <a href={link} class="group block h-full">
   <div
-    class="relative flex h-full flex-col overflow-hidden rounded-lg border border-(--border-color) bg-(--card-bg) p-6 text-center shadow-(--shadow-sm) transition-all duration-200 group-hover:-translate-y-1 group-hover:shadow-(--shadow-md)"
+    class="relative flex h-full flex-col overflow-hidden rounded-md border border-(--border-color) bg-(--card-bg) p-2 text-center shadow-(--shadow-md) transition-all duration-200 group-hover:-translate-y-1"
   >
     <!-- Línea de gradiente superior (como withGradientLine del sitio Next) -->
     <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-(--primary) to-(--accent) opacity-0 transition-opacity duration-200 group-hover:opacity-100"></div>
-    <div class="mx-auto mb-4 flex size-28 items-center justify-center">
-      <img src={image} alt={title} width="200" height="200" class="max-h-full max-w-full object-contain" loading="eager" />
+    <div class="flex h-[100px] w-full items-center justify-center overflow-hidden">
+      <img
+        src={image}
+        alt={title}
+        width="200"
+        height="200"
+        class="h-auto max-h-full w-auto max-w-full rounded-md object-contain transition-transform duration-150 group-hover:scale-108"
+        loading="eager"
+      />
     </div>
-    <h3 class="mb-1 text-lg font-semibold text-(--foreground)">{title}</h3>
-    <p class="text-sm text-(--secondary)">{description}</p>
+    <h3 class="mt-1 text-base font-bold text-(--foreground)">{title}</h3>
+    <p class="mt-1 text-sm text-(--secondary)">{description}</p>
   </div>
 </a>
