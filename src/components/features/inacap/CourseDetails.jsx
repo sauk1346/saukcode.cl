@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { Calendar, Book, Monitor, FileText, Clock, Percent, Layers } from 'lucide-react';
+import { Calendar, Book, Monitor, Clock, Layers } from 'lucide-react';
 import { SmartLink } from '@/components/ui/SmartLink';
 import { buildCourseResourceLink } from '@/utils/linkBuilder';
 import Link from 'next/link';
@@ -239,29 +239,30 @@ const CourseDetails = ({
                 let weightStr = evaluation.weighting.split('*')[0].trim();
                 const weightValue = parseInt(weightStr.replace('%', '')) || 0;
                 
+                // Nivel de amenaza según el peso: verde ≤15%, ámbar 20-30%, rojo ≥35%
+                const weightTier =
+                  weightValue >= 35 ? 'weightHigh' : weightValue >= 20 ? 'weightMid' : 'weightLow';
+                const filledCells = Math.round(weightValue / 10);
+
                 return (
-                  <div key={index} className={styles.evaluationCard}>
+                  <div key={index} className={`pixel-box ${styles.evaluationCard}`}>
                     <div className={styles.evaluationHeader}>
                       <div className={styles.evaluationBadge}>
                         <span>{evaluation.evaluationNumber}</span>
                       </div>
                       <div className={styles.evaluationMeta}>
-                        <div className={styles.evaluationDateWrapper}>
-                          <Clock size={14} />
-                          <span className={styles.evaluationDate}>{evaluation.date}</span>
-                        </div>
                         <h3 className={styles.evaluationTitle}>
                           Evaluación {evaluation.evaluationNumber}
                         </h3>
+                        <span className={styles.evaluationDate}>{evaluation.date}</span>
                       </div>
                     </div>
-                    
+
                     <div className={styles.evaluationBody}>
                       <div className={styles.evaluationDescription}>
-                        <FileText size={16} />
-                        <div>{renderContent(evaluation.description)}</div>
+                        {renderContent(evaluation.description)}
                       </div>
-                      
+
                       {evaluation.quickGuide && (
                         <div className={styles.evaluationGuides}>
                           <h4 className={styles.guidesTitle}>Guías de estudio:</h4>
@@ -271,17 +272,24 @@ const CourseDetails = ({
                         </div>
                       )}
                     </div>
-                    
+
                     <div className={styles.evaluationFooter}>
                       <div className={styles.weightWrapper}>
-                        <Percent size={14} />
+                        <span className={styles.weightLabel}>ponderación</span>
                         <span className={styles.evaluationWeight}>{evaluation.weighting}</span>
                       </div>
-                      <div className={styles.weightBarContainer}>
-                        <div 
-                          className={styles.weightBar} 
-                          style={{width: `${weightValue}%`}}
-                        ></div>
+                      {/* Barra de energía: 10 segmentos, 1 por cada 10% */}
+                      <div
+                        className={styles.weightBarContainer}
+                        role="img"
+                        aria-label={`Ponderación ${evaluation.weighting}`}
+                      >
+                        {Array.from({ length: 10 }, (_, i) => (
+                          <span
+                            key={i}
+                            className={`${styles.weightCell} ${i < filledCells ? styles[weightTier] : ''}`}
+                          ></span>
+                        ))}
                       </div>
                     </div>
                   </div>

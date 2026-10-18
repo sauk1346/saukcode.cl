@@ -459,82 +459,55 @@
   margin-bottom: var(--spacing-xl);
 }
 
-/* Tarjeta de evaluación */
+/* Tarjeta de evaluación: el marco y fondo los pone .pixel-box */
 .evaluationCard {
-  background-color: white;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s ease;
-  border-top: 4px solid var(--primary);
 }
 
-/* Modo oscuro para tarjetas de evaluación */
-:global(html.dark-mode) .evaluationCard,
-:global(html.dark-mode-override) .evaluationCard {
-  background-color: var(--surface);
-  border-top: 4px solid var(--primary);
-  box-shadow: var(--shadow-sm);
-}
-
-/* Encabezado de tarjeta de evaluación */
 .evaluationHeader {
-  padding: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 2px solid var(--border-color);
 }
 
-/* Modo oscuro para encabezado de evaluación */
-:global(html.dark-mode) .evaluationHeader,
-:global(html.dark-mode-override) .evaluationHeader {
-  border-bottom: 1px solid var(--border-color);
-}
-
-/* Insignia de número de evaluación */
+/* Número de evaluación: cuadro teñido con el color del área */
 .evaluationBadge {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  background-color: var(--primary);
-  color: white;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0;
+  background-color: var(--course-accent, var(--primary));
+  color: var(--background);
+  font-family: var(--font-mono);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.25rem;
-  font-weight: bold;
+  font-weight: 700;
   flex-shrink: 0;
 }
 
-/* Modo oscuro para insignia de evaluación */
-:global(html.dark-mode) .evaluationBadge,
-:global(html.dark-mode-override) .evaluationBadge {
-  background-color: var(--primary);
-}
-
-/* Contenedor de metadatos de evaluación */
 .evaluationMeta {
   flex: 1;
+  min-width: 0;
 }
 
-/* Título de evaluación */
 .evaluationTitle {
-  font-size: 1.125rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
   margin: 0;
   color: var(--foreground);
 }
 
-/* Modo oscuro para título de evaluación */
-:global(html.dark-mode) .evaluationTitle,
-:global(html.dark-mode-override) .evaluationTitle {
-  color: var(--foreground);
+/* Fecha: dato duro, en mono y ámbar */
+.evaluationDate {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--warning);
 }
 
-/* Cuerpo de tarjeta de evaluación */
 .evaluationBody {
   padding: var(--spacing-md);
   flex: 1;
@@ -543,127 +516,79 @@
   gap: var(--spacing-md);
 }
 
-/* Descripción de evaluación */
 .evaluationDescription {
-  display: flex;
-  gap: var(--spacing-sm);
-  align-items: flex-start;
-  color: var(--secondary);
-}
-
-/* Modo oscuro para descripción */
-:global(html.dark-mode) .evaluationDescription,
-:global(html.dark-mode-override) .evaluationDescription {
   color: var(--foreground);
 }
 
-/* Contenedor de guías de estudio */
 .evaluationGuides {
   background-color: var(--background-elevated);
-  border-radius: var(--radius-md);
+  border: 2px solid var(--border-color);
   padding: var(--spacing-sm);
-  margin-top: var(--spacing-sm);
 }
 
-/* Modo oscuro para guías */
-:global(html.dark-mode) .evaluationGuides,
-:global(html.dark-mode-override) .evaluationGuides {
-  background-color: var(--surface);
-}
-
-/* Título de guías */
 .guidesTitle {
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 700;
   margin: 0 0 var(--spacing-sm) 0;
   color: var(--foreground);
 }
 
-/* Modo oscuro para título de guías */
-:global(html.dark-mode) .guidesTitle,
-:global(html.dark-mode-override) .guidesTitle {
-  color: var(--foreground);
-}
-
-/* Lista de guías */
 .guidesList {
   font-size: 0.875rem;
-  color: var(--secondary);
-}
-
-/* Modo oscuro para lista de guías */
-:global(html.dark-mode) .guidesList,
-:global(html.dark-mode-override) .guidesList {
   color: var(--foreground);
 }
 
-/* Pie de tarjeta de evaluación */
 .evaluationFooter {
-  padding: var(--spacing-md);
-  border-top: 1px solid var(--border-color);
-  background-color: var(--background-elevated);
+  padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);
+  border-top: 2px solid var(--border-color);
 }
 
-/* Modo oscuro para pie de tarjeta */
-:global(html.dark-mode) .evaluationFooter,
-:global(html.dark-mode-override) .evaluationFooter {
-  border-top: 1px solid var(--border-color);
-  background-color: var(--surface);
-}
-
-/* Contenedor de peso */
 .weightWrapper {
   display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  margin-bottom: var(--spacing-sm);
-  color: var(--secondary);
-  font-size: 0.875rem;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--spacing-xs);
+  font-size: 0.8rem;
 }
 
-/* Modo oscuro para contenedor de peso */
-:global(html.dark-mode) .weightWrapper,
-:global(html.dark-mode-override) .weightWrapper {
+.weightLabel {
+  font-family: var(--font-mono);
   color: var(--secondary);
 }
 
-/* Peso de evaluación */
 .evaluationWeight {
-  font-weight: bold;
+  font-family: var(--font-mono);
+  font-weight: 700;
   color: var(--foreground);
 }
 
-/* Modo oscuro para peso */
-:global(html.dark-mode) .evaluationWeight,
-:global(html.dark-mode-override) .evaluationWeight {
-  color: var(--foreground);
-}
-
-/* Contenedor de barra de peso */
+/* Barra de energía: 10 celdas, se llenan según la ponderación */
 .weightBarContainer {
-  height: 0.5rem;
+  display: flex;
+  gap: 3px;
+  height: 0.75rem;
+}
+
+.weightCell {
+  flex: 1;
   background-color: var(--surface);
-  border-radius: 9999px;
-  overflow: hidden;
+  border: 1px solid var(--border-color);
 }
 
-/* Modo oscuro para contenedor de barra */
-:global(html.dark-mode) .weightBarContainer,
-:global(html.dark-mode-override) .weightBarContainer {
-  background-color: var(--surface);
+/* Nivel de amenaza: verde ≤15%, ámbar 20-30%, rojo ≥35% */
+.weightLow {
+  background-color: var(--success);
+  border-color: var(--success);
 }
 
-/* Barra de peso */
-.weightBar {
-  height: 100%;
-  background-color: var(--primary);
-  border-radius: 9999px;
+.weightMid {
+  background-color: var(--warning);
+  border-color: var(--warning);
 }
 
-/* Modo oscuro para barra de peso */
-:global(html.dark-mode) .weightBar,
-:global(html.dark-mode-override) .weightBar {
-  background-color: var(--primary);
+.weightHigh {
+  background-color: var(--error);
+  border-color: var(--error);
 }
 
 /* ==================== ESTILOS RESPONSIVOS ==================== */
