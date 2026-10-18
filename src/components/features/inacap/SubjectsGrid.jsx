@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import styles from './SubjectsGrid.module.css';
-import { hoverLift, tapScale, staggerContainer } from '@/utils/animations';
+import { staggerContainer } from '@/utils/animations';
 
 // Variantes para cada tarjeta - solo entrada, sin exit
 const cardVariants = {
@@ -35,7 +35,6 @@ const SubjectsGrid = ({
   // Componente para estado sin resultados
   const NoResults = () => (
     <div className={styles.noResults}>
-      <div className={styles.noResultsIcon}>🔍</div>
       <h3 className={styles.noResultsTitle}>No hay materias disponibles</h3>
       <p className={styles.noResultsText}>Este semestre no tiene materias registradas</p>
     </div>
@@ -47,17 +46,15 @@ const SubjectsGrid = ({
     const status = statusConfig[subject.status];
 
     const cardClasses = [
+      'pixel-box',
+      subject.href && 'pixel-press',
       styles.subjectCard,
+      subject.href && styles.clickable,
       styles[subject.status]
     ].filter(Boolean).join(' ');
 
     return (
-      <motion.div
-        className={cardClasses}
-        variants={cardVariants}
-        whileHover={subject.href ? hoverLift : undefined}
-        whileTap={subject.href ? tapScale : undefined}
-      >
+      <motion.div className={cardClasses} variants={cardVariants}>
         {subject.href && (
           <Link href={subject.href} className={styles.cardLink} aria-label={subject.name} />
         )}
@@ -65,17 +62,9 @@ const SubjectsGrid = ({
 
         <div className={styles.cardContent}>
           <div className={styles.cardHeader}>
-            <div className={styles.cardLeft}>
-              <div className={`${styles.categoryIcon} ${styles[subject.category]}`}>
-                {category.icon}
-              </div>
-              <div className={styles.cardInfo}>
-                <div className={styles.code}>{subject.code}</div>
-                <div className={`${styles.statusBadge} ${styles[subject.status]}`}>
-                  <span>{status.icon}</span>
-                  {status.name}
-                </div>
-              </div>
+            <div className={styles.code}>{subject.code}</div>
+            <div className={`${styles.statusBadge} ${styles[subject.status]}`}>
+              {status.name}
             </div>
           </div>
 
@@ -85,7 +74,8 @@ const SubjectsGrid = ({
 
           <div className={styles.cardFooter}>
             <span className={styles.categoryLabel}>
-              {category.icon} {category.name}
+              <span className={`${styles.catSquare} ${styles[subject.category]}`} aria-hidden="true"></span>
+              {category.name}
             </span>
           </div>
         </div>

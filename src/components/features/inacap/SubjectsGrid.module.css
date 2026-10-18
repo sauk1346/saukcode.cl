@@ -15,31 +15,23 @@
   /* ================================
      TARJETA DE MATERIA - DIMENSIONES ORIGINALES
      ================================ */
+  /* El marco y fondo los pone .pixel-box (clase global en el JSX) */
   .subjectCard {
-    background: var(--background);
-    border-radius: var(--radius-lg);
-    padding: 0.75rem;
-    box-shadow: var(--shadow-lg);
-    border: 1px solid var(--border-color);
-    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                background-color 0.3s ease;
+    padding: 0.4rem 0.6rem 0.6rem;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
   }
-  
-  .subjectCard:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
+
+  .clickable:hover .cardTitle {
+    color: var(--primary);
   }
 
   .cardLink {
     position: absolute;
     inset: 0;
     z-index: 1;
-    border-radius: var(--radius-lg);
   }
   
   /* ================================
@@ -54,40 +46,44 @@
     transition: height 0.3s ease;
   }
   
-  .subjectCard:hover .categoryBar {
-    height: 5px;
-  }
-  
   /* Gradientes por categoría */
-  .categoryBar.programming { 
+  .categoryBar.programming,
+  .catSquare.programming { 
     background: var(--cat-programming); 
   }
   
-  .categoryBar.database { 
+  .categoryBar.database,
+  .catSquare.database { 
     background: var(--cat-database); 
   }
   
-  .categoryBar.security { 
+  .categoryBar.security,
+  .catSquare.security { 
     background: var(--cat-security); 
   }
   
-  .categoryBar.systems { 
+  .categoryBar.systems,
+  .catSquare.systems { 
     background: var(--cat-systems); 
   }
   
-  .categoryBar.math { 
+  .categoryBar.math,
+  .catSquare.math { 
     background: var(--cat-math); 
   }
   
-  .categoryBar.business { 
+  .categoryBar.business,
+  .catSquare.business { 
     background: var(--cat-business); 
   }
   
-  .categoryBar.methodology { 
+  .categoryBar.methodology,
+  .catSquare.methodology { 
     background: var(--cat-methodology); 
   }
   
-  .categoryBar.general { 
+  .categoryBar.general,
+  .catSquare.general { 
     background: var(--cat-general); 
   }
   
@@ -115,96 +111,29 @@
   }
   
   /* ================================
-     ICONO DE CATEGORÍA - ORIGINAL
-     ================================ */
-  .categoryIcon {
-    color: white;
-    padding: 0.3rem;
-    border-radius: var(--radius-sm);
-    font-size: 0.875rem;
-    transition: transform 0.2s ease;
-  }
-  
-  .subjectCard:hover .categoryIcon {
-    transform: scale(1.1);
-  }
-  
-  /* Gradientes por categoría para iconos */
-  .categoryIcon.programming { 
-    background: var(--cat-programming); 
-  }
-  
-  .categoryIcon.database { 
-    background: var(--cat-database); 
-  }
-  
-  .categoryIcon.security { 
-    background: var(--cat-security); 
-  }
-  
-  .categoryIcon.systems { 
-    background: var(--cat-systems); 
-  }
-  
-  .categoryIcon.math { 
-    background: var(--cat-math); 
-  }
-  
-  .categoryIcon.business { 
-    background: var(--cat-business); 
-  }
-  
-  .categoryIcon.methodology { 
-    background: var(--cat-methodology); 
-  }
-  
-  .categoryIcon.general { 
-    background: var(--cat-general); 
-  }
-  
-  /* ================================
-     INFORMACIÓN DE LA TARJETA - ORIGINAL
-     ================================ */
-  .cardInfo {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xs);
-  }
-  
-  .code {
-    font-family: monospace;
-    color: var(--secondary);
-    font-size: 0.75rem;
-    font-weight: 600;
-    transition: color 0.3s ease;
-  }
-  
-  /* ================================
      BADGE DE ESTADO - ORIGINAL
      ================================ */
   .statusBadge {
     display: inline-flex;
     align-items: center;
-    gap: 0.2rem;
     padding: 0.15rem var(--spacing-xs);
-    border-radius: var(--radius-lg);
+    font-family: var(--font-mono);
     font-size: 0.65rem;
-    font-weight: 500;
-    transition: all 0.2s ease;
+    border: 1px solid currentColor;
   }
   
   .statusBadge.completed {
-    background: color-mix(in srgb, var(--success) 20%, transparent);
+    background: color-mix(in srgb, var(--success) 14%, var(--background));
     color: var(--success);
   }
   
   .statusBadge.current {
-    background: color-mix(in srgb, var(--primary) 20%, transparent);
+    background: color-mix(in srgb, var(--primary) 14%, var(--background));
     color: var(--primary);
   }
   
   .statusBadge.pending {
-    background: color-mix(in srgb, var(--secondary) 20%, transparent);
+    background: color-mix(in srgb, var(--secondary) 14%, var(--background));
     color: var(--secondary);
   }
   
@@ -257,18 +186,20 @@
   }
   
   .categoryLabel {
-    padding: 0.15rem var(--spacing-xs);
-    border-radius: var(--radius-lg);
-    background: var(--card-bg);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
     color: var(--secondary);
+    font-family: var(--font-mono);
     font-size: 0.65rem;
-    font-weight: 500;
-    transition: all 0.2s ease;
   }
-  
-  .subjectCard:hover .categoryLabel {
-    background: var(--primary);
-    color: white;
+
+  /* Cuadrado pixel con el color del área */
+  .catSquare {
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    flex-shrink: 0;
   }
   
   /* ================================
