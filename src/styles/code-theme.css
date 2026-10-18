@@ -8,7 +8,9 @@
 
 pre[class*='language-'] {
   background: var(--surface);
-  border: 2px solid var(--border-color);
+  background-clip: padding-box;
+  border: 8px solid transparent;
+  border-image: var(--px-frame-surface) 8 / 8px stretch;
   color: var(--foreground);
   font-size: 0.875rem;
   line-height: 1.6;

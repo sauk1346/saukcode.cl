@@ -4,7 +4,6 @@
     max-width: 1100px;
     margin: 0 auto;
     padding: var(--spacing-xl);
-    min-height: 100vh;
     color: var(--foreground);
     line-height: 1.7;
     background-color: var(--card-bg);

@@ -110,7 +110,9 @@
 .lightTheme,
 .darkTheme {
   background-color: var(--surface) !important;
-  border: 2px solid var(--border-color) !important;
+  background-clip: padding-box !important;
+  border: 8px solid transparent !important;
+  border-image: var(--px-frame-surface) 8 / 8px stretch !important;
   color: var(--foreground) !important;
   text-shadow: none !important;
 }

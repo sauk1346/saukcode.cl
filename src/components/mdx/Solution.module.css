@@ -189,14 +189,8 @@
 .contentWrapper {
   overflow: hidden;
   transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: var(--card-bg);
-  border-top: 1px solid var(--border-color);
-}
-
-/* Modo oscuro para contenido */
-:global(html.dark-mode) .contentWrapper,
-:global(html.dark-mode-override) .contentWrapper {
-  background-color: var(--surface);
+  /* Pozo: el código (--surface, marco pixel) contrasta con el contenedor */
+  background-color: var(--background);
   border-top: 1px solid var(--border-color);
 }
 
