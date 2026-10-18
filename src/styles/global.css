@@ -78,7 +78,7 @@
   --info: #2a4fcb;
   /* Sombras duras (sin blur): la firma del sistema */
   --cyan: #0e7490;
-  --orange: #b4470b;
+  --orange: #9e5200;
   /* Paleta de áreas: cada categoría de ramo tiene su tinte (etiqueta de
      cartucho, barras del grid). Los alias apuntan a tokens por tema. */
   --cat-programming: var(--primary);
