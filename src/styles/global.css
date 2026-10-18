@@ -1,51 +1,89 @@
+/* ============================================================
+   SaukCode — sistema de diseño "apuntes en consola de 16 bits"
+   El retro vive en el chrome (marcos, sombras duras, display
+   pixel); el contenido de estudio se lee en Atkinson Hyperlegible
+   y el código en Departure Mono. Claro = papel LCD / oscuro =
+   pantalla de noche. Contraste AA validado en ambos modos.
+   ============================================================ */
 @import 'tailwindcss';
 @import 'katex/dist/katex.min.css';
+@import '@fontsource/atkinson-hyperlegible/400.css';
+@import '@fontsource/atkinson-hyperlegible/400-italic.css';
+@import '@fontsource/atkinson-hyperlegible/700.css';
+@import '@fontsource/atkinson-hyperlegible/700-italic.css';
+@import '@fontsource/silkscreen/400.css';
+@import '@fontsource/silkscreen/700.css';
+
+/* Código: Departure Mono (bitmap legible, OFL — licencia en public/fonts) */
+@font-face {
+  font-family: 'Departure Mono';
+  src: url('/fonts/DepartureMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* Dark mode de Tailwind controlado por clase (html.dark) */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Tokens portados de globals.css del sitio Next — expuestos también como
-   theme de Tailwind para poder usar bg-background, text-foreground, etc. */
 @theme {
-  --color-background: #e6eaf0;
-  --color-background-elevated: #ffffff;
-  --color-foreground: #111111;
-  --color-primary: #3b82f6;
-  --color-primary-hover: #2563eb;
-  --color-secondary: #6b7280;
-  --color-accent: #8b5cf6;
-  --color-card-bg: #f8fafc;
-  --color-surface: #eef2f7;
-  --color-border-color: #e2e8f0;
-  --color-success: #10b981;
-  --color-error: #ef4444;
-  --color-warning: #f59e0b;
-  --color-info: #3b82f6;
+  --color-background: #edefe8;
+  --color-background-elevated: #f7f8f4;
+  --color-foreground: #20282a;
+  --color-primary: #2a4fcb;
+  --color-primary-hover: #1f3fa8;
+  --color-secondary: #5a6468;
+  --color-accent: #b13373;
+  --color-card-bg: #f7f8f4;
+  --color-surface: #e2e5dc;
+  --color-border-color: #c9cec2;
+  --color-success: #1e7a33;
+  --color-error: #c03838;
+  --color-warning: #8a6207;
+  --color-info: #2a4fcb;
+
+  --font-sans: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --font-pixel: 'Silkscreen', monospace;
+  --font-mono: 'Departure Mono', ui-monospace, monospace;
+
+  /* Mundo pixel: sin esquinas redondeadas (afecta rounded-sm/md/lg/...) */
+  --radius-xs: 0;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-2xl: 0;
+  --radius-3xl: 0;
 }
 
-/* Variables legacy que consumen los CSS modules portados */
+/* Variables legacy que consumen los CSS modules portados del sitio Next.
+   Mantienen sus nombres; solo cambian los valores al nuevo sistema. */
 :root {
-  --background: #e6eaf0;
-  --background-elevated: #ffffff;
-  --foreground: #111111;
-  --primary: #3b82f6;
-  --primary-hover: #2563eb;
-  --secondary: #6b7280;
-  --accent: #8b5cf6;
-  --card-bg: #f8fafc;
-  --surface: #eef2f7;
-  --input-bg: #ffffff;
-  --input-border: #cbd5e1;
-  --border-color: #e2e8f0;
-  --divider: #e2e8f0;
-  --success: #10b981;
-  --error: #ef4444;
-  --warning: #f59e0b;
-  --info: #3b82f6;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
-  --font-sans: Arial, Helvetica, sans-serif;
+  --background: #edefe8;
+  --background-elevated: #f7f8f4;
+  --foreground: #20282a;
+  --primary: #2a4fcb;
+  --primary-hover: #1f3fa8;
+  --secondary: #5a6468;
+  --accent: #b13373;
+  --card-bg: #f7f8f4;
+  --surface: #e2e5dc;
+  --input-bg: #f7f8f4;
+  --input-border: #aab2a6;
+  --border-color: #c9cec2;
+  --divider: #c9cec2;
+  --success: #1e7a33;
+  --error: #c03838;
+  --warning: #8a6207;
+  --info: #2a4fcb;
+  /* Sombras duras (sin blur): la firma del sistema */
+  --shadow-hard: rgba(32, 40, 42, 0.22);
+  --shadow-sm: 2px 2px 0 var(--shadow-hard);
+  --shadow-md: 4px 4px 0 var(--shadow-hard);
+  --shadow-lg: 6px 6px 0 var(--shadow-hard);
+  --font-sans: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --font-pixel: 'Silkscreen', monospace;
+  --font-mono: 'Departure Mono', ui-monospace, monospace;
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-md: 1rem;
@@ -58,45 +96,94 @@
   --spacing-xl: 2rem;
   --spacing-2xl: 2.5rem;
   --spacing-3xl: 3rem;
-  --radius-sm: 0.125rem;
-  --radius-md: 0.375rem;
-  --radius-lg: 0.5rem;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
   --radius-full: 9999px;
 }
 
 html.dark {
   color-scheme: dark;
-  --background: #0f0f0f;
-  --background-elevated: #1a1a1a;
-  --foreground: #f3f4f6;
-  --primary: #60a5fa;
-  --primary-hover: #3b82f6;
-  --secondary: #9ca3af;
-  --accent: #a78bfa;
-  --card-bg: #1e1e1e;
-  --surface: #262626;
-  --input-bg: #2d2d2d;
-  --input-border: #4b5563;
-  --border-color: #333333;
-  --divider: #333333;
-  --success: #34d399;
-  --error: #f87171;
-  --warning: #fbbf24;
-  --info: #60a5fa;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.24);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.24);
+  --background: #131a24;
+  --background-elevated: #1b2430;
+  --foreground: #e7e9e2;
+  --primary: #7e96f2;
+  --primary-hover: #94a9f5;
+  --secondary: #9aa3b2;
+  --accent: #e887bc;
+  --card-bg: #1b2430;
+  --surface: #202a38;
+  --input-bg: #1b2430;
+  --input-border: #3c4a61;
+  --border-color: #2c3647;
+  --divider: #2c3647;
+  --success: #66cf7a;
+  --error: #f08080;
+  --warning: #f2c14e;
+  --info: #7e96f2;
+  --shadow-hard: rgba(0, 0, 0, 0.55);
+  --shadow-sm: 2px 2px 0 var(--shadow-hard);
+  --shadow-md: 4px 4px 0 var(--shadow-hard);
+  --shadow-lg: 6px 6px 0 var(--shadow-hard);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  line-height: 1.7;
 }
-
 
 html {
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Selección de texto: el acento sprite-2 */
+::selection {
+  background: var(--accent);
+  color: var(--background);
+}
+
+/* Foco de teclado: anillo cuadrado, grueso y visible */
+:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Código: Departure Mono en bloques e inline */
+pre,
+code,
+kbd,
+samp {
+  font-family: var(--font-mono);
+}
+
+/* Caja pixel: borde recto + sombra dura. Es la firma visual de cards,
+   botones y cajas interactivas. --px-border permite teñir el borde. */
+.pixel-box {
+  border: 2px solid var(--px-border, var(--border-color));
+  border-radius: 0;
+  box-shadow: var(--shadow-md);
+}
+
+/* Variante presionable: la sombra se "hunde" al activar */
+.pixel-press {
+  transition: translate 80ms steps(2), box-shadow 80ms steps(2);
+}
+.pixel-press:active {
+  translate: 2px 2px;
+  box-shadow: 2px 2px 0 var(--shadow-hard);
+}
+@media (prefers-reduced-motion: reduce) {
+  .pixel-press {
+    transition: none;
+  }
 }
 
 /* rehype-prism-plus envuelve cada línea en span.code-line sin \n reales:
