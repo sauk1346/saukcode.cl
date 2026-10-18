@@ -312,7 +312,7 @@ const courseData = {
                     href: 'clase16'
                 },
                 {
-                    text: 'Ejercicio 01 (VAN) - VideoClase',
+                    text: 'Ejercicio 01 (VAN)',
                     href: 'https://youtu.be/GSJqJSH9-TM'
                 },
                 {
@@ -331,7 +331,7 @@ const courseData = {
                     href: 'clase17'
                 },
                 {
-                    text: 'Ejercicio 02: Indicadores de Rentabilidad - VideoClase',
+                    text: 'Ejercicio 02: Indicadores de Rentabilidad',
                     href: 'https://youtu.be/f15-3pnuYoM'
                 },
                 {
@@ -350,7 +350,7 @@ const courseData = {
                     href: 'clase18'
                 },
                 {
-                    text: 'Ejercicio 03: Indicadores de Rentabilidad - VideoClase',
+                    text: 'Ejercicio 03: Indicadores de Rentabilidad',
                     href: 'https://youtu.be/hpOpwQxPyiA'
                 },
             ]
