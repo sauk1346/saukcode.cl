@@ -5,7 +5,7 @@ import styles from './ProfessorCard.module.css';
 
 const ProfessorCard = ({ professorData }) => {
   return (
-    <div className={styles.card}>
+    <div className={`pixel-box ${styles.card}`}>
       <div className={styles.cardHeader}>
         <h2 className={styles.cardTitle}>
           <User size={20} />

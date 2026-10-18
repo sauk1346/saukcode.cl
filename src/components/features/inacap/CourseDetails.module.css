@@ -1,13 +1,15 @@
 /* ==================== ESTILOS PRINCIPALES ==================== */
 .container {
   padding: var(--spacing-md) 1rem var(--spacing-xl);
-  max-width: 72rem; /* alineado con el navbar (max-w-6xl) */
+  max-width: 64rem;
   margin: 0 auto;
 }
 
-/* Encabezado: etiqueta de cartucho (marco pixel-box global + estrías) */
+/* Encabezado: etiqueta de cartucho (marco pixel-box global + estrías).
+   Acotada y centrada, como la etiqueta pegada al centro del cartucho. */
 .courseHeader {
-  margin: var(--spacing-lg) 0 var(--spacing-xl);
+  max-width: 46rem;
+  margin: var(--spacing-lg) auto var(--spacing-xl);
   padding: var(--spacing-lg);
 }
 
@@ -87,25 +89,12 @@
   display: flex;
   gap: var(--spacing-lg);
   width: 100%;
-  max-width: 1200px;
-  justify-content: space-between;
 }
 
+/* El marco y fondo los pone .pixel-box (clase global en el JSX) */
 .card {
   flex: 1;
   min-width: 0; /* Permite que las tarjetas puedan encogerse si es necesario */
-  background-color: white;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
-  transition: background-color 0.3s ease;
-}
-
-/* Tarjeta en modo oscuro */
-:global(html.dark-mode) .card,
-:global(html.dark-mode-override) .card {
-  background-color: var(--surface);
-  box-shadow: var(--shadow-sm);
 }
 
 /* ❌ ELIMINADO: Selectores .link obsoletos */
@@ -177,17 +166,8 @@
 /* ==================== ESTILOS PARA TARJETAS ==================== */
 
 .cardHeader {
-  padding: var(--spacing-md);
-  border-bottom: 1px solid var(--border-color);
-  background-color: var(--background-elevated);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-/* Modo oscuro para encabezados de tarjetas */
-:global(html.dark-mode) .cardHeader,
-:global(html.dark-mode-override) .cardHeader {
-  background-color: var(--surface);
-  border-bottom: 1px solid var(--border-color);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 2px solid var(--border-color);
 }
 
 .cardTitle {
@@ -266,21 +246,16 @@
   width: 2rem;
   height: 2rem;
   background-color: var(--primary);
-  color: white;
-  border-radius: 9999px;
-  font-weight: 800;
-  transition: background-color 0.3s ease;
+  color: var(--background);
+  border-radius: 0; /* cuadrado, como todo el sistema */
+  font-family: var(--font-mono);
+  font-weight: 700;
   font-size: 0.9rem;
   line-height: 1;
   padding-bottom: 1px;
 }
 
 /* Modo oscuro para números de unidad */
-:global(html.dark-mode) .unitNumber,
-:global(html.dark-mode-override) .unitNumber {
-  background-color: var(--primary);
-}
-
 .unitLink {
   display: flex;
   align-items: center;

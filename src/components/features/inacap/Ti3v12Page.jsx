@@ -28,7 +28,7 @@ export default function Ti3v12Page() {
             <div className={styles.content}>
                 <ProfessorCard professorData={courseData.professorData} />
 
-                <div className={styles.card}>
+                <div className={`pixel-box ${styles.card}`}>
                     <div className={styles.cardHeader}>
                         <h2 className={styles.cardTitle}>
                             <FileText size={20} />
@@ -46,7 +46,7 @@ export default function Ti3v12Page() {
                     </div>
                 </div>
 
-                <div className={styles.card}>
+                <div className={`pixel-box ${styles.card}`}>
                     <div className={styles.cardHeader}>
                         <h2 className={styles.cardTitle}>
                             <Book size={20} />

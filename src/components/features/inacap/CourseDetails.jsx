@@ -229,7 +229,7 @@ const CourseDetails = ({
               <ProfessorCard professorData={professorData} />
               
               {/* Vista general de unidades */}
-              <div className={styles.card}>
+              <div className={`pixel-box ${styles.card}`}>
                 <div className={styles.cardHeader}>
                   <h2 className={styles.cardTitle}>
                     <Book size={20} />
@@ -322,7 +322,7 @@ const CourseDetails = ({
               {Object.entries(classesByWeek)
                 .sort(([weekA], [weekB]) => parseInt(weekA) - parseInt(weekB))
                 .map(([week, classes]) => (
-                  <div key={week} className={styles.card}>
+                  <div key={week} className={`pixel-box ${styles.card}`}>
                     <div className={styles.cardHeader}>
                       <h3 className={styles.cardTitle}>
                         <Monitor size={20} />
@@ -363,7 +363,7 @@ const CourseDetails = ({
               {Object.entries(lecturesByWeek)
                 .sort(([weekA], [weekB]) => parseInt(weekA) - parseInt(weekB))
                 .map(([week, lectures]) => (
-                  <div key={week} className={styles.card}>
+                  <div key={week} className={`pixel-box ${styles.card}`}>
                     <div className={styles.cardHeader}>
                       <h3 className={styles.cardTitle}>
                         <Calendar size={20} />
