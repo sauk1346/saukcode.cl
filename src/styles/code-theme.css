@@ -7,6 +7,8 @@
    ============================================================ */
 
 pre[class*='language-'] {
+  font-family: var(--font-code);
+  font-variant-ligatures: none;
   background: var(--surface);
   background-clip: padding-box;
   border: 8px solid transparent;

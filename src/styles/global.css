@@ -13,6 +13,9 @@
 @import '@fontsource/atkinson-hyperlegible/700-italic.css';
 @import '@fontsource/silkscreen/400.css';
 @import '@fontsource/silkscreen/700.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/400-italic.css';
+@import '@fontsource/jetbrains-mono/700.css';
 
 /* Código: Departure Mono (bitmap legible, OFL — licencia en public/fonts) */
 @font-face {
@@ -45,6 +48,7 @@
   --font-sans: 'Atkinson Hyperlegible', system-ui, sans-serif;
   --font-pixel: 'Silkscreen', monospace;
   --font-mono: 'Departure Mono', ui-monospace, monospace;
+  --font-code: 'JetBrains Mono', ui-monospace, monospace;
 
   /* Mundo pixel: sin esquinas redondeadas (afecta rounded-sm/md/lg/...) */
   --radius-xs: 0;
@@ -105,6 +109,7 @@
   --font-sans: 'Atkinson Hyperlegible', system-ui, sans-serif;
   --font-pixel: 'Silkscreen', monospace;
   --font-mono: 'Departure Mono', ui-monospace, monospace;
+  --font-code: 'JetBrains Mono', ui-monospace, monospace;
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-md: 1rem;
@@ -182,11 +187,17 @@ html {
   outline-offset: 2px;
 }
 
-/* Código: Departure Mono en bloques e inline */
+/* Código (lectura del programador): JetBrains Mono, sin ligaduras para
+   que el alumno vea los caracteres reales. kbd (teclas) queda en el
+   mono pixel del chrome. */
 pre,
 code,
-kbd,
 samp {
+  font-family: var(--font-code);
+  font-variant-ligatures: none;
+}
+
+kbd {
   font-family: var(--font-mono);
 }
 

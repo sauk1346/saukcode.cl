@@ -17,7 +17,7 @@
   top: 0.6rem;
   right: 2.5rem;
   color: var(--secondary);
-  font-family: var(--font-mono);
+  font-family: var(--font-code);
   font-size: 0.7rem;
   border-radius: 0;
   padding: var(--spacing-xs) var(--spacing-sm);
