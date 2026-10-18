@@ -2,29 +2,35 @@
 // Iconos sprite propios: dibujados en grilla de 16×16 como segmentos
 // horizontales [x, y, ancho] de 1px de alto, renderizados con crispEdges.
 // Usan currentColor, así que se tiñen con el texto que los rodea.
-const { name, size = 28, class: cls = '' } = Astro.props;
+// El tamaño debe ser múltiplo de 16: con escala no entera, crispEdges
+// redondea y los píxeles salen desparejos (el dibujo se deforma).
+const { name, size = 32, class: cls = '' } = Astro.props;
 
 const icons = {
-  // Birrete de graduación (INACAP / estudios)
+  // Birrete de graduación, vista frontal: tabla + gorro + borla (INACAP)
   birrete: [
-    [7, 2, 2],
-    [5, 3, 6],
-    [3, 4, 10],
+    [7, 3, 2],
+    [4, 4, 8],
     [1, 5, 14],
-    [5, 6, 6], [13, 6, 1],
-    [5, 7, 6], [13, 7, 1],
-    [6, 8, 4], [12, 8, 2],
+    [1, 6, 14],
+    [4, 7, 8], [14, 7, 1],
+    [4, 8, 8], [14, 8, 1],
+    [4, 9, 8], [14, 9, 1],
+    [13, 10, 2],
+    [13, 11, 2],
   ],
-  // Llaves de código { } (ejercicios de programación)
+  // Llaves de código { } con trazo de 2px (ejercicios de programación)
   codigo: [
-    [4, 4, 3], [9, 4, 3],
+    [4, 3, 2], [10, 3, 2],
+    [3, 4, 2], [11, 4, 2],
     [3, 5, 2], [11, 5, 2],
     [3, 6, 2], [11, 6, 2],
     [2, 7, 2], [12, 7, 2],
     [2, 8, 2], [12, 8, 2],
     [3, 9, 2], [11, 9, 2],
     [3, 10, 2], [11, 10, 2],
-    [4, 11, 3], [9, 11, 3],
+    [3, 11, 2], [11, 11, 2],
+    [4, 12, 2], [10, 12, 2],
   ],
   // Calendario (planificación académica)
   calendario: [
