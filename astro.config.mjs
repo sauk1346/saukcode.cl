@@ -21,6 +21,9 @@ export default defineConfig({
     '/ejercicios/java': '/ejercicios',
   },
   markdown: {
+    // Desactiva el Shiki integrado: el resaltado lo hace rehype-prism-plus
+    // (mismas clases/tokens que el Prism cliente del sitio Next)
+    syntaxHighlight: false,
     remarkPlugins: [remarkAutoNumber, remarkMath],
     // rehype-prism-plus resalta el código en build (mismos tokens/clases que
     // el Prism cliente del sitio Next, así el theme CSS aplica igual)
