@@ -20,12 +20,12 @@
     box-shadow: var(--shadow-md);
     min-width: 130px;
     transition: all 0.3s ease;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-color);
   }
   
   .statItem:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-sm);
   }
   
   /* ================================
@@ -49,7 +49,7 @@
   .statLabel {
     font-size: 0.875rem;
     font-weight: 500;
-    color: #64748b;
+    color: var(--secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     transition: color 0.3s ease;
@@ -61,13 +61,13 @@
   :global(html.dark-mode) .statItem,
   :global(html.dark-mode-override) .statItem {
     background: var(--surface);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
-    border-color: #4a5568;
+    box-shadow: var(--shadow-sm);
+    border-color: var(--border-color);
   }
   
   :global(html.dark-mode) .statItem:hover,
   :global(html.dark-mode-override) .statItem:hover {
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-sm);
   }
   
   :global(html.dark-mode) .statNumber,
@@ -80,7 +80,7 @@
   
   :global(html.dark-mode) .statLabel,
   :global(html.dark-mode-override) .statLabel {
-    color: #94a3b8;
+    color: var(--secondary);
   }
   
   /* ================================

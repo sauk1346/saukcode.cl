@@ -7,7 +7,7 @@
     align-items: center;
     padding: var(--spacing-md) 0;
     height: 70px;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid var(--border-color);
     transition: border-color 0.3s ease;
     flex-shrink: 0;
     background-color: var(--card-bg, white);
@@ -58,12 +58,12 @@
     background-color: #e9ecef;
     border-color: #adb5bd;
     transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
   }
   
   .paginationButton:active:not(:disabled) {
     transform: translateY(0);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
   }
   
   .paginationButton:disabled {
@@ -83,14 +83,14 @@
     color: white;
     border-color: #007bff;
     font-weight: 600;
-    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+    box-shadow: var(--shadow-sm);
   }
   
   .currentPage:hover {
     background-color: #0056b3;
     border-color: #004085;
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
+    box-shadow: var(--shadow-sm);
   }
   
   /* ================================
@@ -132,60 +132,60 @@
      ================================ */
   :global(html.dark-mode) .tableFooter,
   :global(html.dark-mode-override) .tableFooter {
-    border-top-color: #4b5563;
-    background-color: var(--card-bg-dark, #1e1e1e);
+    border-top-color: var(--border-color);
+    background-color: var(--surface);
   }
   
   :global(html.dark-mode) .tableInfo,
   :global(html.dark-mode-override) .tableInfo {
-    color: #9ca3af;
+    color: var(--secondary);
   }
   
   :global(html.dark-mode) .paginationButton,
   :global(html.dark-mode-override) .paginationButton {
-    background-color: #374151;
-    color: #e5e7eb;
-    border-color: #4b5563;
+    background-color: var(--surface);
+    color: var(--foreground);
+    border-color: var(--border-color);
   }
   
   :global(html.dark-mode) .paginationButton:hover:not(:disabled),
   :global(html.dark-mode-override) .paginationButton:hover:not(:disabled) {
-    background-color: #4b5563;
-    border-color: #6b7280;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background-color: var(--secondary);
+    border-color: var(--border-color);
+    box-shadow: var(--shadow-sm);
   }
   
   :global(html.dark-mode) .paginationButton:disabled,
   :global(html.dark-mode-override) .paginationButton:disabled {
-    background-color: #374151;
-    color: #6b7280;
+    background-color: var(--surface);
+    color: var(--secondary);
   }
   
   :global(html.dark-mode) .currentPage,
   :global(html.dark-mode-override) .currentPage {
-    background-color: #3b82f6;
-    color: #f9fafb;
-    border-color: #2563eb;
-    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.4);
+    background-color: var(--primary);
+    color: var(--foreground);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-sm);
   }
   
   :global(html.dark-mode) .currentPage:hover,
   :global(html.dark-mode-override) .currentPage:hover {
-    background-color: #2563eb;
-    border-color: #1d4ed8;
-    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.5);
+    background-color: var(--primary);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-sm);
   }
   
   :global(html.dark-mode) .minimal .paginationButton,
   :global(html.dark-mode-override) .minimal .paginationButton {
-    color: #60a5fa;
+    color: var(--primary);
     background-color: transparent;
   }
   
   :global(html.dark-mode) .minimal .paginationButton:hover:not(:disabled),
   :global(html.dark-mode-override) .minimal .paginationButton:hover:not(:disabled) {
-    background-color: #374151;
-    color: #93c5fd;
+    background-color: var(--surface);
+    color: var(--primary);
   }
   
   /* ================================

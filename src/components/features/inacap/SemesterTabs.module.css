@@ -139,42 +139,42 @@
    ================================ */
 :global(html.dark-mode) .tabsContainer,
 :global(html.dark-mode-override) .tabsContainer {
-  border-bottom-color: var(--border-color-dark, #374151);
+  border-bottom-color: var(--border-color);
 }
 
 :global(html.dark-mode) .tab,
 :global(html.dark-mode-override) .tab {
-  color: var(--secondary-dark, #9ca3af);
+  color: var(--secondary);
 }
 
 :global(html.dark-mode) .tab:hover,
 :global(html.dark-mode-override) .tab:hover {
-  color: var(--primary-light, #60a5fa);
+  color: var(--primary-light, var(--primary));
 }
 
 :global(html.dark-mode) .activeTab,
 :global(html.dark-mode-override) .activeTab {
-  color: var(--primary-light, #60a5fa);
+  color: var(--primary-light, var(--primary));
 }
 
 :global(html.dark-mode) .activeTab::after,
 :global(html.dark-mode-override) .activeTab::after {
-  background: var(--primary-light, #60a5fa) !important;
+  background: var(--primary-light, var(--primary)) !important;
 }
 
 :global(html.dark-mode) .tab.completed,
 :global(html.dark-mode-override) .tab.completed {
-  color: var(--success-dark, #34d399);
+  color: var(--success);
 }
 
 :global(html.dark-mode) .tab.completed.activeTab::after,
 :global(html.dark-mode-override) .tab.completed.activeTab::after {
-  background: var(--success-dark, #34d399) !important;
+  background: var(--success) !important;
 }
 
 :global(html.dark-mode) .progressIndicator,
 :global(html.dark-mode-override) .progressIndicator {
-  background: var(--card-bg-dark, #374151);
+  background: var(--surface);
 }
 
 /* ================================

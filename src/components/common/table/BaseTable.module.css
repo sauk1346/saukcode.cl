@@ -14,9 +14,9 @@
 .tableWrapper { composes: tableWrapper from '/src/shared/table-base.module.css'; }
 .table { composes: table from '/src/shared/table-base.module.css'; }
 .tableRow { transition: background-color 0.2s ease; }
-.tableRow:hover { background-color: #edf2f7; }
+.tableRow:hover { background-color: var(--surface); }
 :global(html.dark-mode) .tableRow:hover,
-:global(html.dark-mode-override) .tableRow:hover { background-color: #2d3748; }
+:global(html.dark-mode-override) .tableRow:hover { background-color: var(--surface); }
 .code { composes: code from '/src/shared/table-base.module.css'; }
 .lessonNumber { composes: lessonNumber from '/src/shared/table-base.module.css'; }
 .courseLink { composes: courseLink from '/src/shared/table-base.module.css'; }

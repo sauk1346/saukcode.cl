@@ -3,7 +3,7 @@
  ================================================================= */
 
 .link {
-  color: #2563eb;
+  color: var(--primary);
   text-decoration: none;
   font-weight: 500;
   transition: all 0.2s ease;
@@ -17,14 +17,14 @@
 .link:hover {
   text-decoration: underline;
   text-underline-offset: 2px;
-  color: #1d4ed8;
+  color: var(--primary);
 }
 
 /* ✨ NUEVO: Focus temporal que desaparece automáticamente */
 .link:focus {
-  outline: 2px solid #2563eb;
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
-  border-radius: 2px;
+  border-radius: 0;
   animation: focusBrief 0.6s ease-out forwards;
 }
 
@@ -34,10 +34,10 @@
     outline-color: transparent;
   }
   15% {
-    outline-color: #2563eb;
+    outline-color: var(--primary);
   }
   70% {
-    outline-color: #2563eb;
+    outline-color: var(--primary);
   }
   100% {
     outline-color: transparent;
@@ -88,7 +88,7 @@
   transition: opacity 0.2s ease;
   flex-shrink: 0;
   margin-left: 2px;
-  color: #dc2626;
+  color: var(--error);
 }
 
 .link:hover .pdfIcon {
@@ -103,7 +103,7 @@
   transition: opacity 0.2s ease;
   flex-shrink: 0;
   margin-left: 2px;
-  color: #7c3aed; /* Púrpura para música */
+  color: var(--accent); /* Púrpura para música */
 }
 
 .link:hover .musicIcon {
@@ -116,14 +116,14 @@
 
 :global(html.dark-mode) .link,
 :global(html.dark-mode-override) .link {
-  color: #60a5fa;
+  color: var(--primary);
 }
 
 :global(html.dark-mode) .link:hover,
 :global(html.dark-mode-override) .link:hover {
   text-decoration: underline;
   text-underline-offset: 2px;
-  color: #93c5fd;
+  color: var(--primary);
 }
 
 /* ✨ ACTUALIZADO: Focus temporal en modo oscuro */
@@ -138,10 +138,10 @@
     outline-color: transparent;
   }
   15% {
-    outline-color: #60a5fa;
+    outline-color: var(--primary);
   }
   70% {
-    outline-color: #60a5fa;
+    outline-color: var(--primary);
   }
   100% {
     outline-color: transparent;
@@ -150,7 +150,7 @@
 
 :global(html.dark-mode) .pdfIcon,
 :global(html.dark-mode-override) .pdfIcon {
-  color: #f87171;
+  color: var(--error);
 }
 
 /* ✨ NUEVO: Icono de YouTube en modo oscuro (rojo un poco más luminoso; triángulo se mantiene blanco) */
@@ -162,7 +162,7 @@
 /* ✨ NUEVO: Icono de música en modo oscuro */
 :global(html.dark-mode) .musicIcon,
 :global(html.dark-mode-override) .musicIcon {
-  color: #a78bfa; /* Púrpura más claro para dark mode */
+  color: var(--accent); /* Púrpura más claro para dark mode */
 }
 
 /* =================================================================
@@ -174,25 +174,25 @@
 }
 
 .link.subtle {
-  color: #6b7280;
+  color: var(--secondary);
   font-weight: 400;
 }
 
 .link.subtle:hover {
-  color: #2563eb;
+  color: var(--primary);
   font-weight: 500;
 }
 
 .link.button {
-  background-color: #2563eb;
+  background-color: var(--primary);
   color: white;
   padding: 8px 16px;
-  border-radius: 6px;
+  border-radius: 0;
   font-weight: 600;
 }
 
 .link.button:hover {
-  background-color: #1d4ed8;
+  background-color: var(--primary);
   text-decoration: none;
   color: white;
 }
@@ -200,24 +200,24 @@
 /* Variantes modo oscuro */
 :global(html.dark-mode) .link.subtle,
 :global(html.dark-mode-override) .link.subtle {
-  color: #9ca3af;
+  color: var(--secondary);
 }
 
 :global(html.dark-mode) .link.subtle:hover,
 :global(html.dark-mode-override) .link.subtle:hover {
-  color: #60a5fa;
+  color: var(--primary);
 }
 
 :global(html.dark-mode) .link.button,
 :global(html.dark-mode-override) .link.button {
-  background-color: #60a5fa;
-  color: #1e1e1e;
+  background-color: var(--primary);
+  color: var(--foreground);
 }
 
 :global(html.dark-mode) .link.button:hover,
 :global(html.dark-mode-override) .link.button:hover {
-  background-color: #93c5fd;
-  color: #1e1e1e;
+  background-color: var(--primary);
+  color: var(--foreground);
 }
 
 /* =================================================================
@@ -226,15 +226,15 @@
 
 /* ✨ MEJORADO: Focus-visible para navegación por teclado */
 .link:focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
-  border-radius: 2px;
+  border-radius: 0;
   animation: none; /* Sin animación para teclado - debe mantenerse visible */
 }
 
 :global(html.dark-mode) .link:focus-visible,
 :global(html.dark-mode-override) .link:focus-visible {
-  outline-color: #60a5fa;
+  outline-color: var(--primary);
   animation: none;
 }
 
@@ -251,13 +251,13 @@
   /* ✨ NUEVO: Sin animaciones de focus para usuarios sensibles al movimiento */
   .link:focus {
     animation: none;
-    outline-color: #2563eb;
+    outline-color: var(--primary);
   }
   
   :global(html.dark-mode) .link:focus,
   :global(html.dark-mode-override) .link:focus {
     animation: none;
-    outline-color: #60a5fa;
+    outline-color: var(--primary);
   }
 }
 

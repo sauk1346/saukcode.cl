@@ -41,7 +41,7 @@
 .shuffleBtn {
   background: none;
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 0.35rem 0.6rem;
   cursor: pointer;
   color: var(--secondary);
@@ -71,14 +71,14 @@
 .progressBar {
   height: 4px;
   background: var(--border-color, #e0e0e0);
-  border-radius: 2px;
+  border-radius: 0;
   overflow: hidden;
 }
 
 .progressFill {
   height: 100%;
   background: var(--primary);
-  border-radius: 2px;
+  border-radius: 0;
   transition: width 0.3s ease;
 }
 
@@ -125,11 +125,11 @@
   background: var(--card-bg);
   color: var(--foreground);
   border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border-radius: 0;
   padding: 1.75rem;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  box-shadow: var(--shadow-sm);
 }
 
 .cardBack {
@@ -177,7 +177,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.65rem 1.5rem;
-  border-radius: 10px;
+  border-radius: 0;
   border: none;
   font-size: 0.95rem;
   font-weight: 600;
@@ -220,14 +220,14 @@
 .finishedCard {
   background: var(--card-bg);
   border: 1px solid var(--border-color, #e0e0e0);
-  border-radius: 20px;
+  border-radius: 0;
   padding: 2.5rem 3rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow-sm);
   max-width: 380px;
   width: 100%;
 }
@@ -292,7 +292,7 @@
   background: var(--primary);
   color: #fff;
   border: none;
-  border-radius: 10px;
+  border-radius: 0;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;

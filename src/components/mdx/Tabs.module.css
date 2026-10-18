@@ -6,13 +6,13 @@
 .tabList {
   display: flex;
   flex-wrap: nowrap;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border-color);
   margin-bottom: 1.5rem;
 }
 
 :global(html.dark-mode) .tabList,
 :global(html.dark-mode-override) .tabList {
-  border-bottom-color: #374151;
+  border-bottom-color: var(--border-color);
 }
 
 .tab {
@@ -33,22 +33,22 @@
 
 :global(html.dark-mode) .tab,
 :global(html.dark-mode-override) .tab {
-  color: #d1d5db;
+  color: var(--foreground);
 }
 
 .tab:hover {
-  color: #3b82f6;
+  color: var(--primary);
 }
 
 .active {
-  color: #3b82f6;
-  border-bottom-color: #3b82f6;
+  color: var(--primary);
+  border-bottom-color: var(--primary);
 }
 
 :global(html.dark-mode) .active,
 :global(html.dark-mode-override) .active {
-  color: #60a5fa;
-  border-bottom-color: #60a5fa;
+  color: var(--primary);
+  border-bottom-color: var(--primary);
 }
 
 .panel > *:first-child {

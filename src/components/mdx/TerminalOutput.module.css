@@ -2,14 +2,14 @@
 
 /* Clase base con todas las propiedades comunes */
 .terminal {
-  font-family: "Menlo", "Monaco", "Courier New", "Consolas", monospace;
+  font-family: var(--font-mono);
   font-size: 0.9rem;
   line-height: 1.4;
   margin: 1.75rem 1.7rem;
   padding: var(--spacing-md) 0;
   background: transparent;
   border: none;
-  color: #334155;
+  color: var(--foreground);
   overflow-x: auto;
   overflow-y: hidden;
   transition: color 0.3s ease;
@@ -21,18 +21,18 @@
   composes: terminal;
   line-height: 1.2; /* Ajuste específico para la variante con bg */
   margin: 1.75rem 1.7rem;
-  background-color: #1a1a1a;
+  background-color: var(--surface);
   color: #00ff00;
   border: 1px solid #333;
   border-radius: var(--radius-md);
   padding: 0.75rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-sm);
 }
 
 /* Modo oscuro */
 :global(html.dark-mode) .terminal,
 :global(html.dark-mode-override) .terminal {
-  color: #e5e7eb;
+  color: var(--foreground);
 }
 
 :global(html.dark-mode) .terminalWithBg,
@@ -55,7 +55,7 @@
 .caption {
   margin-bottom: 0.75rem;
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--secondary);
   text-align: left;
   font-style: italic;
   line-height: 1.4;
@@ -63,12 +63,12 @@
 
 :global(html.dark-mode) .caption,
 :global(html.dark-mode-override) .caption {
-  color: #9ca3af;
+  color: var(--secondary);
 }
 
 /* Referencias cruzadas */
 .terminalRef {
-  color: #3b82f6;
+  color: var(--primary);
   text-decoration: none;
   font-style: italic;
 }
@@ -78,24 +78,24 @@
 }
 
 .terminalRefError {
-  color: #dc2626;
+  color: var(--error);
   font-style: italic;
 }
 
 :global(html.dark-mode) .terminalRef,
 :global(html.dark-mode-override) .terminalRef {
-  color: #60a5fa;
+  color: var(--primary);
 }
 
 /* Comentarios: líneas que empiezan con # */
 .comment {
-  color: #6b7280;
+  color: var(--secondary);
   font-style: italic;
 }
 
 :global(html.dark-mode) .comment,
 :global(html.dark-mode-override) .comment {
-  color: #9ca3af;
+  color: var(--secondary);
 }
 
 .terminalWithBg .comment {
@@ -117,12 +117,12 @@
 
 .terminal::-webkit-scrollbar-thumb {
   background-color: rgba(156, 163, 175, 0.3);
-  border-radius: 3px;
+  border-radius: 0;
 }
 
 .terminalWithBg::-webkit-scrollbar-thumb {
   background-color: rgba(0, 255, 0, 0.3);
-  border-radius: 3px;
+  border-radius: 0;
 }
 
 .terminal::-webkit-scrollbar-thumb:hover {

@@ -1,10 +1,10 @@
 /* Estilo más sutil y minimalista para código inline */
 .inlineCode {
-  background-color: #f8fafc;
+  background-color: var(--background-elevated);
   color: #475569;
   padding: 0.125rem 0.375rem;
   border-radius: var(--radius-sm);
-  font-family: "Menlo", "Monaco", "Courier New", monospace;
+  font-family: var(--font-mono);
   font-size: 0.875rem;
   font-weight: 400;
   white-space: nowrap;
@@ -15,14 +15,14 @@
 /* Modo oscuro más sutil */
 :global(html.dark-mode) .inlineCode,
 :global(html.dark-mode-override) .inlineCode {
-  background-color: #1e293b;
-  color: #cbd5e1;
+  background-color: var(--surface);
+  color: var(--foreground);
   border-color: #334155;
 }
 
 /* Hover sutil opcional */
 .inlineCode:hover {
-  background-color: #f1f5f9;
+  background-color: var(--surface);
 }
 
 :global(html.dark-mode) .inlineCode:hover,

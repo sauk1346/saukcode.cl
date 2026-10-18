@@ -229,7 +229,7 @@
   
   .semesterButton:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
   }
   
   /* ================================
@@ -621,92 +621,92 @@
      ================================ */
   :global(html.dark-mode) .semesterNavigation,
   :global(html.dark-mode-override) .semesterNavigation {
-    background: var(--background-dark, #1e1e1e);
-    border-color: var(--border-color-dark, #4a5568);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    background: var(--surface);
+    border-color: var(--border-color);
+    box-shadow: var(--shadow-sm);
   }
   
   :global(html.dark-mode) .navigationTitle,
   :global(html.dark-mode-override) .navigationTitle {
-    color: var(--foreground-dark, #e5e7eb);
+    color: var(--foreground);
   }
   
   :global(html.dark-mode) .semesterButton,
   :global(html.dark-mode-override) .semesterButton {
-    background: var(--background-dark, #1e1e1e);
-    color: var(--foreground-dark, #e5e7eb);
-    border-color: var(--secondary-dark, #6b7280);
+    background: var(--surface);
+    color: var(--foreground);
+    border-color: var(--secondary);
   }
   
   :global(html.dark-mode) .subjectCard,
   :global(html.dark-mode-override) .subjectCard {
-    background: var(--background-dark, #1e1e1e);
-    color: var(--foreground-dark, #e5e7eb);
-    border-color: var(--border-color-dark, #4a5568);
+    background: var(--surface);
+    color: var(--foreground);
+    border-color: var(--border-color);
   }
   
   :global(html.dark-mode) .semesterButton.completed,
   :global(html.dark-mode-override) .semesterButton.completed {
-    border-color: var(--success-dark, #059669);
+    border-color: var(--success);
     background: color-mix(in srgb, var(--success) 10%, var(--background));
   }
   
   :global(html.dark-mode) .semesterButton.current,
   :global(html.dark-mode-override) .semesterButton.current {
-    border-color: var(--primary-dark, #2563eb);
+    border-color: var(--primary);
     background: color-mix(in srgb, var(--primary) 10%, var(--background));
   }
   
   :global(html.dark-mode) .semesterButton.pending,
   :global(html.dark-mode-override) .semesterButton.pending {
-    border-color: var(--secondary-dark, #6b7280);
+    border-color: var(--secondary);
     background: color-mix(in srgb, var(--secondary) 10%, var(--background));
   }
   
   :global(html.dark-mode) .semesterButton.selected.completed,
   :global(html.dark-mode-override) .semesterButton.selected.completed {
-    background: var(--success-dark, #059669);
+    background: var(--success);
     color: white;
   }
   
   :global(html.dark-mode) .semesterButton.selected.current,
   :global(html.dark-mode-override) .semesterButton.selected.current {
-    background: var(--primary-dark, #2563eb);
+    background: var(--primary);
     color: white;
   }
   
   :global(html.dark-mode) .semesterButton.selected.pending,
   :global(html.dark-mode-override) .semesterButton.selected.pending {
-    background: var(--secondary-dark, #6b7280);
+    background: var(--secondary);
     color: white;
   }
   
   :global(html.dark-mode) .semesterProgressBar,
   :global(html.dark-mode-override) .semesterProgressBar {
-    background: var(--card-bg-dark, #374151);
+    background: var(--surface);
   }
 
   :global(html.dark-mode) .toggleButton,
   :global(html.dark-mode-override) .toggleButton {
-    background: var(--card-bg-dark, #374151);
-    border-color: var(--border-color-dark, #4a5568);
-    color: var(--foreground-dark, #e5e7eb);
+    background: var(--surface);
+    border-color: var(--border-color);
+    color: var(--foreground);
   }
 
   :global(html.dark-mode) .currentSemester,
   :global(html.dark-mode-override) .currentSemester {
-    background: var(--background-dark, #1e1e1e);
-    border-color: var(--border-color-dark, #4a5568);
+    background: var(--surface);
+    border-color: var(--border-color);
   }
 
   :global(html.dark-mode) .currentNumber,
   :global(html.dark-mode-override) .currentNumber {
-    color: var(--foreground-dark, #e5e7eb);
+    color: var(--foreground);
   }
 
   :global(html.dark-mode) .currentProgressBar,
   :global(html.dark-mode-override) .currentProgressBar {
-    background: var(--card-bg-dark, #374151);
+    background: var(--surface);
   }
 
   /* ================================

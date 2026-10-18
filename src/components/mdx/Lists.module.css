@@ -5,14 +5,14 @@
   list-style-type: disc;
   padding-left: var(--spacing-xl);
   margin-bottom: 1.75rem;
-  color: #374151;
+  color: var(--foreground);
   transition: color 0.3s ease;
 }
 
 /* Modo oscuro para listas principales */
 :global(html.dark-mode) .list,
 :global(html.dark-mode-override) .list {
-  color: #d1d5db;
+  color: var(--foreground);
 }
 
 /* Lista anidada nivel 2 - Círculo vacío */
@@ -21,13 +21,13 @@
   margin-top: var(--spacing-sm);
   margin-bottom: 0.75rem;
   padding-left: 1.75rem;
-  color: #4b5563;
+  color: var(--secondary);
 }
 
 /* Modo oscuro para listas nivel 2 */
 :global(html.dark-mode) .list .list,
 :global(html.dark-mode-override) .list .list {
-  color: #9ca3af;
+  color: var(--secondary);
 }
 
 /* Lista anidada nivel 3 - Cuadrado */
@@ -36,26 +36,26 @@
   margin-top: 0.25rem;
   margin-bottom: 0.5rem;
   padding-left: 1.5rem;
-  color: #6b7280;
+  color: var(--secondary);
 }
 
 /* Modo oscuro para listas nivel 3 */
 :global(html.dark-mode) .list .list .list,
 :global(html.dark-mode-override) .list .list .list {
-  color: #6b7280;
+  color: var(--secondary);
 }
 
 /* Lista anidada nivel 4+ - Guión personalizado */
 .list .list .list .list {
   list-style-type: none;
   padding-left: 1.25rem;
-  color: #9ca3af;
+  color: var(--secondary);
 }
 
 /* Pseudo-elemento para crear guión personalizado en nivel 4+ */
 .list .list .list .list .listItem::before {
   content: "–";
-  color: #d1d5db;
+  color: var(--foreground);
   font-weight: bold;
   display: inline-block;
   width: 1em;
@@ -66,7 +66,7 @@
 /* Modo oscuro para guiones nivel 4+ */
 :global(html.dark-mode) .list .list .list .list .listItem::before,
 :global(html.dark-mode-override) .list .list .list .list .listItem::before {
-  color: #4b5563;
+  color: var(--secondary);
 }
 
 /* ==================== LISTAS ORDENADAS MEJORADAS ==================== */
@@ -76,14 +76,14 @@
   list-style-type: decimal;
   padding-left: var(--spacing-xl);
   margin-bottom: 1.75rem;
-  color: #374151;
+  color: var(--foreground);
   transition: color 0.3s ease;
 }
 
 /* Modo oscuro para listas ordenadas */
 :global(html.dark-mode) .orderedList,
 :global(html.dark-mode-override) .orderedList {
-  color: #d1d5db;
+  color: var(--foreground);
 }
 
 /* Listas ordenadas anidadas nivel 2 */
@@ -92,33 +92,33 @@
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
   padding-left: 1.75rem;
-  color: #4b5563;
+  color: var(--secondary);
 }
 
 /* Modo oscuro para listas ordenadas nivel 2 */
 :global(html.dark-mode) .orderedList .orderedList,
 :global(html.dark-mode-override) .orderedList .orderedList {
-  color: #9ca3af;
+  color: var(--secondary);
 }
 
 /* Listas ordenadas anidadas nivel 3 */
 .orderedList .orderedList .orderedList {
   list-style-type: lower-roman;
   padding-left: 1.5rem;
-  color: #6b7280;
+  color: var(--secondary);
 }
 
 /* Modo oscuro para listas ordenadas nivel 3 */
 :global(html.dark-mode) .orderedList .orderedList .orderedList,
 :global(html.dark-mode-override) .orderedList .orderedList .orderedList {
-  color: #6b7280;
+  color: var(--secondary);
 }
 
 /* Listas ordenadas anidadas nivel 4+ */
 .orderedList .orderedList .orderedList .orderedList {
   list-style-type: upper-alpha;
   padding-left: 1.25rem;
-  color: #9ca3af;
+  color: var(--secondary);
 }
 
 /* ==================== ELEMENTOS DE LISTA ==================== */
@@ -166,7 +166,7 @@
 :global(html.dark-mode-override) .list + .list,
 :global(html.dark-mode) .orderedList + .orderedList,
 :global(html.dark-mode-override) .orderedList + .orderedList {
-  border-top: 1px solid #374151;
+  border-top: 1px solid var(--border-color);
 }
 
 
@@ -174,7 +174,7 @@
 /* Modo oscuro para hover */
 :global(html.dark-mode) .listItem:hover,
 :global(html.dark-mode-override) .listItem:hover {
-  color: #f3f4f6;
+  color: var(--foreground);
 }
 
 /* ==================== ESTILOS PARA LISTAS MIXTAS ==================== */
@@ -198,36 +198,36 @@
 /* El componente siempre establece data-level — no se usan catch-alls */
 
 /* --- nivel 1 (disc) --- */
-.listContainer[data-level="1"] .list              { list-style-type: disc;   padding-left: var(--spacing-xl); color: #374151; }
-.listContainer[data-level="1"] .list .list        { list-style-type: circle; padding-left: 1.75rem; color: #4b5563; }
-.listContainer[data-level="1"] .list .list .list  { list-style-type: square; padding-left: 1.5rem;  color: #6b7280; }
-.listContainer[data-level="1"] .list .list .list .list { list-style-type: none; padding-left: 1.25rem; color: #9ca3af; }
+.listContainer[data-level="1"] .list              { list-style-type: disc;   padding-left: var(--spacing-xl); color: var(--foreground); }
+.listContainer[data-level="1"] .list .list        { list-style-type: circle; padding-left: 1.75rem; color: var(--secondary); }
+.listContainer[data-level="1"] .list .list .list  { list-style-type: square; padding-left: 1.5rem;  color: var(--secondary); }
+.listContainer[data-level="1"] .list .list .list .list { list-style-type: none; padding-left: 1.25rem; color: var(--secondary); }
 .listContainer[data-level="1"] .list .list .list .list .listItem::before {
-  content: "–"; color: #d1d5db; font-weight: bold;
+  content: "–"; color: var(--foreground); font-weight: bold;
   display: inline-block; width: 1em; margin-left: -1em; font-size: 1.1em;
 }
 
 /* --- nivel 2 (circle) — default --- */
-.listContainer[data-level="2"] .list              { list-style-type: circle; padding-left: 1.75rem; color: #4b5563; }
-.listContainer[data-level="2"] .list .list        { list-style-type: square; padding-left: 1.5rem;  color: #6b7280; }
-.listContainer[data-level="2"] .list .list .list  { list-style-type: none;   padding-left: 1.25rem; color: #9ca3af; }
+.listContainer[data-level="2"] .list              { list-style-type: circle; padding-left: 1.75rem; color: var(--secondary); }
+.listContainer[data-level="2"] .list .list        { list-style-type: square; padding-left: 1.5rem;  color: var(--secondary); }
+.listContainer[data-level="2"] .list .list .list  { list-style-type: none;   padding-left: 1.25rem; color: var(--secondary); }
 .listContainer[data-level="2"] .list .list .list .listItem::before {
-  content: "–"; color: #d1d5db; font-weight: bold;
+  content: "–"; color: var(--foreground); font-weight: bold;
   display: inline-block; width: 1em; margin-left: -1em; font-size: 1.1em;
 }
 
 /* --- nivel 3 (square) --- */
-.listContainer[data-level="3"] .list              { list-style-type: square; padding-left: 1.5rem;  color: #6b7280; }
-.listContainer[data-level="3"] .list .list        { list-style-type: none;   padding-left: 1.25rem; color: #9ca3af; }
+.listContainer[data-level="3"] .list              { list-style-type: square; padding-left: 1.5rem;  color: var(--secondary); }
+.listContainer[data-level="3"] .list .list        { list-style-type: none;   padding-left: 1.25rem; color: var(--secondary); }
 .listContainer[data-level="3"] .list .list .listItem::before {
-  content: "–"; color: #d1d5db; font-weight: bold;
+  content: "–"; color: var(--foreground); font-weight: bold;
   display: inline-block; width: 1em; margin-left: -1em; font-size: 1.1em;
 }
 
 /* --- nivel 4 (dash) --- */
-.listContainer[data-level="4"] .list              { list-style-type: none;   padding-left: 1.25rem; color: #9ca3af; }
+.listContainer[data-level="4"] .list              { list-style-type: none;   padding-left: 1.25rem; color: var(--secondary); }
 .listContainer[data-level="4"] .list .listItem::before {
-  content: "–"; color: #d1d5db; font-weight: bold;
+  content: "–"; color: var(--foreground); font-weight: bold;
   display: inline-block; width: 1em; margin-left: -1em; font-size: 1.1em;
 }
 
@@ -235,22 +235,22 @@
 /* Misma lógica que unordered pero con list-style-type numérico/alfabético            */
 
 /* --- nivel 1 (decimal) --- */
-.listContainer[data-level="1"] .orderedList                                       { list-style-type: decimal;     padding-left: var(--spacing-xl); color: #374151; }
-.listContainer[data-level="1"] .orderedList .orderedList                          { list-style-type: lower-alpha; padding-left: 1.75rem;           color: #4b5563; }
-.listContainer[data-level="1"] .orderedList .orderedList .orderedList             { list-style-type: lower-roman; padding-left: 1.5rem;            color: #6b7280; }
-.listContainer[data-level="1"] .orderedList .orderedList .orderedList .orderedList{ list-style-type: upper-alpha; padding-left: 1.25rem;           color: #9ca3af; }
+.listContainer[data-level="1"] .orderedList                                       { list-style-type: decimal;     padding-left: var(--spacing-xl); color: var(--foreground); }
+.listContainer[data-level="1"] .orderedList .orderedList                          { list-style-type: lower-alpha; padding-left: 1.75rem;           color: var(--secondary); }
+.listContainer[data-level="1"] .orderedList .orderedList .orderedList             { list-style-type: lower-roman; padding-left: 1.5rem;            color: var(--secondary); }
+.listContainer[data-level="1"] .orderedList .orderedList .orderedList .orderedList{ list-style-type: upper-alpha; padding-left: 1.25rem;           color: var(--secondary); }
 
 /* --- nivel 2 (lower-alpha) — default --- */
-.listContainer[data-level="2"] .orderedList                          { list-style-type: lower-alpha; padding-left: 1.75rem; color: #4b5563; }
-.listContainer[data-level="2"] .orderedList .orderedList             { list-style-type: lower-roman; padding-left: 1.5rem;  color: #6b7280; }
-.listContainer[data-level="2"] .orderedList .orderedList .orderedList{ list-style-type: upper-alpha; padding-left: 1.25rem; color: #9ca3af; }
+.listContainer[data-level="2"] .orderedList                          { list-style-type: lower-alpha; padding-left: 1.75rem; color: var(--secondary); }
+.listContainer[data-level="2"] .orderedList .orderedList             { list-style-type: lower-roman; padding-left: 1.5rem;  color: var(--secondary); }
+.listContainer[data-level="2"] .orderedList .orderedList .orderedList{ list-style-type: upper-alpha; padding-left: 1.25rem; color: var(--secondary); }
 
 /* --- nivel 3 (lower-roman) --- */
-.listContainer[data-level="3"] .orderedList             { list-style-type: lower-roman; padding-left: 1.5rem;  color: #6b7280; }
-.listContainer[data-level="3"] .orderedList .orderedList{ list-style-type: upper-alpha; padding-left: 1.25rem; color: #9ca3af; }
+.listContainer[data-level="3"] .orderedList             { list-style-type: lower-roman; padding-left: 1.5rem;  color: var(--secondary); }
+.listContainer[data-level="3"] .orderedList .orderedList{ list-style-type: upper-alpha; padding-left: 1.25rem; color: var(--secondary); }
 
 /* --- nivel 4 (upper-alpha) --- */
-.listContainer[data-level="4"] .orderedList{ list-style-type: upper-alpha; padding-left: 1.25rem; color: #9ca3af; }
+.listContainer[data-level="4"] .orderedList{ list-style-type: upper-alpha; padding-left: 1.25rem; color: var(--secondary); }
 
 /* Posición horizontal según nivel de indentación (independiente del estilo de viñeta) */
 /* indent=1: sin indentación extra                                                      */
@@ -282,46 +282,46 @@
 
 /* Modo oscuro — misma cascada de colores que las listas regulares */
 :global(html.dark-mode) .listContainer[data-level="1"] .list,
-:global(html.dark-mode-override) .listContainer[data-level="1"] .list                         { color: #d1d5db; }
+:global(html.dark-mode-override) .listContainer[data-level="1"] .list                         { color: var(--foreground); }
 :global(html.dark-mode) .listContainer[data-level="1"] .list .list,
-:global(html.dark-mode-override) .listContainer[data-level="1"] .list .list                   { color: #9ca3af; }
+:global(html.dark-mode-override) .listContainer[data-level="1"] .list .list                   { color: var(--secondary); }
 :global(html.dark-mode) .listContainer[data-level="1"] .list .list .list,
-:global(html.dark-mode-override) .listContainer[data-level="1"] .list .list .list             { color: #6b7280; }
+:global(html.dark-mode-override) .listContainer[data-level="1"] .list .list .list             { color: var(--secondary); }
 
 :global(html.dark-mode) .listContainer[data-level="2"] .list,
-:global(html.dark-mode-override) .listContainer[data-level="2"] .list                         { color: #9ca3af; }
+:global(html.dark-mode-override) .listContainer[data-level="2"] .list                         { color: var(--secondary); }
 :global(html.dark-mode) .listContainer[data-level="2"] .list .list,
-:global(html.dark-mode-override) .listContainer[data-level="2"] .list .list                   { color: #6b7280; }
+:global(html.dark-mode-override) .listContainer[data-level="2"] .list .list                   { color: var(--secondary); }
 
 :global(html.dark-mode) .listContainer[data-level="3"] .list,
-:global(html.dark-mode-override) .listContainer[data-level="3"] .list                         { color: #6b7280; }
+:global(html.dark-mode-override) .listContainer[data-level="3"] .list                         { color: var(--secondary); }
 
 :global(html.dark-mode) .listContainer[data-level="4"] .list,
-:global(html.dark-mode-override) .listContainer[data-level="4"] .list                         { color: #9ca3af; }
+:global(html.dark-mode-override) .listContainer[data-level="4"] .list                         { color: var(--secondary); }
 
 /* Modo oscuro — listas ordenadas en listContainer */
 :global(html.dark-mode) .listContainer[data-level="1"] .orderedList,
-:global(html.dark-mode-override) .listContainer[data-level="1"] .orderedList                                        { color: #d1d5db; }
+:global(html.dark-mode-override) .listContainer[data-level="1"] .orderedList                                        { color: var(--foreground); }
 :global(html.dark-mode) .listContainer[data-level="1"] .orderedList .orderedList,
-:global(html.dark-mode-override) .listContainer[data-level="1"] .orderedList .orderedList                           { color: #9ca3af; }
+:global(html.dark-mode-override) .listContainer[data-level="1"] .orderedList .orderedList                           { color: var(--secondary); }
 :global(html.dark-mode) .listContainer[data-level="1"] .orderedList .orderedList .orderedList,
-:global(html.dark-mode-override) .listContainer[data-level="1"] .orderedList .orderedList .orderedList              { color: #6b7280; }
+:global(html.dark-mode-override) .listContainer[data-level="1"] .orderedList .orderedList .orderedList              { color: var(--secondary); }
 
 :global(html.dark-mode) .listContainer[data-level="2"] .orderedList,
-:global(html.dark-mode-override) .listContainer[data-level="2"] .orderedList                          { color: #9ca3af; }
+:global(html.dark-mode-override) .listContainer[data-level="2"] .orderedList                          { color: var(--secondary); }
 :global(html.dark-mode) .listContainer[data-level="2"] .orderedList .orderedList,
-:global(html.dark-mode-override) .listContainer[data-level="2"] .orderedList .orderedList             { color: #6b7280; }
+:global(html.dark-mode-override) .listContainer[data-level="2"] .orderedList .orderedList             { color: var(--secondary); }
 
 :global(html.dark-mode) .listContainer[data-level="3"] .orderedList,
-:global(html.dark-mode-override) .listContainer[data-level="3"] .orderedList                          { color: #6b7280; }
+:global(html.dark-mode-override) .listContainer[data-level="3"] .orderedList                          { color: var(--secondary); }
 
 :global(html.dark-mode) .listContainer[data-level="4"] .orderedList,
-:global(html.dark-mode-override) .listContainer[data-level="4"] .orderedList                          { color: #9ca3af; }
+:global(html.dark-mode-override) .listContainer[data-level="4"] .orderedList                          { color: var(--secondary); }
 
 :global(html.dark-mode) .listContainer .list .list .list .listItem::before,
 :global(html.dark-mode-override) .listContainer .list .list .list .listItem::before,
 :global(html.dark-mode) .listContainer[data-level="1"] .list .list .list .list .listItem::before,
-:global(html.dark-mode-override) .listContainer[data-level="1"] .list .list .list .list .listItem::before { color: #4b5563; }
+:global(html.dark-mode-override) .listContainer[data-level="1"] .list .list .list .list .listItem::before { color: var(--secondary); }
 
 /* ==================== RESPONSIVO ==================== */
 

@@ -36,14 +36,14 @@
   margin-top: auto;
   padding: var(--spacing-md) 0;
   height: 70px;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border-color);
   transition: border-color 0.3s ease;
   flex-shrink: 0;
 }
 
 :global(html.dark-mode) .tableFooter,
 :global(html.dark-mode-override) .tableFooter {
-  border-top-color: #4b5563;
+  border-top-color: var(--border-color);
 }
 
 .tableInfo {
@@ -55,7 +55,7 @@
 
 :global(html.dark-mode) .tableInfo,
 :global(html.dark-mode-override) .tableInfo {
-  color: #9ca3af;
+  color: var(--secondary);
 }
 
 .paginationControls {
@@ -85,7 +85,7 @@
   background-color: #e9ecef;
   border-color: #adb5bd;
   transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
 }
 
 .paginationButton:disabled {
@@ -101,47 +101,47 @@
 }
 
 .currentPage {
-  background-color: #2563eb;
+  background-color: var(--primary);
   color: white;
-  border-color: #2563eb;
+  border-color: var(--primary);
   font-weight: 600;
 }
 
 .currentPage:hover {
-  background-color: #1d4ed8;
-  border-color: #1d4ed8;
+  background-color: var(--primary);
+  border-color: var(--primary);
 }
 
 :global(html.dark-mode) .paginationButton,
 :global(html.dark-mode-override) .paginationButton {
-  background-color: #374151;
-  color: #e5e7eb;
-  border-color: #4b5563;
+  background-color: var(--surface);
+  color: var(--foreground);
+  border-color: var(--border-color);
 }
 
 :global(html.dark-mode) .paginationButton:hover:not(:disabled),
 :global(html.dark-mode-override) .paginationButton:hover:not(:disabled) {
-  background-color: #4b5563;
-  border-color: #6b7280;
+  background-color: var(--secondary);
+  border-color: var(--border-color);
 }
 
 :global(html.dark-mode) .paginationButton:disabled,
 :global(html.dark-mode-override) .paginationButton:disabled {
-  background-color: #374151;
-  color: #6b7280;
+  background-color: var(--surface);
+  color: var(--secondary);
 }
 
 :global(html.dark-mode) .currentPage,
 :global(html.dark-mode-override) .currentPage {
-  background-color: #2563eb;
-  color: #f9fafb;
-  border-color: #1d4ed8;
+  background-color: var(--primary);
+  color: var(--foreground);
+  border-color: var(--primary);
 }
 
 :global(html.dark-mode) .currentPage:hover,
 :global(html.dark-mode-override) .currentPage:hover {
-  background-color: #1d4ed8;
-  border-color: #1e40af;
+  background-color: var(--primary);
+  border-color: var(--primary);
 }
 
 /* Responsive */

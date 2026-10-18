@@ -39,7 +39,7 @@
    ================================ */
 :global(html.dark-mode) .statsText,
 :global(html.dark-mode-override) .statsText {
-  color: var(--secondary-dark, #9ca3af);
+  color: var(--secondary);
 }
 
 :global(html.dark-mode) .highlight,
@@ -49,7 +49,7 @@
 
 :global(html.dark-mode) .percentage,
 :global(html.dark-mode-override) .percentage {
-  color: var(--accent-light, #a78bfa);
+  color: var(--accent-light, var(--accent));
 }
 
 /* ================================

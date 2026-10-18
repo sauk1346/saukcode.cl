@@ -11,7 +11,7 @@
     padding: var(--spacing-md);
     margin-bottom: var(--spacing-lg);
     position: relative;
-    border: 1px solid var(--border-color, #e5e7eb);
+    border: 1px solid var(--border-color, var(--border-color));
     transition: background-color 0.3s ease, border-color 0.3s ease;
   }
 
@@ -24,7 +24,7 @@
   .questionNumber {
     font-weight: bold;
     font-size: 0.9rem;
-    color: var(--foreground, #111111);
+    color: var(--foreground, var(--foreground));
     margin-right: 6px;
     flex-shrink: 0;
   }
@@ -32,7 +32,7 @@
   .questionText {
     font-weight: bold;
     font-size: 0.9rem;
-    color: var(--foreground, #111111);
+    color: var(--foreground, var(--foreground));
     transition: color 0.3s ease;
     text-align: justify;
     hyphens: auto;
@@ -58,7 +58,7 @@
     font-weight: bold;
     font-size: 0.9rem;
     margin-bottom: var(--spacing-md);
-    color: var(--foreground, #111111);
+    color: var(--foreground, var(--foreground));
     transition: color 0.3s ease;
   }
 
@@ -76,9 +76,9 @@
     text-align: left;
     padding: 10px;
     border-radius: var(--radius-md, 6px);
-    border: 1px solid var(--input-border, #e2e8f0);
+    border: 1px solid var(--input-border, var(--border-color));
     background-color: rgba(127, 127, 127, 0.08);
-    color: var(--foreground, #111111);
+    color: var(--foreground, var(--foreground));
     cursor: pointer;
     transition: all 0.2s ease;
     font-size: 0.9rem;
@@ -108,13 +108,13 @@
   
   .correctOption {
     background-color: rgba(52, 211, 153, 0.15);
-    border-color: var(--success, #10b981);
+    border-color: var(--success, var(--success));
     color: #065f46;
   }
   
   .incorrectOption {
     background-color: rgba(239, 68, 68, 0.15);
-    border-color: var(--error, #ef4444);
+    border-color: var(--error, var(--error));
     color: #991b1b;
   }
   
@@ -133,7 +133,7 @@
   .incorrectIcon {
     width: 24px;
     height: 24px;
-    color: var(--error, #dc2626);
+    color: var(--error, var(--error));
   }
   
   .feedback {
@@ -171,32 +171,32 @@
   :global(html.dark-mode-override) .questionTitle,
   :global(html.dark-mode-override) .questionNumber,
   :global(html.dark-mode-override) .questionText {
-    color: var(--foreground, #f3f4f6);
+    color: var(--foreground, var(--foreground));
   }
   
   /* Ajustar los colores de los estados para modo oscuro */
   :global(html.dark-mode) .correctOption,
   :global(html.dark-mode-override) .correctOption {
     background-color: rgba(52, 211, 153, 0.2);
-    border-color: var(--success, #34d399);
+    border-color: var(--success, var(--success));
     color: #d1fae5;
   }
   
   :global(html.dark-mode) .incorrectOption,
   :global(html.dark-mode-override) .incorrectOption {
     background-color: rgba(248, 113, 113, 0.2);
-    border-color: var(--error, #f87171);
+    border-color: var(--error, var(--error));
     color: #fee2e2;
   }
   
   :global(html.dark-mode) .correctIcon,
   :global(html.dark-mode-override) .correctIcon {
-    color: var(--success, #34d399);
+    color: var(--success, var(--success));
   }
   
   :global(html.dark-mode) .incorrectIcon,
   :global(html.dark-mode-override) .incorrectIcon {
-    color: var(--error, #f87171);
+    color: var(--error, var(--error));
   }
   
   :global(html.dark-mode) .correctFeedback,

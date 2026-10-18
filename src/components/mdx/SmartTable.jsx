@@ -97,7 +97,7 @@ const SmartTable = ({
       } catch (error) {
         console.error('Error rendering KaTeX formula:', error);
         return (
-          <span style={{ color: '#dc2626', fontStyle: 'italic' }}>
+          <span style={{ color: 'var(--error)', fontStyle: 'italic' }}>
             [Error rendering: {formula}]
           </span>
         );
@@ -301,7 +301,7 @@ const SmartTable = ({
           } catch (error) {
             console.error('Error rendering KaTeX formula:', error);
             parts.push(
-              <span key={`katex-error-${match.index}`} style={{ color: '#dc2626', fontStyle: 'italic' }}>
+              <span key={`katex-error-${match.index}`} style={{ color: 'var(--error)', fontStyle: 'italic' }}>
                 [Error: {formula}]
               </span>
             );

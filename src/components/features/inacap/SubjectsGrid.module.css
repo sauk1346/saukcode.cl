@@ -367,48 +367,48 @@
      ================================ */
   :global(html.dark-mode) .subjectCard,
   :global(html.dark-mode-override) .subjectCard {
-    background: var(--background-dark, #1e1e1e);
-    border-color: var(--border-color-dark, #4a5568);
-    color: var(--foreground-dark, #e5e7eb);
+    background: var(--surface);
+    border-color: var(--border-color);
+    color: var(--foreground);
   }
   
   :global(html.dark-mode) .cardTitle,
   :global(html.dark-mode-override) .cardTitle {
-    color: var(--foreground-dark, #e5e7eb);
+    color: var(--foreground);
   }
   
   :global(html.dark-mode) .code,
   :global(html.dark-mode-override) .code {
-    color: var(--secondary-dark, #9ca3af);
+    color: var(--secondary);
   }
   
   :global(html.dark-mode) .categoryLabel,
   :global(html.dark-mode-override) .categoryLabel {
-    background: var(--card-bg-dark, #374151);
-    color: var(--secondary-dark, #9ca3af);
+    background: var(--surface);
+    color: var(--secondary);
   }
   
   :global(html.dark-mode) .noResults,
   :global(html.dark-mode-override) .noResults {
-    background: var(--background-dark, #1e1e1e);
-    border-color: var(--border-color-dark, #4a5568);
+    background: var(--surface);
+    border-color: var(--border-color);
   }
   
   :global(html.dark-mode) .noResultsTitle,
   :global(html.dark-mode) .noResultsText,
   :global(html.dark-mode-override) .noResultsTitle,
   :global(html.dark-mode-override) .noResultsText {
-    color: var(--secondary-dark, #9ca3af);
+    color: var(--secondary);
   }
   
   :global(html.dark-mode) .link,
   :global(html.dark-mode-override) .link {
-    color: var(--primary-light, #60a5fa);
+    color: var(--primary-light, var(--primary));
   }
   
   :global(html.dark-mode) .link:hover,
   :global(html.dark-mode-override) .link:hover {
-    color: var(--primary-lighter, #93c5fd);
+    color: var(--primary-lighter, var(--primary));
   }
   
   /* ================================

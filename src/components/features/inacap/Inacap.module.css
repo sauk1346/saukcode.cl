@@ -9,7 +9,7 @@
     min-height: 100vh;
     width: 100%;
     background-color: var(--background);
-    color: var(--foreground, #1f2937);
+    color: var(--foreground, var(--foreground));
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
@@ -23,7 +23,7 @@
     margin: 0 auto;
     padding: 2rem 1rem;
     background-color: var(--card-bg);
-    color: var(--foreground, #1f2937);
+    color: var(--foreground, var(--foreground));
     transition: background-color 0.3s ease, color 0.3s ease;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
@@ -35,7 +35,7 @@
   .title {
     font-size: 2.5rem;
     font-weight: 800;
-    color: var(--foreground, #1f2937);
+    color: var(--foreground, var(--foreground));
     margin-bottom: 2rem;
     text-align: center;
     transition: color 0.3s ease;
@@ -49,7 +49,7 @@
     height: 4px;
     background: var(--primary);
     margin: 0.75rem auto 0;
-    border-radius: 2px;
+    border-radius: 0;
   }
   
   /* ================================
@@ -57,7 +57,7 @@
      ================================ */
   .calendarPlaceholder {
     background: var(--background);
-    border-radius: 12px;
+    border-radius: 0;
     padding: 2rem;
     box-shadow: var(--shadow-lg);
     color: var(--secondary);
@@ -91,26 +91,26 @@
   :global(html.dark-mode) .pageWrapper,
   :global(html.dark-mode-override) .pageWrapper {
     background-color: var(--background);
-    color: var(--foreground-dark, #e5e7eb);
+    color: var(--foreground);
   }
 
   :global(html.dark-mode) .container,
   :global(html.dark-mode-override) .container {
     background-color: var(--card-bg);
-    color: var(--foreground-dark, #e5e7eb);
+    color: var(--foreground);
   }
   
   :global(html.dark-mode) .title,
   :global(html.dark-mode-override) .title {
-    color: var(--foreground-dark, #e5e7eb);
+    color: var(--foreground);
   }
   
   :global(html.dark-mode) .calendarPlaceholder,
   :global(html.dark-mode-override) .calendarPlaceholder {
-    background: var(--background-dark, #1e1e1e);
-    color: var(--secondary-dark, #9ca3af);
-    border-color: var(--border-color-dark, #4a5568);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    background: var(--surface);
+    color: var(--secondary);
+    border-color: var(--border-color);
+    box-shadow: var(--shadow-sm);
   }
   
   /* ================================

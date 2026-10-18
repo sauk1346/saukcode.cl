@@ -31,8 +31,8 @@
 
 :global(html.dark-mode) .container,
 :global(html.dark-mode-override) .container {
-  background-color: #1e1e1e;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  background-color: var(--surface);
+  box-shadow: var(--shadow-sm);
 }
 
 .section {
@@ -79,18 +79,18 @@
 .platformTitle {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--foreground);
   margin-bottom: var(--spacing-lg);
   padding-bottom: var(--spacing-sm);
-  border-bottom: 3px solid #2563eb;
+  border-bottom: 3px solid var(--primary);
   position: relative;
   transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 :global(html.dark-mode) .platformTitle,
 :global(html.dark-mode-override) .platformTitle {
-  color: #e5e7eb;
-  border-bottom-color: #60a5fa;
+  color: var(--foreground);
+  border-bottom-color: var(--primary);
 }
 
 .platformTitle::after {
@@ -100,13 +100,13 @@
   left: 0;
   width: 50px;
   height: 3px;
-  background: #60a5fa;
+  background: var(--primary);
   transition: background 0.3s ease;
 }
 
 :global(html.dark-mode) .platformTitle::after,
 :global(html.dark-mode-override) .platformTitle::after {
-  background: #93c5fd;
+  background: var(--primary);
 }
 
 /* ================================
@@ -125,8 +125,8 @@
 
 :global(html.dark-mode) .table,
 :global(html.dark-mode-override) .table {
-  background-color: #1e1e1e;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+  background-color: var(--surface);
+  box-shadow: var(--shadow-sm);
 }
 
 /* ================================
@@ -157,7 +157,7 @@
 
 :global(html.dark-mode) .table thead th,
 :global(html.dark-mode-override) .table thead th {
-  color: #f9fafb;
+  color: var(--foreground);
   border-color: transparent;
 }
 
@@ -169,20 +169,20 @@
 }
 
 .table tbody tr:hover {
-  background-color: #edf2f7;
+  background-color: var(--surface);
   cursor: pointer;
 }
 
 :global(html.dark-mode) .table tbody tr:hover,
 :global(html.dark-mode-override) .table tbody tr:hover {
-  background-color: #2d3748;
+  background-color: var(--surface);
 }
 
 .table tbody td {
   padding: var(--spacing-md) 0.75rem;
   text-align: left;
   border: 1px solid white;
-  color: #1f2937;
+  color: var(--foreground);
   font-size: 0.875rem;
   line-height: 1.5;
   word-wrap: break-word;
@@ -193,15 +193,15 @@
 
 :global(html.dark-mode) .table tbody td,
 :global(html.dark-mode-override) .table tbody td {
-  color: #e5e7eb;
-  border-color: #1e1e1e;
+  color: var(--foreground);
+  border-color: var(--foreground);
 }
 
 :global(html.dark-mode) .table th,
 :global(html.dark-mode) .table td,
 :global(html.dark-mode-override) .table th,
 :global(html.dark-mode-override) .table td {
-  border-color: #1e1e1e;
+  border-color: var(--foreground);
 }
 
 /* Primera columna (código) con fondo gris */
@@ -212,13 +212,13 @@
 }
 
 .table td:first-child {
-  background-color: #f3f4f6;
+  background-color: var(--surface);
   transition: background-color 0.3s ease;
 }
 
 :global(html.dark-mode) .table td:first-child,
 :global(html.dark-mode-override) .table td:first-child {
-  background-color: #374151;
+  background-color: var(--surface);
 }
 
 /* ================================
@@ -226,7 +226,7 @@
    ================================ */
 .code,
 .lessonNumber {
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-family: var(--font-mono);
   font-weight: 600;
   font-size: 0.8rem;
   transition: color 0.3s ease;
@@ -238,7 +238,7 @@
 /* Enlaces */
 .courseLink,
 .problemLink {
-  color: #2563eb;
+  color: var(--primary);
   text-decoration: none;
   transition: color 0.2s ease;
   font-weight: 500;
@@ -247,21 +247,21 @@
 .courseLink:hover,
 .problemLink:hover {
   text-decoration: underline;
-  color: #1d4ed8;
+  color: var(--primary);
 }
 
 :global(html.dark-mode) .courseLink,
 :global(html.dark-mode) .problemLink,
 :global(html.dark-mode-override) .courseLink,
 :global(html.dark-mode-override) .problemLink {
-  color: #60a5fa;
+  color: var(--primary);
 }
 
 :global(html.dark-mode) .courseLink:hover,
 :global(html.dark-mode) .problemLink:hover,
 :global(html.dark-mode-override) .courseLink:hover,
 :global(html.dark-mode-override) .problemLink:hover {
-  color: #93c5fd;
+  color: var(--primary);
 }
 
 .courseLink:focus,
@@ -273,48 +273,48 @@
 
 /* Estados */
 .noCertificate {
-  color: #9ca3af;
+  color: var(--secondary);
   font-style: italic;
   font-weight: 500;
 }
 
 :global(html.dark-mode) .noCertificate,
 :global(html.dark-mode-override) .noCertificate {
-  color: #9ca3af;
+  color: var(--secondary);
 }
 
 /* Dificultades (LeetCode) */
 .easy {
-  color: #22c55e !important;
+  color: var(--success) !important;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .medium {
-  color: #f59e0b !important;
+  color: var(--warning) !important;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .hard {
-  color: #ef4444 !important;
+  color: var(--error) !important;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
 :global(html.dark-mode) .easy,
 :global(html.dark-mode-override) .easy {
-  color: #34d399 !important;
+  color: var(--success) !important;
 }
 
 :global(html.dark-mode) .medium,
 :global(html.dark-mode-override) .medium {
-  color: #fbbf24 !important;
+  color: var(--warning) !important;
 }
 
 :global(html.dark-mode) .hard,
 :global(html.dark-mode-override) .hard {
-  color: #f87171 !important;
+  color: var(--error) !important;
 }
 
 /* ================================
@@ -386,7 +386,7 @@
   }
 
   .table tbody tr {
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     margin-bottom: var(--spacing-sm);
     padding: var(--spacing-sm);
@@ -396,8 +396,8 @@
 
   :global(html.dark-mode) .table tbody tr,
   :global(html.dark-mode-override) .table tbody tr {
-    border-color: #374151;
-    background: #1e1e1e;
+    border-color: var(--border-color);
+    background: var(--surface);
   }
 
   .table tbody td {
@@ -416,12 +416,12 @@
     padding-right: 10px;
     white-space: nowrap;
     font-weight: 600;
-    color: #2563eb;
+    color: var(--primary);
   }
 
   :global(html.dark-mode) .table tbody td:before,
   :global(html.dark-mode-override) .table tbody td:before {
-    color: #60a5fa;
+    color: var(--primary);
   }
 
   .title {

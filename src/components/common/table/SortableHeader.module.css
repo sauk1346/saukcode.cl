@@ -25,7 +25,7 @@
      ================================ */
   .sorted {
     background: rgba(255, 255, 255, 0.15) !important;
-    color: #f9fafb;
+    color: var(--foreground);
     font-weight: 700;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
   }
@@ -42,7 +42,7 @@
     margin-left: 5px;
     font-size: 0.8em;
     transition: all 0.2s ease;
-    color: #93c5fd;
+    color: var(--primary);
     font-weight: bold;
   }
   
@@ -56,7 +56,7 @@
      ================================ */
   .light {
     background: transparent !important;
-    color: #1f2937;
+    color: var(--foreground);
   }
   
   .light:hover {
@@ -69,11 +69,11 @@
   }
   
   .light .sortIndicator {
-    color: #3b82f6;
+    color: var(--primary);
   }
   
   .light.sorted .sortIndicator {
-    color: #1d4ed8;
+    color: var(--primary);
   }
   
   /* ================================
@@ -104,14 +104,14 @@
   }
   
   .withBorder.sorted {
-    border-left-color: #3b82f6;
+    border-left-color: var(--primary);
   }
   
   /* ================================
      ESTADOS DE INTERACCIÓN
      ================================ */
   .sortableHeader:focus-visible {
-    outline: 2px solid #3b82f6;
+    outline: 2px solid var(--primary);
     outline-offset: 2px;
   }
   
@@ -152,7 +152,7 @@
   :global(html.dark-mode) .sortableHeader,
   :global(html.dark-mode-override) .sortableHeader {
     background: transparent !important;
-    color: #f9fafb;
+    color: var(--foreground);
   }
   
   :global(html.dark-mode) .sortableHeader:hover,
@@ -163,7 +163,7 @@
   :global(html.dark-mode) .sorted,
   :global(html.dark-mode-override) .sorted {
     background: rgba(255, 255, 255, 0.15) !important;
-    color: #f8fafc;
+    color: var(--foreground);
   }
   
   :global(html.dark-mode) .sorted:hover,
@@ -173,7 +173,7 @@
   
   :global(html.dark-mode) .sortIndicator,
   :global(html.dark-mode-override) .sortIndicator {
-    color: #93c5fd;
+    color: var(--primary);
   }
   
   :global(html.dark-mode) .sorted .sortIndicator,
@@ -184,7 +184,7 @@
   :global(html.dark-mode) .light,
   :global(html.dark-mode-override) .light {
     background: transparent !important;
-    color: #e5e7eb;
+    color: var(--foreground);
   }
   
   :global(html.dark-mode) .light:hover,
@@ -195,7 +195,7 @@
   :global(html.dark-mode) .light.sorted,
   :global(html.dark-mode-override) .light.sorted {
     background: rgba(255, 255, 255, 0.1) !important;
-    color: #f3f4f6;
+    color: var(--foreground);
   }
   
   :global(html.dark-mode) .withGlow.sorted,

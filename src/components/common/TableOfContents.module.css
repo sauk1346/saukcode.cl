@@ -78,7 +78,7 @@
 }
 
 .tocLink {
-  color: #64748b;
+  color: var(--secondary);
   text-decoration: none;
   display: block;
   padding: var(--spacing-xs) var(--spacing-sm);
@@ -89,34 +89,34 @@
 /* Enlaces TOC en modo oscuro */
 :global(html.dark-mode) .tocLink,
 :global(html.dark-mode-override) .tocLink {
-  color: #94a3b8;
+  color: var(--secondary);
 }
 
 .tocLink:hover {
-  color: #2563eb;
-  background-color: #f1f5f9;
+  color: var(--primary);
+  background-color: var(--surface);
 }
 
 /* Hover de enlaces TOC en modo oscuro */
 :global(html.dark-mode) .tocLink:hover,
 :global(html.dark-mode-override) .tocLink:hover {
-  color: #60a5fa;
-  background-color: #1e293b;
+  color: var(--primary);
+  background-color: var(--surface);
 }
 
 .active {
-  color: #2563eb;
+  color: var(--primary);
   font-weight: 500;
-  background-color: #eff6ff;
-  border-left: 3px solid #2563eb;
+  background-color: color-mix(in srgb, var(--primary) 6%, var(--background));
+  border-left: 3px solid var(--primary);
 }
 
 /* Enlace activo TOC en modo oscuro */
 :global(html.dark-mode) .active,
 :global(html.dark-mode-override) .active {
-  color: #60a5fa;
+  color: var(--primary);
   background-color: #172554;
-  border-left: 3px solid #60a5fa;
+  border-left: 3px solid var(--primary);
 }
 
 /* Responsive design para TOC */

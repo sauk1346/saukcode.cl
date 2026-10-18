@@ -4,7 +4,7 @@
 
 .caption {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--secondary);
   font-style: italic;
   line-height: 1.4;
   text-align: left;
@@ -13,22 +13,22 @@
 
 :global(html.dark-mode) .caption,
 :global(html.dark-mode-override) .caption {
-  color: #9ca3af;
+  color: var(--secondary);
 }
 
 @media (prefers-color-scheme: dark) {
   .player {
-    background: #1e40af;
+    background: var(--primary);
   }
 }
 
 :global(html.dark-mode) .player,
 :global(html.dark-mode-override) .player {
-  background: #1e40af;
+  background: var(--primary);
 }
 
 :global(html.light-mode-override) .player {
-  background: #2563eb;
+  background: var(--primary);
 }
 
 .player {
@@ -38,7 +38,7 @@
   width: 100%;
   padding: 8px 16px;
   border-radius: var(--radius-full, 999px);
-  background: #2563eb;
+  background: var(--primary);
   color: #ffffff;
 }
 
@@ -98,7 +98,7 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #ffffff;
+  background: var(--background-elevated);
   cursor: pointer;
 }
 
@@ -108,7 +108,7 @@
   height: 12px;
   border: none;
   border-radius: 50%;
-  background: #ffffff;
+  background: var(--background-elevated);
   cursor: pointer;
 }
 
