@@ -19,7 +19,7 @@
 }
 
 .calendario {
-  background: var(--background);
+  background: var(--card-bg);
   box-shadow: var(--shadow-md);
   border: 2px solid var(--border-color);
   overflow: hidden;
@@ -81,8 +81,8 @@
 .calendarioDaysOfWeek {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  background: var(--card-bg);
-  border-bottom: 1px solid var(--border-color);
+  background: var(--surface);
+  border-bottom: 2px solid var(--border-color);
 }
 
 .calendarioDayOfWeek {
@@ -105,7 +105,7 @@
 }
 
 .calendarioDay {
-  background: var(--background);
+  background: var(--card-bg);
   padding: var(--spacing-xs) var(--spacing-sm);
   cursor: pointer;
   position: relative;
@@ -117,7 +117,7 @@
 }
 
 .calendarioDay:hover {
-  background: var(--card-bg);
+  background: var(--surface);
 }
 
 .calendarioDayHeader {
@@ -136,6 +136,7 @@
 .otherMonth {
   color: var(--secondary);
   opacity: 0.5;
+  background: var(--background);
 }
 
 /* DÍA ACTUAL - Color azul/púrpura (original) */
@@ -223,7 +224,7 @@
 
 /* Panel de detalles del día - TAMAÑO FIJO */
 .dayDetails {
-  background: var(--background);
+  background: var(--card-bg);
   box-shadow: var(--shadow-md);
   border: 2px solid var(--border-color);
   padding: var(--spacing-lg);
@@ -355,7 +356,7 @@
   width: 90%;
   max-width: 500px;
   max-height: 80vh;
-  background: var(--background);
+  background: var(--card-bg);
   overflow: hidden;
   box-shadow: var(--shadow-md);
   border: 2px solid var(--border-color);

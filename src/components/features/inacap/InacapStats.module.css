@@ -1,66 +1,43 @@
-/* ================================
-   BARRA DE ESTADÍSTICAS SIMPLE
-   ================================ */
+/* Barra de XP: una celda por materia (CLEAR verde, PLAYING azul) */
 .statsBar {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
   padding: var(--spacing-xs) 0;
 }
 
+.xpBar {
+  display: flex;
+  gap: 2px;
+  width: 100%;
+  max-width: 28rem;
+  height: 0.8rem;
+}
+
+.xpCell {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+}
+
+.xpCell.completed {
+  background: var(--success);
+  border-color: var(--success);
+}
+
+.xpCell.current {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
 .statsText {
-  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
   color: var(--secondary);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
 }
 
 .highlight {
-  font-weight: 700;
   color: var(--success);
-  font-size: 1rem;
-}
-
-.separator {
-  color: var(--secondary);
-  opacity: 0.5;
-}
-
-.label {
-  margin-left: 0.25rem;
-}
-
-.percentage {
-  color: var(--accent);
-  font-weight: 500;
-}
-
-/* ================================
-   DARK MODE
-   ================================ */
-:global(html.dark-mode) .statsText,
-:global(html.dark-mode-override) .statsText {
-  color: var(--secondary);
-}
-
-:global(html.dark-mode) .highlight,
-:global(html.dark-mode-override) .highlight {
-  color: var(--success-light, #4ade80);
-}
-
-:global(html.dark-mode) .percentage,
-:global(html.dark-mode-override) .percentage {
-  color: var(--accent-light, var(--accent));
-}
-
-/* ================================
-   RESPONSIVE
-   ================================ */
-@media (max-width: 480px) {
-  .statsText {
-    font-size: 0.8rem;
-  }
-
-  .highlight {
-    font-size: 0.9rem;
-  }
+  font-weight: 700;
 }

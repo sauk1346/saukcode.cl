@@ -1,27 +1,25 @@
 import React from 'react';
 import styles from './InacapStats.module.css';
 
-const InacapStats = ({
-  subjects,
-  className = ''
-}) => {
-  const totalSubjects = subjects.length;
-  const completedSubjects = subjects.filter(s => s.status === 'completed').length;
-  const progressPercentage = totalSubjects > 0 ? Math.round((completedSubjects / totalSubjects) * 100) : 0;
-
-  const containerClasses = [
-    styles.statsBar,
-    className
-  ].filter(Boolean).join(' ');
+// Barra de XP de la carrera: una celda por materia, en orden de malla.
+const InacapStats = ({ subjects, className = '' }) => {
+  const total = subjects.length;
+  const completed = subjects.filter((s) => s.status === 'completed').length;
+  const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
 
   return (
-    <div className={containerClasses}>
+    <div className={[styles.statsBar, className].filter(Boolean).join(' ')}>
+      <div
+        className={styles.xpBar}
+        role="img"
+        aria-label={`${completed} de ${total} materias completadas (${pct}%)`}
+      >
+        {subjects.map((s) => (
+          <span key={s.code} className={`${styles.xpCell} ${styles[s.status] ?? ''}`}></span>
+        ))}
+      </div>
       <span className={styles.statsText}>
-        <span className={styles.highlight}>{completedSubjects}</span>
-        <span className={styles.separator}>/</span>
-        <span>{totalSubjects}</span>
-        <span className={styles.label}>materias completadas</span>
-        <span className={styles.percentage}>({progressPercentage}%)</span>
+        <span className={styles.highlight}>{completed}/{total} CLEAR</span> · {pct}%
       </span>
     </div>
   );
