@@ -144,6 +144,10 @@
 }
 
 .tabMarker {
+  display: inline-block;
+  font-size: 1.35em;
+  line-height: 0; /* no altera la altura del botón */
+  vertical-align: -0.08em;
   color: var(--course-accent, var(--primary));
   margin-right: 0.4rem;
 }
