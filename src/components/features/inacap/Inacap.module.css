@@ -19,7 +19,7 @@
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    max-width: 1200px;
+    max-width: 64rem; /* alineado con las páginas de ramo */
     margin: 0 auto;
     padding: 2rem 1rem;
     background-color: var(--card-bg);
@@ -62,15 +62,9 @@
     box-shadow: var(--shadow-lg);
     color: var(--secondary);
     text-align: center;
-    border: 1px solid var(--border-color);
-    transition: all 0.3s ease;
+    border: 2px solid var(--border-color);
     width: 100%;
     margin-top: 2rem;
-  }
-  
-  .calendarPlaceholder:hover {
-    box-shadow: var(--shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04));
-    transform: translateY(-2px);
   }
   
   /* ================================
