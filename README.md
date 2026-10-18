@@ -39,3 +39,7 @@ Las imágenes de `public/inacap/` no están en el repo por tamaño: tras clonar,
 ## Despliegue
 
 Cada push a `master` dispara un workflow de GitHub Actions que entra al VPS por SSH (clave restringida a un único comando) y ejecuta `git pull`, `npm ci`, `npm run build` y la publicación del resultado en el directorio que sirve Nginx. No hay proceso Node en producción: Nginx sirve los archivos estáticos directamente.
+
+## Licencia
+
+El **código** se distribuye bajo licencia [MIT](LICENSE). El **contenido educativo** (apuntes, datos y material de `src/content/`, `src/data/` y `public/`) está bajo [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es): puedes compartirlo y adaptarlo citando la fuente, sin fines comerciales.
