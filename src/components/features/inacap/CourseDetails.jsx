@@ -165,7 +165,7 @@ const CourseDetails = ({
   return (
     <div className={styles.container}>
       {/* Encabezado: carátula del ramo (código + título + descripción) */}
-      <header className={styles.courseHeader}>
+      <header className={`pixel-box ${styles.courseHeader}`}>
         <p className={styles.courseCode}>{courseCode}</p>
         <h1 className={styles.title}>{courseTitle}</h1>
         <p className={styles.description}>{courseDescription}</p>

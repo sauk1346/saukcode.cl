@@ -5,9 +5,23 @@
   margin: 0 auto;
 }
 
-/* Encabezado: carátula del ramo */
+/* Encabezado: etiqueta de cartucho (marco pixel-box global + estrías) */
 .courseHeader {
   margin: var(--spacing-lg) 0 var(--spacing-xl);
+  padding: var(--spacing-lg);
+}
+
+/* Estrías del grip: franja de líneas horizontales de 2px, solo sugerida */
+.courseHeader::before {
+  content: '';
+  display: block;
+  height: 10px;
+  margin-bottom: var(--spacing-lg);
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--border-color) 0 2px,
+    transparent 2px 4px
+  );
 }
 
 .courseCode {

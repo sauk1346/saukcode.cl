@@ -81,6 +81,10 @@
   --shadow-sm: 2px 2px 0 var(--shadow-hard);
   --shadow-md: 4px 4px 0 var(--shadow-hard);
   --shadow-lg: 6px 6px 0 var(--shadow-hard);
+  /* Marco pixel 9-slice: esquinas en escalera estilo caja de diálogo SNES.
+     Colores fijos por tema (un data URI no puede leer variables):
+     contorno = --border-color, banda interior = --card-bg. */
+  --px-frame: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' shape-rendering='crispEdges'%3E%3Cpath fill='%23c9cec2' d='M4 0h4v2H4zM2 2h2v2H2zM0 4h2v4H0zM16 0h4v2h-4zM20 2h2v2h-2zM22 4h2v4h-2zM0 16h2v4H0zM2 20h2v2H2zM4 22h4v2H4zM22 16h2v4h-2zM20 20h2v2h-2zM16 22h4v2h-4zM8 0h8v2H8zM0 8h2v8H0zM22 8h2v8h-2zM8 22h8v2H8z'/%3E%3Cpath fill='%23f7f8f4' d='M4 2h4v2H4zM2 4h6v4H2zM16 2h4v2h-4zM16 4h6v4h-6zM2 16h6v4H2zM4 20h4v2H4zM16 16h6v4h-6zM16 20h4v2h-4zM8 2h8v6H8zM2 8h6v8H2zM16 8h6v8h-6zM8 16h8v6H8z'/%3E%3C/svg%3E");
   --font-sans: 'Atkinson Hyperlegible', system-ui, sans-serif;
   --font-pixel: 'Silkscreen', monospace;
   --font-mono: 'Departure Mono', ui-monospace, monospace;
@@ -125,6 +129,7 @@ html.dark {
   --shadow-sm: 2px 2px 0 var(--shadow-hard);
   --shadow-md: 4px 4px 0 var(--shadow-hard);
   --shadow-lg: 6px 6px 0 var(--shadow-hard);
+  --px-frame: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' shape-rendering='crispEdges'%3E%3Cpath fill='%232c3647' d='M4 0h4v2H4zM2 2h2v2H2zM0 4h2v4H0zM16 0h4v2h-4zM20 2h2v2h-2zM22 4h2v4h-2zM0 16h2v4H0zM2 20h2v2H2zM4 22h4v2H4zM22 16h2v4h-2zM20 20h2v2h-2zM16 22h4v2h-4zM8 0h8v2H8zM0 8h2v8H0zM22 8h2v8h-2zM8 22h8v2H8z'/%3E%3Cpath fill='%231b2430' d='M4 2h4v2H4zM2 4h6v4H2zM16 2h4v2h-4zM16 4h6v4h-6zM2 16h6v4H2zM4 20h4v2H4zM16 16h6v4h-6zM16 20h4v2h-4zM8 2h8v6H8zM2 8h6v8H2zM16 8h6v8h-6zM8 16h8v6H8z'/%3E%3C/svg%3E");
 }
 
 body {
@@ -164,12 +169,18 @@ samp {
   font-family: var(--font-mono);
 }
 
-/* Caja pixel: borde recto + sombra dura. Es la firma visual de cards,
-   botones y cajas interactivas. --px-border permite teñir el borde. */
+/* Caja pixel: marco 9-slice con esquinas en escalera (caja de diálogo
+   SNES) y sombra dura que sigue la silueta escalonada. El fondo se
+   recorta al padding-box para que no asome en las esquinas; la banda
+   interior del sprite empalma con --card-bg. */
 .pixel-box {
-  border: 2px solid var(--px-border, var(--border-color));
+  border: 8px solid transparent;
+  border-image: var(--px-frame) 8 / 8px stretch;
   border-radius: 0;
-  box-shadow: var(--shadow-md);
+  background-color: var(--card-bg);
+  background-clip: padding-box;
+  box-shadow: none;
+  filter: drop-shadow(4px 4px 0 var(--shadow-hard));
 }
 
 /* Variante presionable: la sombra se "hunde" al activar */
@@ -179,6 +190,14 @@ samp {
 .pixel-press:active {
   translate: 2px 2px;
   box-shadow: 2px 2px 0 var(--shadow-hard);
+}
+/* En cajas con marco, el hundimiento va por drop-shadow */
+.pixel-box.pixel-press {
+  transition: translate 80ms steps(2), filter 80ms steps(2);
+}
+.pixel-box.pixel-press:active {
+  box-shadow: none;
+  filter: drop-shadow(2px 2px 0 var(--shadow-hard));
 }
 @media (prefers-reduced-motion: reduce) {
   .pixel-press {

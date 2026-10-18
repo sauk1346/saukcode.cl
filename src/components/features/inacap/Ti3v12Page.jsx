@@ -19,7 +19,7 @@ const classPDFs = [
 export default function Ti3v12Page() {
     return (
         <div className={styles.container}>
-            <div className={styles.header}>
+            <div className={`pixel-box ${styles.header}`}>
                 <p className={styles.subheading}>{courseData.courseCode}</p>
                 <h1 className={styles.title}>{courseData.courseTitle}</h1>
                 <p className={styles.description}>{courseData.courseDescription}</p>

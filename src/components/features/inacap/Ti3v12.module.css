@@ -4,9 +4,22 @@
   margin: 0 auto;
 }
 
-/* Encabezado: carátula del ramo (mismo tratamiento que CourseDetails) */
+/* Encabezado: etiqueta de cartucho (mismo tratamiento que CourseDetails) */
 .header {
   margin: var(--spacing-lg) 0 var(--spacing-xl);
+  padding: var(--spacing-lg);
+}
+
+.header::before {
+  content: '';
+  display: block;
+  height: 10px;
+  margin-bottom: var(--spacing-lg);
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--border-color) 0 2px,
+    transparent 2px 4px
+  );
 }
 
 .title {
