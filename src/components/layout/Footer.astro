@@ -2,17 +2,17 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="mt-12 border-t border-(--border-color) bg-(--background-elevated)">
+<footer class="mt-12 border-t-2 border-(--border-color) bg-(--background-elevated)">
   <div class="mx-auto grid max-w-6xl gap-8 px-4 py-10 md:grid-cols-3">
     <section>
-      <h3 class="mb-3 text-sm font-semibold tracking-wide text-(--foreground) uppercase">Sobre este sitio</h3>
+      <h3 class="mb-3 text-sm font-bold text-(--foreground)">Sobre este sitio</h3>
       <p class="text-sm leading-relaxed text-(--secondary)">
         Sitio dedicado a organizar y compartir apuntes de clases, código de programación y proyectos personales.
       </p>
     </section>
 
     <section>
-      <h3 class="mb-3 text-sm font-semibold tracking-wide text-(--foreground) uppercase">Enlaces rápidos</h3>
+      <h3 class="mb-3 text-sm font-bold text-(--foreground)">Enlaces rápidos</h3>
       <ul class="space-y-2 text-sm">
         <li><a href="/#programacion" class="text-(--secondary) hover:text-(--primary)">Programación</a></li>
         <li>
@@ -23,7 +23,7 @@ const year = new Date().getFullYear();
     </section>
 
     <section>
-      <h3 class="mb-3 text-sm font-semibold tracking-wide text-(--foreground) uppercase">Contacto</h3>
+      <h3 class="mb-3 text-sm font-bold text-(--foreground)">Contacto</h3>
       <ul class="space-y-2 text-sm">
         <li>
           <a href="mailto:atmoralesc@gmail.com" class="text-(--secondary) hover:text-(--primary)">✉️ Correo</a>
@@ -41,6 +41,6 @@ const year = new Date().getFullYear();
   </div>
 
   <div class="border-t border-(--border-color) px-4 py-4 text-center text-xs text-(--secondary)">
-    © {year} SaukCode · Contenido bajo <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener noreferrer" class="underline hover:text-(--primary)">CC BY-NC-SA 4.0</a> (compartir y adaptar con atribución, sin uso comercial) · Código bajo <a href="https://github.com/sauk1346/saukcode.cl/blob/master/LICENSE" target="_blank" rel="noopener noreferrer" class="underline hover:text-(--primary)">MIT</a>
+    <span class="font-pixel">© {year} SAUKCODE</span> · Contenido bajo <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener noreferrer" class="underline hover:text-(--primary)">CC BY-NC-SA 4.0</a> (compartir y adaptar con atribución, sin uso comercial) · Código bajo <a href="https://github.com/sauk1346/saukcode.cl/blob/master/LICENSE" target="_blank" rel="noopener noreferrer" class="underline hover:text-(--primary)">MIT</a>
   </div>
 </footer>

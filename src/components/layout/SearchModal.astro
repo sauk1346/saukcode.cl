@@ -6,11 +6,11 @@
 
 <dialog
   id="search-modal"
-  class="m-auto w-[min(640px,92vw)] rounded-lg border border-(--border-color) bg-(--background-elevated) p-4 text-(--foreground) shadow-(--shadow-lg) backdrop:bg-black/50"
+  class="m-auto w-[min(640px,92vw)] border-2 border-(--foreground) bg-(--background-elevated) p-4 text-(--foreground) shadow-(--shadow-lg) backdrop:bg-black/60"
 >
-  <div class="mb-2 flex items-center justify-between">
-    <span class="text-sm font-semibold">Buscar en SaukCode</span>
-    <button id="search-close" class="rounded-md px-2 py-1 text-sm text-(--secondary) hover:bg-(--surface)" aria-label="Cerrar búsqueda">
+  <div class="mb-3 flex items-center justify-between">
+    <span class="font-pixel text-sm">BUSCAR</span>
+    <button id="search-close" class="pixel-press font-mono border border-(--border-color) bg-(--surface) px-2 py-1 text-xs text-(--secondary) hover:text-(--foreground)" aria-label="Cerrar búsqueda">
       Esc ✕
     </button>
   </div>
@@ -88,5 +88,10 @@
     --pagefind-ui-border: var(--border-color);
     --pagefind-ui-tag: var(--surface);
     --pagefind-ui-scale: 0.9;
+    /* Mundo pixel: sin redondeos y borde marcado en el input */
+    --pagefind-ui-border-radius: 0;
+    --pagefind-ui-image-border-radius: 0;
+    --pagefind-ui-border-width: 2px;
+    --pagefind-ui-font: var(--font-sans);
   }
 </style>
