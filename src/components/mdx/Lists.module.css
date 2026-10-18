@@ -156,7 +156,7 @@
 /* Separador sutil entre grupos de listas */
 .list + .list,
 .orderedList + .orderedList {
-  border-top: 1px solid #f3f4f6;
+  border-top: 1px solid var(--border-color);
   padding-top: var(--spacing-md);
   margin-top: var(--spacing-xl);
 }

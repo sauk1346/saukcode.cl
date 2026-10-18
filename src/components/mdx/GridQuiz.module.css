@@ -59,18 +59,18 @@
 }
 
 .correctCell {
-  background-color: rgba(52, 211, 153, 0.2);
-  color: var(--success, #047857);
+  background-color: color-mix(in srgb, var(--success) 20%, transparent);
+  color: var(--success, var(--success));
 }
 
 .incorrectCell {
-  background-color: rgba(239, 68, 68, 0.2);
+  background-color: color-mix(in srgb, var(--error) 20%, transparent);
   color: var(--error, var(--error));
 }
 
 .revealCell {
-  background-color: rgba(52, 211, 153, 0.12);
-  color: var(--success, #047857);
+  background-color: color-mix(in srgb, var(--success) 12%, transparent);
+  color: var(--success, var(--success));
 }
 
 .feedback {
@@ -81,13 +81,13 @@
 }
 
 .correctFeedback {
-  background-color: rgba(52, 211, 153, 0.15);
-  color: #065f46;
+  background-color: color-mix(in srgb, var(--success) 15%, transparent);
+  color: var(--success);
 }
 
 .incorrectFeedback {
-  background-color: rgba(239, 68, 68, 0.15);
-  color: #991b1b;
+  background-color: color-mix(in srgb, var(--error) 15%, transparent);
+  color: var(--error);
 }
 
 .confettiCanvas {
@@ -114,32 +114,32 @@
 
 :global(html.dark-mode) .correctCell,
 :global(html.dark-mode-override) .correctCell {
-  background-color: rgba(52, 211, 153, 0.25);
-  color: #d1fae5;
+  background-color: color-mix(in srgb, var(--success) 25%, transparent);
+  color: var(--success);
 }
 
 :global(html.dark-mode) .incorrectCell,
 :global(html.dark-mode-override) .incorrectCell {
-  background-color: rgba(248, 113, 113, 0.25);
-  color: #fee2e2;
+  background-color: color-mix(in srgb, var(--error) 25%, transparent);
+  color: var(--error);
 }
 
 :global(html.dark-mode) .revealCell,
 :global(html.dark-mode-override) .revealCell {
-  background-color: rgba(52, 211, 153, 0.18);
-  color: #d1fae5;
+  background-color: color-mix(in srgb, var(--success) 18%, transparent);
+  color: var(--success);
 }
 
 :global(html.dark-mode) .correctFeedback,
 :global(html.dark-mode-override) .correctFeedback {
-  background-color: rgba(52, 211, 153, 0.2);
-  color: #d1fae5;
+  background-color: color-mix(in srgb, var(--success) 20%, transparent);
+  color: var(--success);
 }
 
 :global(html.dark-mode) .incorrectFeedback,
 :global(html.dark-mode-override) .incorrectFeedback {
-  background-color: rgba(248, 113, 113, 0.2);
-  color: #fee2e2;
+  background-color: color-mix(in srgb, var(--error) 20%, transparent);
+  color: var(--error);
 }
 
 /* Responsive */

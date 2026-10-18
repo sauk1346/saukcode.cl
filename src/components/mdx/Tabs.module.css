@@ -21,7 +21,7 @@
   background: none;
   border: none;
   border-bottom: 2px solid transparent;
-  color: #4a4a4a;
+  color: var(--secondary);
   font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;

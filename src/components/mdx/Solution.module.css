@@ -39,32 +39,32 @@
 
 /* Variante hint - Verde más sutil */
 .solutionHint {
-  border: 1px solid #d1fae5;
-  background-color: #f0fdf4;
+  border: 1px solid color-mix(in srgb, var(--success) 35%, var(--border-color));
+  background-color: color-mix(in srgb, var(--success) 8%, var(--background));
 }
 
 :global(html.dark-mode) .solutionHint,
 :global(html.dark-mode-override) .solutionHint {
-  border-color: #065f46;
+  border-color: var(--success);
   background-color: var(--surface);
 }
 
 /* Variante warning - Amber más sutil */
 .solutionWarning {
-  border: 1px solid #fde68a;
+  border: 1px solid color-mix(in srgb, var(--warning) 35%, var(--border-color));
   background-color: color-mix(in srgb, var(--warning) 8%, var(--background));
 }
 
 :global(html.dark-mode) .solutionWarning,
 :global(html.dark-mode-override) .solutionWarning {
-  border-color: #92400e;
+  border-color: var(--warning);
   background-color: var(--surface);
 }
 
 /* Variante info - Púrpura más sutil */
 .solutionInfo {
-  border: 1px solid #e9d5ff;
-  background-color: #faf5ff;
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border-color));
+  background-color: color-mix(in srgb, var(--accent) 8%, var(--background));
 }
 
 :global(html.dark-mode) .solutionInfo,
@@ -96,19 +96,19 @@
 }
 
 .solutionHint .solutionHeader {
-  background-color: #f0fdf4;
-  color: #065f46;
+  background-color: color-mix(in srgb, var(--success) 8%, var(--background));
+  color: var(--success);
   border-left: 3px solid var(--success);
 }
 
 .solutionWarning .solutionHeader {
   background-color: color-mix(in srgb, var(--warning) 8%, var(--background));
-  color: #92400e;
+  color: var(--warning);
   border-left: 3px solid var(--warning);
 }
 
 .solutionInfo .solutionHeader {
-  background-color: #faf5ff;
+  background-color: color-mix(in srgb, var(--accent) 8%, var(--background));
   color: var(--accent);
   border-left: 3px solid var(--accent);
 }
@@ -124,21 +124,21 @@
 :global(html.dark-mode) .solutionHint .solutionHeader,
 :global(html.dark-mode-override) .solutionHint .solutionHeader {
   background-color: var(--surface);
-  color: #d1fae5;
+  color: var(--success);
   border-left: 3px solid var(--success);
 }
 
 :global(html.dark-mode) .solutionWarning .solutionHeader,
 :global(html.dark-mode-override) .solutionWarning .solutionHeader {
   background-color: var(--surface);
-  color: #fde68a;
+  color: var(--warning);
   border-left: 3px solid var(--warning);
 }
 
 :global(html.dark-mode) .solutionInfo .solutionHeader,
 :global(html.dark-mode-override) .solutionInfo .solutionHeader {
   background-color: var(--surface);
-  color: #e9d5ff;
+  color: var(--accent);
   border-left: 3px solid var(--accent);
 }
 
@@ -189,8 +189,8 @@
 .contentWrapper {
   overflow: hidden;
   transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: white;
-  border-top: 1px solid #f3f4f6;
+  background-color: var(--card-bg);
+  border-top: 1px solid var(--border-color);
 }
 
 /* Modo oscuro para contenido */
