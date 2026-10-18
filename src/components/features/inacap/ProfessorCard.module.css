@@ -13,14 +13,11 @@
 
 /* Título de tarjeta con icono - extraído de CourseDetails */
 .cardTitle {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  font-size: 1.25rem;
-  font-weight: bold;
+  font-family: var(--font-pixel);
+  font-size: 1.125rem; /* Silkscreen: nunca bajo 18px */
+  font-weight: 400;
   color: var(--foreground);
-  transition: color 0.3s ease;
-  margin: 0; /* Reset margin */
+  margin: 0;
 }
 
 /* Modo oscuro para título */
@@ -77,7 +74,7 @@
   }
 
   .cardTitle {
-    font-size: 1.125rem;
+    font-size: 1.125rem; /* mínimo Silkscreen */
   }
 
   .infoItem {
@@ -91,7 +88,7 @@
 
 @media (max-width: 480px) {
   .cardTitle {
-    font-size: 1rem;
+    font-size: 1.125rem; /* mínimo Silkscreen */
   }
 
   .cardHeader,

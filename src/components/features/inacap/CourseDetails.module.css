@@ -164,13 +164,10 @@
 }
 
 .cardTitle {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  font-size: 1.25rem;
-  font-weight: bold;
+  font-family: var(--font-pixel);
+  font-size: 1.125rem; /* Silkscreen: nunca bajo 18px */
+  font-weight: 400;
   color: var(--foreground);
-  transition: color 0.3s ease;
 }
 
 /* Modo oscuro para títulos de tarjetas */
@@ -278,10 +275,17 @@
 .contentItem {
   line-height: 1.4;
   word-wrap: break-word;
-  /* Sangría colgante: las líneas envueltas se alinean con el texto,
-     no con la viñeta "- " que antecede */
-  padding-left: 0.62em; /* ancho real de "- " en Atkinson */
-  text-indent: -0.62em;
+  /* Viñeta ▸ en su propia columna: las líneas envueltas se alinean
+     solas con el texto */
+  display: grid;
+  grid-template-columns: 1.1em 1fr;
+}
+
+.contentItem::before {
+  content: '▸';
+  color: var(--course-accent, var(--primary));
+  font-size: 0.8em;
+  padding-top: 0.15em;
 }
 
 /* Estilo mejorado para elementos tachados */
@@ -346,6 +350,8 @@
 
 .classNumber,
 .lectureNumber {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
   font-weight: 700;
   color: var(--foreground);
 }

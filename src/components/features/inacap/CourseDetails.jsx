@@ -26,10 +26,8 @@ const CourseDetails = ({
 
     const key = `content-${index}`;
 
-    // Agregar viñeta automáticamente - siempre uniforme
-    const displayText = !item.text.startsWith('-') && !item.text.startsWith('•') && !item.text.startsWith('*')
-      ? `- ${item.text}`
-      : item.text;
+    // La viñeta la pinta CSS (::before ▸); se limpia cualquier guion de los datos
+    const displayText = item.text.replace(/^\s*[-•*]\s*/, '');
 
     // Inferir el tipo basado en la presencia de href
     if (item.href) {

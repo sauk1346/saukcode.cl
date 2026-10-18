@@ -70,11 +70,9 @@
 }
 
 .cardTitle {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-family: var(--font-pixel);
+  font-size: 1.125rem; /* Silkscreen: nunca bajo 18px */
+  font-weight: 400;
   margin: 0;
 }
 
