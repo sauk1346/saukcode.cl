@@ -79,6 +79,9 @@
   /* Sombras duras (sin blur): la firma del sistema */
   --cyan: #0e7490;
   --orange: #9e5200;
+  /* Relleno gráfico ámbar: las barras no son texto (3:1 basta) y el
+     --warning textual AA (#8a6207) se ve café como relleno */
+  --warning-fill: #b8860b;
   /* Paleta de áreas: cada categoría de ramo tiene su tinte (etiqueta de
      cartucho, barras del grid). Los alias apuntan a tokens por tema. */
   --cat-programming: var(--primary);
@@ -139,6 +142,7 @@ html.dark {
   --info: #7e96f2;
   --cyan: #67c7db;
   --orange: #efa15d;
+  --warning-fill: var(--warning);
   --shadow-hard: rgba(0, 0, 0, 0.55);
   --shadow-sm: 2px 2px 0 var(--shadow-hard);
   --shadow-md: 4px 4px 0 var(--shadow-hard);

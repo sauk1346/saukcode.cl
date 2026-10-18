@@ -506,8 +506,8 @@
 }
 
 .weightMid {
-  background-color: var(--warning);
-  border-color: var(--warning);
+  background-color: var(--warning-fill);
+  border-color: var(--warning-fill);
 }
 
 .weightHigh {
