@@ -98,3 +98,9 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* rehype-prism-plus envuelve cada línea en span.code-line sin \n reales:
+   deben renderizarse como bloque para que el código sea multilínea */
+pre .code-line {
+  display: block;
+}
