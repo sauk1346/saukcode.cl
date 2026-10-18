@@ -47,7 +47,7 @@ const courseData = {
             quickGuide: [
                 {
                     text: 'Quiz: Técnicas de Costos',
-                    href: 'quiz-tenicas-costos'
+                    href: 'quiz-tecnicas-costos'
                 }
             ]
         },
@@ -94,7 +94,7 @@ const courseData = {
                 },
                 {
                     text: 'Quiz: Técnicas de Costos',
-                    href: 'quiz-tenicas-costos'
+                    href: 'quiz-tecnicas-costos'
                 },
                 {
                     text: 'Quiz: Evaluación Financiera',

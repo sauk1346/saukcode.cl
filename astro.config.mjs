@@ -15,6 +15,10 @@ export default defineConfig({
   redirects: {
     // Como en Next: el índice de flashcards redirige al detalle del ramo
     '/inacap/[courseId]/flashcards': '/inacap/[courseId]',
+    // El breadcrumb de las lecciones enlaza /ejercicios/<subseccion>, que en
+    // Next era 404; aquí redirige al índice de ejercicios
+    '/ejercicios/leetcode': '/ejercicios',
+    '/ejercicios/java': '/ejercicios',
   },
   markdown: {
     remarkPlugins: [remarkAutoNumber, remarkMath],
