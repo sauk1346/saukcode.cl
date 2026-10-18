@@ -1,0 +1,28 @@
+# Despliegue automático: cada push a master ejecuta el script de deploy en el
+# VPS por SSH. La clave (secret VPS_DEPLOY_KEY) está restringida en el servidor
+# con command= — solo puede correr /root/deploy-saukcode.sh, no abre shell.
+name: Deploy
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-produccion
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Desplegar en el VPS
+        env:
+          SSH_KEY: ${{ secrets.VPS_DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          # Huella del VPS fijada: evita MITM sin desactivar la verificación
+          echo "69.62.91.38 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIARHAOWq3m5xnnaOa+LtCVW+Dr+UvbnKSXEN3cMr0zQJ" > ~/.ssh/known_hosts
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes root@69.62.91.38 deploy
