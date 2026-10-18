@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import PixelGlyph from '../../ui/PixelGlyph.jsx';
 import styles from './Calendar.module.css';
 
 const Calendar = ({ eventos = [] }) => {
@@ -157,6 +158,7 @@ const Calendar = ({ eventos = [] }) => {
       return (
         <div className={styles.dayDetails}>
           <div className={styles.noEvents}>
+            <PixelGlyph name="calendario" size={48} className={styles.noEventsIcon} />
             Selecciona un día para ver sus eventos
           </div>
         </div>
@@ -193,7 +195,10 @@ const Calendar = ({ eventos = [] }) => {
             ))}
           </div>
         ) : (
-          <div className={styles.noEvents}>No hay eventos para este día</div>
+          <div className={styles.noEvents}>
+                    <PixelGlyph name="calendario" size={48} className={styles.noEventsIcon} />
+                    No hay eventos para este día
+                  </div>
         )}
       </div>
     );
@@ -206,7 +211,7 @@ const Calendar = ({ eventos = [] }) => {
         <div className={styles.calendarioHeader}>
           <button 
             onClick={prevMonth}
-            className={styles.calendarioNavButton}
+            className={`pixel-press ${styles.calendarioNavButton}`}
             aria-label="Mes anterior"
           >
             ‹
@@ -216,7 +221,7 @@ const Calendar = ({ eventos = [] }) => {
           </h2>
           <button 
             onClick={nextMonth}
-            className={styles.calendarioNavButton}
+            className={`pixel-press ${styles.calendarioNavButton}`}
             aria-label="Mes siguiente"
           >
             ›
@@ -310,7 +315,10 @@ const Calendar = ({ eventos = [] }) => {
                   ))}
                 </div>
               ) : (
-                <div className={styles.noEvents}>No hay eventos para este día</div>
+                <div className={styles.noEvents}>
+                    <PixelGlyph name="calendario" size={48} className={styles.noEventsIcon} />
+                    No hay eventos para este día
+                  </div>
               )}
             </div>
           </div>

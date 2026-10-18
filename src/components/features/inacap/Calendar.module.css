@@ -20,11 +20,9 @@
 
 .calendario {
   background: var(--background);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  border: 2px solid var(--border-color);
   overflow: hidden;
-  transition: all 0.3s ease;
 }
 
 /* Cabecera del calendario */
@@ -41,8 +39,9 @@
 }
 
 .calendarioTitle {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-family: var(--font-pixel);
+  font-size: 1.25rem;
+  font-weight: 400;
   margin: 0;
   text-align: center;
   z-index: 1;
@@ -62,7 +61,7 @@
   cursor: pointer;
   font-weight: bold;
   font-size: 1.2rem;
-  transition: all 0.2s;
+  box-shadow: var(--shadow-sm);
   flex-shrink: 0;
   z-index: 1;
   position: relative;
@@ -89,8 +88,9 @@
 .calendarioDayOfWeek {
   padding: var(--spacing-md) var(--spacing-sm);
   text-align: center;
-  font-weight: 600;
-  font-size: 0.875rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.8rem;
   color: var(--secondary);
   transition: color 0.3s ease;
 }
@@ -119,9 +119,6 @@
 
 .calendarioDay:hover {
   background: var(--card-bg);
-  transform: scale(1.02);
-  z-index: 2;
-  box-shadow: var(--shadow-md);
 }
 
 .calendarioDayHeader {
@@ -129,7 +126,8 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--spacing-sm);
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-weight: 700;
 }
 
 .currentMonth {
@@ -144,12 +142,12 @@
 /* DÍA ACTUAL - Color azul/púrpura (original) */
 .today {
   background: var(--primary);
-  color: white;
+  color: var(--background);
 }
 
 .today .calendarioDayHeader,
 .today .calendarioEvents {
-  color: white;
+  color: var(--background);
 }
 
 .todayHeader {
@@ -159,20 +157,18 @@
 /* DÍA SELECCIONADO - Color verde/esmeralda (nuevo) */
 .selected {
   background: var(--success);
-  color: white;
-  transform: scale(1.02);
+  color: var(--background);
   z-index: 3;
-  box-shadow: var(--shadow-lg);
 }
 
 .selected .calendarioDayHeader,
 .selected .calendarioEvents {
-  color: white;
+  color: var(--background);
 }
 
 .selected .calendarioEvent {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
+  background: color-mix(in srgb, var(--background) 25%, transparent);
+  color: var(--background);
 }
 
 /* CASO ESPECIAL: Si un día es HOY Y ESTÁ SELECCIONADO */
@@ -193,34 +189,20 @@
 
 .calendarioEvent {
   background: var(--primary);
-  color: white;
+  color: var(--background);
   padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-weight: 500;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.2s ease;
-}
-
-.calendarioEvent:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
 }
 
 .eventIndicator {
   background: var(--primary);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+  width: 7px;
+  height: 7px;
   display: inline-block;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
 }
 
 .eventTime {
@@ -231,9 +213,8 @@
 /* Panel de detalles del día - TAMAÑO FIJO */
 .dayDetails {
   background: var(--background);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  border: 2px solid var(--border-color);
   padding: var(--spacing-lg);
   position: sticky;
   top: var(--spacing-md);
@@ -264,18 +245,16 @@
 }
 
 .closeDetailsButton {
-  background: none;
-  border: none;
+  background: var(--surface);
+  border: 2px solid var(--border-color);
   cursor: pointer;
   color: var(--secondary);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   width: 32px;
   height: 32px;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
 }
 
 .closeDetailsButton:hover {
@@ -291,29 +270,9 @@
 
 .eventItem {
   background: var(--card-bg);
-  border-radius: var(--radius-md);
   padding: var(--spacing-md);
+  border: 2px solid var(--border-color);
   border-left: 4px solid var(--primary);
-  transition: all 0.2s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.eventItem::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: color-mix(in srgb, var(--primary) 5%, transparent);
-  pointer-events: none;
-}
-
-.eventItem:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-left-width: 6px;
 }
 
 .eventItemHeader {
@@ -325,10 +284,9 @@
 
 .eventItemTime {
   background: var(--primary);
-  color: white;
+  color: var(--background);
   padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--radius-sm);
-  font-weight: 600;
+  font-family: var(--font-mono);
   font-size: 0.75rem;
   min-width: fit-content;
 }
@@ -349,7 +307,6 @@
 .noEvents {
   text-align: center;
   color: var(--secondary);
-  font-style: italic;
   padding: var(--spacing-xl);
   display: flex;
   flex-direction: column;
@@ -357,10 +314,8 @@
   gap: var(--spacing-md);
 }
 
-.noEvents::before {
-  content: '📅';
-  font-size: 3rem;
-  opacity: 0.5;
+.noEventsIcon {
+  opacity: 0.6;
 }
 
 /* Modal para móviles */
@@ -370,8 +325,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.55);
   z-index: 1000;
   display: flex;
   justify-content: center;
@@ -391,21 +345,22 @@
   max-width: 500px;
   max-height: 80vh;
   background: var(--background);
-  border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--border-color);
-  animation: modalSlideIn 0.3s ease;
+  box-shadow: var(--shadow-md);
+  border: 2px solid var(--border-color);
+  animation: modalStep 120ms steps(2);
 }
 
-@keyframes modalSlideIn {
+@keyframes modalStep {
   from {
-    transform: translateY(50px) scale(0.9);
+    transform: translateY(8px);
     opacity: 0;
   }
-  to {
-    transform: translateY(0) scale(1);
-    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modalContent {
+    animation: none;
   }
 }
 
@@ -427,25 +382,21 @@
   position: absolute;
   top: var(--spacing-md);
   right: var(--spacing-md);
-  background: var(--card-bg);
-  border: none;
-  font-size: 1.5rem;
+  background: var(--surface);
+  border: 2px solid var(--border-color);
+  font-size: 1.25rem;
   cursor: pointer;
   color: var(--secondary);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
-  transition: all 0.2s ease;
 }
 
 .modalCloseButton:hover {
-  background: var(--border-color);
   color: var(--foreground);
-  transform: scale(1.1);
 }
 
 /* Responsive */
@@ -513,21 +464,5 @@
   .modalContent {
     width: 95%;
     margin: var(--spacing-md);
-  }
-}
-
-/* Animaciones de carga */
-.calendario {
-  animation: fadeInUp 0.5s ease;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
