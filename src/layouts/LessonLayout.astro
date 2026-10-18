@@ -24,6 +24,14 @@ const { title, description } = Astro.props;
 </BaseLayout>
 
 <script>
+  // Save state para el "▶ Continuar" de la portada
+  try {
+    localStorage.setItem(
+      'saukcode:ultima-leccion',
+      JSON.stringify({ url: location.pathname, title: document.title.replace(/ \| SaukCode$/, '') })
+    );
+  } catch (e) {}
+
   // Botón "Copiar" de los bloques de código (delegación de eventos)
   document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;

@@ -1,22 +1,138 @@
 ---
+// Portada: hero con el buscador como acción principal, "Continuar" (la última
+// lección vista, guardada por LessonLayout en localStorage) y fichas de ramos
+// con datos reales calculados en el build.
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Card from '../components/ui/Card.astro';
-import { sectionsOrder } from '../data/homeData.js';
+import { getAllInacapLessonPaths } from '../utils/courseUtils.js';
+import { subjects } from '../data/inacap/inacapData.js';
+import { problems as leetcodeProblems } from '../data/ejercicios/leetcode/problems.js';
+import { problems as javaProblems } from '../data/ejercicios/java/problems.js';
+
+// Solo cuentan las lecciones publicadas: slug registrado ∩ MDX existente
+// (los paths registrados incluyen PDFs/videos que no son lecciones)
+const entries = await getCollection('inacap');
+const published = new Set(entries.map((e) => e.id.replace(/\.mdx$/, '')));
+const lessonPaths = getAllInacapLessonPaths().filter(({ courseId, slug }) =>
+  published.has(`${courseId}/${slug}`)
+);
+const lessonsByCourse = {};
+for (const { courseId } of lessonPaths) {
+  lessonsByCourse[courseId] = (lessonsByCourse[courseId] ?? 0) + 1;
+}
+
+// Solo los ramos con apuntes publicados, agrupados por semestre (reciente primero)
+const courses = subjects
+  .filter((s) => s.href)
+  .map((s) => ({ ...s, lessons: lessonsByCourse[s.href.split('/').pop()] ?? 0 }))
+  .filter((s) => s.lessons > 0);
+
+const semesters = [...new Set(courses.map((s) => s.semester))].sort((a, b) => b - a);
+const bySemester = semesters.map((n) => ({
+  n,
+  year: courses.find((s) => s.semester === n)?.year,
+  courses: courses.filter((s) => s.semester === n),
+}));
+
+const totalLessons = lessonPaths.length;
+const totalLeetcode = Object.keys(leetcodeProblems).length;
+const totalJava = Object.keys(javaProblems).length;
 ---
 
-<BaseLayout title="SaukCode">
-  {sectionsOrder.map((section) => (
-    <section id={section.id} class="mx-auto max-w-6xl px-4 py-16">
-      <h1 class="mb-2 text-center text-3xl font-bold text-(--foreground)">{section.title}</h1>
-      <p class="mb-10 text-center text-(--secondary)">{section.description}</p>
-      <!-- Como en el sitio Next: cards de ancho fijo 160px, fila flex centrada -->
-      <div class="flex w-full flex-wrap justify-center gap-4">
-        {Object.entries(section.cardsData).map(([key, card]) => (
-          <div class="w-[calc(50%-0.5rem)] min-[480px]:w-[calc(33.333%-0.667rem)] min-[900px]:w-40">
-            <Card title={card.name} description={card.description} image={card.image} link={card.link} />
-          </div>
-        ))}
+<BaseLayout title="SaukCode" description="Apuntes de Ingeniería en Informática (INACAP), ejercicios de programación resueltos y flashcards de estudio.">
+  <!-- Hero -->
+  <section class="mx-auto max-w-3xl px-4 pt-16 pb-12 text-center">
+    <h1 class="font-pixel text-3xl text-(--foreground) sm:text-4xl">Apuntes de Informática</h1>
+    <p class="mx-auto mt-4 max-w-xl text-(--secondary)">
+      {totalLessons} lecciones de Ingeniería en Informática (INACAP), {totalLeetcode + totalJava}
+      ejercicios de programación resueltos y flashcards para estudiar.
+    </p>
+
+    <!-- Buscador: la acción principal (abre el modal de Pagefind) -->
+    <button
+      class="js-open-search pixel-press font-mono mx-auto mt-8 flex w-full max-w-xl items-center gap-3 border-2 border-(--foreground) bg-(--background-elevated) px-4 py-3 text-left text-sm text-(--secondary) shadow-(--shadow-md)"
+      aria-label="Buscar en el sitio"
+    >
+      <span aria-hidden="true" class="text-(--primary)">▸</span>
+      Buscar en los apuntes
+      <span aria-hidden="true" class="hero-cursor -ml-2 inline-block w-[0.6em] bg-(--primary)">&nbsp;</span>
+      <kbd class="ml-auto hidden border border-(--border-color) bg-(--surface) px-1.5 text-[10px] sm:inline">Ctrl K</kbd>
+    </button>
+
+    <!-- Continuar donde quedaste (lo llena el script si hay save state) -->
+    <a id="continue-link" href="/" class="group mx-auto mt-4 hidden w-full max-w-xl items-center gap-2 px-1 text-sm">
+      <span class="font-pixel text-xs text-(--primary) group-hover:text-(--primary-hover)">▶ CONTINUAR</span>
+      <span id="continue-title" class="truncate text-(--secondary) group-hover:text-(--foreground)"></span>
+    </a>
+  </section>
+
+  <!-- Ramos por semestre -->
+  <section id="programacion" class="mx-auto max-w-5xl px-4 py-10">
+    <h2 class="font-pixel text-xl text-(--foreground)">INACAP</h2>
+    <p class="mt-1 mb-8 text-sm text-(--secondary)">Ingeniería en Informática, mención Ciberseguridad</p>
+
+    {bySemester.map(({ n, year, courses }) => (
+      <div class="mb-8">
+        <h3 class="font-mono mb-3 text-sm text-(--secondary)">Semestre {n} ({year})</h3>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {courses.map((c) => (
+            <a href={c.href} class="pixel-press pixel-box group block bg-(--card-bg) p-4">
+              <span class="font-mono text-xs text-(--primary)">{c.code}</span>
+              <span class="mt-1 block font-bold text-(--foreground) group-hover:text-(--primary)">{c.name}</span>
+              <span class="mt-2 block text-sm text-(--secondary)">{c.lessons} {c.lessons === 1 ? 'clase' : 'clases'}</span>
+            </a>
+          ))}
+        </div>
       </div>
-    </section>
-  ))}
+    ))}
+  </section>
+
+  <!-- Ejercicios -->
+  <section class="mx-auto max-w-5xl px-4 py-10">
+    <h2 class="font-pixel text-xl text-(--foreground)">Ejercicios</h2>
+    <p class="mt-1 mb-8 text-sm text-(--secondary)">Problemas resueltos y comentados</p>
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <a href="/ejercicios" class="pixel-press pixel-box group block bg-(--card-bg) p-4">
+        <span class="font-mono text-xs text-(--primary)">LEETCODE</span>
+        <span class="mt-1 block font-bold text-(--foreground) group-hover:text-(--primary)">Estructuras y algoritmos</span>
+        <span class="mt-2 block text-sm text-(--secondary)">{totalLeetcode} problemas</span>
+      </a>
+      <a href="/ejercicios" class="pixel-press pixel-box group block bg-(--card-bg) p-4">
+        <span class="font-mono text-xs text-(--primary)">JAVA</span>
+        <span class="mt-1 block font-bold text-(--foreground) group-hover:text-(--primary)">Ejercicios del lenguaje</span>
+        <span class="mt-2 block text-sm text-(--secondary)">{totalJava} ejercicios</span>
+      </a>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .hero-cursor {
+    animation: hero-blink 1.1s steps(2) infinite;
+  }
+  @keyframes hero-blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-cursor {
+      animation: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  // Save state: si hay una última lección guardada, mostrar "Continuar"
+  (function () {
+    try {
+      var saved = JSON.parse(localStorage.getItem('saukcode:ultima-leccion') || 'null');
+      if (!saved || !saved.url || !saved.title) return;
+      var link = document.getElementById('continue-link');
+      link.href = saved.url;
+      document.getElementById('continue-title').textContent = saved.title;
+      link.classList.remove('hidden');
+      link.classList.add('flex');
+    } catch (e) {}
+  })();
+</script>
