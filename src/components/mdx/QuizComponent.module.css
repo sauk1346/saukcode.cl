@@ -105,6 +105,14 @@
     background-color: var(--background-elevated);
   }
 
+  /* Sobre el sólido de acierto/error, el keycap se invierte */
+  .correctOption .optionLetter,
+  .incorrectOption .optionLetter {
+    border-color: var(--background);
+    background-color: transparent;
+    color: var(--background);
+  }
+
   .optionText {
     flex: 1;
     white-space: pre-wrap;
