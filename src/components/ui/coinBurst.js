@@ -3,7 +3,7 @@
 // estilos .px-coin-* en global.css.
 import { pixelIconPath } from './pixelIcons.js';
 
-export function spawnCoinBurst(originEl, coins = 14) {
+export function spawnCoinBurst(originEl, coins = 24) {
   if (typeof window === 'undefined' || !originEl) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 

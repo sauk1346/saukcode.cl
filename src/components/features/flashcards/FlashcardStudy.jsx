@@ -19,7 +19,7 @@ function RankLetter({ rank, rankClass }) {
   const ref = useRef(null);
   useEffect(() => {
     if (rank === 'S' && ref.current) {
-      const t = setTimeout(() => spawnCoinBurst(ref.current, 10), 350);
+      const t = setTimeout(() => spawnCoinBurst(ref.current, 32), 350);
       return () => clearTimeout(t);
     }
   }, [rank]);

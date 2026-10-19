@@ -59,7 +59,7 @@ export const GridQuiz = ({ title, columns, rows }) => {
   useEffect(() => {
     if (allCorrect && !celebratedRef.current) {
       celebratedRef.current = true;
-      spawnCoinBurst(rootRef.current, 8);
+      spawnCoinBurst(rootRef.current, 30);
     }
     if (!allCorrect) {
       celebratedRef.current = false;
