@@ -1,9 +1,9 @@
 /* Configuración base del contenedor */
 .container {
     width: 100%;
-    /* La tarjeta abraza la columna de lectura (--measure: 40rem) +
-       respiro para código y tablas; antes 1100px dejaba un desierto */
-    max-width: 50rem;
+    /* La tarjeta se ciñe a la columna de lectura (--measure: 40rem +
+       padding): sin franja muerta a la derecha */
+    max-width: 46rem;
     margin: 0 auto;
     padding: var(--spacing-xl);
     color: var(--foreground);

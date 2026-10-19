@@ -11,22 +11,16 @@
 
 
 
-  /* Regla de cierre (sidehead de manual + menú de consola): el título
-     y la línea son un solo objeto; remate en cuadrado pixel primario */
-  .h2 {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
+  /* Subrayado primario a todo el ancho de la medida, con remate en
+     cuadrado pixel: cubre el texto aunque el título ocupe dos líneas */
   .h2::after {
     content: '';
-    flex: 1 1 auto;
-    min-width: 3rem;
+    display: block;
     height: 8px;
+    margin-top: 0.5rem;
     background:
       linear-gradient(var(--primary), var(--primary)) right center / 8px 8px no-repeat,
-      linear-gradient(var(--border-color), var(--border-color)) left center / calc(100% - 14px) 2px no-repeat;
+      linear-gradient(var(--primary), var(--primary)) left center / calc(100% - 14px) 2px no-repeat;
   }
 
   .h2 {
