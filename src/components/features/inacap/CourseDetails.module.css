@@ -173,12 +173,6 @@
   color: var(--foreground);
 }
 
-/* Modo oscuro para títulos de tarjetas */
-:global(html.dark-mode) .cardTitle,
-:global(html.dark-mode-override) .cardTitle {
-  color: var(--foreground);
-}
-
 .cardBody {
   padding: var(--spacing-md);
 }
@@ -709,6 +703,15 @@
    legible de adentro */
 .currentWeekCard .cardTitle {
   color: var(--course-accent, var(--primary));
+}
+
+:global(html[data-blink='1']) .currentWeekCard .cardTitle,
+:global(html[data-blink='3']) .currentWeekCard .cardTitle {
+  opacity: 0.7;
+}
+
+:global(html[data-blink='2']) .currentWeekCard .cardTitle {
+  opacity: 0.45;
 }
 
 /* El borde propio de la card late: capa de tinte sobre el contorno del
