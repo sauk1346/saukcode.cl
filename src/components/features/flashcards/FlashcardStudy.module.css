@@ -82,7 +82,9 @@
   transition: width 0.3s ease;
 }
 
-/* Carta con flip */
+/* Carta con flip cuantizado: gira "a cuadros" (steps), como sprite de
+   carta de consola. El swap de contenido está sincronizado con los
+   frames en el JSX (310ms). */
 .cardWrapper {
   perspective: 1200px;
   cursor: pointer;
@@ -94,7 +96,7 @@
   width: 100%;
   min-height: 340px;
   transform-style: preserve-3d;
-  transition: transform 0.45s ease;
+  transition: transform 0.45s steps(4, jump-none);
   will-change: transform;
 }
 
@@ -108,8 +110,20 @@
 }
 
 .transitioning .cardInner {
-  animation: flipToNext 0.45s ease forwards;
+  animation: flipToNext 0.45s steps(4, jump-none) forwards;
   transition: none;
+}
+
+/* Reducción de movimiento: giro casi instantáneo (duración ~0 mantiene
+   los eventos animationend de los que depende el estado) */
+@media (prefers-reduced-motion: reduce) {
+  .cardInner {
+    transition-duration: 0.01s;
+  }
+
+  .transitioning .cardInner {
+    animation-duration: 0.01s;
+  }
 }
 
 .cardFront,
@@ -122,19 +136,31 @@
      navegador no tenga que promover/degradar la capa a mitad de la
      transición (fuente típica de que la cara trasera se filtre un instante) */
   transform: translateZ(0);
-  background: var(--card-bg);
+  background-color: var(--card-bg);
+  background-clip: padding-box;
   color: var(--foreground);
-  border: 1px solid var(--border-color);
+  border: 8px solid transparent;
+  border-image: var(--px-frame) 8 / 8px stretch;
   border-radius: 0;
-  padding: 1.75rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 4px 4px 0 var(--shadow-hard);
+}
+
+/* Dorso del naipe (lado Pregunta): tramado pixel sutil de identidad */
+.cardFront {
+  background-image: repeating-conic-gradient(
+    color-mix(in srgb, var(--foreground) 3%, transparent) 0% 25%,
+    transparent 0% 50%
+  );
+  background-size: 8px 8px;
 }
 
 .cardBack {
   transform: rotateY(180deg) translateZ(0);
-  background: var(--surface);
+  background-color: var(--surface);
+  border-image: var(--px-frame-surface) 8 / 8px stretch;
 }
 
 /* El scroll vive en un contenedor interno, no en la capa que tiene
@@ -151,17 +177,17 @@
 }
 
 .cardSideLabel {
+  font-family: var(--font-mono);
   font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-secondary, #aaa);
-  font-weight: 600;
+  color: var(--secondary);
+  font-weight: 700;
 }
 
 .flipHint {
   text-align: center;
-  font-size: 0.8rem;
-  color: var(--text-secondary, #aaa);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--secondary);
   margin: 0;
 }
 
