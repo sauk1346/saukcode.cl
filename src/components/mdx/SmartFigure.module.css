@@ -99,9 +99,11 @@
      ================================ */
   
   .closeButton {
-    position: absolute;
-    top: -3rem;
-    right: -3rem;
+    /* Fija al viewport: con imágenes grandes, la esquina de la imagen
+       queda fuera de pantalla */
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
     width: 2.5rem;
     height: 2.5rem;
     background: rgba(255, 255, 255, 0.1);

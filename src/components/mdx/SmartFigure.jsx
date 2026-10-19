@@ -54,7 +54,6 @@ export default function SmartFigure({
 
     if (isLightboxOpen) {
       document.addEventListener('keydown', handleEsc)
-      document.body.style.overflow = 'hidden'
       
       // Add scroll listener to lightbox container
       const lightboxElement = lightboxScrollRef.current
@@ -73,12 +72,18 @@ export default function SmartFigure({
       if (lightboxElement) {
         lightboxElement.removeEventListener('scroll', handleScroll)
       }
-      
-      if (!isLightboxOpen) {
-        document.body.style.overflow = 'auto'
-      }
     }
   }, [isLightboxOpen, isClosing, isScrolling])
+
+  // Bloqueo de scroll del body: efecto propio con cleanup incondicional
+  // (condicionarlo a un closure viejo dejaba el overflow en hidden)
+  useEffect(() => {
+    if (!isLightboxOpen) return
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isLightboxOpen])
 
   const openLightbox = () => {
     if (lightbox) {
