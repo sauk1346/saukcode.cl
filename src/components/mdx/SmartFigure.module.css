@@ -5,7 +5,9 @@
    .figure {
     margin: var(--spacing-lg) 0;
     position: relative;
-    overflow-x: auto;
+    /* Sin overflow-x: auto — la imagen (max-width 100%) nunca desborda,
+       y un eje no-visible vuelve la figura contenedor de scroll que se
+       traga la rueda antes de encadenar a la página */
     max-width: 100%;
   }
   
