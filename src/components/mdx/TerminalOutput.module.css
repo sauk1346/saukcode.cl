@@ -29,6 +29,20 @@
   border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' shape-rendering='crispEdges'%3E%3Cpath fill='%233f3f3f' d='M4 0h4v2H4zM2 2h2v2H2zM0 4h2v4H0zM16 0h4v2h-4zM20 2h2v2h-2zM22 4h2v4h-2zM0 16h2v4H0zM2 20h2v2H2zM4 22h4v2H4zM22 16h2v4h-2zM20 20h2v2h-2zM16 22h4v2h-4zM8 0h8v2H8zM0 8h2v8H0zM22 8h2v8h-2zM8 22h8v2H8z'/%3E%3Cpath fill='%230d0d0d' d='M4 2h4v2H4zM2 4h6v4H2zM16 2h4v2h-4zM16 4h6v4h-6zM2 16h6v4H2zM4 20h4v2H4zM16 16h6v4h-6zM16 20h4v2h-4zM8 2h8v6H8zM2 8h6v8H2zM16 8h6v8h-6zM8 16h8v6H8z'/%3E%3C/svg%3E") 8 / 8px stretch;
   border-radius: 0;
   padding: 0.75rem;
+  position: relative;
+}
+
+/* Scanlines CRT: líneas de barrido sutiles sobre el fósforo */
+.terminalWithBg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.045) 0 1px,
+    transparent 1px 3px
+  );
 }
 
 /* Modo oscuro */

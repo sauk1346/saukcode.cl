@@ -11,19 +11,22 @@
 
 
 
-  /* Subrayado dither: la línea parte sólida en primario y se disuelve
-     en tramado pixel (el degradado de los 16 bits). La máscara lleva el
-     dibujo; el color lo pone el tema */
+  /* Regla de cierre (sidehead de manual + menú de consola): el título
+     y la línea son un solo objeto; remate en cuadrado pixel primario */
+  .h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
   .h2::after {
     content: '';
-    display: block;
-    height: 4px;
-    margin-top: 0.45rem;
-    background-color: var(--primary);
-    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='4'%3E%3Cpath d='M0 0h200v4H0zM200 0h2v2h-2zM202 2h2v2h-2zM204 0h2v2h-2zM206 2h2v2h-2zM208 0h2v2h-2zM210 2h2v2h-2zM212 0h2v2h-2zM214 2h2v2h-2zM216 0h2v2h-2zM218 2h2v2h-2zM220 0h2v2h-2zM222 2h2v2h-2zM224 0h2v2h-2zM226 2h2v2h-2zM228 0h2v2h-2zM230 2h2v2h-2zM232 0h2v2h-2zM234 2h2v2h-2zM236 0h2v2h-2zM238 2h2v2h-2zM240 0h2v2h-2zM242 2h2v2h-2zM244 0h2v2h-2zM246 2h2v2h-2zM248 0h2v2h-2zM250 2h2v2h-2zM252 0h2v2h-2zM254 2h2v2h-2zM256 0h2v2h-2zM258 2h2v2h-2zM260 0h2v2h-2zM262 2h2v2h-2zM264 0h2v2h-2zM266 2h2v2h-2zM268 0h2v2h-2zM270 2h2v2h-2zM272 0h2v2h-2zM274 2h2v2h-2zM276 0h2v2h-2zM278 2h2v2h-2zM280 0h2v2h-2zM282 2h2v2h-2zM284 0h2v2h-2zM286 2h2v2h-2zM288 0h2v2h-2zM290 2h2v2h-2zM292 0h2v2h-2zM294 2h2v2h-2zM296 0h2v2h-2zM298 2h2v2h-2zM300 0h2v2h-2zM302 2h2v2h-2zM304 0h2v2h-2zM306 2h2v2h-2zM308 0h2v2h-2zM310 2h2v2h-2zM312 0h2v2h-2zM314 2h2v2h-2zM316 0h2v2h-2zM318 2h2v2h-2zM320 0h2v2h-2zM322 2h2v2h-2zM324 0h2v2h-2zM326 2h2v2h-2zM328 0h2v2h-2zM330 2h2v2h-2zM332 0h2v2h-2zM334 2h2v2h-2zM336 0h2v2h-2zM338 2h2v2h-2zM340 1h2v2h-2zM348 1h2v2h-2zM356 1h2v2h-2zM364 1h2v2h-2zM372 1h2v2h-2zM380 1h2v2h-2zM388 1h2v2h-2zM396 1h2v2h-2zM404 1h2v2h-2zM412 1h2v2h-2zM420 1h2v2h-2zM428 1h2v2h-2zM436 1h2v2h-2zM444 1h2v2h-2zM452 1h2v2h-2zM460 1h2v2h-2zM468 1h2v2h-2zM476 1h2v2h-2z'/%3E%3C/svg%3E");
-    -webkit-mask-repeat: no-repeat;
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='4'%3E%3Cpath d='M0 0h200v4H0zM200 0h2v2h-2zM202 2h2v2h-2zM204 0h2v2h-2zM206 2h2v2h-2zM208 0h2v2h-2zM210 2h2v2h-2zM212 0h2v2h-2zM214 2h2v2h-2zM216 0h2v2h-2zM218 2h2v2h-2zM220 0h2v2h-2zM222 2h2v2h-2zM224 0h2v2h-2zM226 2h2v2h-2zM228 0h2v2h-2zM230 2h2v2h-2zM232 0h2v2h-2zM234 2h2v2h-2zM236 0h2v2h-2zM238 2h2v2h-2zM240 0h2v2h-2zM242 2h2v2h-2zM244 0h2v2h-2zM246 2h2v2h-2zM248 0h2v2h-2zM250 2h2v2h-2zM252 0h2v2h-2zM254 2h2v2h-2zM256 0h2v2h-2zM258 2h2v2h-2zM260 0h2v2h-2zM262 2h2v2h-2zM264 0h2v2h-2zM266 2h2v2h-2zM268 0h2v2h-2zM270 2h2v2h-2zM272 0h2v2h-2zM274 2h2v2h-2zM276 0h2v2h-2zM278 2h2v2h-2zM280 0h2v2h-2zM282 2h2v2h-2zM284 0h2v2h-2zM286 2h2v2h-2zM288 0h2v2h-2zM290 2h2v2h-2zM292 0h2v2h-2zM294 2h2v2h-2zM296 0h2v2h-2zM298 2h2v2h-2zM300 0h2v2h-2zM302 2h2v2h-2zM304 0h2v2h-2zM306 2h2v2h-2zM308 0h2v2h-2zM310 2h2v2h-2zM312 0h2v2h-2zM314 2h2v2h-2zM316 0h2v2h-2zM318 2h2v2h-2zM320 0h2v2h-2zM322 2h2v2h-2zM324 0h2v2h-2zM326 2h2v2h-2zM328 0h2v2h-2zM330 2h2v2h-2zM332 0h2v2h-2zM334 2h2v2h-2zM336 0h2v2h-2zM338 2h2v2h-2zM340 1h2v2h-2zM348 1h2v2h-2zM356 1h2v2h-2zM364 1h2v2h-2zM372 1h2v2h-2zM380 1h2v2h-2zM388 1h2v2h-2zM396 1h2v2h-2zM404 1h2v2h-2zM412 1h2v2h-2zM420 1h2v2h-2zM428 1h2v2h-2zM436 1h2v2h-2zM444 1h2v2h-2zM452 1h2v2h-2zM460 1h2v2h-2zM468 1h2v2h-2zM476 1h2v2h-2z'/%3E%3C/svg%3E");
-    mask-repeat: no-repeat;
+    flex: 1 1 auto;
+    min-width: 3rem;
+    height: 8px;
+    background:
+      linear-gradient(var(--primary), var(--primary)) right center / 8px 8px no-repeat,
+      linear-gradient(var(--border-color), var(--border-color)) left center / calc(100% - 14px) 2px no-repeat;
   }
 
   .h2 {
