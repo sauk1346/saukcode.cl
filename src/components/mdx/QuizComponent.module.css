@@ -218,3 +218,27 @@
       padding: 8px;
     }
   }
+
+/* Quiz sin errores: sello PERFECT */
+.perfectPop {
+  font-family: var(--font-pixel);
+  font-size: 1.5rem;
+  text-align: center;
+  color: var(--success);
+  text-shadow: 2px 2px 0 var(--shadow-hard);
+  margin-top: var(--spacing-md);
+  animation: perfectIn 0.5s steps(5);
+}
+
+@keyframes perfectIn {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .perfectPop {
+    animation: none;
+  }
+}

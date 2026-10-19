@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
+import QuizHearts from './QuizHearts.jsx';
 import styles from './QuizComponent.module.css';
 
-export const QuizQuestion = ({ question, questionItems, questionSuffix, options, correctIndex, questionNumber }) => {
+export const QuizQuestion = ({ question, questionItems, questionSuffix, options, correctIndex, questionNumber, onWrong, onCorrect }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const confettiCanvasRef = useRef(null);
+  const wrongOnceRef = useRef(false); // máx. una vida perdida por pregunta
   
   // Efecto para cargar la librería canvas-confetti
   useEffect(() => {
@@ -21,6 +23,10 @@ export const QuizQuestion = ({ question, questionItems, questionSuffix, options,
     setSelectedOption(index);
     if (index === correctIndex) {
       triggerConfetti();
+      onCorrect?.();
+    } else if (!wrongOnceRef.current) {
+      wrongOnceRef.current = true;
+      onWrong?.();
     }
   };
   
@@ -144,8 +150,16 @@ export const QuizQuestion = ({ question, questionItems, questionSuffix, options,
 };
 
 export const Quiz = ({ questions }) => {
+  // Vidas del quiz completo: el error cuesta, pero nunca bloquea
+  const [heartsLost, setHeartsLost] = useState(0);
+  const [correctIds, setCorrectIds] = useState(() => new Set());
+  const loseHeart = () => setHeartsLost((h) => Math.min(h + 1, 3));
+  const markCorrect = (i) => setCorrectIds((prev) => new Set(prev).add(i));
+  const isPerfect = questions.length > 0 && correctIds.size === questions.length && heartsLost === 0;
+
   return (
     <div className={styles.quizContainer}>
+      <QuizHearts lost={heartsLost} />
       {questions.map((q, index) => (
         <QuizQuestion
           key={index}
@@ -155,8 +169,11 @@ export const Quiz = ({ questions }) => {
           options={q.options}
           correctIndex={q.correctIndex}
           questionNumber={index + 1}
+          onWrong={loseHeart}
+          onCorrect={() => markCorrect(index)}
         />
       ))}
+      {isPerfect && <div className={styles.perfectPop}>PERFECT</div>}
     </div>
   );
 };

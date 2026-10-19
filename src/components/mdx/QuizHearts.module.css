@@ -1,0 +1,35 @@
+.hearts {
+  display: flex;
+  gap: 0.35rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.heart {
+  color: var(--error);
+  line-height: 0;
+}
+
+/* Corazón perdido: sacudida en pasos y queda apagado */
+.lostHeart {
+  color: var(--secondary);
+  opacity: 0.35;
+  animation: heartBreak 0.45s steps(4);
+}
+
+@keyframes heartBreak {
+  25% {
+    transform: translate(-2px, 0);
+  }
+  50% {
+    transform: translate(2px, -2px);
+  }
+  75% {
+    transform: translate(-1px, 1px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lostHeart {
+    animation: none;
+  }
+}
