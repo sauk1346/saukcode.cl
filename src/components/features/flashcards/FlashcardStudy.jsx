@@ -52,9 +52,8 @@ export default function FlashcardStudy({ cards, topicName, deckNumber, layout })
       setTimeout(() => setFinished(true), 500);
     } else {
       setTransitioning(true);
-      // Con el giro en steps(4), el frame de 300° (t≈310ms) ya muestra el
-      // frente: ahí el swap de contenido es invisible
-      setTimeout(() => setIndex(i => i + 1), 310);
+      // Cambia el contenido cuando la carta está de canto (~270°), invisible
+      setTimeout(() => setIndex(i => i + 1), 225);
     }
   }, [index, total]);
 

@@ -82,9 +82,8 @@
   transition: width 0.3s ease;
 }
 
-/* Carta con flip cuantizado: gira "a cuadros" (steps), como sprite de
-   carta de consola. El swap de contenido está sincronizado con los
-   frames en el JSX (310ms). */
+/* Carta con flip: giro fluido (imita un naipe físico — los steps son
+   para parpadeos, no para rotación); lo retro vive en marco y dorso. */
 .cardWrapper {
   perspective: 1200px;
   cursor: pointer;
@@ -96,7 +95,7 @@
   width: 100%;
   min-height: 340px;
   transform-style: preserve-3d;
-  transition: transform 0.45s steps(4, jump-none);
+  transition: transform 0.45s ease;
   will-change: transform;
 }
 
@@ -110,7 +109,7 @@
 }
 
 .transitioning .cardInner {
-  animation: flipToNext 0.45s steps(4, jump-none) forwards;
+  animation: flipToNext 0.45s ease forwards;
   transition: none;
 }
 
