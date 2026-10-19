@@ -44,8 +44,10 @@ const totalJava = Object.keys(javaProblems).length;
 ---
 
 <BaseLayout title="SaukCode" description="Apuntes de Ingeniería en Informática (INACAP), ejercicios de programación resueltos y flashcards de estudio.">
-  <!-- Hero -->
-  <section class="mx-auto max-w-3xl px-4 pt-16 pb-12 text-center">
+  <!-- Hero con Game of Life de fondo: el autómata avanza con el reloj px-blink -->
+  <section class="relative overflow-hidden">
+    <canvas id="gol-bg" class="pointer-events-none absolute inset-0" aria-hidden="true"></canvas>
+    <div class="relative mx-auto max-w-3xl px-4 pt-16 pb-12 text-center">
     <h1 class="font-pixel text-3xl text-(--foreground) sm:text-4xl">Apuntes de Informática</h1>
     <p class="mx-auto mt-4 max-w-xl text-(--secondary)">
       {totalLessons} lecciones de Ingeniería en Informática (INACAP), {totalLeetcode
@@ -74,6 +76,7 @@ const totalJava = Object.keys(javaProblems).length;
       <span id="continue-title" class="truncate text-(--foreground) group-hover:text-(--primary)"></span>
       <span class="font-mono ml-auto hidden text-[10px] text-(--secondary) sm:inline">SAVE 01</span>
     </a>
+    </div>
   </section>
 
   <!-- Secciones: la home es un hub, cada ficha entra a su sección completa -->
@@ -159,6 +162,83 @@ const totalJava = Object.keys(javaProblems).length;
 </style>
 
 <script is:inline>
+  // Game of Life de fondo (Conway): celdas pixel al compás del reloj
+  // global px-blink — un paso por fase 0 (cada 1.4s). Con
+  // prefers-reduced-motion el reloj no corre y la semilla queda estática.
+  (function () {
+    var canvas = document.getElementById('gol-bg');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var CELL = 8;
+    var cols, rows, grid;
+
+    function seed() {
+      grid = new Uint8Array(cols * rows);
+      for (var i = 0; i < grid.length; i++) grid[i] = Math.random() < 0.16 ? 1 : 0;
+    }
+
+    function resize() {
+      var r = canvas.parentElement.getBoundingClientRect();
+      canvas.width = Math.ceil(r.width);
+      canvas.height = Math.ceil(r.height);
+      cols = Math.ceil(canvas.width / CELL);
+      rows = Math.ceil(canvas.height / CELL);
+      seed();
+      draw();
+    }
+
+    function step() {
+      var next = new Uint8Array(cols * rows);
+      var alive = 0;
+      for (var y = 0; y < rows; y++) {
+        for (var x = 0; x < cols; x++) {
+          var n = 0;
+          for (var dy = -1; dy <= 1; dy++) {
+            for (var dx = -1; dx <= 1; dx++) {
+              if (!dx && !dy) continue;
+              n += grid[((y + dy + rows) % rows) * cols + ((x + dx + cols) % cols)];
+            }
+          }
+          var i = y * cols + x;
+          next[i] = grid[i] ? (n === 2 || n === 3 ? 1 : 0) : n === 3 ? 1 : 0;
+          alive += next[i];
+        }
+      }
+      grid = next;
+      if (alive < cols * rows * 0.02) seed(); // re-sembrar si el mundo muere
+    }
+
+    function draw() {
+      var color = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.globalAlpha = 0.09;
+      ctx.fillStyle = color;
+      for (var y = 0; y < rows; y++) {
+        for (var x = 0; x < cols; x++) {
+          if (grid[y * cols + x]) ctx.fillRect(x * CELL, y * CELL, CELL - 1, CELL - 1);
+        }
+      }
+    }
+
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    // un paso del autómata por ciclo del reloj global
+    new MutationObserver(function () {
+      if (document.documentElement.dataset.blink === '0') {
+        step();
+        draw();
+      }
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-blink'] });
+
+    // re-pintar al cambiar de tema
+    document.querySelectorAll('.theme-toggle').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        requestAnimationFrame(draw);
+      });
+    });
+  })();
+
   // Save state: si hay una última lección guardada, mostrar "Continuar"
   (function () {
     try {
