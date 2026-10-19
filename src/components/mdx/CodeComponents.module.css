@@ -2,7 +2,7 @@
 /* Inline quieto: mono + lavado suave, sin borde (el cambio tipográfico
    hace el trabajo; el lavado solo agrupa fragmentos con espacios) */
 .inlineCode {
-  color: var(--foreground);
+  color: var(--cyan); /* tinte técnico: distinto de enlaces y semánticos */
   font-family: var(--font-code);
   font-size: 0.875em;
   font-weight: 400;
