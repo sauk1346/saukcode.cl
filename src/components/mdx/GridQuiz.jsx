@@ -65,7 +65,7 @@ export const GridQuiz = ({ title, columns, rows }) => {
           resize: true,
           useWorker: true
         });
-        myConfetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
+        myConfetti({ ...pixelConfetti, particleCount: 150, spread: 90, origin: { y: 0.6 } });
       } catch (error) {
         console.warn('Error al disparar confetti:', error);
       }
