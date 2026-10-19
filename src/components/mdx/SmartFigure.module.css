@@ -5,10 +5,20 @@
    .figure {
     margin: var(--spacing-lg) 0;
     position: relative;
-    /* Sin overflow-x: auto — la imagen (max-width 100%) nunca desborda,
-       y un eje no-visible vuelve la figura contenedor de scroll que se
-       traga la rueda antes de encadenar a la página */
     max-width: 100%;
+    /* Scroll SOLO horizontal: overflow-y hidden evita que la rueda
+       vertical quede atrapada por la figura (el bug de la latencia) */
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+  }
+
+  /* En pantallas chicas la imagen conserva su tamaño natural: una tabla
+     apretada a 320px es ilegible — se lee completa paneando */
+  @media (max-width: 768px) {
+    .figure .image {
+      max-width: none;
+    }
   }
   
   .image {
