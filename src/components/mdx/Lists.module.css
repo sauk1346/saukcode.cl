@@ -422,5 +422,5 @@
   font-family: var(--font-mono);
   font-weight: 700;
   font-size: 0.85em;
-  color: var(--primary);
+  color: var(--secondary); /* estructura, no énfasis: el azul es de los enlaces */
 }
