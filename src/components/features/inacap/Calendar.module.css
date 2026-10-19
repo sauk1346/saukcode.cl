@@ -146,6 +146,15 @@
   background: color-mix(in srgb, var(--primary) 9%, var(--card-bg));
 }
 
+/* En oscuro el ojo comprime las diferencias: los lavados suben de dosis */
+:global(html.dark) .weekendDay {
+  background: color-mix(in srgb, var(--accent) 14%, var(--card-bg));
+}
+
+:global(html.dark) .hasEvents {
+  background: color-mix(in srgb, var(--primary) 20%, var(--card-bg));
+}
+
 .hasEvents .calendarioDayHeader {
   color: var(--primary);
 }
