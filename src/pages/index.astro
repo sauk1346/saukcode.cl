@@ -63,10 +63,17 @@ const totalJava = Object.keys(javaProblems).length;
       <kbd class="ml-auto hidden border border-(--border-color) bg-(--surface) px-1.5 text-[10px] sm:inline">Ctrl K</kbd>
     </button>
 
-    <!-- Continuar donde quedaste (lo llena el script si hay save state) -->
-    <a id="continue-link" href="/" class="group mx-auto mt-4 hidden w-full max-w-xl items-center gap-2 px-1 text-sm">
-      <span class="font-pixel text-xs text-(--primary) group-hover:text-(--primary-hover)">▶ CONTINUAR</span>
-      <span id="continue-title" class="truncate text-(--secondary) group-hover:text-(--foreground)"></span>
+    <!-- Ranura de partida guardada (la llena el script si hay save state) -->
+    <a
+      id="continue-link"
+      href="/"
+      class="save-slot pixel-press group mx-auto mt-4 hidden w-full max-w-xl items-center gap-3 border-2 border-(--border-color) bg-(--surface) px-4 py-2.5 text-left text-sm shadow-(--shadow-sm)"
+    >
+      <span class="font-pixel text-xs text-(--primary)">
+        <span class="save-cursor" aria-hidden="true">▶</span> CONTINUAR
+      </span>
+      <span id="continue-title" class="truncate text-(--foreground) group-hover:text-(--primary)"></span>
+      <span class="font-mono ml-auto hidden text-[10px] text-(--secondary) sm:inline">SAVE 01</span>
     </a>
   </section>
 
@@ -127,6 +134,16 @@ const totalJava = Object.keys(javaProblems).length;
 </BaseLayout>
 
 <style>
+  /* El cursor del save slot late con el reloj global */
+  :global(html[data-blink='1']) .save-cursor,
+  :global(html[data-blink='3']) .save-cursor {
+    opacity: 0.6;
+  }
+
+  :global(html[data-blink='2']) .save-cursor {
+    opacity: 0.25;
+  }
+
   .hero-cursor {
     animation: hero-blink 1.1s steps(2) infinite;
   }
