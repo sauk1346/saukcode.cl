@@ -132,11 +132,8 @@
   text-align: left;
 }
 
-/* Mismo respiro tras el marcador en ambas listas: textos alineados */
-.list > .listItem,
-.orderedList > .listItem {
-  padding-left: 0.5rem;
-}
+/* Sin padding extra en los ítems: ambas listas alineadas a la sangría
+   original del contenedor */
 
 /* Elementos de lista anidados - reducir espaciado */
 .list .list .listItem,
@@ -403,25 +400,27 @@
 /* Viñetas del sistema: ▸ / ▪ / · por nivel (los navegadores sin
    ::marker con content caen al disco por defecto) */
 .list > li::marker {
-  content: '▸  ';
+  content: '▸ ';
+  color: var(--secondary);
+  font-size: 1.1em;
+}
+
+.list .list > li::marker {
+  content: '▪ ';
   color: var(--secondary);
   font-size: 0.9em;
 }
 
-.list .list > li::marker {
-  content: '▪  ';
-  color: var(--secondary);
-  font-size: 0.75em;
-}
-
 .list .list .list > li::marker {
-  content: '·  ';
+  content: '• ';
   color: var(--secondary);
+  font-size: 0.8em;
 }
 
 /* Numeradas: pasos en mono primario, como secuencia de nivel */
 .orderedList > li::marker {
   font-family: var(--font-mono);
   font-weight: 700;
+  font-size: 0.85em;
   color: var(--primary);
 }
