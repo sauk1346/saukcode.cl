@@ -11,23 +11,14 @@
 
 
 
-  /* Línea punteada pixel bajo el h2, a todo el ancho de la medida:
-     h1 = línea sólida, h2 = punteada — jerarquía por estilo de línea */
-  .h2::after {
-    content: '';
-    display: block;
-    height: 2px;
-    margin-top: 0.4rem;
-    background: repeating-linear-gradient(
-      to right,
-      var(--border-color) 0 8px,
-      transparent 8px 14px
-    );
-  }
-
+  /* Los h2 son hitos estructurales, y los hitos del sitio hablan
+     Silkscreen (carátulas, Semana NN, BUSCAR...): el cambio de sección
+     lo marca la tipografía misma, sin adornos */
   .h2 {
-    font-size: 1.75rem;
-    font-weight: 700;
+    font-family: var(--font-pixel);
+    font-size: 1.375rem; /* 22px: sobre el mínimo legible de Silkscreen */
+    font-weight: 400;
+    line-height: 1.4;
     /* Proximidad: un título pertenece al contenido que abre */
     margin-top: 3.5rem;
     margin-bottom: 0.6rem;
@@ -55,7 +46,7 @@
     }
     
     .h2 {
-      font-size: 1.5rem;
+      font-size: 1.25rem; /* 20px: mínimo Silkscreen con margen */
     }
     
     .h3 {
