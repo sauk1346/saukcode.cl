@@ -9,14 +9,15 @@
   /* ================================
      ESTILOS BASE DE LA TABLA
      ================================ */
+  /* Pantalla de stats RPG: etiquetas mono, regla fuerte bajo el header,
+     cebra sutil y hover como selección de menú */
   .table {
     width: 100%;
     border-collapse: collapse;
     background: var(--card-bg);
-    border-radius: var(--radius-lg);
+    border: 2px solid var(--border-color);
     overflow: hidden;
     box-shadow: var(--shadow-md);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
     table-layout: fixed;
     margin-bottom: 1.75rem;
   }
@@ -32,7 +33,7 @@
   
   .table thead {
     background: var(--surface);
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--secondary);
   }
   
   .table th, .table td {
@@ -43,9 +44,10 @@
   }
   
   .table thead th {
+    font-family: var(--font-mono);
     font-weight: 700;
     color: var(--foreground);
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     border-color: var(--border-color);
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -55,10 +57,15 @@
   .table tbody tr {
     transition: background-color 0.2s ease;
   }
-  
+
+  /* Cebra sutil: seguir la fila sin perderse */
+  .table tbody tr:nth-child(even) {
+    background-color: color-mix(in srgb, var(--surface) 45%, transparent);
+  }
+
+  /* Hover = selección de menú (azul del sistema), no el color del header */
   .table tbody tr:hover {
-    background-color: var(--surface);
-    cursor: pointer;
+    background-color: color-mix(in srgb, var(--primary) 12%, transparent);
   }
   
   .table tbody td {
