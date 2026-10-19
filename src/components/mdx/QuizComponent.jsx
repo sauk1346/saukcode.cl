@@ -113,7 +113,7 @@ export const QuizQuestion = ({ question, questionItems, questionSuffix, options,
               }`}
             >
               <div className={styles.optionContent}>
-                <span className={styles.optionLetter}>{letter})</span>
+                <span className={styles.optionLetter}>{letter}</span>
                 <span className={styles.optionText}>{option}</span>
               </div>
               {selectedOption === index && (
@@ -135,14 +135,19 @@ export const QuizQuestion = ({ question, questionItems, questionSuffix, options,
       </div>
       
       {selectedOption !== null && (
-        <div className={`${styles.feedback} ${
-          selectedOption === correctIndex 
-            ? styles.correctFeedback
-            : styles.incorrectFeedback
-        }`}>
-          {selectedOption === correctIndex 
-            ? "¡Correcto!" 
-            : `Incorrecto. La respuesta correcta es la opción ${String.fromCharCode(97 + correctIndex)}).`}
+        <div className={styles.feedback}>
+          <div
+            className={`${styles.verdict} ${
+              selectedOption === correctIndex ? styles.verdictOk : styles.verdictBad
+            }`}
+          >
+            {selectedOption === correctIndex ? 'CORRECTO' : 'INCORRECTO'}
+          </div>
+          {selectedOption !== correctIndex && (
+            <p className={styles.verdictDetail}>
+              La respuesta correcta es la opción {String.fromCharCode(97 + correctIndex)}).
+            </p>
+          )}
         </div>
       )}
     </div>

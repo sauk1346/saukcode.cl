@@ -92,8 +92,17 @@
   }
 
   .optionLetter {
-    margin-right: 6px;
+    width: 1.7em;
+    height: 1.7em;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.85em;
+    border: 2px solid var(--border-color);
+    background-color: var(--background-elevated);
   }
 
   .optionText {
@@ -171,16 +180,40 @@
     transition: background-color 0.3s ease, color 0.3s ease;
   }
   
-  .correctFeedback {
-    background-color: color-mix(in srgb, var(--success) 12%, transparent);
-    border: 2px solid var(--success);
+  /* Veredicto de juego: pixel centrado; el detalle didáctico, en texto */
+  .verdict {
+    font-family: var(--font-pixel);
+    font-size: 1.1rem;
+    text-align: center;
+    text-shadow: 2px 2px 0 var(--shadow-hard);
+    animation: verdictIn 0.35s steps(4);
+  }
+
+  .verdictOk {
+    color: var(--success);
+  }
+
+  .verdictBad {
+    color: var(--error);
+  }
+
+  .verdictDetail {
+    margin: 0.5rem 0 0;
+    text-align: center;
     color: var(--foreground);
   }
-  
-  .incorrectFeedback {
-    background-color: color-mix(in srgb, var(--error) 12%, transparent);
-    border: 2px solid var(--error);
-    color: var(--foreground);
+
+  @keyframes verdictIn {
+    from {
+      transform: translateY(6px);
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .verdict {
+      animation: none;
+    }
   }
   
   .confettiCanvas {
