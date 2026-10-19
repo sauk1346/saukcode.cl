@@ -24,7 +24,7 @@ const courseData = {
         { 
             evaluationNumber: 1,
             date: 'Sáb 31, Ago 2024',
-            weighting: '20% * 75%', 
+            weighting: '15% (20% × 0,75)', 
             description: {
                 text: 'Evaluación 01',
                 href: 'eval01'
@@ -33,7 +33,7 @@ const courseData = {
         { 
             evaluationNumber: 2,
             date: 'Dom 22, Sep 2024',
-            weighting: '40% * 75%', 
+            weighting: '30% (40% × 0,75)', 
             description: {
                 text: 'Informe 01',
                 href: 'docs/informe01.pdf',
@@ -43,7 +43,7 @@ const courseData = {
         { 
             evaluationNumber: 3,
             date: 'Vie 11, Oct 2024',
-            weighting: '30% * 75%', 
+            weighting: '22,5% (30% × 0,75)', 
             description: [
                 {
                     text: 'Informe Pitch',
@@ -60,7 +60,7 @@ const courseData = {
         { 
             evaluationNumber: 4,
             date: 'Vie 11, Oct 2024',
-            weighting: '10% * 75%', 
+            weighting: '7,5% (10% × 0,75)', 
             description: {
                 text: 'Controles',
                 href: 'controles'
