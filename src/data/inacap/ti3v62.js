@@ -23,7 +23,7 @@ const courseData = {
   evaluationsData: [
     {
       evaluationNumber: 1,
-      date: 'Martes 03, Nov 2026',
+      date: 'Mar 03, Nov 2026',
       weighting: '20%',
       description: {
         text: '',
@@ -32,7 +32,7 @@ const courseData = {
     },
     {
       evaluationNumber: 2,
-      date: 'Martes 17, Nov 2026',
+      date: 'Mar 17, Nov 2026',
       weighting: '30%',
       description: {
         text: '',
@@ -41,7 +41,7 @@ const courseData = {
     },
     {
       evaluationNumber: 3,
-      date: 'Sábado 28, Nov 2026',
+      date: 'Sáb 28, Nov 2026',
       weighting: '40%',
       description:[ 
         {
@@ -52,7 +52,7 @@ const courseData = {
     },
     {
       evaluationNumber: 4,
-      date: 'Lunes 14, Dic 2026',
+      date: 'Lun 14, Dic 2026',
       weighting: '10%',
       description: [
         {
@@ -67,7 +67,7 @@ const courseData = {
     { 
       week: '01', 
       class: '01', 
-      date: 'Lunes 19, Oct 2026', 
+      date: 'Lun 19, Oct 2026', 
       description: [
         {
           text: '',
@@ -78,7 +78,7 @@ const courseData = {
     { 
       week: '01', 
       class: '02', 
-      date: 'Martes 20, Oct 2026', 
+      date: 'Mar 20, Oct 2026', 
       description: [
         {
           text: '',
@@ -89,7 +89,7 @@ const courseData = {
     { 
       week: '02', 
       class: '03', 
-      date: 'Lunes 26, Oct 2026', 
+      date: 'Lun 26, Oct 2026', 
       description: [
         {
           text: '',
@@ -100,7 +100,7 @@ const courseData = {
     { 
       week: '02', 
       class: '04', 
-      date: 'Martes 27, Oct 2026', 
+      date: 'Mar 27, Oct 2026', 
       description: [
         {
           text: '',
@@ -111,7 +111,7 @@ const courseData = {
     { 
       week: '03', 
       class: '05', 
-      date: 'Lunes 02, Nov 2026', 
+      date: 'Lun 02, Nov 2026', 
       description: [
         {
           text: '',
@@ -122,7 +122,7 @@ const courseData = {
     { 
       week: '03', 
       class: '06', 
-      date: 'Martes 03, Nov 2026', 
+      date: 'Mar 03, Nov 2026', 
       description: [
         {
           text: '',
@@ -133,7 +133,7 @@ const courseData = {
     { 
       week: '04', 
       class: '07', 
-      date: 'Lunes 09, Nov 2026', 
+      date: 'Lun 09, Nov 2026', 
       description: [
         {
           text: '',
@@ -144,7 +144,7 @@ const courseData = {
     { 
       week: '04', 
       class: '08', 
-      date: 'Martes 10, Nov 2026', 
+      date: 'Mar 10, Nov 2026', 
       description: [
         {
           text: '',
@@ -155,7 +155,7 @@ const courseData = {
     { 
       week: '05', 
       class: '09', 
-      date: 'Lunes 16, Nov 2026', 
+      date: 'Lun 16, Nov 2026', 
       description: [
         {
           text: '',
@@ -166,7 +166,7 @@ const courseData = {
     { 
       week: '05', 
       class: '10', 
-      date: 'Martes 17, Nov 2026', 
+      date: 'Mar 17, Nov 2026', 
       description: [
         {
           text: '',
@@ -177,7 +177,7 @@ const courseData = {
     { 
       week: '06', 
       class: '11', 
-      date: 'Lunes 23, Nov 2026', 
+      date: 'Lun 23, Nov 2026', 
       description: [
         {
           text: '',
@@ -188,7 +188,7 @@ const courseData = {
     { 
       week: '06', 
       class: '12', 
-      date: 'Martes 24, Nov 2026', 
+      date: 'Mar 24, Nov 2026', 
       description: [
         {
           text: '',
@@ -199,7 +199,7 @@ const courseData = {
     { 
       week: '07', 
       class: '13', 
-      date: 'Lunes 30, Nov 2026', 
+      date: 'Lun 30, Nov 2026', 
       description: [
         {
           text: '',
@@ -210,7 +210,7 @@ const courseData = {
     { 
       week: '07', 
       class: '14', 
-      date: 'Martes 01, Dic 2026', 
+      date: 'Mar 01, Dic 2026', 
       description: [
         {
           text: '',
@@ -221,7 +221,7 @@ const courseData = {
     { 
       week: '08', 
       class: '15', 
-      date: 'Lunes 07, Dic 2026', 
+      date: 'Lun 07, Dic 2026', 
       description: [
         {
           text: '',
@@ -232,7 +232,7 @@ const courseData = {
     { 
       week: '08', 
       class: '16', 
-      date: 'Martes 08, Dic 2026', 
+      date: 'Mar 08, Dic 2026', 
       description: [
         {
           text: '',
@@ -243,7 +243,7 @@ const courseData = {
     { 
       week: '09', 
       class: '17', 
-      date: 'Lunes 14, Dic 2026', 
+      date: 'Lun 14, Dic 2026', 
       description: [
         {
           text: '',
@@ -254,7 +254,7 @@ const courseData = {
     { 
       week: '09', 
       class: '18', 
-      date: 'Martes 15, Dic 2026', 
+      date: 'Mar 15, Dic 2026', 
       description: [
         {
           text: '',
@@ -263,6 +263,62 @@ const courseData = {
       ]
     },
   ],
+  lectureData: [
+    { 
+      week: '01', 
+      lecture: '01', 
+      date: 'Sáb 24, Oct 2026', 
+      description: {
+          text: 'La información vale más de lo que imaginas',
+          href: ''
+      }
+    },
+    { 
+      week: '02', 
+      lecture: '02', 
+      date: 'Sáb 31, Oct 2026', 
+      description: {
+          text: 'La seguridad funciona mejor por capas',
+          href: ''
+      }
+    },
+    { 
+      week: '03', 
+      lecture: '03', 
+      date: 'Sáb 07, Nov 2026', 
+      description: {
+          text: 'La nube exige desiciones seguras',
+          href: ''
+      }
+    },
+    { 
+      week: '04', 
+      lecture: '04', 
+      date: 'Sáb 14, Nov 2026', 
+      description: {
+          text: 'La auditoría revela lo que otros no observan',
+          href: ''
+      }
+    },
+    { 
+      week: '05', 
+      lecture: '05', 
+      date: 'Sáb 21, Nov 2026', 
+      description: {
+          text: 'Cada dispositivo puede convertirse en una vulnerabilidad',
+          href: ''
+      }
+    },
+    { 
+      week: '06', 
+      lecture: '06', 
+      date: 'Sáb 28, Nov 2026', 
+      description: {
+          text: 'Cada conexión deja una señal en la red',
+          href: ''
+      }
+    },
+  ]
 };
 
 export default courseData;
