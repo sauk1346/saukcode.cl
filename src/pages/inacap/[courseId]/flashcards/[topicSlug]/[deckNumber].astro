@@ -23,19 +23,25 @@ export function getStaticPaths() {
   return paths;
 }
 
-const { topicSlug, deckNumber } = Astro.params;
+const { courseId, topicSlug, deckNumber } = Astro.params;
 const result = getDeckByTopicAndNumber(topicSlug, Number(deckNumber));
 const { topic, deck } = result;
 const rawCards = getCardsByDeckId(deck.id);
 const cards = await renderMdxCards(rawCards);
+
+// Tinte del área del ramo para el HUD del mazo
+import { subjects } from '../../../../../data/inacap/inacapData.js';
+const flashCategory = subjects.find((x) => x.href === `/inacap/${courseId}`)?.category ?? 'general';
 ---
 
 <BaseLayout title={`${topic.name} — Mazo ${deckNumber}`}>
-  <FlashcardStudy
+  <div style={`--course-accent: var(--cat-${flashCategory})`}>
+    <FlashcardStudy
     client:load
     cards={cards}
     topicName={topic.name}
     deckNumber={deck.number}
     layout={topic.layout}
   />
+  </div>
 </BaseLayout>

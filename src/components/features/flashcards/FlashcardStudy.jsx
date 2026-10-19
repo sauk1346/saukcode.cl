@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import { RotateCcw, Check, X, Shuffle } from 'lucide-react';
+import { RotateCcw, Check, X } from 'lucide-react';
 import CardRenderer from './CardRenderer';
 import styles from './FlashcardStudy.module.css';
 
@@ -107,20 +107,30 @@ export default function FlashcardStudy({ cards, topicName, deckNumber, layout })
           <span className={styles.deckLabel}>Mazo {deckNumber}</span>
         </div>
         <div className={styles.controls}>
+          <span className={styles.scoreLive} aria-label={`${correct} correctas, ${incorrect} incorrectas`}>
+            <span className={styles.okCount}>✓ {correct}</span>
+            <span className={styles.badCount}>✗ {incorrect}</span>
+          </span>
           <button
             className={`${styles.shuffleBtn} ${shuffled ? styles.shuffleActive : ''}`}
             onClick={toggleShuffle}
             title="Barajar"
+            aria-pressed={shuffled}
           >
-            <Shuffle size={16} />
+            ⇄
           </button>
-          <span className={styles.progress}>{index + 1} / {total}</span>
+          <span className={styles.progress}>{index + 1}/{total}</span>
         </div>
       </div>
 
-      {/* Barra de progreso */}
-      <div className={styles.progressBar}>
-        <div className={styles.progressFill} style={{ width: `${((index + 1) / total) * 100}%` }} />
+      {/* Barra de progreso: una celda por carta */}
+      <div className={styles.progressBar} role="img" aria-label={`Carta ${index + 1} de ${total}`}>
+        {deck.map((_, i) => (
+          <span
+            key={i}
+            className={`${styles.progressCell} ${i < index ? styles.cellDone : ''} ${i === index ? styles.cellCurrent : ''}`}
+          ></span>
+        ))}
       </div>
 
       {/* Carta */}
@@ -152,15 +162,13 @@ export default function FlashcardStudy({ cards, topicName, deckNumber, layout })
           className={`${styles.answerBtn} ${styles.incorrectBtn}`}
           onClick={() => markAnswer(false)}
         >
-          <X size={20} />
-          Incorrecto
+          ✗ Incorrecto
         </button>
         <button
           className={`${styles.answerBtn} ${styles.correctBtn}`}
           onClick={() => markAnswer(true)}
         >
-          <Check size={20} />
-          Correcto
+          ✓ Correcto
         </button>
       </div>
 
