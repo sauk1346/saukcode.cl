@@ -49,4 +49,4 @@
     }
   }
 /* Medida de lectura */
-.h1, .h2, .h3 { max-width: 75ch; }
+.h1, .h2, .h3 { max-width: var(--measure); }

@@ -32,4 +32,4 @@
     text-align: left;
   }
 /* Medida de lectura (~75 caracteres) */
-.paragraph { max-width: 75ch; }
+.paragraph { max-width: var(--measure); }

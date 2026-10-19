@@ -36,4 +36,4 @@
     border-left-color: var(--primary);
     color: var(--secondary);
   }
-.blockquote { max-width: 75ch; }
+.blockquote { max-width: var(--measure); }

@@ -204,7 +204,7 @@
 
 /* Mejorar la apariencia de bloques de código dentro del componente */
 .content :global(pre) {
-  margin: var(--spacing-xl) 0 !important;
+  margin: 1.25rem 0 1.75rem !important;
   border-radius: var(--radius-md);
   font-size: 0.875rem;
 }

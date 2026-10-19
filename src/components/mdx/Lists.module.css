@@ -397,4 +397,4 @@
   .listContainer[data-level="3"] .orderedList .orderedList,
   .listContainer[data-level="4"] .orderedList              { padding-left: var(--spacing-md); }
 }
-.list, .orderedList { max-width: 75ch; }
+.list, .orderedList { max-width: var(--measure); }
