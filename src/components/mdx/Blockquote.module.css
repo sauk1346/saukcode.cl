@@ -1,11 +1,13 @@
-/* Cita como globo de diálogo NES: caja con marco y cola pixel
-   escalonada (alguien lo dijo — la cita "habla") */
+/* Cita como globo de diálogo NES: marco 9-slice de esquinas
+   escalonadas + cola dibujada pixel a pixel con box-shadow */
 .blockquote {
     position: relative;
     background-color: var(--surface);
-    border: 2px solid var(--border-color);
-    padding: 0.75rem 1rem;
-    margin: 1.25rem 0 2.1rem; /* espacio para la cola */
+    background-clip: padding-box;
+    border: 8px solid transparent;
+    border-image: var(--px-frame-surface) 8 / 8px stretch;
+    padding: 0.5rem 0.75rem;
+    margin: 1.25rem 0 2.4rem; /* espacio para la cola */
     font-style: normal;
     color: var(--foreground);
     white-space: pre-wrap;
@@ -15,26 +17,35 @@
     margin-bottom: 0;
   }
 
-  /* Cola: silueta escalonada (borde) + relleno surface encima */
+  /* Cola (grilla de 4px): contorno que cae en diagonal con pie */
   .blockquote::before {
     content: '';
     position: absolute;
+    left: 26px;
     bottom: -12px;
-    left: 22px;
-    width: 14px;
-    height: 12px;
-    background-color: var(--border-color);
-    clip-path: polygon(0 0, 14px 0, 14px 4px, 7px 4px, 7px 8px, 0 8px, 0 12px, 0 0);
+    width: 4px;
+    height: 4px;
+    background: transparent;
+    box-shadow:
+      4px 0 var(--px-outline), 16px 0 var(--px-outline),
+      0 4px var(--px-outline), 12px 4px var(--px-outline),
+      0 8px var(--px-outline), 8px 8px var(--px-outline),
+      0 12px var(--px-outline), 4px 12px var(--px-outline);
   }
 
+  /* Relleno de la cola (abre la pared del globo) */
   .blockquote::after {
     content: '';
     position: absolute;
-    bottom: -8px;
-    left: 24px;
-    width: 8px;
-    height: 8px;
-    background-color: var(--surface);
-    clip-path: polygon(0 0, 8px 0, 8px 2px, 4px 2px, 4px 4px, 0 4px);
+    left: 26px;
+    bottom: -12px;
+    width: 4px;
+    height: 4px;
+    background: transparent;
+    box-shadow:
+      8px 0 var(--surface), 12px 0 var(--surface),
+      4px 4px var(--surface), 8px 4px var(--surface),
+      4px 8px var(--surface);
   }
+
 .blockquote { max-width: var(--measure); }
