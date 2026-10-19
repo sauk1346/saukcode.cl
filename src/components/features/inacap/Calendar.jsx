@@ -184,8 +184,10 @@ const Calendar = ({ eventos = [] }) => {
         
         {selectedDayEvents.length > 0 ? (
           <div className={styles.eventsList}>
-            {selectedDayEvents.map(evento => (
-              <div key={evento.id} className={styles.eventItem}>
+            {selectedDayEvents.map(evento => {
+              const cat = categoryByCode[evento.titulo.match(/^\[([^\]]+)\]/)?.[1]] || 'general';
+              return (
+              <div key={evento.id} className={styles.eventItem} style={{ '--event-accent': `var(--cat-${cat})` }}>
                 <div className={styles.eventItemHeader}>
                   {evento.hora && <span className={styles.eventItemTime}>{evento.hora}</span>}
                   <span className={styles.eventItemTitle}>{evento.titulo}</span>
@@ -196,7 +198,8 @@ const Calendar = ({ eventos = [] }) => {
                   </div>
                 )}
               </div>
-            ))}
+              );
+            })}
           </div>
         ) : (
           <div className={styles.noEvents}>
@@ -317,8 +320,10 @@ const Calendar = ({ eventos = [] }) => {
               
               {selectedDayEvents.length > 0 ? (
                 <div className={styles.eventsList}>
-                  {selectedDayEvents.map(evento => (
-                    <div key={evento.id} className={styles.eventItem}>
+                  {selectedDayEvents.map(evento => {
+                    const cat = categoryByCode[evento.titulo.match(/^\[([^\]]+)\]/)?.[1]] || 'general';
+                    return (
+                    <div key={evento.id} className={styles.eventItem} style={{ '--event-accent': `var(--cat-${cat})` }}>
                       <div className={styles.eventItemHeader}>
                         {evento.hora && <span className={styles.eventItemTime}>{evento.hora}</span>}
                         <span className={styles.eventItemTitle}>{evento.titulo}</span>
@@ -329,7 +334,8 @@ const Calendar = ({ eventos = [] }) => {
                         </div>
                       )}
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
               ) : (
                 <div className={styles.noEvents}>
