@@ -30,6 +30,7 @@ const SemesterTabs = ({
   return (
     <div className={containerClasses}>
       <div className={styles.tabsContainer} role="group" aria-label="Selector de semestre">
+        <div className={styles.tabsTrack}>
         {semesters.map((semester, idx) => {
           const isSelected = selectedSemester === semester.number;
           const progress = getProgress(semester.number);
@@ -61,6 +62,7 @@ const SemesterTabs = ({
             </React.Fragment>
           );
         })}
+        </div>
       </div>
     </div>
   );

@@ -7,10 +7,19 @@
   margin-bottom: var(--spacing-lg);
 }
 
+/* Centrado con desborde seguro: la pista interior mide su contenido y
+   se centra; si no cabe, el contenedor scrollea (center + overflow en
+   flex recorta ambos extremos) */
 .tabsContainer {
+  overflow-x: auto;
+  padding: 4px 0 6px;
+}
+
+.tabsTrack {
   display: flex;
   align-items: center;
-  justify-content: center;
+  width: max-content;
+  margin: 0 auto;
 }
 
 .tab {
@@ -102,13 +111,13 @@
 
 @media (max-width: 520px) {
   .tab {
-    width: 2.25rem;
-    height: 2.25rem;
-    font-size: 0.8rem;
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.75rem;
   }
 
   .path {
-    width: 0.6rem;
+    width: 0.5rem;
     margin: 0 2px;
   }
 }
