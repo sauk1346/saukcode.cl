@@ -49,17 +49,19 @@
   font-family: var(--font-mono);
   font-size: 0.68em;
   line-height: 1;
-  padding: 0.25em 0.5em;
   margin-left: 0.5em;
   background-color: var(--secondary);
   color: var(--background);
   white-space: nowrap;
   vertical-align: 0.1em;
+  /* Cortes de 3px: con el ancho fraccionario del texto, los de 2px caen
+     en subpíxel y el lado derecho se veía cuadrado */
   clip-path: polygon(
-    2px 0, calc(100% - 2px) 0, 100% 2px,
-    100% calc(100% - 2px), calc(100% - 2px) 100%,
-    2px 100%, 0 calc(100% - 2px), 0 2px
+    3px 0, calc(100% - 3px) 0, 100% 3px,
+    100% calc(100% - 3px), calc(100% - 3px) 100%,
+    3px 100%, 0 calc(100% - 3px), 0 3px
   );
+  padding: 0.3em 0.55em;
 }
 
 /* Al hover del enlace, el chip se aviva */
