@@ -11,6 +11,8 @@ const { title, description } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
+  <!-- Progreso de lectura: barra XP cuantizada a pasos de 5% -->
+  <div id="reading-progress" aria-hidden="true"></div>
   <div class={wrapperStyles.mdxLayout}>
     <main class={wrapperStyles.mdxContent}>
       <div class={containerStyles.container}>
@@ -23,7 +25,30 @@ const { title, description } = Astro.props;
   </div>
 </BaseLayout>
 
+<style>
+  #reading-progress {
+    position: fixed;
+    top: 3.5rem; /* bajo el navbar (h-14) */
+    left: 0;
+    height: 4px;
+    width: 0;
+    background-color: var(--primary);
+    z-index: 40;
+  }
+</style>
+
 <script>
+  // Barra de progreso: cuantizada a 5% — salta como barra de carga retro
+  const progressBar = document.getElementById('reading-progress');
+  const updateProgress = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? window.scrollY / max : 0;
+    if (progressBar) progressBar.style.width = `${Math.round(p * 20) * 5}%`;
+  };
+  updateProgress();
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress, { passive: true });
+
   // Save state para el "▶ Continuar" de la portada
   try {
     localStorage.setItem(
