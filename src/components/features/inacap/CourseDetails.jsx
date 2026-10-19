@@ -281,7 +281,9 @@ const CourseDetails = ({
                         {Array.from({ length: 10 }, (_, i) => (
                           <span
                             key={i}
-                            className={`${styles.weightCell} ${i < filledCells ? styles[weightTier] : ''}`}
+                            className={`${styles.weightCell} ${i < filledCells ? styles[weightTier] : ''} ${
+                              i === filledCells - 1 ? styles.weightTip : ''
+                            }`}
                           ></span>
                         ))}
                       </div>

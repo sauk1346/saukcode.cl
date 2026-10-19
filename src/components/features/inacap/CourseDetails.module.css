@@ -520,6 +520,16 @@
   border: 1px solid var(--border-color);
 }
 
+/* La punta del medidor late con el reloj global: barra "cargándose" */
+:global(html[data-blink='1']) .weightTip,
+:global(html[data-blink='3']) .weightTip {
+  opacity: 0.7;
+}
+
+:global(html[data-blink='2']) .weightTip {
+  opacity: 0.4;
+}
+
 /* Nivel de amenaza: verde ≤15%, ámbar 20-30%, rojo ≥35% */
 .weightLow {
   background-color: var(--success);
