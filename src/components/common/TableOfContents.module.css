@@ -15,7 +15,8 @@
   box-shadow: var(--shadow-sm);
   overflow-y: auto;
   position: sticky;
-  top: 20px;
+  top: 4.5rem; /* bajo el navbar sticky (3.5rem) + aire */
+  max-height: calc(100vh - 6rem); /* scroll interno en clases largas */
 }
 
 /* Contenedor TOC en modo oscuro */

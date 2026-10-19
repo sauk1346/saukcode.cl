@@ -398,3 +398,29 @@
   .listContainer[data-level="4"] .orderedList              { padding-left: var(--spacing-md); }
 }
 .list, .orderedList { max-width: var(--measure); }
+
+/* Viñetas del sistema: ▸ / ▪ / · por nivel (los navegadores sin
+   ::marker con content caen al disco por defecto) */
+.list > li::marker {
+  content: '▸  ';
+  color: var(--secondary);
+  font-size: 0.9em;
+}
+
+.list .list > li::marker {
+  content: '▪  ';
+  color: var(--secondary);
+  font-size: 0.75em;
+}
+
+.list .list .list > li::marker {
+  content: '·  ';
+  color: var(--secondary);
+}
+
+/* Numeradas: pasos en mono primario, como secuencia de nivel */
+.orderedList > li::marker {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--primary);
+}

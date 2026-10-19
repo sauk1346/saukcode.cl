@@ -4,7 +4,9 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 76rem;
+    /* Suma exacta de las partes: tarjeta 46rem + gap 2rem + TOC 250px
+       + padding — gutters exteriores simétricos, sin sobrante */
+    max-width: 66rem;
     margin: 0 auto;
     padding: 0 1rem;
   }
