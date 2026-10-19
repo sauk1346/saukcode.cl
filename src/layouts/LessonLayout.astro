@@ -15,6 +15,8 @@ const { title, description } = Astro.props;
   <div id="reading-progress" aria-hidden="true">
     {Array.from({ length: 20 }).map(() => <span></span>)}
   </div>
+  <!-- Recompensa por completar la lección (1UP arcade) -->
+  <div id="reading-1up" aria-hidden="true">1UP</div>
   <div class={wrapperStyles.mdxLayout}>
     <main class={wrapperStyles.mdxContent}>
       <div class={containerStyles.container}>
@@ -36,9 +38,38 @@ const { title, description } = Astro.props;
     display: flex;
     gap: 2px;
     padding: 0 2px;
-    height: 5px;
+    height: 8px;
     z-index: 40;
     pointer-events: none;
+  }
+
+  /* 1UP: texto pixel que flota y se desvanece, como la vida extra */
+  #reading-1up {
+    position: fixed;
+    top: 4.6rem;
+    left: 50%;
+    z-index: 41;
+    font-family: var(--font-pixel);
+    font-size: 1.25rem;
+    color: var(--success);
+    text-shadow: 2px 2px 0 var(--shadow-hard);
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  #reading-1up.show {
+    animation: oneUp 1.6s steps(8) forwards;
+  }
+
+  @keyframes oneUp {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -32px);
+    }
   }
 
   #reading-progress span {
@@ -74,6 +105,8 @@ const { title, description } = Astro.props;
   // Barra de energía de lectura: 20 celdas, nivel por tramo y punta latiendo
   const progressBar = document.getElementById('reading-progress');
   const progressCells = progressBar ? Array.from(progressBar.children) : [];
+  const oneUp = document.getElementById('reading-1up');
+  let oneUpShown = false;
   const updateProgress = () => {
     if (!progressBar) return;
     const max = document.documentElement.scrollHeight - window.innerHeight;
@@ -85,6 +118,13 @@ const { title, description } = Astro.props;
       cell.classList.toggle('filled', i < filled);
       cell.classList.toggle('tip', i === filled - 1);
     });
+    // Vida extra al completar la lección (una vez, y sin reduced-motion)
+    if (filled === 20 && !oneUpShown && oneUp) {
+      oneUpShown = true;
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        oneUp.classList.add('show');
+      }
+    }
   };
   updateProgress();
   window.addEventListener('scroll', updateProgress, { passive: true });
