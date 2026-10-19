@@ -272,7 +272,7 @@
 /* Modo oscuro para enlaces de unidad */
 :global(html.dark-mode) .unitLink,
 :global(html.dark-mode-override) .unitLink {
-  background-color: #172554;
+  background-color: color-mix(in srgb, var(--primary) 18%, var(--background));
 }
 
 /* ==================== ESTILOS PARA CONTENIDO ESTRUCTURADO ==================== */

@@ -116,7 +116,7 @@
 :global(html.dark-mode) .active,
 :global(html.dark-mode-override) .active {
   color: var(--primary);
-  background-color: #172554;
+  background-color: color-mix(in srgb, var(--primary) 18%, var(--background));
   border-left: 3px solid var(--primary);
 }
 

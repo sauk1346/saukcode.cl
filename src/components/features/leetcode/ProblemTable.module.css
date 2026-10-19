@@ -103,7 +103,7 @@
 
 .currentPage {
   background-color: var(--primary);
-  color: white;
+  color: var(--background);
   border-color: var(--primary);
   font-weight: 600;
 }
