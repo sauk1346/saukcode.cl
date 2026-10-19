@@ -628,6 +628,24 @@ export const calendar26 = [
     description: "Arquitectura Multi Cloud"
   },
 // ----- [FVIE02] Innovación y Emprendimiento II -----
+  {
+    id: 139,
+    fecha: "2026-6-14",
+    titulo: "[FVIE02] Evaluación 01",
+    description: "Innovación y Emprendimiento II"
+  },
+  {
+    id: 140,
+    fecha: "2026-7-5",
+    titulo: "[FVIE02] Evaluación 02",
+    description: "Innovación y Emprendimiento II"
+  },
+  {
+    id: 141,
+    fecha: "2026-7-23",
+    titulo: "[FVIE02] Evaluación 03",
+    description: "Innovación y Emprendimiento II"
+  },
 // ----- [TI3V52] Redes de Datos -----
   {
     id: 108,
@@ -818,6 +836,66 @@ export const calendar26 = [
     fecha: "2026-9-12",
     titulo: "[TI3V63] Control 05",
     description: "GS & GobTI"
+  },
+
+// ----- [TI3V61] Minería de Datos -----
+  {
+    id: 142,
+    fecha: "2026-11-5",
+    titulo: "[TI3V61] Evaluación 01",
+    description: "Minería de Datos"
+  },
+  {
+    id: 143,
+    fecha: "2026-12-3",
+    titulo: "[TI3V61] Evaluación 02",
+    description: "Minería de Datos"
+  },
+  {
+    id: 144,
+    fecha: "2026-12-17",
+    titulo: "[TI3V61] Evaluación 03",
+    description: "Minería de Datos"
+  },
+
+// ----- [TI3V62] Gestión de Seguridad de la Información -----
+  {
+    id: 145,
+    fecha: "2026-11-3",
+    titulo: "[TI3V62] Evaluación 01",
+    description: "Gestión de Seguridad de la Información"
+  },
+  {
+    id: 146,
+    fecha: "2026-11-17",
+    titulo: "[TI3V62] Evaluación 02",
+    description: "Gestión de Seguridad de la Información"
+  },
+  {
+    id: 147,
+    fecha: "2026-11-28",
+    titulo: "[TI3V62] Evaluación 03",
+    description: "Gestión de Seguridad de la Información"
+  },
+
+// ----- [CVET01] Estadística -----
+  {
+    id: 148,
+    fecha: "2026-11-5",
+    titulo: "[CVET01] Evaluación 01",
+    description: "Estadística"
+  },
+  {
+    id: 149,
+    fecha: "2026-11-26",
+    titulo: "[CVET01] Evaluación 02",
+    description: "Estadística"
+  },
+  {
+    id: 150,
+    fecha: "2026-12-10",
+    titulo: "[CVET01] Evaluación 03",
+    description: "Estadística"
   },
 ];
 export default calendar26;
