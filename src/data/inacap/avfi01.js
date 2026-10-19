@@ -24,7 +24,7 @@ const courseData = {
         { 
             evaluationNumber: 1,
             date: 'Jue 27, Ago 2026',
-            weighting: '15%', 
+            weighting: '11,25% (15% × 0,75)', 
             description: {
                 text: 'Balance General',
                 href: 'eval01'
@@ -39,7 +39,7 @@ const courseData = {
         { 
             evaluationNumber: 2,
             date: 'Jue 10, Sep 2026',
-            weighting: '15%', 
+            weighting: '11,25% (15% × 0,75)', 
             description: {
                 text: 'Estado Resultado / Pto Equilibrio',
                 href: 'eval02'
@@ -54,7 +54,7 @@ const courseData = {
         { 
             evaluationNumber: 3,
             date: 'Mar 29, Sep 2026',
-            weighting: '30%', 
+            weighting: '22,5% (30% × 0,75)', 
             description: {
                 text: 'Presupuesto de Caja',
                 href: ''
@@ -63,7 +63,7 @@ const courseData = {
         { 
             evaluationNumber: 4,
             date: 'Mar 13, Oct 2026',
-            weighting: '40%', 
+            weighting: '30% (40% × 0,75)', 
             description: {
                 text: 'Indicadores de Rentabilidad',
                 href: ''
