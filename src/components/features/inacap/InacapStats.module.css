@@ -29,6 +29,19 @@
 .xpCell.current {
   background: var(--primary);
   border-color: var(--primary);
+  animation: xpBlink 1.4s steps(2) infinite;
+}
+
+@keyframes xpBlink {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .xpCell.current {
+    animation: none;
+  }
 }
 
 .statsText {
