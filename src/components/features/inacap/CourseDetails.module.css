@@ -704,3 +704,16 @@
   }
 }
 
+/* Semana en curso: el título se tiñe y late con el reloj global */
+.currentWeekCard .cardTitle {
+  color: var(--course-accent, var(--primary));
+}
+
+:global(html[data-blink='1']) .currentWeekCard .cardTitle,
+:global(html[data-blink='3']) .currentWeekCard .cardTitle {
+  opacity: 0.7;
+}
+
+:global(html[data-blink='2']) .currentWeekCard .cardTitle {
+  opacity: 0.45;
+}

@@ -6,6 +6,29 @@ import { buildCourseResourceLink } from '@/utils/linkBuilder';
 import ProfessorCard from './ProfessorCard';
 import styles from './CourseDetails.module.css';
 
+// Parse de fechas en español: 'Martes 20, Oct 2026' / 'Mar 11, Ago 2026'
+const MESES = { ene: 0, feb: 1, mar: 2, abr: 3, may: 4, jun: 5, jul: 6, ago: 7, sep: 8, oct: 9, nov: 10, dic: 11 };
+const parseFecha = (str) => {
+  const m = /(\d{1,2}),\s*([A-Za-z]+)\s+(\d{4})/.exec(str || '');
+  if (!m) return null;
+  const mes = MESES[m[2].slice(0, 3).toLowerCase()];
+  return mes == null ? null : new Date(Number(m[3]), mes, Number(m[1]));
+};
+
+// Semana "actual": la más próxima cuyo último día aún no pasó
+const getCurrentWeek = (byWeek) => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  let best = null;
+  for (const [week, items] of Object.entries(byWeek)) {
+    const dates = items.map((i) => parseFecha(i.date)).filter(Boolean);
+    if (!dates.length) continue;
+    const max = Math.max(...dates.map((d) => d.getTime()));
+    if (max >= today.getTime() && (best === null || max < best.max)) best = { week, max };
+  }
+  return best ? best.week : null;
+};
+
 const CourseDetails = ({
   courseCode,
   courseTitle,
@@ -108,6 +131,10 @@ const CourseDetails = ({
     }
   }, [activeTab, hasClasses, hasLectures]);
 
+  // Semana en curso (calculada tras montar: la fecha es del visitante,
+  // no del build estático)
+  const [currentWeeks, setCurrentWeeks] = useState({ clases: null, lecturas: null });
+
   // Agrupamos clases por semana (solo si hay clases)
   const classesByWeek = hasClasses 
     ? classData.reduce((acc, classItem, index) => {
@@ -151,6 +178,14 @@ const CourseDetails = ({
         return acc;
       }, {})
     : {};
+
+  useEffect(() => {
+    setCurrentWeeks({
+      clases: getCurrentWeek(classesByWeek),
+      lecturas: getCurrentWeek(lecturesByWeek),
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [classData, lectureData]);
 
   return (
     <div className={styles.container}>
@@ -295,7 +330,10 @@ const CourseDetails = ({
               {Object.entries(classesByWeek)
                 .sort(([weekA], [weekB]) => parseInt(weekA) - parseInt(weekB))
                 .map(([week, classes]) => (
-                  <div key={week} className={`pixel-box ${styles.card}`}>
+                  <div
+                    key={week}
+                    className={`pixel-box ${styles.card} ${week === currentWeeks.clases ? styles.currentWeekCard : ''}`}
+                  >
                     <div className={styles.cardHeader}>
                       <h3 className={styles.cardTitle}>Semana {week}</h3>
                     </div>
@@ -328,7 +366,10 @@ const CourseDetails = ({
               {Object.entries(lecturesByWeek)
                 .sort(([weekA], [weekB]) => parseInt(weekA) - parseInt(weekB))
                 .map(([week, lectures]) => (
-                  <div key={week} className={`pixel-box ${styles.card}`}>
+                  <div
+                    key={week}
+                    className={`pixel-box ${styles.card} ${week === currentWeeks.lecturas ? styles.currentWeekCard : ''}`}
+                  >
                     <div className={styles.cardHeader}>
                       <h3 className={styles.cardTitle}>Semana {week}</h3>
                     </div>
