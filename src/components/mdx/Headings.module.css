@@ -11,6 +11,18 @@
 
 
 
+  /* Marcador pixel de sección: refuerza el cambio de tema en el título
+     mismo, sin llenar el espacio en blanco con divisores */
+  .h2::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: var(--primary);
+    margin-right: 0.55rem;
+    vertical-align: 0.08em;
+  }
+
   .h2 {
     font-size: 1.75rem;
     font-weight: 700;
