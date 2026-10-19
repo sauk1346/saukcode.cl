@@ -50,9 +50,30 @@
   margin-bottom: 0;
 }
 
-@media (max-width: 480px) {
+/* Etiqueta corta oculta en escritorio */
+.tab :global([data-tab-short]) {
+  display: none;
+}
+
+/* Móvil: siempre una línea — los botones se reparten el ancho y
+   muestran la etiqueta corta (dígitos del título) */
+@media (max-width: 640px) {
+  .tabList {
+    flex-wrap: nowrap;
+  }
+
   .tab {
-    padding: 0.3rem 0.5rem;
-    font-size: 0.72rem;
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+    padding: 0.35rem 0.2rem;
+  }
+
+  .tab :global([data-tab-full]) {
+    display: none;
+  }
+
+  .tab :global([data-tab-short]) {
+    display: inline;
   }
 }

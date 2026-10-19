@@ -29,7 +29,13 @@ import styles from './Tabs.module.css';
         const button = document.createElement('button');
         button.type = 'button';
         button.setAttribute('role', 'tab');
-        button.textContent = panel.getAttribute('data-tab-label') || `Tab ${i + 1}`;
+        const label = panel.getAttribute('data-tab-label') || `Tab ${i + 1}`;
+        // Etiqueta corta para móvil: los dígitos del título, o sus iniciales
+        const digits = label.match(/\d+/);
+        const short = digits ? digits[0] : label.slice(0, 2);
+        button.innerHTML =
+          `<span data-tab-full>${label}</span><span data-tab-short aria-hidden="true">${short}</span>`;
+        button.title = label;
         button.className = tabClass;
 
         const select = () => {
