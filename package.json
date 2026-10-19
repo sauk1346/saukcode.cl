@@ -12,7 +12,7 @@
     "astro": "astro",
     "db:setup": "node src/lib/db/setup.js",
     "db:seed": "node src/lib/db/seed.js",
-    "prebuild": "npm run db:setup && npm run db:seed",
+    "prebuild": "npm run db:setup && npm run db:seed && node scripts/check-flashcard-links.mjs",
     "postbuild": "pagefind --site dist"
   },
   "dependencies": {

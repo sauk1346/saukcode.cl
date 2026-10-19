@@ -620,53 +620,6 @@
     justify-content: center;
   }
 }
-/* Flashcards tab */
-.flashcardTopic {
-  margin-bottom: 1.75rem;
-}
-
-.flashcardTopicName {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--foreground);
-  margin: 0 0 0.75rem;
-}
-
-.flashcardDecks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem;
-}
-
-/* Mazo: botón pixel presionable */
-.flashcardDeckCard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.9rem 1.2rem;
-  background-color: var(--surface);
-  border: 2px solid var(--border-color);
-  box-shadow: var(--shadow-sm);
-  text-decoration: none;
-  color: inherit;
-  min-width: 90px;
-  font-size: 0.9rem;
-  font-weight: 700;
-}
-
-.flashcardDeckCard:hover {
-  border-color: var(--course-accent, var(--primary));
-  color: var(--course-accent, var(--primary));
-}
-
-.flashcardDeckCount {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 400;
-  color: var(--secondary);
-}
-
 @media (max-width: 480px) {
   .title {
     font-size: 1.75rem;
