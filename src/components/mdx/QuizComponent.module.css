@@ -132,12 +132,13 @@
     opacity: 0;
   }
 
-  .optionButton:hover:not(:disabled) {
+  /* El hover no toca las alternativas ya marcadas (sólido verde/rojo) */
+  .optionButton:hover:not(:disabled):not(.correctOption):not(.incorrectOption) {
     border-color: var(--secondary);
     background-color: color-mix(in srgb, var(--primary) 8%, var(--surface));
   }
 
-  .optionButton:hover:not(:disabled)::before {
+  .optionButton:hover:not(:disabled):not(.correctOption):not(.incorrectOption)::before {
     opacity: 1;
   }
 
