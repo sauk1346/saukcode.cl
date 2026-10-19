@@ -24,7 +24,13 @@ export function resolveEvalDates(courseCode, evaluationsData = []) {
         ? 'Examen'
         : `Evaluación ${String(ev.evaluationNumber).padStart(2, '0')}`);
     const prefijo = `[${code}] ${ref}`;
-    const evento = calendar26.find((e) => e.titulo === prefijo || e.titulo.startsWith(`${prefijo}:`));
+    // Sufijos ':' y ' (' calzan; con varios eventos (evaluación dividida
+    // en actividades) manda la fecha más próxima — el resto sigue visible
+    // como eventos propios en el calendario
+    const eventos = calendar26.filter(
+      (e) => e.titulo === prefijo || e.titulo.startsWith(`${prefijo}:`) || e.titulo.startsWith(`${prefijo} (`)
+    );
+    const evento = eventos.sort((a, b) => new Date(a.fecha) - new Date(b.fecha))[0];
     if (!evento) return ev; // sin evento: la fecha manual queda (promedio de controles)
     const date = formatear(evento.fecha);
     if (ev.date && ev.date !== date) {
