@@ -296,25 +296,86 @@
   padding: 2rem 1rem;
 }
 
+/* Pantalla de resultado arcade: marco pixel, rango y entrada en pasos */
 .finishedCard {
-  background: var(--card-bg);
-  border: 1px solid var(--border-color, #e0e0e0);
+  background-color: var(--card-bg);
+  background-clip: padding-box;
+  border: 8px solid transparent;
+  border-image: var(--px-frame) 8 / 8px stretch;
   border-radius: 0;
-  padding: 2.5rem 3rem;
+  padding: 2rem 3rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  box-shadow: var(--shadow-sm);
+  gap: 0.9rem;
+  filter: drop-shadow(4px 4px 0 var(--shadow-hard));
   max-width: 380px;
   width: 100%;
+  animation: resultIn 0.5s steps(5);
+}
+
+@keyframes resultIn {
+  from {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .finishedCard {
+    animation: none;
+  }
 }
 
 .finishedTitle {
-  font-size: 1.3rem;
-  font-weight: 700;
+  font-family: var(--font-pixel);
+  font-size: 1.25rem;
+  font-weight: 400;
   margin: 0;
+}
+
+/* Rango arcade */
+.rankRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.rankLabel {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--secondary);
+}
+
+.rankLetter {
+  font-family: var(--font-pixel);
+  font-size: 3.25rem;
+  line-height: 1;
+  text-shadow: 3px 3px 0 var(--shadow-hard);
+}
+
+.rankS {
+  color: var(--warning-fill); /* dorado */
+}
+
+.rankA {
+  color: var(--success);
+}
+
+.rankB {
+  color: var(--primary);
+}
+
+.rankC {
+  color: var(--secondary);
+}
+
+.perfectPop {
+  font-family: var(--font-pixel);
+  font-size: 1.1rem;
+  color: var(--success);
+  text-shadow: 2px 2px 0 var(--shadow-hard);
 }
 
 .score {
@@ -324,20 +385,22 @@
 }
 
 .scoreNumber {
-  font-size: 4rem;
-  font-weight: 800;
+  font-family: var(--font-pixel);
+  font-size: 2.75rem;
   line-height: 1;
-  color: var(--primary);
+  color: var(--course-accent, var(--primary));
 }
 
 .scoreTotal {
-  font-size: 2rem;
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
   color: var(--secondary);
 }
 
 .scorePct {
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 700;
   color: var(--secondary);
 }
 
@@ -373,9 +436,9 @@
   border: none;
   border-radius: 0;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.15s;
+  box-shadow: 3px 3px 0 var(--shadow-hard);
   margin-top: 0.5rem;
 }
 
@@ -410,4 +473,9 @@
   .finishedCard {
     padding: 2rem 1.5rem;
   }
+}
+
+.retryBtn:active {
+  translate: 2px 2px;
+  box-shadow: 1px 1px 0 var(--shadow-hard);
 }

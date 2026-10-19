@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import { RotateCcw, Check, X } from 'lucide-react';
 import CardRenderer from './CardRenderer';
 import styles from './FlashcardStudy.module.css';
 
@@ -74,24 +73,30 @@ export default function FlashcardStudy({ cards, topicName, deckNumber, layout })
   }, [cards, shuffled]);
 
   if (finished) {
-    const score = correct;
     const pct = Math.round((correct / total) * 100);
+    // Rango arcade: S dorado (≥90), A verde, B azul, C gris
+    const rank = pct >= 90 ? 'S' : pct >= 70 ? 'A' : pct >= 50 ? 'B' : 'C';
+    const rankClass = { S: styles.rankS, A: styles.rankA, B: styles.rankB, C: styles.rankC }[rank];
     return (
       <div className={styles.finished}>
         <div className={styles.finishedCard}>
-          <h2 className={styles.finishedTitle}>Resultado</h2>
+          <h2 className={styles.finishedTitle}>DECK CLEAR</h2>
+          <div className={styles.rankRow}>
+            <span className={styles.rankLabel}>rank</span>
+            <span className={`${styles.rankLetter} ${rankClass}`}>{rank}</span>
+          </div>
           <div className={styles.score}>
-            <span className={styles.scoreNumber}>{score}</span>
-            <span className={styles.scoreTotal}>/ {total}</span>
+            <span className={styles.scoreNumber}>{correct}</span>
+            <span className={styles.scoreTotal}>/{total}</span>
           </div>
           <div className={styles.scorePct}>{pct}%</div>
+          {pct === 100 && <div className={styles.perfectPop}>PERFECT</div>}
           <div className={styles.scoreSummary}>
-            <span className={styles.correctCount}><Check size={16} /> {correct} correctas</span>
-            <span className={styles.incorrectCount}><X size={16} /> {incorrect} incorrectas</span>
+            <span className={styles.correctCount}>✓ {correct} correctas</span>
+            <span className={styles.incorrectCount}>✗ {incorrect} incorrectas</span>
           </div>
           <button className={styles.retryBtn} onClick={restart}>
-            <RotateCcw size={16} />
-            Reintentar
+            ⟲ Reintentar
           </button>
         </div>
       </div>
