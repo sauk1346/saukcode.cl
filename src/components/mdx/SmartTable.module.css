@@ -73,7 +73,7 @@
   }
 
   /* Cebra sutil: seguir la fila sin perderse */
-  .table tbody tr:nth-child(even) {
+  .table tbody tr:nth-child(even):not([class*='rowHighlight']) {
     background-color: color-mix(in srgb, var(--surface) 45%, transparent);
   }
 
