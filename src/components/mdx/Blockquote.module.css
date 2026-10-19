@@ -1,39 +1,40 @@
-/* Bloques de citas */
+/* Cita como globo de diálogo NES: caja con marco y cola pixel
+   escalonada (alguien lo dijo — la cita "habla") */
 .blockquote {
-    border-left: none;
-    padding-left: 0;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 1.75rem;
-    font-style: normal;
-    color: var(--secondary);
-    white-space: pre-wrap;
-    display: flex;
-    align-items: flex-start;
-    transition: color 0.3s ease;
     position: relative;
+    background-color: var(--surface);
+    border: 2px solid var(--border-color);
+    padding: 0.75rem 1rem;
+    margin: 1.25rem 0 2.1rem; /* espacio para la cola */
+    font-style: normal;
+    color: var(--foreground);
+    white-space: pre-wrap;
   }
-  
-  .blockquote > * {
-    flex: 1;
-    padding-left: var(--spacing-lg);
+
+  .blockquote > :last-child {
+    margin-bottom: 0;
   }
-  
-  /* Barra lateral como pseudo-elemento con longitud controlada */
+
+  /* Cola: silueta escalonada (borde) + relleno surface encima */
   .blockquote::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 4px;
-    height: calc(100% - 1.1rem);
-    background-color: var(--primary);
-    transition: background-color 0.3s ease;
+    bottom: -12px;
+    left: 22px;
+    width: 14px;
+    height: 12px;
+    background-color: var(--border-color);
+    clip-path: polygon(0 0, 14px 0, 14px 4px, 7px 4px, 7px 8px, 0 8px, 0 12px, 0 0);
   }
-  
-  :global(html.dark-mode) .blockquote,
-  :global(html.dark-mode-override) .blockquote {
-    border-left-color: var(--primary);
-    color: var(--secondary);
+
+  .blockquote::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 24px;
+    width: 8px;
+    height: 8px;
+    background-color: var(--surface);
+    clip-path: polygon(0 0, 8px 0, 8px 2px, 4px 2px, 4px 4px, 0 4px);
   }
 .blockquote { max-width: var(--measure); }

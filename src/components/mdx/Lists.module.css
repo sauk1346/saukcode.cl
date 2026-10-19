@@ -132,7 +132,8 @@
   text-align: left;
 }
 
-/* Espaciado adicional para listas ordenadas */
+/* Mismo respiro tras el marcador en ambas listas: textos alineados */
+.list > .listItem,
 .orderedList > .listItem {
   padding-left: 0.5rem;
 }
