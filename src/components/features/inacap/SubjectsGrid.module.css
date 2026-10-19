@@ -143,7 +143,12 @@
   }
 
   /* Intermitente sincronizado al reloj global (BaseLayout) */
-  :global(html.px-blink) .statusBadge.current {
+  :global(html[data-blink='1']) .statusBadge.current,
+  :global(html[data-blink='3']) .statusBadge.current {
+    opacity: 0.72;
+  }
+
+  :global(html[data-blink='2']) .statusBadge.current {
     opacity: 0.45;
   }
   

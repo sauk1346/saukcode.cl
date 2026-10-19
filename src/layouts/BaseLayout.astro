@@ -46,13 +46,15 @@ const {
     <Footer />
     <SearchModal />
     <script is:inline>
-      // Reloj global de parpadeo: todos los intermitentes del sitio laten
-      // al mismo tic (clase en <html> cada 700ms). Apagado con
+      // Reloj global de parpadeo en 3 fases (plena → media → tenue →
+      // media): todos los intermitentes laten al mismo tic. Apagado con
       // prefers-reduced-motion.
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        var blinkPhase = 0;
         setInterval(function () {
-          document.documentElement.classList.toggle('px-blink');
-        }, 700);
+          blinkPhase = (blinkPhase + 1) % 4;
+          document.documentElement.dataset.blink = String(blinkPhase);
+        }, 350);
       }
     </script>
   </body>

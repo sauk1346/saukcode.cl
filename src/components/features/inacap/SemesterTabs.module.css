@@ -47,7 +47,12 @@
 }
 
 /* Intermitente sincronizado al reloj global (BaseLayout) */
-:global(html.px-blink) .tab.current {
+:global(html[data-blink='1']) .tab.current,
+:global(html[data-blink='3']) .tab.current {
+  opacity: 0.75;
+}
+
+:global(html[data-blink='2']) .tab.current {
   opacity: 0.55;
 }
 

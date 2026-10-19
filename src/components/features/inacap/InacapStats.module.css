@@ -32,7 +32,12 @@
 }
 
 /* Intermitente sincronizado al reloj global (BaseLayout) */
-:global(html.px-blink) .xpCell.current {
+:global(html[data-blink='1']) .xpCell.current,
+:global(html[data-blink='3']) .xpCell.current {
+  opacity: 0.72;
+}
+
+:global(html[data-blink='2']) .xpCell.current {
   opacity: 0.45;
 }
 
