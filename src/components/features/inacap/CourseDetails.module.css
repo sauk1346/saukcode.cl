@@ -721,22 +721,20 @@
   content: '';
   position: absolute;
   inset: -8px; /* cubre el área del border-image */
-  border: 2px solid var(--course-accent, var(--primary));
+  padding: 2px; /* grosor del anillo */
+  background: var(--course-accent, var(--primary));
   pointer-events: none;
-  -webkit-mask:
-    linear-gradient(135deg, transparent 0 5px, #000 5px) top left,
-    linear-gradient(-135deg, transparent 0 5px, #000 5px) top right,
-    linear-gradient(45deg, transparent 0 5px, #000 5px) bottom left,
-    linear-gradient(-45deg, transparent 0 5px, #000 5px) bottom right;
-  -webkit-mask-size: 51% 51%;
-  -webkit-mask-repeat: no-repeat;
-  mask:
-    linear-gradient(135deg, transparent 0 5px, #000 5px) top left,
-    linear-gradient(-135deg, transparent 0 5px, #000 5px) top right,
-    linear-gradient(45deg, transparent 0 5px, #000 5px) bottom left,
-    linear-gradient(-45deg, transparent 0 5px, #000 5px) bottom right;
-  mask-size: 51% 51%;
-  mask-repeat: no-repeat;
+  /* silueta octagonal: las diagonales quedan PINTADAS (relleno, no border) */
+  clip-path: polygon(
+    5px 0, calc(100% - 5px) 0, 100% 5px,
+    100% calc(100% - 5px), calc(100% - 5px) 100%,
+    5px 100%, 0 calc(100% - 5px), 0 5px
+  );
+  /* anillo: borde-box menos content-box */
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
 }
 
 :global(html[data-blink='1']) .currentWeekCard::after,
