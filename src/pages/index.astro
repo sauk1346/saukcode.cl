@@ -29,12 +29,20 @@ const courses = subjects
   .filter((s) => s.lessons > 0);
 
 const semesters = [...new Set(courses.map((s) => s.semester))].sort((a, b) => b - a);
-// El semestre más reciente es el que está en curso: acceso rápido desde la home
-const currentSemester = semesters.length
+
+// Ramos en curso según el estado real de la malla (no inferidos por
+// apuntes): los que aún no tienen clases publicadas salen apagados
+const currentCourses = subjects
+  .filter((s) => s.status === 'current')
+  .map((s) => ({
+    ...s,
+    lessons: s.href ? (lessonsByCourse[s.href.split('/').pop()] ?? 0) : 0,
+  }));
+const currentSemester = currentCourses.length
   ? {
-      n: semesters[0],
-      year: courses.find((s) => s.semester === semesters[0])?.year,
-      courses: courses.filter((s) => s.semester === semesters[0]),
+      n: currentCourses[0].semester,
+      year: currentCourses[0].year,
+      courses: currentCourses,
     }
   : null;
 
@@ -121,14 +129,20 @@ const totalJava = Object.keys(javaProblems).length;
           Semestre {currentSemester.n} ({currentSemester.year}) — en curso
         </h3>
         <div class="flex flex-wrap gap-2">
-          {currentSemester.courses.map((c) => (
-            <a
-              href={c.href}
-              class="pixel-press border-2 border-(--border-color) bg-(--background-elevated) px-3 py-1.5 text-sm font-bold text-(--foreground) shadow-(--shadow-sm) hover:text-(--primary)"
-            >
-              {c.name}
-            </a>
-          ))}
+          {currentSemester.courses.map((c) =>
+            c.href && c.lessons > 0 ? (
+              <a
+                href={c.href}
+                class="pixel-press border-2 border-(--border-color) bg-(--background-elevated) px-3 py-1.5 text-sm font-bold text-(--foreground) shadow-(--shadow-sm) hover:text-(--primary)"
+              >
+                {c.name}
+              </a>
+            ) : (
+              <span class="border-2 border-(--border-color) bg-(--surface) px-3 py-1.5 text-sm text-(--secondary)">
+                {c.name} <span class="font-mono text-[10px]">pronto</span>
+              </span>
+            )
+          )}
         </div>
       </div>
     )}
