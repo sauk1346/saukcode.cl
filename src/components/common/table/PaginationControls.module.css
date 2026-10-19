@@ -78,16 +78,16 @@
      PÁGINA ACTUAL
      ================================ */
   .currentPage {
-    background-color: #007bff;
-    color: white;
-    border-color: #007bff;
+    background-color: var(--primary);
+    color: var(--background);
+    border-color: var(--primary);
     font-weight: 600;
     box-shadow: var(--shadow-sm);
   }
   
   .currentPage:hover {
-    background-color: #0056b3;
-    border-color: #004085;
+    background-color: var(--primary);
+    border-color: var(--primary);
     box-shadow: var(--shadow-sm);
   }
   
@@ -112,17 +112,17 @@
   .minimal .paginationButton {
     border: none;
     background-color: transparent;
-    color: #007bff;
+    color: var(--primary);
   }
   
   .minimal .paginationButton:hover:not(:disabled) {
     background-color: var(--surface);
-    color: #0056b3;
+    color: var(--primary);
   }
   
   .minimal .currentPage {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--primary);
+    color: var(--background);
   }
   
   /* ================================
