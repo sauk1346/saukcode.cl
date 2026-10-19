@@ -211,7 +211,7 @@ const totalJava = Object.keys(javaProblems).length;
     function draw() {
       var color = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.globalAlpha = 0.09;
+      ctx.globalAlpha = 0.16;
       ctx.fillStyle = color;
       for (var y = 0; y < rows; y++) {
         for (var x = 0; x < cols; x++) {
@@ -223,12 +223,10 @@ const totalJava = Object.keys(javaProblems).length;
     resize();
     window.addEventListener('resize', resize, { passive: true });
 
-    // un paso del autómata por ciclo del reloj global
+    // un paso del autómata por cada tic del reloj global (350ms)
     new MutationObserver(function () {
-      if (document.documentElement.dataset.blink === '0') {
-        step();
-        draw();
-      }
+      step();
+      draw();
     }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-blink'] });
 
     // re-pintar al cambiar de tema
