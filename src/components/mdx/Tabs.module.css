@@ -55,25 +55,24 @@
   display: none;
 }
 
-/* Móvil: siempre una línea — los botones se reparten el ancho y
-   muestran la etiqueta corta (dígitos del título) */
-@media (max-width: 640px) {
-  .tabList {
-    flex-wrap: nowrap;
-  }
+/* Modo compacto (más de 5 pestañas): una sola línea en cualquier
+   viewport — botones repartidos a partes iguales con la etiqueta corta
+   (los dígitos del título); el title conserva el nombre completo */
+.compact .tabList {
+  flex-wrap: nowrap;
+}
 
-  .tab {
-    flex: 1 1 0;
-    min-width: 0;
-    text-align: center;
-    padding: 0.35rem 0.2rem;
-  }
+.compact .tab {
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
+  padding: 0.35rem 0.2rem;
+}
 
-  .tab :global([data-tab-full]) {
-    display: none;
-  }
+.compact .tab :global([data-tab-full]) {
+  display: none;
+}
 
-  .tab :global([data-tab-short]) {
-    display: inline;
-  }
+.compact .tab :global([data-tab-short]) {
+  display: inline;
 }

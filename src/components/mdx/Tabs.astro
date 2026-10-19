@@ -9,6 +9,7 @@ import styles from './Tabs.module.css';
   class={`${styles.wrapper} js-tabs`}
   data-class-tab={styles.tab}
   data-class-active={styles.active}
+  data-class-compact={styles.compact}
 >
   <div class={styles.tabList} role="tablist"></div>
   <div class={styles.panel}>
@@ -24,6 +25,8 @@ import styles from './Tabs.module.css';
       const panels = Array.from(wrapper.querySelectorAll(':scope > div > [data-tab-label]'));
       const tabClass = wrapper.getAttribute('data-class-tab');
       const activeClass = wrapper.getAttribute('data-class-active');
+      // Con muchas pestañas: modo compacto (números en una sola línea)
+      if (panels.length > 5) wrapper.classList.add(wrapper.getAttribute('data-class-compact'));
 
       panels.forEach((panel, i) => {
         const button = document.createElement('button');
