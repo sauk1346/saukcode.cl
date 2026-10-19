@@ -315,10 +315,23 @@ pre .code-line {
   }
 }
 
+/* Chispa de confeti pixel: cuadrado que titila en vuelo */
+.px-spark {
+  display: block;
+  animation: pxSparkTwinkle 240ms steps(2) infinite;
+}
+
+@keyframes pxSparkTwinkle {
+  50% {
+    opacity: 0.45;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .px-coin-wrap,
   .px-coin-arc,
-  .px-coin {
+  .px-coin,
+  .px-spark {
     animation: none;
   }
 }
