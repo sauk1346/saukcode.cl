@@ -11,18 +11,26 @@
 
 
 
-  /* Barra de título estilo ventana retro: el capítulo vive en una banda
-     con marco que cruza toda la medida, como los headers de las cards */
+  /* Línea punteada pixel bajo el h2, a todo el ancho de la medida:
+     h1 = línea sólida, h2 = punteada — jerarquía por estilo de línea */
+  .h2::after {
+    content: '';
+    display: block;
+    height: 2px;
+    margin-top: 0.4rem;
+    background: repeating-linear-gradient(
+      to right,
+      var(--border-color) 0 8px,
+      transparent 8px 14px
+    );
+  }
+
   .h2 {
-    font-size: 1.5rem;
-    background-color: var(--surface);
-    border: 2px solid var(--border-color);
-    border-left: 4px solid var(--primary);
-    padding: 0.45rem 0.85rem;
+    font-size: 1.75rem;
     font-weight: 700;
     /* Proximidad: un título pertenece al contenido que abre */
     margin-top: 3.5rem;
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.6rem;
     color: var(--foreground);
     transition: color 0.3s ease;
   }
