@@ -63,9 +63,14 @@
   box-shadow: none;
 }
 
-/* Seleccionada: hundida + keyline interior (el cursor del mapa) */
+/* Seleccionada: hundida + keyline interior (el cursor del mapa) +
+   tono iluminado (velo claro sobre el color de estado) */
 .activeTab {
   translate: 2px 2px;
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0.22),
+    rgba(255, 255, 255, 0.22)
+  );
   filter: drop-shadow(1px 1px 0 var(--shadow-hard));
   box-shadow:
     inset 0 0 0 2px var(--background),
