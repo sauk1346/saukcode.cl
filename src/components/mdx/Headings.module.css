@@ -11,24 +11,22 @@
 
 
 
-  /* Número de sección: denota el cambio de tema con información real
-     (el orden, espejo del TOC), no con ornamento */
-  .h2::before {
-    counter-increment: seccion;
-    content: counter(seccion, decimal-leading-zero);
-    font-family: var(--font-mono);
-    font-size: 0.6em;
-    font-weight: 700;
-    color: var(--primary);
-    margin-right: 0.6rem;
-    vertical-align: 0.25em;
+  /* Subrayado corto de acento: mismo patrón de los títulos de /inacap.
+     Señala el inicio de sección y ancla el escaneo vertical */
+  .h2::after {
+    content: '';
+    display: block;
+    width: 2.75rem;
+    height: 3px;
+    background-color: var(--primary);
+    margin-top: 0.5rem;
   }
 
   .h2 {
     font-size: 1.75rem;
     font-weight: 700;
     /* Proximidad: un título pertenece al contenido que abre */
-    margin-top: 2.75rem;
+    margin-top: 3.5rem;
     margin-bottom: 0.6rem;
     color: var(--foreground);
     transition: color 0.3s ease;
