@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react';
 import QuizHearts from './QuizHearts.jsx';
+import { spawnCoinBurst } from '../ui/coinBurst.js';
 import styles from './GridQuiz.module.css';
 
 const GridRow = ({ label, columns, correctIndex, selected, onSelect }) => {
@@ -34,7 +35,7 @@ export const GridQuiz = ({ title, columns, rows }) => {
   const [selections, setSelections] = useState(() => rows.map(() => null));
   const [heartsLost, setHeartsLost] = useState(0);
   const wrongRowsRef = useRef(new Set());
-  const confettiCanvasRef = useRef(null);
+  const rootRef = useRef(null);
   const celebratedRef = useRef(false);
 
   useEffect(() => {
@@ -47,30 +48,6 @@ export const GridQuiz = ({ title, columns, rows }) => {
       });
     }
   }, []);
-
-  const triggerConfetti = () => {
-    if (typeof window !== 'undefined' && window.confetti) {
-      try {
-        // Confeti pixel: cuadrados planos en la paleta del sistema
-        const pixelConfetti = {
-          shapes: ['square'],
-          flat: true,
-          scalar: 1.4,
-          gravity: 1.3,
-          ticks: 130,
-          colors: ['#66cf7a', '#7e96f2', '#f2c14e', '#e887bc', '#67c7db'],
-          disableForReducedMotion: true,
-        };
-        const myConfetti = window.confetti.create(confettiCanvasRef.current, {
-          resize: true,
-          useWorker: true
-        });
-        myConfetti({ ...pixelConfetti, particleCount: 150, spread: 90, origin: { y: 0.6 } });
-      } catch (error) {
-        console.warn('Error al disparar confetti:', error);
-      }
-    }
-  };
 
   const handleSelect = (rowIndex, colIndex) => {
     // máx. una vida perdida por término
@@ -93,7 +70,7 @@ export const GridQuiz = ({ title, columns, rows }) => {
   useEffect(() => {
     if (allCorrect && !celebratedRef.current) {
       celebratedRef.current = true;
-      triggerConfetti();
+      spawnCoinBurst(rootRef.current, 8);
     }
     if (!allCorrect) {
       celebratedRef.current = false;
@@ -101,8 +78,7 @@ export const GridQuiz = ({ title, columns, rows }) => {
   }, [allCorrect]);
 
   return (
-    <div className={styles.gridQuizContainer}>
-      <canvas ref={confettiCanvasRef} className={styles.confettiCanvas} />
+    <div className={styles.gridQuizContainer} ref={rootRef}>
       {title && <div className={styles.title}>{title}</div>}
       <QuizHearts lost={heartsLost} />
       <div className={styles.tableWrapper}>

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import QuizHearts from './QuizHearts.jsx';
+import { spawnCoinBurst } from '../ui/coinBurst.js';
 import styles from './QuizComponent.module.css';
 
 export const QuizQuestion = ({ question, questionItems, questionSuffix, options, correctIndex, questionNumber, onWrong, onCorrect }) => {
   const [selectedOption, setSelectedOption] = useState(null);
-  const confettiCanvasRef = useRef(null);
   const wrongOnceRef = useRef(false); // máx. una vida perdida por pregunta
   
   // Efecto para cargar la librería canvas-confetti
@@ -19,10 +19,10 @@ export const QuizQuestion = ({ question, questionItems, questionSuffix, options,
     }
   }, []);
   
-  const handleOptionClick = (index) => {
+  const handleOptionClick = (index, buttonEl) => {
     setSelectedOption(index);
     if (index === correctIndex) {
-      triggerConfetti();
+      spawnCoinBurst(buttonEl);
       onCorrect?.();
     } else if (!wrongOnceRef.current) {
       wrongOnceRef.current = true;
@@ -30,68 +30,8 @@ export const QuizQuestion = ({ question, questionItems, questionSuffix, options,
     }
   };
   
-  // Función para disparar el confeti usando canvas-confetti
-  const triggerConfetti = () => {
-    if (typeof window !== 'undefined' && window.confetti) {
-      try {
-        // Confeti pixel: cuadrados planos en la paleta del sistema
-        const pixelConfetti = {
-          shapes: ['square'],
-          flat: true,
-          scalar: 1.4,
-          gravity: 1.3,
-          ticks: 130,
-          colors: ['#66cf7a', '#7e96f2', '#f2c14e', '#e887bc', '#67c7db'],
-          disableForReducedMotion: true,
-        };
-        const myConfetti = window.confetti.create(confettiCanvasRef.current, {
-          resize: true,
-          useWorker: true
-        });
-        
-        // Dispara confeti desde el centro
-        myConfetti({
-          ...pixelConfetti,
-          particleCount: 150,
-          spread: 70,
-          origin: { y: 0.6 }
-        });
-        
-        // Dispara desde la izquierda
-        setTimeout(() => {
-          myConfetti({
-          ...pixelConfetti,
-            particleCount: 100,
-            angle: 60,
-            spread: 55,
-            origin: { x: 0 }
-          });
-        }, 250);
-        
-        // Dispara desde la derecha
-        setTimeout(() => {
-          myConfetti({
-          ...pixelConfetti,
-            particleCount: 100,
-            angle: 120,
-            spread: 55,
-            origin: { x: 1 }
-          });
-        }, 400);
-      } catch (error) {
-        console.warn('Error al disparar confetti:', error);
-      }
-    }
-  };
-
   return (
     <div className={styles.questionContainer}>
-      {/* Canvas para el confeti */}
-      <canvas 
-        ref={confettiCanvasRef}
-        className={styles.confettiCanvas}
-      />
-      
       {/* Estructura modificada para mejorar la sangría */}
       <div className={styles.questionTitleWrapper}>
         <span className={styles.questionNumber}>{questionNumber}.</span>
@@ -116,7 +56,7 @@ export const QuizQuestion = ({ question, questionItems, questionSuffix, options,
           return (
             <button
               key={index}
-              onClick={() => handleOptionClick(index)}
+              onClick={(e) => handleOptionClick(index, e.currentTarget)}
               className={`${styles.optionButton} ${
                 selectedOption === index
                   ? index === correctIndex

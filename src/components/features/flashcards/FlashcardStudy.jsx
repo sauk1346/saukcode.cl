@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import CardRenderer from './CardRenderer';
+import { spawnCoinBurst } from '../../ui/coinBurst.js';
 import styles from './FlashcardStudy.module.css';
 
 function shuffleArray(arr) {
@@ -11,6 +12,22 @@ function shuffleArray(arr) {
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
+}
+
+// Letra de rango: con rango S, brotan monedas de la propia letra
+function RankLetter({ rank, rankClass }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    if (rank === 'S' && ref.current) {
+      const t = setTimeout(() => spawnCoinBurst(ref.current, 10), 350);
+      return () => clearTimeout(t);
+    }
+  }, [rank]);
+  return (
+    <span ref={ref} className={`${styles.rankLetter} ${rankClass}`}>
+      {rank}
+    </span>
+  );
 }
 
 export default function FlashcardStudy({ cards, topicName, deckNumber, layout }) {
@@ -74,6 +91,7 @@ export default function FlashcardStudy({ cards, topicName, deckNumber, layout })
 
   if (finished) {
     const pct = Math.round((correct / total) * 100);
+    // (las monedas del rango S se disparan desde RankSCoins)
     // Rango arcade: S dorado (≥90), A verde, B azul, C gris
     const rank = pct >= 90 ? 'S' : pct >= 70 ? 'A' : pct >= 50 ? 'B' : 'C';
     const rankClass = { S: styles.rankS, A: styles.rankA, B: styles.rankB, C: styles.rankC }[rank];
@@ -83,7 +101,7 @@ export default function FlashcardStudy({ cards, topicName, deckNumber, layout })
           <h2 className={styles.finishedTitle}>DECK CLEAR</h2>
           <div className={styles.rankRow}>
             <span className={styles.rankLabel}>rank</span>
-            <span className={`${styles.rankLetter} ${rankClass}`}>{rank}</span>
+            <RankLetter rank={rank} rankClass={rankClass} />
           </div>
           <div className={styles.score}>
             <span className={styles.scoreNumber}>{correct}</span>
