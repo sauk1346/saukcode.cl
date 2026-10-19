@@ -237,7 +237,7 @@ const Calendar = ({ eventos = [] }) => {
           {dayNames.map((day, i) => (
             <div
               key={day}
-              className={`${styles.calendarioDayOfWeek} ${i >= 5 ? styles.weekendName : ''}`}
+              className={`${styles.calendarioDayOfWeek} ${i === 6 ? styles.weekendName : ''}`}
             >
               {day}
             </div>
@@ -256,7 +256,7 @@ const Calendar = ({ eventos = [] }) => {
                 key={index} 
                 className={`${styles.calendarioDay} 
                   ${day.isCurrentMonth ? styles.currentMonth : styles.otherMonth} 
-                  ${[0, 6].includes(day.date.getDay()) ? styles.weekendDay : ''}
+                  ${day.date.getDay() === 0 ? styles.weekendDay : ''}
                   ${hasDay && day.isCurrentMonth ? styles.hasEvents : ''}
                   ${isToday(day.date) ? styles.today : ''}
                   ${isSelected ? styles.selected : ''}`}
