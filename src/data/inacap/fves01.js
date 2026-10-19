@@ -23,7 +23,7 @@ const courseData = {
   evaluationsData: [
     { 
       evaluationNumber: 1,
-      date: 'Mar 02, Sep 2025',
+      date: 'Jue 04, Sep 2025',
       weighting: '20%',
       description: {
         text: 'Role Play',
@@ -143,7 +143,7 @@ const courseData = {
     { 
       week: '04', 
       class: '07', 
-      date: 'Mar 02, Sep 2025', 
+      date: 'Jue 04, Sep 2025', 
       description: [
         {
           text: "Listening Comprehension exercises",

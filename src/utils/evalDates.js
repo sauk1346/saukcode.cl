@@ -23,7 +23,8 @@ export function resolveEvalDates(courseCode, evaluationsData = []) {
       (typeof ev.description?.text === 'string' && /^Examen/.test(ev.description.text)
         ? 'Examen'
         : `Evaluación ${String(ev.evaluationNumber).padStart(2, '0')}`);
-    const evento = calendar25.find((e) => e.titulo === `[${code}] ${ref}`);
+    const prefijo = `[${code}] ${ref}`;
+    const evento = calendar25.find((e) => e.titulo === prefijo || e.titulo.startsWith(`${prefijo}:`));
     if (!evento) return ev; // sin evento: la fecha manual queda (promedio de controles)
     const date = formatear(evento.fecha);
     if (ev.date && ev.date !== date) {

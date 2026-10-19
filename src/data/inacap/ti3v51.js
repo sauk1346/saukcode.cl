@@ -32,7 +32,7 @@ const courseData = {
     },
     { 
       evaluationNumber: 2,
-      date: 'Mié 22, Abr',
+      date: 'Mié 22, Abr 2026',
       weighting: '35%', 
       description: [
         {

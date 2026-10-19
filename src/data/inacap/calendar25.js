@@ -628,24 +628,6 @@ export const calendar25 = [
     description: "Arquitectura Multi Cloud"
   },
 // ----- [FVIE02] Innovación y Emprendimiento II -----
-  {
-    id: 105,
-    fecha: "2026-6-14",
-    titulo: "[FVIE01] Evaluación 01",
-    description: "Innovación y Emprendimiento II"
-  },
-  {
-    id: 106,
-    fecha: "2026-7-5",
-    titulo: "[FVIE01] Evaluación 02",
-    description: "Innovación y Emprendimiento II"
-  },
-  {
-    id: 107,
-    fecha: "2026-7-23",
-    titulo: "[FVIE01] Evaluación 03",
-    description: "Innovación y Emprendimiento II"
-  },
 // ----- [TI3V52] Redes de Datos -----
   {
     id: 108,
