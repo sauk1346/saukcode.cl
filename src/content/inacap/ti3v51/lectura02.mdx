@@ -85,7 +85,6 @@ Su definición y creación va de la mano con la aparición de procesos y sistema
 
 Es la evolución natural para un sistema informático creado como una única aplicación monolítica y ejecutado como un solo archivo ejecutable final. Es sabido que la ejecución de una aplicación única, que incluya todos los módulos de  programa y rutinas de procesamiento en su interior, puede fallar catastróficamente si es que ocurre un error irrecuperable, tan solo en uno de aquellos módulos; esto es muy común en el ámbito de los servicios web y de datos. Por esta razón desacoplar cada uno de los servicios provistos por el sistema, de forma que se ejecuten independientemente de los demás (mediante una arquitectura basada en hilos de ejecución o *threads*) entregará mayor resiliencia al sistema completo y evitará caídas totales de la aplicación, teniendo solamente que reiniciarse aquellos servicios que hayan fallado, mientras que los demás sigan ejecutándose correctamente. Esto logra la continuidad del servicio total, mayor disponibilidad y menos fallos notados por los usuarios del sistema.
 
----
 
 ## Actividad de práctica
 

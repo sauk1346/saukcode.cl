@@ -37,7 +37,6 @@ fun PantallaContador(viewModel: ContadorViewModel = viewModel()) {
 }
 ```
 
----
 
 ## 2. Data Class
 
@@ -60,7 +59,6 @@ val copia = usuario.copy(nombre = "Antonio Silva")  // copia modificando solo no
 val (id, nombre, email) = usuario
 ```
 
----
 
 ## 3. Serializado (Parcelable y Serializable)
 
@@ -84,7 +82,6 @@ data class Producto(
 ) : Serializable
 ```
 
----
 
 ## 4. String Resources
 
@@ -110,7 +107,6 @@ getString(R.string.bienvenido)
 getString(R.string.saludo_nombre, "Antonio")
 ```
 
----
 
 ## 5. Strings en Español/Inglés (Localización)
 
@@ -145,7 +141,6 @@ Creas carpetas específicas por idioma:
 
 Android selecciona automáticamente según el idioma del dispositivo.
 
----
 
 ## 6. Enviar Datos Entre Pantallas
 
@@ -204,7 +199,6 @@ val nombre = intent.getStringExtra("PRODUCTO_NOMBRE")
 val producto = intent.getParcelableExtra<Producto>("PRODUCTO")
 ```
 
----
 
 ## 7. Ejemplo Integrado
 ```kotlin
@@ -248,7 +242,6 @@ fun ListaProductos(viewModel: ProductoViewModel = viewModel()) {
 }
 ```
 
----
 
 ## Resumen Rápido
 
