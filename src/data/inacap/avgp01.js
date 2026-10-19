@@ -58,19 +58,19 @@ const courseData = {
                     href: 'controles'
                 },
                 {
-                    text: 'Actividad 05: Retención de talento con IA',
+                    text: 'ACT05: Retención de talento con IA',
                     href: 'docs/Actividad05.pdf'
                 },
                 {
-                    text: 'Actividad 07: Caso - AgroTech Chile SA',
+                    text: 'ACT07: Caso - AgroTech Chile SA',
                     href: 'docs/Actividad07.pdf'
                 },
                 {
-                    text: 'Actividad 10: Caso - Logisur SA',
+                    text: 'ACT10: Caso - Logisur SA',
                     href: 'docs/Actividad10.pdf'
                 },
                 {
-                    text: 'Actividad 13: Caso - Mieles del Sur',
+                    text: 'ACT13: Caso - Mieles del Sur',
                     href: 'docs/Actividad13.pdf'
                 },
             ]
