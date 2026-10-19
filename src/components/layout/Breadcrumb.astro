@@ -9,19 +9,24 @@ const parts = Astro.url.pathname.split('/').filter(Boolean);
     <!-- La ruta se muestra como path de terminal: mono + separador ▸ -->
     <ol class="font-mono flex items-center gap-1.5 text-[13px] whitespace-nowrap">
       <li>
-        <a href="/" class="text-(--secondary) hover:text-(--primary)">inicio</a>
+        <a href="/" class="text-(--secondary) underline-offset-2 hover:text-(--primary) hover:underline">inicio</a>
       </li>
       {parts.map((part, index) => {
         const path = `/${parts.slice(0, index + 1).join('/')}`;
         const isLast = index === parts.length - 1;
         return (
           <>
-            <li aria-hidden="true" class="text-(--border-color)">▸</li>
+            <li aria-hidden="true" class="text-(--secondary) opacity-50">▸</li>
             <li>
               {isLast ? (
-                <span class="text-(--foreground)">{part}</span>
+                <span
+                  aria-current="page"
+                  class="border border-(--border-color) bg-(--surface) px-1.5 py-0.5 text-(--foreground)"
+                >
+                  {part}
+                </span>
               ) : (
-                <a href={path} class="text-(--secondary) hover:text-(--primary)">{part}</a>
+                <a href={path} class="text-(--secondary) underline-offset-2 hover:text-(--primary) hover:underline">{part}</a>
               )}
             </li>
           </>
