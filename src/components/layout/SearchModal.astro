@@ -94,4 +94,69 @@
     --pagefind-ui-border-width: 2px;
     --pagefind-ui-font: var(--font-sans);
   }
+
+  /* Resaltado del término: tag sólido del sistema, no el <mark> amarillo */
+  #search-modal mark {
+    background-color: var(--primary);
+    color: var(--background);
+    padding: 0 3px;
+  }
+
+  /* Contador de resultados en mono */
+  #search-modal .pagefind-ui__message {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--secondary);
+    padding: 0;
+  }
+
+  /* Cada resultado es una card pixel */
+  #search-modal .pagefind-ui__result {
+    border: 2px solid var(--border-color);
+    background-color: var(--card-bg);
+    padding: 0.8rem 0.95rem;
+    margin: 0.9rem 0;
+  }
+
+  #search-modal .pagefind-ui__result-link {
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  #search-modal .pagefind-ui__result-excerpt {
+    color: var(--secondary);
+  }
+
+  /* Sub-resultados: viñeta ▸ del sistema en vez de la flecha por defecto */
+  #search-modal .pagefind-ui__result-nested .pagefind-ui__result-link::before {
+    content: '▸ ';
+    color: var(--secondary);
+    position: static;
+  }
+
+  /* Botones de Pagefind (Limpiar / Cargar más) al lenguaje pixel */
+  #search-modal .pagefind-ui__search-clear,
+  #search-modal .pagefind-ui__button {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--secondary);
+    background-color: var(--surface);
+    border: 2px solid var(--border-color);
+    border-radius: 0;
+  }
+
+  #search-modal .pagefind-ui__button {
+    color: var(--foreground);
+    box-shadow: var(--shadow-sm);
+  }
+
+  #search-modal .pagefind-ui__button:hover {
+    border-color: var(--secondary);
+    background-color: var(--surface);
+  }
+
+  #search-modal .pagefind-ui__button:active {
+    translate: 2px 2px;
+    box-shadow: none;
+  }
 </style>
