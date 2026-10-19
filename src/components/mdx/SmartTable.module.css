@@ -31,6 +31,20 @@
     table-layout: fixed;
   }
   
+  /* En móvil las columnas conservan un ancho legible y la tabla
+     desborda hacia el scroll del wrapper, en vez de apretarse en
+     partes iguales (table-layout fixed) hasta la papilla */
+  @media (max-width: 768px) {
+    .table {
+      table-layout: auto;
+    }
+
+    .table th,
+    .table td {
+      min-width: 6.5rem;
+    }
+  }
+
   .table thead {
     background: var(--surface);
     border-bottom: 2px solid var(--secondary);
