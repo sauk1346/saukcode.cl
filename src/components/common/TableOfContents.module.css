@@ -107,7 +107,6 @@
 
 .active {
   color: var(--primary);
-  font-weight: 500;
   background-color: color-mix(in srgb, var(--primary) 6%, var(--background));
   border-left: 3px solid var(--primary);
 }
