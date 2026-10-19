@@ -1,7 +1,9 @@
 /* Configuración base del contenedor */
 .container {
     width: 100%;
-    max-width: 1100px;
+    /* La tarjeta abraza la columna de lectura (--measure: 40rem) +
+       respiro para código y tablas; antes 1100px dejaba un desierto */
+    max-width: 50rem;
     margin: 0 auto;
     padding: var(--spacing-xl);
     color: var(--foreground);
@@ -23,12 +25,5 @@
     .container {
       padding: var(--spacing-lg);
       border-radius: 0;
-    }
-  }
-
-  /* Pantallas muy grandes */
-  @media (min-width: 1400px) {
-    .container {
-      max-width: 1200px;
     }
   }
