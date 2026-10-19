@@ -85,11 +85,6 @@ export const QuizQuestion = ({ question, questionItems, questionSuffix, options,
           >
             {selectedOption === correctIndex ? 'CORRECTO' : 'INCORRECTO'}
           </div>
-          {selectedOption !== correctIndex && (
-            <p className={styles.verdictDetail}>
-              La respuesta correcta es la opción {String.fromCharCode(97 + correctIndex)}).
-            </p>
-          )}
         </div>
       )}
     </div>
