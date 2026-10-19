@@ -109,15 +109,25 @@
   background: var(--success);
 }
 
-@media (max-width: 520px) {
+/* Fluido en pantallas chicas: siempre son 8 fichas con "N°", así que se
+   reparten el ancho disponible y caben en cualquier viewport */
+@media (max-width: 560px) {
+  .tabsTrack {
+    width: 100%;
+  }
+
   .tab {
-    width: 2rem;
-    height: 2rem;
-    font-size: 0.75rem;
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    height: auto;
+    aspect-ratio: 1;
+    font-size: clamp(0.65rem, 2.6vw, 0.9rem);
   }
 
   .path {
-    width: 0.5rem;
+    flex: 0 1 0.6rem;
+    min-width: 4px;
     margin: 0 2px;
   }
 }
