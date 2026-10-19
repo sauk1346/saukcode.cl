@@ -51,6 +51,16 @@ export const GridQuiz = ({ title, columns, rows }) => {
   const triggerConfetti = () => {
     if (typeof window !== 'undefined' && window.confetti) {
       try {
+        // Confeti pixel: cuadrados planos en la paleta del sistema
+        const pixelConfetti = {
+          shapes: ['square'],
+          flat: true,
+          scalar: 1.4,
+          gravity: 1.3,
+          ticks: 130,
+          colors: ['#66cf7a', '#7e96f2', '#f2c14e', '#e887bc', '#67c7db'],
+          disableForReducedMotion: true,
+        };
         const myConfetti = window.confetti.create(confettiCanvasRef.current, {
           resize: true,
           useWorker: true

@@ -34,6 +34,16 @@ export const QuizQuestion = ({ question, questionItems, questionSuffix, options,
   const triggerConfetti = () => {
     if (typeof window !== 'undefined' && window.confetti) {
       try {
+        // Confeti pixel: cuadrados planos en la paleta del sistema
+        const pixelConfetti = {
+          shapes: ['square'],
+          flat: true,
+          scalar: 1.4,
+          gravity: 1.3,
+          ticks: 130,
+          colors: ['#66cf7a', '#7e96f2', '#f2c14e', '#e887bc', '#67c7db'],
+          disableForReducedMotion: true,
+        };
         const myConfetti = window.confetti.create(confettiCanvasRef.current, {
           resize: true,
           useWorker: true
@@ -41,6 +51,7 @@ export const QuizQuestion = ({ question, questionItems, questionSuffix, options,
         
         // Dispara confeti desde el centro
         myConfetti({
+          ...pixelConfetti,
           particleCount: 150,
           spread: 70,
           origin: { y: 0.6 }
@@ -49,6 +60,7 @@ export const QuizQuestion = ({ question, questionItems, questionSuffix, options,
         // Dispara desde la izquierda
         setTimeout(() => {
           myConfetti({
+          ...pixelConfetti,
             particleCount: 100,
             angle: 60,
             spread: 55,
@@ -59,6 +71,7 @@ export const QuizQuestion = ({ question, questionItems, questionSuffix, options,
         // Dispara desde la derecha
         setTimeout(() => {
           myConfetti({
+          ...pixelConfetti,
             particleCount: 100,
             angle: 120,
             spread: 55,
