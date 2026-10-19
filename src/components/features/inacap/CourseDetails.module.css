@@ -711,16 +711,39 @@
   color: var(--course-accent, var(--primary));
 }
 
+/* El borde propio de la card late: capa de tinte sobre el contorno del
+   sprite (misma silueta vía chaflanes de máscara), pulsando en 3 fases */
 .currentWeekCard {
-  outline: 3px solid var(--course-accent, var(--primary));
-  outline-offset: 3px;
+  position: relative;
 }
 
-:global(html[data-blink='1']) .currentWeekCard,
-:global(html[data-blink='3']) .currentWeekCard {
-  outline-color: color-mix(in srgb, var(--course-accent, var(--primary)) 55%, transparent);
+.currentWeekCard::after {
+  content: '';
+  position: absolute;
+  inset: -8px; /* cubre el área del border-image */
+  border: 2px solid var(--course-accent, var(--primary));
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(135deg, transparent 0 5px, #000 5px) top left,
+    linear-gradient(-135deg, transparent 0 5px, #000 5px) top right,
+    linear-gradient(45deg, transparent 0 5px, #000 5px) bottom left,
+    linear-gradient(-45deg, transparent 0 5px, #000 5px) bottom right;
+  -webkit-mask-size: 51% 51%;
+  -webkit-mask-repeat: no-repeat;
+  mask:
+    linear-gradient(135deg, transparent 0 5px, #000 5px) top left,
+    linear-gradient(-135deg, transparent 0 5px, #000 5px) top right,
+    linear-gradient(45deg, transparent 0 5px, #000 5px) bottom left,
+    linear-gradient(-45deg, transparent 0 5px, #000 5px) bottom right;
+  mask-size: 51% 51%;
+  mask-repeat: no-repeat;
 }
 
-:global(html[data-blink='2']) .currentWeekCard {
-  outline-color: color-mix(in srgb, var(--course-accent, var(--primary)) 25%, transparent);
+:global(html[data-blink='1']) .currentWeekCard::after,
+:global(html[data-blink='3']) .currentWeekCard::after {
+  opacity: 0.55;
+}
+
+:global(html[data-blink='2']) .currentWeekCard::after {
+  opacity: 0.2;
 }
