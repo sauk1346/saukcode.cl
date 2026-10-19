@@ -54,13 +54,23 @@
   color: var(--background);
   white-space: nowrap;
   vertical-align: 0.1em;
-  /* Cortes de 3px: con el ancho fraccionario del texto, los de 2px caen
-     en subpíxel y el lado derecho se veía cuadrado */
-  clip-path: polygon(
-    3px 0, calc(100% - 3px) 0, 100% 3px,
-    100% calc(100% - 3px), calc(100% - 3px) 100%,
-    3px 100%, 0 calc(100% - 3px), 0 3px
-  );
+  /* Esquinas en chaflán por máscara de gradientes: a diferencia del
+     clip-path en px (que redondea distinto según el ancho fraccionario
+     de cada palabra), antialiasa parejo en las 4 esquinas y a todo zoom */
+  -webkit-mask:
+    linear-gradient(135deg, transparent 0 3px, #000 3px) top left,
+    linear-gradient(-135deg, transparent 0 3px, #000 3px) top right,
+    linear-gradient(45deg, transparent 0 3px, #000 3px) bottom left,
+    linear-gradient(-45deg, transparent 0 3px, #000 3px) bottom right;
+  -webkit-mask-size: 51% 51%;
+  -webkit-mask-repeat: no-repeat;
+  mask:
+    linear-gradient(135deg, transparent 0 3px, #000 3px) top left,
+    linear-gradient(-135deg, transparent 0 3px, #000 3px) top right,
+    linear-gradient(45deg, transparent 0 3px, #000 3px) bottom left,
+    linear-gradient(-45deg, transparent 0 3px, #000 3px) bottom right;
+  mask-size: 51% 51%;
+  mask-repeat: no-repeat;
   padding: 0.3em 0.55em;
 }
 
