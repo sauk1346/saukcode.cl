@@ -20,6 +20,9 @@ export const SmartLink = ({ href, children, newTab, className, ...props }) => {
   // Detectar si es un archivo PDF
   const isPdfFile = href && href.toLowerCase().includes('.pdf');
 
+  // Detectar mazos de flashcards (rutas internas /flashcards/)
+  const isFlashcards = href && href.includes('/flashcards/');
+
   // Detectar archivos de video locales
   const isVideoFile = href && /\.(mp4|avi|mov|webm)$/i.test(href);
 
@@ -59,6 +62,7 @@ export const SmartLink = ({ href, children, newTab, className, ...props }) => {
       {...props}
     >
       {children}
+      {isFlashcards && <span className={`${styles.chip} ${styles.chipFlashcards}`}>flashcard</span>}
     </Link>
   );
 };

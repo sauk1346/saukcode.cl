@@ -80,6 +80,10 @@
   background-color: var(--cyan);
 }
 
+.chipFlashcards {
+  background-color: var(--success);
+}
+
 /* Flecha de enlace externo: carácter tipográfico, no icono */
 .externalArrow {
   display: inline-block;

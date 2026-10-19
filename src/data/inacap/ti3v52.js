@@ -28,7 +28,17 @@ const courseData = {
             description: {
                 text: 'Red LAN y configuraciones básicas',
                 href: 'eval01',
-            }
+            },
+            quickGuide: [
+                {
+                    text: 'Repaso: Modelo OSI',
+                    href: 'flashcards/ti3v52-modelo-osi/1'
+                },
+                {
+                    text: 'Repaso: Comandos IOS',
+                    href: 'flashcards/ti3v52-comandos-ios/1'
+                }
+            ]
         },
         {
             evaluationNumber: 2,
@@ -97,6 +107,10 @@ const courseData = {
                     href: 'docs/osi-tcp-ip.pdf'
                 },
                 {
+                    text: 'Repaso: Modelo OSI',
+                    href: 'flashcards/ti3v52-modelo-osi/1'
+                },
+                {
                     text: 'Red LAN y configuraciones básicas - Ejercicio 02',
                     href: 'unit01-ej02'
                 },
@@ -111,6 +125,10 @@ const courseData = {
                 {
                     text: 'Comandos IOS para Configuración de Redes',
                     href: 'docs/comandos-ios.pdf'
+                },
+                {
+                    text: 'Repaso: Comandos IOS',
+                    href: 'flashcards/ti3v52-comandos-ios/1'
                 },
                 {
                     text: 'Red LAN y configuraciones básicas - Ejercicio 03',
