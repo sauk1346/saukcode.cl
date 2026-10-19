@@ -114,12 +114,21 @@
   background-color: color-mix(in srgb, var(--secondary) 22%, transparent);
 }
 
-.cellDone {
-  background-color: var(--course-accent, var(--primary));
+/* Niveles como la barra de lectura: rojo al partir, dorado a mitad,
+   verde cerca del final */
+.tierLow .cellDone,
+.tierLow .cellCurrent {
+  background-color: var(--error);
 }
 
-.cellCurrent {
-  background-color: var(--course-accent, var(--primary));
+.tierMid .cellDone,
+.tierMid .cellCurrent {
+  background-color: var(--warning-fill);
+}
+
+.tierHigh .cellDone,
+.tierHigh .cellCurrent {
+  background-color: var(--success);
 }
 
 :global(html[data-blink='1']) .cellCurrent,
@@ -349,8 +358,9 @@
 }
 
 .rankLetter {
-  font-family: var(--font-pixel);
-  font-size: 3.25rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 3.5rem;
   line-height: 1;
   text-shadow: 3px 3px 0 var(--shadow-hard);
 }

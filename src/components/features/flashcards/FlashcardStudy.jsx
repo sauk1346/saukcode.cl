@@ -129,7 +129,17 @@ export default function FlashcardStudy({ cards, topicName, deckNumber, layout })
       </div>
 
       {/* Barra de progreso: una celda por carta */}
-      <div className={styles.progressBar} role="img" aria-label={`Carta ${index + 1} de ${total}`}>
+      <div
+        className={`${styles.progressBar} ${
+          (index + 1) / total >= 0.7
+            ? styles.tierHigh
+            : (index + 1) / total >= 0.35
+              ? styles.tierMid
+              : styles.tierLow
+        }`}
+        role="img"
+        aria-label={`Carta ${index + 1} de ${total}`}
+      >
         {deck.map((_, i) => (
           <span
             key={i}
