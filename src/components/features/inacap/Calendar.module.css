@@ -137,21 +137,21 @@
 }
 
 /* Fin de semana: columna con lavado rosa (el ritmo de la semana) */
-.weekendDay {
+.weekendDay:not(.today):not(.selected) {
   background: color-mix(in srgb, var(--accent) 6%, var(--background));
 }
 
 /* Día con eventos: lavado azul + número en primario */
-.hasEvents {
+.hasEvents:not(.today):not(.selected) {
   background: color-mix(in srgb, var(--primary) 9%, var(--background));
 }
 
 /* En oscuro el ojo comprime las diferencias: los lavados suben de dosis */
-:global(html.dark) .weekendDay {
+:global(html.dark) .weekendDay:not(.today):not(.selected) {
   background: color-mix(in srgb, var(--accent) 14%, var(--background));
 }
 
-:global(html.dark) .hasEvents {
+:global(html.dark) .hasEvents:not(.today):not(.selected) {
   background: color-mix(in srgb, var(--primary) 20%, var(--background));
 }
 
@@ -168,6 +168,16 @@
 .today {
   background: var(--primary);
   color: var(--background);
+}
+
+/* Hoy late con el reloj global: es el día "en juego" */
+:global(html[data-blink='1']) .today:not(.selected),
+:global(html[data-blink='3']) .today:not(.selected) {
+  opacity: 0.8;
+}
+
+:global(html[data-blink='2']) .today:not(.selected) {
+  opacity: 0.6;
 }
 
 .today .calendarioDayHeader,
@@ -309,7 +319,7 @@
   background: var(--card-bg);
   padding: var(--spacing-md);
   border: 2px solid var(--border-color);
-  border-left: 4px solid var(--primary);
+  border-left: 4px solid var(--event-accent, var(--primary));
 }
 
 .eventItemHeader {
