@@ -19,6 +19,20 @@
     .figure .image {
       max-width: none;
     }
+
+    /* Lightbox como modo foco: imagen natural paneable en ambos ejes.
+       flex-start + margin auto = centrado seguro con desborde */
+    .lightbox {
+      justify-content: flex-start;
+    }
+
+    .lightboxContent {
+      margin: 0 auto;
+    }
+
+    .lightboxImage {
+      max-width: none;
+    }
   }
   
   .image {
