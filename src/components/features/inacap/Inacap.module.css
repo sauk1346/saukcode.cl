@@ -55,14 +55,10 @@
   /* ================================
      SECCIÓN DEL CALENDARIO
      ================================ */
+  /* Solo espaciado: el calendario trae su propio marco y sombra — una
+     caja envolvente con fondo duplicaba tokens y se fundía con la
+     cabecera (mismo --surface) */
   .calendarPlaceholder {
-    background: var(--background);
-    border-radius: 0;
-    padding: 2rem;
-    box-shadow: var(--shadow-lg);
-    color: var(--secondary);
-    text-align: center;
-    border: 2px solid var(--border-color);
     width: 100%;
     margin-top: 2rem;
   }
@@ -99,14 +95,6 @@
     color: var(--foreground);
   }
   
-  :global(html.dark-mode) .calendarPlaceholder,
-  :global(html.dark-mode-override) .calendarPlaceholder {
-    background: var(--surface);
-    color: var(--secondary);
-    border-color: var(--border-color);
-    box-shadow: var(--shadow-sm);
-  }
-  
   /* ================================
      RESPONSIVE
      ================================ */
@@ -134,7 +122,4 @@
       height: 3px;
     }
     
-    .calendarPlaceholder {
-      padding: 1rem;
-    }
   }
