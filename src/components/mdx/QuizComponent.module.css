@@ -68,6 +68,7 @@
     gap: var(--spacing-sm);
   }
   
+  /* Alternativa como botón pixel NES: borde 2px, sombra dura y press */
   .optionButton {
     width: 100%;
     display: flex;
@@ -75,12 +76,12 @@
     gap: 8px;
     text-align: left;
     padding: 10px;
-    border-radius: var(--radius-md, 6px);
-    border: 1px solid var(--input-border, var(--border-color));
-    background-color: rgba(127, 127, 127, 0.08);
-    color: var(--foreground, var(--foreground));
+    border-radius: 0;
+    border: 2px solid var(--border-color);
+    background-color: var(--surface);
+    color: var(--foreground);
     cursor: pointer;
-    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
     font-size: 0.9rem;
   }
 
@@ -102,20 +103,26 @@
     hyphens: auto;
   }
   
-  .optionButton:hover {
-    background-color: rgba(127, 127, 127, 0.18);
+  .optionButton:hover:not(:disabled) {
+    border-color: var(--secondary);
+  }
+
+  .optionButton:active:not(:disabled) {
+    translate: 2px 2px;
+    box-shadow: none;
   }
   
+  /* Acierto/error en sólidos invertidos (AA en ambos temas) */
   .correctOption {
-    background-color: color-mix(in srgb, var(--success) 15%, transparent);
-    border-color: var(--success, var(--success));
-    color: var(--success);
+    background-color: var(--success);
+    border-color: var(--success);
+    color: var(--background);
   }
   
   .incorrectOption {
-    background-color: color-mix(in srgb, var(--error) 15%, transparent);
-    border-color: var(--error, var(--error));
-    color: var(--error);
+    background-color: var(--error);
+    border-color: var(--error);
+    color: var(--background);
   }
   
   .iconContainer {
@@ -145,13 +152,15 @@
   }
   
   .correctFeedback {
-    background-color: color-mix(in srgb, var(--success) 15%, transparent);
-    color: var(--success);
+    background-color: color-mix(in srgb, var(--success) 12%, transparent);
+    border: 2px solid var(--success);
+    color: var(--foreground);
   }
   
   .incorrectFeedback {
-    background-color: color-mix(in srgb, var(--error) 15%, transparent);
-    color: var(--error);
+    background-color: color-mix(in srgb, var(--error) 12%, transparent);
+    border: 2px solid var(--error);
+    color: var(--foreground);
   }
   
   .confettiCanvas {
@@ -172,43 +181,6 @@
   :global(html.dark-mode-override) .questionNumber,
   :global(html.dark-mode-override) .questionText {
     color: var(--foreground, var(--foreground));
-  }
-  
-  /* Ajustar los colores de los estados para modo oscuro */
-  :global(html.dark-mode) .correctOption,
-  :global(html.dark-mode-override) .correctOption {
-    background-color: color-mix(in srgb, var(--success) 20%, transparent);
-    border-color: var(--success, var(--success));
-    color: var(--success);
-  }
-  
-  :global(html.dark-mode) .incorrectOption,
-  :global(html.dark-mode-override) .incorrectOption {
-    background-color: color-mix(in srgb, var(--error) 20%, transparent);
-    border-color: var(--error, var(--error));
-    color: var(--error);
-  }
-  
-  :global(html.dark-mode) .correctIcon,
-  :global(html.dark-mode-override) .correctIcon {
-    color: var(--success, var(--success));
-  }
-  
-  :global(html.dark-mode) .incorrectIcon,
-  :global(html.dark-mode-override) .incorrectIcon {
-    color: var(--error, var(--error));
-  }
-  
-  :global(html.dark-mode) .correctFeedback,
-  :global(html.dark-mode-override) .correctFeedback {
-    background-color: color-mix(in srgb, var(--success) 20%, transparent);
-    color: var(--success);
-  }
-  
-  :global(html.dark-mode) .incorrectFeedback,
-  :global(html.dark-mode-override) .incorrectFeedback {
-    background-color: color-mix(in srgb, var(--error) 20%, transparent);
-    color: var(--error);
   }
   
   /* Responsive */

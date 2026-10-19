@@ -15,8 +15,8 @@
 
 .tableWrapper {
   overflow-x: auto;
-  border-radius: var(--radius-md, 8px);
-  border: 1px solid var(--border-color, var(--border-color));
+  border-radius: 0;
+  border: 2px solid var(--border-color);
 }
 
 .table {
@@ -58,19 +58,21 @@
   background-color: rgba(127, 127, 127, 0.15);
 }
 
+/* Acierto/error en sólidos invertidos; la respuesta revelada (no
+   ganada) queda en lavado con texto normal */
 .correctCell {
-  background-color: color-mix(in srgb, var(--success) 20%, transparent);
-  color: var(--success, var(--success));
+  background-color: var(--success);
+  color: var(--background);
 }
 
 .incorrectCell {
-  background-color: color-mix(in srgb, var(--error) 20%, transparent);
-  color: var(--error, var(--error));
+  background-color: var(--error);
+  color: var(--background);
 }
 
 .revealCell {
-  background-color: color-mix(in srgb, var(--success) 12%, transparent);
-  color: var(--success, var(--success));
+  background-color: color-mix(in srgb, var(--success) 22%, transparent);
+  color: var(--foreground);
 }
 
 .feedback {
@@ -81,13 +83,15 @@
 }
 
 .correctFeedback {
-  background-color: color-mix(in srgb, var(--success) 15%, transparent);
-  color: var(--success);
+  background-color: color-mix(in srgb, var(--success) 12%, transparent);
+  border: 2px solid var(--success);
+  color: var(--foreground);
 }
 
 .incorrectFeedback {
-  background-color: color-mix(in srgb, var(--error) 15%, transparent);
-  color: var(--error);
+  background-color: color-mix(in srgb, var(--error) 12%, transparent);
+  border: 2px solid var(--error);
+  color: var(--foreground);
 }
 
 .confettiCanvas {
@@ -110,36 +114,6 @@
 :global(html.dark-mode-override) .colHeader,
 :global(html.dark-mode-override) .termCell {
   color: var(--foreground, var(--foreground));
-}
-
-:global(html.dark-mode) .correctCell,
-:global(html.dark-mode-override) .correctCell {
-  background-color: color-mix(in srgb, var(--success) 25%, transparent);
-  color: var(--success);
-}
-
-:global(html.dark-mode) .incorrectCell,
-:global(html.dark-mode-override) .incorrectCell {
-  background-color: color-mix(in srgb, var(--error) 25%, transparent);
-  color: var(--error);
-}
-
-:global(html.dark-mode) .revealCell,
-:global(html.dark-mode-override) .revealCell {
-  background-color: color-mix(in srgb, var(--success) 18%, transparent);
-  color: var(--success);
-}
-
-:global(html.dark-mode) .correctFeedback,
-:global(html.dark-mode-override) .correctFeedback {
-  background-color: color-mix(in srgb, var(--success) 20%, transparent);
-  color: var(--success);
-}
-
-:global(html.dark-mode) .incorrectFeedback,
-:global(html.dark-mode-override) .incorrectFeedback {
-  background-color: color-mix(in srgb, var(--error) 20%, transparent);
-  color: var(--error);
 }
 
 /* Responsive */
