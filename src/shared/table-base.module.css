@@ -20,9 +20,9 @@
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 64rem;
   margin: 0 auto;
-  background: white;
+  background: var(--card-bg);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   padding: var(--spacing-2xl);
@@ -115,7 +115,8 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  background: white;
+  border: 2px solid var(--border-color);
+  background: var(--card-bg);
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-md);
@@ -133,7 +134,8 @@
    THEAD (ENCABEZADOS)
    ================================ */
 .table thead {
-  background: var(--primary);
+  background: var(--surface);
+  border-bottom: 2px solid var(--secondary);
 }
 
 :global(html.dark-mode) .table thead,
@@ -144,11 +146,10 @@
 .table thead th {
   padding: var(--spacing-md);
   text-align: left;
-  font-weight: 600;
-  color: white;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--foreground);
+  font-size: 0.8rem;
   border-color: transparent;
   background: transparent !important;
   white-space: nowrap;
@@ -168,20 +169,20 @@
   transition: background-color 0.2s ease;
 }
 
-.table tbody tr:hover {
-  background-color: var(--surface);
-  cursor: pointer;
+/* Cebra + hover de selección (las filas son enlaces) */
+.table tbody tr:nth-child(even) {
+  background-color: color-mix(in srgb, var(--surface) 45%, transparent);
 }
 
-:global(html.dark-mode) .table tbody tr:hover,
-:global(html.dark-mode-override) .table tbody tr:hover {
-  background-color: var(--surface);
+.table tbody tr:hover {
+  background-color: color-mix(in srgb, var(--primary) 12%, transparent);
+  cursor: pointer;
 }
 
 .table tbody td {
   padding: var(--spacing-md) 0.75rem;
   text-align: left;
-  border: 1px solid white;
+  border: 1px solid var(--border-color);
   color: var(--foreground);
   font-size: 0.875rem;
   line-height: 1.5;

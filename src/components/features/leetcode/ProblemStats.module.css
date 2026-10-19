@@ -12,20 +12,15 @@
   /* ================================
      ELEMENTO DE ESTADÍSTICA
      ================================ */
+  /* Marcador arcade: cifras pixel con color semántico por dificultad */
   .statItem {
     text-align: center;
     padding: var(--spacing-md);
-    border-radius: var(--radius-lg);
-    background: var(--card-bg);
+    border-radius: 0;
+    background: var(--surface);
     box-shadow: var(--shadow-md);
     min-width: 130px;
-    transition: all 0.3s ease;
-    border: 1px solid var(--border-color);
-  }
-  
-  .statItem:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-sm);
+    border: 2px solid var(--border-color);
   }
   
   /* ================================
@@ -33,56 +28,28 @@
      ================================ */
   .statNumber {
     display: block;
-    font-size: 2.25rem;
-    font-weight: 800;
-    background: var(--primary);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-family: var(--font-pixel);
+    font-size: 1.75rem;
+    color: var(--primary);
     margin-bottom: 0.25rem;
-    transition: all 0.3s ease;
   }
+
+  .statEasy .statNumber { color: var(--success); }
+  .statMedium .statNumber { color: var(--warning-fill); }
+  .statHard .statNumber { color: var(--error); }
   
   /* ================================
      ETIQUETA DE ESTADÍSTICA
      ================================ */
   .statLabel {
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
     color: var(--secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: color 0.3s ease;
   }
   
   /* ================================
      DARK MODE
      ================================ */
-  :global(html.dark-mode) .statItem,
-  :global(html.dark-mode-override) .statItem {
-    background: var(--surface);
-    box-shadow: var(--shadow-sm);
-    border-color: var(--border-color);
-  }
-  
-  :global(html.dark-mode) .statItem:hover,
-  :global(html.dark-mode-override) .statItem:hover {
-    box-shadow: var(--shadow-sm);
-  }
-  
-  :global(html.dark-mode) .statNumber,
-  :global(html.dark-mode-override) .statNumber {
-    background: var(--primary);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  :global(html.dark-mode) .statLabel,
-  :global(html.dark-mode-override) .statLabel {
-    color: var(--secondary);
-  }
-  
   /* ================================
      RESPONSIVE
      ================================ */

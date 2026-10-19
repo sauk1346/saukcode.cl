@@ -19,7 +19,7 @@
   justify-content: flex-start;
   padding: 2rem 1rem;
   width: 100%;
-  max-width: 1200px;
+  max-width: 64rem;
   margin: 0 auto;
   gap: 1rem;
   background-color: var(--card-bg);
@@ -47,10 +47,6 @@
   margin: 0.5rem auto 0;
   border-radius: var(--radius-sm, 4px);
   transition: width 0.3s ease;
-}
-
-.title:hover::after {
-  width: 80px;
 }
 
 /* Subtítulo explicativo */
@@ -158,10 +154,6 @@
   .title::after {
     width: 40px;
     height: 3px;
-  }
-
-  .title:hover::after {
-    width: 50px;
   }
 
   .subtitle {

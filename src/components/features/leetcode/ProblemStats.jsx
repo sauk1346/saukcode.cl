@@ -19,17 +19,17 @@ const ProblemStats = ({ problems }) => {
         <span className={styles.statLabel}>Problemas</span>
       </div>
       
-      <div className={styles.statItem}>
+      <div className={`${styles.statItem} ${styles.statEasy}`}>
         <span className={styles.statNumber}>{stats.easy}</span>
         <span className={styles.statLabel}>Fácil</span>
       </div>
       
-      <div className={styles.statItem}>
+      <div className={`${styles.statItem} ${styles.statMedium}`}>
         <span className={styles.statNumber}>{stats.medium}</span>
         <span className={styles.statLabel}>Medio</span>
       </div>
       
-      <div className={styles.statItem}>
+      <div className={`${styles.statItem} ${styles.statHard}`}>
         <span className={styles.statNumber}>{stats.hard}</span>
         <span className={styles.statLabel}>Difícil</span>
       </div>

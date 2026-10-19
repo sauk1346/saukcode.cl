@@ -18,7 +18,7 @@
      ================================ */
   .tableInfo {
     flex: 1;
-    color: #666;
+    color: var(--secondary);
     font-size: 0.9rem;
     transition: color 0.3s ease;
     font-weight: 500;
@@ -40,9 +40,9 @@
      ================================ */
   .paginationButton {
     padding: var(--spacing-sm) 0.75rem;
-    border: 1px solid #dee2e6;
-    background-color: #f8f9fa;
-    color: #495057;
+    border: 2px solid var(--border-color);
+    background-color: var(--surface);
+    color: var(--foreground);
     cursor: pointer;
     border-radius: var(--radius-sm);
     transition: all 0.2s ease;
@@ -55,9 +55,8 @@
   }
   
   .paginationButton:hover:not(:disabled) {
-    background-color: #e9ecef;
-    border-color: #adb5bd;
-    transform: translateY(-1px);
+    background-color: var(--surface);
+    border-color: var(--secondary);
     box-shadow: var(--shadow-sm);
   }
   
@@ -69,8 +68,8 @@
   .paginationButton:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    background-color: #f8f9fa;
-    color: #6c757d;
+    background-color: var(--surface);
+    color: var(--secondary);
     transform: none;
     box-shadow: none;
   }
@@ -89,7 +88,6 @@
   .currentPage:hover {
     background-color: #0056b3;
     border-color: #004085;
-    transform: translateY(-1px);
     box-shadow: var(--shadow-sm);
   }
   
@@ -118,7 +116,7 @@
   }
   
   .minimal .paginationButton:hover:not(:disabled) {
-    background-color: #e9ecef;
+    background-color: var(--surface);
     color: #0056b3;
   }
   

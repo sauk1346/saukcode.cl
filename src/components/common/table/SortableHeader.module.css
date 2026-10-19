@@ -13,11 +13,9 @@
   
   .sortableHeader:hover {
     background: rgba(255, 255, 255, 0.1) !important;
-    transform: translateY(-1px);
   }
   
   .sortableHeader:active {
-    transform: translateY(0);
   }
   
   /* ================================
@@ -47,8 +45,7 @@
   }
   
   .sorted .sortIndicator {
-    color: #bfdbfe;
-    transform: scale(1.1);
+    color: var(--primary);
   }
   
   /* ================================
@@ -65,7 +62,7 @@
   
   .light.sorted {
     background: rgba(0, 0, 0, 0.1) !important;
-    color: #1e293b;
+    color: var(--foreground);
   }
   
   .light .sortIndicator {
@@ -116,7 +113,6 @@
   }
   
   .sortableHeader[aria-pressed="true"] {
-    transform: scale(0.98);
   }
   
   /* ================================
@@ -178,7 +174,7 @@
   
   :global(html.dark-mode) .sorted .sortIndicator,
   :global(html.dark-mode-override) .sorted .sortIndicator {
-    color: #bfdbfe;
+    color: var(--primary);
   }
   
   :global(html.dark-mode) .light,
