@@ -29,8 +29,8 @@ const SemesterTabs = ({
 
   return (
     <div className={containerClasses}>
-      <div className={styles.tabsContainer}>
-        {semesters.map(semester => {
+      <div className={styles.tabsContainer} role="group" aria-label="Selector de semestre">
+        {semesters.map((semester, idx) => {
           const isSelected = selectedSemester === semester.number;
           const progress = getProgress(semester.number);
 
@@ -42,21 +42,23 @@ const SemesterTabs = ({
           ].filter(Boolean).join(' ');
 
           return (
-            <button
-              key={semester.number}
-              onClick={() => onSemesterChange(semester.number)}
-              className={tabClasses}
-              aria-pressed={isSelected}
-              aria-label={`Semestre ${semester.number}, ${progress.percent}% completado`}
-            >
-              {semester.status === 'current' && (
-                <span className={styles.liveDot} aria-hidden="true"></span>
+            <React.Fragment key={semester.number}>
+              {/* Sendero del mapa: sólido hasta donde se ha llegado */}
+              {idx > 0 && (
+                <span
+                  className={`${styles.path} ${semester.status !== 'pending' ? styles.pathDone : ''}`}
+                  aria-hidden="true"
+                ></span>
               )}
-              <span className={styles.tabNumber}>
-                <span className={styles.fullText}>{semester.number}° Semestre</span>
-                <span className={styles.shortText}>{semester.number}°</span>
-              </span>
-            </button>
+              <button
+                onClick={() => onSemesterChange(semester.number)}
+                className={tabClasses}
+                aria-pressed={isSelected}
+                aria-label={`Semestre ${semester.number}, ${progress.percent}% completado`}
+              >
+                {semester.number}°
+              </button>
+            </React.Fragment>
           );
         })}
       </div>
