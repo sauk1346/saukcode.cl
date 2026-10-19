@@ -19,7 +19,7 @@
 }
 
 .calendario {
-  background: var(--card-bg);
+  background: var(--background);
   box-shadow: var(--shadow-md);
   border: 2px solid var(--border-color);
   overflow: hidden;
@@ -81,7 +81,7 @@
 .calendarioDaysOfWeek {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  background: var(--surface);
+  background: var(--card-bg);
   border-bottom: 2px solid var(--border-color);
 }
 
@@ -108,7 +108,7 @@
 }
 
 .calendarioDay {
-  background: var(--card-bg);
+  background: var(--background);
   padding: var(--spacing-xs) var(--spacing-sm);
   cursor: pointer;
   position: relative;
@@ -120,7 +120,7 @@
 }
 
 .calendarioDay:hover {
-  background: var(--surface);
+  background: var(--card-bg);
 }
 
 .calendarioDayHeader {
@@ -138,21 +138,21 @@
 
 /* Fin de semana: columna con lavado rosa (el ritmo de la semana) */
 .weekendDay {
-  background: color-mix(in srgb, var(--accent) 6%, var(--card-bg));
+  background: color-mix(in srgb, var(--accent) 6%, var(--background));
 }
 
 /* Día con eventos: lavado azul + número en primario */
 .hasEvents {
-  background: color-mix(in srgb, var(--primary) 9%, var(--card-bg));
+  background: color-mix(in srgb, var(--primary) 9%, var(--background));
 }
 
 /* En oscuro el ojo comprime las diferencias: los lavados suben de dosis */
 :global(html.dark) .weekendDay {
-  background: color-mix(in srgb, var(--accent) 14%, var(--card-bg));
+  background: color-mix(in srgb, var(--accent) 14%, var(--background));
 }
 
 :global(html.dark) .hasEvents {
-  background: color-mix(in srgb, var(--primary) 20%, var(--card-bg));
+  background: color-mix(in srgb, var(--primary) 20%, var(--background));
 }
 
 .hasEvents .calendarioDayHeader {
@@ -162,7 +162,6 @@
 .otherMonth {
   color: var(--secondary);
   opacity: 0.5;
-  background: var(--background);
 }
 
 /* DÍA ACTUAL - Color azul/púrpura (original) */
@@ -250,7 +249,7 @@
 
 /* Panel de detalles del día - TAMAÑO FIJO */
 .dayDetails {
-  background: var(--card-bg);
+  background: var(--background);
   box-shadow: var(--shadow-md);
   border: 2px solid var(--border-color);
   padding: var(--spacing-lg);
@@ -383,7 +382,7 @@
   width: 90%;
   max-width: 500px;
   max-height: 80vh;
-  background: var(--card-bg);
+  background: var(--background);
   overflow: hidden;
   box-shadow: var(--shadow-md);
   border: 2px solid var(--border-color);
