@@ -319,8 +319,8 @@ const courseData = {
       }
     },
     { 
-      week: '06', 
-      lecture: '06', 
+      week: '07', 
+      lecture: '07', 
       date: 'Dom 06, Dic 2026', 
       description: {
           text: 'El arsenal analítico: técnicas que transforman datos, normas ISO y marcos de referencia',
@@ -328,8 +328,8 @@ const courseData = {
       }
     },
     { 
-      week: '06', 
-      lecture: '06', 
+      week: '08', 
+      lecture: '08', 
       date: 'Dom 13, Dic 2026', 
       description: {
           text: 'Normas en acción: analítica con estándares e inferencia estadística en R',
@@ -337,8 +337,8 @@ const courseData = {
       }
     },
     { 
-      week: '06', 
-      lecture: '06', 
+      week: '09', 
+      lecture: '09', 
       date: 'Dom 20, Dic 2026', 
       description: {
           text: 'Datos que hablan: interpretar resultados con criterio',
