@@ -1,5 +1,6 @@
 /* Configuración base del contenedor */
 .container {
+    counter-reset: seccion; /* numeración de secciones h2 (Headings) */
     width: 100%;
     /* La tarjeta abraza la columna de lectura (--measure: 40rem) +
        respiro para código y tablas; antes 1100px dejaba un desierto */
