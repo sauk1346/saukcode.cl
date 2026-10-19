@@ -25,9 +25,20 @@
     var modal = document.getElementById('search-modal');
     var loaded = false;
 
+    function focusInput() {
+      var input = modal.querySelector('input');
+      if (input) {
+        input.focus();
+        input.select();
+      }
+    }
+
     async function openSearch() {
       modal.showModal();
-      if (loaded) return;
+      if (loaded) {
+        setTimeout(focusInput, 0);
+        return;
+      }
       loaded = true;
       try {
         var css = document.createElement('link');
@@ -51,10 +62,7 @@
             zero_results: 'Sin resultados para [SEARCH_TERM]',
           },
         });
-        setTimeout(function () {
-          var input = modal.querySelector('input');
-          if (input) input.focus();
-        }, 50);
+        setTimeout(focusInput, 50);
       } catch (e) {
         document.getElementById('search-dev-note').classList.remove('hidden');
       }
