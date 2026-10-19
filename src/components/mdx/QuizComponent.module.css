@@ -87,7 +87,8 @@
 
   .optionContent {
     display: flex;
-    flex: 1;
+    align-items: center;
+    gap: 0.65rem;
     min-width: 0;
   }
 
@@ -105,11 +106,12 @@
     background-color: var(--background-elevated);
   }
 
-  /* Sobre el sólido de acierto/error, el keycap se invierte */
+  /* Sobre el sólido de acierto/error, el keycap se invierte con un
+     velo oscuro para no perder su cuerpo */
   .correctOption .optionLetter,
   .incorrectOption .optionLetter {
     border-color: var(--background);
-    background-color: transparent;
+    background-color: color-mix(in srgb, var(--background) 25%, transparent);
     color: var(--background);
   }
 
