@@ -46,13 +46,13 @@ const { title, description } = Astro.props;
   /* 1UP: texto pixel que flota y se desvanece, como la vida extra */
   #reading-1up {
     position: fixed;
-    top: 4.6rem;
-    left: 50%;
+    top: 5rem;
+    right: 1.25rem; /* brota de la punta de la barra, que remata aquí */
     z-index: 41;
     font-family: var(--font-pixel);
-    font-size: 1.25rem;
+    font-size: 1.75rem;
     color: var(--success);
-    text-shadow: 2px 2px 0 var(--shadow-hard);
+    text-shadow: 3px 3px 0 var(--shadow-hard);
     pointer-events: none;
     opacity: 0;
   }
@@ -64,11 +64,11 @@ const { title, description } = Astro.props;
   @keyframes oneUp {
     0% {
       opacity: 1;
-      transform: translate(-50%, 0);
+      transform: translateY(0);
     }
     100% {
       opacity: 0;
-      transform: translate(-50%, -32px);
+      transform: translateY(-40px);
     }
   }
 
@@ -106,7 +106,7 @@ const { title, description } = Astro.props;
   const progressBar = document.getElementById('reading-progress');
   const progressCells = progressBar ? Array.from(progressBar.children) : [];
   const oneUp = document.getElementById('reading-1up');
-  let oneUpShown = false;
+  let oneUpArmed = true; // se rearma al bajar del 60%: celebra cada cruce real
   const updateProgress = () => {
     if (!progressBar) return;
     const max = document.documentElement.scrollHeight - window.innerHeight;
@@ -118,10 +118,13 @@ const { title, description } = Astro.props;
       cell.classList.toggle('filled', i < filled);
       cell.classList.toggle('tip', i === filled - 1);
     });
-    // Vida extra al completar la lección (una vez, y sin reduced-motion)
-    if (filled === 20 && !oneUpShown && oneUp) {
-      oneUpShown = true;
+    // Vida extra al completar; se rearma al volver bajo el 60%
+    if (filled < 12) oneUpArmed = true;
+    if (filled === 20 && oneUpArmed && oneUp) {
+      oneUpArmed = false;
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        oneUp.classList.remove('show');
+        void oneUp.offsetWidth; // reinicia la animación
         oneUp.classList.add('show');
       }
     }
