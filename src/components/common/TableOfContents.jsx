@@ -14,14 +14,12 @@ const TableOfContents = () => {
   // Obtener los encabezados con sus rangos de posición
   useEffect(() => {
     const getHeadings = () => {
+      // Orden de documento (querySelectorAll ya lo garantiza; ordenar por
+      // posición en pantalla corrompía la lista con paneles display:none,
+      // que reportan top 0). Los títulos ocultos (pestañas cerradas) se
+      // excluyen: el TOC refleja lo legible.
       const elements = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6'))
-        .filter(element => element.id);
-      
-      elements.sort((a, b) => {
-        const posA = a.getBoundingClientRect().top + window.scrollY;
-        const posB = b.getBoundingClientRect().top + window.scrollY;
-        return posA - posB;
-      });
+        .filter(element => element.id && element.offsetParent !== null);
       
       const headingsList = elements.map((element, index) => {
         const id = element.id;
@@ -47,7 +45,8 @@ const TableOfContents = () => {
     const observer = new MutationObserver(() => {
       setTimeout(getHeadings, 100);
     });
-    observer.observe(document.body, { childList: true, subtree: true });
+    // attributes:true para re-escanear cuando las pestañas muestran/ocultan paneles
+    observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
 
     return () => observer.disconnect();
   }, []);
