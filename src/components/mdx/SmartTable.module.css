@@ -437,41 +437,6 @@
   /* =================================================================
      MODO OSCURO
      ================================================================= */
-  :global(html.dark-mode) .table,
-  :global(html.dark-mode-override) .table {
-    background-color: var(--surface);
-    box-shadow: var(--shadow-sm);
-  }
-  
-  :global(html.dark-mode) .table thead,
-  :global(html.dark-mode-override) .table thead {
-    background: var(--surface);
-  }
-  
-  :global(html.dark-mode) .table th,
-  :global(html.dark-mode) .table td,
-  :global(html.dark-mode-override) .table th,
-  :global(html.dark-mode-override) .table td {
-    border-color: var(--border-color);
-  }
-  
-  :global(html.dark-mode) .table thead th,
-  :global(html.dark-mode-override) .table thead th {
-    color: var(--foreground);
-    border-color: transparent;
-  }
-  
-  :global(html.dark-mode) .table tbody tr:hover,
-  :global(html.dark-mode-override) .table tbody tr:hover {
-    background-color: var(--surface);
-  }
-  
-  :global(html.dark-mode) .table tbody td,
-  :global(html.dark-mode-override) .table tbody td {
-    color: var(--foreground);
-    border-color: var(--border-color);
-  }
-  
   :global(html.dark-mode) .code,
   :global(html.dark-mode-override) .code {
     color: var(--primary);
