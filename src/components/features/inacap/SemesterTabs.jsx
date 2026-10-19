@@ -35,6 +35,7 @@ const SemesterTabs = ({
           const progress = getProgress(semester.number);
 
           const tabClasses = [
+            'pixel-press',
             styles.tab,
             isSelected && styles.activeTab,
             styles[semester.status]
@@ -48,9 +49,12 @@ const SemesterTabs = ({
               aria-pressed={isSelected}
               aria-label={`Semestre ${semester.number}, ${progress.percent}% completado`}
             >
+              {semester.status === 'current' && (
+                <span className={styles.liveDot} aria-hidden="true"></span>
+              )}
               <span className={styles.tabNumber}>
                 <span className={styles.fullText}>{semester.number}° Semestre</span>
-                <span className={styles.shortText}>{semester.number}° Sem</span>
+                <span className={styles.shortText}>{semester.number}°</span>
               </span>
             </button>
           );
