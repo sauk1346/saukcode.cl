@@ -1,4 +1,4 @@
-export const calendar25 = [
+export const calendar26 = [
   {
     id: 1,
     fecha: "2025-3-26",
@@ -820,4 +820,4 @@ export const calendar25 = [
     description: "GS & GobTI"
   },
 ];
-export default calendar25;
+export default calendar26;

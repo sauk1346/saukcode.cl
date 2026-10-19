@@ -6,7 +6,7 @@ import Calendar from './Calendar';
 import InacapStats from './InacapStats';
 import SemesterTabs from './SemesterTabs';
 import SubjectsGrid from './SubjectsGrid';
-import calendar25 from '@/data/inacap/calendar25.js';
+import calendar26 from '@/data/inacap/calendar26.js';
 import styles from './Inacap.module.css';
 
 const Inacap = () => {
@@ -58,7 +58,7 @@ const Inacap = () => {
         <section className={styles.section}>
           <h2 className={styles.title}>Calendario 2026</h2>
           <div className={styles.calendarPlaceholder}>
-            <Calendar eventos={calendar25} />
+            <Calendar eventos={calendar26} />
           </div>
         </section>
       </div>

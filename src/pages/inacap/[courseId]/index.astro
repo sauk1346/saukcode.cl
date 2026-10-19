@@ -12,7 +12,7 @@ export function getStaticPaths() {
 
 const { courseId } = Astro.params;
 const courseData = getCourseData(courseId);
-// Fechas de evaluaciones sincronizadas con calendar25 (fuente de verdad)
+// Fechas de evaluaciones sincronizadas con calendar26 (fuente de verdad)
 const { resolveEvalDates } = await import('../../../utils/evalDates.js');
 courseData.evaluationsData = resolveEvalDates(courseData.courseCode, courseData.evaluationsData);
 
