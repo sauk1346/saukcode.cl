@@ -235,9 +235,7 @@
   /* Código inline */
   /* Inline quieto: mono + lavado suave, sin borde */
   .inlineCode {
-    background-color: color-mix(in srgb, var(--secondary) 13%, transparent);
     color: var(--foreground);
-    padding: 0.1rem 0.3rem;
     font-family: var(--font-code);
     font-size: 0.875em;
     font-weight: 400;
