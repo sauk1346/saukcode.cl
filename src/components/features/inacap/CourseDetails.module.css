@@ -404,12 +404,12 @@
   border-radius: 0;
   background-color: var(--course-accent, var(--primary));
   color: var(--background);
-  font-family: var(--font-mono);
+  font-family: var(--font-pixel);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.25rem;
-  font-weight: 700;
+  box-shadow: var(--shadow-sm); /* ficha con relieve, no cuadrado plano */
   flex-shrink: 0;
 }
 
@@ -419,8 +419,9 @@
 }
 
 .evaluationTitle {
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-family: var(--font-pixel);
+  font-size: 1.125rem; /* mínimo Silkscreen */
+  font-weight: 400;
   margin: 0;
   color: var(--foreground);
 }
