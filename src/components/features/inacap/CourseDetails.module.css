@@ -21,7 +21,7 @@
   margin-bottom: var(--spacing-lg);
   background: repeating-linear-gradient(
     to bottom,
-    var(--course-accent, var(--border-color)) 0 2px,
+    var(--course-accent-fill, var(--course-accent, var(--border-color))) 0 2px,
     transparent 2px 4px
   );
 }
@@ -722,7 +722,7 @@
   position: absolute;
   inset: -8px; /* cubre el área del border-image */
   padding: 2px; /* grosor del anillo */
-  background: var(--course-accent, var(--primary));
+  background: var(--course-accent-fill, var(--course-accent, var(--primary)));
   pointer-events: none;
   /* silueta octagonal: las diagonales quedan PINTADAS (relleno, no border) */
   clip-path: polygon(

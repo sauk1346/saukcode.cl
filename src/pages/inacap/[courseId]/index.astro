@@ -22,7 +22,7 @@ const category = subjects.find((s) => s.href === `/inacap/${courseId}`)?.categor
   title={`${courseData.courseCode} | INACAP`}
   description={courseData.courseDescription}
 >
-  <div style={`--course-accent: var(--cat-${category})`}>
+  <div style={`--course-accent: var(--cat-${category}); --course-accent-fill: var(--cat-${category}-fill)`}>
     <CourseDetails client:load {...courseData} />
   </div>
 </BaseLayout>

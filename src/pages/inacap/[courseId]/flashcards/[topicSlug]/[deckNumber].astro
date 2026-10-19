@@ -35,7 +35,7 @@ const flashCategory = subjects.find((x) => x.href === `/inacap/${courseId}`)?.ca
 ---
 
 <BaseLayout title={`${topic.name} — Mazo ${deckNumber}`}>
-  <div style={`--course-accent: var(--cat-${flashCategory})`}>
+  <div style={`--course-accent: var(--cat-${flashCategory}); --course-accent-fill: var(--cat-${flashCategory}-fill)`}>
     <FlashcardStudy
     client:load
     cards={cards}

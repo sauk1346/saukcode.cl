@@ -105,6 +105,16 @@
   --cat-business: var(--orange);
   --cat-methodology: var(--accent);
   --cat-general: var(--secondary);
+  /* Variante de relleno gráfico por área: los gráficos (anillos, barras,
+     estrías) usan dorado real en math; el resto coincide con su textual */
+  --cat-programming-fill: var(--cat-programming);
+  --cat-database-fill: var(--cat-database);
+  --cat-security-fill: var(--cat-security);
+  --cat-systems-fill: var(--cat-systems);
+  --cat-math-fill: var(--warning-fill);
+  --cat-business-fill: var(--cat-business);
+  --cat-methodology-fill: var(--cat-methodology);
+  --cat-general-fill: var(--cat-general);
   --shadow-hard: rgba(32, 40, 42, 0.22);
   --shadow-sm: 2px 2px 0 var(--shadow-hard);
   --shadow-md: 4px 4px 0 var(--shadow-hard);
