@@ -2,11 +2,12 @@
    escalonadas + cola dibujada pixel a pixel con box-shadow */
 .blockquote {
     position: relative;
-    background-color: var(--surface);
+    width: fit-content; /* el globo se ciñe al texto, como el original */
+    background-color: var(--background);
     background-clip: padding-box;
     border: 8px solid transparent;
-    border-image: var(--px-frame-surface) 8 / 8px stretch;
-    padding: 0.5rem 0.75rem;
+    border-image: var(--px-frame-dialog) 8 / 8px stretch;
+    padding: 0.4rem 0.7rem;
     margin: 1.25rem 0 2.4rem; /* espacio para la cola */
     font-style: normal;
     color: var(--foreground);
@@ -27,10 +28,10 @@
     height: 4px;
     background: transparent;
     box-shadow:
-      4px 0 var(--px-outline), 16px 0 var(--px-outline),
-      0 4px var(--px-outline), 12px 4px var(--px-outline),
-      0 8px var(--px-outline), 8px 8px var(--px-outline),
-      0 12px var(--px-outline), 4px 12px var(--px-outline);
+      4px 0 var(--foreground), 16px 0 var(--foreground),
+      0 4px var(--foreground), 12px 4px var(--foreground),
+      0 8px var(--foreground), 8px 8px var(--foreground),
+      0 12px var(--foreground), 4px 12px var(--foreground);
   }
 
   /* Relleno de la cola (abre la pared del globo) */
@@ -43,9 +44,9 @@
     height: 4px;
     background: transparent;
     box-shadow:
-      8px 0 var(--surface), 12px 0 var(--surface),
-      4px 4px var(--surface), 8px 4px var(--surface),
-      4px 8px var(--surface);
+      8px 0 var(--background), 12px 0 var(--background),
+      4px 4px var(--background), 8px 4px var(--background),
+      4px 8px var(--background);
   }
 
 .blockquote { max-width: var(--measure); }
