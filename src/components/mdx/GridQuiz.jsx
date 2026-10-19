@@ -38,17 +38,6 @@ export const GridQuiz = ({ title, columns, rows }) => {
   const rootRef = useRef(null);
   const celebratedRef = useRef(false);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined' && !window.confettiLoaded) {
-      import('canvas-confetti').then(module => {
-        window.confetti = module.default;
-        window.confettiLoaded = true;
-      }).catch(error => {
-        console.warn('Error al cargar canvas-confetti:', error);
-      });
-    }
-  }, []);
-
   const handleSelect = (rowIndex, colIndex) => {
     // máx. una vida perdida por término
     if (colIndex !== rows[rowIndex].correct && !wrongRowsRef.current.has(rowIndex)) {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import QuizHearts from './QuizHearts.jsx';
 import { spawnCoinBurst } from '../ui/coinBurst.js';
 import styles from './QuizComponent.module.css';
@@ -7,17 +7,6 @@ export const QuizQuestion = ({ question, questionItems, questionSuffix, options,
   const [selectedOption, setSelectedOption] = useState(null);
   const wrongOnceRef = useRef(false); // máx. una vida perdida por pregunta
   
-  // Efecto para cargar la librería canvas-confetti
-  useEffect(() => {
-    if (typeof window !== 'undefined' && !window.confettiLoaded) {
-      import('canvas-confetti').then(module => {
-        window.confetti = module.default;
-        window.confettiLoaded = true;
-      }).catch(error => {
-        console.warn('Error al cargar canvas-confetti:', error);
-      });
-    }
-  }, []);
   
   const handleOptionClick = (index, buttonEl) => {
     setSelectedOption(index);
