@@ -140,20 +140,11 @@
   .statusBadge.current {
     background: var(--primary);
     color: var(--background);
-    /* Intermitente: el ramo se está jugando ahora */
-    animation: chipBlink 1.4s steps(2) infinite;
   }
 
-  @keyframes chipBlink {
-    50% {
-      opacity: 0.45;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .statusBadge.current {
-      animation: none;
-    }
+  /* Intermitente sincronizado al reloj global (BaseLayout) */
+  :global(html.px-blink) .statusBadge.current {
+    opacity: 0.45;
   }
   
   .statusBadge.pending {

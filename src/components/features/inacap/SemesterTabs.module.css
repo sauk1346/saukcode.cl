@@ -44,13 +44,11 @@
 .tab.current {
   background-color: var(--primary);
   color: var(--background);
-  animation: tileBlink 1.4s steps(2) infinite;
 }
 
-@keyframes tileBlink {
-  50% {
-    opacity: 0.55;
-  }
+/* Intermitente sincronizado al reloj global (BaseLayout) */
+:global(html.px-blink) .tab.current {
+  opacity: 0.55;
 }
 
 /* Bloqueado: ficha inerte, sin bisel ni relieve */
@@ -90,12 +88,6 @@
 
 .pathDone {
   background: var(--success);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .tab.current {
-    animation: none;
-  }
 }
 
 @media (max-width: 520px) {

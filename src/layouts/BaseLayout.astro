@@ -45,5 +45,15 @@ const {
     </main>
     <Footer />
     <SearchModal />
+    <script is:inline>
+      // Reloj global de parpadeo: todos los intermitentes del sitio laten
+      // al mismo tic (clase en <html> cada 700ms). Apagado con
+      // prefers-reduced-motion.
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        setInterval(function () {
+          document.documentElement.classList.toggle('px-blink');
+        }, 700);
+      }
+    </script>
   </body>
 </html>
