@@ -62,7 +62,7 @@ export const SmartLink = ({ href, children, newTab, className, ...props }) => {
       {...props}
     >
       {children}
-      {isFlashcards && <span className={`${styles.chip} ${styles.chipFlashcards}`}>flashcard</span>}
+      {isFlashcards && <span className={`${styles.chip} ${styles.chipFlashcards}`}>mazo</span>}
     </Link>
   );
 };
