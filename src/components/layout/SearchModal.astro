@@ -95,11 +95,17 @@
     --pagefind-ui-font: var(--font-sans);
   }
 
-  /* Resaltado del término: tag sólido del sistema, no el <mark> amarillo */
+  /* Resaltado del término: destacador ámbar (el color que los buscadores
+     llevan décadas enseñando), con el octágono de los tags */
   #search-modal mark {
-    background-color: var(--primary);
+    background-color: var(--warning-fill);
     color: var(--background);
     padding: 0 3px;
+    clip-path: polygon(
+      2px 0, calc(100% - 2px) 0, 100% 2px,
+      100% calc(100% - 2px), calc(100% - 2px) 100%,
+      2px 100%, 0 calc(100% - 2px), 0 2px
+    );
   }
 
   /* Contador de resultados en mono */
@@ -118,9 +124,19 @@
     margin: 0.9rem 0;
   }
 
+  /* Título del resultado: tinta (es título); los sub-enlaces van en azul */
   #search-modal .pagefind-ui__result-link {
-    color: var(--primary);
+    color: var(--foreground);
     font-weight: 700;
+  }
+
+  #search-modal .pagefind-ui__result-link:hover {
+    color: var(--primary);
+  }
+
+  #search-modal .pagefind-ui__result-nested .pagefind-ui__result-link {
+    color: var(--primary);
+    font-weight: 600;
   }
 
   #search-modal .pagefind-ui__result-excerpt {
