@@ -16,17 +16,6 @@
   color: var(--secondary);
 }
 
-@media (prefers-color-scheme: dark) {
-  .player {
-    background: var(--primary);
-  }
-}
-
-:global(html.dark-mode) .player,
-:global(html.dark-mode-override) .player {
-  background: var(--primary);
-}
-
 /* Panel de consola: marco pixel, controles como teclas */
 .player {
   display: flex;

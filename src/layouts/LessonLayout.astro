@@ -11,8 +11,10 @@ const { title, description } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-  <!-- Progreso de lectura: barra XP cuantizada a pasos de 5% -->
-  <div id="reading-progress" aria-hidden="true"></div>
+  <!-- Progreso de lectura: barra de energía de 20 celdas con niveles -->
+  <div id="reading-progress" aria-hidden="true">
+    {Array.from({ length: 20 }).map(() => <span></span>)}
+  </div>
   <div class={wrapperStyles.mdxLayout}>
     <main class={wrapperStyles.mdxContent}>
       <div class={containerStyles.container}>
@@ -25,25 +27,64 @@ const { title, description } = Astro.props;
   </div>
 </BaseLayout>
 
-<style>
+<style is:global>
   #reading-progress {
     position: fixed;
     top: 3.5rem; /* bajo el navbar (h-14) */
     left: 0;
-    height: 4px;
-    width: 0;
-    background-color: var(--primary);
+    right: 0;
+    display: flex;
+    gap: 2px;
+    padding: 0 2px;
+    height: 5px;
     z-index: 40;
+    pointer-events: none;
+  }
+
+  #reading-progress span {
+    flex: 1;
+    background-color: color-mix(in srgb, var(--secondary) 22%, transparent);
+  }
+
+  /* Nivel según avance: rojo al partir, dorado a mitad, verde al cierre */
+  #reading-progress.tier-low span.filled {
+    background-color: var(--error);
+  }
+
+  #reading-progress.tier-mid span.filled {
+    background-color: var(--warning-fill);
+  }
+
+  #reading-progress.tier-high span.filled {
+    background-color: var(--success);
+  }
+
+  /* La punta late con el reloj global */
+  html[data-blink='1'] #reading-progress span.tip,
+  html[data-blink='3'] #reading-progress span.tip {
+    opacity: 0.7;
+  }
+
+  html[data-blink='2'] #reading-progress span.tip {
+    opacity: 0.4;
   }
 </style>
 
 <script>
-  // Barra de progreso: cuantizada a 5% — salta como barra de carga retro
+  // Barra de energía de lectura: 20 celdas, nivel por tramo y punta latiendo
   const progressBar = document.getElementById('reading-progress');
+  const progressCells = progressBar ? Array.from(progressBar.children) : [];
   const updateProgress = () => {
+    if (!progressBar) return;
     const max = document.documentElement.scrollHeight - window.innerHeight;
-    const p = max > 0 ? window.scrollY / max : 0;
-    if (progressBar) progressBar.style.width = `${Math.round(p * 20) * 5}%`;
+    const p = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+    const filled = Math.round(p * 20);
+    progressBar.classList.remove('tier-low', 'tier-mid', 'tier-high');
+    progressBar.classList.add(filled >= 14 ? 'tier-high' : filled >= 7 ? 'tier-mid' : 'tier-low');
+    progressCells.forEach((cell, i) => {
+      cell.classList.toggle('filled', i < filled);
+      cell.classList.toggle('tip', i === filled - 1);
+    });
   };
   updateProgress();
   window.addEventListener('scroll', updateProgress, { passive: true });

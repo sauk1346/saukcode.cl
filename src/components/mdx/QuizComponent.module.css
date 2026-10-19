@@ -103,8 +103,28 @@
     hyphens: auto;
   }
   
+  /* Cursor de menú RPG: aparece al apuntar la alternativa */
+  .optionButton::before {
+    content: '▸';
+    width: 1em;
+    flex-shrink: 0;
+    color: var(--primary);
+    opacity: 0;
+  }
+
   .optionButton:hover:not(:disabled) {
     border-color: var(--secondary);
+    background-color: color-mix(in srgb, var(--primary) 8%, var(--surface));
+  }
+
+  .optionButton:hover:not(:disabled)::before {
+    opacity: 1;
+  }
+
+  .correctOption::before,
+  .incorrectOption::before {
+    opacity: 1;
+    color: var(--background);
   }
 
   .optionButton:active:not(:disabled) {
