@@ -152,6 +152,37 @@ const { title, description } = Astro.props;
     button.setAttribute('aria-label', shown ? 'Ocultar respuesta' : 'Mostrar respuesta');
   });
 
+  // ::::solution — despliegue animado donde el CSS no puede (sin interpolate-size:
+  // Firefox, Safari). Anima altura y padding del contenido y recién al cerrar
+  // quita `open`, para que el contenido siga visible durante la animación.
+  if (!CSS.supports('interpolate-size', 'allow-keywords')) {
+    document.addEventListener('click', (e) => {
+      const summary = (e.target as HTMLElement).closest('details.solution > summary');
+      if (!summary || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const details = summary.parentElement as HTMLDetailsElement;
+      const content = details.querySelector<HTMLElement>(':scope > .solution-content');
+      if (!content) return;
+      e.preventDefault();
+      if (details.dataset.animating) return;
+
+      const opening = !details.open;
+      details.open = true;
+      const { height, paddingTop, paddingBottom } = getComputedStyle(content);
+      const shown = { height, paddingTop, paddingBottom };
+      const hidden = { height: '0px', paddingTop: '0px', paddingBottom: '0px' };
+      details.dataset.animating = 'true';
+      content.style.overflow = 'hidden';
+      content.animate(opening ? [hidden, shown] : [shown, hidden], {
+        duration: 400,
+        easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      }).onfinish = () => {
+        if (!opening) details.open = false;
+        content.style.overflow = '';
+        delete details.dataset.animating;
+      };
+    });
+  }
+
   // Botón "Copiar" de los bloques de código (delegación de eventos)
   document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;

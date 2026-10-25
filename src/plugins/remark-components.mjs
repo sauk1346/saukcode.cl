@@ -19,6 +19,17 @@ const CALLOUT_TITLES = {
 
 const SOLUTION_VARIANTS = new Set(['default', 'hint', 'warning', 'info']);
 
+/** `icon` de solution → sufijo de la clase con el logo (src/styles/components.css). */
+const SOLUTION_LANGS = {
+  Python: 'python',
+  JavaScript: 'javascript',
+  Java: 'java',
+  C: 'c',
+  'C++': 'cpp',
+  SQL: 'sql',
+  MongoDB: 'mongodb',
+};
+
 /** Nodo contenedor sin significado Markdown; mdast-util-to-hast lo emite como `data.hName`. */
 function block(hName, children, hProperties) {
   return { type: 'componentBlock', data: { hName, hProperties }, children };
@@ -101,11 +112,16 @@ export default function remarkComponents() {
         }
 
         case 'solution': {
-          // <details> nativo: el navegador abre y cierra sin JS. `icon` se acepta pero no se usa.
+          // <details> nativo: el navegador abre y cierra sin JS. `icon` cambia la ampolleta por el logo del lenguaje.
           let variant = attrs.variant ?? 'default';
           if (!SOLUTION_VARIANTS.has(variant)) {
             warn(node, `variante de solution desconocida "${variant}", se usa "default".`);
             variant = 'default';
+          }
+          let icon = ['solution-idea'];
+          if (attrs.icon) {
+            if (Object.hasOwn(SOLUTION_LANGS, attrs.icon)) icon = ['solution-lang', `solution-lang-${SOLUTION_LANGS[attrs.icon]}`];
+            else warn(node, `icono de solution desconocido "${attrs.icon}", se usa la ampolleta.`);
           }
           const { label, body } = takeLabel(node);
           const title = label ?? [{ type: 'text', value: attrs.title ?? 'Solución' }];
@@ -123,7 +139,7 @@ export default function remarkComponents() {
                 block(
                   'span',
                   [
-                    block('span', [], { className: ['solution-idea'] }),
+                    block('span', [], { className: icon }),
                     block('span', [], { className: ['solution-chevron'] }),
                   ],
                   { className: ['solution-icons'], ariaHidden: 'true' },
