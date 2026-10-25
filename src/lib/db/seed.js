@@ -27,23 +27,23 @@ function seedFile(filePath) {
   const raw = readFileSync(filePath, 'utf8');
   const data = yaml.load(raw);
 
-  const { topic, slug, section, courseId, layout = 'default', cards } = data;
+  const { topic, slug, courseId, layout = 'default', cards } = data;
 
-  if (!topic || !slug || !cards?.length) {
-    console.warn(`Skipping ${filePath}: missing topic, slug, or cards`);
+  // Los mazos solo se publican dentro de un ramo (/inacap/<ramo>/flashcards/…): sin courseId no tendrían página
+  if (!topic || !slug || !courseId || !cards?.length) {
+    console.warn(`Skipping ${filePath}: missing topic, slug, courseId, or cards`);
     return;
   }
 
   // Upsert topic
   sqlite.prepare(`
-    INSERT INTO topics (slug, name, section, course_id, layout)
-    VALUES (?, ?, ?, ?, ?)
+    INSERT INTO topics (slug, name, course_id, layout)
+    VALUES (?, ?, ?, ?)
     ON CONFLICT(slug) DO UPDATE SET
       name = excluded.name,
-      section = excluded.section,
       course_id = excluded.course_id,
       layout = excluded.layout
-  `).run(slug, topic, section ?? null, courseId ?? null, layout);
+  `).run(slug, topic, courseId, layout);
 
   const topicRow = sqlite.prepare('SELECT id FROM topics WHERE slug = ?').get(slug);
 
@@ -72,6 +72,8 @@ function seedFile(filePath) {
 }
 
 const files = getAllYamlFiles(DATA_DIR);
+// La base se reconstruye desde los YAML: un mazo borrado o renombrado no debe sobrevivir en flashcards.db
+sqlite.prepare('DELETE FROM topics').run();
 if (files.length === 0) {
   console.log('No YAML files found in', DATA_DIR);
 } else {

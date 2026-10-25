@@ -1,7 +1,6 @@
 # Temario Java — Ejercicios Diarios
 
-Método de trabajo (igual que las flashcards de CSS, ver
-`src/data/flashcards/css/TEMARIO.md`): ~2 ejercicios por sesión/día. Se
+Método de trabajo: ~2 ejercicios por sesión/día. Se
 elige UN tópico del lenguaje y se cubre a cabalidad (con los ejercicios que
 haga falta) antes de pasar al siguiente. No hay conteo fijo de ejercicios
 por tópico — depende de qué tan bien quede entendido el tema.

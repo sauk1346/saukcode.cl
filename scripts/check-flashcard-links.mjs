@@ -4,6 +4,7 @@
 // build para que no quede inalcanzable.
 import { readFileSync, readdirSync } from 'node:fs';
 import { getTopicsByCourseId } from '../src/lib/flashcards.js';
+import { getDb } from '../src/lib/db/index.js';
 
 const dataDir = 'src/data/inacap';
 const dataBlob = readdirSync(dataDir)
@@ -31,6 +32,12 @@ for (const courseId of courseIds) {
       }
     }
   }
+}
+
+// Mazos cuyo courseId no es un ramo: no se genera su página
+const known = new Set(courseIds);
+for (const { name, course_id } of getDb().$client.prepare('SELECT name, course_id FROM topics').all()) {
+  if (!known.has(course_id)) orphans.push(`${name}: courseId "${course_id}" no corresponde a ningún ramo de src/data/inacap`);
 }
 
 if (orphans.length) {

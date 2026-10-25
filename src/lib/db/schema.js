@@ -4,7 +4,6 @@ export const topics = sqliteTable('topics', {
   id: integer('id').primaryKey({ autoIncrement: true }),
   slug: text('slug').notNull().unique(),
   name: text('name').notNull(),
-  section: text('section'),
   courseId: text('course_id'),
   layout: text('layout').notNull().default('default'),
 });

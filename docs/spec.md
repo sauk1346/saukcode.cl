@@ -161,7 +161,9 @@ Las redirecciones de `astro.config.mjs` cubren URLs que en Next daban 404: el í
 data/flashcards/**/*.yaml ─(db:setup + db:seed)→ flashcards.db ─(build)→ páginas estáticas
 ```
 
-- Formato YAML: `{ topic, slug, courseId, section?, layout?, cards: [{ front, back }] }`.
+- Formato YAML: `{ topic, slug, courseId, layout?, cards: [{ front, back }] }`.
+  - `courseId` es obligatorio: los mazos solo existen dentro de un ramo, y sin él el seed omite el archivo con un aviso.
+  - El seed vacía la base antes de cargar, así que un mazo borrado o renombrado desaparece en el build siguiente.
   - `front` y `back` son MDX.
 - `lib/db/seed.js` divide cada tema en mazos de 25 cartas (`DECK_LIMIT`).
   - Esquema: `topics` → `decks` → `cards`.

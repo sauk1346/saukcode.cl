@@ -9,7 +9,6 @@ sqlite.exec(`
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     slug TEXT NOT NULL UNIQUE,
     name TEXT NOT NULL,
-    section TEXT,
     course_id TEXT,
     layout TEXT NOT NULL DEFAULT 'default'
   );
