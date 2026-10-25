@@ -73,7 +73,9 @@ export default function FlashcardStudy({ cards, topicName, deckNumber, layout })
     }
   }, [index, total]);
 
-  const handleAnimationEnd = useCallback(() => {
+  const handleAnimationEnd = useCallback((e) => {
+    // Solo la animación de la carta: las del contenido (p. ej. :reveal) también burbujean hasta aquí
+    if (e.target !== e.currentTarget) return;
     setTransitioning(false);
     setFlipped(false);
   }, []);
@@ -169,7 +171,18 @@ export default function FlashcardStudy({ cards, topicName, deckNumber, layout })
       {/* Carta */}
       <div
         className={`${styles.cardWrapper} ${flipped && !transitioning ? styles.flipped : ''} ${transitioning ? styles.transitioning : ''}`}
-        onClick={() => !transitioning && setFlipped(f => !f)}
+        onClick={(e) => {
+          // :reveal se alterna en la misma cara; los demás controles del contenido no voltean la carta
+          const reveal = e.target.closest('.reveal');
+          if (reveal) {
+            const shown = reveal.getAttribute('aria-pressed') !== 'true';
+            reveal.setAttribute('aria-pressed', String(shown));
+            reveal.setAttribute('aria-label', shown ? 'Ocultar respuesta' : 'Mostrar respuesta');
+            return;
+          }
+          if (e.target.closest('a, button, summary, audio')) return;
+          if (!transitioning) setFlipped(f => !f);
+        }}
       >
         <div className={styles.cardInner} onAnimationEnd={handleAnimationEnd}>
           <div className={styles.cardFront}>

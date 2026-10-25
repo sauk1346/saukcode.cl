@@ -4,6 +4,7 @@ import { evaluate } from '@mdx-js/mdx';
 import * as runtime from 'react/jsx-runtime';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
+import remarkDirective from 'remark-directive';
 import rehypeKatex from 'rehype-katex';
 import remarkComponents from '../plugins/remark-components.mjs';
 import { PreBlock } from '../components/mdx/Pre.jsx';
@@ -18,8 +19,9 @@ const components = {
 
 const evaluateOptions = {
   ...runtime,
-  // remark-components: salidas ```output / ```terminal (estilos en src/styles/components.css)
-  remarkPlugins: [remarkGfm, remarkMath, remarkComponents],
+  // remark-directive + remark-components: misma sintaxis que las lecciones (:::callout, :::table,
+  // ```output…); estilos en src/styles/components.css
+  remarkPlugins: [remarkGfm, remarkMath, remarkDirective, remarkComponents],
   rehypePlugins: [rehypeKatex],
 };
 

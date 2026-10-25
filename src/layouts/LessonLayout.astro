@@ -183,18 +183,4 @@ const { title, description } = Astro.props;
     });
   }
 
-  // Botón "Copiar" de los bloques de código (delegación de eventos)
-  document.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement;
-    if (!target.classList.contains('js-copy-code')) return;
-    const pre = target.parentElement?.querySelector('pre');
-    if (!pre) return;
-    navigator.clipboard.writeText(pre.textContent || '').then(() => {
-      const original = target.textContent;
-      target.textContent = '✓ Copiado';
-      setTimeout(() => {
-        target.textContent = original;
-      }, 2000);
-    });
-  });
 </script>
