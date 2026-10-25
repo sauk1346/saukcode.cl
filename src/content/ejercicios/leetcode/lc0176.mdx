@@ -19,8 +19,8 @@ Escribe una solución para encontrar el segundo salario **distinto** más alto d
 
 **Ejemplo 1**
 
-<MultiColumn columns={2}>
-<div>
+::::columns
+:::col
 **Input:**
 <TerminalOutput>
 {`Employee table:
@@ -32,8 +32,8 @@ Escribe una solución para encontrar el segundo salario **distinto** más alto d
 | 3  | 300    |
 +----+--------+`}
 </TerminalOutput>
-</div>
-<div>
+:::
+:::col
 **Output:**
 <TerminalOutput>
 {`+---------------------+
@@ -42,13 +42,13 @@ Escribe una solución para encontrar el segundo salario **distinto** más alto d
 | 200                 |
 +---------------------+`}
 </TerminalOutput>
-</div>
-</MultiColumn>
+:::
+::::
 
 **Ejemplo 2:**
 
-<MultiColumn columns={2}>
-<div>
+::::columns
+:::col
 **Input:**
 <TerminalOutput>
 {`Employee table:
@@ -58,8 +58,8 @@ Escribe una solución para encontrar el segundo salario **distinto** más alto d
 | 1  | 100    |
 +----+--------+`}
 </TerminalOutput>
-</div>
-<div>
+:::
+:::col
 **Output:**
 <TerminalOutput>
 {`+---------------------+
@@ -68,12 +68,12 @@ Escribe una solución para encontrar el segundo salario **distinto** más alto d
 | null                |
 +---------------------+`}
 </TerminalOutput>
-</div>
-</MultiColumn>
+:::
+::::
 
 ## Soluciones
 
-<Solution title="Python" icon="Python">
+:::solution[Python]{icon="Python"}
 ```python
 import pandas as pd
 
@@ -87,4 +87,4 @@ def second_highest_salary(employee: pd.DataFrame) -> pd.DataFrame:
     
     return pd.DataFrame({'SecondHighestSalary': [second_highest]})
 ```
-</Solution>
+:::

@@ -17,6 +17,8 @@ const CALLOUT_TITLES = {
   note: 'Nota',
 };
 
+const SOLUTION_VARIANTS = new Set(['default', 'hint', 'warning', 'info']);
+
 /** Nodo contenedor sin significado Markdown; mdast-util-to-hast lo emite como `data.hName`. */
 function block(hName, children, hProperties) {
   return { type: 'componentBlock', data: { hName, hProperties }, children };
@@ -45,8 +47,28 @@ export default function remarkComponents() {
     };
 
     visit(tree, ['containerDirective', 'leafDirective', 'textDirective'], (node, index, parent) => {
+      // Respuesta oculta; el clic lo maneja el script de LessonLayout (sin React)
+      if (node.type === 'textDirective' && node.name === 'reveal') {
+        node.data = {
+          hName: 'button',
+          hProperties: {
+            type: 'button',
+            className: ['reveal'],
+            ariaPressed: 'false',
+            ariaLabel: 'Mostrar respuesta',
+          },
+        };
+        node.children = [
+          block('span', [{ type: 'text', value: node.attributes?.placeholder ?? '···' }], {
+            className: ['reveal-placeholder'],
+          }),
+          block('span', node.children, { className: ['reveal-content'] }),
+        ];
+        return;
+      }
+
       // remark-directive también captura texto como "Nota:importante" o "::x";
-      // las inline y de hoja aún no tienen componentes, se restauran tal cual.
+      // las demás inline y de hoja se restauran tal cual.
       if (node.type !== 'containerDirective') {
         const raw = rawSource(node);
         if (raw !== `:${node.name}`) warn(node, `directiva desconocida "${raw}", se muestra como texto.`);
@@ -77,6 +99,62 @@ export default function remarkComponents() {
           ];
           return;
         }
+
+        case 'solution': {
+          // <details> nativo: el navegador abre y cierra sin JS. `icon` se acepta pero no se usa.
+          let variant = attrs.variant ?? 'default';
+          if (!SOLUTION_VARIANTS.has(variant)) {
+            warn(node, `variante de solution desconocida "${variant}", se usa "default".`);
+            variant = 'default';
+          }
+          const { label, body } = takeLabel(node);
+          const title = label ?? [{ type: 'text', value: attrs.title ?? 'Solución' }];
+          node.data = {
+            hName: 'details',
+            hProperties: {
+              className: ['solution', `solution-${variant}`],
+              open: attrs.open !== undefined && attrs.open !== 'false' ? true : undefined,
+            },
+          };
+          node.children = [
+            block(
+              'summary',
+              [
+                block(
+                  'span',
+                  [
+                    block('span', [], { className: ['solution-idea'] }),
+                    block('span', [], { className: ['solution-chevron'] }),
+                  ],
+                  { className: ['solution-icons'], ariaHidden: 'true' },
+                ),
+                block('span', title, { className: ['solution-title'] }),
+              ],
+              { className: ['solution-header'] },
+            ),
+            block('div', body, { className: ['solution-content'] }),
+          ];
+          return;
+        }
+
+        case 'box': {
+          const { label, body } = takeLabel(node);
+          const title = label ?? (attrs.title ? [{ type: 'text', value: attrs.title }] : null);
+          node.data = { hName: 'div', hProperties: { className: ['box'] } };
+          node.children = [
+            ...(title ? [block('div', title, { className: ['box-title'] })] : []),
+            block('div', body, { className: ['box-content'] }),
+          ];
+          return;
+        }
+
+        case 'columns':
+          node.data = { hName: 'div', hProperties: { className: ['columns'] } };
+          return;
+
+        case 'col':
+          node.data = { hName: 'div' };
+          return;
 
         default:
           warn(node, `directiva desconocida ":::${node.name}", se muestra solo su contenido.`);

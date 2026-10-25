@@ -41,8 +41,8 @@ Devuelve la tabla resultado en **cualquier orden**.
 
 ## Ejemplo
 
-<MultiColumn>
-<div>
+::::columns
+:::col
 
 **Input:**
 <TerminalOutput>
@@ -65,8 +65,8 @@ tabla Department:
 | 2  | Sales |
 +----+-------+`}
 </TerminalOutput>
-</div>
-<div>
+:::
+:::col
 
 **Output:**
 <TerminalOutput>
@@ -84,13 +84,13 @@ más alto en el departamento de IT,
 y Henry tiene el salario más alto 
 en el departamenteo de Sales.`}
 </TerminalOutput>
-</div>
-</MultiColumn>
+:::
+::::
 
 
 ## Soluciones
 
-<Solution title="Python" icon="Python">
+:::solution[Python]{icon="Python"}
 ```python
 import pandas as pd
 
@@ -106,4 +106,4 @@ def department_highest_salary(employee: pd.DataFrame, department: pd.DataFrame) 
         'salary': 'Salary'
     })
 ```
-</Solution>
+:::

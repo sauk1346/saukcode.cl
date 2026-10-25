@@ -30,7 +30,7 @@ db.usuarios.find({ comentarios: { $elemMatch:{$regex:"urgente", $options:"i"} } 
 ## Ejercicio 01
 Buscar todos los usuarios cuyo nombre contenga la letra "ñ"
 
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ nombre: { $regex: "ñ", $options: "i"} })
@@ -40,12 +40,12 @@ db.usuarios.find({ nombre: { $regex: "ñ", $options: "i"} })
 ```js
 db.usuarios.find({ nombre: { $regex: /ñ/i } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 02
 Filtrar los usuarios cuyo email contenga el nombre "daniela"
 
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ email: { $regex: "daniela", $options: "i" } })
@@ -55,11 +55,11 @@ db.usuarios.find({ email: { $regex: "daniela", $options: "i" } })
 ```js
 db.usuarios.find({ email: { $regex: /daniela/i } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 03
 Mostrar los usuarios con correo de dominio institucional.cl
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ email: { $regex: "\\.cl$" } })
@@ -69,12 +69,12 @@ db.usuarios.find({ email: { $regex: "\\.cl$" } })
 ```js
 db.usuarios.find({ email: { $regex: /\.cl$/ } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 04
 Buscar usuarios cuya dirección comience con "Avenida"
 
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ direccion: { $regex: "^Avenida", $options: "i" } })
@@ -84,12 +84,12 @@ db.usuarios.find({ direccion: { $regex: "^Avenida", $options: "i" } })
 ```js
 db.usuarios.find({ direccion: { $regex: /^Avenida/i } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 05
 Filtrar usuarios con direcciones que terminen en un número
 
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ direccion: { $regex: "\\d+$" } })
@@ -99,12 +99,12 @@ db.usuarios.find({ direccion: { $regex: "\\d+$" } })
 ```js
 db.usuarios.find({ direccion: { $regex: /\d+$/ } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 06
 Mostrar usuarios con algún comentario que contenga la palabra "error"
 
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ comentarios: { $elemMatch: { $regex: "error", $options: "i" } } })
@@ -124,12 +124,12 @@ db.usuarios.find({ comentarios: { $elemMatch: { $regex: /error/i } } })
 ```js
 db.usuarios.find({ comentarios: { $regex: /error/i } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 07
 Buscar usuarios cuyo correo tenga más de un punto (.)
 
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ email: { $regex: "\\..*\\." } })
@@ -139,12 +139,12 @@ db.usuarios.find({ email: { $regex: "\\..*\\." } })
 ```js
 db.usuarios.find({ email: { $regex: /\..*\./ } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 08
 Mostrar usuarios con nombre que termine en "ez" (como Rodriguez, Ramirez)
 
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ nombre: { $regex: "ez\\b", $options:"i"} })
@@ -164,12 +164,12 @@ db.usuarios.find({ nombre: { $regex: /ez\b/i } })
 ```js
 db.usuarios.find({ nombre: { $regex: /ez$/i } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 09
 Buscar direcciones que contengan la palabra "Puerta"
 
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ direccion: { $regex: "Puerta", $options: "i" } })
@@ -179,12 +179,12 @@ db.usuarios.find({ direccion: { $regex: "Puerta", $options: "i" } })
 ```js
 db.usuarios.find({ direccion: { $regex: /Puerta/i } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 10
 Filtrar usuarios con comentarios que empiecen con la letra "C"
 
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ comentarios: { $elemMatch: { $regex: "^C", $options: "i" } } })
@@ -204,12 +204,12 @@ db.usuarios.find({ comentarios: { $elemMatch: { $regex: /^C/i } } })
 ```js
 db.usuarios.find({ comentarios: { $regex: /^C/i } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 11
 Buscar usuarios cuyo nombre comience con vocal
 
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ nombre: { $regex: "^[aeiouáéíóú]", $options: "i" } })
@@ -219,12 +219,12 @@ db.usuarios.find({ nombre: { $regex: "^[aeiouáéíóú]", $options: "i" } })
 ```js
 db.usuarios.find({ nombre: { $regex: /^[aeiouáéíóú]/i } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 12
 Filtrar usuarios cuyo correo electrónico termine en .es
 
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ email: { $regex: "\\.es$", $options: "i" } })
@@ -234,12 +234,12 @@ db.usuarios.find({ email: { $regex: "\\.es$", $options: "i" } })
 ```js
 db.usuarios.find({ email: { $regex: /\.es$/i } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 13
 Mostrar los usuarios que tengan exactamente dos palabras en el nombre
 
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ nombre: { $regex: "^[\\wáéíóúüñ]+\\s[\\wáéíóúüñ]+$" , $options: "i" }})
@@ -259,12 +259,12 @@ db.usuarios.find({ nombre: { $regex: /^[\wáéíóúüñ]+\s[\wáéíóúüñ]+$
 ```js
 db.usuarios.find({ nombre: { $regex: /^\w+\s\w+$/i } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 14
 Buscar usuarios con algún comentario que incluya una fecha (formato aproximado: dd/mm o dd-mm)
 
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ comentarios: { $regex: "\\d{2}[/-]\\d{2}" } })
@@ -274,12 +274,12 @@ db.usuarios.find({ comentarios: { $regex: "\\d{2}[/-]\\d{2}" } })
 ```js
 db.usuarios.find({ comentarios: { $regex: /\d{2}[/-]\d{2}/ } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 15
 Mostrar usuarios cuya dirección no contenga la palabra "calle" (sin distinguir mayúsculas)
 
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ direccion: { $not: { $regex: "calle", $options: "i" } } })
@@ -289,12 +289,12 @@ db.usuarios.find({ direccion: { $not: { $regex: "calle", $options: "i" } } })
 ```js
 db.usuarios.find({ direccion: { $not: { $regex: /calle/i } } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 16
 Filtrar usuarios que tengan comentarios que contengan signos de explamación (!)
 
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ comentarios: { $elemMatch: { $regex: "!" } } })
@@ -314,12 +314,12 @@ db.usuarios.find({ comentarios: { $elemMatch:{ $regex: /!/ } } })
 ```js
 db.usuarios.find({ comentarios: { $regex: /!/ } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 17
 Buscar usuarios cuyo email tenga el nombre compuesto (con punto en medio) antes del \@
 
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ email: { $regex: "\\w+\\.\\w+@" } })
@@ -329,12 +329,12 @@ db.usuarios.find({ email: { $regex: "\\w+\\.\\w+@" } })
 ```js
 db.usuarios.find({ email: { $regex: /\w+\.\w+@/ } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 18
 Mostrar usuarios cuyo nombre contenga un guión (-), por ejemplo, apellidos compuestos
 
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ nombre: { $regex: "-" } })
@@ -344,12 +344,12 @@ db.usuarios.find({ nombre: { $regex: "-" } })
 ```js
 db.usuarios.find({ nombre: { $regex: /-/ } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 19
 Filtrar usuarios que vivan en ciudades que terminen con "a" (por ejemplo: "Murcia", "Valparaíso")
 
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ direccion: { $regex: ",\\s[^,]*[aá],", $options: "i" } })
@@ -369,12 +369,12 @@ db.usuarios.find({ direccion: { $regex: /,\s[^,]*[aá],/i } })
 ```js
 db.usuarios.find({ direccion: { $regex: /[aá]$/i } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 20
 Buscar usuarios cuyo nombre contenga doble letra (como "ll", "ss", "rr", etc.)
 
-<Solution>
+:::solution
 **Opción 01:** notación regex para mongoDB
 ```js
 db.usuarios.find({ nombre: { $regex: "([a-zñáéíóúü])\\1", $options: "i" } })
@@ -384,4 +384,4 @@ db.usuarios.find({ nombre: { $regex: "([a-zñáéíóúü])\\1", $options: "i" }
 ```js
 db.usuarios.find({ nombre: { $regex: /([a-zñáéíóúü])\1/i } })
 ```
-</Solution>
+:::

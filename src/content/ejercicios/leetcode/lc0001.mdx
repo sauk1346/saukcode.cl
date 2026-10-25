@@ -29,7 +29,7 @@ Output: [0, 1]`}
 
 ## Soluciones
 
-<Solution title="Python" icon="Python">
+:::solution[Python]{icon="Python"}
 ```python
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
@@ -47,9 +47,9 @@ class Solution:
 - Se guarda el índice y valor del número recorrido utilizando la el método `enumerate`
 - Calculamos el complemento de `num` y los buscamos en `seen`, si no está entonces guardamos `num`
 - Se continúa el ciclo hasta que uno de los números guardados sea el complemento del número actual, entonces se retorna el índice del complemento y el  índice del número actual
-</Solution>
+:::
 
-<Solution title="JavaScript" icon="JavaScript">
+:::solution[JavaScript]{icon="JavaScript"}
 ```js
 /**
  * @param {number[]} nums
@@ -70,9 +70,9 @@ var twoSum = function(nums, target) {
     } 
 };
 ``` 
-</Solution>
+:::
 
-<Solution title="Java" icon="Java">
+:::solution[Java]{icon="Java"}
 ```java
 class Solution {
     public int[] twoSum(int[] nums, int target) {
@@ -94,9 +94,9 @@ class Solution {
 
 - Se utiliza un HashMap para almacenar los números vistos y sus índices
 - Si no encuentra los índices retorna null
-</Solution>
+:::
 
-<Solution title="C++" icon="C++">
+:::solution[C++]{icon="C++"}
 ```cpp
 class Solution {
 public:
@@ -118,4 +118,4 @@ public:
 ```
 
 - La función twoSum devuelve un vector de enteros con los índices de los números que cumplen con la condición del problema.
-</Solution>
+:::

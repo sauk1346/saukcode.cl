@@ -4,7 +4,7 @@
 ## Ejercicio 01
 **Calculo de Bonificación:** Crea un procedimiento almacenado llamado `sp_CalcularBonificacion` que reciba el salario de un empleado y calcule su bonificación. La bonificación será del 10\% si el salario es menor a 1000, y del 5\% si es mayor o igual a 1000. El procedimiento debe imprimir el salario con bonificación.
 
-<Solution>
+:::solution
 ```sql
 CREATE OR REPLACE PROCEDURE sp_CalcularBonificacion (
     p_Salario NUMBER
@@ -21,12 +21,12 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('El salario total con bonificación es: ' || v_SalarioTotal);
 END;
 ```
-</Solution>
+:::
 
 ## Ejercicio 02
 **Verificar si un Número es Par o Impar:** Crea un bloque PL/SQL que verifique si un número es par o impar e imprima el mensaje correspondiente.
 
-<Solution>
+:::solution
 ```sql
 DECLARE
     v_numero NUMBER := 15;
@@ -38,12 +38,12 @@ BEGIN
     END IF;
 END;
 ```
-</Solution>
+:::
 
 ## Ejercicio 03
 **Contar Productos en Stock Bajo:** Crea un procedimiento almacenado llamado `sp_ContarProductosBajoStock` que cuente cuántos productos tienen un stock menor a 5. Imprime el total de productos con stock bajo.
 
-<Solution>
+:::solution
 ```sql
 CREATE OR REPLACE PROCEDURE sp_ContarProductosBajoStock
 IS
@@ -56,12 +56,12 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Total de productos con stock bajo: ' || v_ProductosBajoStock);
 END;
 ```
-</Solution>
+:::
 
 ## Ejercicio 04
 **Actualizar Precio de Productos:** Crea un procedimiento almacenado llamado `sp_ActualizarPrecioProducto` que reciba el ID del producto y un porcentaje de incremento, y actualice el precio del producto incrementándolo en ese porcentaje. Imprime el nuevo precio del producto.
 
-<Solution>
+:::solution
 ```sql
 CREATE OR REPLACE PROCEDURE sp_ActualizarPrecioProducto (
     p_ProductoID NUMBER,
@@ -83,12 +83,12 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('El nuevo precio del producto con ID ' || p_ProductoID || ' es: ' || v_NuevoPrecio);
 END;
 ```
-</Solution>
+:::
 
 ## Ejercicio 05
 **Calcular el Salario Promedio de Empleados:** Crea un procedimiento almacenado llamado `sp_CalcularSalarioPromedio` que calcule el salario promedio de los empleados de la tabla Empleados. Imprime el salario promedio. 
 
-<Solution>
+:::solution
 ```sql
 CREATE OR REPLACE PROCEDURE sp_CalcularSalarioPromedio 
 IS
@@ -100,11 +100,11 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('El salario promedio es: ' || v_SalarioPromedio);
 END;
 ```
-</Solution>
+:::
 
 ## Ejercicio 06
 **Insertar Nueva Venta:** Crea un procedimiento almacenado llamado `sp_InsertarVenta` que reciba el ID del cliente, el ID del producto, y la cantidad vendida. Inserta la nueva venta en la tabla Ventas y los detalles en la tabla DetallesVenta.
-<Solution>
+:::solution
 ```sql
 CREATE OR REPLACE PROCEDURE sp_InsertarVenta (
     p_ClienteID NUMBER, 
@@ -131,12 +131,12 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Venta insertada correctamente con ID: ' || v_VentaID);
 END
 ```
-</Solution>
+:::
 
 ## Ejercicio 07
 **Calcular el Total de Ventas de un Cliente:** Crea un procedimiento almacenado llamado `sp_CalcularTotalVentasCliente` que reciba el ID de un cliente y calcule el total de ventas realizadas por ese cliente. Imprime el total de ventas.
 
-<Solution>
+:::solution
 ```sql
 CREATE OR REPLACE PROCEDURE sp_CalcularTotalVentasCliente (
     p_ClienteID NUMBER
@@ -150,12 +150,12 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('El total de ventas del cliente con ID ' || p_ClienteID || ' es: ' || v_TotalVentasCliente);
 END;
 ```
-</Solution>
+:::
 
 ## Ejercicio 08
 **Bucle para Mostrar Empleados con Salario Mayor a un Valor:** Crea un bloque PL/SQL que use el bucle FOR para mostrar todos los empleados cuyo salario es mayor a 1500.
 
-<Solution>
+:::solution
 ```sql
 DECLARE
     v_Nombre VARCHAR2(50);
@@ -169,11 +169,11 @@ BEGIN
     END LOOP;
 END;
 ```
-</Solution>
+:::
 
 ## Ejercicio 09
 **Calcular el Descuento de un Producto:** Crea una función llama `fn_CalcularDescuento` que reciba el ID de un producto y un porcentaje de descuento, y devuelva el precio final con el descuento aplicado.
-<Solution>
+:::solution
 ```sql
 CREATE OR REPLACE FUNCTION fn_CalcularDescuento (
     p_ProductoID NUMBER,
@@ -192,4 +192,4 @@ BEGIN
     RETURN v_PrecioConDescuento;
 END;
 ```
-</Solution>
+:::

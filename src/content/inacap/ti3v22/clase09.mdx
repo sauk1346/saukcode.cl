@@ -129,7 +129,7 @@ INSERT INTO OrderDetails (OrderID, ProductID, Quantity, LineTotal) VALUES (14, 4
 ## Ejercicio 01
 **Subconsultas y Funciones de Agregación:** Encuentra los clientes que han gastado más que el promedio de todos los clientes.
 
-<Solution>
+:::solution
 ```sql
 SELECT FirstName, LastName, TotalSpent
 FROM (
@@ -140,12 +140,12 @@ FROM (
 )
 WHERE TotalSpent > (SELECT AVG(TotalAmount) FROM Orders);
 ```
-</Solution>
+:::
 
 ## Ejercicio 02
 **Consulta con JOIN y Condiciones Complejas:** Encuentra los nombres de los productos que han sido ordenados más de 3 veces.
 
-<Solution>
+:::solution
 ```sql
 SELECT p.ProductName, COUNT(od.ProductID) AS OrderCount
 FROM Products p
@@ -153,12 +153,12 @@ JOIN OrderDetails od ON p.ProductID = od.ProductID
 GROUP BY p.ProductName
 HAVING COUNT(od.ProductID) > 3;
 ```
-</Solution>
+:::
 
 ## Ejercicio 03
 **Vista de Resumen de Ventas:** Crea una vista que muestre el total de ventas por cliente.
 
-<Solution>
+:::solution
 ```sql
 CREATE OR REPLACE VIEW CustomerSalesSummary AS
     SELECT c.CustomerID, c.FirstName, c.LastName, SUM(o.TotalAmount) AS TotalSales
@@ -166,12 +166,12 @@ CREATE OR REPLACE VIEW CustomerSalesSummary AS
     JOIN Orders o ON c.CustomerID = o.CustomerID
     GROUP BY c.CustomerID, c.FirstName, c.LastName;
 ```
-</Solution>
+:::
 
 ## Ejercicio 04
 **Procedimiento almacenado para agregar un Nuevo Producto:** Crea el procedimiento almacenado `sp_AgregarProducto` para insertar un nuevo producto en la tabla `Products`
 
-<Solution>
+:::solution
 ```sql
 CREATE OR REPLACE PROCEDURE sp_AgregarProducto (
     p_ProductName NVARCHAR2,
@@ -184,4 +184,4 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Producto agregado: ' || p_ProductName || ', Categoría: ' || p_Category || ', Precio: ' || p_Price);
 END
 ```
-</Solution>
+:::

@@ -53,30 +53,30 @@ db.usuarios.find({
 ## Ejercicio 01
 Buscar usuarios cuya edad sea mayor que el número de compras que ha realizado
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   $expr: { $gt: ["$edad", { $size: "$compras" }] }
 })
 ```
-</Solution>
+:::
 
 
 ## Ejercicio 02
 Filtrar usuarios con más de dos etiquetas usando $size
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   $expr: { $gt: [{ $size: "$etiquetas" }, 2] }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 03
 Mostrar usuarios con edad igual a 2025 menos año de nacimiento
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   $expr: {
@@ -87,23 +87,23 @@ db.usuarios.find({
   }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 04
 Mostrar usuarios con más de una compra de productos
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   $expr: { $gt: [{ $size: "$compras" }, 1] }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 05
 Mostrar usuarios registrados en 2023 o después, usando `$expr` y comparación de fechas
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   $expr: {
@@ -114,23 +114,23 @@ db.usuarios.find({
   }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 06
 Filtrar usuarios cuya región sea distinta de su comuna
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   $expr: { $ne: ["$direccion.region", "$direccion.ciudad"] }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 07
 Mostrar usuarios donde el total de precios de sus compras supere los \$800.000
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   $expr: {
@@ -138,12 +138,12 @@ db.usuarios.find({
   }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 08
 Buscar usuarios que tengan el mismo número de compras que de etiquetas
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   $expr: {
@@ -151,28 +151,28 @@ db.usuarios.find({
   }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 09
 Mostrar usuarios que hayan comprado un "Notebook" y tengan más de 1 etiqueta
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   "compras.producto": "Notebook",
   $expr: { $gt: [{ $size: "$etiquetas" }, 1] }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 10
 Filtrar usuarios que tengan menos de 3 productos y edad mayor a 30
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   $expr: { $lt: [{ $size: "$compras" }, 3] },
   "edad": { $gt: 30 }
 })
 ```
-</Solution>
+:::

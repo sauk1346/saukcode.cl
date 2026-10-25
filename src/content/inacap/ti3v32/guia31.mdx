@@ -79,18 +79,18 @@ db.empleados.aggregate([{
 ## Ejercicio 01
 Mostrar solo los empleados del departamento 'Ventas'.
 
-<Solution>
+:::solution
 ```js
 db.empleados.aggregate([{
     $match: { departamento: "Ventas" }
 }])
 ```
-</Solution>
+:::
 
 ## Ejercicio 02
 Agrupar empleados por departamento y mostrar el salario promedio de cada uno.
 
-<Solution>
+:::solution
 ```js
 db.empleados.aggregate([{
     $group: {
@@ -99,57 +99,57 @@ db.empleados.aggregate([{
     }
 }])
 ```
-</Solution>
+:::
 
 ## Ejercicio 03
 Proyectar sólo el nombre y el salario de cada empleado.
 
-<Solution>
+:::solution
 ```js
 db.empleados.aggregate([{
     $project: { nombre: 1, salario: 1, _id: 0 }
 }])
 ```
-</Solution>
+:::
 
 ## Ejercicio 04
 Ordenar a los empleados por edad descendente.
 
-<Solution>
+:::solution
 ```js
 db.empleados.aggregate([{
     $sort: { edad: -1 }
 }])
 ```
-</Solution>
+:::
 
 ## Ejercicio 05
 Mostrar los 2 empleados más jóvenes.
 
-<Solution>
+:::solution
 ```js
 db.empleados.aggregate([
     { $sort: { edad: 1 } },
     { $limit: 2 }
 ])
 ```
-</Solution>
+:::
 
 ## Ejercicio 06
 Descomponer las ventas por cada mes usando $unwind.
 
-<Solution>
+:::solution
 ```js
 db.empleados.aggregate([
     { $unwind: "$ventas" }
 ])
 ```
-</Solution>
+:::
 
 ## Ejercicio 07
 Calcular el monto total vendido por cada empleado usando $group.
 
-<Solution>
+:::solution
 ```js
 db.empleados.aggregate([
     { $unwind: "$ventas" },
@@ -160,12 +160,12 @@ db.empleados.aggregate([
     }
 ])
 ```
-</Solution>
+:::
 
 ## Ejercicio 08
 (Simulado) Realizar un $lookup para combinar empleados con una colección de 'proyectos'.
 
-<Solution>
+:::solution
 ```js
 db.empleados.aggregate([{
     $lookup: {
@@ -176,12 +176,12 @@ db.empleados.aggregate([{
     }
 }])
 ```
-</Solution>
+:::
 
 ## Ejercicio 09
 Agrupar empleados por edad y contar cuántos empleados tienen la misma edad.
 
-<Solution>
+:::solution
 ```js
 db.empleados.aggregate([{
     $group: {
@@ -190,23 +190,23 @@ db.empleados.aggregate([{
     }
 }])
 ```
-</Solution>
+:::
 
 ## Ejercicio 10
 Obtener los empleados que ganan más de $1300 de salario.
 
-<Solution>
+:::solution
 ```js
 db.empleados.aggregate([{
     $match: { salario: { $gt: 1300 } }
 }])
 ```
-</Solution>
+:::
 
 ## Ejercicio 11
 Crear un nuevo campo 'aumento' que sea el salario actual multiplicado por 1.1 (10% de aumento) usando $project.
 
-<Solution>
+:::solution
 ```js
 db.empleados.aggregate([{
     $project: {
@@ -216,12 +216,12 @@ db.empleados.aggregate([{
     }
 }])
 ```
-</Solution>
+:::
 
 ## Ejercicio 12
 Agrupar las ventas de todos los empleados y calcular la suma total de ventas por mes.
 
-<Solution>
+:::solution
 ```js
 db.empleados.aggregate([
     { $unwind: "$ventas" },
@@ -233,23 +233,23 @@ db.empleados.aggregate([
     { $sort: { _id: 1 } }
 ])
 ```
-</Solution>
+:::
 
 ## Ejercicio 13
 Ordenar empleados por fecha de contratación ascendente.
 
-<Solution>
+:::solution
 ```js
 db.empleados.aggregate([{
     $sort: { fechaContratacion: 1 }
 }])
 ```
-</Solution>
+:::
 
 ## Ejercicio 14
 Mostrar los empleados que no realizaron ninguna venta.
 
-<Solution>
+:::solution
 ```js
 db.empleados.aggregate([{
     $match: { 
@@ -260,12 +260,12 @@ db.empleados.aggregate([{
     }
 }])
 ```
-</Solution>
+:::
 
 ## Ejercicio 15
 Desplegar el nombre del empleado junto con su total de ventas combinando \$unwind y \$group.
 
-<Solution>
+:::solution
 ```js
 db.empleados.aggregate([
     { $unwind: "$ventas" },
@@ -282,4 +282,4 @@ db.empleados.aggregate([
     }
 ])
 ```
-</Solution>
+:::

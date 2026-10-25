@@ -68,3 +68,356 @@
   --callout-color: var(--accent);
   --callout-bg: color-mix(in srgb, var(--accent) 8%, transparent);
 }
+
+/* ── Box ── */
+.box {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md, 8px);
+  background: rgba(127, 127, 127, 0.12);
+  padding: var(--spacing-lg, 16px);
+  margin: var(--spacing-lg, 16px) 0;
+}
+
+.box-title {
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: var(--spacing-sm, 8px);
+}
+
+.box-content > *:first-child {
+  margin-top: 0;
+}
+
+.box-content > *:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Columns ── */
+.columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+  .columns {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+  }
+}
+
+/* ── Solution ──
+   <details> nativo: cero JS, el navegador maneja abrir/cerrar.
+   Los íconos (lucide lightbulb y chevron-right) son máscaras CSS para que
+   tomen el color del texto sin incrustar SVG en cada solución. */
+.solution {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  animation: solution-in 0.3s ease-out;
+}
+
+.solution-default {
+  border: 1px solid var(--border-color);
+  background-color: var(--background-elevated);
+}
+
+.solution-hint {
+  border: 1px solid color-mix(in srgb, var(--success) 35%, var(--border-color));
+  background-color: color-mix(in srgb, var(--success) 8%, var(--background));
+}
+
+.solution-warning {
+  border: 1px solid color-mix(in srgb, var(--warning) 35%, var(--border-color));
+  background-color: color-mix(in srgb, var(--warning) 8%, var(--background));
+}
+
+.solution-info {
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border-color));
+  background-color: color-mix(in srgb, var(--accent) 8%, var(--background));
+}
+
+html.dark-mode .solution-default,
+html.dark-mode-override .solution-default {
+  border-color: var(--border-color);
+  background-color: var(--surface);
+}
+
+html.dark-mode .solution-hint,
+html.dark-mode-override .solution-hint {
+  border-color: var(--success);
+  background-color: var(--surface);
+}
+
+html.dark-mode .solution-warning,
+html.dark-mode-override .solution-warning {
+  border-color: var(--warning);
+  background-color: var(--surface);
+}
+
+html.dark-mode .solution-info,
+html.dark-mode-override .solution-info {
+  border-color: var(--accent);
+  background-color: var(--surface);
+}
+
+.solution-header {
+  list-style: none;
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.solution-header::-webkit-details-marker {
+  display: none;
+}
+
+.solution-default .solution-header {
+  background-color: var(--surface);
+  color: var(--foreground);
+  border-left: 3px solid var(--primary);
+}
+
+.solution-hint .solution-header {
+  background-color: color-mix(in srgb, var(--success) 8%, var(--background));
+  color: var(--success);
+  border-left: 3px solid var(--success);
+}
+
+.solution-warning .solution-header {
+  background-color: color-mix(in srgb, var(--warning) 8%, var(--background));
+  color: var(--warning);
+  border-left: 3px solid var(--warning);
+}
+
+.solution-info .solution-header {
+  background-color: color-mix(in srgb, var(--accent) 8%, var(--background));
+  color: var(--accent);
+  border-left: 3px solid var(--accent);
+}
+
+html.dark-mode .solution .solution-header,
+html.dark-mode-override .solution .solution-header {
+  background-color: var(--surface);
+}
+
+.solution-header:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.solution-header:active {
+  transform: translateY(0);
+}
+
+.solution-header:focus,
+.solution-header:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.solution-icons {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-right: 0.75rem;
+}
+
+.solution-idea,
+.solution-chevron {
+  flex-shrink: 0;
+  background-color: currentColor;
+  mask: var(--icon) center / contain no-repeat;
+}
+
+.solution-idea {
+  width: 18px;
+  height: 18px;
+  opacity: 0.8;
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5'/%3E%3Cpath d='M9 18h6'/%3E%3Cpath d='M10 22h4'/%3E%3C/svg%3E");
+}
+
+.solution-chevron {
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E");
+}
+
+.solution[open] .solution-chevron {
+  transform: rotate(90deg);
+}
+
+.solution-title {
+  flex: 1;
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+.solution-content {
+  padding: var(--spacing-sm) var(--spacing-md);
+  /* Pozo: el código (--surface, marco pixel) contrasta con la solución */
+  background-color: var(--background);
+  color: var(--foreground);
+  line-height: 1.6;
+}
+
+.solution-content pre {
+  margin: 1.25rem 0 1.75rem !important;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+}
+
+.solution-content figure pre {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.solution-content code {
+  font-size: 0.875rem;
+}
+
+.solution-content table {
+  margin: var(--spacing-xl) auto;
+  width: 100%;
+  max-width: 700px;
+  font-size: 0.9rem;
+}
+
+/* Espaciado vertical para párrafos y listas — sin margin horizontal (el padding lo maneja) */
+.solution-content p {
+  margin-top: var(--spacing-md);
+}
+
+.solution-content p:last-child {
+  margin-bottom: var(--spacing-md);
+}
+
+.solution-content ul,
+.solution-content ol {
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+@keyframes solution-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .solution-header {
+    padding: 0.875rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .solution-content {
+    padding: 1.25rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .solution-icons {
+    margin-right: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .solution {
+    margin: 1rem 0;
+  }
+
+  .solution-header {
+    padding: 0.75rem 0.875rem;
+  }
+
+  .solution-content {
+    padding: 1rem 0.875rem;
+  }
+}
+
+/* ── Reveal ──
+   Respuesta oculta en un botón; el script de LessonLayout alterna aria-pressed */
+.reveal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3em;
+  padding: 0 8px;
+  margin: 0 2px;
+  border: 1.5px dashed var(--border-color);
+  border-radius: var(--radius-sm, 6px);
+  background: rgba(127, 127, 127, 0.25);
+  color: var(--foreground);
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.6;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.reveal:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.reveal[aria-pressed='true'] {
+  border-style: solid;
+  border-color: var(--success);
+  background: color-mix(in srgb, var(--success) 8%, transparent);
+  color: var(--success);
+  cursor: default;
+}
+
+.reveal-placeholder {
+  display: inline-block;
+  animation: reveal-out 0.2s ease;
+}
+
+.reveal-content {
+  display: none;
+  animation: reveal-in 0.2s ease;
+}
+
+.reveal[aria-pressed='true'] .reveal-placeholder {
+  display: none;
+}
+
+.reveal[aria-pressed='true'] .reveal-content {
+  display: inline-block;
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes reveal-out {
+  from {
+    opacity: 0;
+    transform: scale(1.15);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

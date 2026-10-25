@@ -7,31 +7,31 @@
 ## Ejercicio 01
 Buscar estudiantes mayores de 18 años que vivan en zonas urbanas (address: "U") 
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({ 
     age:{$gt:18}, 
     address:"U" 
 }) 
 ```
-</Solution>
+:::
 
 ## Ejercicio 02
 Mostrar estudiantes que tengan failures mayores o iguales a 2 y que no reciban apoyo escolar (schoolsup: "no")
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({ 
     failures:{$gte:2}, 
     schoolsup:"no" 
 }) 
 ```
-</Solution>
+:::
 
 ## Ejercicio 03
 Buscar estudiantes con studytime igual a 1 o freetime igual a 5
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({ 
     $or: [ 
@@ -40,102 +40,102 @@ db.estudiantes.find({
     ] 
 }) 
 ```
-</Solution>
+:::
 
 ## Ejercicio 04
 Filtrar estudiantes con edad menor a 16 y que vivan con un solo padre (Pstatus: "T")
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({ 
     age:{$lt:16}, 
     Pstatus:"T"
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 05
 Mostrar estudiantes cuya madre tenga educación superior (Medu >= 3) y cuyo padre tenga menos de educación media (Fedu < 2)
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({ 
     Medu:{$gte:3}, 
     Fedu:{$lt:2} 
 }) 
 ```
-</Solution>
+:::
 
 ## Ejercicio 06
 Buscar estudiantes donde el trabajo del padre (Fjob) contenga "teacher"
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({ Fjob:"teacher" }) 
 ```
-</Solution>
+:::
 
 ## Ejercicio 07
 Filtrar estudiantes cuya razón de elección del colegio sea "reputation" y su tutor sea "father"
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({  
     reason: "reputation", 
     guardian: "father" 
 }) 
 ```
-</Solution>
+:::
 
 ## Ejercicio 08
 Mostrar estudiantes cuya actividad sea "yes", pero no tengan acceso a internet en casa
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({ 
     activities:"yes", 
     internet:"no" 
 }) 
 ```
-</Solution>
+:::
 
 ## Ejercicio 09
 Listar estudiantes que tengan "yes" en romantic y cuya salud (health) esté por debajo de 3
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({ 
     romantic:"yes", 
     health:{$lt:3} 
 }) 
 ```
-</Solution>
+:::
 
 ## Ejercicio 10
 Mostrar estudiantes cuya madre trabaje en "health" y vivan en familias de tamaño "LE3"
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({ 
     Mjob:"health", 
     famsize:"LE3" 
 }) 
 ```
-</Solution>
+:::
 
 ## Ejercicio 11
 Buscar estudiantes cuya nota final (G3) sea menor a 10
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({ G3:{$lt:10} }) 
 ```
-</Solution>
+:::
 
 ## Ejercicio 12
 Mostrar estudiantes con promedios de notas entre G1, G2 y G3 mayores a 15
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({
     "$expr": {
@@ -146,13 +146,13 @@ db.estudiantes.find({
     }
 })
 ```
-</Solution>
+:::
 
 
 ## Ejercicio 13
 Listar estudiantes con absences superiores a 10 y que tengan consumo semanal de alcohol (Walc) mayor que diario (Dalc)
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({
     "$expr": {
@@ -163,24 +163,24 @@ db.estudiantes.find({
     }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 14
 Buscar estudiantes sin ninguna inasistencia (absences = 0) y calificaciones finales iguales o superiores a 15
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({
     "absences": 0,
     "G3": {"$gte": 15}
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 15
 Filtrar estudiantes cuyo rendimiento empeora en cada evaluación (G1 > G2 > G3)
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({
     "$expr": {
@@ -191,12 +191,12 @@ db.estudiantes.find({
     }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 16
 Mostrar estudiantes que tengan todos los siguientes campos presentes: activities, internet, romantic
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({
     activities: { $exists: true },
@@ -204,51 +204,51 @@ db.estudiantes.find({
     romantic: { $exists: true }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 17
 Buscar estudiantes donde no exista el campo nursery
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({
     nursery: { $exists: false }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 18
 Filtrar estudiantes con más de 2 fallos (failures) y que además no tengan apoyo familiar (famsup: "no")
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({
     failures: { $gt: 2 },
     famsup: "no"
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 19
 Mostrar estudiantes que tengan como tutor al "mother" y cuyo consumo diario de alcohol (Dalc) sea igual o mayor a 3
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({
     guardian: "mother",
     Dalc: { $gte: 3 }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 20
 Listar estudiantes que vivan en zona rural (address: "R") y cuya nota final (G3) sea igual a la nota inicial (G1)
 
-<Solution>
+:::solution
 ```js
 db.estudiantes.find({
     address: "R",
     $expr: { $eq: ["$G3", "$G1"] }
 })
 ```
-</Solution>
+:::

@@ -6,7 +6,7 @@
 Crear un algoritmo que permita al usuario: 
 - **Ingresar:** los nombres de los estudiantes de la asignatura Programación y almacenarlos en una lista llama ESTUDIANTES
 
-<Solution>
+:::solution
 **Opción 1:** Ingreso manual
 ```python
 estudiantes = []
@@ -50,7 +50,7 @@ estudiantes = [input('ingrese nombre: ') for i in range(5)]
 print()
 print(f'estudiantes = {estudiantes}')
 ```
-</Solution>
+:::
 
 ## Ejercicio 02
 
@@ -58,7 +58,7 @@ Después de finalizar el ingreso de datos a la lista debe:
 
 - **Buscar:** Permite al usuario ingresar un nombre y buscarlo en lista, indicando si existe o no. Si existe debe indicar en qué posición de la lista se encuentra.
 
-<Solution>
+:::solution
 **Opción 1:** utilizando if-else
 
 ```python
@@ -84,13 +84,13 @@ nombreBuscar = input("ingrese nombre a buscar: ")
 
 print(f'Si está, en la posición {estudiantes.index(nombreBuscar)}') if (nombreBuscar in estudiantes) else print('No está')
 ```
-</Solution>
+:::
 
 ## Ejercicio 03
 
 Ordenar la lista y mostrarla.
 
-<Solution>
+:::solution
 **Opción 1:** utilizando "sort()"
 ```python
 # ingresar nombre de estudiantes
@@ -109,13 +109,13 @@ estudiantes = [input('ingrese nombre: ') for i in range(5)]
 # ordenar lista y mostrarla
 print(sorted(estudiantes))
 ```
-</Solution>
+:::
 
 ## Ejercicio 04
 
 Pedir el usuario el ingreso de un nombre y eliminarlo de la lista. Mostrar la lista.
 
-<Solution>
+:::solution
 ```python
 # ingresar nombre de estudiantes
 estudiantes = [input('ingrese nombre: ') for i in range(5)]
@@ -131,4 +131,4 @@ else:
 
 print(estudiantes)
 ```
-</Solution>
+:::

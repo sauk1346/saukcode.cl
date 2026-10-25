@@ -6,7 +6,7 @@
 ### Ejercicio 01
 Crear un algoritmo en diagrama de flujo que al leer un número entero positivo (asuma que el número cumple las condiciones), imprimir PAR si el número es par e IMPAR si es impar.
 
-<Solution>
+:::solution
 ```python
 def validar_numero():
     while True:
@@ -24,12 +24,12 @@ numero = validar_numero()
 resultado = "PAR" if num_par(numero) else "IMPAR"
 print(resultado)
 ```
-</Solution>
+:::
 
 ### Ejercicio 02
 Supongamos que el IPC de los meses de Febrero y Marzo fueron 0.3% y 0.6% respectivamente. Crear un algoritmo en diagrama de flujo que muestre el valor de un producto actualizado y la diferencia de precio entre el mes de Febrero y Marzo
 
-<Solution>
+:::solution
 El valor actualizado $(V)$ de un producto $(P)$ en función del IPC $(IPC\%)$ es:
 
 $$
@@ -69,13 +69,13 @@ print(f"\nValor producto actualizado a Febrero: {precio_feb:.2f}")
 print(f"Valor producto actualizado a Marzo: {precio_mar:.2f}")
 print(f"Diferencia precio Febrero-Marzo: {diferencia:.2f}")
 ```
-</Solution>
+:::
 
 
 ### Ejercicio 03
 Confeccione un algoritmo en diagrama de flujo que al leer el neto de una factura, calcule el IVA y entregue como salida el total de la factura.
 
-<Solution>
+:::solution
 El calculo del IVA de un producto base $(P)$, según una tasa $(t)$ es:
 
 $$
@@ -109,12 +109,12 @@ total_factura = neto_factura + valor_iva(neto_factura, tasa_IVA)
 print(f"\nIVA: {valor_iva(neto_factura, tasa_IVA):.2f}")
 print(f"Total Factura: {total_factura:.2f}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 04
 Crear un algoritmo en diagrama de flujo que al ingresar dos números imprima el mayor de ellos o IGUALES si son iguales
 
-<Solution>
+:::solution
 ```python
 def validar_num(i):
     while True:
@@ -137,14 +137,14 @@ num1 = validar_num(1)
 num2 = validar_num(2)
 print(f"\n{comparar_numeros(num1,num2)}")
 ```
-</Solution>
+:::
 
 ## Ejercicios Propuestos de Alternativa Simple, Doble, y Múltiple
 
 ### Ejercicio 01
 Suponga que un individuo desea invertir su capital en un banco y desea saber cuánto dinero ganará después de un mes si el banco paga a razón de 2% mensual.
 
-<Solution>
+:::solution
 ```python
 def validar_capital():
     while True:
@@ -166,12 +166,12 @@ capital_inicial = validar_capital()
 capital_final = calculo_inversion(capital_inicial, tasa_mensual)
 print(f"\nLuego de un mes, el monto del capital es: {capital_final:.2f}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 02
 Un vendedor recibe un sueldo base más un 10% extra por comisión de sus ventas. El vendedor desea saber cuánto dinero obtendrá por concepto de comisiones por las tres ventas que realiza en el mes y el total que recibirá en el mes tomando en cuenta su sueldo base y comisiones.
 
-<Solution>
+:::solution
 ```python
 def validarSueldoBase():
     while True:
@@ -212,12 +212,12 @@ sueldo_final = sueldo_base + comision
 print(f"\nComisión por ventas: {comision:.2f}")
 print(f"Sueldo final: {sueldo_final:.2f}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 03
 Una tienda ofrece un descuento del 15% sobre el total de la compra y un cliente desea saber cuánto deberá pagar finalmente por su compra.
 
-<Solution>
+:::solution
 ```python
 def validarCompra():
     while True:
@@ -242,7 +242,7 @@ precio_final = valor_compra - valor_descuento
 print(f"\nValor de descuento: {valor_descuento:.2f}")
 print(f"Valor Total a pagar: {precio_final:.2f}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 04
 Un alumno desea saber cuál será su calificación final en la materia de Algoritmos. Dicha calificación se compone de los siguiente porcentajes:
@@ -251,7 +251,7 @@ Un alumno desea saber cuál será su calificación final en la materia de Algori
 - 30% de la calificación del examen final.
 - 15% de la calificación de un trabajo final.
 
-<Solution>
+:::solution
 ```python
 def validarNota(tipo, i=None):
     while True:
@@ -293,13 +293,13 @@ nota_final = calcularNotaFinal(prom_parciales, examen, trabajo, pond_parciales, 
 
 print(f"\nNota final: {nota_final:.2f}")
 ```
-</Solution>
+:::
 
 
 ### Ejercicio 05
 Un maestro desea saber qué porcentaje de hombres y qué porcentaje de mujeres hay en un grupo de estudiantes.
 
-<Solution>
+:::solution
 ```python
 def validarCantidad(tipo):
     while True:
@@ -333,12 +333,12 @@ else:
     print(f"\nPorcentaje hombres: {porcentaje_hombres:.2f}%") 
     print(f"Porcentaje mujeres: {porcentaje_mujeres:.2f}%") 
 ```
-</Solution>
+:::
 
 ### Ejercicio 06
 Realizar un algoritmo que calcule la edad de una persona.
 
-<Solution>
+:::solution
 ```python
 from datetime import datetime
 
@@ -361,12 +361,12 @@ fecha_nac = validarFecha()
 edad = calcularEdad(fecha_nac)
 print(f"\nEdad: {edad} años")
 ```
-</Solution>
+:::
 
 ### Ejercicio 07
 Un hombre desea saber cuánto dinero se genera por concepto de intereses sobre la cantidad que tiene en inversión en el banco. El decidirá reinvertir los intereses siempre y cuando éstos excedan a $7000, y en este caso desea saber cuánto dinero tendrá finalmente en su cuenta.
 
-<Solution>
+:::solution
 ```python
 def validarDato(tipo):
     while True:
@@ -405,12 +405,12 @@ print(f"Tiempo Inversion: {tiempo:.2f} años")
 print(f"Intereses: ${intereses:.2f}")
 print(f"Total Cuenta: ${total_cuenta:.2f}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 08
 Determinar si un alumno aprueba o reprueba un curso, sabiendo que aprobará si su promedio de tres calificaciones es mayor o igual a 7.0; reprueba en caso contrario
 
-<Solution>
+:::solution
 ```python
 def validarNota(i):
     while True:
@@ -436,12 +436,12 @@ estado = "APROBADO" if prom_notas >= 70 else "REPROBADO"
 print(f"\nPromedio notas: {prom_notas:.2f}")
 print(estado)
 ```
-</Solution>
+:::
 
 ### Ejercicio 09
 En un almacen se hace un 20% de descuento a los clientes cuya compra supere los $1000. ¿Cuál será la cantidad que pagará una persona por su compra?
 
-<Solution>
+:::solution
 ```python
 def validarMonto():
     while True:
@@ -468,7 +468,7 @@ print(f"\nMonto Neto: {monto_neto:.2f}")
 print(f"Descuento: {monto_descuento:.2f}")
 print(f"Monto Final: {monto_final:.2f}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 10
 Un obrero necesita calcula su salario semanal, el cual se obtiene de la siguiente manera:
@@ -476,7 +476,7 @@ Un obrero necesita calcula su salario semanal, el cual se obtiene de la siguient
 - Si trabaja 40 horas o menos se le paga $16 por hora.
 - Si trabaja más de 40 horas se le paga \$16 cada una de las primeras 40 horas y \$20 por cada hora extra.
 
-<Solution>
+:::solution
 ```python
 def validarHoras():
     while True:
@@ -504,7 +504,7 @@ salario_semanal = calcularSalario(horas, ratio_normal, ratio_overtime)
 
 print(f"\nSalario Semanal: {salario_semanal:.2f}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 11
 ~~Un hombre desea saber cuánto dinero se genera por concepto de intereses sobre la cantidad que tiene en inversión en el banco. El decidirá reinvertir los intereses siempre y cuando éstos excedan a \$7000, y en ese caso desea saber cuánto dinero tendrá finalmente en su cuenta.~~ (Idéntico a Ejercicio 07)
@@ -512,7 +512,7 @@ print(f"\nSalario Semanal: {salario_semanal:.2f}")
 ### Ejercicio 12
 Que lea 2 números y los imprima de forma ascendente
 
-<Solution>
+:::solution
 ```python
 def validarNumero(i):
     while True:
@@ -534,12 +534,12 @@ num2 = validarNumero(2)
 num_menor, num_mayor = ordenarTupla(num1, num2)
 print(f"\nNúmeros ordenados de forma ascendente: {num_menor:.2f}, {num_mayor:.2f}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 13
 Una persona enferma, que pesa 70kg, se encuentra en reposo y desea saber cuántas calorías consume su cuerpo durante todo el tiempo que realice la misma actividad. Las actividades que tiene permitido realizar son únicamente dormir o estar sentado en reposo. Los datos que tiene son que estando dormido consume 1.08 calorías por minuto y estando sentado en reposo consume 1.66 calorías por minuto.
 
-<Solution>
+:::solution
 ```python
 def validarDato(tipo):
     while True:
@@ -577,12 +577,12 @@ print(f"\nTipo actividad: {actividad}")
 print(f"Tiempo actividad: {tiempo} minutos")
 print(f"Calorías consumidas: {calorias:.2f} calorias")
 ```
-</Solution>
+:::
 
 ### Ejercicio 14
 Hacer un algoritmo que imprima el nombre de un artículo, clave, precio original y su precio con descuento. El descuento lo hace en base a la clave, si la clave es 01 el descuento es del 10% y si la clave es 02 el descuento es del 20% (solo existen dos claves)
 
-<Solution>
+:::solution
 ```python
 def validarDato(tipo):
     while True:
@@ -619,12 +619,12 @@ print(f"Clave: {clave}")
 print(f"Precio original: ${precio_neto:.2f}")
 print(f"Precio con descuento: ${precio_final:.2f}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 15
 Hacer un algoritmo que calcule el total a pagar por la compra de camisas. Si se compran tres camisas o más se aplica un descuento del 20% sobre el total de la compra y si son menos de tres camisas un descuento del 10%
 
-<Solution>
+:::solution
 ```python
 def validarDato(tipo):
     while True:
@@ -659,7 +659,7 @@ print(f"Precio por camisa: ${precio_neto:.2f}")
 print(f"Compra neta: {compra_neta:.2f}")
 print(f"Compra Final: ${compra_final:.2f}")
 ```
-</Solution>
+:::
 
 
 ### Ejercicio 16
@@ -671,7 +671,7 @@ Si el monto total de la compra no excede de \$500000 la empresa tendrá la capac
 
 El fabricante cobra por concepto de intereses un 20% sobre la cantidad que se pague a crédito.
 
-<Solution>
+:::solution
 ```python
 def validarMonto():
     while True:
@@ -704,12 +704,12 @@ print(f"Inversión Empresa: ${dinero_propio:.2f}")
 print(f"Préstamo Bancario: ${prestamo_banco:.2f}")
 print(f"Crédito al Fabricante: ${credito_fabricante:.2f}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 17
 Leer 2 números; si son iguales que los multiplique, si el primero es mayor que el segundo que los reste y si no que los sume.
 
-<Solution>
+:::solution
 ```python
 def validarNumero(i):
     while True:
@@ -736,12 +736,12 @@ print(f"\nPrimer número: {num1:.2f}")
 print(f"Segundo número: {num2:.2f}")
 print(f"{operacion}: {resultado:.2f}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 18
 Leer tres números diferentes e imprimir el número mayor de los tres.
 
-<Solution>
+:::solution
 ```python
 def validarNumero(i):
     while True:
@@ -766,12 +766,12 @@ num3 = validarNumero(3)
 num_mayor = calcularMayor(num1, num2, num3)
 print(f"\nEl número mayor es: {num_mayor:.2f}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 19
 Determinar la cantidad de dinero que recibirá un trabajador por concepto de horas extras trabajadas en una empresa, sabiendo que cuando las horas de trabajo exceden de 40, el resto se consideran horas extras y que éstas se pagan al doble de una hora normal cuando no exceden de 8; si las horas extras exceden de 8 se pagan las primeras 8 al doble de lo que se pagan las horas normales y el resto al triple.
 
-<Solution>
+:::solution
 ```python
 def validarDato(tipo):
     while True:
@@ -806,7 +806,7 @@ print(f"\nRatio Sueldo: ${pago_hora:.2f} por hora")
 print(f"Horas trabajadas: {horas_trabajadas:.2f} horas")
 print(f"Sueldo: ${sueldo:.2f}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 20
 Calcular la utilidad que un trabajador recibe en el reparto anual de utilidades si éste se le asigna como un porcentaje de su salario mensual que depende de su antigüedad en la empresa de acuerdo con la siguiente tabla:
@@ -819,7 +819,7 @@ Calcular la utilidad que un trabajador recibe en el reparto anual de utilidades 
 |5 años o más y menos de 10 años|15% del salario|
 |10 años o más|20% del salario|
 
-<Solution>
+:::solution
 ```python
 def validarDato(tipo):
     while True:
@@ -858,12 +858,12 @@ print(f"\nSalario: ${salario}")
 print(f"Antigüedad: {antiguedad} años")
 print(f"Utilidad: ${utilidad}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 21
 En una tienda de descuento se efectúa una promoción en la cual se hace un descuento sobre el valor de la compra total según el color de la bolita que el cliente saque al pagar en caja. Si la bolita es de color blanco no se le hará descuento alguno, si es verde se le hará un 10% de descuento, si es amarilla un 25%, si es azul un 50% y si es roja un 100%. Determinar la cantidad final que el cliente deberá pagar por su compra. Se sabe que solo hay bolitas de los colores mencionados.
 
-<Solution>
+:::solution
 ```python
 def validarDato(tipo):
     while True:
@@ -905,7 +905,7 @@ print(f"\nValor Compra: ${valor_neto:.2f}")
 print(f"Color bolita: {color_bolita}")
 print(f"Valor Final: ${valor_final:.2f}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 22
 El IMSS requiere clasificar a las personas que se jubilarán en el año de 1997. Existen tres tipos de jubilaciones: por edad, por antigüedad joven y por antigüedad adulta.
@@ -916,7 +916,7 @@ El IMSS requiere clasificar a las personas que se jubilarán en el año de 1997.
 
 Determinar en qué tipo de jubilación quedará adscrita una persona.
 
-<Solution>
+:::solution
 ```python
 def validarDato(tipo):
     while True:
@@ -953,7 +953,7 @@ print(f"\nEdad: {edad} años")
 print(f"Antigüedad: {antiguedad} años")
 print(f"Jubilación: {jubilacion}")
 ```
-</Solution>
+:::
 
 ## Ejercicios Propuestos de Ciclos
 
@@ -961,7 +961,7 @@ print(f"Jubilación: {jubilacion}")
 Calcular el promedio de un alumno que tiene 7 calificaciones en la materia de Diseño Estructurado de Algoritmos.
 
 
-<Solution>
+:::solution
 ```python
 def validarNota(i, j):
     while True:
@@ -985,12 +985,12 @@ def calcularPromedio(ciclo):
 promedio = calcularPromedio(7)
 print(f"Promedio Alumno: {promedio:.2f}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 02
 Leer 10 números y obtener su cubo y su cuarta
 
-<Solution>
+:::solution
 ```python
 def validarNumeros(i, j):
     while True:
@@ -1021,12 +1021,12 @@ print(f"Números: {numeros}")
 print(f"Cubos: {cubo}")
 print(f"Cuartas: {cuarta}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 03
 Leer 10 números e imprimir solamente los números positivos.
 
-<Solution>
+:::solution
 ```python
 def validarNumeros(i,j):
     while True:
@@ -1045,13 +1045,13 @@ for i in range(10):
 
 print(numeros)
 ```
-</Solution>
+:::
 
 
 ### Ejercicio 04
 Leer 20 números e imprimir cuántos son positivos, cuántos negativos y cuántos neutros.
 
-<Solution>
+:::solution
 ```python
 def validarNumeros(i, j):
     while True:
@@ -1081,12 +1081,12 @@ print(f"Números neutros: {num_neutros}")
 print(f"Números positivos: {num_positivos}")
 print(f"Números negativos: {num_negativos}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 05
 Leer 15 números negativos y convertirlos a positivos e imprimir dichos números.
 
-<Solution>
+:::solution
 ```python
 def validarNumeros(i,j):
     while True:
@@ -1111,12 +1111,12 @@ for i in range(15):
 
 print(f"\nNúmeros Positivos: {numeros}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 06
 Suponga que se tiene un conjuntao de calificaciones de un grupo de 40 alumnos. Realizar un algoritmo para calcular la calificación media y la calificación más baja de todo el grupo.
 
-<Solution>
+:::solution
 ```python
 def calcularBaja(notas):
     nota_baja = 7.0
@@ -1150,12 +1150,12 @@ print(f"Nota más baja: {nota_baja}")
 {`Nota media: 4.78
 Nota más baja: 1.0`}
 </TerminalOutput>
-</Solution>
+:::
 
 ### Ejercicio 07
 Calcular e imprimir la tabla de multiplicar de un número cualquiera. Imprimir el multiplicando, el multiplicador y el producto.
 
-<Solution>
+:::solution
 ```python
 multiplicando = int(input("Ingrese un número: "))
 
@@ -1166,12 +1166,12 @@ for multiplicador in range(1,10+1):
     producto = multiplicando * multiplicador
     print(f"{multiplicando}\t\t{multiplicador}\t\t{producto}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 08
 Simular el comportamiento de un reloj digital, imprimiendo la hora, minutos y segundos de un día desde las 0:00:00 horas hasta las 23:59:59 horas.
 
-<Solution>
+:::solution
 ```python
 import time
 
@@ -1188,13 +1188,13 @@ for i in range(total_seg):
     print(f"Reloj: {str(hora).zfill(2)}:{str(minuto).zfill(2)}:{str(segundo).zfill(2)}")
     time.sleep(1) #opcional, retrasa la instrucción en 1 seg para simular reloj
 ```
-</Solution>
+:::
 
 
 ### Ejercicio 09
 Una compañía de seguros tiene contratados a `n` vendedores. Cada uno hace tres ventas a la semana. Su política de pagos es que un vendedor recibe un sueldo base, y un 10% extra por comisiones de sus ventas. El gerente de su compañía desea saber cuánto dinero obtendrá en la semana cada vendedor por concepto de comisiones por las tres ventas,y cuánto tomando en cuenta su sueldo base y sus comisiones.
 
-<Solution>
+:::solution
 ```python
 def calcularComision(ventaA, ventaB, ventaC):
     return ( (ventaA + ventaB + ventaC) * 0.1 )
@@ -1229,7 +1229,7 @@ while(continuar == "s"):
             continuar = input("¿Desea continuar? (s/n): ")
             continuar = continuar.lower()
 ```
-</Solution>
+:::
 
 ### Ejercicio 10
 En una empresa se requiere calcular el salario semanal de cada uno de los `n` obreros que laboran en ella. El salario se obtiene de la siguiente forma:
@@ -1237,7 +1237,7 @@ En una empresa se requiere calcular el salario semanal de cada uno de los `n` ob
 - Si el obrero trabaja 40 horas o menos se le paga \$20 por hora
 - Si trabaja más de 40 horas se le paga \$20 por cada una de las primeras 40 horas y \$25 por cada hora extra.
 
-<Solution>
+:::solution
 ```python
 def calcularSueldo(horas):
     if horas <= 40:
@@ -1269,12 +1269,12 @@ while (continuar == "s"):
             continuar = input(f"¿Desea continuar?(s/n): ")
             continuar = continuar.lower()
 ```
-</Solution>
+:::
 
 ### Ejercicio 11
 Determinar cuántos hombres y cuántas mujeres se encuentran en un grupo de `n` personas, suponiendo que los datos son extraídos alumno por alumno
 
-<Solution>
+:::solution
 ```python
 cont_hombres = 0
 cont_mujeres = 0
@@ -1299,7 +1299,7 @@ print(f"\nTotal Alumnos: {cont_hombres + cont_mujeres}")
 print(f"Número de hombres: {cont_hombres}")
 print(f"Número de mujeres: {cont_mujeres}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 12
 El Depto. de Seguridad Pública y Transito de D.F. desea saber, de los `n` autos que entran a la ciudad de México, cuántos entran con calcomanía de cada color. Conociendo el último dígito de la placa de cada automóvil se puede determinar el color de la calcomanía utilizando ls siguiente relación:
@@ -1312,7 +1312,7 @@ El Depto. de Seguridad Pública y Transito de D.F. desea saber, de los `n` autos
 |7 o 8|verde|
 |9 o 0|azul|
 
-<Solution>
+:::solution
 ```python
 import random
 import string
@@ -1357,12 +1357,12 @@ print(f"Rojas: {num_roja}")
 print(f"Verdes: {num_verde}")
 print(f"Azules: {num_azul}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 13
 Obtener el promedio de calificaciones de un grupo de `n` alumnos.
 
-<Solution>
+:::solution
 ```python
 import random
 
@@ -1387,12 +1387,12 @@ for i in range(cant_alumnos):
     print(f"Notas: {nota_alumno[i]}")
     print(f"Promedio: {prom_alumno[i]}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 14
 Una persona desea invertir su dinero en un banco, el cual le otorga un 2% de interés. ¿Cuál será la cantidad de dinero que esta persona tendrá al cabo de un año si la ganancia de cada mes es reinvertida?
 
-<Solution>
+:::solution
 ```python
 def CalcularGanancia(monto):
     return monto * 0.02
@@ -1405,12 +1405,12 @@ for i in range(12):
 
 print(f"Monto luego de 1 año: {monto:.2f}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 15
 Calcular el promedio de edades de hombres, mujeres y de todo un grupo de alumnos
 
-<Solution>
+:::solution
 ```python
 import random
 
@@ -1446,12 +1446,12 @@ print(f"Promedio edad grupo: {prom_g:.2f}")
 print(f"Promedio edad hombres: {prom_h:.2f}")
 print(f"Promedio edad mujeres: {prom_m:.2f}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 16
 Encontrar el menor valor de un conjunto de `n` números dados
 
-<Solution>
+:::solution
 ```python
 import random
 
@@ -1472,12 +1472,12 @@ num_menor = getMenor(numeros)
 print(f"\nNúmeros generados: {numeros}")
 print(f"Número menor: {num_menor}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 17
 Encontrar el mayor valor de un conjunto de `n` números dados
 
-<Solution>
+:::solution
 ```python
 import random
 
@@ -1498,12 +1498,12 @@ num_mayor = getMayor(numeros)
 print(f"\nNúmeros generados: {numeros}")
 print(f"Número mayor: {num_mayor}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 18
 En un supermercado un cajero captura los precios de los artículos que los clientes compran e indica a cada cliente cuál es el monto de lo que deben pagar. Al final del día le indica a su supervisor cuánto fue lo que cobró en total a todos los clientes que pasaron por su caja.
 
-<Solution>
+:::solution
 ```python
 import random
 
@@ -1528,7 +1528,7 @@ print(f"Lista articulos clientes: {compra_cliente}")
 print(f"Lista total clientes: {total_cliente}")
 print(f"Venta total día: {calcularTotalDia(total_cliente)}")
 ```
-</Solution>
+:::
 
 ### Ejercicio 19
 Cinco miembros de un club contra la obesidad desean sabar cuánto han bajado o subido de peso desde la última vez que se reunieron. Para esto se debe realizar un ritual de pesaje en donde cada uno se pesa en diez básculas distintas para así tener el promedio más exacto de su peso. Si existe diferencia positiva entre este promedio de peso y el peso de la última vez que se reunieron, significa que subieron de peso. Pero si la diferencia es negativam significa que bajaron. Lo que el problema requiere es que por cada persona se imprima un letrero que diga: "SUBIO" o "BAJO" y la cantidad de kilos que subió o bajo de peso.

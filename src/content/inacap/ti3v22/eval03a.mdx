@@ -179,7 +179,7 @@ Ejemplo de Salida Esperada:
 {`Es par`}
 </TerminalOutput>
 
-<Solution>
+:::solution
 ```sql
 DECLARE
     v_numero NUMBER := 8;
@@ -191,7 +191,7 @@ BEGIN
     END IF;
 END;
 ```
-</Solution>
+:::
 
 ### Ejercicio 3
 **Actualizar el Precio de un Producto** (25 puntos)
@@ -209,7 +209,7 @@ Ejemplo de Salida Esperada:
 {`El nuevo precio del producto con ID 101 es: 550`}
 </TerminalOutput>
 
-<Solution>
+:::solution
 ```sql
 CREATE OR REPLACE PROCEDURE sp_ActualizarPrecioProducto(
     p_ProductoID IN NUMBER,
@@ -236,4 +236,4 @@ BEGIN
     
 END;
 ```
-</Solution>
+:::

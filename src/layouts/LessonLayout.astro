@@ -143,6 +143,15 @@ const { title, description } = Astro.props;
     );
   } catch (e) {}
 
+  // :reveal[...] — alterna la respuesta oculta (delegación de eventos)
+  document.addEventListener('click', (e) => {
+    const button = (e.target as HTMLElement).closest('.reveal');
+    if (!button) return;
+    const shown = button.getAttribute('aria-pressed') !== 'true';
+    button.setAttribute('aria-pressed', String(shown));
+    button.setAttribute('aria-label', shown ? 'Ocultar respuesta' : 'Mostrar respuesta');
+  });
+
   // Botón "Copiar" de los bloques de código (delegación de eventos)
   document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;

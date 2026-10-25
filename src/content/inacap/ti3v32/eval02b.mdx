@@ -8,73 +8,73 @@
 ## Ejercicio 01
 Buscar vehículos con más de 12 años de antigüedad.
 
-<Solution>
+:::solution
 ```js
 db.vehiculosB.find({
   año: { $lt: 2013 }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 02
 Mostrar vehículos cuyo valor fiscal supere los \$15.000.000.
 
-<Solution>
+:::solution
 ```js
 db.vehiculosB.find({
   valor_fiscal: { $gt: 15000000 }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 03
 Filtrar vehículos que estén dados de baja (activo: false).
 
-<Solution>
+:::solution
 ```js
 db.vehiculosB.find({
   activo: false
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 04
 Listar vehículos registrados en la comuna "La Florida".
 
-<Solution>
+:::solution
 ```js
 db.vehiculosB.find({
   comuna: "La Florida"
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 05
 Mostrar vehículos registrados después del año 2018.
 
-<Solution>
+:::solution
 ```js
 db.vehiculosB.find({
   fecha_registro: { $gt: "2018-12-31" }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 06
 Buscar vehículos con tipo "Camioneta" o "SUV".
 
-<Solution>
+:::solution
 ```js
 db.vehiculosB.find({
   tipo: { $in: ["Camioneta", "SUV"] }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 07
 Mostrar vehículos donde la revisión técnica de 2021 tenga peor nota que la de 2023.
 
-<Solution>
+:::solution
 ```js
 db.vehiculosB.find({
   $expr: {
@@ -82,35 +82,35 @@ db.vehiculosB.find({
   }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 08
 Filtrar vehículos de tipo "Hatchback" con valor fiscal inferior a \$6.000.000.
 
-<Solution>
+:::solution
 ```js
 db.vehiculosB.find({
   tipo: "Hatchback",
   valor_fiscal: { $lt: 6000000 }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 09
 Mostrar vehículos que no estén registrados en "Ñuñoa".
 
-<Solution>
+:::solution
 ```js
 db.vehiculosB.find({
   comuna: {$nin: ["Ñuñoa"]}
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 10
 Listar vehículos con más de 4 accesorios instalados.
 
-<Solution>
+:::solution
 ```js
 db.vehiculosB.find({
   $expr: {
@@ -118,45 +118,45 @@ db.vehiculosB.find({
   }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 11
 Buscar vehículos cuyo modelo comience con "R".
 
-<Solution>
+:::solution
 ```js
 db.vehiculosB.find({
   modelo: /^R/
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 12
 Mostrar vehículos cuya marca contenga la palabra "ford" (sin distinguir mayúsculas).
 
-<Solution>
+:::solution
 ```js
 db.vehiculosB.find({
   marca: /ford/i
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 13
 Filtrar vehículos con al menos un accesorio que incluya "sunroof".
 
-<Solution>
+:::solution
 ```js
 db.vehiculosB.find({
   accesorios: /sunroof/
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 14
 Mostrar vehículos sin revisión técnica del año "2021".
 
-<Solution>
+:::solution
 ```js
 db.vehiculosB.find({
   $or: [
@@ -165,12 +165,12 @@ db.vehiculosB.find({
   ]
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 15
 Filtrar vehículos que tengan exactamente 2 accesorios.
 
-<Solution>
+:::solution
 ```js
 db.vehiculosB.find({
   $expr: {
@@ -178,4 +178,4 @@ db.vehiculosB.find({
   }
 })
 ```
-</Solution>
+:::

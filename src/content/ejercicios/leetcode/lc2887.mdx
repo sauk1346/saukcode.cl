@@ -15,8 +15,8 @@ Escribe una solución para llenar los valores faltantes con `0` en la columna `q
 
 ## Ejemplo
 
-<MultiColumn>
-<div>
+::::columns
+:::col
 **Input:**
 <TerminalOutput>
 {`+-----------------+----------+-------+
@@ -28,8 +28,8 @@ Escribe una solución para llenar los valores faltantes con `0` en la columna `q
 | Printer         | 849      | 3051  |
 +-----------------+----------+-------+`}
 </TerminalOutput>
-</div>
-<div>
+:::
+:::col
 **Output:**
 <TerminalOutput>
 {`+-----------------+----------+-------+
@@ -45,12 +45,12 @@ Explicación:
 La cantidad para Wristwatch y 
 WirelessEarbuds se reemplaza con 0.`}
 </TerminalOutput>
-</div>
-</MultiColumn>
+:::
+::::
 
 ## Soluciones
 
-<Solution title="Python" icon="Python">
+:::solution[Python]{icon="Python"}
 ```python
 import pandas as pd
 
@@ -60,4 +60,4 @@ def fillMissingValues(products: pd.DataFrame) -> pd.DataFrame:
     
     return products
 ```
-</Solution>
+:::

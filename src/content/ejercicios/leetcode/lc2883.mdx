@@ -46,11 +46,11 @@ por lo que será eliminado.`}
 
 ## Soluciones
 
-<Solution title="Python" icon="Python">
+:::solution[Python]{icon="Python"}
 ```python
 import pandas as pd
 
 def dropMissingData(students: pd.DataFrame) -> pd.DataFrame:
      return students.dropna(subset=['name'])
 ```
-</Solution>
+:::

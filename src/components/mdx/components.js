@@ -5,8 +5,6 @@ import { H1, H2, H3 } from './Headings.jsx';
 import { Paragraph, P } from './Paragraph.jsx';
 import { UnorderedList, OrderedList, ListItem, List } from './Lists.jsx';
 import { Blockquote } from './Blockquote.jsx';
-import Box from './Box.jsx';
-import MultiColumn from './MultiColumn.jsx';
 import { CustomIframe } from './Iframe.jsx';
 import { SmartLink } from '../ui/SmartLink.jsx';
 import SmartTable, { TableProvider, TableRef } from './SmartTable.jsx';
@@ -33,8 +31,6 @@ export const reactMdxComponents = {
   // Componentes con nombre
   P,
   List,
-  Box,
-  MultiColumn,
   SmartTable,
   TableProvider,
   TableRef,

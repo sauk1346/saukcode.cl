@@ -6,7 +6,7 @@
 ### Ejercicio 01
 **Filtrar alumnos de una carrera específica**. Encuentra a todos los alumnos que estudian Ingeniería Informática
 
-<Solution>
+:::solution
 1. Seleccionar colección `alumnos`
 2. Ir a **query** y agregar:
 
@@ -14,12 +14,12 @@
 { "carrera": "Ingeniería Informática" }
 ```
 3. Presionar botón `find`
-</Solution>
+:::
 
 ### Ejercicio 02
 **Buscar alumnos mayores de 21 años**. Encuentra a los alumnos cuya edad sea mayor a 21 años
 
-<Solution>
+:::solution
 1. Seleccionar colección `alumnos`
 2. Ir a **query** y agregar:
 
@@ -27,12 +27,12 @@
 { "edad": { $gt: 21 } }
 ```
 3. Presionar botón `find`
-</Solution>
+:::
 
 ### Ejercicio 03
 **Buscar alumnos que tengan una nota superior a 6.0 en alguna asignatura**. Encuentra alumnos que tengan al menos una asignatura con una nota mayor a 6.0
 
-<Solution>
+:::solution
 1. Seleccionar colección `alumnos`
 2. Ir a **query** y agregar:
 
@@ -40,12 +40,12 @@
 { "notas.nota": { $gt: 6.0 } }
 ```
 3. Presionar botón `find`
-</Solution>
+:::
 
 ### Ejercicio 04
 **Actualizar el correo de un alumno**. El alumnos Juan Pérez ha cambiado su correo. Ahora su nuevo correo es juan.perez2025@ejemplo.com
 
-<Solution>
+:::solution
 1. Seleccionar colección `alumnos`
 2. Ir a query y agregar:
 
@@ -59,12 +59,12 @@
 { $set: { "correo":"juan.perez2025@ejemplo.com" }
 ```
 5. Presionar `refresh`
-</Solution>
+:::
 
 ### Ejercicio 05
 **Eliminar a un alumno que se retiró**. Elimina al alumno llamado Carlos Rojas de la base de datos.
 
-<Solution>
+:::solution
 1. Seleccionar colección `alumnos`
 2. Ir a query y agregar:
 
@@ -74,12 +74,12 @@
 3. Presionar botón `find`
 4. Presionar botón `delete`
 5. Presionar `refresh`
-</Solution>
+:::
 
 ### Ejercicio 06
 **Filtrar docentes del departamento de Informática**. Encuentra todos los docentes que pertenecen al departamento de Informática
 
-<Solution>
+:::solution
 1. Seleccionar colección `docentes`
 2. Ir a query y agregar:
 
@@ -87,12 +87,12 @@
 { "departamento": "Informática" }
 ```
 3. Presionar botón `find`
-</Solution>
+:::
 
 ### Ejercicio 07
 **Buscar docentes que enseñan "Base de Datos"**. Encuentra todos los docentes que imparten la asignatura "Bases de datos"
 
-<Solution>
+:::solution
 1. Seleccionar colección `docentes`
 2. Ir a query y agregar:
 
@@ -100,12 +100,12 @@
 { "asignaturas": "Bases de Datos" }
 ```
 3. Presionar botón `find`
-</Solution>
+:::
 
 ### Ejercicio 08
 **Aumentar la edad de un docente**. El docente Roberto Morales ha cumplido años. Debemos aumentar su edad en 1
 
-<Solution>
+:::solution
 1. Seleccionar colección `docentes`
 2. Ir a query y agregar:
 
@@ -119,12 +119,12 @@
 { $inc: { "edad": 1 } }
 ```
 5. Presionar `refresh`
-</Solution>
+:::
 
 ### Ejercicio 09
 **Agregar una nueva asignatura a un docente**. El docente Lucía Torres ahora impartirá la asignatura de "Cloud Computing". Debemos agregar esta nueva asignatura
 
-<Solution>
+:::solution
 1. Seleccionar colección `docentes`
 2. Ir a query y agregar:
 
@@ -138,12 +138,12 @@
 { $push: { "asignaturas":"Cloud Computing" } }
 ```
 5. Presionar `refresh`
-</Solution>
+:::
 
 ### Ejercicio 10
 **Eliminar un docente que dejó de trabajar en la institución**. El docente Manuel Gutiérrez ha dejado la institución. Debemos eliminarlo de la base de datos
 
-<Solution>
+:::solution
 1. Seleccionar colección `docentes`
 2. Ir a query y agregar:
 
@@ -152,7 +152,7 @@
 ```
 3. Presionar botón `find`
 4. Presionar botón `delete`
-</Solution>
+:::
 
 ## Ejercicios Clase 03
 **Material Clase:** [clase03.pdf](/inacap/ti3v32/docs/clase03.pdf)
@@ -160,7 +160,7 @@
 ### Ejercicio 01
 **Insertar un nuevo estudiante**
 
-<Solution>
+:::solution
 1. Seleccionar colección `alumnos`
 2. Presionar botón `ADD DATA` > `Insert document`
 3. Ingresar el siguiente documento:
@@ -180,12 +180,12 @@
 }
 ```
 4. Presionar botón `Insert`
-</Solution>
+:::
 
 ### Ejercicio 02
 **Insertar múltiples docentes**
 
-<Solution>
+:::solution
 1. Seleccionar colección `docentes`
 2. Presionar botón `ADD DATA` > `Insert document`
 3. Ingresar los siguientes documentos:
@@ -213,12 +213,12 @@
 ]
 ```
 4. Presionar botón `Insert`
-</Solution>
+:::
 
 ### Ejercicio 03
 **Filtrar estudiantes por carrera**. Encuentra a los alumnos que estudian Ingeniería Informática
 
-<Solution>
+:::solution
 1. Seleccionar colección `alumnos`
 2. Ir a **query** y agregar:
 
@@ -226,12 +226,12 @@
 { "carrera": "Ingeniería Informática" }
 ```
 3. Presionar botón `find`
-</Solution>
+:::
 
 ### Ejercicio 04
 **Buscar docentes que enseñen "Base de Datos"**. Encuentra todos los docentes que imparten la asignatura "Base de Datos"
 
-<Solution>
+:::solution
 1. Seleccionar colección `docentes`
 2. Ir a query y agregar:
 
@@ -240,12 +240,12 @@
 ```
 3. Presionar botón `find`
 
-</Solution>
+:::
 
 ### Ejercicio 05
 **Buscar estudiantes con notas mayores a 6.0**. Encuentra alumnos que tengan al menos una asignatura con una nota superior a 6.0
 
-<Solution>
+:::solution
 1. Seleccionar colección `alumnos`
 2. Ir a query y agregar: 
 
@@ -253,12 +253,12 @@
 { "notas.nota": { $gt:6.0 } }
 ```
 3. Presionar botón `find`
-</Solution>
+:::
 
 ### Ejercicio 06
 **Filtrar docentes mayores de 40 años**. Encuentra docentes cuya edad sea mayor a 40
 
-<Solution>
+:::solution
 1. Seleccionar colección `docentes`
 2. Ir a query y agregar:
 
@@ -266,12 +266,12 @@
 { "edad": { "$gt":40 } }
 ```
 3. Presionar botón `find`
-</Solution>
+:::
 
 ### Ejercicio 07
 **Actualizar el correo de un estudiante**. El alumno Juan Pérez ha cambiado su correo. Ahora es juan.perez2025@ejemplo.com
 
-<Solution>
+:::solution
 1. Seleccionar colección `alumnos`
 2. Ir a query y agregar:
 
@@ -285,12 +285,12 @@
 { $set: { "correo":"juan.perez2025@ejemplo.com" } }
 ```
 5. Presionar `refresh`
-</Solution>
+:::
 
 ### Ejercicio 08
 **Aumentar la edad de un docente**. El docente Roberto Morales ha cumplido años. Debemos aumentar su edad en 1
 
-<Solution>
+:::solution
 1. Seleccionar colección `docentes`
 2. Ir a query y agregar:
 
@@ -304,12 +304,12 @@
 { $inc: { "edad":1 } }
 ```
 5. Presionar `refresh`
-</Solution>
+:::
 
 ### Ejercicio 09
 **Agregar una nueva asignatura a un docente**. El docente Lucía Torres ahora impartira la asignatura "Cloud Computing"
 
-<Solution>
+:::solution
 1. Seleccionar colección `docentes`
 2. Ir a query y agregar:
 
@@ -323,12 +323,12 @@
 { $push: { "asignaturas":"Cloud Computing" } }
 ```
 5. Presionar `refresh`
-</Solution>
+:::
 
 ### Ejercicio 10
 **Eliminar una asignatura específica de un docente**. El docente Andrés Sánchez ya no enseña Ingeniería de Software
 
-<Solution>
+:::solution
 1. Seleccionar colección `docentes`
 2. Ir a query y agregar:
 
@@ -342,12 +342,12 @@
 { $pull: { "asignaturas":"Ingeniería de Software" } }
 ```
 5. Presionar `refresh`
-</Solution>
+:::
 
 ### Ejercicio 11
 **Eliminar a un alumno que se retiró**
 
-<Solution>
+:::solution
 1. Seleccionar colección `alumnos`
 2. Ir a query y agregar un alumno cualquiera:
 
@@ -356,12 +356,12 @@
 ```
 3. Presionar botón `find`
 4. Presionar botón `delete`
-</Solution>
+:::
 
 ### Ejercicio 12
 **Eliminar a un docente que dejó de trabajar**. El docente Manuel Gutiérrez ha deja la institución. Debemos eliminarlo
 
-<Solution>
+:::solution
 1. Seleccionar colección `docentes`
 2. Ir a query y agregar:
 
@@ -370,12 +370,12 @@
 ```
 3. Presionar botón `find`
 4. Presionar botón `delete`
-</Solution>
+:::
 
 ### Ejercicio 13
 **Eliminar alumnos con edad menor a 20**. Borra todos los alumnos menores de 20 años
 
-<Solution>
+:::solution
 1. Seleccionar colección `alumnos`
 2. Ir a query y agregar:
 
@@ -384,12 +384,12 @@
 ```
 3. Presionar botón `find`
 4. Presionar botón `delete`
-</Solution>
+:::
 
 ### Ejercicio 14
 **Eliminar docentes de un departamento específico**. Se ha cerrado el departamento de Redes. Elimina todos los docentes de ese departamento
 
-<Solution>
+:::solution
 1. Seleccionar colección `docentes`
 2. Ir a query y agregar:
 
@@ -398,7 +398,7 @@
 ```
 3. Presionar botón `find`
 4. Presionar botón `delete`
-</Solution>
+:::
 
 ## Ejercicios Clase 04
 **Material Clase:** [clase04.pdf](/inacap/ti3v32/docs/clase04.pdf)
@@ -410,7 +410,7 @@
 - Dentro de la base de datos Biblioteca, crea dos colecciones: Libros y Visitantes
 - Asegúrate de que la base de datos y las colecciones se hayan creado correctamente usando MongoDB Compass
 
-<Solution>
+:::solution
 1. Ir a `LocalConn`
     - botón `+`
     - `Create Database`
@@ -420,7 +420,7 @@
     - `Create collection`
     - nombre: `Libros`
     - nombre: `Visitantes`
-</Solution>
+:::
 
 ### Ejercicio 02
 **Inserción de Documentos**
@@ -436,7 +436,7 @@
     - email: El correo electrónico del visitante
     - fechaRegistro: La fecha que el visitante se registró en la biblioteca
 
-<Solution>
+:::solution
 1. Seleccionar colección `Libros`
 2. Presionar botón `ADD DATA` > `Insert document`
 3. Ingresar los siguientes documentos:
@@ -485,7 +485,7 @@
 ```
 
 8. Presiona botón `Insert`
-</Solution>
+:::
 
 ### Ejercicio 03
 **Actualización de Documentos**
@@ -493,7 +493,7 @@
 - Actualiza un libro en la colección Libros para cambiar su estado de disponible a false
 - Añade un nuevo campo a todos los documentos en la colección Visitantes llamado miembroActivo, estableciendo su valor en true
 
-<Solution>
+:::solution
 1. Seleccionar colección `Libros`
 2. Ir a query y agregar:
 
@@ -506,7 +506,7 @@
 { $set: { "disponible":false } }
 ```
 5. Presiona `refresh`
-</Solution>
+:::
 
 ### Ejercicio 04
 **Eliminación de Documentos**
@@ -514,7 +514,7 @@
 - Elimina un libro de la colección Libros que tenga más de 20 años de antigüedad
 - Elimina un visitante de la colección Visitantes que no haya visitado la biblioteca en el último año
 
-<Solution>
+:::solution
 1. Seleccionar colección `Libros`
 2. Ir a query y agregar:
 
@@ -531,7 +531,7 @@
 ```
 7. Presionar botón `find`
 8. Presionar botón `delete`
-</Solution>
+:::
 
 ### Ejercicio 05
 **Consultas Simples y Uso de Filtros**
@@ -539,7 +539,7 @@
 - Realiza una consulta para encontrar todos los libros que estén disponibles para préstamo
 - Utiliza un filtro para buscar todos los visitantes que se hayan registrado en la biblioteca en los últimos tres meses
 
-<Solution>
+:::solution
 1. Seleccionar colección `Libros`
 2. Ir a query y agregar:
 
@@ -552,7 +552,7 @@
 ```json
 {"fechaRegistro": { $gt: ISODate("2024-12-25") } }
 ```
-</Solution>
+:::
 
 ### Ejercicio 06
 **Agregar un Nuevo Campo a Todos los Documentos**
@@ -560,7 +560,7 @@
 - Se ha decidido registrar el número de copias disponibles de cada libro en la colección Libros
 - Agregar un campo copiasDisponibles con un valor inicial de 5 a todos los documentos en la colección Libros
 
-<Solution>
+:::solution
 1. Seleccionar colección `Libros`
 2. Presionar botón `update` y agregar:
 
@@ -568,7 +568,7 @@
 { $set: { "copiasDisponibles": 5 } }
 ```
 3. Presionar botón `refresh`
-</Solution>
+:::
 
 ### Ejercicio 07
 **Agregar Comentarios a los Libros**
@@ -576,7 +576,7 @@
 - Ahora queremos agregar comentarios de usuarios a los libros en la colección Libros
 - Usar el operador $push para agregar un nuevo comentario
 
-<Solution>
+:::solution
 1. Seleccionar colección `Libros`
 2. Presionar botón `update` y agregar:
 
@@ -594,4 +594,4 @@
 ```json
 { $push:{ "comentarios":"muy recomendado" } }
 ```
-</Solution>
+:::

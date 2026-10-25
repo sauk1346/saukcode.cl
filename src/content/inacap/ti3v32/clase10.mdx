@@ -182,40 +182,40 @@ db.usuarios.find({
 ## Ejercicio 01
 Mostrar todos los usuarios que tengan más de 30 años
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
     edad:{$gt:30}
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 02
 Mostrar los usuarios cuya ciudad sea Valdivia
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
     "direccion.ciudad":"Valdivia"
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 03
 Mostrar usuarios con la etiqueta "vip" en su campo etiquetas
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
     etiquetas:"vip"
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 04
 Mostrar los usuarios que se registraron después del 1 de febrero del 2024
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
     fechaRegistro:{
@@ -223,12 +223,12 @@ db.usuarios.find({
     }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 05
 Mostrar usuarios con edad entre 25 y 35 años
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
     edad:{
@@ -247,23 +247,23 @@ db.usuarios.find({
     ]
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 06
 Mostrar usuarios que no tengan compras registradas
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
     "compras": {$size:0}
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 07
 Buscar usuarios que hayan comprado un producto llamado "Notebook"
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
     compras:{
@@ -273,36 +273,36 @@ db.usuarios.find({
     }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 08
 Mostrar los ususarios que viven en la región "Los Lagos" y tienen etiqueta "newsletter"
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
     "direccion.region":"Los Lagos", 
     etiqueta: "newsletter"
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 09
 Mostrar los usuario ue tienen más de una etiqueda
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
     etiquetas: {$exists: true},
     $expr: {$gt: [ { $size: "$etiquetas"}, 1 ]}
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 10
 Mostrar usuarios que hayan comprado algún producto con precio mayor a 100000
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
     compras:{
@@ -312,5 +312,5 @@ db.usuarios.find({
     }
 })
 ```
-</Solution>
+:::
 

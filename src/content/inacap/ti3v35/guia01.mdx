@@ -4,7 +4,7 @@
 
 1. **Si tenemos una IP clase "B" y queremos dividirla en en 8 subredes. ¿Cúal es la máscara que necesitamos?**
 
-<Solution>
+:::solution
 1. Como la IP es clase "B", la estructura inicial de la máscara es la siguiente:
 
 <SmartTable
@@ -37,11 +37,11 @@ $$
 />
 
 $\therefore$ La máscara que necesitamos para dividir una IP de clase "B" en 8 subredes, es `255.255.224.0`. También se puede responder `/19` (número de bits)
-</Solution>
+:::
 
 2. **Sea la IP `172.16.0.0/19`, calcula el rango de IPs disponibles para cada una de las 8 subredes.**
 
-<Solution>
+:::solution
 1. Se calcula el **salto** entre subredes, según la siguiente expresión:
 
 $$
@@ -121,11 +121,11 @@ $$
 		['8', '172.16.224.0', '172.16.224.1', '172.16.255.254', '172.16.255.255']
 	]}
 />
-</Solution>
+:::
 
 3. **¿Cuál es el número de hosts disponibles para cada subred**
 
-<Solution>
+:::solution
 1. Identificamos los bits disponibles para hosts:
 
     - Mascara : /19, es decir, 19 bits de los 32 son para la red y subred
@@ -150,4 +150,4 @@ $$
 $$
 
 $\therefore$ Cada una de las 8 subredes tiene 8,190 hosts útiles disponibles
-</Solution>
+:::

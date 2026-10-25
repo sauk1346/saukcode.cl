@@ -7,97 +7,97 @@
 ## Ejercicio 01
 Buscar usuarios cuyo nombre contenga una vocal con tilde (á, é, í, ó, ú)
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({ nombre: {$regex:/[áíúéó]/i} })
 ```
-</Solution>
+:::
 
 ## Ejercicio 02
 Filtrar usuarios con email que contenga un número
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({ email:{$regex: /\d/}})
 ```
-</Solution>
+:::
 
 ## Ejercicio 03
 Buscar usuarios con correo institucional que termine en .edu.cl
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({ "email":{$regex:/\.edu\.cl$/} })
 ```
-</Solution>
+:::
 
 ## Ejercicio 04
 Mostrar usuarios cuya dirección contenga la palabra "Oficina"
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({ "direccion": {$regex: /Oficina/i} })
 ```
-</Solution>
+:::
 
 ## Ejercicio 05
 Buscar usuarios cuya dirección termine con una palabra de 5 letras
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({ "direccion":{$regex:/\w{5}$/} })
 ```
-</Solution>
+:::
 
 ## Ejercicio 06
 Filtrar usuarios con comentarios que contengan la palabra "reclamo" o "solicitud"
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({ "comentarios": {$regex:/reclamo|solicitud/} })
 ```
-</Solution>
+:::
 
 ## Ejercicio 07
 Mostrar usuarios cuyo email tenga tres palabras antes del \@
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({ "email":{$regex:/\w+\.\w+\.\w+\@/} })
 ```
-</Solution>
+:::
 
 ## Ejercicio 08
 Buscar nombres que comiencen con "Luis" o "Lucía"
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({ "nombre":{$regex:/^(Luis|Lucía)/i} })
 ```
-</Solution>
+:::
 
 ## Ejercicio 09
 Mostrar direcciones que contengan el término "Depto" o "Piso"
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({ "direccion":{$regex:/Depto|Piso/i} })
 ```
-</Solution>
+:::
 
 ## Ejercicio 10
 Filtrar usuarios con comentarios que contengan un símbolo especial (\@, \!, \#)
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({"comentarios":{$regex:/\@\!\#/} })
 ```
-</Solution>
+:::
 
 ## Ejercicio 11
 Buscar usuarios cuya edad sea mayor al doble de la cantidad de etiquetas
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   $expr: {
@@ -105,23 +105,23 @@ db.usuarios.find({
   }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 12
 Mostrar usuarios qu tengan exactamente 3 etiquetas
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   "etiquetas": { $size: 3 }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 13
 Mostrar usuarios cuya edad corresponda al cálculo 2025 - añoNacimiento 
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   $expr: {
@@ -129,12 +129,12 @@ db.usuarios.find({
   }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 14
 Mostrar usuarios con más de dos compras registradas
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   $expr: {
@@ -142,12 +142,12 @@ db.usuarios.find({
   }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 15
 Buscar usuarios registrados durante el año 2023 (usando $expr)
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   $expr: {
@@ -155,12 +155,12 @@ db.usuarios.find({
   }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 16
 Filtrar usuarios cuya comuna y región sean exactamente iguales
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   $expr: {
@@ -168,23 +168,23 @@ db.usuarios.find({
   }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 17
 Filtrar usuarios que hayan comprado productos con un precio promedio mayor a \$300.000
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   "compras.precio": { $gt: 300000 }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 18
 Mostrar usuarios que tengan más etiquetas que productos comprados
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   $expr: {
@@ -192,12 +192,12 @@ db.usuarios.find({
   }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 19
 Buscar usuarios que tengan comentarios y etiquetas, y además hayan comprado un "Mouse"
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   "comentarios": { $exists: true, $ne: [] },
@@ -205,12 +205,12 @@ db.usuarios.find({
   "compras.producto": "Mouse"
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 20
 Filtrar usuarios mayores de 40 años con menos de 2 compras registradas
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({
   "edad": { $gt: 40 },
@@ -219,4 +219,4 @@ db.usuarios.find({
   }
 })
 ```
-</Solution>
+:::

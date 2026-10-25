@@ -7,7 +7,7 @@ Crear una clase `Persona`, con atributos:
 - nombre
 - edad (privada)
 
-<Solution>
+:::solution
 ```python
 class Persona:
     def __init__(self, rut, nombre, edad):
@@ -42,12 +42,12 @@ Rut: 123-4
 Edad: 25
 Nueva Edad: 35`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 02
 Crear un método `mostrarDatos()` que muestre el rut, nombre y edad de la persona
 
-<Solution>
+:::solution
 ```python
 class Persona:
     def __init__(self, rut, nombre, edad):
@@ -76,14 +76,14 @@ print(persona1.mostrarDatos())
 <TerminalOutput withBg>
 {`Rut: 123-4, Nombre: AAA, Edad: 35`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 03
 - Crear una clase `Correo` con atributos `tipo` y `correo`
 - Agregar el atributo privado `correos` a la clase `Persona`
 - Crear métodos `agregarCorreo()` y `mostrarCorreos()` en la clase `Persona`
 
-<Solution>
+:::solution
 ```python
 class Correo:
     def __init__(self, tipo, correo):
@@ -133,7 +133,7 @@ for i in persona1.mostrarCorreos():
 Tipo correo: trabajo, Dirección: trabajo@gmail.com
 Tipo correo: personal, Dirección: personal@gmail.com`}
 </TerminalOutput>
-</Solution>
+:::
 
 
 ## Ejercicio 04
@@ -145,7 +145,7 @@ Tipo correo: personal, Dirección: personal@gmail.com`}
 	- Elimina un correo ingresado
 	- Retorna `True` si elimina el correo, y `False` en caso contrario
 
-<Solution>
+:::solution
 ```python
 class Correo:
     def __init__(self, tipo, direccion):
@@ -226,5 +226,5 @@ Tipo correo: trabajo2, Dirección: nuevo@gmail.com
 Tipo correo: trabajo, Dirección: trabajo@gmail.com
 Tipo correo: trabajo2, Dirección: nuevo@gmail.com`}
 </TerminalOutput>
-</Solution>
+:::
 

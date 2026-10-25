@@ -16,8 +16,8 @@ Escribe una solución para **pivotear** los datos de modo que cada fila represen
 
 ## Ejemplo
 
-<MultiColumn>
-<div>
+::::columns
+:::col
 **Input:**
 <TerminalOutput>
 {`+--------------+----------+-------------+
@@ -35,8 +35,8 @@ Escribe una solución para **pivotear** los datos de modo que cada fila represen
 | ElPaso       | May      | 43          |
 +--------------+----------+-------------+`}
 </TerminalOutput>
-</div>
-<div>
+:::
+:::col
 **Output:**
 <TerminalOutput>
 {`+----------+--------+--------------+
@@ -54,14 +54,14 @@ La tabla se pivota, cada columna
 representa una ciudad, y cada fila
 representa un mes específico.`}
 </TerminalOutput>
-</div>
-</MultiColumn>
+:::
+::::
 
 
 
 ## Soluciones
 
-<Solution title="Python" icon="Python">
+:::solution[Python]{icon="Python"}
 ```python
 import pandas as pd
 
@@ -72,4 +72,4 @@ def pivotTable(weather: pd.DataFrame) -> pd.DataFrame:
         values='temperature'
     )
 ```
-</Solution>
+:::

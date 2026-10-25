@@ -47,7 +47,7 @@ Router(config)# router ospf process-id
 Router(config-router)# router-id rid
 ```
 
-<Solution title="Solución Parte 1">
+:::solution[Solución Parte 1]
 
 <SmartFigure
 	id="fig122"
@@ -73,7 +73,7 @@ Router(config-router)# router-id rid
 	size="large"
 />
 
-</Solution>
+:::
 
 ## Parte 2: Configurar redes para enrutamiento OSPF
 
@@ -92,7 +92,7 @@ Router (config-router)# network <máscara comodín> area <area id>
 
 2. Compruebe que OSPF se ha configurado correctamente mostrando la configuración en ejecución. Si encuentra un error, elimine la sentencia network utilizando el comando `no` y vuelva a configurarla.
 
-<Solution title="Solución Parte 2 (Paso 1)">
+:::solution[Solución Parte 2 (Paso 1)]
 
 - **¿Cuántas instrucciones se requieren para configurar OSFP para enrutar todas las redes conectadas al router R1?**
 <P indent={3}>
@@ -137,13 +137,13 @@ Router (config-router)# network <máscara comodín> area <area id>
 	size="large"
 />
 
-</Solution>
+:::
 
 ### Paso 2: Configure las redes para el enrutamiento OSFP mediante direcciones IP de interfaz y máscaras cuádruple cero
 
 En el router R2, configure OSFP mediante comandos de red con las direcciones IP de las interfaces y máscaras cuádruple cero. La sintaxis del comando network es la misma que se utilizó anteriormente
 
-<Solution title="Solución Parte 2 (Paso 2)">
+:::solution[Solución Parte 2 (Paso 2)]
 
 <SmartFigure
 	id="fig127"
@@ -153,7 +153,7 @@ En el router R2, configure OSFP mediante comandos de red con las direcciones IP 
 	size="large"
 />
 
-</Solution>
+:::
 
 ### Paso 3: Configurar el enrutamiento OSPF en las interfaces del router
 
@@ -167,7 +167,7 @@ Configure cada interfaz usando la sintaxis de comandos que se muestra a continua
 router (config-if)# ip ospf process-id area area area id
 ```
 
-<Solution title="Solución Paso 2 (Parte 3)">
+:::solution[Solución Paso 2 (Parte 3)]
 
 - **¿Qué interfaces en R3? deben configurarse con OSFP?**
 <P indent={3}>
@@ -183,7 +183,7 @@ router (config-if)# ip ospf process-id area area area id
 	size="large"
 />
 
-</Solution>
+:::
 
 
 ## Parte 3: Configure las interfaces Pasivas
@@ -198,7 +198,7 @@ Configure el proceso OSPF en cada u no de los 3 routers con el comando `passive-
 Router(config-router)# passive-interface interface
 ```
 
-<Solution title="Solución Parte 3">
+:::solution[Solución Parte 3]
 
 - **¿Qué interfaces en R1, R2 y R3 son interfaces LAN?**
 <P indent={3}>
@@ -230,13 +230,13 @@ Router(config-router)# passive-interface interface
 	size="large"
 />
 
-</Solution>
+:::
 
 ## Parte 4: Verificar la configuración de OSPF
 
 Utilice los comandos `show` para verificar la configuración de la red y la interfaz pasiva del proceso OSPF para cada router
 
-<Solution title="Solución Parte 4">
+:::solution[Solución Parte 4]
 
 <SmartFigure
 	id="fig132"
@@ -334,4 +334,4 @@ Utilice los comandos `show` para verificar la configuración de la red y la inte
 	size="large"
 />
 
-</Solution>
+:::

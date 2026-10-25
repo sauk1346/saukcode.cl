@@ -19,7 +19,7 @@
     size="medium"
 />
 
-<Solution title="Solución Pregunta 01">
+:::solution[Solución Pregunta 01]
 
 <SmartFigure
     id="figura161"
@@ -76,7 +76,7 @@
 />
 
 
-</Solution>
+:::
 
 2. Realice configuración de protocolo de enrutamiento OSPFv2 en router SUNOMBRE:
     - ID de proceso 1000+X (ej: si X=15, ID=1015)
@@ -85,7 +85,7 @@
     - Declare o publique las redes directamente conectadas con su correspondiente WildCardMask y en área 0 backbone
     - No enviar información de enrutamiento por interfaces que no sea necesario o inseguro
 
-<Solution title="Solución Pregunta 02">
+:::solution[Solución Pregunta 02]
 
 <TerminalOutput 
 caption="Configuración enrutamiento OSPFv2 en router SUNOMBRE"
@@ -110,7 +110,7 @@ ANTONIO(config-router)#no passive-interface s0/0/0`}
 </TerminalOutput>
 
 
-</Solution>
+:::
 
 3. Realice configuración de protocolo de enrutamiento OSPFv2 en router PRIMERAPELLIDO:
     - ID de proceso: 2000+X (ej: si X=15, ID=2015)
@@ -119,7 +119,7 @@ ANTONIO(config-router)#no passive-interface s0/0/0`}
     - Declare o publique las IP de las interfaces del router con su correspondiente WildCardMask en área 0 backbone
     - No enviar información de enrutamiento por interfaces que no sea necesario o inseguro
 
-<Solution title="Solución Pregunta 03">
+:::solution[Solución Pregunta 03]
 <TerminalOutput 
 caption="Configuración enrutamiento OSPFv2 en router PRIMERAPELLIDO"
 withBg>
@@ -140,7 +140,7 @@ MORALES(config-router)#network 172.31.10.130 0.0.0.0 area 0
 # No envía información de enrutamiento por interfaces que no sean necesarias o inseguras
 MORALES(config-router)#passive-interface g0/0`}
 </TerminalOutput>
-</Solution>
+:::
 
 4. Realice configuración de protocolo de enrutamiento OSPFv2 en router SEGUNDOAPELLIDO:
     - Agregue una Interface Loopback 190 con IP=190.190.190.1 M=255.255.255.255
@@ -152,7 +152,7 @@ MORALES(config-router)#passive-interface g0/0`}
     - No enviar información de enrutamiento por interfaces que no sea necesario o inseguro
     - Redistribuya la ruta por defecto dentro de ospf
 
-<Solution title="Solución Pregunta 04">
+:::solution[Solución Pregunta 04]
 <TerminalOutput 
 caption="Configuración enrutamiento OSPFv2 en router SEGUNDOAPELLIDO"
 withBg
@@ -192,12 +192,12 @@ CAQUEO(config-router)#no passive-interface s0/0/1
 CAQUEO(config-router)#default-information originate`}
 </TerminalOutput>
 
-</Solution>
+:::
 
 
 5. Modificar el tiempo hello a 8 segundos en el enlace entre PRIMERAPELLIDO y SEGUNDOAPELLIDO
 
-<Solution title="Solución Pregunta 05">
+:::solution[Solución Pregunta 05]
 
 <TerminalOutput
 caption="Router PRIMEAPELLIDO"
@@ -215,10 +215,10 @@ withBg
 CAQUEO(config-if)#ip hello-interval eigrp 3000 8`}
 </TerminalOutput>
 
-</Solution>
+:::
 
 6. Modificar el ancho de banda a 8MB en enlace entre SUNOMBRE y PRIMERAPELLIDO
-<Solution title="Solución Pregunta 06">
+:::solution[Solución Pregunta 06]
 <TerminalOutput
 caption="Router SUNOMBRE"
 withBg
@@ -234,7 +234,7 @@ withBg
 {`MORALES(config-if)#interface s0/0/1
 MORALES(config-if)#bandwidth 8192`}
 </TerminalOutput>
-</Solution>
+:::
 
 7. Muestre la tabla de enrutamiento, de vecinos y topología:
     - Aplique comando para mostrar tabla de enrutamiento en router SEGUNDOAPELLIDO
@@ -244,7 +244,7 @@ MORALES(config-if)#bandwidth 8192`}
     - Realice resolución de problemas en caso de errores o fallas de configuración
 
 
-<Solution title="Solución Pregunta 07">
+::::solution[Solución Pregunta 07]
 
 :::callout[Tabla de enrutamiento en router SEGUNDOAPELLIDO]{type="info"}
 Muestra todas las rutas aprendidas por el router
@@ -303,4 +303,4 @@ Muestra la base de datos de estados de enlace (LSDB) del área OSPF
 	size="large"
 />
 
-</Solution>
+::::

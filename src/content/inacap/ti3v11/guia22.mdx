@@ -3,7 +3,7 @@
 ## Ejercicio 01
 Crear una lista con los números del 15 al 30.
 
-<Solution>
+:::solution
 ```python
 lista = []
 for i in range(15,31):
@@ -14,12 +14,12 @@ print(f'lista: {lista}')
 <TerminalOutput withBg>
 {`lista: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 02
 Sumar todos lo números de la lista `[10,35,24,18,55]`
 
-<Solution>
+:::solution
 ```python
 lista = [10,35,24,18,55]
 suma = sum(lista)
@@ -29,12 +29,12 @@ print(f'la suma de {lista} es: {suma}')
 <TerminalOutput withBg>
 {`la suma de [10, 35, 24, 18, 55] es: 142`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 03
 Encontrar el número más grande de la lista `[10,35,24,18,55]`
 
-<Solution>
+:::solution
 ```python
 lista = [10,35,24,18,55]
 maximo = max(lista)
@@ -44,12 +44,12 @@ print(f'el núm máximo de {lista} es: {maximo}')
 <TerminalOutput withBg>
 {`el núm máximo de [10, 35, 24, 18, 55] es: 55`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 04
 Ordenar la lista `[10,35,24,18,55]` de forma ascendente y descendente.
 
-<Solution>
+:::solution
 ```python
 lista = [10,35,24,18,55]
 
@@ -63,12 +63,12 @@ print(f'lista ordenada de forma descendente: {lista}')
 {`lista ordenada de forma ascendente: [10, 18, 24, 35, 55]
 lista ordenada de forma descendente: [55, 35, 24, 18, 10]`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 05
 Eliminar el último elemento de la lista `[10,35,24,18,55]`
 
-<Solution>
+:::solution
 ```python
 lista = [10,35,24,18,55]
 lista.pop()
@@ -78,12 +78,12 @@ print(f'lista: {lista}')
 <TerminalOutput withBg>
 {`lista: [10, 35, 24, 18]`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 06
 Eliminar el primer elemento de la lista `[10,35,24,18,55]`
 
-<Solution>
+:::solution
 ```python
 lista = [10,35,24,18,55]
 lista.pop(0)
@@ -93,12 +93,12 @@ print(f'lista: {lista}')
 <TerminalOutput withBg>
 {`lista: [35, 24, 18, 55]`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 07
 Insertar el número `3.14` en la posición 3 de la lista `[10,35,24,18,55]`
 
-<Solution>
+:::solution
 ```python
 lista = [10,35,24,18,55]
 lista.insert(3,3.14)
@@ -108,12 +108,12 @@ print(f'lista: {lista}')
 <TerminalOutput withBg>
 {`lista: [10, 35, 24, 3.14, 18, 55]`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 08
 Contar las veces que se repite el número 6 en la lista `[1,6,2,3,6,4,5,6,6,7]`
 
-<Solution>
+:::solution
 ```python
 lista = [1,6,2,3,6,4,5,6,6,7]
 cont = lista.count(6)
@@ -123,12 +123,12 @@ print(f'el número 6 se repite {cont} veces')
 <TerminalOutput withBg>
 {`el número 6 se repite 4 veces`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 09
 Invertir la lista `[3,'pera',34,'casa',True,95,(1,4,5),{'nombre':'jose'}]`
 
-<Solution>
+:::solution
 ```python
 lista = [3,'pera',34,'casa',True,95,(1,4,5),{'nombre':'jose'}]
 lista.reverse()
@@ -138,12 +138,12 @@ print(f'lista: {lista}')
 <TerminalOutput withBg>
 {`lista: [{'nombre': 'jose'}, (1, 4, 5), 95, True, 'casa', 34, 'pera', 3]`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 10
 Crear una lista que solo tenga los números pares de `[1,2,3,4,5,6,7,8,9,10]`
 
-<Solution>
+:::solution
 ```python
 lista = [1,2,3,4,5,6,7,8,9,10]
 listaPar = []
@@ -157,12 +157,12 @@ print(f'listaPar: {listaPar}')
 <TerminalOutput withBg>
 {`listaPar: [2, 4, 6, 8, 10]`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 11
 Crear una lista que solo tenga los números impares de `[1,2,3,4,5,6,7,8,9,10]`
 
-<Solution>
+:::solution
 ```python
 lista = [1,2,3,4,5,6,7,8,9,10]
 listaImpar = []
@@ -176,12 +176,12 @@ print(f'listaImpar: {listaImpar}')
 <TerminalOutput withBg>
 {`listaImpar: [1, 3, 5, 7, 9]`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 12
 Eliminar todos los elementos duplicados de la lista `[1,2,3,3,4,5,5,5,6,7,8,8,9,9,9,10]`
 
-<Solution>
+:::solution
 ```python
 lista = [1,2,3,3,4,5,5,5,6,7,8,8,9,9,9,10]
 listaSinDuplicado = list(set(lista))
@@ -191,7 +191,7 @@ print(f'listaSinDuplicado: {listaSinDuplicado}')
 <TerminalOutput withBg>
 {`listaSinDuplicado: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 13
 Encontrar los números comúnes entre las listas
@@ -199,7 +199,7 @@ Encontrar los números comúnes entre las listas
 - `[1,13,15,20,2,35]`
 - `[2,10,13,21,33]`
 
-<Solution>
+:::solution
 ```python
 lista1 = [1,13,15,20,2,35]
 lista2 = [2,10,13,21,33]
@@ -210,12 +210,12 @@ print(f'intersección: {interseccion}')
 <TerminalOutput withBg>
 {`intersección: [2, 13]`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 14
 El usuario ingresó la siguiente cadena de texto: `1,2,3,4,5,6,7,8,9,10`. Separar los números y guardarlos en una lista numérica
 
-<Solution>
+:::solution
 ```python
 cadena = '1,2,3,4,5,6,7,8,9,10'
 lista = cadena.split(',')
@@ -229,14 +229,14 @@ print(f'listaNumérica: {listaNumerica}')
 <TerminalOutput withBg>
 {`listaNumérica: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`}
 </TerminalOutput>
-</Solution>
+:::
 
 # Ejercicios de Tuplas
 
 ## Ejercicio 01
 Crear una tupla con 5 números enteros
 
-<Solution>
+:::solution
 ```python
 tupla = (1,3,5,7,9)
 
@@ -245,12 +245,12 @@ print(f'tupla: {tupla}')
 <TerminalOutput withBg>
 {`tupla: (1, 3, 5, 7, 9)`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 02
 Crear una tupla con un solo elemento
 
-<Solution>
+:::solution
 ```python
 tupla = (5,)
 
@@ -259,12 +259,12 @@ print(f'tupla: {tupla}')
 <TerminalOutput withBg>
 {`tupla: (5,)`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 03
 Acceder al tercer elemento de la tupla `(10,20,30,40,50)`
 
-<Solution>
+:::solution
 ```python
 tupla = (10,20,30,40,50)
 tercerElemento = tupla[2]
@@ -274,12 +274,12 @@ print(f'tercer elemento: {tercerElemento}')
 <TerminalOutput withBg>
 {`tercer elemento: 30`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 04
 Verificar si existe el elemento 18 en la tupla `(5,8,10,15,18,21,27)`
 
-<Solution>
+:::solution
 ```python
 tupla = (5,8,10,15,18,21,27)
 
@@ -291,12 +291,12 @@ else:
 <TerminalOutput withBg>
 {`el elemento 18 si está`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 05
 Encontrar la posición del elemento 21 en la tupla `(5,8,10,15,18,21,27)`
 
-<Solution>
+:::solution
 ```python
 tupla = (5,8,10,15,18,21,27)
 indice = tupla.index(21)
@@ -306,12 +306,12 @@ print(f'el elemento 21 está en la posición: {indice}')
 <TerminalOutput withBg>
 {`el elemento 21 está en la posición: 5`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 06
 Ordenar la tupla `('pera','manzana','uva','naranja')` (ojo que la tupla no es posible modificarla)
 
-<Solution>
+:::solution
 ```python
 tupla = ('pera','manzana','uva','naranja')
 tuplaOrdenada = tuple(sorted(tupla))
@@ -324,12 +324,12 @@ print(tuplaOrdenada)
 
 - `sorted()` devuelve una copia de una lista ordenada
 - `tuple()` convierte a tupla
-</Solution>
+:::
 
 ## Ejercicio 07
 Desempaquetar los elementos de la tupla `('pera','manzana','naranja')` en 3 variables
 
-<Solution>
+:::solution
 ```python
 frutas = ('pera','manzana','naranja')
 frut1, frut2, frut3 = frutas
@@ -343,7 +343,7 @@ print(f'fruta 3: {frut3}')
 fruta 2: manzana
 fruta 3: naranja`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 08
 Intercalar las tuplas:
@@ -351,7 +351,7 @@ Intercalar las tuplas:
 - `(1,3,5)`
 - `(2,4,6)`
 
-<Solution>
+:::solution
 ```python
 t1 = (1,3,5)
 t2 = (2,4,6)
@@ -373,7 +373,7 @@ print(f't3: {t3}')
 - En el segundo `for()` recorre cada par de tupla y almacena sus elementos en la lista `intercalados`
 - luego la lista la convierte a tupla y la almacena en `t3`
 
-</Solution>
+:::
 
 # Ejercicios de Diccionarios
 
@@ -381,7 +381,7 @@ print(f't3: {t3}')
 
 Crear un diccionario vacío
 
-<Solution>
+:::solution
 ```python
 dic = {}
 
@@ -390,7 +390,7 @@ print(f'dic: {dic}')
 <TerminalOutput withBg>
 {`dic: {}`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 02
 Llenar el diccionario con los siguientes datos:
@@ -399,7 +399,7 @@ Llenar el diccionario con los siguientes datos:
 - ciudad: Santiago
 - direccion: miDireccion123
 
-<Solution>
+:::solution
 ```python
 dic = {
 	'nombre':'Jose',
@@ -412,12 +412,12 @@ print(f'dic: {dic}')
 <TerminalOutput withBg>
 {`dic: {'nombre': 'Jose', 'ciudad': 'Santiago', 'direccion': 'miDireccion123'}`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 03
 Acceder al valor de la clave `direccion`
 
-<Solution>
+:::solution
 ```python
 dic = {
 	'nombre':'Jose',
@@ -432,12 +432,12 @@ print(f'valor : {valor}')
 <TerminalOutput withBg>
 {`valor : miDireccion123`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 04
 Cambiar el valor de ciudad a 'Valparaíso'
 
-<Solution>
+:::solution
 ```python
 dic = {
 	'nombre':'Jose',
@@ -452,12 +452,12 @@ print(f'dic: {dic}')
 <TerminalOutput withBg>
 {`dic: {'nombre': 'Jose', 'ciudad': 'Valparaíso', 'direccion': 'miDireccion123'}`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 05
 Eliminar la clave 'ciudad' y su valor
 
-<Solution>
+:::solution
 ```python
 dic = {
 	'nombre':'Jose',
@@ -472,7 +472,7 @@ print(f'dic: {dic}')
 <TerminalOutput withBg>
 {`dic: {'nombre': 'Jose', 'direccion': 'miDireccion123'}`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 06
 
@@ -483,7 +483,7 @@ Sean los diccionarios:
 
 Combinar los diccionarios
 
-<Solution>
+:::solution
 ```python
 dic1 = {'nombre':'Jose','direccion':'miDireccion123'}
 dic2 = {'ciudad':'Concepcion', 'telefono':1234567}
@@ -495,12 +495,12 @@ print(f'dic1: {dic1}')
 <TerminalOutput withBg>
 {`dic1: {'nombre': 'Jose', 'direccion': 'miDireccion123', 'ciudad': 'Concepcion', 'telefono': 1234567}`}
 </TerminalOutput>
-</Solution>
+:::
 
 ## Ejercicio 07
 Recorrer con un `for()` el diccionario resultante del Ej06
 
-<Solution>
+:::solution
 ```python
 dic = {
 	'nombre':'Jose',
@@ -518,4 +518,4 @@ clave: direccion		valor: miDireccion123
 clave: ciudad			valor: Concepcion
 clave: telefono			valor: 1234567`}
 </TerminalOutput>
-</Solution>
+:::

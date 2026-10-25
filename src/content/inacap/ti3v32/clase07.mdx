@@ -85,46 +85,46 @@ db.productos.find().pretty
 ### Ejercicio 01
 Filtrar por un campo especifico. Encuentra todos los productos en la categoría "Accesorios"
 
-<Solution>
+:::solution
 ```js
 db.productos.find({categoria:"Accesorios"}).pretty()
 ```
-</Solution>
+:::
 
 ### Ejercicio 02
 Filtrar productos con precio mayor a 100
 
-<Solution>
+:::solution
 ```js
 db.productos.find({precio:{$gt:100}}).pretty()
 ```
-</Solution>
+:::
 
 ### Ejercicio 03
 Buscar un documento
 
-<Solution>
+:::solution
 ```js
 db.productos.findOne({nombre:"Teclado Mecánico"})
 ```
-</Solution>
+:::
 
 ### Ejercicio 04 
 Actualizar un solo documento. Modificar el precio de un producto
 
-<Solution>
+:::solution
 ```js
 db.productos.updateOne(
     {nombre:"Teclado Mecánico"},
     {$set:{precio:90}}
 )
 ```
-</Solution>
+:::
 
 ### Ejercicio 05
 Actualizar múltiples documentos. Aumentar en 5 unidades el stock de todos los productos de la categoría "Accesorios"
 
-<Solution>
+:::solution
 ```js
 db.productos.updateMany(
     {categoria:"Accesorios"},
@@ -133,7 +133,7 @@ db.productos.updateMany(
 ```
 - esto aumenta a todos los productos de la categoría Accesorios en 5 unidades
 
-</Solution>
+:::
 
 
 ### Ejercicio 06
@@ -142,20 +142,20 @@ Agregar un nuevo campo
 ### Ejercicio 07
 Eliminar un documento específico. Elimnar el "Mouse Inalámbrico"
 
-<Solution>
+:::solution
 ```js
 db.productos.deleteOne({nombre:"Mouse Inalámbrico"})
 ```
-</Solution>
+:::
 
 ### Ejercicio 08
 Eliminar múltiples documentos. Eliminar todos los productos con stock 0
 
-<Solution>
+:::solution
 ```js
 db.productos.deleteMany({stock:0})
 ```
-</Solution>
+:::
 
 ## Comandos útiles
 

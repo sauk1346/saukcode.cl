@@ -24,8 +24,8 @@ Para usuarios Pandas, tener en cuenta que se debe modificar la tabla `Person`.
 
 
 ## Ejemplo
-<MultiColumn>
-<div>
+::::columns
+:::col
 **Input:** 
 <TerminalOutput>
 {`tabla Person:
@@ -37,8 +37,8 @@ Para usuarios Pandas, tener en cuenta que se debe modificar la tabla `Person`.
 | 3  | john@example.com |
 +----+------------------+`}
 </TerminalOutput>
-</div>
-<div>
+:::
+:::col
 **Output:**
 <TerminalOutput>
 {`+----+------------------+
@@ -52,13 +52,13 @@ Explicación:
 john@example.com se repite dos veces. 
 Mantenemos la fila con id más pequeña = 1.`}
 </TerminalOutput>
-</div>
-</MultiColumn>
+:::
+::::
 
 
 ## Soluciones
 
-<Solution title="Python" icon="Python">
+:::solution[Python]{icon="Python"}
 ```python
 import pandas as pd
 
@@ -67,4 +67,4 @@ def delete_duplicate_emails(person: pd.DataFrame) -> None:
     person.sort_values('id', inplace=True)
     person.drop_duplicates(subset=['email'], keep='first', inplace=True)
 ```
-</Solution>
+:::

@@ -15,7 +15,7 @@ Desarrolle un programa que permita al usuario ingresar hasta donde desea la seri
 {`1+2-3+4-5+6-7+8-9+10=7`}
 </TerminalOutput>
 
-<Solution>
+:::solution
 ```python
 serie = int(input("Ingrese hasta donde desea la serie: "))
 suma_serie = 1
@@ -30,12 +30,12 @@ for i in range(2,serie+1):
 
 print("="+str(suma_serie)) 			
 ```
-</Solution>
+:::
 
 ## Pregunta 02 (5 ptos)
 Desarrolle un programa que permita al usuario ingresar 10 números y al finalizar desplegar por pantalla cuántos fueron mayores y cuántos menores al primer número ingresado. Si ingresa un cero en el primer número debemos validar, enviar un mensaje de error y pedir que reintente.
 
-<Solution>
+:::solution
 ```python
 num1_valido = False
 while (not num1_valido):
@@ -58,12 +58,12 @@ print(f"\nPrimer número ingresado: {num1:.2f}")
 print(f"Números mayores que {num1}: {cont_mayor:.0f}")
 print(f"Números menores que {num1}: {cont_menor:.0f}") 
 ```
-</Solution>
+:::
 
 ## Pregunta 03 (5 ptos)
 Desarrolle un programa que permita ingresar `n` números y al finalizar desplegar cuántos fueron primos.
 
-<Solution>
+:::solution
 ```python
 def es_primo(num):
 	cont_div = 0
@@ -81,4 +81,4 @@ for i in range(numeros):
 
 print(f"\nCantidad de números primos: {cant_primos}") 
 ```
-</Solution>
+:::

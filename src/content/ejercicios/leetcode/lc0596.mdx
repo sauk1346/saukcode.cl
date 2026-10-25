@@ -57,7 +57,7 @@ Explicación:
 - La clase de Computación tiene 1 estudiante (F), por lo que no se incluye.`}
 </TerminalOutput>
 
-<Solution title="Python" icon="Python">
+:::solution[Python]{icon="Python"}
 ```python
 import pandas as pd
 
@@ -68,4 +68,4 @@ def find_classes(courses: pd.DataFrame) -> pd.DataFrame:
             .reset_index(name='count')
             .query('count >= 5')[['class']])
 ```
-</Solution>
+:::

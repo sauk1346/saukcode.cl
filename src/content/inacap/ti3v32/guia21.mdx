@@ -7,34 +7,34 @@
 ## Ejercicio 01
 Buscar todos los usuarios cuya edad sea mayor a 40
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({ edad: { $gt: 40 } })
 ```
-</Solution>
+:::
 
 ## Ejercicio 02
 Filtrar los usuarios que tengan la etiqueta "newsletter"
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({ etiquetas: "newsletter" })
 ```
-</Solution>
+:::
 
 ## Ejercicio 03
 Mostrar los usuarios cuya cuidad sea "Puerto Montt"
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({ "direccion.ciudad": "Puerto Montt" })
 ```
-</Solution>
+:::
 
 ## Ejercicio 04
 Buscar usuarios que hayan comprado una "Tablet"
 
-<Solution>
+:::solution
 **Opción 1**
 ```js
 db.usuarios.find({ 
@@ -50,34 +50,34 @@ db.usuarios.find({
   } 
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 05
 Filtrar usuarios con más de 2 etiquetas
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({ 
     $expr: { $gt: [ { $size: "$etiquetas" }, 2 ] } 
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 06
 Buscar usuarios registrados despues del "1 de febrero de 2024"
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({ 
     fechaRegistro: { $gt: "2024-02-01T00:00:00Z" }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 07
 Mostrar usuarios que hayan comprado un producto con precio menor a 100.000
 
-<Solution>
+:::solution
 **Opción 1**
 ```js
 db.usuarios.find({ 
@@ -93,12 +93,12 @@ db.usuarios.find({
   } 
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 08
 Buscar usuarios que vivan en la región "Los Ríos" y tengan la etiqueta "preferente"
 
-<Solution>
+:::solution
 **Opción 1**
 ```js
 db.usuarios.find({ 
@@ -116,12 +116,12 @@ db.usuarios.find({
   ]
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 09
 Mostrar usuarios sin compras registradas
 
-<Solution>
+:::solution
 **Opción 1**
 ```js
 db.usuarios.find({
@@ -138,45 +138,45 @@ db.usuarios.find({
   ] 
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 10
 Mostrar usuarios con edad entre 25 y 35 años inclusive
 
-<Solution>
+:::solution
 ```js
 db.usuarios.find({ 
   edad: { $gte: 25, $lte: 35 } 
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 11
 Mostrar productos que estén en stock menor a 10 unidades
 
-<Solution>
+:::solution
 ```js
 db.productos.find({ 
   stock: { $lt: 10 } 
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 12
 Mostrar productos con más de una etiqueta
 
-<Solution>
+:::solution
 ```js
 db.productos.find({ 
   $expr: { $gt: [ { $size: "$etiquetas" }, 1 ] } 
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 13
 Buscar productos con etiquetas "oferta" o "destacado"
 
-<Solution>
+:::solution
 **Opción 1**
 ```js
 db.productos.find({ 
@@ -193,15 +193,15 @@ db.productos.find({
   ]
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 14
 Buscar productos agregados después de "marzo de 2024"
 
-<Solution>
+:::solution
 ```js
 db.productos.find({ 
   fechaIngreso: { $gte: "2024-04-01T00:00:00Z" } 
 })
 ```
-</Solution>
+:::

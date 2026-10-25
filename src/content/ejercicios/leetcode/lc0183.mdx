@@ -35,8 +35,8 @@ Devuelve el resultado en **cualquier orden.**
 
 ## Ejemplo
 
-<MultiColumn>
-<div>
+::::columns
+:::col
 **Input**
 <TerminalOutput>
 {`Customers table:
@@ -57,8 +57,8 @@ Orders table:
 | 2  | 1          |
 +----+------------+`}
 </TerminalOutput>
-</div>
-<div>
+:::
+:::col
 **Output**
 <TerminalOutput>
 {`+-----------+
@@ -68,12 +68,12 @@ Orders table:
 | Max       |
 +-----------+`}
 </TerminalOutput>
-</div>
-</MultiColumn>
+:::
+::::
 
 ## Soluciones
 
-<Solution title="Python" icon="Python">
+:::solution[Python]{icon="Python"}
 ```python
 def find_customers(customers: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
 
@@ -82,4 +82,4 @@ def find_customers(customers: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFram
 
     return customers_without_orders[['name']].rename(columns={'name': 'Customers'})
 ```
-</Solution>
+:::

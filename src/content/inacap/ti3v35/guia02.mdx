@@ -13,7 +13,7 @@
     4. 10.0.0.1
     5. 224.1.1.1
 
-<Solution>
+:::solution
 Recordando que:
 
 <SmartTable
@@ -42,7 +42,7 @@ Entonces:
 	]}
 />
 
-</Solution>
+:::
 
 2. **Escribe la máscara de red por defecto para cada clase:**
 
@@ -50,7 +50,7 @@ Entonces:
     2. Clase B: _____
     3. Clase C: _____
 
-<Solution>
+:::solution
 1. **Clase A:** `255.0.0.0` (o `/8`)
 2. **Clase B:** `255.255.0.0` (o `/16`)
 3. **Clase C:** `255.255.255.0` (o `/24`)
@@ -59,7 +59,7 @@ Entonces:
 - **Clase A:** Usa 8 bits para la red (primer octeto), por eso la máscara es `255.0.0.0`
 - **Clase B:** Usa 16 bits para la red (primeros dos octetos), por eso la máscara es `255.255.0.0`
 - **Clase C:** Usa 24 bits para la red (primeros tres octetos), por eso la máscara es `255.255.255.0`
-</Solution>
+:::
 
 3. **Convierte las siguientes direcciones IP a notación binaria**
 
@@ -67,7 +67,7 @@ Entonces:
     2. 172.16.0.1
     3. 10.255.255.254
 
-<Solution>
+:::solution
 Recordando las posiciones de los bits en un octeto y sus valores:
 
 ```text
@@ -140,7 +140,7 @@ Finalmente: `172.16.0.1 = 10101100.00001000.00000000.00000001`
     4. Convertir octeto 254 a binario: `11111110`
 
 Finalmente `10.255.255.254 = 00001010.11111111.11111111.11111110`
-</Solution>
+:::
 
 ## Parte II: Cálculo de Subredes
 
@@ -150,7 +150,7 @@ Dada una red `192.168.50.0/24`, se necesita crear 6 subredes
 
 1. **¿Cuántos bits necesitas "robar" de la porción de host?**
 
-<Solution>
+:::solution
 Recordando la fórmula 4 (Bits necesarios para N subredes)
 
 $$
@@ -172,31 +172,31 @@ Entonces:
 Entonces `n = 3`. 
 
 $\therefore$ Se necesitan `3` bits de la porción del host.
-</Solution>
+:::
 
 2. **¿Cuál será la nueva máscara de subred en decimal?**
 
-<Solution>
+:::solution
 - Máscara inicial (CIDR): `/24` (24 bits)
 - Nueva máscara (CIDR): `/27` (24 + 3 bits)
 - Equivale a (binario): `11111111.11111111.11111111.11100000`
 - Equivale a (decimal): `255.255.255.224`
 
 $\therefore$ La nueva máscara de subred en decimal es `255.255.255.224`
-</Solution>
+:::
 
 3. **¿Cuál será la nueva máscara en notación CIDR (/xx) ?**
 
-<Solution>
+:::solution
 - Nueva máscara (CIDR): `/27` (analizado en la pregunta anterior)
 
 $\therefore$ La nueva máscara en notación CIDR es `/27`
 
-</Solution>
+:::
 
 4. **¿Cuántas subredes obtienes en total?**
 
-<Solution>
+:::solution
 Recordando la fórmula 1: (Número de Subredes)
 
 $$
@@ -219,11 +219,11 @@ $$
 - Subredes sobrantes: 2 (se pueden utilizar para crecimiento futuro)
 
 $\therefore$ Se obtienen `8` subredes en total (2 no se utilizan)
-</Solution>
+:::
 
 5. **¿Cuántos hosts por subred tendrás disponibles?**
 
-<Solution>
+:::solution
 Recordando la fórmula 6 (bits de hosts desde máscara CIDR)
 
 $$
@@ -256,11 +256,11 @@ $$
 $$
 
 $\therefore$ Se obtienen `30` hosts disponibles por subred
-</Solution>
+:::
 
 6. **Cuál es el "número mágico" (salto entre subredes)**
 
-<Solution>
+:::solution
 Se calcula el valor del octeto de subred:
 $$
 \begin{aligned}
@@ -285,7 +285,7 @@ $$
 $$
 
 $\therefore$ El "número mágico" (salto entre subredes) es `32` 
-</Solution>
+:::
 
 7. **Completa la siguiente tabla:**
 
@@ -302,7 +302,7 @@ $\therefore$ El "número mágico" (salto entre subredes) es `32`
 	]}
 />
 
-<Solution>
+:::solution
 1. Se completa la **Dirección de Red** en base al "número mágico"
 
 <SmartTable
@@ -363,7 +363,7 @@ $\therefore$ El "número mágico" (salto entre subredes) es `32`
 	]}
 />
 
-</Solution>
+:::
 
 ### Ejercicio 02
 
@@ -371,7 +371,7 @@ Tienes la red `172.20.0.0/16` y necesitas 100 subredes con al menos 500 hosts ca
 
 1. **¿Cuántos bits necesitas para crear 100 subredes?**
 
-<Solution>
+:::solution
 
 Recordando la fórmula 4 (Bits necesarios para N subredes)
 
@@ -398,11 +398,11 @@ Entonces:
 Entonces `n = 7`
 
 $\therefore$ Se necesitan `7` bits para crear 100 subredes.
-</Solution>
+:::
 
 2. **¿Cuál será la nueva máscara de subred?**
 
-<Solution>
+:::solution
 - Máscara inicial (CIDR): `/16` (16 bits)
 - Nueva máscara (CIDR): `/23` (16 + 7 bits)
 - Equivalente a (binario): `11111111.11111111.11111110.00000000`
@@ -411,11 +411,11 @@ $\therefore$ Se necesitan `7` bits para crear 100 subredes.
 $\therefore$ La nueva máscara de subred es:
     - `/23` (CIDR)
     - `255.255.254.0` (decimal) 
-</Solution>
+:::
 
 3. **¿Cuántos hosts por subred obtienes?**
 
-<Solution>
+:::solution
 Recordando la fórmula 6 (bits de hosts desde máscara CIDR)
 
 $$
@@ -448,17 +448,17 @@ $$
 $$
 
 $\therefore$ Se obtienen `510`hosts disponibles por subred. 
-</Solution>
+:::
 
 4. **¿Es suficiente para el requerimiento de 500 hosts?**
 
-<Solution>
+:::solution
 Si, ya que $510 \ge 500$
-</Solution>
+:::
 
 5. **Lista las primeras 5 subredes**
 
-<Solution>
+:::solution
 - Red original: `172.20.0.0\16`
 - Nueva máscara: `/23`
 - `23 - 16 = 7` bits para subred
@@ -543,7 +543,7 @@ $\therefore$ El "número mágico" (salto entre subredes) es `2`
 		['5', '172.20.8.0', '172.20.8.1', '172.20.9.254', '172.20.9.255']
 	]}
 />
-</Solution>
+:::
 
 ### Ejercicio 03
 
@@ -551,7 +551,7 @@ Se te asigna la red `10.0.0.0/8` y necesitas dividirla en 20 subredes.
 
 1. **¿Cuántos bits robas de la porción de host?**
 
-<Solution>
+:::solution
 Recordando la fórmula 4 (Bits necesarios para N subredes)
 
 $$
@@ -575,11 +575,11 @@ Entonces:
 Entonces `n = 5`
 
 $\therefore$ Se necesitan `5` bits para crear 20 subredes.
-</Solution>
+:::
 
 2. **¿Cuál es la nueva máscara de subred?**
 
-<Solution>
+:::solution
 - Máscara inicial (CIDR): `/8` (8 bits)
 - Nueva máscara (CIDR): `/13` (8 + 5 bits)
 - Equivalente a (binario): `11111111.11111000.00000000.00000000`
@@ -588,11 +588,11 @@ $\therefore$ Se necesitan `5` bits para crear 20 subredes.
 $\therefore$ La nueva máscara de subred es:
     - `/13` (CIDR)
     - `255.248.0.0` (decimal) 
-</Solution>
+:::
 
 3. **¿Cuántos hosts por subred tendrás?**
 
-<Solution>
+:::solution
 Recordando la fórmula 6 (bits de hosts desde máscara CIDR)
 
 $$
@@ -625,11 +625,11 @@ $$
 $$
 
 $\therefore$ Se obtienen `524286`hosts disponibles por subred. 
-</Solution>
+:::
 
 4. **¿Cuál es el rango de la subred número 10?**
 
-<Solution>
+:::solution
 - Red original: `10.0.0.0/8`
 - Nueva máscara: `/13`
 - `13 - 8 = 5` bits para subred
@@ -744,5 +744,5 @@ $\therefore$ el rango de la subred número 10 es
 		['10', '10.72.0.0', '10.72.0.1', '10.79.255.254', '10.79.255.255']
 	]}
 />
-</Solution>
+:::
 

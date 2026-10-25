@@ -201,7 +201,7 @@ INSERT INTO DetallesVentas (VentaID, ProductoID, Cantidad, TotalLinea) VALUES (6
 
 Crea un procedimiento almacenado llamado sp_InsertarProducto que reciba el nombre del producto, la categoría y el precio. Este procedimiento debe insertar el producto en la tabla Productos y devolver un mensaje indicando que el producto ha sido insertado correctamente.
 
-<Solution>
+:::solution
 ```sql
 CREATE PROCEDURE sp_InsertarProducto
 	@NombreProducto NVARCHAR(100),
@@ -218,14 +218,14 @@ BEGIN
     PRINT 'El producto ha sido insertado correctamente.';
 END;
 ```
-</Solution>
+:::
 
 ### Ejercicio 02
 
 #### Consulta 1
 Muestra el nombre del cliente, la fecha de la venta, el nombre del producto, la cantidad vendida y el total de la línea de la venta. Ordena el resultado por nombre del cliente y fecha de la venta. Si un cliente no ha realizado ninguna venta, muestra igualmente su nombre y un valor nulo en las columnas relacionadas con las ventas.
 
-<Solution>
+:::solution
 ```sql
 SELECT c.Nombre AS NombreCliente, v.FechaVenta, p.NombreProducto, dv.Cantidad, dv.TotalLinea
 FROM Clientes c
@@ -234,12 +234,12 @@ LEFT JOIN DetallesVentas dv ON v.VentaID = dv.VentaID
 LEFT JOIN Productos p ON dv.ProductoID = p.ProductoID
 ORDER BY c.Nombre, v.FechaVenta;
 ```
-</Solution>
+:::
 
 #### Consulta 2
 Muestra el nombre del cliente, el total de ventas que ha realizado y el número de productos distintos que ha comprado. Incluye solo a los clientes que han comprado al menos 3 productos diferentes.
 
-<Solution>
+:::solution
 ```sql
 SELECT
 	c.Nombre AS NombreCliente,
@@ -251,12 +251,12 @@ JOIN DetallesVentas dv ON v.VentaID = dv.VentaID
 GROUP BY c.Nombre
 HAVING COUNT(DISTINCT dv.ProductoID) >= 3;
 ```
-</Solution>
+:::
 
 #### Consulta 3
 Muestra el nombre del producto, la cantidad total vendida y el total de ventas para cada producto. Solo incluye productos que se hayan vendido en más de 5 transacciones diferentes. Ordena los resultados por cantidad total vendida en orden descendente.
 
-<Solution>
+:::solution
 ```sql
 SELECT 
     p.NombreProducto, 
@@ -268,26 +268,26 @@ GROUP BY p.NombreProducto
 HAVING COUNT(DISTINCT dv.VentaID) > 5
 ORDER BY CantidadTotalVendida DESC;
 ```
-</Solution>
+:::
 
 ## Ejercicio 03: Subconsultas
 
 #### Subconsulta 1
 Encuentra todos los productos cuyo precio es superior al precio promedio de todos los productos.
 
-<Solution>
+:::solution
 ```sql
 SELECT NombreProducto, Precio
 FROM Productos
 WHERE Precio > (SELECT AVG(Precio) FROM Productos);
 ```
-</Solution>
+:::
 
 
 #### Subconsulta 2
 Encuentra todos los clientes que han realizado ventas superiores al total de ventas realizadas por el cliente con ClienteID = 2.
 
-<Solution>
+:::solution
 ```sql
 SELECT c.Nombre, SUM(v.TotalVenta) AS TotalVentas
 FROM Clientes c
@@ -299,4 +299,4 @@ HAVING SUM(v.TotalVenta) > (
 	WHERE ClienteID = 2
 );
 ```
-</Solution>
+:::

@@ -42,11 +42,11 @@ El estudiante Ulises tiene student_id = 101, seleccionamos el nombre y la edad.`
 
 ## Soluciones
 
-<Solution title="Python" icon="Python">
+:::solution[Python]{icon="Python"}
 ```python
 import pandas as pd
 
 def selectData(students: pd.DataFrame) -> pd.DataFrame:
     return students[students['student_id'] == 101][['name','age']] 
 ```
-</Solution>
+:::

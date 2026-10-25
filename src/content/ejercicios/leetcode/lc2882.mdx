@@ -50,11 +50,11 @@ por lo que solo se conserva la primera ocurrencia de este email.`}
 
 ## Soluciones
 
-<Solution title="Python" icon="Python">
+:::solution[Python]{icon="Python"}
 ```python
 import pandas as pd
 
 def dropDuplicateEmails(customers: pd.DataFrame) -> pd.DataFrame:
     return customers.drop_duplicates(subset=['email'], keep='first')
 ```
-</Solution>
+:::

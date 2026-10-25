@@ -173,7 +173,7 @@ Ejemplo de Salida Esperada:
 {`El salario anual es: 18000`}
 </TerminalOutput>
 
-<Solution>
+:::solution
 ```sql
 CREATE OR REPLACE PROCEDURE sp_CalcularSalarioAnual(
     p_salario_mensual IN NUMBER
@@ -187,7 +187,7 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('El salario anual es: ' || v_salario_anual);
 END;
 ```
-</Solution>
+:::
 
 ### Ejercicio 2
 **Verificar Si un Número es Par o Impar** (25 puntos)
@@ -209,7 +209,7 @@ Ejemplo de Salida Esperada:
 {`Es par`}
 </TerminalOutput>
 
-<Solution>
+:::solution
 ```sql
 DECLARE
     v_numero NUMBER := 8;
@@ -221,7 +221,7 @@ BEGIN
     END IF;
 END;
 ```
-</Solution>
+:::
 
 ### Ejercicio 3
 **Actualizar el Stock de un Producto** (25 puntos)
@@ -238,7 +238,7 @@ Ejemplo de Salida Esperada:
 {`El stock del producto con ID 101 es: 7`}
 </TerminalOutput>
 
-<Solution>
+:::solution
 ```sql
 CREATE OR REPLACE PROCEDURE sp_ActualizarStockProducto(
 	p_ProductoID IN NUMBER,
@@ -264,4 +264,4 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE('El stock del producto con ID ' || p_ProductoID || ' es: ' || v_stock_actual);
 END;
 ```
-</Solution>
+:::

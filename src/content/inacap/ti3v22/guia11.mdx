@@ -90,7 +90,7 @@ SET DATEFORMAT 'YMD';
 - **Edad** como número entero.
 - **FechaIngreso** como fecha.
 
-<Solution>
+:::solution
 ```sql
 CREATE TABLE Estudiantes(
 	ID INT IDENTITY,
@@ -100,36 +100,36 @@ CREATE TABLE Estudiantes(
 	PRIMARY KEY(ID)
 );
 ```
-</Solution>
+:::
 
 ## Ejercicio 02
 **Creación de Vistas:** Crea una vista llamada VistaEstudiantes que muestre el nombre y la edad de los estudiantes que tengan más de 18 años.
 
-<Solution>
+:::solution
 ```sql
 CREATE VIEW VistaEstudiantes AS
 	SELECT Nombre, Edad
 	FROM Estudiantes
 	WHERE Edad > 18;
 ```
-</Solution>
+:::
 
 ## Ejercicio 03
 **Creación de Índices:** Crea un índice para la columna Edad en la tabla Estudiantes para mejorar la velocidad de las consultas que filtren por edad.
 
-<Solution>
+:::solution
 ```sql
 CREATE INDEX ix_Edad
 ON Estudiantes(Edad);
 ```
-</Solution>
+:::
 
 # Ejercicios 2024-08-13
 
 ## Ejercicio 01
 **Creación de una Función:** Crea una función `fn_CantidadEstudiantes` que devuelva el número total de estudiantes.
 
-<Solution>
+:::solution
 ```sql
 CREATE FUNCTION fn_CantidadEstudiantes()
 RETURNS INT
@@ -143,21 +143,21 @@ BEGIN
 	RETURN @total;
 END;
 ```
-</Solution>
+:::
 
 ## Ejercicio 02
 **Uso de la Función:** Utiliza la función creada para mostrar el total de estudiantes.
 
-<Solution>
+:::solution
 ```sql
 SELECT dbo.fn_CantidadEstudiantes() AS TotalEstudiantes;
 ```
-</Solution>
+:::
 
 ## Ejercicio 03
 **Creación de un Procedimiento almacenado para actualizar Edad:** Crea un procedimiento almacenado `sp_ActualizarEdad` que permita actualizar la edad de un estudiante dado su ID.
 
-<Solution>
+:::solution
 ```sql
 CREATE PROCEDURE sp_ActualizarEdad
 	@EstudianteID INT,
@@ -169,67 +169,67 @@ BEGIN
 	WHERE ID = @EstudianteID;
 END;
 ```
-</Solution>
+:::
 
 ## Ejercicio 04
 **Uso del Procedimiento Almacenado para Actualizar Edad:** Actualiza la edad del estudiante con ID 1 a 22 años usando el procedimiento `sp_ActualizarEdad`.
 
-<Solution>
+:::solution
 ```sql
 EXEC sp_ActualizarEdad
 	@EstudianteID = 1,
 	@NuevaEdad = 22;
 ```
-</Solution>
+:::
 
 ## Ejercicio 05
 
 **Creación de Índices sobre Múltiples Columnas:** Crea un índice compuesto en las columnas `Nombre` y `FechaIngreso` para optimizar las consultas que usan estos campos.
 
-<Solution>
+:::solution
 ```sql
 CREATE NONCLUSTERED INDEX ix_NombreFechaIngreso
 ON Estudiantes(Nombre,FechaIngreso);
 ```
-</Solution>
+:::
 
 ## Ejercicio 06
 **Consulta Avanzada de Estudiantes:** Escribe una consulta SQL que liste todos los estudiantes menores de 25 años ordenados por fecha de ingreso de manera ascendente. 
 
-<Solution>
+:::solution
 ```sql
 SELECT *
 FROM Estudiantes
 WHERE Edad < 25
 ORDER BY FechaIngreso ASC;
 ```
-</Solution>
+:::
 
 ## Ejercicio 07
 **Actualización de información:** Actualiza el registro de los estudiantes para incrementar su edad en un año si han ingresado antes del año 2023.
 
-<Solution>
+:::solution
 ```sql
 UPDATE Estudiantes
 SET Edad = Edad + 1
 WHERE YEAR(FechaIngreso) < 2023;
 ```
-</Solution>
+:::
 
 ## Ejercicio 08
 **Eliminar estudiantes:** Elimina de la tabla `Estudiantes` aquellos que tienen más de 30 años.
 
-<Solution>
+:::solution
 ```sql
 DELETE FROM Estudiantes
 WHERE Edad > 30;
 ```
-</Solution>
+:::
 
 ## Ejercicio 09
 **Creación de Vistas Complejas:** Crea una vista llamada `VistaEstudiantesActivos` que muestre solamente los estudiantes que tienen menos de 30 años y ordena los resultados por edad de manera descendente.
 
-<Solution>
+:::solution
 ```sql
 CREATE VIEW VistaEstudiantesActivos AS
 	SELECT * 
@@ -239,12 +239,12 @@ CREATE VIEW VistaEstudiantesActivos AS
 SELECT * FROM VistaEstudiantesActivos
 ORDER BY Edad DESC;
 ```
-</Solution>
+:::
 
 ## Ejercicio 10
 **Función para Calcular la Edad Mínima:** Desarrolla una función llamada `fn_EdadMinimaEstudiantes` que devuelva la edad mínima de los estudiantes.
 
-<Solution>
+:::solution
 ```sql
 CREATE FUNCTION fn_EdadMinimaEstudiantes()
 RETURNS INT
@@ -258,7 +258,7 @@ BEGIN
 	RETURN @EdadMin;
 END;
 ```
-</Solution>
+:::
 
 # Ejercicios 2024-08-19
 
@@ -302,7 +302,7 @@ VALUES
 ## Ejercicio 01
 **Función para Calcular Años de Antigüedad:** Crea una función `fn_AntiguedadEmpleado` que calcule la cantidad de años que un empleado ha trabajado en la empresa basado en la fecha de ingreso.
 
-<Solution>
+:::solution
 ```sql
 CREATE FUNCTION fn_AntiguedadEmpleado(@FechaIngreso Date)
 RETURNS INT
@@ -311,12 +311,12 @@ BEGIN
 	RETURN DATEDIFF(YEAR,@FechaIngreso, GETDATE());
 END;
 ```
-</Solution>
+:::
 
 ## Ejercicio 02
 **Consulta de Antigüedad por Departamento:** Muestra el nombre del empleado, su antigüedad y el departamento al que pertenece.
 
-<Solution>
+:::solution
 ```sql
 SELECT 
     FirstName, 
@@ -324,12 +324,12 @@ SELECT
     Department
 FROM Employees;
 ```
-</Solution>
+:::
 
 ## Ejercicio 03
 **Creación de un Procedimiento para Aumentar Salario:** Crea un procedimiento almacenado `sp_AumentarSalario` que incremente el salario de los empleados de un departamento específico en un porcentaje dado.
 
-<Solution>
+:::solution
 ```sql
 CREATE PROCEDURE sp_AumentarSalario
 	@Porcentaje Decimal(5,2),
@@ -341,56 +341,56 @@ BEGIN
 	WHERE Department = @Departamento;
 END;
 ```
-</Solution>
+:::
 
 ## Ejercicio 04
 **Aplicar el Procedimiento de Aumento de Salario:** Aumenta el salario en un 10% para todos los empleados del departamento "IT".
 
-<Solution>
+:::solution
 ```sql
 EXEC sp_AumentarSalario
 	@Porcentaje = 10,
 	@Departamento = N'IT';
 ```
-</Solution>
+:::
 
 ## Ejercicio 05
 **Índice para Acelerar Consultas por Antigüedad:** Crea un índice en la columna `HireDate` para acelerar las consultas relacionadas con la antigüedad de los empleados.
 
-<Solution>
+:::solution
 ```sql
 CREATE INDEX ix_HireDate
 ON Employees(HireDate);
 ```
-</Solution>
+:::
 
 ## Ejercicio 06
 **Crear una Vista para Empleados con Más de 5 Años:** Crea una vista `VistaEmpleadosAntiguos` que muestre solo los empleados con más de 5 años de antigüedad en la empresa.
 
-<Solution>
+:::solution
 ```sql
 CREATE VIEW VistaEmpleadosAntiguos AS
 	SELECT FirstName, LastName, DATEDIFF(YEAR,HireDate,GETDATE()) AS YearsOfService  
 	FROM Employees
 	WHERE DATEDIFF(YEAR,HireDate,GETDATE()) > 5;
 ```
-</Solution>
+:::
 
 ## Ejercicio 07
 **Consulta de Promedio Salarial por Antigüedad:** Escribe una consulta SQL que muestre el promedio salarial de los empleados que tienen más de 10 años en la empresa.
 
-<Solution>
+:::solution
 ```sql
 SELECT AVG(Salary) AS PromedioSalarial
 FROM Employees
 WHERE DATEDIFF(YEAR,HireDate,GETDATE()) > 10;
 ```
-</Solution>
+:::
 
 ## Ejercicio 08
 **Procedimiento para Asignar Bonificaciones:** Crea un procedimiento almacenado que asigne una bonificación del 5% del salario anual a los empleados que tengan más de 15 años de antigüedad.
 
-<Solution>
+:::solution
 ```sql
 CREATE PROCEDURE sp_Bonificaciones
 AS
@@ -400,22 +400,22 @@ BEGIN
 	WHERE DATEDIFF(YEAR, HireDate, GETDATE()) > 15;
 END;
 ```
-</Solution>
+:::
 
 ## Ejercicio 09
 **Eliminar Empleados con Baja Antigüedad:** Escribe una consulta para eliminar a los empleados que tengan menos de 2 años de antigüedad en la empresa.
 
-<Solution>
+:::solution
 ```sql
 DELETE FROM Employees
 WHERE DATEDIFF(YEAR, HireDate, GETDATE()) < 2;
 ```
-</Solution>
+:::
 
 ## Ejercicio 10
 **Función para Calcular la Edad de los Empleados:** Desarrolla una función `fn_EdadEmpleado` que devuelva la edad actual de un empleado basado en su fecha de nacimiento.
 
-<Solution>
+:::solution
 ```sql
 CREATE FUNCTION fn_EdadEmpleado(@FechaNacimiento DATE)
 RETURNS INT
@@ -424,7 +424,7 @@ BEGIN
 	RETURN DATEDIFF(YEAR, @FechaNacimiento, GETDATE());
 END;
 ```
-</Solution>
+:::
 
 # Ejercicios 2024-08-20
 
@@ -435,7 +435,7 @@ Crea la tabla llamada Departments con las siguientes columnas
 - **DepartmentName:** Cadena de caracteres, no puede ser nulo.
 - **ManagerID:** Número entero, debe referenciar a EmployeeID en la tabla Employees 
 
-<Solution>
+:::solution
 ```sql
 CREATE TABLE Departments(
 	DepartmentID INT IDENTITY,
@@ -445,12 +445,12 @@ CREATE TABLE Departments(
 	FOREIGN KEY(ManagerID) REFERENCES Employees(EmployeeID)
 );
 ```
-</Solution>
+:::
 
 ## Ejercicio 02
 Modifica la tabla Employees para agregar una nueva columna Email que sea de tipo NVARCHAR(100) y no pueda ser nulo.
 
-<Solution>
+:::solution
 ```sql
 ALTER TABLE Employees
 ADD Email NVARCHAR(100) NOT NULL DEFAULT 'a';
@@ -458,79 +458,79 @@ ADD Email NVARCHAR(100) NOT NULL DEFAULT 'a';
 
 - Como se agrega una columna a una tabla ya pre-existente, se utiliza `DEFAULT` para agregar un valor predeterminado `a` en caso que la tabla ya tenga datos (para evitar errores de inserción).
 
-</Solution>
+:::
 
 
 ## Ejercicio 03
 Crea una vista llamada VistaEmpleadosTI
 
-<Solution>
+:::solution
 ```sql
 CREATE VIEW VistaEmpleadosTI AS
 	SELECT FirstName, LastName, Department, Salary
 	FROM Employees
 	WHERE Department = 'IT';
 ```
-</Solution>
+:::
 
 ## Ejercicio 04
 Crea una vista llamada VistaDepartamentos que muestre el nombre del departamento y el nombre completo del gerente (usando FirstName y LastName de la tabla Employees).
 
-<Solution>
+:::solution
 ```sql
 CREATE VIEW VistaDepartamentos AS
 	SELECT d.DepartmentName, e.FirstName + ' ' + e.LastName AS Gerente
 	FROM Departments d
 	JOIN Employees e ON d.ManagerID = e.EmployeeID;
 ```
-</Solution>
+:::
 
 ## Ejercicio 05
 Crea una vista VistaEmpleadosAltosSalarios que muestre solo los empleados con salarios superiores a $70,000.
 
-<Solution>
+:::solution
 ```sql
 CREATE VIEW VistaEmpleadosAltosSalarios AS
 	SELECT FirstName, LastName, Salary
 	FROM Employees
 	WHERE Salary > 70000;
 ```
-</Solution>
+:::
 
 ## Ejercicio 06
 Crea un índice en la Columna Salary
 
-<Solution>
+:::solution
 ```sql
 CREATE INDEX ix_Salary
 ON Employees(Salary);
 ```
-</Solution>
+:::
 
 ## Ejercicio 07
 Crea un índice en la columna HireDate de la tabla Employees para optimizar las consultas que buscan empleados por fecha de contratación.
 
-<Solution>
+:::solution
 ```sql
 CREATE INDEX ix_HireDate
 ON Employees(HireDate);
 ```
-</Solution>
+:::
 
 ## Ejercicio 08
 Crea un índice compuesto en las columnas LastName y FirstName de la tabla Employees para optimizar las búsquedas por nombre completo.
 
-<Solution>
+:::solution
 ```sql
 CREATE NONCLUSTERED INDEX ix_LastNameFirstName
 ON Employees(LastName,FirstName);
 ```
-</Solution>
+:::
 
 ## Ejercicio 09
 Crea un Procedimiento Almacenado sp_ActualizarSalario
 
-<Solution>
+:::solution
 ```sql
 CREATE PROCEDURE sp_ActualizarSalario
 	@EmployeeID INT,
@@ -542,12 +542,12 @@ BEGIN
 	WHERE EmployeeID = @EmployeeID;
 END;
 ```
-</Solution>
+:::
 
 ## Ejercicio 10
 Crea un procedimiento almacenado sp_EliminarEmpleado que elimine a un empleado dado su ID y que también elimine todas las referencias a ese empleado en otras tablas.
 
-<Solution>
+:::solution
 ```sql
 CREATE PROCEDURE sp_EliminarEmpleado
 	@EmployeeID INT
@@ -560,4 +560,4 @@ BEGIN
 	WHERE EmployeeID = @EmployeeID;
 END;
 ```
-</Solution>
+:::

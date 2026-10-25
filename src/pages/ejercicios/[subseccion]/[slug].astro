@@ -5,14 +5,12 @@ import { reactMdxComponents } from '../../../components/mdx/components.js';
 import { getAllExercisePaths, getExerciseData } from '../../../utils/ejerciciosUtils.js';
 
 // Wrappers .astro — importados aquí para conservar el renderer de Astro
-import Solution from '../../../components/mdx/Solution.astro';
 import Tabs from '../../../components/mdx/Tabs.astro';
 import Tab from '../../../components/mdx/Tab.astro';
 import SmartFigureIsland from '../../../components/mdx/SmartFigureIsland.astro';
 import ImgFigure from '../../../components/mdx/ImgFigure.astro';
 import QuizIsland from '../../../components/mdx/QuizIsland.astro';
 import GridQuizIsland from '../../../components/mdx/GridQuizIsland.astro';
-import RevealIsland from '../../../components/mdx/RevealIsland.astro';
 import AudioPlayerIsland from '../../../components/mdx/AudioPlayerIsland.astro';
 
 export async function getStaticPaths() {
@@ -37,10 +35,8 @@ const exerciseData = getExerciseData(subseccion, slug);
 const mdxComponents = {
   ...reactMdxComponents,
   img: ImgFigure,
-  Solution,
   Tabs,
   Tab,
-  Reveal: RevealIsland,
   Quiz: QuizIsland,
   GridQuiz: GridQuizIsland,
   SmartFigure: SmartFigureIsland,

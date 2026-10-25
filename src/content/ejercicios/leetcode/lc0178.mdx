@@ -24,8 +24,8 @@ Devuelve la tabla resultado ordenada por `score` en orden descendente
 
 ## Ejemplo
 
-<MultiColumn>
-<div>
+::::columns
+:::col
 **Input**
 <TerminalOutput>
 {`tabla Scores
@@ -40,8 +40,8 @@ Devuelve la tabla resultado ordenada por `score` en orden descendente
 | 6  | 3.65  |
 +----+-------+`}
 </TerminalOutput>
-</div>
-<div>
+:::
+:::col
 **Output**
 <TerminalOutput>
 {`Output
@@ -56,12 +56,12 @@ Devuelve la tabla resultado ordenada por `score` en orden descendente
 | 3.50  | 4    |
 +-------+------+`}
 </TerminalOutput>
-</div>
-</MultiColumn>
+:::
+::::
 
 ## Soluciones
 
-<Solution title="Python" icon="Python">
+:::solution[Python]{icon="Python"}
 ```python
 import pandas as pd
 
@@ -73,4 +73,4 @@ def order_scores(scores: pd.DataFrame) -> pd.DataFrame:
     
     return result[['score', 'rank']].sort_values('score', ascending=False)
 ```
-</Solution>
+:::

@@ -200,7 +200,7 @@ INSERT INTO DetallesVentas (VentaID, ProductoID, Cantidad, TotalLinea) VALUES (6
 
 Crea un procedimiento almacenado llamado `sp_ActualizarProducto` que reciba el ID del producto y el nuevo precio, y actualice el precio del producto en la tabla Productos. El procedimiento debe devolver un mensaje que indique si el producto fue actualizado correctamente.
 
-<Solution>
+:::solution
 ```sql
 CREATE PROCEDURE sp_ActualizarProducto
 @ProductoID INT,
@@ -213,7 +213,7 @@ BEGIN
 	PRINT 'El producto fue actualizado correctamente'
 END;
 ```
-</Solution>
+:::
 
 ### Ejercicio 02
 **Consultas Complejas con JOINs**
@@ -221,7 +221,7 @@ END;
 #### Consulta 1
 Muestra el nombre del cliente, la cantidad total de productos comprados y el total de ventas para aquellos clientes que han realizado más de dos transacciones.
 
-<Solution>
+:::solution
 ```sql
 SELECT
 	c.Nombre,
@@ -233,12 +233,12 @@ JOIN DetallesVentas dv ON v.VentaID = dv.VentaID
 GROUP BY c.Nombre
 HAVING COUNT(v.VentaID) > 2;
 ```
-</Solution>
+:::
 
 #### Consulta 2
 Muestra el nombre del producto, la cantidad total vendida, y el promedio de ventas por producto. Incluye solo productos que han sido vendidos en más de 3 transacciones.
 
-<Solution>
+:::solution
 ```sql
 SELECT
 	p.NombreProducto,
@@ -250,7 +250,7 @@ JOIN Ventas v ON dv.VentaID = v.VentaID
 GROUP BY p.NombreProducto
 HAVING COUNT(v.VentaID) > 3;
 ```
-</Solution>
+:::
 
 
 ### Ejercicio 03
@@ -259,7 +259,7 @@ HAVING COUNT(v.VentaID) > 3;
 #### Subconsultas 1
 Encuentra el nombre del cliente que ha realizado la venta con el mayor total de venta.
 
-<Solution>
+:::solution
 ```sql
 SELECT c.Nombre, c.Apellido
 FROM Clientes c
@@ -269,13 +269,13 @@ WHERE v.TotalVenta = (
     FROM Ventas
 );
 ```
-</Solution>
+:::
 
 
 #### Subconsulta 2
 Encuentra el nombre de los productos que tienen un precio mayor que el promedio del precio de todos los productos en la misma categoría.
 
-<Solution>
+:::solution
 ```sql
 SELECT p.NombreProducto, p.Precio, p.Categoria
 FROM Productos p
@@ -285,4 +285,4 @@ WHERE p.Precio > (
 	WHERE Categoria = p.Categoria
 );
 ```
-</Solution>
+:::

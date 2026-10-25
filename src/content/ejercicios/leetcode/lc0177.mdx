@@ -17,8 +17,8 @@ Escribe una solución para encontrar el $n^{ésimo}$ salario **distinto** más a
 
 ## Ejemplos
 
-<MultiColumn columns={2}>
-<div>
+::::columns
+:::col
 **Input:**
 <TerminalOutput>
 {`Employee table:
@@ -32,8 +32,8 @@ Escribe una solución para encontrar el $n^{ésimo}$ salario **distinto** más a
 
 n = 2`}
 </TerminalOutput>
-</div>
-<div>
+:::
+:::col
 <TerminalOutput>
 **Output:**
 {`+------------------------+
@@ -42,13 +42,13 @@ n = 2`}
 | 200                    |
 +------------------------+`}
 </TerminalOutput>
-</div>
-</MultiColumn>
+:::
+::::
 
 **Ejemplo 2:**
 
-<MultiColumn>
-<div>
+::::columns
+:::col
 **Input:**
 <TerminalOutput>
 {`Employee table:
@@ -60,8 +60,8 @@ n = 2`}
 
 n = 2`}
 </TerminalOutput>
-</div>
-<div>
+:::
+:::col
 **Output:**
 <TerminalOutput>
 {`+------------------------+
@@ -70,12 +70,12 @@ n = 2`}
 | null                   |
 +------------------------+`}
 </TerminalOutput>
-</div>
-</MultiColumn>
+:::
+::::
 
 ## Soluciones
 
-<Solution title="Python" icon="Python">
+:::solution[Python]{icon="Python"}
 ```python
 import pandas as pd
 
@@ -93,4 +93,4 @@ def nth_highest_salary(employee: pd.DataFrame, N: int) -> pd.DataFrame:
         
     return pd.DataFrame({f'getNthHighestSalary({N})': [result]})
 ``` 
-</Solution>
+:::

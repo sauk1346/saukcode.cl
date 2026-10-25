@@ -79,7 +79,7 @@ Agregar los siguientes registros:
 - Diego Alonso, 18, 2022-04-14
 - Isabel Mora, 25, 2022-07-19
 
-<Solution>
+:::solution
 ```sql
 CREATE TABLE Estudiantes (
 	ID INT IDENTITY PRIMARY KEY,
@@ -99,29 +99,29 @@ VALUES
 	('Diego Alonso', 18, '2022-04-14'),
 	('Isabel Mora', 25, '2022-07-19');
 ```
-</Solution>
+:::
 
 ## Ejercicio 02
 **Creación de Vistas:** Crea una vista llamada **VistaEstudiantes** que muestre el nombre y la edad de los estudiantes que tengan más de 18 años.
 
-<Solution>
+:::solution
 ```sql
 CREATE VIEW VistaEstudiantes AS
 	SELECT Nombre, Edad
 	FROM Estudiantes
 	WHERE Edad > 18;
 ```
-</Solution>
+:::
 
 ## Ejercicio 03
 **Creación de Índices:** Crea un índice para la columna *Edad* en la tabla *Estudiantes* para mejorar la velocidad de las consultas que filtren por edad.
 
-<Solution>
+:::solution
 ```sql
 CREATE INDEX ix_Edad
 ON Estudiantes(Edad);
 ```
-</Solution>
+:::
 
 # Ejercicios (2da parte)
 Crear la base de datos `Clase01_Parte_Dos`, utilizando el siguiente script:
@@ -163,47 +163,47 @@ INSERT INTO Libros (ID, Titulo, Autor_ID) VALUES
 ## Ejercicio 01
 **Consulta Básica:** Mostrar todos los libros de la tabla "Libros".
 
-<Solution>
+:::solution
 ```sql
 SELECT *
 FROM Libros;
 ```
-</Solution>
+:::
 
 
 ## Ejercicio 02
 **Consulta con Filtro:** Mostrar el nombre y nacionalidad del autor del libro con ID 2.
 
-<Solution>
+:::solution
 ```sql
 SELECT a.Nombre, a.Nacionalidad
 FROM Autores a
 JOIN Libros l ON l.Autor_ID = a.ID
 WHERE l.ID = 2;
 ```
-</Solution>
+:::
 
 ## Ejercicio 03
 **Consulta con JOIN:** Mostrar el título del libro y el nombre del autor de todos los libros.
 
-<Solution>
+:::solution
 ```sql
 SELECT l.Titulo, a.Nombre
 FROM Libros l
 JOIN Autores a ON l.Autores_ID = a.ID;
 ```
-</Solution>
+:::
 
 ## Ejercicio 04
 **Actualización de Datos:** Cambiar la nacionalidad del autor con ID 3 a "Argentino-Francés".
 
-<Solution>
+:::solution
 ```sql
 UPDATE Autores
 SET Nacionalidad = 'Argentino-Francés'
 WHERE ID = 3;
 ```
-</Solution>
+:::
 
 ## Ejercicio 05
 **Inserción de Datos:** Agregar un nuevo autor a la tabla "Autores
@@ -212,23 +212,23 @@ WHERE ID = 3;
 - nombre: Isabel Allende
 - nacionalidad: Chilena
 
-<Solution>
+:::solution
 ```sql
 INSERT INTO Autores(ID,Nombre,Nacionalidad)
 VALUES
     (4,'Isabel Allende','Chilena');
 ```
-</Solution>
+:::
 
 ## Ejercicio 06
 **Eliminación de Datos:** Eliminar el libro con ID 1 de la tabla "Libros".
 
-<Solution>
+:::solution
 ```sql
 DELETE FROM Libros
 WHERE ID = 1;
 ```
-</Solution>
+:::
 
 ## Ejercicio 07
 **Crear un nuevo libro:** Inserta un nuevo registro en la tabla "Libros" con los siguientes datos:
@@ -237,29 +237,29 @@ WHERE ID = 1;
 - Título: El amor en los tiempos del cólera
 - Autor_ID: 1
 
-<Solution>
+:::solution
 ```sql
 INSERT INTO Libros(ID,Titulo,Autor_ID) 
 VALUES
 	(4,'El amor en los tiempos del cólera',1);
 ```
-</Solution>
+:::
 
 ## Ejercicio 08
 **Actualizar un libro:** Actualiza el título del libro con ID 2 a "Conversación en la catedral".
 
-<Solution>
+:::solution
 ```sql
 UPDATE Libros
 SET Titulo = 'Conversación en la catedral'
 WHERE ID = 2;
 ```
-</Solution>
+:::
 
 ## Ejercicio 09
 **Eliminar un autor:** Elimina el autor con ID 3 de la tabla "Autores" y todos los libros asociados a este autor.
 
-<Solution>
+:::solution
 ```sql
 DELETE FROM Libros
 WHERE Autor_ID = 3;
@@ -267,26 +267,26 @@ WHERE Autor_ID = 3;
 DELETE FROM Autores
 WHERE ID = 3;
 ```
-</Solution>
+:::
 
 ## Ejercicio 10
 **Leer todos los libros de un autor:** Muestra todos los libros escritos por el autor con ID 1.
 
-<Solution>
+:::solution
 ```sql
 SELECT *
 FROM Libros
 WHERE Autor_ID = 1;
 ```
-</Solution>
+:::
 
 ## Ejercicio 11
 **Actualizar la nacional de un autor:** Cambia la nacionalidad del autor con ID 2 a "Peruana".
 
-<Solution>
+:::solution
 ```sql
 UPDATE Autores
 SET Nacionalidad = 'Peruana'
 WHERE ID = 2;
 ```
-</Solution>
+:::

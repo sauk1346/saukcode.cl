@@ -172,7 +172,7 @@ INSERT INTO Estudiantes (Nombre, Edad, FechaIngreso) VALUES
 ## Ejercicio 01
 **Creación de una función:** Crea una función `fn_CantidadEstudiantes` que devuelva el número total de estudiantes.
 
-<Solution>
+:::solution
 ```sql
 CREATE FUNCTION fn_CantidadEstudiantes()
 RETURNS INT
@@ -183,21 +183,21 @@ BEGIN
 	RETURN @numEstudiantes;
 END;
 ```
-</Solution>
+:::
 
 ## Ejercicio 02
 **Uso de la función:** Utiliza la función creada para mostrar el total de estudiantes.
 
-<Solution>
+:::solution
 ```sql
 SELECT dbo.fn_CantidadEstudiantes() AS TotalEstudiantes;
 ```
-</Solution>
+:::
 
 ## Ejercicio 03
 **Creación de un procedimiento almacenado para actualizar edad:** Crea un procedimiento almacenado `sp_ActualizarEdad` que permita actualizar la edad de un estudiante dado su ID.
 
-<Solution>
+:::solution
 ```sql
 CREATE PROCEDURE sp_ActualizarEdad
 	@EstudianteID INT, 
@@ -209,66 +209,66 @@ BEGIN
 	WHERE ID = @EstudianteID;
 END;
 ```
-</Solution>
+:::
 
 ## Ejercicio 04
 **Uso del procedicimiento almacenado para actualizar edad:** Actualiza la edad del estudiante con ID 1, a 22 años usando el procedimiento `sp_ActualizarEdad`.
 
-<Solution>
+:::solution
 ```sql
 EXEC sp_ActualizarEdad 
 	@EstudianteID = 1,
 	@NuevaEdad = 22;
 ```
-</Solution>
+:::
 
 ## Ejercicio 05
 **Creación de índices sobre múltiples columnas:** Crea un índice compuesto en las columnas `Nombre` y `FechaIngreso` para optimizar las consultas que usan estos campos.
 
-<Solution>
+:::solution
 ```sql
 CREATE NONCLUSTERED INDEX ix_NombreFechaIngreso
 ON Estudiantes(Nombre, FechaIngreso);
 ```
-</Solution>
+:::
 
 ## Ejercicio 06
 **Consulta avanzada de estudiantes:** Escribe una consulta SQL que liste todos los estudiantes menores de 25 años, ordenados por fecha de ingreso de manera ascendente.
 
-<Solution>
+:::solution
 ```sql
 SELECT *
 FROM Estudiantes
 WHERE Edad < 25
 ORDER BY FechaIngreso ASC;
 ```
-</Solution>
+:::
 
 ## Ejercicio 07
 **Actualización de información:** Actualiza el registro de los estudiantes para incrementar su edad en un año si han ingresado antes del año 2023.
 
-<Solution>
+:::solution
 ```sql
 UPDATE Estudiantes
 SET Edad = Edad + 1
 WHERE YEAR(FechaIngreso) < 2023;
 ```
-</Solution>
+:::
 
 ## Ejercicio 08
 **Eliminar estudiantes:** Elimina de la tabla `Estudiantes` aquellos que tienen más de 30 años.
 
-<Solution>
+:::solution
 ```sql
 DELETE FROM Estudiantes
 WHERE Edad > 30;
 ```
-</Solution>
+:::
 
 ## Ejercicio 09
 **Creación de vistas complejas:** Crea una vista llamada `VistaEstudiantesActivos` que muestre solamente los estudiantes que tienen menos de 30 años y ordena los resultados por edad de manera descendente.
 
-<Solution>
+:::solution
 ```sql
 CREATE VIEW VistaEstudiantesActivos AS
 	SELECT *
@@ -279,12 +279,12 @@ SELECT *
 FROM VistaEstudiantesActivos
 ORDER BY Edad DESC;
 ```
-</Solution>
+:::
 
 ## Ejercicio 10
 **Función para calcular la edad mínima:** Desarrolla una función llamada `fn_EdadMinimaEstudiantes` que devuelva la edad mínima de los estudiantes.
 
-<Solution>
+:::solution
 ```sql
 CREATE FUNCTION fn_EdadMinimaEstudiantes()
 RETURNS INT
@@ -295,4 +295,4 @@ BEGIN
 	RETURN @minEdad;
 END;
 ```
-</Solution>
+:::

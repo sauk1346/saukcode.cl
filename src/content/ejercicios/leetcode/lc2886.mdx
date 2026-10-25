@@ -18,8 +18,8 @@ Escribe una solución para corregir los errores:
 
 ## Ejemplo
 
-<MultiColumn>
-<div>
+::::columns
+:::col
 **Input:**
 <TerminalOutput>
 {`DataFrame students:
@@ -30,8 +30,8 @@ Escribe una solución para corregir los errores:
 | 2          | Kate | 15  | 87.0  |
 +------------+------+-----+-------+`}
 </TerminalOutput>
-</div>
-<div>
+:::
+:::col
 **Output:**
 <TerminalOutput>
 {`+------------+------+-----+-------+
@@ -45,12 +45,12 @@ Explicación:
 El tipo de datos de la columna "grade" 
 se convierte a int.`}
 </TerminalOutput>
-</div>
-</MultiColumn>
+:::
+::::
 
 ## Soluciones
 
-<Solution title="Python" icon="Python">
+:::solution[Python]{icon="Python"}
 ```python
 import pandas as pd
 
@@ -59,4 +59,4 @@ def changeDatatype(students: pd.DataFrame) -> pd.DataFrame:
     
     return students 
 ```
-</Solution>
+:::

@@ -7,7 +7,7 @@
 
 1. Dibuje de manera simple y ordenada un edificio de 3 pisos, puede ser mediante 3 rectángulos de colores suaves para que se observe bien los dispositivos de red a implementar
 
-<Solution title="Solución Pregunta 1">
+:::solution[Solución Pregunta 1]
 
 <SmartFigure
 	id="fig28"
@@ -17,7 +17,7 @@
 	size="large"
 />
 
-</Solution>
+:::
 
 2. En **primer piso** identifique, selecciones y conecte cada dispositivo indicado a continuación:
     - 1 switch Cisco Cataliyst 2960
@@ -25,7 +25,7 @@
     - 5 PCs conectados a los teléfonos IP
     - 1 impresora en red conectada al switch
 
-<Solution title="Solución Pregunta 2">
+:::solution[Solución Pregunta 2]
 Ubicación dispositivos:
 - Switch: `Network Devices` >> `Switches` >> `2960`
 - Teléfonos IP: `End Devices` >> `IP Phone`
@@ -62,7 +62,7 @@ Los teléfonos IP se conectan al switch, y cada PC se conecta al puerto de PC de
 	caption="Instalación dispositivos en primer piso"
 	size="large"
 />
-</Solution>
+:::
 
 3. En **segundo piso** identifique, seleccione y conecte cada dispositivo indicado a continuación:
     - 1 switch Cisco Cataliyst 2960
@@ -70,7 +70,7 @@ Los teléfonos IP se conectan al switch, y cada PC se conecta al puerto de PC de
     - 5 laptops conectados al router inalámbricamente
     - 1 impresora en red conectada al switch
 
-<Solution title="Solución Pregunta 3">
+:::solution[Solución Pregunta 3]
 Ubicación dispositivos:
 - Switch: `Network Devices` >> `Switches` >> `2960`
 - Router inalámbrico: `Network Devices` >> `Wireless Devices` >> `WRT300N`
@@ -104,14 +104,14 @@ El WRT300N se conecta al switch con cable directo. Las laptops se conectan al WR
 	caption="Instalación dispositivos en segundo piso"
 	size="large"
 />
-</Solution>
+:::
 
 4. En **tercer piso** identifique, seleccione y conecte cada dispositivo indicado a continuación:
     - 1 switch Cisco 2960
     - 1 router Cisco 1941, conecte G0/0 del ROUTER a la G0/1 del switch
     - 5 servidores etiquetados como DHCP, DNS, WEB, MAIL, FTP y conectados al switch
 
-<Solution title="Solución Pregunta 4">
+:::solution[Solución Pregunta 4]
 Ubicación dispositivos:
 - Switch: `Network Devices` >> `Switches` >> `2960`
 - Router: `Network Devices` >> `Routers` >> `1941`
@@ -140,11 +140,11 @@ Ubicación dispositivos:
 	caption="Instalación dispositivos en tercer piso"
 	size="large"
 />
-</Solution>
+:::
 
 5. El switch de un piso debe estar conectado con el switch del siguiente piso
 
-<Solution title="Solución Pregunta 5">
+:::solution[Solución Pregunta 5]
 Ubicación dispositivo:
 - Cable cruzado: `Connections` >> `Copper Cross-Over`
 
@@ -166,13 +166,13 @@ Ubicación dispositivo:
 	caption="Conexión entre switches con cable cruzado"
 	size="large"
 />
-</Solution>
+:::
 
 6. De acuerdo con TCP/IP, configure dirección IP, máscara de subred y Gateway a cada PC y servidor, Segmento de IP 192.168.X.Y con máscara /24 = 255.255.255.0, donde:
     - X = Número de lista, que le indicará su docente
     - Y = Cualquier número entre el 5 y 254
 
-<Solution title="Solución Pregunta 6">
+:::solution[Solución Pregunta 6]
 Configuración para `PC0`
 
 - Se utiliza X=18, Y=15
@@ -218,7 +218,7 @@ Se realiza la misma configuración para los PCs y servidores restantes:
 	caption="Configuración IP para PC0"
 	size="large"
 />
-</Solution>
+:::
 
 7. Configuraciones IP en cada switch respectivamente:
     - Switch0 = VLAN1 192.168.X.2
@@ -227,7 +227,7 @@ Se realiza la misma configuración para los PCs y servidores restantes:
     - Máscara = 255.255.255.0
     - Default Gateway = 192.168.X.1
 
-<Solution title="Solución Pregunta 7">
+:::solution[Solución Pregunta 7]
 Configuración para `Switch0` (primer piso)
 
 - Ir a: `Switch0` >> `CLI`
@@ -330,7 +330,7 @@ ip default-gateway 192.168.18.1`}
 	size="large"
 />
 
-</Solution>
+:::
 
 8. Configuraciones básicas y de seguridad SSH en el router del tercer piso: 
     - G0/0 IP = 192.168.X.1 con máscara /24 = 255.255.255.0
@@ -347,7 +347,7 @@ ip default-gateway 192.168.18.1`}
     - Desde cualquier PC del primer piso, en Command Prompt, ejecute comando: `ssh -l admin2 192.168.X.1`
     - Ingrese la contraseña de admin2, debe aparecer el nombre del router
 
-<Solution title="Solución Pregunta 8">
+:::solution[Solución Pregunta 8]
 Configuración para `Router0` (tercer piso)
 
 - Ir a: `Router0` >> `CLI`
@@ -421,4 +421,4 @@ ANTONIO>`}
 	caption="Acceso remoto al router ANTONIO vía SSH desde PC0"
 	size="large"
 />
-</Solution>
+:::

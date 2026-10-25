@@ -17,7 +17,7 @@ Realice las configuraciones de IPv4 en cada dispositivo de la topología de red 
 	size="large"
 />
 
-<Solution title="Solución Actividad 01">
+:::solution[Solución Actividad 01]
 
 <SmartFigure
     id="fig150"
@@ -51,7 +51,7 @@ Realice las configuraciones de IPv4 en cada dispositivo de la topología de red 
 	size="large"
 />
 
-</Solution>
+:::
 
 ## Actividad 02
 
@@ -63,7 +63,7 @@ Realice configuración de protocolo de enrutamiento OSPFv2 en router COLLAHUASI:
 - No enviar información de enrutamiento por interfaces que no sea necesario o inseguro
 
 
-<Solution title="Solución Actividad 02">
+:::solution[Solución Actividad 02]
 
 <TerminalOutput withBg>
 {`enable
@@ -87,7 +87,7 @@ passive-interface default
 no passive-interface s0/0/0`}
 </TerminalOutput>
 
-</Solution>
+:::
 
 ## Actividad 03
 
@@ -98,7 +98,7 @@ Realice configururación de protocolo de enrutamiento OSPFv2 en router LOSPELAMB
 - Declare o publique las IP de las interfaces del router con su correspondiente WildCardMask en área 0 backbone.
 - No enviar información de enrutamiento por interfaces que no sea necesario o inseguro
 
-<Solution title="Solución Actividad 03">
+:::solution[Solución Actividad 03]
 
 <TerminalOutput withBg>
 {`enable
@@ -121,7 +121,7 @@ network 172.20.10.133 0.0.0.0 area 0     # Enlace serial hacia ELTENIENTE
 passive-interface g0/0`}
 </TerminalOutput>
 
-</Solution>
+:::
 
 ## Actividad 04
 
@@ -135,7 +135,7 @@ Realice configuración de protocolo de enrutamiento OSPFv2 en router ELTENIENTE:
 - No envier información de enrutamiento por interfaces que no sea necesario o inseguro
 - Redistribuya la ruta por defecto dentro del ospf
 
-<Solution title="Solución Actividad 04">
+:::solution[Solución Actividad 04]
 
 <TerminalOutput withBg>
 {`enable
@@ -179,7 +179,7 @@ no passive-interface s0/0/1
 default-information originate`}
 </TerminalOutput>
 
-</Solution>
+:::
 ## Actividad 05
 
 Muestre la tabla de enrutamiento de vecinos y topología
@@ -190,7 +190,7 @@ Muestre la tabla de enrutamiento de vecinos y topología
 - Explique resultado de dicho comando
 - Realice resolucion de problemas en caso de fallas de configuración
 
-<Solution title="Solución Actividad 05">
+:::solution[Solución Actividad 05]
 
 **Aplique el comando para mostrar la tabla de enrutamiento en router COLLAHUASI. Explique resultado de dicho comando**
 
@@ -242,4 +242,4 @@ Qué debería mostrar:
 6. Máscaras distintas en los dos extremos de un mismo enlace serial (ej. /30 en un lado y /29 en el otro): ambos extremos quedan en subredes distintas y no forman vecindad aunque el enlace esté físicamente activo.
 7. Si la ruta por defecto no llega a COLLAHUASI ni LOSPELAMBRES: confirmar en ELTENIENTE que existe `ip route 0.0.0.0 0.0.0.0 loopback1` y que `default-information originate` está dentro de `router ospf 30`.
 
-</Solution>
+:::

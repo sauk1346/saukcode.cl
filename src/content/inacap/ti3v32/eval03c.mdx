@@ -18,63 +18,63 @@ Responde los siguientes ejercicios usando consultas en MongoDB Shell
 ## Ejercicio 01
 Buscar empleados cuyo nombre contenga la letra 'e' al menos dos veces.
 
-<Solution>
+:::solution
 ```js
 db.empleados.find({
     nombre: /.*e.*e.*/i
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 02
 Filtrar empleados cuyo sueldo esté entre \$1.200.000 y \$2.000.000.
 
-<Solution>
+:::solution
 ```js
 db.empleados.find({
   sueldo: { $gte: 1200000, $lte: 2000000 }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 03
 Mostrar empleados activos que vivan fuera de 'Providencia'.
 
-<Solution>
+:::solution
 ```js
 db.empleados.find({
     activo: true,
     comuna: {$ne: "Providencia"}
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 04
 Listar empleados contratados en 2020.
 
-<Solution>
+:::solution
 ```js
 db.empleados.find({
     contratado: { $gte: "2020-01-01", $lte: "2020-12-31" }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 05
 Buscar empleados del área de 'Diseño' o 'Marketing'.
 
-<Solution>
+:::solution
 ```js
 db.empleados.find({
     area: {$in: ["Diseño", "Marketing"]}
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 06
 Mostrar empleados cuya evaluación promedio sea menor a 4.5.
 
-<Solution>
+:::solution
 ```js
 db.empleados.find({
   $or: [
@@ -141,24 +141,24 @@ db.empleados.find({
   ]
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 07
 Filtrar empleados con más de 2 habilidades, una de las cuales sea 'Excel'.
 
-<Solution>
+:::solution
 ```js
 db.empleados.find({
     habilidades: "Excel",
     $expr: { $gt: [{ $size: "$habilidades" }, 2] }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 08
 Mostrar empleados cuyo nombre y comuna tengan la misma primera letra.
 
-<Solution>
+:::solution
 ```js
 db.empleados.find({
     $expr: {
@@ -169,23 +169,23 @@ db.empleados.find({
     }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 09
 Buscar empleados cuyo campo 'direccion' no exista.
 
-<Solution>
+:::solution
 ```js
 db.empleados.find({
     direccion: {$exists: false}
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 10
 Listar empleados que tengan exactamente 3 habilidades.
 
-<Solution>
+:::solution
 ```js
 db.empleados.find({
     $expr: {
@@ -193,46 +193,46 @@ db.empleados.find({
     }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 11
 Filtrar empleados con evaluación de 2022 menor a 4.5.
 
-<Solution>
+:::solution
 ```js
 db.empleados.find({
     "evaluaciones.2022": {$lt: 4.5}
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 12
 Mostrar empleados cuyo campo 'evaluaciones' tenga solo 2 años registrados.
 
-<Solution>
+:::solution
 ```js
 db.empleados.find({
     $expr: {
          $eq: [{ $size: { $objectToArray: "$evaluaciones" } }, 2] }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 13
 Buscar empleados donde la comuna contenga exactamente 6 caracteres.
 
-<Solution>
+:::solution
 ```js
 db.empleados.find({
     comuna: /^.{6}$/i
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 14
 Filtrar empleados donde sueldo dividido por edad sea menor a 50.000 (usar $expr).
 
-<Solution>
+:::solution
 ```js
 db.empleados.find({
     $expr: {
@@ -243,16 +243,16 @@ db.empleados.find({
     }
 })
 ```
-</Solution>
+:::
 
 ## Ejercicio 15
 Mostrar empleados donde el largo del nombre sea igual a la suma de habilidades.
 
-<Solution>
+:::solution
 ```js
 db.empleados.find({
     $expr: { 
         $eq: [{ $strLenCP: "$nombre" }, { $size: "$habilidades" }] }
 })
 ```
-</Solution>
+:::

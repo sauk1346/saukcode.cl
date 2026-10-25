@@ -48,7 +48,7 @@ Explicación: Bob y George ambos tienen una condición que comienza con DIAB1.`}
 
 ## Solución
 
-<Solution title="Python" icon="Python">
+:::solution[Python]{icon="Python"}
 ```python
 def find_patients(patients: pd.DataFrame) -> pd.DataFrame:
     
@@ -56,4 +56,4 @@ def find_patients(patients: pd.DataFrame) -> pd.DataFrame:
 
     return patients[patients['conditions'].str.contains(regex, na=False)]
 ```
-</Solution>
+:::

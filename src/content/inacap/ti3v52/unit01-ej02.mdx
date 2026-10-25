@@ -11,7 +11,7 @@ La empresa Redes2026 ubicada en Avenida Portales 21549 se encuentra en fase de p
 
 1. Dibuje de manera simple y ordenada un edificio de 2 pisos, puede ser 2 rectángulos. (colores suaves)
 
-<Solution title="Solución Pregunta 1">
+:::solution[Solución Pregunta 1]
 - Ir al ícono "Draw Rectangle". De manera alternativa, se puede presionar la tecla `R`
 - Ir al ícono "Place Note". De manera alternativa, se puede presionar la tecla `N`
 
@@ -23,14 +23,14 @@ La empresa Redes2026 ubicada en Avenida Portales 21549 se encuentra en fase de p
     lightbox={true}
 	size="large"
 />
-</Solution>
+:::
 
 2. En primer piso incluya los siguientes dispositivos:
     - 1 switch Cisco Catalyst 2960
     - 6 PCs conectados con cable directo al switch
     - 1 impresora en red conectada al switch con cable directo
 
-<Solution title="Solución Pregunta 2">
+:::solution[Solución Pregunta 2]
 Ubicación dispositivos:
 - Switch: `Network Devices` >> `Switches` >> `2960`
 - PCs: `End Devices` >> `PC`
@@ -60,14 +60,14 @@ Ubicación dispositivos:
     lightbox={true}
 	size="large"
 />
-</Solution>
+:::
 
 3. En el segundo piso incluya los siguientes dispositivos:
     - 1 switch Cisco 2960
     - 1 router Cisco 1941, con interfaz G0/0 conectado a la g0/1 del switch Cable directo
     - 5 servidores etiquetados como DHCP, DNS, WEB, MAIL, TFTP conectados al switch
 
-<Solution title="Solución Pregunta 3">
+:::solution[Solución Pregunta 3]
 Ubicación dispositivos:
 - Switch: `Network Devices` >> `Switches` >> `2960`
 - Router: `Network Devices` >> `Routers` >> `1941`
@@ -97,11 +97,11 @@ Ubicación dispositivos:
     lightbox={true}
 	size="large"
 />
-</Solution>
+:::
 
 4. El switch de un piso debe estar conectado con cable cruzado al switch del siguiente piso
 
-<Solution title="Solución Pregunta 4">
+:::solution[Solución Pregunta 4]
 Ubicación dispositivo:
 - Cable cruzado: `Connections` >> `Copper Cross-Over` 
 
@@ -123,7 +123,7 @@ Ubicación dispositivo:
     lightbox={true}
 	size="large"
 />
-</Solution>
+:::
 
 5. Configure dirección IP, máscara de red y Gateway a cada PC:
     - IP = 172.20.X.Y
@@ -134,7 +134,7 @@ Ubicación dispositivo:
 X = número de subred entregado por docente, Y = Número entre 3 y 254
 </P>
 
-<Solution title="Solución Pregunta 5">
+:::solution[Solución Pregunta 5]
 Configuración para `PC0`
 
 - Se utiliza X=30, Y=3
@@ -168,14 +168,14 @@ Se realiza la misma configuración para los PCs restantes:
 		['**PC5**', '172.20.30.8', '255.255.255.0', '172.20.30.1'],
 	]}
 />
-</Solution>
+:::
 
 6. En el switch:
     - VLAN = 172.20.X.2/24
     - Máscara /24 = 255.255.255.0
     - Default Gateway = 172.20.X.1
 
-<Solution title="Solución Pregunta 6">
+:::solution[Solución Pregunta 6]
 Configuración para `Switch0` (en el primer piso)
 
 - Ir a: `Switch0` >> `CLI`
@@ -210,7 +210,7 @@ ip default-gateway 172.20.30.1`}
 	caption="Configuración para Switch0"
 	size="large"
 />
-</Solution>
+:::
 
 7. En el router:
     - GO/0 IP 172.20.x.1/24
@@ -227,7 +227,7 @@ ip default-gateway 172.20.30.1`}
     - Desde cualquier PC del primer piso, en Command Prompt, ejecute el comando `ssh -l admin 172.20.X.1`
     - Ingrese la contraseña de admin, debe aparecer el nombre del router
 
-<Solution title="Solución Pregunta 7">
+:::solution[Solución Pregunta 7]
 Configuración para `Router0` (en el segundo piso)
 
 - Ir a: `Router0` >> `CLI`
@@ -311,4 +311,4 @@ ANTONIO#>`}
 	caption="Acceso remoto al router ANTONIO vía SSH desde PC3"
 	size="large"
 />
-</Solution>
+:::

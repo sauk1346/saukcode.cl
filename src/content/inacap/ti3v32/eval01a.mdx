@@ -215,7 +215,7 @@
     - clientes
 3. Insertar al menos **4 documentos en cada colección**, usando datos realistas. Puedes inventar nombre, precios, edades, etc.
 
-<Solution>
+:::solution
 1. Documentos para colección "productos":
 ```json
 [
@@ -279,7 +279,7 @@
     }  
 ]
 ```
-</Solution>
+:::
 
 
 ### Ejercicio 1 - Inserción visual de documentos (15 puntos)
@@ -293,7 +293,7 @@ Inserta **2 nuevos documentos** en la colección productos, cada uno debe inclui
 
 Además, agrega un campo extra llamado oferta (boolean) a **uno** de ellos.
 
-<Solution>
+:::solution
 
 ```json
 [
@@ -314,7 +314,7 @@ Además, agrega un campo extra llamado oferta (boolean) a **uno** de ellos.
     }
 ]
 ```
-</Solution>
+:::
 
 
 ### Ejercicio 2 - Filtros en la pestaña "Documents" (15 puntos)
@@ -322,53 +322,53 @@ Realiza los siguientes filtros desde la vista visual de documentos (no en shell)
 
 1. En la colección clientes, filtra todos los clientes con edad mayor a 30.
 
-<Solution>
+:::solution
 ```json
 { "edad": { "$gt": 30 } }
 ```
-</Solution>
+:::
 2. En la colección productos, filtra todos los productos cuyo precio sea menor a 200.
 
-<Solution>
+:::solution
 ```json
 { "precio": { "$lt": 200 } }
 ```
-</Solution>
+:::
 
 ### Ejercicio 3 - Actualización visual (15 puntos)
 Realiza las siguientes actualizaciones desde el botón "Edit Document":
 
 1. Aumenta el campo stock de un producto en +5 unidades.
 
-<Solution>
+:::solution
 - Seleccionar la colección "productos"
 - Buscar un producto (por ejemplo la "Laptop HP")
 - Hacer clic en el ícono de edición (lápiz) de ese documento
 - Cambiar el valor del campo "stock" de 15 a 20
 - Hacer clic en "Update"
 
-</Solution>
+:::
 
 2. Agrega el campo estado: "activo" a un cliente existente.
 
-<Solution>
+:::solution
 - Seleccionar la colección "clientes"
 - Buscar un cliente (por ejemplo "Ana López")
 - Hacer clic en el ícono de edición
 - Agregar el campo "estado" con valor "activo"
 - Hacer clic en "Update"
 
-</Solution>
+:::
 
 3. A todos los productos de la categoría "Accesorios", agrega el campo proveedor: "ElectroMax".
 
-<Solution>
+:::solution
 - Seleccionar la colección "productos"
 - En la barra de filtro, escribir: `{ "categoria": "Accesorios" }`
 - Para cada resultado, hacer clic en el ícono de edición
 - Agregar el campo "proveedor" con valor "ElectroMax"
 - Hacer clic en "Update" para cada documento
-</Solution>
+:::
 
 
 ### Ejercicio 4 - Eliminación visual (15 puntos)
@@ -376,7 +376,7 @@ Elimina un documento de cada colección que cumpla una de estas condiciones:
 
 - Un producto cuyo stock sea 0.
 
-<Solution>
+:::solution
 - Ir a colección "productos"
 - En barra de filtro, ingresar:
 
@@ -384,11 +384,11 @@ Elimina un documento de cada colección que cumpla una de estas condiciones:
 { "stock": 0 }
 ```
 - Presionar boton "Delete"
-</Solution>
+:::
 
 - Un cliente cuya edad sea menor a 20.
 
-<Solution>
+:::solution
 - Ir a colección "clientes"
 - En barra de filtro, ingresar:
 
@@ -396,4 +396,4 @@ Elimina un documento de cada colección que cumpla una de estas condiciones:
 { "edad": {"$lt": 20 } }
 ```
 - Presionar boton "Delete"
-</Solution>
+:::

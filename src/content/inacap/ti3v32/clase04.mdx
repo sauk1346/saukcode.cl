@@ -44,7 +44,7 @@ Cargar los siguientes archivos a la Base de Datos:
 
 **Insertar un nuevo estudiante**
 
-<Solution>
+:::solution
 - Seleccionar colección `alumnos`
 - `Add Data` > `Insert Document`
 
@@ -59,12 +59,12 @@ Cargar los siguientes archivos a la Base de Datos:
   "notas": [3, 2, 5]
 }
 ```
-</Solution>
+:::
 
 ## Ejercicio 02
 **Insertar múltiple docentes**
 
-<Solution>
+:::solution
 - Seleccionar colección `docentes`
 - Presionar botón `Add Data` > `Insert Document`
 
@@ -90,12 +90,12 @@ Cargar los siguientes archivos a la Base de Datos:
     }
 ]
 ```
-</Solution>
+:::
 
 ## Ejercicio 03
 **Filtrar estudiantes por carrera**. Encuentra a los alumnos que estudien Ingeniería informática
 
-<Solution>
+:::solution
 - Seleccionar colección `alumnos`
 - Ir a query y agregar:
 
@@ -103,12 +103,12 @@ Cargar los siguientes archivos a la Base de Datos:
 {"carrera":"Ingeniería Informática"}
 ```
 - Presionar botón `find`
-</Solution>
+:::
 
 ## Ejercicio 04
 Buscar docentes que enseñan Bases de datos
 
-<Solution>
+:::solution
 - Seleccionar colección `docentes`
 - Ir a query y agregar:
 
@@ -116,12 +116,12 @@ Buscar docentes que enseñan Bases de datos
 {"asignaturas":"Bases de Datos"}
 ```
 - Presionar botón `find`
-</Solution>
+:::
 
 ## Ejercicio 05
 **Buscar estudiantes con notas mayores a 6.0**. Encuentra alumnos que tengan al menos una asignatura con una nota superior a 6.0
 
-<Solution>
+:::solution
 - Seleccionar colección `alumnos`
 - Ir a query y agregar: 
 ```json
@@ -129,13 +129,13 @@ Buscar docentes que enseñan Bases de datos
 ```
 
 - Presionar botón `find`
-</Solution>
+:::
 
 
 ## Ejercicio 06
 **Filtrar docentes mayores de 40 años**. Encuentra docentes cuya edad sea mayor a 40
 
-<Solution>
+:::solution
 - Seleccionar colección `docentes`
 - Ir a query y agregar:
 
@@ -143,13 +143,13 @@ Buscar docentes que enseñan Bases de datos
 {"edad":{"$gt":40}}
 ```
 - Presionar botón `find`
-</Solution>
+:::
 
 
 ## Ejercicio 07
 **Actualizar el correo de un estudiante**. El alumnos Juan Pérez ha cambiado su correo. Ahora es juan.perez2025ejemplo.com
 
-<Solution>
+:::solution
 - Seleccionar colección `alumnos`
 - Ir a query y agregar:
 
@@ -163,13 +163,13 @@ Buscar docentes que enseñan Bases de datos
 {$set:{"correo":"juan.perez333@gmail.com"} }
 ```
 - Presionar `refresh`
-</Solution>
+:::
 
 
 ## Ejercicio 08
 **Aumentar la edad de un docente.** El docente Roberto Morales ha cumplido años. Debemos aumentar su edad en 1
 
-<Solution>
+:::solution
 - Seleccionar colección `docentes`
 - Ir a query y agregar:
 
@@ -183,12 +183,12 @@ Buscar docentes que enseñan Bases de datos
 {$inc:{"edad":1}}
 ```
 - Presionar `refresh`
-</Solution>
+:::
 
 ## Ejercicio 09
 **Agregar una nueva asignatura a un docente**. El docente Lucía Torres ahora impartirá la asignatura Cloud Computing
 
-<Solution>
+:::solution
 - Seleccionar colección `docentes`
 - Ir a query y agregar:
 
@@ -202,12 +202,12 @@ Buscar docentes que enseñan Bases de datos
 {$push:{"asignaturas":"Cloud Computing"}}
 ```
 - Presionar `refresh`
-</Solution>
+:::
 
 ## Ejercicio 10
 **Eliminar una asignatura específica de un docente**. El docente Andrés Sánchez ya no enseña Ingeniería de Software
 
-<Solution>
+:::solution
 - Seleccionar colección `docentes`
 - Ir a query y agregar:
 
@@ -221,12 +221,12 @@ Buscar docentes que enseñan Bases de datos
 { $pull:{ "asignaturas":"Ingeniería de Software" } }
 ```
 - Presionar `refresh`
-</Solution>
+:::
 
 ## Ejercicio 11
 Eliminar a un alumno que se retiró
 
-<Solution>
+:::solution
 - Seleccionar colección `alumnos`
 - Ir a query y agregar un alumno cualquiera:
 
@@ -235,4 +235,4 @@ Eliminar a un alumno que se retiró
 ```
 - Presionar botón `find`
 - Presionar botón `delete`
-</Solution>
+:::

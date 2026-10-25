@@ -117,7 +117,7 @@
 - `Price`: Decimal con dos decimales. 
 - `CategoryID`: Número entero, debe referenciar a `CategoryID` en una tabla `Categories`.
 
-<Solution>
+:::solution
 ```sql
 CREATE DATABASE EVAL01A;
 
@@ -139,26 +139,26 @@ CREATE TABLE Products(
 	FOREIGN KEY(CategoryID) REFERENCES Categories(CategoryID)
 );
 ```
-</Solution>
+:::
 
 ### Ejercicio 2: Creación de Vistas
 
 **Enunciado:** Crea una vista llamada `VistaProductosCaros` que muestre el nombre del producto y su precio para aquellos productos cuyo precio sea mayor a $100.
 
-<Solution>
+:::solution
 ```sql
 CREATE VIEW VistaProductosCaros AS
 	SELECT ProductName, Price
 	FROM Products
 	WHERE Price < 100;
 ```
-</Solution>
+:::
 
 ### Ejercicio 3: Creación de Índice
 
 **Enunciado:** Crea un índice compuesto en las columnas `LastName` y `FirstName` de la tabla `Customers` para optimizar las búsquedas por nombre completo.
 
-<Solution>
+:::solution
 ```sql
 CREATE TABLE Customers(
 	CustomerID INT IDENTITY,
@@ -170,13 +170,13 @@ CREATE TABLE Customers(
 CREATE INDEX idx_LastNameFirstName
 ON Customers(LastName, FirstName);
 ```
-</Solution>
+:::
 
 ### Ejercicio 4: Procedimientos Almacenados
 
 **Enunciado:** Crea un procedimiento almacenado `sp_ActualizarPrecio` que permita actualizar el precio de un producto dado su ID.
 
-<Solution>
+:::solution
 ```sql
 CREATE PROCEDURE sp_ActualizarPrecio
 	@productoID INT,
@@ -188,4 +188,4 @@ BEGIN
 	WHERE ProductID = @productoID;
 END;
 ```
-</Solution>
+:::
