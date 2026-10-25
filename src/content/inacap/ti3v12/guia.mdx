@@ -557,19 +557,17 @@ FROM Clientes;
 
 Sean los atributos *Producto*, *Cantidad*, *PrecioUnidad*, *Fecha* pertenecientes a la tabla *Ventas*.
 
-<SmartTable
- layoutTable="auto"
- headers={["Producto","Cantidad","PrecioUnidad","Fecha"]}
- rows={[
- ["A","10","5","2024-07-15"],
- ["B","15","3","2024-07-20"],
- ["A","5","5","2024-07-23"],
- ["A","8","5","2024-07-23"],
- ["C","7","8","2024-08-05"],
- ["B","10","3","2024-08-10"],
- ["A","8","5","2024-08-12"],
- ]}
-/>
+:::table{layout="fixed"}
+| Producto | Cantidad | PrecioUnidad | Fecha |
+| --- | --- | --- | --- |
+| A | 10 | 5 | 2024-07-15 |
+| B | 15 | 3 | 2024-07-20 |
+| A | 5 | 5 | 2024-07-23 |
+| A | 8 | 5 | 2024-07-23 |
+| C | 7 | 8 | 2024-08-05 |
+| B | 10 | 3 | 2024-08-10 |
+| A | 8 | 5 | 2024-08-12 |
+:::
 
 **Ejemplo 1:** Mostrar el total de ventas para cada producto.
 
@@ -593,17 +591,15 @@ GROUP BY Producto, Fecha
 ORDER BY Producto, Fecha;
 ```
 
-<SmartTable
- layoutTable="auto"
- headers={["Producto","Fecha","TotalVentas"]}
- rows={[
- ["A","2024-07-15","50"],
- ["A","2024-07-23","65"],
- ["B","2024-07-20","45"],
- ["B","2024-07-25","30"],
- ["C","2024-07-24","56"],
- ]}
-/>
+:::table{layout="fixed"}
+| Producto | Fecha | TotalVentas |
+| --- | --- | --- |
+| A | 2024-07-15 | 50 |
+| A | 2024-07-23 | 65 |
+| B | 2024-07-20 | 45 |
+| B | 2024-07-25 | 30 |
+| C | 2024-07-24 | 56 |
+:::
 
 - Para el ejemplo 2, se agrega el comando `ORDER BY` para garantizar que los atributos *Producto* y *Fecha* se ordenen de forma ascendente.
 

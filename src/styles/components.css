@@ -619,3 +619,258 @@ html.dark-mode-override .terminal:not(.terminal-bg)::-webkit-scrollbar-thumb:hov
     margin: 0.75rem 0;
   }
 }
+
+/* ================================
+   TABLAS: :::table y tablas GFM (remark-components)
+   Pantalla de stats RPG: etiquetas mono, regla fuerte bajo el header,
+   cebra sutil y hover como selección de menú
+   ================================ */
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.smart-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  table-layout: auto;
+  margin-bottom: 1.75rem;
+}
+
+.smart-table-fixed,
+.smart-table.smart-table-mixed {
+  table-layout: fixed;
+}
+
+/* En móvil las columnas conservan un ancho legible y la tabla desborda
+   hacia el scroll del wrapper (salvo `mixed`, que fija sus anchos) */
+@media (max-width: 768px) {
+  .smart-table-fixed {
+    table-layout: auto;
+  }
+
+  .smart-table th,
+  .smart-table td {
+    min-width: 6.5rem;
+  }
+}
+
+.smart-table thead {
+  background: var(--surface);
+  border-bottom: 2px solid var(--secondary);
+}
+
+.smart-table th,
+.smart-table td {
+  padding: var(--spacing-md) 0.75rem;
+  text-align: left;
+  border: 1px solid var(--border-color);
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.smart-table thead th {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--foreground);
+  font-size: 0.8rem;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.smart-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.smart-table tbody tr:nth-child(even):not(.table-highlight) {
+  background-color: color-mix(in srgb, var(--surface) 45%, transparent);
+}
+
+.smart-table tbody tr:hover {
+  background-color: color-mix(in srgb, var(--primary) 12%, transparent);
+}
+
+.smart-table tbody td {
+  color: var(--foreground);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  white-space: normal;
+  vertical-align: top;
+}
+
+.smart-table caption {
+  caption-side: top;
+  padding-bottom: 0.75rem;
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--secondary);
+  text-align: left;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+/* Filas destacadas: :highlight */
+.table-highlight td {
+  font-weight: 600;
+}
+
+.table-highlight-yellow {
+  background-color: color-mix(in srgb, var(--warning-fill) 35%, transparent);
+}
+
+.table-highlight-green {
+  background-color: color-mix(in srgb, var(--success) 18%, transparent);
+}
+
+.table-highlight-blue {
+  background-color: color-mix(in srgb, var(--primary) 16%, transparent);
+}
+
+.table-highlight-red {
+  background-color: color-mix(in srgb, var(--error) 16%, transparent);
+}
+
+.table-highlight-gray {
+  background-color: color-mix(in srgb, var(--secondary) 16%, transparent);
+}
+
+.smart-table tbody tr.table-highlight:hover {
+  filter: brightness(0.96);
+}
+
+html.dark-mode .table-highlight-yellow,
+html.dark-mode-override .table-highlight-yellow {
+  background-color: color-mix(in srgb, var(--warning-fill) 22%, transparent);
+}
+
+html.dark-mode .table-highlight-green,
+html.dark-mode-override .table-highlight-green {
+  background-color: color-mix(in srgb, var(--success) 22%, transparent);
+}
+
+html.dark-mode .table-highlight-blue,
+html.dark-mode-override .table-highlight-blue {
+  background-color: color-mix(in srgb, var(--primary) 22%, transparent);
+}
+
+html.dark-mode .table-highlight-red,
+html.dark-mode-override .table-highlight-red {
+  background-color: color-mix(in srgb, var(--error) 22%, transparent);
+}
+
+html.dark-mode .table-highlight-gray,
+html.dark-mode-override .table-highlight-gray {
+  background-color: color-mix(in srgb, var(--secondary) 22%, transparent);
+}
+
+/* Fila de sección (:section[INGRESOS]): separador de grupo en mayúsculas
+   subrayadas, como en el desarrollo en pizarra */
+.smart-table td.table-section {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+html.dark-mode .smart-table td.table-section,
+html.dark-mode-override .smart-table td.table-section {
+  color: var(--secondary);
+}
+
+/* Contenido de celdas */
+.smart-table code {
+  white-space: nowrap;
+}
+
+.smart-table .katex-wrapper {
+  font-size: 1.2em;
+  line-height: 1.2;
+  vertical-align: baseline;
+  display: inline-block;
+}
+
+.smart-table td ul,
+.smart-table th ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  list-style-type: disc;
+  color: inherit;
+  max-width: none;
+}
+
+.smart-table td li,
+.smart-table th li {
+  margin: 0 0 0.3rem;
+  line-height: 1.5;
+  font-size: inherit;
+}
+
+/* Disco simple, no las viñetas ▸ de las listas del texto (mapping de `ul`) */
+.smart-table td li::marker,
+.smart-table th li::marker {
+  content: normal;
+  color: inherit;
+  font-size: inherit;
+}
+
+.smart-table audio {
+  width: 100%;
+  max-width: 270px;
+  height: 32px;
+}
+
+@media (max-width: 768px) {
+  .smart-table {
+    font-size: 0.8rem;
+  }
+
+  .smart-table thead th,
+  .smart-table tbody td {
+    padding: 0.75rem 0.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .smart-table thead th,
+  .smart-table tbody td {
+    padding: 0.5rem 0.375rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* :tableref{#id} sin destino (el enlace válido lo estiliza SmartLink, vía el mapping de `a`) */
+.table-ref-error {
+  color: var(--error);
+  font-style: italic;
+}
+
+/* :red[texto] y compañía: anotaciones en color (ej. tinta roja de pizarra) */
+.text-red {
+  color: var(--error);
+  font-weight: 600;
+}
+
+.text-blue {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.text-green {
+  color: var(--success);
+  font-weight: 600;
+}
+
+.text-gray {
+  color: var(--secondary);
+  font-weight: 600;
+}
+
+.text-yellow {
+  color: var(--warning);
+  font-weight: 600;
+}

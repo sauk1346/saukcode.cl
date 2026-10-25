@@ -26,64 +26,14 @@ Es el modelo más abstracto. El usuario consume directamente una aplicación lis
 
 ## 2. Tipos de arquitecturas de cloud computing
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Arquitectura", "Descripción"]}
-    lists={{
-        R1: [
-            "Se basa en aplicaciones que funcionan como una sola unidad",
-            "Simple de implementar, pero presenta limitaciones de escalabilidad y flexibilidad"
-        ],
-        R2: [
-            "Divide las aplicaciones en servicios pequeños e independientes que se comunican entre sí mediante API",
-            "Permite escalabilidad, resiliencia y despliegue continuo",
-            "Ideal para entornos multicloud y contenedores"
-        ],
-        R3: [
-            "Permite ejecutar funciones bajo demanda sin gestionar servidores",
-            "El proveedor de la nube administra la infraestructura y el usuario para solo por el tiempo de ejecución",
-            "Ejemplos: AWS Lambda, Azure Functions y Google Cloud Functions"
-        ],
-        R4: [
-            "Combina servicios de diferentes proveedores (AWS, Azure, GCP) para optimizar costos, evitar dependencia y cumplir regulaciones",
-            "Requiere herramientas de orquestación y gestión centralizada"
-        ],
-        R5: [
-            "Integra nubes públicas y privadas",
-            "Esto permite que las organizaciones mantengan datos sensibles en entornos privados mientras aprovechan la escalabilidad de la nube pública"
-        ],
-        R6: [
-            "Utiliza contenedores (docker) para empaquetar aplicaciones y Kubernetes para orquestación",
-            "Garantiza portabilidad entre diferentes nubes y entornos"
-        ]
-    }}
-    rows={[
-        [
-            "**Monolítica en la nube**",
-            "@R1"
-        ],
-        [
-            "**Basada en microservicios**",
-            "@R2"
-        ],
-        [
-            "**Serverless**",
-            "@R3"
-        ],
-        [
-            "**Multicloud**",
-            "@R4"
-        ],
-        [
-            "**Híbrida**",
-            "@R5"
-        ],
-        [
-            "**Basada en contenedores**",
-            "@R6"
-        ],
-    ]}
-/>
+| Arquitectura | Descripción |
+| --- | --- |
+| **Monolítica en la nube** | :li[Se basa en aplicaciones que funcionan como una sola unidad] :li[Simple de implementar, pero presenta limitaciones de escalabilidad y flexibilidad] |
+| **Basada en microservicios** | :li[Divide las aplicaciones en servicios pequeños e independientes que se comunican entre sí mediante API] :li[Permite escalabilidad, resiliencia y despliegue continuo] :li[Ideal para entornos multicloud y contenedores] |
+| **Serverless** | :li[Permite ejecutar funciones bajo demanda sin gestionar servidores] :li[El proveedor de la nube administra la infraestructura y el usuario para solo por el tiempo de ejecución] :li[Ejemplos: AWS Lambda, Azure Functions y Google Cloud Functions] |
+| **Multicloud** | :li[Combina servicios de diferentes proveedores (AWS, Azure, GCP) para optimizar costos, evitar dependencia y cumplir regulaciones] :li[Requiere herramientas de orquestación y gestión centralizada] |
+| **Híbrida** | :li[Integra nubes públicas y privadas] :li[Esto permite que las organizaciones mantengan datos sensibles en entornos privados mientras aprovechan la escalabilidad de la nube pública] |
+| **Basada en contenedores** | :li[Utiliza contenedores (docker) para empaquetar aplicaciones y Kubernetes para orquestación] :li[Garantiza portabilidad entre diferentes nubes y entornos] |
 
 
 ## Actividad de Práctica

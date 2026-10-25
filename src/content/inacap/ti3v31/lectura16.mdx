@@ -2,14 +2,10 @@
 
 Las API, o interfaces de programación de aplicaciones, son un conjunto de protocolos y herramientas que permiten que diferentes aplicaciones se comuniquen entre sí de manera eficiente. Existen varios tipos de API, cada una diseñada para cumplir funciones específicas y facilitar la integración de servicios y datos externos en nuestras aplicaciones. Entre las más comunes se encuentran:
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Tipo API","Descripción"]}
-  rows={[
-    ["**REST APIs**","Se utilizan **HTTP requests** para acceder y manipular datos. Los métodos comunes incluyen GET, POST, PUT, DELETE"],
-    ["**SOAP APIs**","Se utilizan **XML** para transferir datos y son más estrictas en términos de estructura"]
-  ]}
-/>
+| Tipo API | Descripción |
+| --- | --- |
+| **REST APIs** | Se utilizan **HTTP requests** para acceder y manipular datos. Los métodos comunes incluyen GET, POST, PUT, DELETE |
+| **SOAP APIs** | Se utilizan **XML** para transferir datos y son más estrictas en términos de estructura |
 
 ## Introducción a Fetch
 Fetch es una API nativa de JavaScript para realizar solicitudes HTTP. Es una alternativa moderna a XMLHttpRequest.
@@ -58,18 +54,14 @@ axios.get('https://api.example.com/data')
 ## Comparación entre Fetch y Axios
 Al comparar Fetch y Axios es importante destacar las fortalezas y diferencias clave de cada herramienta, para comprender mejor cuándo utilizar una sobre la otra.
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Característica","Fetch","Axios"]}
-  rows={[
-    ["**Soporte Nativo**","Sí","No"],
-    ["**Basado en promesas**","Sí","Sí"],
-    ["**Manejo de JSON**","Necesita `response.json`","Automático"],
-    ["**Intercepción de solicitudes**","No","Sí"],
-    ["**Cancelación de solicitudes**","No","Sí"],
-    ["**Compatibilidad**","Todos los navegadores modernos","Todos los navegadores modernos"]
-  ]}
-/>
+| Característica | Fetch | Axios |
+| --- | --- | --- |
+| **Soporte Nativo** | Sí | No |
+| **Basado en promesas** | Sí | Sí |
+| **Manejo de JSON** | Necesita `response.json` | Automático |
+| **Intercepción de solicitudes** | No | Sí |
+| **Cancelación de solicitudes** | No | Sí |
+| **Compatibilidad** | Todos los navegadores modernos | Todos los navegadores modernos |
 
 ## Ejemplo
 En el siguiente ejemplo, construirás una aplicación React que obtiene datos de una API externa utilizando fetch.

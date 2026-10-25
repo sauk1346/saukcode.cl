@@ -4,28 +4,12 @@ Manejar las propiedades y permisos en Linux es clave para poder operar y mantene
 
 ## Tipos de cuenta Linux
 
-<SmartTable
-	tableLayout="auto"
-	headers={['Tipo de Cuenta', 'Descripción']}
-	rows={[
-		[
-			'**Root**',
-			'Cuenta administrativa más poderosa. Acceso completo a todos los archivos y directorios del sistema'
-		],
-		[
-			'**System**',
-			'Cuentas especiales para manejar procesos y servicios específicos en el sistema operativo. Se utilizan para ejecutar servicios en segundo plano, como servidores web, bases de datos, y otros dominios del sistema'
-		],
-		[
-			'**Normal**',
-			'Cuentas de usuarios estándar. Permiten a los usuarios realizar tareas comunes, como navegar por la web, editar documentos, etc. Tienen permisos limitados para proteger el sistema contra cambios no autorizados'
-		],
-		[
-			'**Network**',
-			'Diseñadas para usuarios que acceden al sistema a través de la red. Estas cuentas suelen estar asociadas a servicios de red (SSH, FTP, SAMBA), permitiendo el acceso remoto a los recursos del sistema'
-		]
-	]}
-/>
+| Tipo de Cuenta | Descripción |
+| --- | --- |
+| **Root** | Cuenta administrativa más poderosa. Acceso completo a todos los archivos y directorios del sistema |
+| **System** | Cuentas especiales para manejar procesos y servicios específicos en el sistema operativo. Se utilizan para ejecutar servicios en segundo plano, como servidores web, bases de datos, y otros dominios del sistema |
+| **Normal** | Cuentas de usuarios estándar. Permiten a los usuarios realizar tareas comunes, como navegar por la web, editar documentos, etc. Tienen permisos limitados para proteger el sistema contra cambios no autorizados |
+| **Network** | Diseñadas para usuarios que acceden al sistema a través de la red. Estas cuentas suelen estar asociadas a servicios de red (SSH, FTP, SAMBA), permitiendo el acceso remoto a los recursos del sistema |
 
 ## Permisos
 Los tres parámetros principales son los permisos de **lectura**, **escritura** y **ejecución**.
@@ -59,35 +43,27 @@ La combinación de valores de cada grupo de los usuarios forma un número octal:
 
 La combinación de bits encendidos o apagados en cada grupo produce ocho posibles combinaciones de valores, que corresponden a la suma de los bits encendidos.
 
-<SmartTable
-	tableLayout="auto"
-	headers={['Permisos', 'Valor', 'Significado']}
-	rows={[
-		['`---`', '`0`', 'No se tiene ningún permiso'],
-		['`--x`', '`1`', 'Solo permiso de ejecución'],
-		['`-w-`', '`2`', 'Solo permiso de escritura'],
-		['`-wx`', '`3`', 'Permisos de escritura y ejecución'],
-		['`r--`', '`4`', 'Solo permiso de lectura'],
-		['`r-x`', '`5`', 'Permisos de lectura y ejecución'],
-		['`rw-`', '`6`', 'Permisos de lectura y escritura'],
-		['`rwx`', '`7`', 'Todos los permisos (lectura, escritura, ejecución)']
-	]}
-/>
+| Permisos | Valor | Significado |
+| --- | --- | --- |
+| `---` | `0` | No se tiene ningún permiso |
+| `--x` | `1` | Solo permiso de ejecución |
+| `-w-` | `2` | Solo permiso de escritura |
+| `-wx` | `3` | Permisos de escritura y ejecución |
+| `r--` | `4` | Solo permiso de lectura |
+| `r-x` | `5` | Permisos de lectura y ejecución |
+| `rw-` | `6` | Permisos de lectura y escritura |
+| `rwx` | `7` | Todos los permisos (lectura, escritura, ejecución) |
 
 Cuando se combinan los permisos del usuario, grupo y otros, se obtiene un número de **tres cifras** que representa los permisos del archivo o directorio
 
-<SmartTable
-	tableLayout="auto"
-	headers={['Permisos', 'Valor', 'Significado']}
-	rows={[
-		['`rw-------`', '`600`', 'El propietario tiene permisos de lectura y escritura.'],
-		['`rwx--x--x`', '`711`', 'El propietario lectura, escritura y ejecución, el grupo y otros solo ejecución.'],
-		['`rwxr-xr-x`', '`755`', 'El propietario lectura, escritura y ejecución, el grupo y otros pueden leer y ejecutar el archivo'],
-		['`rwxrwxrwx`', '`777`', 'El archivo puede ser leído, escrito y ejecutado por quien sea.'],
-		['`r--------`', '`400`', 'Solo el propietario puede leer el archivo, pero ni el mismo puede modificarlo o ejecutarlo y por supuesto ni el grupo ni otros pueden hacer nada en él.'],
-		['`rw-r-----`', '`640`', 'El usuario propietario puede leer y escribir, el grupo puede leer el archivo y otros no pueden hacer nada.']
-	]}
-/>
+| Permisos | Valor | Significado |
+| --- | --- | --- |
+| `rw-------` | `600` | El propietario tiene permisos de lectura y escritura. |
+| `rwx--x--x` | `711` | El propietario lectura, escritura y ejecución, el grupo y otros solo ejecución. |
+| `rwxr-xr-x` | `755` | El propietario lectura, escritura y ejecución, el grupo y otros pueden leer y ejecutar el archivo |
+| `rwxrwxrwx` | `777` | El archivo puede ser leído, escrito y ejecutado por quien sea. |
+| `r--------` | `400` | Solo el propietario puede leer el archivo, pero ni el mismo puede modificarlo o ejecutarlo y por supuesto ni el grupo ni otros pueden hacer nada en él. |
+| `rw-r-----` | `640` | El usuario propietario puede leer y escribir, el grupo puede leer el archivo y otros no pueden hacer nada. |
 
 ## chmod
 *change mod*. Comando para cambiar los permisos
@@ -106,18 +82,14 @@ chmod 511 respaldo.sh
 - para establecer permiso, con signo `+`
 - para eliminar permiso, con signo `-`
 
-<SmartTable
-	tableLayout="auto"
-	headers={['Actual', 'chmod', 'Resultado', 'Descripción']}
-	rows={[
-		['`rw-------`', '`a+x`', '`rwx--x--x`', 'Agregar a todos (all) permisos de escritura'],
-		['`rwx--x--x`', '`go-x`', '`rwx------`', 'Se eliminan permiso de ejecución para grupo y otros'],
-		['`rwxr-xr-x`', '`u-x,go-r`', '`rw---x--x`', 'Al usuario se le quita ejecución, al grupo y otros se le quita lectura'],
-		['`rwxrwxrwx`', '`u-x,go-rwx`', '`rw-------`', 'Al usuario se le elimina ejecución, al grupo y otros se eliminan todos los permisos'],
-		['`r--------`', '`a+r,u+w`', '`rw-r--r--`', 'A todos se les agrega lectura, al usuario se le agrega escritura'],
-		['`rw-r-----`', '`u-rw,g+w,o+x`', '`---rw---x`', 'Al usuario se le eliminan lectura y escritura, al grupo se le agrega lectura y otros se le agrega ejecución']
-	]}
-/>
+| Actual | chmod | Resultado | Descripción |
+| --- | --- | --- | --- |
+| `rw-------` | `a+x` | `rwx--x--x` | Agregar a todos (all) permisos de escritura |
+| `rwx--x--x` | `go-x` | `rwx------` | Se eliminan permiso de ejecución para grupo y otros |
+| `rwxr-xr-x` | `u-x,go-r` | `rw---x--x` | Al usuario se le quita ejecución, al grupo y otros se le quita lectura |
+| `rwxrwxrwx` | `u-x,go-rwx` | `rw-------` | Al usuario se le elimina ejecución, al grupo y otros se eliminan todos los permisos |
+| `r--------` | `a+r,u+w` | `rw-r--r--` | A todos se les agrega lectura, al usuario se le agrega escritura |
+| `rw-r-----` | `u-rw,g+w,o+x` | `---rw---x` | Al usuario se le eliminan lectura y escritura, al grupo se le agrega lectura y otros se le agrega ejecución |
 
 ## Cambiando propietario y grupo
 

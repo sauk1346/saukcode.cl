@@ -6,40 +6,11 @@ El almacenamiento de datos no es un concepto o un requerimiento nuevo de las org
 
 **Jerarquía de almacenamiento generales**
 
-<SmartTable
-    tableLayout="auto"
-    headers={['Jerarquía','Características']}
-    lists={{
-        R1: [
-            "Grandes almacenes de datos orientados al tema. Generan históricos de datos",
-            "La organización de datos es radicalmente diferente a la utilizada en los sistemas transaccionales OLTP normales, ya que generalmente los datos están almacenados de forma desestructurada (sin seguir las formas normales o de forma redundante)",
-            "Se pueden orientar a la empresa/organización completa (data warehouse) o solo a un departamento interno en particular (datamart)"
-        ],
-        R2: [
-            "Almacenamiento de datos orientado al servicio",
-            "Otorgado por grandes empresas transaccionales, con muchos recursos de espacio almacenado, recursos de red y gran ancho de banda, conectados 24/7 a internet. Venden sus servicios a diversas empresas con diferente orientación de negocio, generalmente con períodos de facturación en formato mensual o anual",
-            "Ofrecen disponibilidad, espacio, seguridad e integridad a toda hora, los 365 días del año"
-        ],
-        R3: [
-            "Corresponden a repositorios de datos enormes que pueden almacenar tanto datos estructurados como no estructurados, únicos y redundantes",
-            "Se alimentan de datos de otras bases de datos SQL/NoSQL, datawarehouses o datamarts"
-        ]
-    }}
-    rows={[
-        [
-            "**Data warehouse/ data mart**",
-            "@R1"
-        ],
-        [
-            "**Almacenamiento cloud**",
-            "@R2"
-        ],
-        [
-            "**Data lakes**",
-            "@R3"
-        ]
-    ]}
-/>
+| Jerarquía | Características |
+| --- | --- |
+| **Data warehouse/ data mart** | :li[Grandes almacenes de datos orientados al tema. Generan históricos de datos] :li[La organización de datos es radicalmente diferente a la utilizada en los sistemas transaccionales OLTP normales, ya que generalmente los datos están almacenados de forma desestructurada (sin seguir las formas normales o de forma redundante)] :li[Se pueden orientar a la empresa/organización completa (data warehouse) o solo a un departamento interno en particular (datamart)] |
+| **Almacenamiento cloud** | :li[Almacenamiento de datos orientado al servicio] :li[Otorgado por grandes empresas transaccionales, con muchos recursos de espacio almacenado, recursos de red y gran ancho de banda, conectados 24/7 a internet. Venden sus servicios a diversas empresas con diferente orientación de negocio, generalmente con períodos de facturación en formato mensual o anual] :li[Ofrecen disponibilidad, espacio, seguridad e integridad a toda hora, los 365 días del año] |
+| **Data lakes** | :li[Corresponden a repositorios de datos enormes que pueden almacenar tanto datos estructurados como no estructurados, únicos y redundantes] :li[Se alimentan de datos de otras bases de datos SQL/NoSQL, datawarehouses o datamarts] |
 
 ## 2. Almacenes de datos y almacenamiento distribuido
 

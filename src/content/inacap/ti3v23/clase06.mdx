@@ -28,17 +28,15 @@ Dependerá de la decisión del Product Owner según algunos criterios
 ### Estimación por Tallas de Ropas
 Tareas o historias de usuario se clasifican en "tallas" según su complejidad, esfuerzo o tamaño percibido. Las categorías suelen ser:
 
-<SmartTable
-  tableLayout="fixed"
-  headers={["Talla","Descripción"]}
-  rows={[
-    ["**XS**","extra small"],
-    ["**S**","small"],
-    ["**M**","medium"],
-    ["**L**","large"],
-    ["**XL**","extra large"]
-  ]}
-/>
+:::table{layout="fixed"}
+| Talla | Descripción |
+| --- | --- |
+| **XS** | extra small |
+| **S** | small |
+| **M** | medium |
+| **L** | large |
+| **XL** | extra large |
+:::
 
 ### Estimación con la Secuencia de Fibonacci
 
@@ -56,18 +54,14 @@ $$
 - Su objetivo principal es visualizar el trabajo, limitar el trabajo en curso (WIP) y optimizar la entrega de valor al equipo o cliente
 - Está compuesto por 4 columnas
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Por Hacer (To Do)","En Progreso (In Progress)","En Revisión (Review)","Hecho (Done)"]}
-  rows={[
-    ["Tarea A","","",""],
-    ["","","","Tarea B"],
-    ["Tarea C","","",""],
-    ["","Tarea D","",""],
-    ["","","Tarea E",""],
-    ["","","",""]
-  ]}
-/>
+| Por Hacer (To Do) | En Progreso (In Progress) | En Revisión (Review) | Hecho (Done) |
+| --- | --- | --- | --- |
+| Tarea A |  |  |  |
+|  |  |  | Tarea B |
+| Tarea C |  |  |  |
+|  | Tarea D |  |  |
+|  |  | Tarea E |  |
+|  |  |  |  |
 
 ## Cómo ordenar las tareas
 
@@ -78,15 +72,11 @@ $$
 ### Asignar un valor de Fibonacci
 A cada tarea se le asigna un número de la secuencia de Fibonacci, que representa su esfuerzo relativo:
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Puntos","Descripción"]}
-  rows={[
-    ["**1**","Tarea muy simple, rápida de realizar"],
-    ["**2**","Tarea sencilla, pero que requiere algo más de tiempo"],
-    ["**3**","Tarea moderada, con cierta complejidad"],
-    ["**5**","Tarea más compleja, que puede necesitar más recursos o tiempo"],
-    ["**8**","Tarea difícil, con múltiples dependencias o riesgos"],
-    ["**13**","Tarea muy compleja y extensa"]
-  ]}
-/>
+| Puntos | Descripción |
+| --- | --- |
+| **1** | Tarea muy simple, rápida de realizar |
+| **2** | Tarea sencilla, pero que requiere algo más de tiempo |
+| **3** | Tarea moderada, con cierta complejidad |
+| **5** | Tarea más compleja, que puede necesitar más recursos o tiempo |
+| **8** | Tarea difícil, con múltiples dependencias o riesgos |
+| **13** | Tarea muy compleja y extensa |

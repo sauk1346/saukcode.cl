@@ -8,74 +8,59 @@ Se pueden clasificar en los siguientes conceptos:
 
 ## Caracteres literales
 
-<SmartTable
-    tableLayout="mixed"
-	columnWidths={['150px', 'auto']}
-    headers={["Regex","Descripción"]}
-    rows={[
-        ["`abc`","coincide exactamente con \"abc\""]
-    ]}
-/>
+:::table{layout="mixed" widths="150px,auto"}
+| Regex | Descripción |
+| --- | --- |
+| `abc` | coincide exactamente con "abc" |
+:::
 
 ## Metacaracteres
 
-<SmartTable
-    tableLayout="mixed"
-	columnWidths={['150px', 'auto']}
-    headers={["Regex","Descripción"]}
-    rows={[
-        ["`abc`","coincide exactamente con \"abc\""],
-        ["`.`","Cualquier caracter (excepto nueva línea)"],
-        ["`^`","Inicio de línea"],
-        ["`$`","Fin de línea"],
-        ["`*`","Cero o más repeticiones"],
-        ["`+`","Una o más repeticiones"],
-        ["`?`","Cero o Una repetición"],
-        ["`\\|`","alternativa (OR)"],
-        ["`\\`","Escape de metacaracteres"]
-    ]}
-/>
+:::table{layout="mixed" widths="150px,auto"}
+| Regex | Descripción |
+| --- | --- |
+| `abc` | coincide exactamente con "abc" |
+| `.` | Cualquier caracter (excepto nueva línea) |
+| `^` | Inicio de línea |
+| `$` | Fin de línea |
+| `*` | Cero o más repeticiones |
+| `+` | Una o más repeticiones |
+| `?` | Cero o Una repetición |
+| `\|` | alternativa (OR) |
+| `\` | Escape de metacaracteres |
+:::
 
 ## Clase de caracteres
 
-<SmartTable
-    tableLayout="mixed"
-	columnWidths={['150px', 'auto']}
-    headers={["Regex","Descripción"]}
-    rows={[
-        ["`[abc]`","Un solo caracter que puede ser cualquiera de éstos"],
-        ["`[^abc]`","Un solo caracter que no puede ser ninguno de éstos"],
-        ["`[a-z]`","Un solo caracter que está en el rango a-z"],
-        ["`\\d`","Dígito, equivalente a `[0-9]`"],
-        ["`\\w`","Carácter de palabra, equivalente a `[a-zA-Z0-9_]`"],
-        ["`\\s`","Espacio en blanco"]
-    ]}
-/>
+:::table{layout="mixed" widths="150px,auto"}
+| Regex | Descripción |
+| --- | --- |
+| `[abc]` | Un solo caracter que puede ser cualquiera de éstos |
+| `[^abc]` | Un solo caracter que no puede ser ninguno de éstos |
+| `[a-z]` | Un solo caracter que está en el rango a-z |
+| `\d` | Dígito, equivalente a `[0-9]` |
+| `\w` | Carácter de palabra, equivalente a `[a-zA-Z0-9_]` |
+| `\s` | Espacio en blanco |
+:::
 
 ## Cuantificadores
 
-<SmartTable
-    tableLayout="mixed"
-	columnWidths={['150px', 'auto']}
-    headers={["Regex","Descripción"]}
-    rows={[
-        ["`{n}`","Exactamente n veces"],
-        ["`{n,}`","Al menos n veces"],
-        ["`{n,m}`","Entre n y m veces"]
-    ]}
-/>
+:::table{layout="mixed" widths="150px,auto"}
+| Regex | Descripción |
+| --- | --- |
+| `{n}` | Exactamente n veces |
+| `{n,}` | Al menos n veces |
+| `{n,m}` | Entre n y m veces |
+:::
 
 ## Grupos 
 
-<SmartTable
-    tableLayout="mixed"
-	columnWidths={['150px', 'auto']}
-    headers={["Regex","Descripción"]}
-    rows={[
-        ["`(...)`","Captura un grupo"],
-        ["`(?:...)`","Grupo sin captura"],
-    ]}
-/>
+:::table{layout="mixed" widths="150px,auto"}
+| Regex | Descripción |
+| --- | --- |
+| `(...)` | Captura un grupo |
+| `(?:...)` | Grupo sin captura |
+:::
 
 # Ejercicios
 Filtrar solo las palabras en verde

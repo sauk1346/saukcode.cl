@@ -36,16 +36,11 @@ Consiste en asegurar que los mismos datos tengan el mismo valor cuando son leíd
 - Fue creada por la compañía 10gen, en el año 2007
 - Se caracteriza porque almacena datos en documentos JSON con un esquema dinámico denominado BSON
 
-<SmartTable
-	tableLayout="fixed"
-	headers={['JSON', 'BSON']}
-	rows={[
-		[
-			'Es un formato ligero de intercambio de datos. Leerlo y escribirlo es simple para humanos, mientras que para las máquinas es simple interpretarlo y generarlo. Está basado en un subconjunto del Lenguaje de Programación JavaScript',
-			'BSON (Binary JSON) es un formato de datos que, si bien no es directamente legible como texto plano, a diferencia de JSON, ofrece a las tecnologías como bases de datos un acceso más rápido y directo a la información'
-		]
-	]}
-/>
+:::table{layout="fixed"}
+| JSON | BSON |
+| --- | --- |
+| Es un formato ligero de intercambio de datos. Leerlo y escribirlo es simple para humanos, mientras que para las máquinas es simple interpretarlo y generarlo. Está basado en un subconjunto del Lenguaje de Programación JavaScript | BSON (Binary JSON) es un formato de datos que, si bien no es directamente legible como texto plano, a diferencia de JSON, ofrece a las tecnologías como bases de datos un acceso más rápido y directo a la información |
+:::
 
 ## Documentos
 Son la unidad básica de organización de información en MongoDB. Se trata de un conjunto ordenado de claves que tiene asociados determinados valores.

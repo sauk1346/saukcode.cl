@@ -3,18 +3,16 @@ Se utilizará la librería PyMySql para la manipulación de registros de datos e
 
 ## Métodos clave de la librería PyMySql
 
-<SmartTable
- layoutTable="auto"
- headers={["Nombre Método","Descripción"]}
- rows={[
- ["execute()","Comando de consulta para ejecutar una base de datos"],
- ["fetchone()","recupera una sola fila del resultado de una consulta"],
- ["fetchmany(size)","recupera una cantidad `size` de filas del resultado de una consulta"],
- ["fetchall()","recupera todas las filas del resultado de una consultas"],
- ["rowcount","obtiene el número de filas de la última operación"],
- ["close()","cierra la conexión"],
- ]}
-/>
+:::table{layout="fixed"}
+| Nombre Método | Descripción |
+| --- | --- |
+| execute() | Comando de consulta para ejecutar una base de datos |
+| fetchone() | recupera una sola fila del resultado de una consulta |
+| fetchmany(size) | recupera una cantidad `size` de filas del resultado de una consulta |
+| fetchall() | recupera todas las filas del resultado de una consultas |
+| rowcount | obtiene el número de filas de la última operación |
+| close() | cierra la conexión |
+:::
 
 ## Conexión a Base de datos
 

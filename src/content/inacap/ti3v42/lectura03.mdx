@@ -5,52 +5,21 @@ La comunicación serial sigue siendo fundamental en aplicaciones del IoT industr
 ## 1. Protocolos seriales en entornos del IoT
 Conocer los protocolos seriales más empleados en entornos del IoT permite seleccionar la tecnología adecuada para cada aplicación. Esta sección analiza los principales estándares industriales que utilizan comunicación serial para lograr conexiones estables y eficientes entre dispositivos. 
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Protocolo", "Descripción"]}
-    rows={[
-        [
-            "**UART/RS-232**",
-            "Ideal para distancias cortas y comunicación punto a punto"
-        ],
-        [
-            "**RS-485**",
-            "Soporta multidrop y mayores distancias (hasta 1200m)"
-        ],
-        [
-            "**Modbus RTU**",
-            "Protocolo estándar industrial que opera sobre RS-485"
-        ],
-        [
-            "**CAN Bus**",
-            "Ampliamente utilizado en automoción y sistemas embebidos"
-        ],
-    ]}
-/>
+| Protocolo | Descripción |
+| --- | --- |
+| **UART/RS-232** | Ideal para distancias cortas y comunicación punto a punto |
+| **RS-485** | Soporta multidrop y mayores distancias (hasta 1200m) |
+| **Modbus RTU** | Protocolo estándar industrial que opera sobre RS-485 |
+| **CAN Bus** | Ampliamente utilizado en automoción y sistemas embebidos |
 
 ## 2. Ventajas de la comunicación serial en el IoT
-<SmartTable
-    tableLayout="auto"
-    headers={["Ventaja", "Descripción"]}
-    rows={[
-        [
-            "**Compatibilidad**",
-            "Conexión con equipos legacy y sistemas industriales existentes"
-        ],
-        [
-            "**Simplicidad**",
-            "Implementación directa en microcontroladores como Arduino"
-        ],
-        [
-            "**Costo**",
-            "Soluciones más económicas que alternativas inalámbricas o ethernet"
-        ],
-        [
-            "**Fiabilidad**",
-            "Menor susceptibilidad a interferencias electromagnéticas"
-        ],
-    ]}
-/>
+
+| Ventaja | Descripción |
+| --- | --- |
+| **Compatibilidad** | Conexión con equipos legacy y sistemas industriales existentes |
+| **Simplicidad** | Implementación directa en microcontroladores como Arduino |
+| **Costo** | Soluciones más económicas que alternativas inalámbricas o ethernet |
+| **Fiabilidad** | Menor susceptibilidad a interferencias electromagnéticas |
 
 ## 3. Implementación práctica con Arduino
 Arduino es una plataforma versátil para implementar una comunicación serial en proyectos del IoT, ya que permite configurar fácilmente interfaces como UART mediante puertos hardware o mediante SoftwareSerial. Para lograr una comunicación estable, es esencial definir correctamente parámetros como el baud rate, bits de datos, paridad y bits de parada. Además, se recomienda usar delimitadores y checksums para estructurar y validar los mensajes.  
@@ -89,28 +58,12 @@ Gracias a su arquitectura abierta, una amplia variedad de placas y módulos, y u
 ### Funciones Principales
 Arduino dispone de funciones predefinidas que permiten interactuar con el hardware de forma simple y directa. Entre las más utilizadas están:
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Función", "Descripción"]}
-    rows={[
-        [
-            "`pinMode()`",
-            "configura un pin como entrada/salida"
-        ],
-        [
-            "`digitalWrite()`",
-            "escribe el valor HIGH/LOW en pin digital"
-        ],
-        [
-            "`analogRead()`",
-            "lee el valor de pin analógico (0-1023)"
-        ],
-        [
-            "`Serial.begin()`",
-            "inicia comunicación serial"
-        ],
-    ]}
-/>
+| Función | Descripción |
+| --- | --- |
+| `pinMode()` | configura un pin como entrada/salida |
+| `digitalWrite()` | escribe el valor HIGH/LOW en pin digital |
+| `analogRead()` | lee el valor de pin analógico (0-1023) |
+| `Serial.begin()` | inicia comunicación serial |
 
 ### Flujo de Trabajo
 El proceso de trabajo con Arduino sigue una secuencia clara: se conecta la placa al computador vía USB, se selecciona el modelo de placa y el puerto correspondiente en el IDE, se escribe el código, se compila y se sube la placa. Posteriormente, se puede usar el monitor serial para observar datos en tiempo real, validar el funcionamiento y ajustar el comportamiento del sistema según sea necesario.
@@ -127,28 +80,13 @@ La comunicación entre Arduino y otros dispositivos es fundamental para muchas a
 Gracias a su integración nativa y su fácil implementación, se convierte en una herramienta clave para depurar programas, enviar comandos o recolectar datos en tiempo real. Su uso es especialmente relevante en prototipos educativos, automatización básica y proyectos del IoT que requieren intercambio constante de información
 
 Arduino incluye comunicación serial por defecto (UART)
-<SmartTable
-    tableLayout="auto"
-    headers={["Función", "Descripción"]}
-    rows={[
-        [
-            "`Serial.print()`",
-            "envía datos al computador"
-        ],
-        [
-            "`Serial.available()`",
-            "verifica datos entrantes"
-        ],
-        [
-            "`Serial.read()`",
-            "lee datos recibidos"
-        ],
-        [
-            "**Velocidades típicas**",
-            "9600, 115200 baudios"
-        ],
-    ]}
-/>
+
+| Función | Descripción |
+| --- | --- |
+| `Serial.print()` | envía datos al computador |
+| `Serial.available()` | verifica datos entrantes |
+| `Serial.read()` | lee datos recibidos |
+| **Velocidades típicas** | 9600, 115200 baudios |
 
 ### Ventajas
 - Curva de aprendizaje suave

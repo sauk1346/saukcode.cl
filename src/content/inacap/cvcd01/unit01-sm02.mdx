@@ -114,7 +114,7 @@ Sean las siguiente funciones y límites a determinar
 6. ¿Qué puedes concluir teniendo en cuenta las respuestas de las preguntas 3 a la 5?
 7. Determina las asíntotas con el comando de GeoGebra
 
-:::solution[Solución Actividad 04]
+::::solution[Solución Actividad 04]
 
 1. **Grafica la función**
 
@@ -464,61 +464,23 @@ Hay una relación directa entre la estructura algebraica de la función y el com
 - **Límites en puntos finitos (asíntotas verticales)**:
 Ocurren exactamente donde el denominador se anula y el numerador no. Esos puntos son las raíces del denominador:
 
-<SmartTable
-  id="tabla01"
-  caption="Relación entre denominador, raíces y límite en las asíntotas verticales"
-  headers={["Función", "Denominador", "Raíces", "Límite"]}
-  rows={[
-    [
-      "$f(x)$",
-      "$4x - 3$",
-      "$x = 3/4$",
-      "$\\nexists$"
-    ],
-    [
-      "$l(s)$",
-      "$s^2(4 - s)$",
-      "$s = 0,\\; s = 4$",
-      "$\\nexists$"
-    ],
-    [
-      "$p(q)$",
-      "$2(q - 2)(q + 1)$",
-      "$q = 2,\\; q = -1$",
-      "$\\nexists$"
-    ]
-]}/>
+:::table{#tabla01 caption="Relación entre denominador, raíces y límite en las asíntotas verticales" layout="fixed"}
+| Función | Denominador | Raíces | Límite |
+| --- | --- | --- | --- |
+| $f(x)$ | $4x - 3$ | $x = 3/4$ | $\nexists$ |
+| $l(s)$ | $s^2(4 - s)$ | $s = 0,\; s = 4$ | $\nexists$ |
+| $p(q)$ | $2(q - 2)(q + 1)$ | $q = 2,\; q = -1$ | $\nexists$ |
+:::
 
 - **Límites en $\pm\infty$ (asíntotas horizontales)**: Dependen exclusivamente de los coeficientes líderes y los grados del numerador y denominador
 
-<SmartTable
-  id="tabla02"
-  tableLayout="auto"
-  caption="Límites en el infinito — proceso algebraico"
-  headers={["Función", "Grado num.", "Grado den.", "Forma tras dividir por potencia máxima", "Resultado"]}
-  rows={[
-    [
-      "$f(x)$",
-      "$1$",
-      "$1$",
-      "$\\displaystyle\\lim_{x \\to \\pm\\infty} \\dfrac{1 - \\frac{2}{x}}{4 - \\frac{3}{x}}$",
-      "$\\dfrac{1}{4}$"
-    ],
-    [
-      "$l(s)$",
-      "$3$",
-      "$3$",
-      "$\\displaystyle\\lim_{s \\to \\pm\\infty} \\dfrac{1 - \\frac{1}{s^3}}{\\frac{4}{s} - 1}$",
-      "$\\dfrac{1}{-1} = -1$"
-    ],
-    [
-      "$p(q)$",
-      "$2$",
-      "$2$",
-      "$\\displaystyle\\lim_{q \\to \\pm\\infty} \\dfrac{2 + \\frac{5}{q} + \\frac{2}{q^2}}{2 - \\frac{2}{q} - \\frac{4}{q^2}}$",
-      "$\\dfrac{2}{2} = 1$"
-    ]
-]}/>
+:::table{#tabla02 caption="Límites en el infinito — proceso algebraico"}
+| Función | Grado num. | Grado den. | Forma tras dividir por potencia máxima | Resultado |
+| --- | --- | --- | --- | --- |
+| $f(x)$ | $1$ | $1$ | $\displaystyle\lim_{x \to \pm\infty} \dfrac{1 - \frac{2}{x}}{4 - \frac{3}{x}}$ | $\dfrac{1}{4}$ |
+| $l(s)$ | $3$ | $3$ | $\displaystyle\lim_{s \to \pm\infty} \dfrac{1 - \frac{1}{s^3}}{\frac{4}{s} - 1}$ | $\dfrac{1}{-1} = -1$ |
+| $p(q)$ | $2$ | $2$ | $\displaystyle\lim_{q \to \pm\infty} \dfrac{2 + \frac{5}{q} + \frac{2}{q^2}}{2 - \frac{2}{q} - \frac{4}{q^2}}$ | $\dfrac{2}{2} = 1$ |
+:::
 
 ---
 4. **¿Qué relación existe entre esos límites y la gráfica de la función?**
@@ -531,25 +493,21 @@ Cada límite se manifiesta visualmente en la gráfica:
 5. **¿Cuáles son las asíntotas verticales y/u horizontales de la función?**
 
 
-<SmartTable
-  id="tabla03"
-  caption="Asíntotas verticales — denominador igual a cero"
-  headers={["Función", "Denominador = 0", "Asíntotas verticales"]}
-  rows={[
-    ["$f(x)$", "$4x - 3 = 0$",       "$x = \\dfrac{3}{4}$"],
-    ["$l(s)$", "$s^2(4 - s) = 0$",   "$s = 0 \\;$ y $\\; s = 4$"],
-    ["$p(q)$", "$2(q-2)(q+1) = 0$",  "$q = -1 \\;$ y $\\; q = 2$"]
-]}/>
+:::table{#tabla03 caption="Asíntotas verticales — denominador igual a cero" layout="fixed"}
+| Función | Denominador = 0 | Asíntotas verticales |
+| --- | --- | --- |
+| $f(x)$ | $4x - 3 = 0$ | $x = \dfrac{3}{4}$ |
+| $l(s)$ | $s^2(4 - s) = 0$ | $s = 0 \;$ y $\; s = 4$ |
+| $p(q)$ | $2(q-2)(q+1) = 0$ | $q = -1 \;$ y $\; q = 2$ |
+:::
 
-<SmartTable
-  id="tabla04"
-  caption="Asíntotas horizontales — límite cuando x tiende a infinito positivo o infinito negativo"
-  headers={["Función", "Límite en $\\pm\\infty$", "Asíntota horizontal"]}
-  rows={[
-    ["$f(x)$", "$\\displaystyle\\lim_{x \\to \\pm\\infty} f(x) = \\dfrac{1}{4}$", "$y = \\dfrac{1}{4}$"],
-    ["$l(s)$", "$\\displaystyle\\lim_{s \\to \\pm\\infty} l(s) = -1$",            "$y = -1$"],
-    ["$p(q)$", "$\\displaystyle\\lim_{q \\to \\pm\\infty} p(q) = 1$", "$y = 1$"]
-]}/>
+:::table{#tabla04 caption="Asíntotas horizontales — límite cuando x tiende a infinito positivo o infinito negativo" layout="fixed"}
+| Función | Límite en $\pm\infty$ | Asíntota horizontal |
+| --- | --- | --- |
+| $f(x)$ | $\displaystyle\lim_{x \to \pm\infty} f(x) = \dfrac{1}{4}$ | $y = \dfrac{1}{4}$ |
+| $l(s)$ | $\displaystyle\lim_{s \to \pm\infty} l(s) = -1$ | $y = -1$ |
+| $p(q)$ | $\displaystyle\lim_{q \to \pm\infty} p(q) = 1$ | $y = 1$ |
+:::
 
 ---
 6. **¿Qué puedes concluir teniendo en cuenta las respuestas de las preguntas 3 a la 5?**
@@ -587,7 +545,7 @@ Cada límite se manifiesta visualmente en la gráfica:
 	size="large"
 />
 
-:::
+::::
 
 ## Actividad 05
 
@@ -603,7 +561,7 @@ Cada límite se manifiesta visualmente en la gráfica:
 2. Determina las asíntotas con el comando GeoGebra e indica cuáles son las asíntotas oblicuas
 3. ¿En qué se diferencias, desde el punto de vista algebraico, las asíntotas oblicuas de las asíntotas verticales y horizontales?
 
-:::solution[Solución Actividad 05]
+::::solution[Solución Actividad 05]
 
 1. **Grafica la función**
 
@@ -660,31 +618,14 @@ Cada límite se manifiesta visualmente en la gráfica:
 	size="large"
 />
 
-<SmartTable
-  id="tabla05"
-  tableLayout="auto"
-  caption="Asíntotas de cada función"
-  headers={["Función", "AV (verticales)", "AH (horizontal)", "AO (oblicua)"]}
-  rows={[
-    [
-      "$f(x)$",
-      "$x = 0.75$",
-      "—",
-      "$y = 0.25x - 0.3125$"
-    ],
-    [
-      "$l(x)$",
-      "$x = 0,\\; x = 4$",
-      "—",
-      "$y = -x - 4$"
-    ],
-    [
-      "$p(x)$",
-      "$x = -1,\\; x = 2$",
-      "—",
-      "$y = x + 3.5$"
-    ]
-]}/>
+:::table{#tabla05 caption="Asíntotas de cada función"}
+| Función | AV (verticales) | AH (horizontal) | AO (oblicua) |
+| --- | --- | --- | --- |
+| $f(x)$ | $x = 0.75$ | — | $y = 0.25x - 0.3125$ |
+| $l(x)$ | $x = 0,\; x = 4$ | — | $y = -x - 4$ |
+| $p(x)$ | $x = -1,\; x = 2$ | — | $y = x + 3.5$ |
+:::
+
 ---
 3. **¿En qué se diferencias, desde el punto de vista algebraico, las asíntotas oblicuas de las asíntotas verticales y horizontales?**
 
@@ -700,18 +641,16 @@ El cociente de esa división entrega la recta $y = mx + b$ con $m \neq 0$.
 
 En las tres funciones de esta actividad se cumple exactamente esa condición:
 
-<SmartTable
-  id="tabla06"
-  caption="Condición algebraica para la asíntota oblicua"
-  headers={["Función", "Grado num.", "Grado den.", "Diferencia", "Tipo de asíntota"]}
-  rows={[
-    ["$f(x)$", "$2$", "$1$", "$1$", "Oblicua"],
-    ["$l(s)$", "$3$", "$2$", "$1$", "Oblicua"],
-    ["$p(q)$", "$3$", "$2$", "$1$", "Oblicua"]
-]}/>
+:::table{#tabla06 caption="Condición algebraica para la asíntota oblicua" layout="fixed"}
+| Función | Grado num. | Grado den. | Diferencia | Tipo de asíntota |
+| --- | --- | --- | --- | --- |
+| $f(x)$ | $2$ | $1$ | $1$ | Oblicua |
+| $l(s)$ | $3$ | $2$ | $1$ | Oblicua |
+| $p(q)$ | $3$ | $2$ | $1$ | Oblicua |
+:::
 
 La diferencia clave es que una asíntota horizontal describe un comportamiento **constante** en el
 infinito, mientras que una asíntota oblicua describe un comportamiento **lineal creciente o
 decreciente** — la función se aleja indefinidamente pero siguiendo la dirección de una recta.
 
-:::
+::::

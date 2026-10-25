@@ -107,24 +107,11 @@ También existen otros elementos (extraíbles desde el panel izquierdo de Spoon)
 
 En la figura 6 se observa un ejemplo de esquema de trabajo en la interfaz Spoon de PDI; y puedes apreciar que todos los saltos (hops) tienen un ícono asociado, que puede corresponder a:
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Ícono", "Descripción"]}
-    rows={[
-        [
-            "**Candado**",
-            "Indica que el siguiente paso se ejecuta siempre, no importando si hay o no errores en el paso previo"
-        ],
-        [
-            "**Ticket verde**",
-            "Indica que el siguiente paso se ejecuta si el anterior paso no tuvo errores"
-        ],
-        [
-            "**Cruz roja**",
-            "Indica que el siguiente paso se ejecuta solo si el anterior paso tuvo errores. Esto permite tomar decisiones de diseño cuando ocurren errores en cierto paso del conjunto"
-        ],
-    ]}
-/>
+| Ícono | Descripción |
+| --- | --- |
+| **Candado** | Indica que el siguiente paso se ejecuta siempre, no importando si hay o no errores en el paso previo |
+| **Ticket verde** | Indica que el siguiente paso se ejecuta si el anterior paso no tuvo errores |
+| **Cruz roja** | Indica que el siguiente paso se ejecuta solo si el anterior paso tuvo errores. Esto permite tomar decisiones de diseño cuando ocurren errores en cierto paso del conjunto |
 
 ## 4. Ejemplos prácticos de integración y despliegue del almacen de datos
 

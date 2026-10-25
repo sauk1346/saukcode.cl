@@ -191,18 +191,14 @@ Se pide:
 
 **Paso 0: Organizar datos del enunciado**
 
-<SmartTable
-    id="tablaDatosEq"
-    tableLayout="auto"
-    caption="Datos del enunciado"
-    headers={["Variables", "Valor"]}
-    rows={[
-        ["**Ventas totales $(V_T)$**", "\$180.000.000"],
-        ["**Cantidad actual $(Q)$**", "9.000 unidades"],
-        ["**Costo de venta unitario $(CV_u)$**", "\$8.000"],
-        ["**Costo Fijo $(C_F)$**", "\$60.000.000"]
-    ]}
-/>
+:::table{#tablaDatosEq caption="Datos del enunciado"}
+| Variables | Valor |
+| --- | --- |
+| **Ventas totales $(V_T)$** | \$180.000.000 |
+| **Cantidad actual $(Q)$** | 9.000 unidades |
+| **Costo de venta unitario $(CV_u)$** | \$8.000 |
+| **Costo Fijo $(C_F)$** | \$60.000.000 |
+:::
 
 ---
 
@@ -265,19 +261,15 @@ $$
 Se arma el Estado de Resultados para las tres cantidades relevantes: el punto de equilibrio, la cantidad necesaria para la utilidad pedida, y la situación actual de la empresa.
 </P>
 
-<SmartTable
-    id="tablaEstadoResultados"
-    tableLayout="auto"
-    caption="Estado de Resultados"
-    headers={["Estado de Resultado", "Q* = 5.000", "Q = 6.500", "Q = 9.000"]}
-    rows={[
-        ["Ventas ($P_u \\cdot Q$)", "\$100.000.000", "\$130.000.000", "\$180.000.000"],
-        ["- Costo Ventas ($CV_u \\cdot Q$)", "\$40.000.000", "\$52.000.000", "\$72.000.000"],
-        { cells: ["**= Margen de Contribución**", "**\$60.000.000**", "**\$78.000.000**", "**\$108.000.000**"], highlight: true },
-        ["- Costos Fijos", "\$60.000.000", "\$60.000.000", "\$60.000.000"],
-        { cells: ["**Utilidad / Pérdida**", "**\$0**", "**\$18.000.000**", "**\$48.000.000**"], highlight: true }
-    ]}
-/>
+:::table{#tablaEstadoResultados caption="Estado de Resultados"}
+| Estado de Resultado | Q\* = 5.000 | Q = 6.500 | Q = 9.000 |
+| --- | --- | --- | --- |
+| Ventas ($P_u \cdot Q$) | \$100.000.000 | \$130.000.000 | \$180.000.000 |
+| - Costo Ventas ($CV_u \cdot Q$) | \$40.000.000 | \$52.000.000 | \$72.000.000 |
+| :highlight **= Margen de Contribución** | **\$60.000.000** | **\$78.000.000** | **\$108.000.000** |
+| - Costos Fijos | \$60.000.000 | \$60.000.000 | \$60.000.000 |
+| :highlight **Utilidad / Pérdida** | **\$0** | **\$18.000.000** | **\$48.000.000** |
+:::
 
 - **En el punto de equilibrio (5.000 unidades):** la utilidad es exactamente **\$0**, confirmando el resultado de la parte 1.
 - **Vendiendo 6.500 unidades:** la empresa obtiene la utilidad objetivo de **\$18.000.000**, confirmando el resultado de la parte 3.

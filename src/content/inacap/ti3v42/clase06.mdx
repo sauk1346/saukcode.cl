@@ -38,29 +38,12 @@ class Persona(val nombre: String, val apellido: String){
 }
 ```
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Comando", "Descripción"]}
-    rows={[
-        [
-            "`get()`",
-            "Se ejecuta al leer `persona.edad`"
-        ],
-        [
-            "`set()`",
-            "Se ejecuta al escribir `persona.edad = 25`"
-        ],
-        [
-            "`field`",
-            "Es la variable \"real\" que guarda el valor internamente"
-        ],
-        [
-            "`value`",
-            "Es el parámetro que recibe el nuevo valor"
-        ],
-    ]}
-
-/>
+| Comando | Descripción |
+| --- | --- |
+| `get()` | Se ejecuta al leer `persona.edad` |
+| `set()` | Se ejecuta al escribir `persona.edad = 25` |
+| `field` | Es la variable "real" que guarda el valor internamente |
+| `value` | Es el parámetro que recibe el nuevo valor |
 
 ## 4. Constructor Secundario
 Responde al caso en el que se quiera crear un objeto con distinta cantidad de parámetros iniciales
@@ -160,24 +143,11 @@ While
 val numeros = Array(100){0}
 ```
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Comando", "Descripción"]}
-    rows={[
-        [
-            "`Array(100)`",
-            "Crea un arreglo de 100 elementos"
-        ],
-        [
-            "`\{0\}`",
-            "Inicializa todos los elementos con el valor 0"
-        ],
-        [
-            "`val`",
-            "El arreglo no puede cambiar de referencia, pero SI su contenido"
-        ],
-    ]}
-/>
+| Comando | Descripción |
+| --- | --- |
+| `Array(100)` | Crea un arreglo de 100 elementos |
+| `{0}` | Inicializa todos los elementos con el valor 0 |
+| `val` | El arreglo no puede cambiar de referencia, pero SI su contenido |
 
 ### Propiedades de los Arreglos
 

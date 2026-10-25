@@ -12,37 +12,28 @@
     - 1 computador conectado al teléfono IP
     - 1 impresora de red conectada a interfaz f0/10 del switch
 
-:::solution[Solución Pregunta 1]
+::::solution[Solución Pregunta 1]
 
-<SmartTable
-    id="tabla01"
-	caption="Ubicación dispositivos"
-    tableLayout="auto"
-	headers={['Dispositivo', 'Modelo', 'Ubicación en Packet Tracer']}
-	rows={[
-		['**Router0**', 'Cisco 1941', '`Network Devices` >> `Routers` >> `1941`'],
-		['**Switch0**', 'Cisco 2960', '`Network Devices` >> `Switches` >> `2960`'],
-		['**Server-DHCP**', 'Server-PT', '`End Devices` >> `Server`'],
-		['**IP Phone0**', 'IP 7960', '`End Devices` >> `IP Phone`'],
-		['**PC0**', 'PC-PT', '`End Devices` >> `PC`'],
-		['**Printer0**', 'Printer-PT', '`End Devices` >> `Printer`'],
-	]}
+:::table{#tabla01 caption="Ubicación dispositivos"}
+| Dispositivo | Modelo | Ubicación en Packet Tracer |
+| --- | --- | --- |
+| **Router0** | Cisco 1941 | `Network Devices` \>\> `Routers` \>\> `1941` |
+| **Switch0** | Cisco 2960 | `Network Devices` \>\> `Switches` \>\> `2960` |
+| **Server-DHCP** | Server-PT | `End Devices` \>\> `Server` |
+| **IP Phone0** | IP 7960 | `End Devices` \>\> `IP Phone` |
+| **PC0** | PC-PT | `End Devices` \>\> `PC` |
+| **Printer0** | Printer-PT | `End Devices` \>\> `Printer` |
+:::
 
-/>
-
-<SmartTable
-    id="tabla02"
-    caption="Cableado de dispositivos"
-	tableLayout="auto"
-	headers={['Dispositivo A', 'Interfaz', 'Dispositivo B', 'Interfaz', 'Cable']}
-	rows={[
-		['**Router0**', 'GigabitEthernet0/0', '**Switch0**', 'GigabitEthernet0/1', 'Directo'],
-		['**Server-DHCP**', 'FastEthernet0', '**Switch0**', 'GigabitEthernet0/2', 'Directo'],
-		['**IP Phone0**', 'Switch', '**Switch0**', 'FastEthernet0/1', 'Directo'],
-		['**IP Phone0**', 'PC', '**PC0**', 'FastEthernet0', 'Directo'],
-		['**Printer0**', 'FastEthernet0', '**Switch0**', 'FastEthernet0/10', 'Directo'],
-	]}
-/>
+:::table{#tabla02 caption="Cableado de dispositivos"}
+| Dispositivo A | Interfaz | Dispositivo B | Interfaz | Cable |
+| --- | --- | --- | --- | --- |
+| **Router0** | GigabitEthernet0/0 | **Switch0** | GigabitEthernet0/1 | Directo |
+| **Server-DHCP** | FastEthernet0 | **Switch0** | GigabitEthernet0/2 | Directo |
+| **IP Phone0** | Switch | **Switch0** | FastEthernet0/1 | Directo |
+| **IP Phone0** | PC | **PC0** | FastEthernet0 | Directo |
+| **Printer0** | FastEthernet0 | **Switch0** | FastEthernet0/10 | Directo |
+:::
 
 <SmartFigure
 	id="fig20"
@@ -51,22 +42,19 @@
 	caption="Topología de red inicial"
 	size="large"
 />
-:::
+::::
 
 2. De acuerdo con TCP/IP, configure dirección IP, máscara de subred y Gateway a cada dispositivo según corresponda:
 
-    <SmartTable
-        caption="Tabla: Configuración IP"
-    	tableLayout="auto"
-    	headers={['Dispositivo', 'Interfaz', 'IPv4 Address', 'Subnet Mask', 'Default Gateway']}
-    	rows={[
-    		['**Router0**', 'GigabitEthernet0/0', '192.168.X.1', '255.255.255.0', '—'],
-    		['**Switch0**', 'VLAN1', '192.168.X.2', '255.255.255.0', '192.168.X.1'],
-    		['**Server-DHCP**', 'FastEthernet0', '192.168.X.3', '255.255.255.0', '192.168.X.1'],
-    		['**PC0**', 'FastEthernet0', '192.168.X.4', '255.255.255.0', '192.168.X.1'],
-    		['**Printer0**', 'FastEthernet0', '192.168.X.5', '255.255.255.0', '—'],
-    	]}
-    />
+    :::table{caption="Tabla: Configuración IP"}
+    | Dispositivo | Interfaz | IPv4 Address | Subnet Mask | Default Gateway |
+    | --- | --- | --- | --- | --- |
+    | **Router0** | GigabitEthernet0/0 | 192.168.X.1 | 255.255.255.0 | — |
+    | **Switch0** | VLAN1 | 192.168.X.2 | 255.255.255.0 | 192.168.X.1 |
+    | **Server-DHCP** | FastEthernet0 | 192.168.X.3 | 255.255.255.0 | 192.168.X.1 |
+    | **PC0** | FastEthernet0 | 192.168.X.4 | 255.255.255.0 | 192.168.X.1 |
+    | **Printer0** | FastEthernet0 | 192.168.X.5 | 255.255.255.0 | — |
+    :::
 
 :::solution[Solución Pregunta 2]
 

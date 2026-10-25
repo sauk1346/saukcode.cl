@@ -15,25 +15,21 @@ Armar la siguiente red en Cisco Packet Tracer:
 
 **Paso 1: Agregar dispositivos**
 
-<SmartTable
-	id="tabla01"
-	caption="Lista de dispositivos y ubicación"
-	tableLayout="auto"
-	headers={['Dispositivo', 'Modelo', 'Ubicación en Packet Tracer']}
-	rows={[
-		['**Router STGO-CENTRO**', 'Cisco 1941', '`Network Devices` >> `Routers` >> `1941`'],
-		['**Switch0**', 'Cisco 2960-24TT', '`Network Devices` >> `Switches` >> `2960`'],
-		['**Switch1**', 'Cisco 2960-24TT', '`Network Devices` >> `Switches` >> `2960`'],
-		['**PC0**', 'PC-PT', '`End Devices` >> `PC`'],
-		['**PC1**', 'PC-PT', '`End Devices` >> `PC`'],
-		['**IP Phone0**', 'IP 7960', '`End Devices` >> `IP Phone`'],
-		['**Printer0**', 'Printer-PT', '`End Devices` >> `Printer`'],
-		['**Server0**', 'Server-PT', '`End Devices` >> `Server`'],
-		['**Wireless Router0**', 'WRT300N', '`Network Devices` >> `Wireless Devices` >> `WRT300N`'],
-		['**Laptop0**', 'Laptop-PT', '`End Devices` >> `Laptop`'],
-		['**Laptop1**', 'Laptop-PT', '`End Devices` >> `Laptop`'],
-	]}
-/>
+:::table{#tabla01 caption="Lista de dispositivos y ubicación"}
+| Dispositivo | Modelo | Ubicación en Packet Tracer |
+| --- | --- | --- |
+| **Router STGO-CENTRO** | Cisco 1941 | `Network Devices` \>\> `Routers` \>\> `1941` |
+| **Switch0** | Cisco 2960-24TT | `Network Devices` \>\> `Switches` \>\> `2960` |
+| **Switch1** | Cisco 2960-24TT | `Network Devices` \>\> `Switches` \>\> `2960` |
+| **PC0** | PC-PT | `End Devices` \>\> `PC` |
+| **PC1** | PC-PT | `End Devices` \>\> `PC` |
+| **IP Phone0** | IP 7960 | `End Devices` \>\> `IP Phone` |
+| **Printer0** | Printer-PT | `End Devices` \>\> `Printer` |
+| **Server0** | Server-PT | `End Devices` \>\> `Server` |
+| **Wireless Router0** | WRT300N | `Network Devices` \>\> `Wireless Devices` \>\> `WRT300N` |
+| **Laptop0** | Laptop-PT | `End Devices` \>\> `Laptop` |
+| **Laptop1** | Laptop-PT | `End Devices` \>\> `Laptop` |
+:::
 
 <SmartFigure
 	id="dispositivos-para-red"
@@ -72,24 +68,20 @@ Repetir en cada laptop:
 ---
 **Paso 3: Conectar dispositivos**
 
-<SmartTable
-	id="tabla02"
-	caption="Cableado de dispositivos"
-	tableLayout="auto"
-	headers={['Dispositivo A', 'Interfaz', 'Dispositivo B', 'Interfaz', 'Cable']}
-	rows={[
-		['**STGO-CENTRO**', 'GigabitEthernet0/0', '**Switch0**', 'GigabitEthernet0/1', 'Directo'],
-		['**STGO-CENTRO**', 'GigabitEthernet0/1', '**Switch1**', 'GigabitEthernet0/1', 'Directo'],
-		['**Switch0**', 'FastEthernet0/1', '**IP Phone0**', 'Switch', 'Directo'],
-		['**Switch0**', 'FastEthernet0/2', '**Printer0**', 'FastEthernet0', 'Directo'],
-		['**IP Phone0**', 'PC', '**PC0**', 'FastEthernet0', 'Directo'],
-		['**Switch1**', 'FastEthernet0/1', '**PC1**', 'FastEthernet0', 'Directo'],
-		['**Switch1**', 'FastEthernet0/2', '**Server0**', 'FastEthernet0', 'Directo'],
-		['**Switch1**', 'FastEthernet0/3', '**Wireless Router0**', 'Internet', 'Directo'],
-		['**Laptop0**', 'WiFi', '**Wireless Router0**', 'WiFi', 'Inalámbrico'],
-		['**Laptop1**', 'WiFi', '**Wireless Router0**', 'WiFi', 'Inalámbrico'],
-	]}
-/>
+:::table{#tabla02 caption="Cableado de dispositivos"}
+| Dispositivo A | Interfaz | Dispositivo B | Interfaz | Cable |
+| --- | --- | --- | --- | --- |
+| **STGO-CENTRO** | GigabitEthernet0/0 | **Switch0** | GigabitEthernet0/1 | Directo |
+| **STGO-CENTRO** | GigabitEthernet0/1 | **Switch1** | GigabitEthernet0/1 | Directo |
+| **Switch0** | FastEthernet0/1 | **IP Phone0** | Switch | Directo |
+| **Switch0** | FastEthernet0/2 | **Printer0** | FastEthernet0 | Directo |
+| **IP Phone0** | PC | **PC0** | FastEthernet0 | Directo |
+| **Switch1** | FastEthernet0/1 | **PC1** | FastEthernet0 | Directo |
+| **Switch1** | FastEthernet0/2 | **Server0** | FastEthernet0 | Directo |
+| **Switch1** | FastEthernet0/3 | **Wireless Router0** | Internet | Directo |
+| **Laptop0** | WiFi | **Wireless Router0** | WiFi | Inalámbrico |
+| **Laptop1** | WiFi | **Wireless Router0** | WiFi | Inalámbrico |
+:::
 
 <SmartFigure
 	id="fig13"
@@ -109,22 +101,17 @@ Repetir en cada laptop:
 ---
 **Paso 4: Configurar IPs de dispositivos finales**
 
-<SmartTable
-	id="tabla03"
-	caption="Configuración IP de dispositivos"
-	tableLayout="auto"
-	lists={{}}
-	headers={['Dispositivo', 'IPv4 Address', 'Subnet Mask', 'Default Gateway']}
-	rows={[
-		['**PC0**', '172.16.15.254', '255.255.240.0', '172.16.0.1'],
-		['**Printer0**', '172.16.0.3', '255.255.240.0', '172.16.0.1'],
-		['**PC1**', '172.16.31.254', '255.255.240.0', '172.16.16.1'],
-		['**Server0**', '172.16.16.3', '255.255.240.0', '172.16.16.1'],
-		['**Wireless Router0**', '172.16.16.4', '255.255.240.0', '172.16.16.1'],
-		['**Laptop0**', 'DHCP', '—', '—'],
-		['**Laptop1**', 'DHCP', '—', '—'],
-	]}
-/>
+:::table{#tabla03 caption="Configuración IP de dispositivos"}
+| Dispositivo | IPv4 Address | Subnet Mask | Default Gateway |
+| --- | --- | --- | --- |
+| **PC0** | 172.16.15.254 | 255.255.240.0 | 172.16.0.1 |
+| **Printer0** | 172.16.0.3 | 255.255.240.0 | 172.16.0.1 |
+| **PC1** | 172.16.31.254 | 255.255.240.0 | 172.16.16.1 |
+| **Server0** | 172.16.16.3 | 255.255.240.0 | 172.16.16.1 |
+| **Wireless Router0** | 172.16.16.4 | 255.255.240.0 | 172.16.16.1 |
+| **Laptop0** | DHCP | — | — |
+| **Laptop1** | DHCP | — | — |
+:::
 
 :::callout[Consideración]{type="warning"}
 - Los dispositivos `Laptop0` y `Laptop1` obtienen su IP automáticamente mediante DHCP

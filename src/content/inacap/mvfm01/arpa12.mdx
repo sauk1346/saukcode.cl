@@ -8,19 +8,15 @@
 ## Ejercicio 01
 Una piedra es lanzada hacia arriba desde una azotea que se encuentra a 40 metros de altura. Llega a un punto máximo de altura y cae al suelo. Algunos de los tiempos y sus respectivas alturas se muestran a continuación.
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Tiempo(s)","Altura(m)"]}
-  rows={[
-    ["0","40"],
-    ["1","60"],
-    ["2","70"],
-    ["3","70"],
-    ["4","60"],
-    ["5","40"],
-    ["6","10"]
-  ]}
-/>
+| Tiempo(s) | Altura(m) |
+| --- | --- |
+| 0 | 40 |
+| 1 | 60 |
+| 2 | 70 |
+| 3 | 70 |
+| 4 | 60 |
+| 5 | 40 |
+| 6 | 10 |
 
 **¿Cuál fue la altura máxima aproximada que alcanzó la piedra y en qué tiempo ocurrió?**
 
@@ -92,28 +88,20 @@ $$
 
 En el contexto del un **lanzamiento vertical de un objeto** bajo la influencia de la gravedad, las variables y constantes se pueden interpretar de la siguiente manera:
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Variable","Significado en el lanzamiento del objeto"]}
-  rows={[
-    ["$f(x)$","altura del objeto en un tiempo $x$"],
-    ["$x$","tiempo transcurrido desde el lanzamiento"],
-    ["$a$","factor relacionado con la aceleración"],
-    ["$b$","velocidad inicial del objeto"],
-    ["$c$","altura inicial del objeto"]
-  ]}
-/>
+| Variable | Significado en el lanzamiento del objeto |
+| --- | --- |
+| $f(x)$ | altura del objeto en un tiempo $x$ |
+| $x$ | tiempo transcurrido desde el lanzamiento |
+| $a$ | factor relacionado con la aceleración |
+| $b$ | velocidad inicial del objeto |
+| $c$ | altura inicial del objeto |
 
 Se comparan los 2 modelos:
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Ejercicio", "Modelo"]}
-  rows={[
-    ["01", "$f(t) = -5 \\cdot t^2 + 25 \\cdot t + 40$"],
-    ["02", "$h(t) = -5 \\cdot t^2 + 30 \\cdot t + 40$"]
-  ]}
-/>
+| Ejercicio | Modelo |
+| --- | --- |
+| 01 | $f(t) = -5 \cdot t^2 + 25 \cdot t + 40$ |
+| 02 | $h(t) = -5 \cdot t^2 + 30 \cdot t + 40$ |
 
 <SmartFigure
 	src="/inacap/mvfm01/images/fig26.png"
@@ -130,14 +118,10 @@ Se comparan los 2 modelos:
 	size="large"
 />
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Modelo","altura inicial [m]","altura máx [m]","Altura [m] a los 5seg","velocidad inicial [m/s]","tiempo de vuelo [s]"]}
-  rows={[
-    ["$f(t)$","`40`","`71.25`","`40`","`25`","`6.27`"],
-    ["$h(t)$","`40`","`85`","`65`","`30`","`7.12`"]
-  ]}
-/>
+| Modelo | altura inicial \[m\] | altura máx \[m\] | Altura \[m\] a los 5seg | velocidad inicial \[m/s\] | tiempo de vuelo \[s\] |
+| --- | --- | --- | --- | --- | --- |
+| $f(t)$ | `40` | `71.25` | `40` | `25` | `6.27` |
+| $h(t)$ | `40` | `85` | `65` | `30` | `7.12` |
 
 - Ambas piedras se lanzan desde la **misma altura**: `40`\[m\].
 - La **altura máxima** alcanzada por las 2 piedras es **distinta**:

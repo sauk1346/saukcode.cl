@@ -16,24 +16,12 @@ setContent {
 `setContent` es la función que define la interfaz de usuario en Jetpack Compose. Reemplaza al tradicional `setContentView()` del sistema XML.
 
 ### Diferencias
-<SmartTable
-    tableLayout="auto"
-    headers={["JetPack Compose", "Sistema Tradicional XML"]}
-    rows={[
-        [
-            "Usa `setcontent { }` con expresión lambda",
-            "Usa `setContentView(R.layout.activity_main)`"
-        ],
-        [
-            "Todo el UI se define en código Kotlin",
-            "UI definida en archivos XML separados"
-        ],
-        [
-            "Declarativo y reactivo",
-            "Imperativo"
-        ],
-    ]}
-/>
+
+| JetPack Compose | Sistema Tradicional XML |
+| --- | --- |
+| Usa `setcontent { }` con expresión lambda | Usa `setContentView(R.layout.activity_main)` |
+| Todo el UI se define en código Kotlin | UI definida en archivos XML separados |
+| Declarativo y reactivo | Imperativo |
 
 
 ### Conceptos importantes
@@ -100,37 +88,15 @@ fun GreetingPreview() {
 ```
 
 #### Estructura del código
-<SmartTable
-    tableLayout="auto"
-    headers={["Comando", "Descripción"]}
-    rows={[
-        [
-            "`MainActivity`",
-            "Punto de entrada de la aplicación"
-        ],
-        [
-            "`setContent { }`",
-            "Define toda la UI"
-        ],
-        [
-            "`MyApplicationTheme`",
-            "Aplica colores y estilos"
-        ],
-        [
-            "`Scaffold`",
-            "Estructura base de la pantalla"
-        ],
-        [
-            "`Greeting`",
-            "Composable personalizado que muestra texto"
-        ],
-        [
-            "`@Preview`",
-            "Permite previsualizar en Android Studio sin ejecutar la app"
-        ],
-    ]}
 
-/>
+| Comando | Descripción |
+| --- | --- |
+| `MainActivity` | Punto de entrada de la aplicación |
+| `setContent { }` | Define toda la UI |
+| `MyApplicationTheme` | Aplica colores y estilos |
+| `Scaffold` | Estructura base de la pantalla |
+| `Greeting` | Composable personalizado que muestra texto |
+| `@Preview` | Permite previsualizar en Android Studio sin ejecutar la app |
 
 ## 3. Previsualización
 El decorador `@Preview` permite visualizar composables en Android Studio sin ejecutar la aplicación.

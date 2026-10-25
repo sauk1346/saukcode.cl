@@ -61,35 +61,10 @@ Los ViewSets automatizan todo esto
 
 ### Tipos de Viewsets
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Tipo", "Descripción"]}
-    lists={{
-        R1: [
-            "`list()` - GET/recursos/",
-            "`create()` - POST /recursos/",
-            "`retrieve()` - GET /recursos/1/",
-            "`update()` - PUT /recursos/1",
-            "`partial_update()` - PATCH /recursos/1",
-            "`destroy()` - DELETE /recursos/1",
-        ],
-        R2: [
-            "`list()`",
-            "`retrieve()`",
-        ]
-    }}
-    rows={[
-        [
-            "**ModelViewSet** (el más común)",
-            "@R1"
-
-        ],
-        [
-            "**ReadOnlyModelViewSet**",
-            "@R2"
-        ]
-    ]}
-/>
+| Tipo | Descripción |
+| --- | --- |
+| **ModelViewSet** (el más común) | :li[`list()` - GET/recursos/] :li[`create()` - POST /recursos/] :li[`retrieve()` - GET /recursos/1/] :li[`update()` - PUT /recursos/1] :li[`partial_update()` - PATCH /recursos/1] :li[`destroy()` - DELETE /recursos/1] |
+| **ReadOnlyModelViewSet** | :li[`list()`] :li[`retrieve()`] |
 
 ## 4. Creación API REST
 API que proveerá servicios (datos) mediante endpoints REST

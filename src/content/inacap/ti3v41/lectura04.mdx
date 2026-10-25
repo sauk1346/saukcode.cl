@@ -99,17 +99,13 @@ El objetivo es mantener las plantillas lo más simples posible, sin embargo, cua
 ### Etiquetas de plantilla (Template Tags)
 Django incluye etiquetas que permiten manejar estructuras de control directamente en las plantillas
 
-<SmartTable
-    tableLayout = "auto"
-    headers = {["Tags","Descripción"]}
-    rows = {[
-        ["`{% if %}` `{% elif %}` `{% else %}` `{% endif %}`", "Para condicionales"],
-        ["`{% for %}` ... `{% endfor %}`","Para bucles"],
-        ["`{% block %}` ... `{%endblock%}`", "Para definir bloques de contenido"],
-        ["`{% extends 'base.html' %}`", "Para heredar de una plantilla base"],
-        ["`{% include 'archivo.html' %}`", "Para insertar otras plantillas"]
-    ]}
-/>
+| Tags | Descripción |
+| --- | --- |
+| `{% if %}` `{% elif %}` `{% else %}` `{% endif %}` | Para condicionales |
+| `{% for %}` ... `{% endfor %}` | Para bucles |
+| `{% block %}` ... `{%endblock%}` | Para definir bloques de contenido |
+| `{% extends 'base.html' %}` | Para heredar de una plantilla base |
+| `{% include 'archivo.html' %}` | Para insertar otras plantillas |
 
 **Ejemplo condicional**
 ```python
@@ -138,22 +134,11 @@ def inicio(request):
 
 ### Buenas Prácticas
 
-<SmartTable
-    tableLayout = "auto"
-    headers = {["Práctica", "Descripción"]}
-    rows = {[
-        [
-            "**Organización de Plantillas**", 
-            "Las plantillas deben organizarse dentro de una carpeta `templates/` y, dentron de ella, en una subcarpeta con el nombre de la app (`templates/blog`, por ejemplo). Esto eva conflictos de nombres cuando hay múltiples aplicaciones"
-            ],
-        [
-            "**Uso de Archivos Base**",
-            "Utiliza archivos base (`base.html`) que contengan la estructura general de la página (encabezado, pie y menú) y extiéndelo en las demás plantillas utilizando `{% extends %}` y bloques `{% block %}`"],
-        [
-            "**Separación de Lógica y Presentación**",
-            "Evita colocar lógicas complejas en las plantillas. Todo el procesamiento debe realizarse en las vistas o modelos. Las plantillas deben usarse exclusivamente para mostrar contenido"],
-    ]}
-/>
+| Práctica | Descripción |
+| --- | --- |
+| **Organización de Plantillas** | Las plantillas deben organizarse dentro de una carpeta `templates/` y, dentron de ella, en una subcarpeta con el nombre de la app (`templates/blog`, por ejemplo). Esto eva conflictos de nombres cuando hay múltiples aplicaciones |
+| **Uso de Archivos Base** | Utiliza archivos base (`base.html`) que contengan la estructura general de la página (encabezado, pie y menú) y extiéndelo en las demás plantillas utilizando `{% extends %}` y bloques `{% block %}` |
+| **Separación de Lógica y Presentación** | Evita colocar lógicas complejas en las plantillas. Todo el procesamiento debe realizarse en las vistas o modelos. Las plantillas deben usarse exclusivamente para mostrar contenido |
 
 # Actividad de Práctica 03
 

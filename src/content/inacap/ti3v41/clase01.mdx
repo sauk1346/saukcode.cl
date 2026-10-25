@@ -7,35 +7,11 @@
 
 ## 1. Resumen Asignatura 
 
-<SmartTable
-	tableLayout = "auto"
-	headers = {["Unidades", "Descripción"]}
-	lists = {{
-		R1: [
-			"Tecnologías del lado del servidor, protocolos, servicios de hosting y dominios",
-			"Introducción a la programación del lado del servidor",
-			"Modelo Template Vista (MTV)",
-			"Python Avanzado (Módulo, Packages, Exceptions)",
-			"Django (Configuración, Rutas y Vista)",
-			"Django Templates"
-		],
-		R2: [
-			"Conexión a una base de datos a través del Framework",
-			"Operaciones CRUD a través del Framework",
-			"Django Models"
-		],
-		R3: [
-			"Concepto Restful API",
-			"Arquitectura REST",
-			"Seguridad / Autenticación"
-		]
-	}}
-	rows = {[
-		["**U1: Tecnologías del lado del servidor**", "@R1"],
-		["**U2: Framework Backend**", "@R2"],
-		["**U3: API RESTful con Integración de Base de Datos**", "@R3"]
-	]}
-/>
+| Unidades | Descripción |
+| --- | --- |
+| **U1: Tecnologías del lado del servidor** | :li[Tecnologías del lado del servidor, protocolos, servicios de hosting y dominios] :li[Introducción a la programación del lado del servidor] :li[Modelo Template Vista (MTV)] :li[Python Avanzado (Módulo, Packages, Exceptions)] :li[Django (Configuración, Rutas y Vista)] :li[Django Templates] |
+| **U2: Framework Backend** | :li[Conexión a una base de datos a través del Framework] :li[Operaciones CRUD a través del Framework] :li[Django Models] |
+| **U3: API RESTful con Integración de Base de Datos** | :li[Concepto Restful API] :li[Arquitectura REST] :li[Seguridad / Autenticación] |
 
 ## 1. Modelo Vista Controlador
 
@@ -47,15 +23,11 @@
 	size="large"
 />
 
-<SmartTable
-	tableLayout = "auto"
-	headers = {["Patrón Diseño MVC", "Descripción"]}
-	rows = {[
-		["**Modelo**", "Datos y lógica de negocio"],
-		["**Vista**", "Presentación y formato de salida"],
-		["**Controlador**", "Coordinación y flujo de control"],
-	]}
-/>
+| Patrón Diseño MVC | Descripción |
+| --- | --- |
+| **Modelo** | Datos y lógica de negocio |
+| **Vista** | Presentación y formato de salida |
+| **Controlador** | Coordinación y flujo de control |
 
 ### Flujo MVC
 
@@ -75,15 +47,11 @@
 ## 2. Modelo Template Vista
 En el caso de Django es muy parecido, pero con algunas diferencias:
 
-<SmartTable
- tableLayout = "auto"
- headers = {["Patrón Diseño MTV", "Descripción"]}
- rows = {[
-  ["**Model**", "Datos y lógica de negocio"],
-  ["**Template**", "Estructura HTML y presentación visual"],
-  ["**View**", "Lógica de presentación y manejo de peticiones HTTP"],
- ]}
-/>
+| Patrón Diseño MTV | Descripción |
+| --- | --- |
+| **Model** | Datos y lógica de negocio |
+| **Template** | Estructura HTML y presentación visual |
+| **View** | Lógica de presentación y manejo de peticiones HTTP |
 
 > **View** en Django hace lo que el **Controller** hace en MVC
 > **Template** en Django hace lo que la **View** hace en MVC
@@ -124,15 +92,11 @@ Los ambientes virtuales en Python sivern para **aislar las dependencias** de dif
 
 Permiten resolver:
 
-<SmartTable
-	tableLayout = "auto"
-	headers = {["Resuelve", "Descripción"]}
-	rows = {[
-		["**Conflictos de versiones**", "Proyecto A necesita Django 3.2, proyecto B necesita Django 4.1"],
-		["**Dependencias innecesarias**", "`pip list` muestra 200+ paquetes mezclados de todos los proyectos"],
-		["**Problemas de portabilidad**", "Tu colega no puede reproducir tu entorno fácilmente"],
-	]}
-/>
+| Resuelve | Descripción |
+| --- | --- |
+| **Conflictos de versiones** | Proyecto A necesita Django 3.2, proyecto B necesita Django 4.1 |
+| **Dependencias innecesarias** | `pip list` muestra 200+ paquetes mezclados de todos los proyectos |
+| **Problemas de portabilidad** | Tu colega no puede reproducir tu entorno fácilmente |
 
 1. Crear un ambiente virtual "denv1"
 	```sh

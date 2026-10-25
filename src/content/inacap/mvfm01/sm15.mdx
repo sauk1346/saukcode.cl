@@ -7,40 +7,36 @@
 
 Imagina que Antonio está trabajando en una empresa de marketing digital y desea analizar el crecimiento de seguidores en la cuenta de Instagram de un influencer a lo largo del tiempo. La información que ha recopilado durante los cinco primeros meses se sintetiza en la siguiente tabla:
 
-<SmartTable
-  tableLayout="fixed"
-  headers={["Mes","Número de Seguidores"]}
-  rows={[
-    ["1","485"],
-    ["2","1353"],
-    ["3","2307"],
-    ["4","2689"],
-    ["5","3005"]
-  ]}
-/>
+:::table{layout="fixed"}
+| Mes | Número de Seguidores |
+| --- | --- |
+| 1 | 485 |
+| 2 | 1353 |
+| 3 | 2307 |
+| 4 | 2689 |
+| 5 | 3005 |
+:::
 
 En la tabla anterior, el primer mes indica el momento en que se comienza a analizar el crecimiento de la cuenta.
 
 Antonio ha observado que el número de seguidores siempre va en aumento, y este aumento es constante, pero no de manera lineal. **Comprueba esta afirmación.**
 
-:::solution
+::::solution
 
-<SmartTable
-  tableLayout="fixed"
-  headers={["Mes","Número de Seguidores","Aumento de Seguidores"]}
-  rows={[
-    ["1","485","0"],
-    ["2","1353","868"],
-    ["3","2307","954"],
-    ["4","2689","382"],
-    ["5","3005","316"]
-  ]}
-/>
+:::table{layout="fixed"}
+| Mes | Número de Seguidores | Aumento de Seguidores |
+| --- | --- | --- |
+| 1 | 485 | 0 |
+| 2 | 1353 | 868 |
+| 3 | 2307 | 954 |
+| 4 | 2689 | 382 |
+| 5 | 3005 | 316 |
+:::
 
 - El número de seguidores va en aumento cada mes.
 - El aumento **NO** es constante.
 - El aumento **NO** es lineal.
-:::
+::::
 
 ## Actividad 02
 

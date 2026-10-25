@@ -183,19 +183,17 @@ CREATE TABLE dw_venta_detalle (
 
 ## 4. Kimball vs Inmon
 
-<SmartTable
-    tablelayout="auto"
-    headers={['Aspecto', 'Kimball', 'Inmon']}
-    rows={[
-        ["**Enfoque**", "Bottom-up (datamarts primero)", "Top-down (DW central primero)"],
-        ["**Modelo de datos**", "Dimensional (estrella/copo)", "Relacional (3FN)"],
-        ["**Granularidad**", "Puede ser agregada", "Máximo detalle"],
-        ["**Tiempo de implementación**", "Más rápido (entregas parciales)", "Más lento (requiere DW completo)"],
-        ["**Complejidad inicial**", "Menor", "Mayor"],
-        ["**Flexibilidad futura**", "Limitada (puede fragmentarse)", "Alta (fuente única de verdad)"],
-        ["**Ideal para**", "Proyectos ágiles, empresas medianas", "Grandes empresas con datos complejos"]
-    ]}
-/>
+:::table{layout="fixed"}
+| Aspecto | Kimball | Inmon |
+| --- | --- | --- |
+| **Enfoque** | Bottom-up (datamarts primero) | Top-down (DW central primero) |
+| **Modelo de datos** | Dimensional (estrella/copo) | Relacional (3FN) |
+| **Granularidad** | Puede ser agregada | Máximo detalle |
+| **Tiempo de implementación** | Más rápido (entregas parciales) | Más lento (requiere DW completo) |
+| **Complejidad inicial** | Menor | Mayor |
+| **Flexibilidad futura** | Limitada (puede fragmentarse) | Alta (fuente única de verdad) |
+| **Ideal para** | Proyectos ágiles, empresas medianas | Grandes empresas con datos complejos |
+:::
 
 
 ## 5. Procesos ETL y ETT

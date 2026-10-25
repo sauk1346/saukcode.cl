@@ -223,17 +223,15 @@ FOR EACH ROW EXECUTE FUNCTION fn_verificar_solvencia();
 
 ## 4. Comparativa de las 3 Categorías
 
-<SmartTable
-    tablelayout="auto"
-    headers={['Característica', 'Dominio', 'Tabla Base', 'Aserciones']}
-    rows={[
-        ["**Ámbito**", "Una columna (por dominio)", "Una tabla", "Toda la BD"],
-        ["**Puede cruzar tablas**", "❌", "❌", "✅"],
-        ["**Sintaxis**", "`CREATE DOMAIN`", "`CHECK`, `FK`, `PK`", "`CREATE ASSERTION`"],
-        ["**Soporte en PostgreSQL**", "✅", "✅", "⚠️ Parcial (usar triggers)"],
-        ["**Cuándo se evalúa**", "Al insertar/actualizar la columna", "Al insertar/actualizar la fila", "En cualquier operación relevante"]
-    ]}
-/>
+:::table{layout="fixed"}
+| Característica | Dominio | Tabla Base | Aserciones |
+| --- | --- | --- | --- |
+| **Ámbito** | Una columna (por dominio) | Una tabla | Toda la BD |
+| **Puede cruzar tablas** | ❌ | ❌ | ✅ |
+| **Sintaxis** | `CREATE DOMAIN` | `CHECK`, `FK`, `PK` | `CREATE ASSERTION` |
+| **Soporte en PostgreSQL** | ✅ | ✅ | ⚠️ Parcial (usar triggers) |
+| **Cuándo se evalúa** | Al insertar/actualizar la columna | Al insertar/actualizar la fila | En cualquier operación relevante |
+:::
 
 ## 5. Resumen del flujo de validación SQL
 

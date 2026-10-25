@@ -140,32 +140,13 @@ Generar un formulario de contacto
 
 **Tipos de parámetros**
 
-<SmartTable
-	tableLayout="auto"
-	headers={["Parámetro", "descripción"]}
-	rows={[
-		[
-			"`str`",
-			"coincide con cualquier cadena que no esté vacía, excepto el separador de ruta `/`. Este es el valor predeterminado si no es incluye un convertidor en la expresión"
-		],
-		[
-			"`int`",
-			"Coincide con un cero o cualquier número entero positivo. Devuelve un **int**"
-		],
-		[
-			"`slug`",
-			"Coincide con cualquier cadena de slug que consista en letras o números ASCII, además de los caracteres de guión y subrayado. Por ejemplo `contruyendo-su-primer-sitio-django`"
-		],
-		[
-			"`uuid`",
-			"Coincide con un UUID (Identificador Universal Unico) formateado. Para evitar que varias URL se asignen a la misma página, se deben incluir guiones y las letras deben estar en minúscular. Por ejemplo: `075194d3-6885-417e-a8a8-6c931e272f00`. Devuelve una instancia de UUID"
-		],
-		[
-			"**ruta**",
-			"Coincide con cualquier cadena que no esté vacía, incluido el separador de ruta `/`. Esto permite hacer coincidir una ruta de URL completa en lugar de un segmento de ruta de URL como con **str**"
-		],
-	]}
-/>
+| Parámetro | descripción |
+| --- | --- |
+| `str` | coincide con cualquier cadena que no esté vacía, excepto el separador de ruta `/`. Este es el valor predeterminado si no es incluye un convertidor en la expresión |
+| `int` | Coincide con un cero o cualquier número entero positivo. Devuelve un **int** |
+| `slug` | Coincide con cualquier cadena de slug que consista en letras o números ASCII, además de los caracteres de guión y subrayado. Por ejemplo `contruyendo-su-primer-sitio-django` |
+| `uuid` | Coincide con un UUID (Identificador Universal Unico) formateado. Para evitar que varias URL se asignen a la misma página, se deben incluir guiones y las letras deben estar en minúscular. Por ejemplo: `075194d3-6885-417e-a8a8-6c931e272f00`. Devuelve una instancia de UUID |
+| **ruta** | Coincide con cualquier cadena que no esté vacía, incluido el separador de ruta `/`. Esto permite hacer coincidir una ruta de URL completa en lugar de un segmento de ruta de URL como con **str** |
 
 ### Ejemplo Parámetros URLs:
 

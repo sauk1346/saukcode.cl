@@ -20,86 +20,37 @@ Factores como el Vector de Ataque, los Privilegios Requeridos y el posible impac
 
 ### Según la complejidad del ataque
 
-<SmartTable
-	tableLayout="auto"
-	headers={['Complejidad del Ataque', 'Descripción']}
-	rows={[
-		[
-			'Baja (10)',
-			'Es fácil de explotar, no se requieren habilidades especiales ni configuración'
-		],
-		[
-			'Alta (5)',
-			'Es difícil de explotar, requiere habilidades especializadas, condiciones específicas o configuración compleja para tener éxito'
-		]
-	]}
-/>
+| Complejidad del Ataque | Descripción |
+| --- | --- |
+| Baja (10) | Es fácil de explotar, no se requieren habilidades especiales ni configuración |
+| Alta (5) | Es difícil de explotar, requiere habilidades especializadas, condiciones específicas o configuración compleja para tener éxito |
 
 - 10, por la facilidad de acceso
 - 5, por la dificultad
 
 ### Privilegios requeridos (PR) ¿?El atacante necesita privilegios previos para explotar la vulnerabilidad?
 
-<SmartTable
-	tableLayout="auto"
-	headers={['PR', 'Descripción']}
-	rows={[
-		[
-			'Ninguno',
-			'El atacante no necesita privilegios previos, puede explotar la vulnerabilidad sin autenticación'
-		],
-		[
-			'Bajo',
-			'El atacante necesita privilegios básicos de usuario para explotar la vulnerabilidad'
-		],
-		[
-			'Alto',
-			'El atacante necesita privilegios administrativos o de alto nivel para explotar la vulnerabilidad'
-		]
-	]}
-/>
+| PR | Descripción |
+| --- | --- |
+| Ninguno | El atacante no necesita privilegios previos, puede explotar la vulnerabilidad sin autenticación |
+| Bajo | El atacante necesita privilegios básicos de usuario para explotar la vulnerabilidad |
+| Alto | El atacante necesita privilegios administrativos o de alto nivel para explotar la vulnerabilidad |
 
 ### Vector de Ataque(AV) ¿Cómo se explota la vulnerabilidad?
 
-<SmartTable
-	tableLayout="auto"
-	headers={['AV', 'Descripción']}
-	rows={[
-		[
-			'Red (10)',
-			'La vulnerabilidad se puede explotar de forma remota a través de la red'
-		],
-		[
-			'Local (5)',
-			'Se necesita acceso físico o local al sistema afectado'
-		],
-		[
-			'Adyacente (5)',
-			'El atacante debe estar en una red local (por ejemplo, una red Wi-fi compartida)'
-		],
-		[
-			'Físico (0)',
-			'El atacante necesita tener acceso físico al dispositivo para explotarlo'
-		]
-	]}
-/>
+| AV | Descripción |
+| --- | --- |
+| Red (10) | La vulnerabilidad se puede explotar de forma remota a través de la red |
+| Local (5) | Se necesita acceso físico o local al sistema afectado |
+| Adyacente (5) | El atacante debe estar en una red local (por ejemplo, una red Wi-fi compartida) |
+| Físico (0) | El atacante necesita tener acceso físico al dispositivo para explotarlo |
 
 ### Interacción del Usuario (UI) ¿El atacante necesita que un usuario realice alguna cción?
 
-<SmartTable
-	tableLayout="auto"
-	headers={['UI', 'Descripción']}
-	rows={[
-		[
-			'Ninguna (10)',
-			'El atacante puede explotar la vulnerabilidad sin intervensción del usuario'
-		],
-		[
-			'Requerida (5)',
-			'El usuario necesita realizar alguna acción, como hacer clic en un enlace o abrir un archivo'
-		]
-	]}
-/>
+| UI | Descripción |
+| --- | --- |
+| Ninguna (10) | El atacante puede explotar la vulnerabilidad sin intervensción del usuario |
+| Requerida (5) | El usuario necesita realizar alguna acción, como hacer clic en un enlace o abrir un archivo |
 
 Las métricas se ajustan con el tiempo, teniendo encuanta la existencia de parches.
 

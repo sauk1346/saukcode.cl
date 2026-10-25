@@ -11,7 +11,7 @@
 
 **Utilice Plantilla VLSM para determinar las IPs de la Red**
 
-:::solution[Solución Ejercicio 01 VLSM]
+::::solution[Solución Ejercicio 01 VLSM]
 
 **Paso 1: IPs para la red LAN 1** 
 
@@ -85,18 +85,11 @@
 **f. Dirección de máscara**
 </P>
 
-<SmartTable
-	id="tabla01"
-	caption="Dirección máscara red LAN 1"
-    tableLayout="auto"
-    headers={["dirección en binario", "dirección en decimal"]}
-    rows={[
-        [
-            "$11111111.11111111.11000000.00000000$",
-            "$255.255.192.0$"
-        ]
-    ]}
-/>
+:::table{#tabla01 caption="Dirección máscara red LAN 1"}
+| dirección en binario | dirección en decimal |
+| --- | --- |
+| $11111111.11111111.11000000.00000000$ | $255.255.192.0$ |
+:::
 
 <SmartFigure
 	id="fig46"
@@ -183,18 +176,11 @@
 **f. Dirección Máscara**
 </P>
 
-<SmartTable
-    id="tabla02"
-    caption="Dirección máscara red LAN 2"
-    tableLayout="auto"
-    headers={["dirección en binario", "dirección en decimal"]}
-    rows={[
-        [
-            "$11111111.11111111.11110000.00000000$",
-            "$255.255.240.0$"
-        ]
-    ]}
-/>
+:::table{#tabla02 caption="Dirección máscara red LAN 2"}
+| dirección en binario | dirección en decimal |
+| --- | --- |
+| $11111111.11111111.11110000.00000000$ | $255.255.240.0$ |
+:::
 
 <SmartFigure
 	id="fig53"
@@ -279,18 +265,12 @@
 <P indent={2}>
 **f. Dirección Máscara**
 </P>
-<SmartTable
-    id="tabla03"
-    caption="Dirección máscara red LAN 3"
-    tableLayout="auto"
-    headers={["dirección en binario", "dirección en decimal"]}
-    rows={[
-        [
-            "$11111111.11111111.11111100.00000000$",
-            "$255.255.252.0$"
-        ]
-    ]}
-/>
+
+:::table{#tabla03 caption="Dirección máscara red LAN 3"}
+| dirección en binario | dirección en decimal |
+| --- | --- |
+| $11111111.11111111.11111100.00000000$ | $255.255.252.0$ |
+:::
 
 <SmartFigure
 	id="fig60"
@@ -376,18 +356,11 @@
 **f. Dirección Máscara**
 </P>
 
-<SmartTable
-    id="tabla04"
-    caption="Dirección máscara red WAN 1"
-    tableLayout="auto"
-    headers={["dirección en binario", "dirección en decimal"]}
-    rows={[
-        [
-            "$11111111.11111111.11111111.11111100$",
-            "$255.255.255.252$"
-        ]
-    ]}
-/>
+:::table{#tabla04 caption="Dirección máscara red WAN 1"}
+| dirección en binario | dirección en decimal |
+| --- | --- |
+| $11111111.11111111.11111111.11111100$ | $255.255.255.252$ |
+:::
 
 <SmartFigure
 	id="fig67"
@@ -403,17 +376,13 @@
 **Paso 05: Configuración interfaces router RENCA**
 </P>
 
-<SmartTable
-  id="tabla05"
-  caption="Configuración interfaces router RENCA"
-  tableLayout="auto"
-  headers={['Interfaz', 'Asignación']}
-  rows={[
-    ['G0/0', 'Primera IP de RED LAN 1 con su correspondiente máscara'],
-    ['G0/1', 'Primera IP de RED LAN 2 con su correspondiente máscara'],
-    ['S0/0/0', 'Primera IP de RED WAN 1 con su correspondiente máscara'],
-  ]}
-/>
+:::table{#tabla05 caption="Configuración interfaces router RENCA"}
+| Interfaz | Asignación |
+| --- | --- |
+| G0/0 | Primera IP de RED LAN 1 con su correspondiente máscara |
+| G0/1 | Primera IP de RED LAN 2 con su correspondiente máscara |
+| S0/0/0 | Primera IP de RED WAN 1 con su correspondiente máscara |
+:::
 
 <SmartFigure
 	id="fig68"
@@ -481,16 +450,12 @@ wr
 **Paso 06: Configuración router STGO**
 </P>
 
-<SmartTable
-  id="table06"
-  caption="Configuración interfaces router STGO"
-  tableLayout="auto"
-  headers={['Interfaz', 'Asignación']}
-  rows={[
-    ['G0/0', 'Primera IP de RED LAN 3 con su correspondiente máscara'],
-    ['S0/0/1', 'Segunda IP de RED WAN 1 con su correspondiente máscara'],
-  ]}
-/>
+:::table{#table06 caption="Configuración interfaces router STGO"}
+| Interfaz | Asignación |
+| --- | --- |
+| G0/0 | Primera IP de RED LAN 3 con su correspondiente máscara |
+| S0/0/1 | Segunda IP de RED WAN 1 con su correspondiente máscara |
+:::
 
 <SmartFigure
 	id="fig70"
@@ -549,17 +514,13 @@ wr
 **Paso 07: Configuración Server0, PC0, PC1**
 </P>
 
-<SmartTable
-  id="tabla07"
-  caption= "Configuración de hosts"
-  tableLayout="auto"
-  headers={['Dispositivo', 'Asignación']}
-  rows={[
-    ['PC0', 'Última IP de RED LAN 1, máscara y gateway correspondiente'],
-    ['PC1', 'Última IP de RED LAN 2, máscara y gateway correspondiente'],
-    ['Server0', 'Última IP de RED LAN 3, máscara y gateway correspondiente'],
-  ]}
-/>
+:::table{#tabla07 caption="Configuración de hosts"}
+| Dispositivo | Asignación |
+| --- | --- |
+| PC0 | Última IP de RED LAN 1, máscara y gateway correspondiente |
+| PC1 | Última IP de RED LAN 2, máscara y gateway correspondiente |
+| Server0 | Última IP de RED LAN 3, máscara y gateway correspondiente |
+:::
 
 <P indent={2}>
 Se resume todas las configuraciones realizadas hasta el momento:
@@ -574,33 +535,12 @@ Se resume todas las configuraciones realizadas hasta el momento:
 <P indent={2}>
 En base a la tabla 7 y figura 34, se obtiene el siguiente resumen de configuraciones para los host
 </P>
-<SmartTable
-	tableLayout="auto"
-	headers={["Host","IPv4", "Máscara", "Default Gateway", "DNS Server"]}
-	rows={[
-		[
-			"**Server0**",
-			"130.130.83.254", 
-			"255.255.252.0", 
-			"130.130.80.1 *(g0/0 router STGO)*", 
-			"127.0.0.1"
-		],
-		[
-			"**PC0**",
-			"130.130.63.254",
-			"255.255.192.0",
-			"130.130.0.1 *(g0/0 router RENCA)*",
-			"130.130.83.254"
-		],
-		[
-			"**PC1**",
-			"130.130.79.254",
-			"255.255.240.0",
-			"130.130.64.1 *(g0/1 router RENCA)*",
-			"130.130.83.254"
-		]
-	]}
-/>
+
+| Host | IPv4 | Máscara | Default Gateway | DNS Server |
+| --- | --- | --- | --- | --- |
+| **Server0** | 130.130.83.254 | 255.255.252.0 | 130.130.80.1 *(g0/0 router STGO)* | 127.0.0.1 |
+| **PC0** | 130.130.63.254 | 255.255.192.0 | 130.130.0.1 *(g0/0 router RENCA)* | 130.130.83.254 |
+| **PC1** | 130.130.79.254 | 255.255.240.0 | 130.130.64.1 *(g0/1 router RENCA)* | 130.130.83.254 |
 
 <SmartFigure
 	id="fig73"
@@ -703,4 +643,4 @@ b. **Router STGO:** necesita rutas hacia red LAN 1 y red LAN 2 (redes que no con
 
 
 
-:::
+::::

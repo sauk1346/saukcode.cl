@@ -2,28 +2,24 @@
 
 Sea la siguiente Red y números de IPs para cada Segmento (subred):
 
-<SmartTable
-	tableLayout="fixed"
-	headers={['Red', 'Segmento 1', 'Segmento 2', 'Segmento 3', 'Segmento 4']}
-	rows={[
-		['172.31.0.0/24', '45', '21', '10', '8']
-	]}
-/>
+:::table{layout="fixed"}
+| Red | Segmento 1 | Segmento 2 | Segmento 3 | Segmento 4 |
+| --- | --- | --- | --- | --- |
+| 172.31.0.0/24 | 45 | 21 | 10 | 8 |
+:::
 
 Explicar claramente el desarrollo y completar la siguiente tabla:
 
-<SmartTable
-	tableLayout="fixed"
-	headers={['Subred', 'IP de Red', 'Máscara', 'IP Difusión', 'IPs Posibles']}
-	rows={[
-		['Segmento 1', '', '', '', ''],
-		['Segmento 2', '', '', '', ''],
-		['Segmento 3', '', '', '', ''],
-		['Segmento 4', '', '', '', '']
-	]}
-/>
+:::table{layout="fixed"}
+| Subred | IP de Red | Máscara | IP Difusión | IPs Posibles |
+| --- | --- | --- | --- | --- |
+| Segmento 1 |  |  |  |  |
+| Segmento 2 |  |  |  |  |
+| Segmento 3 |  |  |  |  |
+| Segmento 4 |  |  |  |  |
+:::
 
-:::solution
+::::solution
 1. Se ordenan las subredes de mayor a menor:
 
     1. **Segmento 1:** `45`
@@ -82,15 +78,13 @@ Explicar claramente el desarrollo y completar la siguiente tabla:
 
 7. Finalmente, se completa la tabla:
 
-<SmartTable
-	tableLayout="fixed"
-	headers={['Subred', 'IP de Red', 'Máscara', 'IP Difusión', 'IPs Posibles']}
-	rows={[
-		['Segmento 1', '172.31.0.0', '/26', '172.31.0.63', '62'],
-		['Segmento 2', '172.31.0.64', '/27', '172.31.0.95', '30'],
-		['Segmento 3', '172.31.0.96', '/28', '172.31.0.111', '14'],
-		['Segmento 4', '172.31.0.112', '/29', '172.31.0.119', '6']
-	]}
-/>
-
+:::table{layout="fixed"}
+| Subred | IP de Red | Máscara | IP Difusión | IPs Posibles |
+| --- | --- | --- | --- | --- |
+| Segmento 1 | 172.31.0.0 | /26 | 172.31.0.63 | 62 |
+| Segmento 2 | 172.31.0.64 | /27 | 172.31.0.95 | 30 |
+| Segmento 3 | 172.31.0.96 | /28 | 172.31.0.111 | 14 |
+| Segmento 4 | 172.31.0.112 | /29 | 172.31.0.119 | 6 |
 :::
+
+::::

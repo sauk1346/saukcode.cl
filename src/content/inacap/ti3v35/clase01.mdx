@@ -15,55 +15,23 @@
 
 # Introducción TCP/IP
 
-<SmartTable
-	tableLayout="auto"
-	headers={['Término', 'Definición']}
-	rows={[
-		[
-			'**Dirección MAC**',
-			'Es un identificador único asignado a la interfaz de red de un dispositivo para comunicaciones en una red física. También conocida como dirección de hardware (ej: `00:1A:2B:3C:4D:5E`)'
-		],
-		[
-			'**Dirección IPv4**',
-			'Es una dirección de 32 bits dividida en 4 octetos (grupos de 8 bits cada uno), que se representan como números decimales separados por puntos (ej: `192.168.1.1`)'
-		],
-		[
-			'**FLSM (Fixed Length Subnet Mask)**',
-			'Es un método de subneteo (división de redes IP) donde todas las subredes tienen el mismo tamaño y usan la misma máscara de subred'
-		],
-		[
-			'**VLSM (Variable Length Subnet Mask)**',
-			'Es una técnica de subneteo que permite crear subredes de diferentes tamaños según las necesidades de cada segmento de red'
-		],
-		[
-			'**DHCP (Dynamic Host Configuration Protocol)**',
-			'Es un protocolo de red que asigna direcciones IP automáticamente a los dispositivos dentro de una red. Esto significa que cuando un dispositivo se conecta a una red (como tu computadora, teléfono o impresora), no necesita configurar manualmente su dirección IP, ya que el servidor DHCP lo hace por él'
-		]
-	]}
-/>
+| Término | Definición |
+| --- | --- |
+| **Dirección MAC** | Es un identificador único asignado a la interfaz de red de un dispositivo para comunicaciones en una red física. También conocida como dirección de hardware (ej: `00:1A:2B:3C:4D:5E`) |
+| **Dirección IPv4** | Es una dirección de 32 bits dividida en 4 octetos (grupos de 8 bits cada uno), que se representan como números decimales separados por puntos (ej: `192.168.1.1`) |
+| **FLSM (Fixed Length Subnet Mask)** | Es un método de subneteo (división de redes IP) donde todas las subredes tienen el mismo tamaño y usan la misma máscara de subred |
+| **VLSM (Variable Length Subnet Mask)** | Es una técnica de subneteo que permite crear subredes de diferentes tamaños según las necesidades de cada segmento de red |
+| **DHCP (Dynamic Host Configuration Protocol)** | Es un protocolo de red que asigna direcciones IP automáticamente a los dispositivos dentro de una red. Esto significa que cuando un dispositivo se conecta a una red (como tu computadora, teléfono o impresora), no necesita configurar manualmente su dirección IP, ya que el servidor DHCP lo hace por él |
 
 ## Inet, Host y Dispositivos de Interconexión
 
 - **Host:** En una red, cualquier dispositivo que envía o recibe datos se considera un host. Esto incluye computadoras, servidores, teléfonos inteligentes, smart TVs, impresoras y otros dispositivos con capacidad de red.
 
-<SmartTable
-	tableLayout="auto"
-	headers={['Dispositivo Interconexión', 'Descripción']}
-	rows={[
-		[
-			'**Switch**',
-			'[Funciona en la capa 2 (enlace de datos) del modelo OSI,Conecta dispositivos dentro de la misma red local (LAN),Usa direcciones MAC para enviar datos al dispositivo correcto,No asigna direcciones IP ni permite comunicación entre redes diferentes,Es el punto de conexión principal para hosts dentro de una misma red]'
-		],
-		[
-			'**Router**',
-			'[Funciona en la capa 3 (red) del modelo OSI,Conecta redes diferentes entre sí (por ejemplo tu red local con Internet),Usa direcciones IP para enrutar datos entre redes,Asigna direcciones IP a los dispositivos (función DHCP),Proporciona funciones de seguridad como firewall]'
-		],
-		[
-			'**Access Point**',
-			'[Extiende una red alámbrica a conexiones inalámbricas,Permite que dispositivos WiFi se conecten a una red existente,Puede integrarse con un router (router inalámbrico),No suele tener capacidades de enrutamiento de un router]'
-		]
-	]}
-/>
+| Dispositivo Interconexión | Descripción |
+| --- | --- |
+| **Switch** | :li[Funciona en la capa 2 (enlace de datos) del modelo OSI] :li[Conecta dispositivos dentro de la misma red local (LAN)] :li[Usa direcciones MAC para enviar datos al dispositivo correcto] :li[No asigna direcciones IP ni permite comunicación entre redes diferentes] :li[Es el punto de conexión principal para hosts dentro de una misma red] |
+| **Router** | :li[Funciona en la capa 3 (red) del modelo OSI] :li[Conecta redes diferentes entre sí (por ejemplo tu red local con Internet)] :li[Usa direcciones IP para enrutar datos entre redes] :li[Asigna direcciones IP a los dispositivos (función DHCP)] :li[Proporciona funciones de seguridad como firewall] |
+| **Access Point** | :li[Extiende una red alámbrica a conexiones inalámbricas] :li[Permite que dispositivos WiFi se conecten a una red existente] :li[Puede integrarse con un router (router inalámbrico)] :li[No suele tener capacidades de enrutamiento de un router] |
 
 ## Conexiones en una Red Típica
 
@@ -82,24 +50,13 @@ Arquitectura típica de una red informática estructurada, mostrando cómo fluye
 
 ## Aclaraciones
 
-<SmartTable
-	tableLayout="fixed"
-	headers={['Afirmación', 'Detalle']}
-	rows={[
-		[
-			'[✅ **Todos los equipos se llaman host**,✅ **Todos los hosts se conectan con un switch**]',
-			'[Los hosts (equipos finales) generalmente se conectan a un switch en una red estructurada corporativa o grande,En redes domésticas pequeñas muchos dispositivos router integran las funciones de router + switch + access point en un solo equipo por lo que técnicamente los hosts se conectan a este dispositivo multifunción,**Importante:** Una red bien estructurada separa las funciones de cada dispositivo por razones de rendimiento seguridad y escalabilidad]'
-		],
-		[
-			'❌ **Un equipo se conecta directamente al router**',
-			'En redes empresariales estructuradas, esto es generalmente falso. Los hosts se conectan al switch, y el switch se conecta al router'
-		],
-		[
-			'✅ **Un equipo se conecta directamente al switch**',
-			'Correcto en redes estructuradas. El switch distribuye los datos dentro de la red local'
-		]
-	]}
-/>
+:::table{layout="fixed"}
+| Afirmación | Detalle |
+| --- | --- |
+| :li[✅ **Todos los equipos se llaman host**] :li[✅ **Todos los hosts se conectan con un switch**] | :li[Los hosts (equipos finales) generalmente se conectan a un switch en una red estructurada corporativa o grande] :li[En redes domésticas pequeñas muchos dispositivos router integran las funciones de router + switch + access point en un solo equipo por lo que técnicamente los hosts se conectan a este dispositivo multifunción] :li[**Importante:** Una red bien estructurada separa las funciones de cada dispositivo por razones de rendimiento seguridad y escalabilidad] |
+| ❌ **Un equipo se conecta directamente al router** | En redes empresariales estructuradas, esto es generalmente falso. Los hosts se conectan al switch, y el switch se conecta al router |
+| ✅ **Un equipo se conecta directamente al switch** | Correcto en redes estructuradas. El switch distribuye los datos dentro de la red local |
+:::
 
 ## Conceptos Básicos de Redes
 

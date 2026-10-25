@@ -25,39 +25,33 @@ $$
 \end{aligned}
 $$
 
-<SmartTable
-	tableLayout="fixed"
-	headers={['Subred', 'Hosts Req.', 'Cálculo', 'Bits Host (n)', 'Hosts Disponibles', 'Máscara']}
-	rows={[
-		['A', '50', '$2^6 - 2 = 62$', '6', '62', '/26'],
-		['B', '25', '$2^5 - 2 = 30$', '5', '30', '/27'],
-		['C', '10', '$2^4 - 2 = 14$', '4', '14', '/28']
-	]}
-/>
+:::table{layout="fixed"}
+| Subred | Hosts Req. | Cálculo | Bits Host (n) | Hosts Disponibles | Máscara |
+| --- | --- | --- | --- | --- | --- |
+| A | 50 | $2^6 - 2 = 62$ | 6 | 62 | /26 |
+| B | 25 | $2^5 - 2 = 30$ | 5 | 30 | /27 |
+| C | 10 | $2^4 - 2 = 14$ | 4 | 14 | /28 |
+:::
 
 3. **Calcular saltos para cada máscara**
 
-<SmartTable
-	tableLayout="fixed"
-	headers={['Subred', 'Máscara', 'Valor octeto', 'Salto (256 - valor)', 'Direcciones totales']}
-	rows={[
-		['A', '/26', '192', '256 - 192 = 64', '64'],
-		['B', '/27', '224', '256 - 224 = 32', '32'],
-		['C', '/28', '240', '256 - 240 = 16', '16']
-	]}
-/>
+:::table{layout="fixed"}
+| Subred | Máscara | Valor octeto | Salto (256 - valor) | Direcciones totales |
+| --- | --- | --- | --- | --- |
+| A | /26 | 192 | 256 - 192 = 64 | 64 |
+| B | /27 | 224 | 256 - 224 = 32 | 32 |
+| C | /28 | 240 | 256 - 240 = 16 | 16 |
+:::
 
 4. **Asignar subredes secuencialmente**
 
-<SmartTable
-	tableLayout="fixed"
-	headers={['Subred', 'Red', 'Primera Útil', 'Última Útil', 'Broadcast', 'Hosts Útiles']}
-	rows={[
-		['A', '192.168.1.0', '192.168.1.1', '192.168.1.62', '192.168.1.63', '62'],
-		['B', '192.168.1.64', '192.168.1.65', '192.168.1.94', '192.168.1.95', '30'],
-		['C', '192.168.1.96', '192.168.1.97', '192.168.1.110', '192.168.1.111', '14']
-	]}
-/>
+:::table{layout="fixed"}
+| Subred | Red | Primera Útil | Última Útil | Broadcast | Hosts Útiles |
+| --- | --- | --- | --- | --- | --- |
+| A | 192.168.1.0 | 192.168.1.1 | 192.168.1.62 | 192.168.1.63 | 62 |
+| B | 192.168.1.64 | 192.168.1.65 | 192.168.1.94 | 192.168.1.95 | 30 |
+| C | 192.168.1.96 | 192.168.1.97 | 192.168.1.110 | 192.168.1.111 | 14 |
+:::
 
 # Actividad de Práctica 03
 

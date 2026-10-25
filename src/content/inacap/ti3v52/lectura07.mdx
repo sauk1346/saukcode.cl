@@ -11,29 +11,13 @@ La capacidad de comunicar dispositivos que pertenecen a redes distintias
 ## 2. La tabla de enrutamiento
 El router no "adivina". Consulta una base de datos precisa (la tabla de enrutamiento) para decidir el siguiente salto o la interfaz de salida.
 
-<SmartTable
-    id="tabla01"
-    caption="Siglas"
-    tableLayout="auto"
-    headers={["Término", "Sigla", "Descripción"]}
-    rows={[
-        [
-            "**Rutas conectadas**",
-            "**C**",
-            "Aparecen automáticamente cuando una interfaz está activa y configurada con una IP. Son la base operativa"
-        ],
-        [
-            "**Rutas estáticas**",
-            "**S**",
-            "Configuradas manualmente por el administrador. Ofrecen control estricto"
-        ],
-        [
-            "**Protocolos Dinámicos**",
-            "**O, D, R**",
-            "Rutas aprendidas automáticamente (OSPF, EIGRP, RIP)"
-        ],
-    ]}
-/>
+:::table{#tabla01 caption="Siglas"}
+| Término | Sigla | Descripción |
+| --- | --- | --- |
+| **Rutas conectadas** | **C** | Aparecen automáticamente cuando una interfaz está activa y configurada con una IP. Son la base operativa |
+| **Rutas estáticas** | **S** | Configuradas manualmente por el administrador. Ofrecen control estricto |
+| **Protocolos Dinámicos** | **O, D, R** | Rutas aprendidas automáticamente (OSPF, EIGRP, RIP) |
+:::
 
 :::callout[Lógica de reenvío]{type="info"}
 El router selecciona el camino basándose en la "coincidencia de prefijo más largo" (*Longest Prefix Match*)

@@ -8,16 +8,14 @@ Basado en esta información Jorge, el gerente de Recursos Humanos, pretende mode
 
 La tabla a continuación resume esta información para cuatro empleados:
 
-<SmartTable
-  tableLayout="fixed"
-  headers={["Calificación en el test de habilidades (x)","Volumen de ventas (y)"]}
-  rows={[
-    ["35","1.6"],
-    ["55","2.3"],
-    ["65","2.9"],
-    ["70","3.8"]
-  ]}
-/>
+:::table{layout="fixed"}
+| Calificación en el test de habilidades (x) | Volumen de ventas (y) |
+| --- | --- |
+| 35 | 1.6 |
+| 55 | 2.3 |
+| 65 | 2.9 |
+| 70 | 3.8 |
+:::
 
 1. **¿Cuál es la expresión lineal que modela el volumen de ventas en fución de la calificación obtenida en el test de habilidades?**
 
@@ -54,16 +52,14 @@ Después de analizar 350 datos provenientes de sus clientes, un analista de dato
 
 Considere la siguiente tabla con cuatro de estos clientes:
 
-<SmartTable
-  tableLayout="fixed"
-  headers={["Ingreso promedio mensual (x)","Monto de inversión en fondos mutuos (y)"]}
-  rows={[
-    ["1,5","250"],
-    ["1,8","230"],
-    ["2,2","320"],
-    ["2,9","450"]
-  ]}
-/>
+:::table{layout="fixed"}
+| Ingreso promedio mensual (x) | Monto de inversión en fondos mutuos (y) |
+| --- | --- |
+| 1,5 | 250 |
+| 1,8 | 230 |
+| 2,2 | 320 |
+| 2,9 | 450 |
+:::
 
 3. **¿Cuál es la expresión cuadrática que modela el monto de inversión en fondos mutuos en función del ingreso promedio mensual?**
 
@@ -101,32 +97,29 @@ Si en determinada semana del año (semana 0) el precio de la bencina es $1280 y 
 
 1. **Complete la siguiente tabla**
 
-<SmartTable
-  tableLayout="fixed"
-  headers={["Semana","Valor de la gasolina en Stgo"]}
-  rows={[
-    ["0","1280"],
-    ["1",""],
-    ["2",""],
-    ["3",""],
-    ["4",""]
-  ]}
-/>
-
-:::solution
-
-<SmartTable
-  tableLayout="fixed"
-  headers={["Semana","Valor de la gasolina en Stgo"]}
-  rows={[
-    ["0","1280"],
-    ["1","1287"],
-    ["2","1294"],
-    ["3","1301"],
-    ["4","1308"]
-  ]}
-/>
+:::table{layout="fixed"}
+| Semana | Valor de la gasolina en Stgo |
+| --- | --- |
+| 0 | 1280 |
+| 1 |  |
+| 2 |  |
+| 3 |  |
+| 4 |  |
 :::
+
+::::solution
+
+:::table{layout="fixed"}
+| Semana | Valor de la gasolina en Stgo |
+| --- | --- |
+| 0 | 1280 |
+| 1 | 1287 |
+| 2 | 1294 |
+| 3 | 1301 |
+| 4 | 1308 |
+:::
+
+::::
 
 
 2. **¿Cuál de las gráficas siguientes representa mejor el valor de la gasolina en cada semana?**
@@ -214,33 +207,27 @@ Si el precio de la gasolina en cierta semana en La Serena se modela a través de
 
 **¿Qué cantidad de dinero ahorró semana a semana y el total ahorrado durante todo el periodo de tiempo en que la bencina fue a la baja a partir del valor inicial de $1290?**
 
-<SmartTable
-  tableLayout="fixed"
-  headers={["Semana","Precio por litro","Ahorro por 35 litros"]}
-  rows={[
-    ["0","1290","0"],
-    ["1","",""],
-    ["2","",""],
-    ["3","",""],
-    ["4","",""],
-    ["5","",""]
-  ]}
-/>
+:::table{layout="fixed"}
+| Semana | Precio por litro | Ahorro por 35 litros |
+| --- | --- | --- |
+| 0 | 1290 | 0 |
+| 1 |  |  |
+| 2 |  |  |
+| 3 |  |  |
+| 4 |  |  |
+| 5 |  |  |
+:::
 
 :::solution
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Semana","Precio/litro","Costo 35L","Ahorro vs Sem.0","Ahorro Acumulado"]}
-  rows={[
-    ["0","$1290","$45150","$0","$0"],
-    ["1","$1283","$44905","$245","$245"],
-    ["2","$1276","$44660","$490","$735"],
-    ["3","$1269","$44415","$735","$1470"],
-    ["4","$1262","$44170","$980","$2450"],
-    ["5","$1255","$43925","$1225","$3675"]
-  ]}
-/>
+| Semana | Precio/litro | Costo 35L | Ahorro vs Sem.0 | Ahorro Acumulado |
+| --- | --- | --- | --- | --- |
+| 0 | \$1290 | \$45150 | \$0 | \$0 |
+| 1 | \$1283 | \$44905 | \$245 | \$245 |
+| 2 | \$1276 | \$44660 | \$490 | \$735 |
+| 3 | \$1269 | \$44415 | \$735 | \$1470 |
+| 4 | \$1262 | \$44170 | \$980 | \$2450 |
+| 5 | \$1255 | \$43925 | \$1225 | \$3675 |
 
 **Respuesta:** El total ahorrado es `3675` pesos
 :::
@@ -254,35 +241,30 @@ Al inicio de la pandemia (día = 0) la cantidad de contagios fue de 13 casos y e
 
 1. **Complete la siguiente tabla para la primera semana de contagios nuevos:**
 
-<SmartTable
-  tableLayout="fixed"
-  headers={["Día","N° de Contagios diarios"]}
-  rows={[
-    ["0",""],
-    ["1",""],
-    ["2",""],
-    ["3",""],
-    ["4",""],
-    ["5",""],
-    ["6",""]
-  ]}
-/>
+:::table{layout="fixed"}
+| Día | N° de Contagios diarios |
+| --- | --- |
+| 0 |  |
+| 1 |  |
+| 2 |  |
+| 3 |  |
+| 4 |  |
+| 5 |  |
+| 6 |  |
+:::
 
 :::solution
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Día","N° de Contagios diarios"]}
-  rows={[
-    ["0","13"],
-    ["1","39"],
-    ["2","117"],
-    ["3","351"],
-    ["4","1053"],
-    ["5","3159"],
-    ["6","9477"]
-  ]}
-/>
+| Día | N° de Contagios diarios |
+| --- | --- |
+| 0 | 13 |
+| 1 | 39 |
+| 2 | 117 |
+| 3 | 351 |
+| 4 | 1053 |
+| 5 | 3159 |
+| 6 | 9477 |
+
 :::
 
 ## Enunciado 2
@@ -355,34 +337,30 @@ Vicente compró en Enero de 2021 una camioneta 4x4 en $ 19.000.000. De ahí en a
 
 1. **Completa la siguiente tabla de valores con la información del valor de la camioneta dependiendo de cada mes transcurrido**
 
-<SmartTable
-  tableLayout="fixed"
-  headers={["Mes","Valor de la Camioneta"]}
-  rows={[
-    ["0","19000000"],
-    ["1",""],
-    ["2",""],
-    ["3",""],
-    ["4",""],
-    ["5",""],
-    ["6",""]
-  ]}
-/>
+:::table{layout="fixed"}
+| Mes | Valor de la Camioneta |
+| --- | --- |
+| 0 | 19000000 |
+| 1 |  |
+| 2 |  |
+| 3 |  |
+| 4 |  |
+| 5 |  |
+| 6 |  |
+:::
+
 :::solution
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Mes","Valor de la Camioneta"]}
-  rows={[
-    ["0","19000000"],
-    ["1","19418000"],
-    ["2","19845196"],
-    ["3","20281790"],
-    ["4","20727990"],
-    ["5","21184005"],
-    ["6","21650054"]
-  ]}
-/>
+| Mes | Valor de la Camioneta |
+| --- | --- |
+| 0 | 19000000 |
+| 1 | 19418000 |
+| 2 | 19845196 |
+| 3 | 20281790 |
+| 4 | 20727990 |
+| 5 | 21184005 |
+| 6 | 21650054 |
+
 :::
 
 2. **Seleccione la gráfica que mejor representa a la tabla anterior.**

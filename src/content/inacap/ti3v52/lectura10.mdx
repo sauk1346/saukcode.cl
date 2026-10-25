@@ -4,30 +4,14 @@
 
 Las rutas estáticas y dinámicas, como OSPFv2 y OSPFv3, conviven armónicamente en la tabla de enrutamiento. La selección de ruta sigue reglas claras: el prefijo más largo y la menor distancia administrativa, donde las rutas estáticas prevalecen por defecto. Esta coexistencia asegura flexibilidad y respaldo en entornos de rede dual stack.
 
-<SmartTable
-    id="tabla01"
-    caption="Características coexistencia enrutamiento"
-    tableLayout="auto"
-    headers={["Característica", "Descripción"]}
-    rows={[
-        [
-            "**Prefijo más largo prioritario**",
-            "el router selecciona la ruta con el prefijo más específico, asegurando una coincidencia precisa con la dirección de destino"
-        ],
-        [
-            "**Distancia administrativa más baja**",
-            "si dos rutas tienen igual especificidad, se elige la que tenga la menor distancia administrativa, como rutas estáticas sobre OSPF"
-        ],
-        [
-            "**Uso de rutas estáticas flotantes**",
-            "las rutas estáticas pueden configurarse con una distancia administrativa mayor para actuar como respaldo en caso de fallos"
-        ],
-        [
-            "**Importancia de rutas de retorno**",
-            "las rutas de retorno son esenciales para garantizar conectividad bidireccional y evitar problemas como tráfico asimétrico o pérdida de conectividad"
-        ],
-    ]}
-/>
+:::table{#tabla01 caption="Características coexistencia enrutamiento"}
+| Característica | Descripción |
+| --- | --- |
+| **Prefijo más largo prioritario** | el router selecciona la ruta con el prefijo más específico, asegurando una coincidencia precisa con la dirección de destino |
+| **Distancia administrativa más baja** | si dos rutas tienen igual especificidad, se elige la que tenga la menor distancia administrativa, como rutas estáticas sobre OSPF |
+| **Uso de rutas estáticas flotantes** | las rutas estáticas pueden configurarse con una distancia administrativa mayor para actuar como respaldo en caso de fallos |
+| **Importancia de rutas de retorno** | las rutas de retorno son esenciales para garantizar conectividad bidireccional y evitar problemas como tráfico asimétrico o pérdida de conectividad |
+:::
 
 ## 2. Elección de router
 La seleccción de rutas en redes IPv4 e IPv6 sigue un conjunto de criterios bien definidos que garantizan la eficiencia y la estabilidad de la comunicación. Este proceso asegura que las rutas más adecuadas sean seleccionadas según las reglas de coincidencia de prefijo y distancia administrativa.
@@ -61,36 +45,14 @@ La selección de rutas en redes IPv4 e IPv6 se basa en principios claros como la
 
 ## 3. Estrategias de respaldo: Floating Static Routes
 
-<SmartTable
-    id="tabla02"
-    caption="Estrategias de respaldo"
-    tableLayout="auto"
-    headers={["Estrategias", "Descripción"]}
-    rows={[
-        [
-            "**Distancia Administrativa (AD)**",
-            "Es un valor que determina la preferencia de una ruta. Menor AD tiene mayor prioridad en la selección"
-        ],
-        [
-            "**Rutas Estáticas vs OSPF**",
-            "Las rutas estáticas tienen AD 1, mientras que OSPF tiene AD 110. Estáticas prevalecen salvo que se manipule la AD"
-        ],
-        [
-            "**Floating Static Routes**",
-            "Son rutas estáticas configuradas con AD mayor que OSPF, para actuar como respaldo si OSPF falla"
-        ],
-        [
-            "**Coexistencia de rutas**",
-            "Rutas estáticas y OSPF pueden coexistir en la tabla de enrutamiento, aplicando las mismas reglas de selección"
-        ],
-        [
-            "**Reglas de Selección de Rutas**",
-            "La selección se basa en prefijo más largo y menor AD. Floating static routes permiten respaldo eficiente"
-        ],
-        [
-            "**Importancia de Rutas de Retorno**",
-            "Son esenciales para conectividad bidireccional. Sin ellas, puede haber pérdida de conectividad o tráfico asimétrico"
-        ],
-    ]}
-/>
+:::table{#tabla02 caption="Estrategias de respaldo"}
+| Estrategias | Descripción |
+| --- | --- |
+| **Distancia Administrativa (AD)** | Es un valor que determina la preferencia de una ruta. Menor AD tiene mayor prioridad en la selección |
+| **Rutas Estáticas vs OSPF** | Las rutas estáticas tienen AD 1, mientras que OSPF tiene AD 110. Estáticas prevalecen salvo que se manipule la AD |
+| **Floating Static Routes** | Son rutas estáticas configuradas con AD mayor que OSPF, para actuar como respaldo si OSPF falla |
+| **Coexistencia de rutas** | Rutas estáticas y OSPF pueden coexistir en la tabla de enrutamiento, aplicando las mismas reglas de selección |
+| **Reglas de Selección de Rutas** | La selección se basa en prefijo más largo y menor AD. Floating static routes permiten respaldo eficiente |
+| **Importancia de Rutas de Retorno** | Son esenciales para conectividad bidireccional. Sin ellas, puede haber pérdida de conectividad o tráfico asimétrico |
+:::
 

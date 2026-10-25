@@ -14,28 +14,12 @@ Porque su uso en API REST presenta limitaciones importantes.
 
 ## 2. Permisos en Django REST Framework
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Clase de permisos", "Descripción"]}
-    rows={[
-        [
-            "`AllowAny`",
-            "Cualquiera puede acceder al endpoint (público)"
-        ],
-        [
-            "`IsAuthenticated`",
-            "Solo usuarios autenticados pueden acceder"
-        ],
-        [
-            "`IsAdminUser`",
-            "Solo administradores (`is_staff=True`) pueden acceder"
-        ],
-        [
-            "`IsAuthenicatedOrReadOnly`",
-            "Lectura para todos, modificación solo para autenticados"
-        ],
-    ]}
-/>
+| Clase de permisos | Descripción |
+| --- | --- |
+| `AllowAny` | Cualquiera puede acceder al endpoint (público) |
+| `IsAuthenticated` | Solo usuarios autenticados pueden acceder |
+| `IsAdminUser` | Solo administradores (`is_staff=True`) pueden acceder |
+| `IsAuthenicatedOrReadOnly` | Lectura para todos, modificación solo para autenticados |
 
 ### Uso en vistas o ViewSets
 Cada vista o ViewSet puede protegerse mediante clases de permisos. Estas determinan quién puede acceder a los endpoints y qué acciones están autorizadas.
@@ -57,24 +41,11 @@ class ProductoViewSet(viewsets.ModelViewSet):
 
 Este código permite:
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Características", "Descripción"]}
-    rows={[
-        [
-            "**Importar permisos**",
-            "Se trae la clase `IsAuthenticated` desde `rest_framework.permissions`"
-        ],
-        [
-            "**Definir el ViewSet**",
-            "Se crea un `ModelViewSet` llamado `ProductoViewSet`, que gestiona los objetos del modelo `Producto` y utiliza `ProductoSerializar` para transformar los datos"
-        ],
-        [
-            "**Restringir el acceso**",
-            "Con `permission_classese=[IsAuthenticated]`, se establece que solo los usuarios autenticados puedan acceder a los endpoints de este Viewset"
-        ],
-    ]}
-/>
+| Características | Descripción |
+| --- | --- |
+| **Importar permisos** | Se trae la clase `IsAuthenticated` desde `rest_framework.permissions` |
+| **Definir el ViewSet** | Se crea un `ModelViewSet` llamado `ProductoViewSet`, que gestiona los objetos del modelo `Producto` y utiliza `ProductoSerializar` para transformar los datos |
+| **Restringir el acceso** | Con `permission_classese=[IsAuthenticated]`, se establece que solo los usuarios autenticados puedan acceder a los endpoints de este Viewset |
 
 ## 3. Permisos personalizados
  Django REST Framework permite definir clases de permisos adaptadas a necesidades específicas. Por ejemplo, restringir la edición de un objeto únicamente al usuario que lo creó.
@@ -139,36 +110,16 @@ El uso de JSON Web Tokens (JWT) junto con un sistema adecuado de permisos es fun
 
 Implementar prácticas sólidas desde el inicio protege los datos sensibles y asegura que cada recurso esté accesible solo a los usuarios autorizados.
 
-<SmartTable
-    tableLayout="fixed"
-    headers={["Prácticas", "Descripción"]}
-    rows={[
-        [
-            "**Usa HTTPS siempre**",
-            "Incluso en desarrollo, para proteger datos sensibles"
-        ],
-        [
-            "**Protege todos los endpoints sensibles**",
-            "Utilizar permisos, como `IsAuthenticated`, etc."
-        ],
-        [
-            "**Evita exponer más campos de los necesarios**",
-            "En los serializers"
-        ],
-        [
-            "**Valida siempre los datos entrantes**",
-            "Para evitar inyecciones o corrupción de datos"
-        ],
-        [
-            "**Limita métodos permitidos**",
-            "En cada vista o recurso (`GET`, `POST`, etc.)"
-        ],
-        [
-            "**Utiliza paginación y filtros controlados**",
-            "Para evitar sobrecarga o exposición masiva de datos"
-        ],
-    ]}
-/>
+:::table{layout="fixed"}
+| Prácticas | Descripción |
+| --- | --- |
+| **Usa HTTPS siempre** | Incluso en desarrollo, para proteger datos sensibles |
+| **Protege todos los endpoints sensibles** | Utilizar permisos, como `IsAuthenticated`, etc. |
+| **Evita exponer más campos de los necesarios** | En los serializers |
+| **Valida siempre los datos entrantes** | Para evitar inyecciones o corrupción de datos |
+| **Limita métodos permitidos** | En cada vista o recurso (`GET`, `POST`, etc.) |
+| **Utiliza paginación y filtros controlados** | Para evitar sobrecarga o exposición masiva de datos |
+:::
 
 ### Otras herramientas y middleware de seguridad
 Además de la autenticación y permisos, Django ofrece capas de seguridad integradas que fortalecen la protección de la aplicación. Estas herramientas, aunque no todas aplican a REST, son esenciales en proyectos que combinan APIs con vistas tradicionales basadas en HTML.

@@ -136,20 +136,18 @@ Hacen referencia a transiciones válidas de un estado correcto a otro. Definen q
 
 **Ejemplo con estado civil:**
 
-<SmartTable
-    tablelayout="auto"
-    headers={['Transición', '¿Válida?']}
-    rows={[
-        ["Soltero → Casado", "✅"],
-        ["Casado → Viudo", "✅"],
-        ["Casado → Divorciado", "✅"],
-        ["Viudo → Casado", "✅"],
-        ["Soltero → Viudo", "❌"],
-        ["Soltero → Divorciado", "❌"],
-        ["Viudo → Divorciado", "❌"],
-        ["Divorciado → Viudo", "❌"]
-    ]}
-/>
+:::table{layout="fixed"}
+| Transición | ¿Válida? |
+| --- | --- |
+| Soltero → Casado | ✅ |
+| Casado → Viudo | ✅ |
+| Casado → Divorciado | ✅ |
+| Viudo → Casado | ✅ |
+| Soltero → Viudo | ❌ |
+| Soltero → Divorciado | ❌ |
+| Viudo → Divorciado | ❌ |
+| Divorciado → Viudo | ❌ |
+:::
 
 ```sql
 -- Restricción de transición implementada con CHECK o TRIGGER

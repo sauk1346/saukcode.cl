@@ -16,24 +16,11 @@ Las dimensiones son similares a las columnas de las tablas en un sistema de base
 
 ### Procesamiento tipo OLAP
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Procesamiento", "Descripción"]}
-    rows={[
-        [
-            "**ROLAP**",
-            "OLAP Relacional. El análisis se realiza con SQL sobre bases de datos relacionales (esquema estrella o copo de nieve), pero este enfoque es lento y poco optimizado para consultas multidimensionales "
-        ],
-        [
-            "**MOLAP**",
-            "OLAP Multidimensional. Usa la estructura de cubo OLAP para representar datos del datawarehouse de forma multidimensional, logrando un análisis mucho más rápido que ROLAP"
-        ],
-        [
-            "**HOLAP**",
-            "OLAP Híbrido. Combina las ventajas ROLAP y MOLAP seǵun las necesidades del contexto y las capacidades tecnológicas disponibles"
-        ],
-    ]}
-/>
+| Procesamiento | Descripción |
+| --- | --- |
+| **ROLAP** | OLAP Relacional. El análisis se realiza con SQL sobre bases de datos relacionales (esquema estrella o copo de nieve), pero este enfoque es lento y poco optimizado para consultas multidimensionales |
+| **MOLAP** | OLAP Multidimensional. Usa la estructura de cubo OLAP para representar datos del datawarehouse de forma multidimensional, logrando un análisis mucho más rápido que ROLAP |
+| **HOLAP** | OLAP Híbrido. Combina las ventajas ROLAP y MOLAP seǵun las necesidades del contexto y las capacidades tecnológicas disponibles |
 
 ### Arquitectura OLAP
 
@@ -63,20 +50,10 @@ Esto se logra mediante el uso de los esquemas de datos **estrella** y **copo de 
 
 El esquema estrella (el más simple de utilizar), permitirá definir 2 tipos de tablas intermedias, las llamadas **tablas de dimensiones** y **tablas de hechos**
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Tabla", "Descripción"]}
-    rows={[
-        [
-            "**Tabla de dimensiones**",
-            "Entrega los datos crudos originales para cada categoría o dimensión considerada en el análisis OLAP"
-        ],
-        [
-            "**Tabla de hechos**",
-            "Contiene los datos reales calculados y derivados, producto del análisis OLAP sobre las tablas de dimensiones"
-        ],
-    ]}
-/>
+| Tabla | Descripción |
+| --- | --- |
+| **Tabla de dimensiones** | Entrega los datos crudos originales para cada categoría o dimensión considerada en el análisis OLAP |
+| **Tabla de hechos** | Contiene los datos reales calculados y derivados, producto del análisis OLAP sobre las tablas de dimensiones |
 
 <SmartFigure
 	id="equivalencia-entre-molap-y-rolap"
@@ -90,36 +67,14 @@ El esquema estrella (el más simple de utilizar), permitirá definir 2 tipos de 
 
 Los cubos OLAP tienen grandes ventajas sobre los esquemas relacionales de tipo estrella o copo de nieve: permiten desplegar y sumar grandes cantidades de datos sin mucho problema, porque están optimizados para tales tareas. También permiten realizar búsquedas rápidas sobre extensos conjuntos de datos y aplicar operaciones adicionales.
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Operaciones", "Descripción"]}
-    rows={[
-        [
-            "**Rebanado (slicing)**",
-            "Permite crear una visualización en 2 dimensiones a partir de un cubo OLAP, eligiendo solo un valor para alguna de las dimensiones (por ejemplo, mostrar solo los datos del año 2025 o solo los datos del mes de junio). Esto permitirá crear hojas de cálculo y visualizaciones para análisis más simples que las entregadas por el cubo OLAP completo"
-        ],
-        [
-            "**Corta (dicing)**",
-            "Permite obtener un subcubo OLAP más pequeño a partir de uno más grande, eligiendo solo las dimensiones necesarias para el análisis actual"
-        ],
-        [
-            "**Excavar (drill-through)**",
-            "Permite obtener los datos relacionales originales que conformaron al cubo OLAP actual"
-        ],
-        [
-            "**Profundizar (drill-down)**",
-            "Permite tomar un cubo OLAP y ver detalles internos dentro de él. Por ejemplo, si un cubo tiene información demográfica sobre un país, la operación de profundización permitirá ver la misma información, pero sobre regiones y distritos, luego por ciudades, por comunas, etc."
-        ],
-        [
-            "**Consolidación (roll-up)**",
-            "Permite resumir los datos del cubo OLAP de acuerdo con atributos específicos. Es la operación opuesta a la profundización (drill-down)"
-        ],
-        [
-            "**Pivotear/rotar (pivot)**",
-            "Permite cambiar de lugar las dimensiones de un cubo OLAP para tener diferentes perspectivas de visualización de los datos"
-        ],
-    ]}
-/>
+| Operaciones | Descripción |
+| --- | --- |
+| **Rebanado (slicing)** | Permite crear una visualización en 2 dimensiones a partir de un cubo OLAP, eligiendo solo un valor para alguna de las dimensiones (por ejemplo, mostrar solo los datos del año 2025 o solo los datos del mes de junio). Esto permitirá crear hojas de cálculo y visualizaciones para análisis más simples que las entregadas por el cubo OLAP completo |
+| **Corta (dicing)** | Permite obtener un subcubo OLAP más pequeño a partir de uno más grande, eligiendo solo las dimensiones necesarias para el análisis actual |
+| **Excavar (drill-through)** | Permite obtener los datos relacionales originales que conformaron al cubo OLAP actual |
+| **Profundizar (drill-down)** | Permite tomar un cubo OLAP y ver detalles internos dentro de él. Por ejemplo, si un cubo tiene información demográfica sobre un país, la operación de profundización permitirá ver la misma información, pero sobre regiones y distritos, luego por ciudades, por comunas, etc. |
+| **Consolidación (roll-up)** | Permite resumir los datos del cubo OLAP de acuerdo con atributos específicos. Es la operación opuesta a la profundización (drill-down) |
+| **Pivotear/rotar (pivot)** | Permite cambiar de lugar las dimensiones de un cubo OLAP para tener diferentes perspectivas de visualización de los datos |
 
 ## 3. Recolección de datos mediante el proceso ETL
 
@@ -137,24 +92,11 @@ Para lograr obtener datos del negocio y aplicarlos hacia un sistema de almacén 
 
 En los sistemas de **data warehousing** y de **data lakes** se opera con un tipo de proceso denomidado **ETL (extract-transform-load)**, que está compuesto por las siguientes etapas:
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Etapa", "Descripción"]}
-    rows={[
-        [
-            "**Extracción de datos**",
-            "El sistema ETL se conecta a distintas fuentes de datos (SQL, NoSQL, archivos CSV, XML, JSON, etc.) mediante drivers y bibliotecas (ODBC, JDBC, entre otros) para extraer los datos necesarios para el cubo OLAP."
-        ],
-        [
-            "**Transformación de datos**",
-            "La etapa más compleja del ETL: consiste en adecuar los datos extraídos para incorporarlos al cubo OLAP. Puede ir desde trasladar datos en su forma original, hasta aplicar filtros, eliminar registros inválidos, concatenar campos, calcular hashes, cifrar o reestructurar datos."
-        ],
-        [
-            "**Carga de datos**",
-            "Los datos transformados se cargan en la tabla de hechos o el cubo OLAP, actualizando la información disponible para el análisis"
-        ],
-    ]}
-/>
+| Etapa | Descripción |
+| --- | --- |
+| **Extracción de datos** | El sistema ETL se conecta a distintas fuentes de datos (SQL, NoSQL, archivos CSV, XML, JSON, etc.) mediante drivers y bibliotecas (ODBC, JDBC, entre otros) para extraer los datos necesarios para el cubo OLAP. |
+| **Transformación de datos** | La etapa más compleja del ETL: consiste en adecuar los datos extraídos para incorporarlos al cubo OLAP. Puede ir desde trasladar datos en su forma original, hasta aplicar filtros, eliminar registros inválidos, concatenar campos, calcular hashes, cifrar o reestructurar datos. |
+| **Carga de datos** | Los datos transformados se cargan en la tabla de hechos o el cubo OLAP, actualizando la información disponible para el análisis |
 
 
 ## Actividad de Práctica

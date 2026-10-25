@@ -2,114 +2,44 @@
 
 ## Clasificación de Vulnerabilidades por activos
 
-<SmartTable
-	tableLayout="auto"
-	headers={['Activos', 'Vulnerabilidades']}
-	rows={[
-		[
-			'**Software**',
-			'[Vulnerabilidades de aplicación: Inyección SQL Cross-Site Scripting (XSS) Cross-Site Request Forgery (CSRF),Vulnerabilidades del sistema operativo: Desbordamiento de buffer Escalada de privilegios]'
-		],
-		[
-			'**Hardware**',
-			'[Vulnerabilidades físicas: Manipulación directa Ataques de canal lateral,Firmware: Exploits de firmware]'
-		],
-		[
-			'**Redes**',
-			'[Vulnerabilidades de protocolo: Ataques Man-in-the-Middle (MitM) Inyección de paquetes,Vulnerabilidades de configuración: Configuración insegura,Vulnerabilidades de Wi-Fi: Crackeo de claves Wi-Fi]'
-		],
-		[
-			'**Bases de datos**',
-			'[Exposición de datos,Pérdida de integridad de Datos,Fuga de datos]'
-		],
-		[
-			'**Activos humanos**',
-			'[Ingeniería social: Phishing Vishing,Errores humanos: Configuraciones incorrectas Uso inapropiado de credenciales]'
-		]
-	]}
-/>
+| Activos | Vulnerabilidades |
+| --- | --- |
+| **Software** | :li[Vulnerabilidades de aplicación: Inyección SQL Cross-Site Scripting (XSS) Cross-Site Request Forgery (CSRF)] :li[Vulnerabilidades del sistema operativo: Desbordamiento de buffer Escalada de privilegios] |
+| **Hardware** | :li[Vulnerabilidades físicas: Manipulación directa Ataques de canal lateral] :li[Firmware: Exploits de firmware] |
+| **Redes** | :li[Vulnerabilidades de protocolo: Ataques Man-in-the-Middle (MitM) Inyección de paquetes] :li[Vulnerabilidades de configuración: Configuración insegura] :li[Vulnerabilidades de Wi-Fi: Crackeo de claves Wi-Fi] |
+| **Bases de datos** | :li[Exposición de datos] :li[Pérdida de integridad de Datos] :li[Fuga de datos] |
+| **Activos humanos** | :li[Ingeniería social: Phishing Vishing] :li[Errores humanos: Configuraciones incorrectas Uso inapropiado de credenciales] |
 
 ## Identificación de activos
 Permite tener una visión clara y detallada de los elementos que componen la infraestructura tecnológica, facilitando la implementación de medidas de seguridad adecuadas.
 
-<SmartTable
-	tableLayout="auto"
-	headers={['Tipo de Activo', 'Actividades de Identificación']}
-	rows={[
-		[
-			'**Software**',
-			'[Inventario de aplicaciones sistemas operativos y herramientas,Evaluación de la criticidad basada en la función y los datos que manejan]'
-		],
-		[
-			'**Hardware**',
-			'[Registro de servidores equipos de red dispositivos de almacenamiento,Evaluación del valor en función de la operación y datos almacenados]'
-		],
-		[
-			'**Redes**',
-			'[Mapeo de dispositivos de red segmentos de red y configuraciones,Identificación de puntos críticos y nodos vulnerables]'
-		],
-		[
-			'**Base de datos**',
-			'[Inventario de base de datos sistemas de gestión de bases de datos (DBMS),Clasificación según la sensibilidad y el volumen de datos]'
-		],
-		[
-			'**Activos humanos**',
-			'[Listado de usuarios roles y permisos,Evaluación de la criticidad basada en acceso y roles desempeñados]'
-		]
-	]}
-/>
+| Tipo de Activo | Actividades de Identificación |
+| --- | --- |
+| **Software** | :li[Inventario de aplicaciones sistemas operativos y herramientas] :li[Evaluación de la criticidad basada en la función y los datos que manejan] |
+| **Hardware** | :li[Registro de servidores equipos de red dispositivos de almacenamiento] :li[Evaluación del valor en función de la operación y datos almacenados] |
+| **Redes** | :li[Mapeo de dispositivos de red segmentos de red y configuraciones] :li[Identificación de puntos críticos y nodos vulnerables] |
+| **Base de datos** | :li[Inventario de base de datos sistemas de gestión de bases de datos (DBMS)] :li[Clasificación según la sensibilidad y el volumen de datos] |
+| **Activos humanos** | :li[Listado de usuarios roles y permisos] :li[Evaluación de la criticidad basada en acceso y roles desempeñados] |
 
 Una identificación exhaustiva de activos permite detectar vulnerabilidades y gestionar mejor los riesgos asociados a cada uno de ellos.
 
 ## Clasificación de activos
 
-<SmartTable
-	tableLayout="auto"
-	headers={['Clasificación', 'Descripción']}
-	rows={[
-		[
-			'**Activos críticos**',
-			'Son esenciales para la operación continua de la organización'
-		],
-		[
-			'**Activos sensibles**',
-			'Manejan información confidencial o personal'
-		],
-		[
-			'**Activos no críticos**',
-			'Su pérdida no afectaría severamente las operaciones'
-		]
-	]}
-/>
+| Clasificación | Descripción |
+| --- | --- |
+| **Activos críticos** | Son esenciales para la operación continua de la organización |
+| **Activos sensibles** | Manejan información confidencial o personal |
+| **Activos no críticos** | Su pérdida no afectaría severamente las operaciones |
 
 ## Identificación de riesgos según tipo de Industria y TI
 
-<SmartTable
-	tableLayout="auto"
-	headers={['Industria', 'Riesgo']}
-	rows={[
-		[
-			'**Industria financiera**',
-			'[Activos de información: Datos financieros Sistema de transacciones,Riesgos de relación: Fraude y robo de identidad Ataques de phishing Robo de datos,Ejemplo: Caso Equifax (2017)]'
-		],
-		[
-			'**Salud**',
-			'[Activos de información: Registros de Salud Electrónicos (EHR) Sistemas de Diagnóstico y Tratamiento,Riesgos de relación: Exposición de Datos de Pacientes Interrupción de Servicios Médicos,Ejemplo: Ataque WannaCry (2017)]'
-		],
-		[
-			'**Tecnología y telecomunicaciones**',
-			'[Activos de información: Datos de usuario Infraestructura de red,Riesgos de relación: Interceptación de datos Compromiso de infraestructura,Ejemplo: Ataque a Yahoo (2013-2014)]'
-		],
-		[
-			'**Comercio electrónico**',
-			'[Activos de información: Datos de clientes Plataformas de comercio,Riesgos de relación: Robo de información de pago Fraude de comercio electrónico,Ejemplo: Brecha en Target (2013)]'
-		],
-		[
-			'**Manufactura**',
-			'[Activos de información: Propiedad intelectual Sistemas de control industrial,Riesgos de relación: Espionaje industrial Sabotaje de producción,Ejemplo: Ataque Stuxnet (2010)]'
-		]
-	]}
-/>
+| Industria | Riesgo |
+| --- | --- |
+| **Industria financiera** | :li[Activos de información: Datos financieros Sistema de transacciones] :li[Riesgos de relación: Fraude y robo de identidad Ataques de phishing Robo de datos] :li[Ejemplo: Caso Equifax (2017)] |
+| **Salud** | :li[Activos de información: Registros de Salud Electrónicos (EHR) Sistemas de Diagnóstico y Tratamiento] :li[Riesgos de relación: Exposición de Datos de Pacientes Interrupción de Servicios Médicos] :li[Ejemplo: Ataque WannaCry (2017)] |
+| **Tecnología y telecomunicaciones** | :li[Activos de información: Datos de usuario Infraestructura de red] :li[Riesgos de relación: Interceptación de datos Compromiso de infraestructura] :li[Ejemplo: Ataque a Yahoo (2013-2014)] |
+| **Comercio electrónico** | :li[Activos de información: Datos de clientes Plataformas de comercio] :li[Riesgos de relación: Robo de información de pago Fraude de comercio electrónico] :li[Ejemplo: Brecha en Target (2013)] |
+| **Manufactura** | :li[Activos de información: Propiedad intelectual Sistemas de control industrial] :li[Riesgos de relación: Espionaje industrial Sabotaje de producción] :li[Ejemplo: Ataque Stuxnet (2010)] |
 
 # Actividad de Práctica 06
 

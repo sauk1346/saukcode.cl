@@ -6,18 +6,16 @@ Su objetivo es proporcionar una visión rápida y flexible de los datos para apo
 
 ## 1. OLTP vs OLAP
 
-<SmartTable
-    tablelayout="auto"
-    headers={['Característica', 'OLTP', 'OLAP']}
-    rows={[
-        ["**Propósito**", "Procesar transacciones", "Analizar datos"],
-        ["**Tipo de consultas**", "Simples, frecuentes", "Complejas, ocasionales"],
-        ["**Datos**", "Actuales, detallados", "Históricos, agregados"],
-        ["**Estructura**", "Normalizada (3FN)", "Desnormalizada (dimensional)"],
-        ["**Usuarios**", "Operativos", "Analistas, ejecutivos"],
-        ["**Ejemplo**", "Registrar una venta", "Analizar ventas por región/trimestre"]
-    ]}
-/>
+:::table{layout="fixed"}
+| Característica | OLTP | OLAP |
+| --- | --- | --- |
+| **Propósito** | Procesar transacciones | Analizar datos |
+| **Tipo de consultas** | Simples, frecuentes | Complejas, ocasionales |
+| **Datos** | Actuales, detallados | Históricos, agregados |
+| **Estructura** | Normalizada (3FN) | Desnormalizada (dimensional) |
+| **Usuarios** | Operativos | Analistas, ejecutivos |
+| **Ejemplo** | Registrar una venta | Analizar ventas por región/trimestre |
+:::
 
 ## 2. Características de OLAP
 
@@ -257,19 +255,17 @@ En el diseño de cubos OLAP, la **tabla de hechos** es la estructura central que
 
 Cada fila representa un evento único (una venta, una visita, una transacción) y se conecta a las dimensiones mediante claves foráneas:
 
-<SmartTable
-    tablelayout="auto"
-    headers={['Columna', 'Tipo', 'Rol']}
-    rows={[
-        ["`id_tiempo`", "FK", "¿Cuándo ocurrió?"],
-        ["`id_producto`", "FK", "¿Qué se vendió?"],
-        ["`id_cliente`", "FK", "¿A quién?"],
-        ["`id_sucursal`", "FK", "¿Dónde?"],
-        ["`monto`", "Medida aditiva", "¿Cuánto en dinero?"],
-        ["`cantidad`", "Medida aditiva", "¿Cuántas unidades?"],
-        ["`descuento_pct`", "Medida no aditiva", "¿Qué % de descuento? (no se suma)"]
-    ]}
-/>
+:::table{layout="fixed"}
+| Columna | Tipo | Rol |
+| --- | --- | --- |
+| `id_tiempo` | FK | ¿Cuándo ocurrió? |
+| `id_producto` | FK | ¿Qué se vendió? |
+| `id_cliente` | FK | ¿A quién? |
+| `id_sucursal` | FK | ¿Dónde? |
+| `monto` | Medida aditiva | ¿Cuánto en dinero? |
+| `cantidad` | Medida aditiva | ¿Cuántas unidades? |
+| `descuento_pct` | Medida no aditiva | ¿Qué % de descuento? (no se suma) |
+:::
 
 **Tipos de medidas:**
 - **Aditivas:** se pueden sumar en cualquier dimensión (`monto`, `cantidad`). Son las más comunes.
@@ -387,17 +383,15 @@ SUM(f.monto) - LAG(SUM(f.monto), 12) OVER (ORDER BY t.anio, t.mes) AS variacion_
 
 ## 7. Casos de Uso OLAP
 
-<SmartTable
-    tablelayout="auto"
-    headers={['Área', 'Caso de Uso', 'Dimensiones Típicas']}
-    rows={[
-        ["**Ventas**", "Análisis de rendimiento comercial", "Tiempo, Producto, Cliente, Región"],
-        ["**Finanzas**", "Seguimiento de ingresos y costos", "Tiempo, Centro de Costo, Cuenta"],
-        ["**Marketing**", "Segmentación y conversión", "Tiempo, Canal, Segmento, Campaña"],
-        ["**Supply Chain**", "Gestión de inventario", "Tiempo, Producto, Bodega, Proveedor"],
-        ["**RRHH**", "Métricas de personal", "Tiempo, Departamento, Cargo, Sucursal"]
-    ]}
-/>
+:::table{layout="fixed"}
+| Área | Caso de Uso | Dimensiones Típicas |
+| --- | --- | --- |
+| **Ventas** | Análisis de rendimiento comercial | Tiempo, Producto, Cliente, Región |
+| **Finanzas** | Seguimiento de ingresos y costos | Tiempo, Centro de Costo, Cuenta |
+| **Marketing** | Segmentación y conversión | Tiempo, Canal, Segmento, Campaña |
+| **Supply Chain** | Gestión de inventario | Tiempo, Producto, Bodega, Proveedor |
+| **RRHH** | Métricas de personal | Tiempo, Departamento, Cargo, Sucursal |
+:::
 
 ## 8. Resumen de la arquitectura
 

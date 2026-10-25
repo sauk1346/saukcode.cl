@@ -9,18 +9,16 @@
 
 ## Operadores relacionales de comparación
 
-<SmartTable
-  tableLayout="fixed"
-  headers={["Operador","Descripción","Ejemplo"]}
-  rows={[
-    ["`$eq`","Igual a","`{ edad: { $eq:25 } }`"],
-    ["`$ne`","Distinto de","`{ edad: {$ne:18 } }`"],
-    ["`$gt`","Mayor que","`{ precio: {$gt:1000 } }`"],
-    ["`$gte`","Mayor o igual que","`{ edad: { $gte:18 } }`"],
-    ["`$lt`","Menor que","`{ stock: {$lt:5 } }`"],
-    ["`$lte`","Menor o igual que","`{ stock: {$lte:10 } }`"]
-  ]}
-/>
+:::table{layout="fixed"}
+| Operador | Descripción | Ejemplo |
+| --- | --- | --- |
+| `$eq` | Igual a | `{ edad: { $eq:25 } }` |
+| `$ne` | Distinto de | `{ edad: {$ne:18 } }` |
+| `$gt` | Mayor que | `{ precio: {$gt:1000 } }` |
+| `$gte` | Mayor o igual que | `{ edad: { $gte:18 } }` |
+| `$lt` | Menor que | `{ stock: {$lt:5 } }` |
+| `$lte` | Menor o igual que | `{ stock: {$lte:10 } }` |
+:::
 
 **Ejemplo:** Buscar todos los productos cuyo precio es mayor o igual a 30000
 
@@ -30,16 +28,12 @@ db.productos.find( {"precio":{ $gte: 30000 } } )
 
 ## Operadores lógicos
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Operador","Descripción","Ejemplo"]}
-  rows={[
-    ["`$and`","Todas la condiciones deben cumplirse","`{ $and:[ { edad:{$gt:18} },{ ciudad:\"Osorno } ] }`"],
-    ["`$or`","Al menos una condición debe cumplirse","`{ $or:[ {stock:0},{categoria:\"Obsoletos} ] }`"],
-    ["`$not`","Niega una condicion","`{ stock:{ $not:{$gt:0} } }`"],
-    ["`$nor`","Ninguna condición debe cumplirse","`{ $nor:[ {ciudad:\"Temuco\"}, {ciudad:\"Valdivia\"} ] }`"]
-  ]}
-/>
+| Operador | Descripción | Ejemplo |
+| --- | --- | --- |
+| `$and` | Todas la condiciones deben cumplirse | `{ $and:[ { edad:{$gt:18} },{ ciudad:"Osorno } ] }` |
+| `$or` | Al menos una condición debe cumplirse | `{ $or:[ {stock:0},{categoria:"Obsoletos} ] }` |
+| `$not` | Niega una condicion | `{ stock:{ $not:{$gt:0} } }` |
+| `$nor` | Ninguna condición debe cumplirse | `{ $nor:[ {ciudad:"Temuco"}, {ciudad:"Valdivia"} ] }` |
 
 **Ejemplo:** Encontrar todos los clientes que tengan una edad mayor a 18 o sean de Puerto Montt
 
@@ -92,16 +86,12 @@ db.usuarios.find({"direccion.ciudad":"Osorno"})
 
 ## Consultas sobre Arrays
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Operador","Qué hace","Ejemplo"]}
-  rows={[
-    ["`$in`","Coincide si el campo tiene alguno de los valores","`{ categoria: {$in:[\"Electrónica\", Audio\" ] } } `"],
-    ["`$all`","Coincide si el array contiene todos los elementos","`{etiquetas: {$all: [\"nuevo\", \"oferta\"]}}`"],
-    ["`$size`","Coincide con la cantidad exacta de elementos del array","`{ etiquetas: { $size:3 } }`"],
-    ["`$elemMAtch`","Coincide con al menos un elemento que cumpla múltiples condiciones","`{compras: {$elemMatch:{producto:\"Notebook\",precio:{$lt:500000}}}}`"]
-  ]}
-/>
+| Operador | Qué hace | Ejemplo |
+| --- | --- | --- |
+| `$in` | Coincide si el campo tiene alguno de los valores | `{ categoria: {$in:["Electrónica", Audio" ] } } ` |
+| `$all` | Coincide si el array contiene todos los elementos | `{etiquetas: {$all: ["nuevo", "oferta"]}}` |
+| `$size` | Coincide con la cantidad exacta de elementos del array | `{ etiquetas: { $size:3 } }` |
+| `$elemMAtch` | Coincide con al menos un elemento que cumpla múltiples condiciones | `{compras: {$elemMatch:{producto:"Notebook",precio:{$lt:500000}}}}` |
 
 ## Manejo de fechas
 

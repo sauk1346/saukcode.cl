@@ -11,7 +11,7 @@
 
 **Utilice plantilla VLSM para determinar las IP de la red**
 
-:::solution[Solución Ejercicio 02 VLSM]
+::::solution[Solución Ejercicio 02 VLSM]
 
 <P indent={2}>
 **Paso 01: Cálculo de direcciones IPs para redes LAN 1, LAN 2, LAN 3, WAN 1**
@@ -31,28 +31,20 @@
 **Paso 02: Cálculo de direcciones para interfaces de routers RENCA y STGO**
 </P>
 
-<SmartTable
-  id="tabla01"
-  caption="Configuración interfaces router RENCA"
-  tableLayout="auto"
-  headers={['Interfaz', 'Asignación']}
-  rows={[
-    ['G0/0', 'Primera IP de RED LAN 1 con su correspondiente máscara'],
-    ['G0/1', 'Primera IP de RED LAN 2 con su correspondiente máscara'],
-    ['S0/0/0', 'Primera IP de RED WAN 1 con su correspondiente máscara'],
-  ]}
-/>
+:::table{#tabla01 caption="Configuración interfaces router RENCA"}
+| Interfaz | Asignación |
+| --- | --- |
+| G0/0 | Primera IP de RED LAN 1 con su correspondiente máscara |
+| G0/1 | Primera IP de RED LAN 2 con su correspondiente máscara |
+| S0/0/0 | Primera IP de RED WAN 1 con su correspondiente máscara |
+:::
 
-<SmartTable
-  id="table02"
-  caption="Configuración interfaces router STGO"
-  tableLayout="auto"
-  headers={['Interfaz', 'Asignación']}
-  rows={[
-    ['G0/0', 'Primera IP de RED LAN 3 con su correspondiente máscara'],
-    ['S0/0/1', 'Segunda IP de RED WAN 1 con su correspondiente máscara'],
-  ]}
-/>
+:::table{#table02 caption="Configuración interfaces router STGO"}
+| Interfaz | Asignación |
+| --- | --- |
+| G0/0 | Primera IP de RED LAN 3 con su correspondiente máscara |
+| S0/0/1 | Segunda IP de RED WAN 1 con su correspondiente máscara |
+:::
 
 <SmartFigure
 	id="fig82"
@@ -84,17 +76,13 @@
 **Paso 03: Configuración Server0, PC0, PC1**
 </P>
 
-<SmartTable
-  id="tabla03"
-  caption= "Configuración de hosts"
-  tableLayout="auto"
-  headers={['Dispositivo', 'Asignación']}
-  rows={[
-    ['PC0', 'Última IP de RED LAN 1, máscara y gateway correspondiente'],
-    ['PC1', 'Última IP de RED LAN 2, máscara y gateway correspondiente'],
-    ['Server0', 'Última IP de RED LAN 3, máscara y gateway correspondiente'],
-  ]}
-/>
+:::table{#tabla03 caption="Configuración de hosts"}
+| Dispositivo | Asignación |
+| --- | --- |
+| PC0 | Última IP de RED LAN 1, máscara y gateway correspondiente |
+| PC1 | Última IP de RED LAN 2, máscara y gateway correspondiente |
+| Server0 | Última IP de RED LAN 3, máscara y gateway correspondiente |
+:::
 
 <SmartFigure
 	id="fig85"
@@ -181,4 +169,4 @@
 />
 
 
-:::
+::::

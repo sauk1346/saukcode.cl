@@ -25,7 +25,7 @@
     - 5 PCs conectados a los teléfonos IP
     - 1 impresora en red conectada al switch
 
-:::solution[Solución Pregunta 2]
+::::solution[Solución Pregunta 2]
 Ubicación dispositivos:
 - Switch: `Network Devices` >> `Switches` >> `2960`
 - Teléfonos IP: `End Devices` >> `IP Phone`
@@ -35,25 +35,21 @@ Ubicación dispositivos:
 
 Los teléfonos IP se conectan al switch, y cada PC se conecta al puerto de PC de su teléfono IP correspondiente.
 
-<SmartTable
-	id="tabla-cableado-primer-piso"
-	caption="Cableado de dispositivos en primer piso"
-	tableLayout="auto"
-	headers={['Dispositivo A', 'Interfaz', 'Dispositivo B', 'Interfaz']}
-	rows={[
-		['**IP Phone0**', 'FastEthernet0', '**Switch0**', 'FastEthernet0/1'],
-		['**IP Phone1**', 'FastEthernet0', '**Switch0**', 'FastEthernet0/2'],
-		['**IP Phone2**', 'FastEthernet0', '**Switch0**', 'FastEthernet0/3'],
-		['**IP Phone3**', 'FastEthernet0', '**Switch0**', 'FastEthernet0/4'],
-		['**IP Phone4**', 'FastEthernet0', '**Switch0**', 'FastEthernet0/5'],
-		['**PC0**', 'FastEthernet0', '**IP Phone0**', 'FastEthernet0 (PC Port)'],
-		['**PC1**', 'FastEthernet0', '**IP Phone1**', 'FastEthernet0 (PC Port)'],
-		['**PC2**', 'FastEthernet0', '**IP Phone2**', 'FastEthernet0 (PC Port)'],
-		['**PC3**', 'FastEthernet0', '**IP Phone3**', 'FastEthernet0 (PC Port)'],
-		['**PC4**', 'FastEthernet0', '**IP Phone4**', 'FastEthernet0 (PC Port)'],
-		['**Printer0**', 'FastEthernet0', '**Switch0**', 'FastEthernet0/6'],
-	]}
-/>
+:::table{#tabla-cableado-primer-piso caption="Cableado de dispositivos en primer piso"}
+| Dispositivo A | Interfaz | Dispositivo B | Interfaz |
+| --- | --- | --- | --- |
+| **IP Phone0** | FastEthernet0 | **Switch0** | FastEthernet0/1 |
+| **IP Phone1** | FastEthernet0 | **Switch0** | FastEthernet0/2 |
+| **IP Phone2** | FastEthernet0 | **Switch0** | FastEthernet0/3 |
+| **IP Phone3** | FastEthernet0 | **Switch0** | FastEthernet0/4 |
+| **IP Phone4** | FastEthernet0 | **Switch0** | FastEthernet0/5 |
+| **PC0** | FastEthernet0 | **IP Phone0** | FastEthernet0 (PC Port) |
+| **PC1** | FastEthernet0 | **IP Phone1** | FastEthernet0 (PC Port) |
+| **PC2** | FastEthernet0 | **IP Phone2** | FastEthernet0 (PC Port) |
+| **PC3** | FastEthernet0 | **IP Phone3** | FastEthernet0 (PC Port) |
+| **PC4** | FastEthernet0 | **IP Phone4** | FastEthernet0 (PC Port) |
+| **Printer0** | FastEthernet0 | **Switch0** | FastEthernet0/6 |
+:::
 
 <SmartFigure
 	id="fig29"
@@ -62,7 +58,7 @@ Los teléfonos IP se conectan al switch, y cada PC se conecta al puerto de PC de
 	caption="Instalación dispositivos en primer piso"
 	size="large"
 />
-:::
+::::
 
 3. En **segundo piso** identifique, seleccione y conecte cada dispositivo indicado a continuación:
     - 1 switch Cisco Cataliyst 2960
@@ -70,7 +66,7 @@ Los teléfonos IP se conectan al switch, y cada PC se conecta al puerto de PC de
     - 5 laptops conectados al router inalámbricamente
     - 1 impresora en red conectada al switch
 
-:::solution[Solución Pregunta 3]
+::::solution[Solución Pregunta 3]
 Ubicación dispositivos:
 - Switch: `Network Devices` >> `Switches` >> `2960`
 - Router inalámbrico: `Network Devices` >> `Wireless Devices` >> `WRT300N`
@@ -81,21 +77,17 @@ Ubicación dispositivos:
 El WRT300N se conecta al switch con cable directo. Las laptops se conectan al WRT300N de forma inalámbrica. Para habilitar la conexión inalámbrica en cada laptop en Packet Tracer:
 - Ir a `Laptop` >> `Physical` >> apagar el equipo >> reemplazar tarjeta `FastEthernet` por `WPC300N` >> encender el equipo
 
-<SmartTable
-	id="tabla-cableado-segundo-piso"
-	caption="Cableado de dispositivos en segundo piso"
-	tableLayout="auto"
-	headers={['Dispositivo A', 'Interfaz', 'Dispositivo B', 'Interfaz']}
-	rows={[
-		['**WRT300N**', 'Internet (Puerto WAN)', '**Switch1**', 'FastEthernet0/1'],
-		['**Printer1**', 'FastEthernet0', '**Switch1**', 'FastEthernet0/2'],
-		['**Laptop0**', 'Wireless', '**WRT300N**', 'Wireless'],
-		['**Laptop1**', 'Wireless', '**WRT300N**', 'Wireless'],
-		['**Laptop2**', 'Wireless', '**WRT300N**', 'Wireless'],
-		['**Laptop3**', 'Wireless', '**WRT300N**', 'Wireless'],
-		['**Laptop4**', 'Wireless', '**WRT300N**', 'Wireless'],
-	]}
-/>
+:::table{#tabla-cableado-segundo-piso caption="Cableado de dispositivos en segundo piso"}
+| Dispositivo A | Interfaz | Dispositivo B | Interfaz |
+| --- | --- | --- | --- |
+| **WRT300N** | Internet (Puerto WAN) | **Switch1** | FastEthernet0/1 |
+| **Printer1** | FastEthernet0 | **Switch1** | FastEthernet0/2 |
+| **Laptop0** | Wireless | **WRT300N** | Wireless |
+| **Laptop1** | Wireless | **WRT300N** | Wireless |
+| **Laptop2** | Wireless | **WRT300N** | Wireless |
+| **Laptop3** | Wireless | **WRT300N** | Wireless |
+| **Laptop4** | Wireless | **WRT300N** | Wireless |
+:::
 
 <SmartFigure
 	id="fig30"
@@ -104,34 +96,30 @@ El WRT300N se conecta al switch con cable directo. Las laptops se conectan al WR
 	caption="Instalación dispositivos en segundo piso"
 	size="large"
 />
-:::
+::::
 
 4. En **tercer piso** identifique, seleccione y conecte cada dispositivo indicado a continuación:
     - 1 switch Cisco 2960
     - 1 router Cisco 1941, conecte G0/0 del ROUTER a la G0/1 del switch
     - 5 servidores etiquetados como DHCP, DNS, WEB, MAIL, FTP y conectados al switch
 
-:::solution[Solución Pregunta 4]
+::::solution[Solución Pregunta 4]
 Ubicación dispositivos:
 - Switch: `Network Devices` >> `Switches` >> `2960`
 - Router: `Network Devices` >> `Routers` >> `1941`
 - Servidores: `End Devices` >> `Server`
 - Cable directo: `Connections` >> `Copper Straight-Through`
 
-<SmartTable
-	id="tabla-cableado-tercer-piso"
-	caption="Cableado de dispositivos en tercer piso"
-	tableLayout="auto"
-	headers={['Dispositivo A', 'Interfaz', 'Dispositivo B', 'Interfaz']}
-	rows={[
-		['**Router0**', 'GigabitEthernet0/0', '**Switch2**', 'GigabitEthernet0/1'],
-		['**Server-DHCP**', 'FastEthernet0', '**Switch2**', 'FastEthernet0/1'],
-		['**Server-DNS**', 'FastEthernet0', '**Switch2**', 'FastEthernet0/2'],
-		['**Server-WEB**', 'FastEthernet0', '**Switch2**', 'FastEthernet0/3'],
-		['**Server-MAIL**', 'FastEthernet0', '**Switch2**', 'FastEthernet0/4'],
-		['**Server-FTP**', 'FastEthernet0', '**Switch2**', 'FastEthernet0/5'],
-	]}
-/>
+:::table{#tabla-cableado-tercer-piso caption="Cableado de dispositivos en tercer piso"}
+| Dispositivo A | Interfaz | Dispositivo B | Interfaz |
+| --- | --- | --- | --- |
+| **Router0** | GigabitEthernet0/0 | **Switch2** | GigabitEthernet0/1 |
+| **Server-DHCP** | FastEthernet0 | **Switch2** | FastEthernet0/1 |
+| **Server-DNS** | FastEthernet0 | **Switch2** | FastEthernet0/2 |
+| **Server-WEB** | FastEthernet0 | **Switch2** | FastEthernet0/3 |
+| **Server-MAIL** | FastEthernet0 | **Switch2** | FastEthernet0/4 |
+| **Server-FTP** | FastEthernet0 | **Switch2** | FastEthernet0/5 |
+:::
 
 <SmartFigure
 	id="fig31"
@@ -140,24 +128,20 @@ Ubicación dispositivos:
 	caption="Instalación dispositivos en tercer piso"
 	size="large"
 />
-:::
+::::
 
 5. El switch de un piso debe estar conectado con el switch del siguiente piso
 
-:::solution[Solución Pregunta 5]
+::::solution[Solución Pregunta 5]
 Ubicación dispositivo:
 - Cable cruzado: `Connections` >> `Copper Cross-Over`
 
-<SmartTable
-	id="tabla-cableado-entre-switches"
-	caption="Cableado cruzado entre switches de cada piso"
-	tableLayout="auto"
-	headers={['Dispositivo A', 'Interfaz', 'Dispositivo B', 'Interfaz']}
-	rows={[
-		['**Switch0**', 'GigabitEthernet0/1', '**Switch1**', 'GigabitEthernet0/2'],
-		['**Switch1**', 'GigabitEthernet0/1', '**Switch2**', 'GigabitEthernet0/2'],
-	]}
-/>
+:::table{#tabla-cableado-entre-switches caption="Cableado cruzado entre switches de cada piso"}
+| Dispositivo A | Interfaz | Dispositivo B | Interfaz |
+| --- | --- | --- | --- |
+| **Switch0** | GigabitEthernet0/1 | **Switch1** | GigabitEthernet0/2 |
+| **Switch1** | GigabitEthernet0/1 | **Switch2** | GigabitEthernet0/2 |
+:::
 
 <SmartFigure
 	id="fig32"
@@ -166,13 +150,13 @@ Ubicación dispositivo:
 	caption="Conexión entre switches con cable cruzado"
 	size="large"
 />
-:::
+::::
 
 6. De acuerdo con TCP/IP, configure dirección IP, máscara de subred y Gateway a cada PC y servidor, Segmento de IP 192.168.X.Y con máscara /24 = 255.255.255.0, donde:
     - X = Número de lista, que le indicará su docente
     - Y = Cualquier número entre el 5 y 254
 
-:::solution[Solución Pregunta 6]
+::::solution[Solución Pregunta 6]
 Configuración para `PC0`
 
 - Se utiliza X=18, Y=15
@@ -183,33 +167,25 @@ Configuración para `PC0`
 
 Se realiza la misma configuración para los PCs y servidores restantes:
 
-<SmartTable
-	id="tabla-config-ip-pcs"
-	caption="Configuración IP para PCs (primer piso)"
-	tableLayout="auto"
-	headers={['Dispositivo', 'IPv4 Address', 'Subnet Mask', 'Default Gateway']}
-	rows={[
-		['**PC0**', '192.168.18.15', '255.255.255.0', '192.168.18.1'],
-		['**PC1**', '192.168.18.16', '255.255.255.0', '192.168.18.1'],
-		['**PC2**', '192.168.18.17', '255.255.255.0', '192.168.18.1'],
-		['**PC3**', '192.168.18.18', '255.255.255.0', '192.168.18.1'],
-		['**PC4**', '192.168.18.19', '255.255.255.0', '192.168.18.1'],
-	]}
-/>
+:::table{#tabla-config-ip-pcs caption="Configuración IP para PCs (primer piso)"}
+| Dispositivo | IPv4 Address | Subnet Mask | Default Gateway |
+| --- | --- | --- | --- |
+| **PC0** | 192.168.18.15 | 255.255.255.0 | 192.168.18.1 |
+| **PC1** | 192.168.18.16 | 255.255.255.0 | 192.168.18.1 |
+| **PC2** | 192.168.18.17 | 255.255.255.0 | 192.168.18.1 |
+| **PC3** | 192.168.18.18 | 255.255.255.0 | 192.168.18.1 |
+| **PC4** | 192.168.18.19 | 255.255.255.0 | 192.168.18.1 |
+:::
 
-<SmartTable
-	id="tabla-config-ip-servidores"
-	caption="Configuración IP para servidores (tercer piso)"
-	tableLayout="auto"
-	headers={['Dispositivo', 'IPv4 Address', 'Subnet Mask', 'Default Gateway']}
-	rows={[
-		['**Server-DHCP**', '192.168.18.20', '255.255.255.0', '192.168.18.1'],
-		['**Server-DNS**', '192.168.18.21', '255.255.255.0', '192.168.18.1'],
-		['**Server-WEB**', '192.168.18.22', '255.255.255.0', '192.168.18.1'],
-		['**Server-MAIL**', '192.168.18.23', '255.255.255.0', '192.168.18.1'],
-		['**Server-FTP**', '192.168.18.24', '255.255.255.0', '192.168.18.1'],
-	]}
-/>
+:::table{#tabla-config-ip-servidores caption="Configuración IP para servidores (tercer piso)"}
+| Dispositivo | IPv4 Address | Subnet Mask | Default Gateway |
+| --- | --- | --- | --- |
+| **Server-DHCP** | 192.168.18.20 | 255.255.255.0 | 192.168.18.1 |
+| **Server-DNS** | 192.168.18.21 | 255.255.255.0 | 192.168.18.1 |
+| **Server-WEB** | 192.168.18.22 | 255.255.255.0 | 192.168.18.1 |
+| **Server-MAIL** | 192.168.18.23 | 255.255.255.0 | 192.168.18.1 |
+| **Server-FTP** | 192.168.18.24 | 255.255.255.0 | 192.168.18.1 |
+:::
 
 <SmartFigure
 	id="fig33"
@@ -218,7 +194,7 @@ Se realiza la misma configuración para los PCs y servidores restantes:
 	caption="Configuración IP para PC0"
 	size="large"
 />
-:::
+::::
 
 7. Configuraciones IP en cada switch respectivamente:
     - Switch0 = VLAN1 192.168.X.2

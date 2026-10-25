@@ -7,19 +7,17 @@
 
 En la siguiente tabla se sintetiza el stock por día (al inicio de éste) de un determinado producto de un almacén:
 
-<SmartTable
-  tableLayout="fixed"
-  headers={["Día de inventario","Stock"]}
-  rows={[
-    ["1","9867"],
-    ["2","9575"],
-    ["3","9102"],
-    ["4","9009"],
-    ["5","8956"],
-    ["6","8307"],
-    ["7","7802"]
-  ]}
-/>
+:::table{layout="fixed"}
+| Día de inventario | Stock |
+| --- | --- |
+| 1 | 9867 |
+| 2 | 9575 |
+| 3 | 9102 |
+| 4 | 9009 |
+| 5 | 8956 |
+| 6 | 8307 |
+| 7 | 7802 |
+:::
 
 1. **Grafica en GeoGebra los valores entregados en la tabla anterior.**
 
@@ -234,15 +232,11 @@ Teniendo en cuenta los 3 modelos encontrados y lo analizado hasta el momento, **
 - El modelo lineal $f(x)$ es el más sencillo y rápido, pero podría no ser tan preciso.
 - Los modelos cuadrático y cúbico $g(x)$ y $h(x)$ son más precisos, pero puede ocurrir una sobreestimación si los datos no son suficientes o son muy cercanos entre ellos.
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Modelo","día de Desabastecimiento"]}
-  rows={[
-    ["$f(x)$","32"],
-    ["$g(x)$","18"],
-    ["$h(x)$","11"]
-  ]}
-/>
+| Modelo | día de Desabastecimiento |
+| --- | --- |
+| $f(x)$ | 32 |
+| $g(x)$ | 18 |
+| $h(x)$ | 11 |
 
 Las sugerencias al encargado serían:
 

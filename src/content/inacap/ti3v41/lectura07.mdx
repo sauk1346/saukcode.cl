@@ -103,28 +103,12 @@ def listar_productos(request):
 
 ## 3. Buenas prácticas al usar el ORM
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Comando", "Recomendación"]}
-    rows={[
-        [
-            "`get()`",
-            "Usa `get()`solo si estás seguro de que habrá un único resultado"
-        ],
-        [
-            "`request.POST`",
-            "Valida los datos antes de guardarlos, especialmente si vienen de `request.POST`"
-        ],
-        [
-            "`try...except`",
-            "Captura excepciones con `try...except`, como `Producto.DoesNotExist`"
-        ],
-        [
-            "`only()` o `values()`",
-            "Evita cargar muchos datos si no los necesitas (`only()` o `values()` pueden ayudarte)"
-        ]
-    ]}
-/>
+| Comando | Recomendación |
+| --- | --- |
+| `get()` | Usa `get()`solo si estás seguro de que habrá un único resultado |
+| `request.POST` | Valida los datos antes de guardarlos, especialmente si vienen de `request.POST` |
+| `try...except` | Captura excepciones con `try...except`, como `Producto.DoesNotExist` |
+| `only()` o `values()` | Evita cargar muchos datos si no los necesitas (`only()` o `values()` pueden ayudarte) |
 
 # Actividad de Práctica 05
 <Quiz questions={[

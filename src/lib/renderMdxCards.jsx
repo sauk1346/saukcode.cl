@@ -9,13 +9,11 @@ import remarkComponents from '../plugins/remark-components.mjs';
 import { PreBlock } from '../components/mdx/Pre.jsx';
 import { Code } from '../components/mdx/InlineCode.jsx';
 import SmartFigure from '../components/mdx/SmartFigure.jsx';
-import SmartTable from '../components/mdx/SmartTable.jsx';
 
 const components = {
   pre: PreBlock,
   code: Code,
   SmartFigure,
-  SmartTable,
 };
 
 const evaluateOptions = {

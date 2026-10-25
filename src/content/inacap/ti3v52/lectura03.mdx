@@ -8,42 +8,14 @@ El sistema operativo de internetwork de Cisco (IOS) utiliza una estructura jerá
 
 Para interactuar con el router o switch, el administrador debe transitar entre el modo usuario, el modo privilegiado y el modo de configuración global. A continuación, te detallamos los comandos esenciales para la navegación y verificación del estado del sistema.
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Comando", "Función Principal", "Contexto de uso"]}
-    rows={[
-        [
-            "`enable`",
-            "Permite el paso de modo usuario (>) al modo privilegiado (#)",
-            "Necesario antes de ejecutar comandos de configuración o diagnósticos avanzados"
-        ],
-        [
-            "`configure terminal`",
-            "Ingresa al modo de configuración global",
-            "Se utiliza cuando se requiere modificar parámetros que afectan a todo el dispositivo"
-        ],
-        [
-            "`show running-config`",
-            "Muestra la configuración actual activa en la memoria RAM",
-            "Vital para verificar los cambios aplicados en tiempo real antes de guardarlos"
-        ],
-        [
-            "`show startup-config`",
-            "Despliega la configuración guardada en la NVRAM",
-            "Se usa para revisar la configuración que cargará el equipo al reiniciarse"
-        ],
-        [
-            "`show ip interface brief`",
-            "Resumen del estado de las interfaces e IPs",
-            "Diagnóstico rápido para validar si las interfaces están up/up"
-        ],
-        [
-            "`show version`",
-            "Muestra datos del hardware y versión del software",
-            "Útil para inventario, soporte técnico y verificación de capacidades"
-        ],
-    ]}
-/>
+| Comando | Función Principal | Contexto de uso |
+| --- | --- | --- |
+| `enable` | Permite el paso de modo usuario (\>) al modo privilegiado (#) | Necesario antes de ejecutar comandos de configuración o diagnósticos avanzados |
+| `configure terminal` | Ingresa al modo de configuración global | Se utiliza cuando se requiere modificar parámetros que afectan a todo el dispositivo |
+| `show running-config` | Muestra la configuración actual activa en la memoria RAM | Vital para verificar los cambios aplicados en tiempo real antes de guardarlos |
+| `show startup-config` | Despliega la configuración guardada en la NVRAM | Se usa para revisar la configuración que cargará el equipo al reiniciarse |
+| `show ip interface brief` | Resumen del estado de las interfaces e IPs | Diagnóstico rápido para validar si las interfaces están up/up |
+| `show version` | Muestra datos del hardware y versión del software | Útil para inventario, soporte técnico y verificación de capacidades |
 
 ### Configuración inicial y fortalecimiento de la seguridad
 
@@ -59,32 +31,12 @@ Una vez comprendida la navegación, el siguiente paso crítico es la configuraci
 
 De acuerdo con lo que hemos señalado, siempre debes procurar una gestión cuidadosa de las credenciales y cifrado. Aquí compartimos algunos comandos
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Nivel de Protección", "Comando de Configuración", "Propósito de Seguridad"]}
-    rows={[
-        [
-            "**Modo Privilegiado**",
-            "`enable secret [clave]`",
-            "Protege el acceso total al equipo con un hash cifrado robusto"
-        ],
-        [
-            "**Línea de Consola**",
-            "`line console 0 -> password [clave] -> login`",
-            "Asegura el acceso físico directo al dispositivo"
-        ],
-        [
-            "**Líneas VTY**",
-            "`line vty 0 4 -> password [clave] -> login`",
-            "Protegra el acceso remoto vía Telnet o SSH"
-        ],
-        [
-            "**Cifrado Global**",
-            "`service password-encryption`",
-            "Aplica un cifrado débil a todas las contraseñas que estén en texto plano en la configuración"
-        ],
-    ]}
-/>
+| Nivel de Protección | Comando de Configuración | Propósito de Seguridad |
+| --- | --- | --- |
+| **Modo Privilegiado** | `enable secret [clave]` | Protege el acceso total al equipo con un hash cifrado robusto |
+| **Línea de Consola** | `line console 0 -> password [clave] -> login` | Asegura el acceso físico directo al dispositivo |
+| **Líneas VTY** | `line vty 0 4 -> password [clave] -> login` | Protegra el acceso remoto vía Telnet o SSH |
+| **Cifrado Global** | `service password-encryption` | Aplica un cifrado débil a todas las contraseñas que estén en texto plano en la configuración |
 
 :::callout{type="info"}
 La seguridad del dispositivo depende de la robustez de sus contraseñas. Se deben proteger tres niveles de acceso: el modo privilegiado, el puerto de consola y las líneas virtuales (VTY).
@@ -106,70 +58,23 @@ El protocolo Telnet transmite datos en texto plano, lo cual representa un riesgo
 
 ### Pasos para la implementación de SSH
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Pasos", "Descripción", "Comando IOS"]}
-    rows={[
-        [
-            "**Dominio**",
-            "Definir un nombre de dominio IP (requerido para generar llaves RSA)",
-            "`ip domain-name [nombre]`"
-        ],
-        [
-            "**Usuario**",
-            "Crear un usuario local con privilegios de administración",
-            "`username [usuario] secret [clave]`"
-        ],
-        [
-            "**Criptografía**",
-            "Generar el par de llaves RSA para cifrar la sesión SSH",
-            "`crypto key generate rsa`"
-        ],
-        [
-            "**Versión**",
-            "Forzar el uso de SSH versión 2 para mayor seguridad",
-            "`ip ssh version 2`"
-        ],
-        [
-            "**Transporte**",
-            "Configurar las líneas VTY para aceptar solo conexiones SSH (bloquea Telnet)",
-            "`line vty 0 4 -> transport input ssh`"
-        ],
-    ]}
-/>
+| Pasos | Descripción | Comando IOS |
+| --- | --- | --- |
+| **Dominio** | Definir un nombre de dominio IP (requerido para generar llaves RSA) | `ip domain-name [nombre]` |
+| **Usuario** | Crear un usuario local con privilegios de administración | `username [usuario] secret [clave]` |
+| **Criptografía** | Generar el par de llaves RSA para cifrar la sesión SSH | `crypto key generate rsa` |
+| **Versión** | Forzar el uso de SSH versión 2 para mayor seguridad | `ip ssh version 2` |
+| **Transporte** | Configurar las líneas VTY para aceptar solo conexiones SSH (bloquea Telnet) | `line vty 0 4 -> transport input ssh` |
 
 ## 3. Comparación y rol en el diseño de redes
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Característica", "Acceso por Consola", "Acceso por Telnet", "Acceso por SSH"]}
-    rows={[
-        [
-            "**Medio de conexión**",
-            "Cable físico directo (Rollover)",
-            "Red IP (TCP puerto 23)",
-            "Red IP (TCP puerto 22)"
-        ],
-        [
-            "**Seguridad de datos**",
-            "Alta (acceso físico requerido)",
-            "Baja (texto plano, vulnerable a sniffing)",
-            "Alta (sesión cifrada)"
-        ],
-        [
-            "**Requisitos previos**",
-            "Ninguno (solo cable)",
-            "IP configurada y contraseña VTY",
-            "IP, dominio, llaves RSA y usuario local"
-        ],
-        [
-            "**Rol en el diseño**",
-            "Recuperación ante desastres y configuración inicial (Out-of-band)",
-            "Obsoleto, no recomendado en redes de producción",
-            "Estándar obligatorio para gestión remota (In-band)"
-        ],
-    ]}
-/>
+| Característica | Acceso por Consola | Acceso por Telnet | Acceso por SSH |
+| --- | --- | --- | --- |
+| **Medio de conexión** | Cable físico directo (Rollover) | Red IP (TCP puerto 23) | Red IP (TCP puerto 22) |
+| **Seguridad de datos** | Alta (acceso físico requerido) | Baja (texto plano, vulnerable a sniffing) | Alta (sesión cifrada) |
+| **Requisitos previos** | Ninguno (solo cable) | IP configurada y contraseña VTY | IP, dominio, llaves RSA y usuario local |
+| **Rol en el diseño** | Recuperación ante desastres y configuración inicial (Out-of-band) | Obsoleto, no recomendado en redes de producción | Estándar obligatorio para gestión remota (In-band) |
+
 ## Actividad de Práctica
 
 <Quiz questions={[

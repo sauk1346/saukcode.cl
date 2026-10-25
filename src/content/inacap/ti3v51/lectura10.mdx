@@ -12,24 +12,11 @@ Es necesario indicar que un data vault no es necesariamente la competencia de lo
 
 > Los data vaults permiten almacenar datos históricos acumulativos, sin necesidad de actualizaciones o eliminaciones de registros, aplicando una metodología ágil e incremental, sin embargo, a diferencia de los data warehouses normales, los data vaults se compondrán de 3 capas distintivas:
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Capas", "Descripción"]}
-    rows={[
-        [
-            "**La bóveda en crudo (raw vault)**",
-            "Corresponde a la capa que contiene los datos en crudo, es decir, idénticos a los datos originales, solo insertados, sin actualizaciones o eliminaciones. También en esta capa se almacenarán metadatos e información de autoría sobre los datos originales"
-        ],
-        [
-            "**La bóveda del negocio (business vault)**",
-            "Corresponde a la capa que aplica cálculos, fórmulas, transformaciones, limpieza de datos y reglas de negocio sobre los datos de la capa anterior"
-        ],
-        [
-            "**La bóveda de información (information vault)**",
-            "Conocida también como almacén de información, o information mart, corresponde a la capa de presentación que permitirá que los usuarios reciban información analítica y reportes. Se contruye normalmente a partir de esquemas estrella (star schemes) que representen data marts. Esta capa también puede aplicar nuevas transformaciones a los datos para alimentar otros softwares de inteligencia de negocios, según sea requerido"
-        ],
-    ]}
-/>
+| Capas | Descripción |
+| --- | --- |
+| **La bóveda en crudo (raw vault)** | Corresponde a la capa que contiene los datos en crudo, es decir, idénticos a los datos originales, solo insertados, sin actualizaciones o eliminaciones. También en esta capa se almacenarán metadatos e información de autoría sobre los datos originales |
+| **La bóveda del negocio (business vault)** | Corresponde a la capa que aplica cálculos, fórmulas, transformaciones, limpieza de datos y reglas de negocio sobre los datos de la capa anterior |
+| **La bóveda de información (information vault)** | Conocida también como almacén de información, o information mart, corresponde a la capa de presentación que permitirá que los usuarios reciban información analítica y reportes. Se contruye normalmente a partir de esquemas estrella (star schemes) que representen data marts. Esta capa también puede aplicar nuevas transformaciones a los datos para alimentar otros softwares de inteligencia de negocios, según sea requerido |
 
 <SmartFigure
 	id="diagrama-con-los-pasos-del-estandar-togaf"
@@ -43,24 +30,11 @@ Es necesario indicar que un data vault no es necesariamente la competencia de lo
 
 Para complementar la introducción a los data vaults, es correcto también señalar que en la capa de bóbeda en crudo (o raw vault) existen 3 tipos de elementos nuevos, que le dan a la data vault su característica distintiva de ser muy escalable en el tiempo. Estos 3 elementos se conocen como:
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Elementos", "Descripción"]}
-    rows={[
-        [
-            "**Hubs**",
-            "Son tablas que representan conceptos claves del negocio, como productos, vehículos, usuarios, clientes, etc. Almacenan llaves primarias respecto de los datos originales y metadatos para identificar características únicas sobre los datos originales. Puede tener uno o varios satélites"
-        ],
-        [
-            "**Enlaces (links)**",
-            "Representan las relaciones entre las tablas de tipo hub. Los enlaces también son tablas, pero que almacenan llaves primarias de negocio y datos relevantes sobre ambos hubs enlazados. Puede tener uno o varios satélites"
-        ],
-        [
-            "**Satélites (satellites)**",
-            "Estas tablas guardan información descriptiva acerca de las tablas de tipo hub y link. Contendrán atributos que describirán los estados o características de los hubs y links en el tiempo. Un satélite no puede conectarse directamente a otro satélite"
-        ],
-    ]}
-/>
+| Elementos | Descripción |
+| --- | --- |
+| **Hubs** | Son tablas que representan conceptos claves del negocio, como productos, vehículos, usuarios, clientes, etc. Almacenan llaves primarias respecto de los datos originales y metadatos para identificar características únicas sobre los datos originales. Puede tener uno o varios satélites |
+| **Enlaces (links)** | Representan las relaciones entre las tablas de tipo hub. Los enlaces también son tablas, pero que almacenan llaves primarias de negocio y datos relevantes sobre ambos hubs enlazados. Puede tener uno o varios satélites |
+| **Satélites (satellites)** | Estas tablas guardan información descriptiva acerca de las tablas de tipo hub y link. Contendrán atributos que describirán los estados o características de los hubs y links en el tiempo. Un satélite no puede conectarse directamente a otro satélite |
 
 <SmartFigure
 	id="esquema-de-organizacion-de-los-elementos-internos-de-un-data-vault"

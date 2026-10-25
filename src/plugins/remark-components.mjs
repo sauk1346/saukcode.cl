@@ -56,6 +56,95 @@ function terminalChildren(value) {
   });
 }
 
+/** Colores de `:red[texto]` y compañía (anotaciones en tinta) y de las filas `:highlight{color=…}`. */
+const COLORS = new Set(['red', 'blue', 'green', 'gray', 'yellow']);
+
+const TABLE_LAYOUTS = new Set(['auto', 'fixed', 'mixed']);
+const AUDIO_URL = /\.(mp3|wav|ogg|m4a)$/i;
+
+const isBlank = (node) => node.type === 'text' && !node.value.trim();
+const isDirective = (node, name) => node?.type === 'textDirective' && node.name === name;
+
+/**
+ * Tabla GFM → <div.table-wrapper><table.smart-table>, con nodos propios en vez del manejador
+ * `table` de mdast-util-to-hast para poder agregar caption, colspan y clases. En la tabla:
+ * - `:highlight` (o `:highlight{color="green"}`) al inicio de la primera celda destaca la fila.
+ * - `:section[Texto]` como única celda de la fila es un separador de grupo a todo el ancho.
+ * - Una celda hecha solo de `:li[...]` es una lista; un enlace a un .mp3 es un reproductor.
+ * - Encabezados vacíos: tabla sin <thead>.
+ */
+function buildTable(table, { id, caption, layout = 'auto', widths = [] }, warn) {
+  const [headerRow, ...bodyRows] = table.children;
+  const columns = Math.max(...table.children.map((row) => row.children.length));
+  const align = (i) => (table.align?.[i] ? `text-align:${table.align[i]}` : undefined);
+
+  const cellContent = (cell) => {
+    const items = cell.children.filter((c) => !isBlank(c));
+    if (items.length && items.every((c) => isDirective(c, 'li'))) {
+      return [block('ul', items.map((li) => block('li', li.children)))];
+    }
+    return cell.children.map((child) => {
+      if (child.type === 'link' && AUDIO_URL.test(child.url)) {
+        return block('audio', [block('source', [], { src: child.url, type: 'audio/mpeg' }), ...child.children], {
+          controls: true,
+        });
+      }
+      if (child.type === 'inlineMath') return block('span', [child], { className: ['katex-wrapper'] });
+      return child;
+    });
+  };
+
+  const rows = bodyRows.map((row) => {
+    const [first, ...rest] = row.children;
+    if (first && rest.every((c) => !c.children.length)) {
+      const items = first.children.filter((c) => !isBlank(c));
+      if (items.length === 1 && isDirective(items[0], 'section')) {
+        return block('tr', [block('td', items[0].children, { colSpan: columns, className: ['table-section'] })]);
+      }
+    }
+    let className;
+    if (first && isDirective(first.children[0], 'highlight')) {
+      let color = first.children[0].attributes?.color ?? 'yellow';
+      if (!COLORS.has(color)) {
+        warn(first.children[0], `color de highlight desconocido "${color}", se usa "yellow".`);
+        color = 'yellow';
+      }
+      className = ['table-highlight', `table-highlight-${color}`];
+      first.children.shift();
+      if (first.children[0]?.type === 'text') first.children[0].value = first.children[0].value.trimStart();
+    }
+    return block(
+      'tr',
+      row.children.map((cell, i) => block('td', cellContent(cell), { style: align(i) })),
+      { className },
+    );
+  });
+
+  const hasHeader = headerRow.children.some((cell) => cell.children.length);
+  const width = (i) => (layout === 'mixed' && widths[i] ? `width:${widths[i]}` : undefined);
+  const style = (i) => [width(i), align(i)].filter(Boolean).join(';') || undefined;
+  const header = hasHeader
+    ? [block('thead', [block('tr', headerRow.children.map((cell, i) => block('th', cellContent(cell), { style: style(i) })))])]
+    : [];
+
+  const layoutClass = layout === 'auto' ? [] : [`smart-table-${layout}`];
+  return block(
+    'div',
+    [
+      block(
+        'table',
+        [
+          ...(caption ? [block('caption', [{ type: 'text', value: caption }])] : []),
+          ...header,
+          ...(rows.length ? [block('tbody', rows)] : []),
+        ],
+        { className: ['smart-table', ...layoutClass] },
+      ),
+    ],
+    { id, className: ['table-wrapper'] },
+  );
+}
+
 export default function remarkComponents() {
   return (tree, file) => {
     // <samp> (salida de programa) y no <pre>: el mapping MDX cambia <pre> por PreBlock, que agrega
@@ -97,7 +186,41 @@ export default function remarkComponents() {
       return start !== undefined && end !== undefined ? source.slice(start, end) : `:${node.name}`;
     };
 
+    // Tablas: las que tienen `id` se numeran ("Tabla N", en orden de documento) y `:tableref{#id}` enlaza a ellas,
+    // aunque la referencia aparezca antes que la tabla.
+    const tableNumbers = new Map(); // id → número
+    const numberedTables = new Map(); // nodo → número
+    visit(tree, 'containerDirective', (node) => {
+      const id = node.attributes?.id;
+      if (node.name !== 'table' || !id) return;
+      numberedTables.set(node, numberedTables.size + 1);
+      if (tableNumbers.has(id)) warn(node, `id de tabla repetido "${id}".`);
+      else tableNumbers.set(id, numberedTables.size);
+    });
+    // Las tablas GFM sueltas usan el formato por defecto; las de :::table se arman con sus atributos más abajo
+    visit(tree, 'table', (node, index, parent) => {
+      if (parent.type === 'containerDirective' && parent.name === 'table') return SKIP;
+      parent.children[index] = buildTable(node, {}, warn);
+      return SKIP;
+    });
+
     visit(tree, ['containerDirective', 'leafDirective', 'textDirective'], (node, index, parent) => {
+      if (node.type === 'textDirective' && node.name === 'tableref') {
+        const id = node.attributes?.id;
+        const number = tableNumbers.get(id);
+        if (!number) warn(node, `:tableref sin tabla destino "${id ?? ''}".`);
+        node.data = number
+          ? { hName: 'a', hProperties: { href: `#${id}` } }
+          : { hName: 'span', hProperties: { className: ['table-ref-error'] } };
+        node.children = [{ type: 'text', value: number ? `Tabla ${number}` : '[Tabla ?]' }];
+        return;
+      }
+
+      if (node.type === 'textDirective' && COLORS.has(node.name) && rawSource(node).startsWith(`:${node.name}[`)) {
+        node.data = { hName: 'span', hProperties: { className: [`text-${node.name}`] } };
+        return;
+      }
+
       // Respuesta oculta; el clic lo maneja el script de LessonLayout (sin React)
       if (node.type === 'textDirective' && node.name === 'reveal') {
         node.data = {
@@ -202,6 +325,27 @@ export default function remarkComponents() {
             block('div', body, { className: ['box-content'] }),
           ];
           return;
+        }
+
+        case 'table': {
+          const tables = node.children.filter((c) => c.type === 'table');
+          if (tables.length !== 1 || node.children.length !== 1) {
+            warn(node, ':::table debe contener exactamente una tabla Markdown.');
+          }
+          if (!tables.length) {
+            node.data = { hName: 'div' };
+            return;
+          }
+          let layout = attrs.layout ?? 'auto';
+          if (!TABLE_LAYOUTS.has(layout)) {
+            warn(node, `layout de tabla desconocido "${layout}", se usa "auto".`);
+            layout = 'auto';
+          }
+          const number = numberedTables.get(node);
+          const caption = number ? `Tabla ${number}${attrs.caption ? `: ${attrs.caption}` : ''}` : attrs.caption;
+          const widths = attrs.widths ? attrs.widths.split(',').map((w) => w.trim()) : [];
+          parent.children[index] = buildTable(tables[0], { id: attrs.id, caption, layout, widths }, warn);
+          return [SKIP, index]; // revisitar el reemplazo (no el nodo viejo): las celdas pueden tener otras directivas
         }
 
         case 'columns':

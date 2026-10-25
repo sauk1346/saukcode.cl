@@ -19,36 +19,21 @@ Aunque su sintaxis se inspira en los objetos de JavaScript, es **independiente d
 ## 2. Serializadores en Django REST Framework
 Los serializadores son la herramienta clave para transformar datos entre modelos de Django y formatos como JSON, permitiendo el intercambio de información entre el servidor y el cliente.
 
-<SmartTable
-    tableLayout="fixed"
-    headers={["Funciones", "Descripción"]}
-    rows={[
-        [
-            "**De Python a JSON**",
-            "Convierte instancias de modelos de Django en datos JSON listos para ser enviados al cliente"
-        ],
-        [
-            "**De JSON a Python**",
-            "Recibe datos en formato JSON, los valida y los transforma en objetos de Django para ser guardados en la base de dato"
-        ],
-    ]}
-/>
+:::table{layout="fixed"}
+| Funciones | Descripción |
+| --- | --- |
+| **De Python a JSON** | Convierte instancias de modelos de Django en datos JSON listos para ser enviados al cliente |
+| **De JSON a Python** | Recibe datos en formato JSON, los valida y los transforma en objetos de Django para ser guardados en la base de dato |
+:::
 
 ### Tipos principales de serializadores
-<SmartTable
-    tableLayout="fixed"
-    headers={["Serializador", "Descripción"]}
-    rows={[
-        [
-            "**Serializer (manual)**",
-            "Requiere definir explícitamente cada campo y sus validaciones"
-        ],
-        [
-            "**ModelSerializer (automático**",
-            "Genera los campos y validaciones directamente a partir de un modelo de Django"
-        ],
-    ]}
-/>
+
+:::table{layout="fixed"}
+| Serializador | Descripción |
+| --- | --- |
+| **Serializer (manual)** | Requiere definir explícitamente cada campo y sus validaciones |
+| **ModelSerializer (automático** | Genera los campos y validaciones directamente a partir de un modelo de Django |
+:::
 
 **Ejemplo con ModelSerializer**
 
@@ -95,32 +80,10 @@ def hola_mundo(request):
     return Response({'mensaje': 'Hola mundo desde la API'}) 
 ```
 
-<SmartTable
-    tableLayout="auto"
-    headers={["FBV", "Descripción"]}
-    lists={{
-        R1: [
-            "Rápido de implementar",
-            "Fácil de entender",
-            "Ideal para prototipos o pruebas"
-        ],
-        R2: [
-            "Poco reutilizable",
-            "La lógica se vuelve extensa en vistas complejas",
-            "No se integra directamente con modelos o serializadores"
-        ]
-    }}
-    rows={[
-        [
-            "**Ventajas**",
-            "@R1"
-        ],
-        [
-            "**Desventajas**",
-            "@R2"
-        ]
-    ]}
-/>
+| FBV | Descripción |
+| --- | --- |
+| **Ventajas** | :li[Rápido de implementar] :li[Fácil de entender] :li[Ideal para prototipos o pruebas] |
+| **Desventajas** | :li[Poco reutilizable] :li[La lógica se vuelve extensa en vistas complejas] :li[No se integra directamente con modelos o serializadores] |
 
 ### Vistas basadas en clases (CBV)
 DRF ofrece **clases que representan los métodos HTTP** (GET, POST, PUT, DELETE) como métodos dentro de una clase Python. 
@@ -136,31 +99,10 @@ class SaludoAPIView(APIView):
         return Response({'mensaje': 'Hola desde una vista basada en clase'}) 
 ```
 
-<SmartTable
-    tableLayout="auto"
-    headers={["CBV", "Descripción"]}
-    lists={{
-        R1: [
-            "Más estructurado",
-            "Permite lógica compleja por método",
-            "Flexible y altamente personalizable"
-        ],
-        R2: [
-            "Requiere más líneas de código",
-            "Puede ser innecesariamente detallado para operaciones CRUD simples",
-        ]
-    }}
-    rows={[
-        [
-            "**Ventajas**",
-            "@R1"
-        ],
-        [
-            "**Desventajas**",
-            "@R2"
-        ]
-    ]}
-/>
+| CBV | Descripción |
+| --- | --- |
+| **Ventajas** | :li[Más estructurado] :li[Permite lógica compleja por método] :li[Flexible y altamente personalizable] |
+| **Desventajas** | :li[Requiere más líneas de código] :li[Puede ser innecesariamente detallado para operaciones CRUD simples] |
 
 ### ViewSets
 Agrupan toda la lógica de un recurso en un solo lugar. DRF proporciona clases predefinidas, como *ModelViewSet*, que implementan automáticamente toda la lógica CRUD.
@@ -177,18 +119,16 @@ class ProductoViewSet(viewsets.ModelViewSet):
 
 Con pocas líneas, DRF genera automáticamente los siguientes endpoints RESTful: 
 
-<SmartTable
-    tableLayout="fixed"
-    headers={["Método", "Ruta", "Acción"]}
-    rows={[
-        ["**GET**", "`/productos/`", "Listar todos los productos"],
-        ["**POST**", "`/productos/`", "Crear un nuevo producto"],
-        ["**GET**", "`/productos/1/`", "Obtener detalles del producto con id=1"],
-        ["**PUT**", "`/productos/1/`", "Actualizar producto"],
-        ["**PATCH**", "`/productos/1/`", "Actualización parcial"],
-        ["**DELETE**", "`/productos/1/`", "Eliminar producto"],
-    ]}
-/>
+:::table{layout="fixed"}
+| Método | Ruta | Acción |
+| --- | --- | --- |
+| **GET** | `/productos/` | Listar todos los productos |
+| **POST** | `/productos/` | Crear un nuevo producto |
+| **GET** | `/productos/1/` | Obtener detalles del producto con id=1 |
+| **PUT** | `/productos/1/` | Actualizar producto |
+| **PATCH** | `/productos/1/` | Actualización parcial |
+| **DELETE** | `/productos/1/` | Eliminar producto |
+:::
 
 > **¿Qué hace ModelViewSet exactamente?:** Hereda de múltiples clases que implementan operaciones CRUD.
 
@@ -217,20 +157,10 @@ En lugar de definir manualmente cada URL, el router **inspecciona el ViewSet** y
 
 ### Tipos de routers disponibles
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Router", "Descripción"]}
-    rows={[
-        [
-            "**DefaultRouter**",
-            "Crea rutas estándar y añade una **vista raíz navegable** en la interfaz web de DRF"
-        ],
-        [
-            "**SimpleRouter**",
-            "Genera rutas estándar, pero **sin la vista raíz navegable**. Para la mayoría de los casos en desarrollo y pruebas, se recomienda usar **DefaultRouter**"
-        ],
-    ]}
-/>
+| Router | Descripción |
+| --- | --- |
+| **DefaultRouter** | Crea rutas estándar y añade una **vista raíz navegable** en la interfaz web de DRF |
+| **SimpleRouter** | Genera rutas estándar, pero **sin la vista raíz navegable**. Para la mayoría de los casos en desarrollo y pruebas, se recomienda usar **DefaultRouter** |
 
 ### Alias y nombres personalizados
 Puedes personalizar la ruta base usando el parámetro `basename` de `register()`:
@@ -247,28 +177,12 @@ Esto es útil cuando:
 ### Ventajas de usar routers
 El uso de routers en Django REST Framework ofrece una forma eficiente y organizada de gestionar rutas en API, aportando agilidad, seguridad y escalabilidad al desarrollo.
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Ventajas", "Descripción"]}
-    rows={[
-        [
-            "**Ahorra tiempo**",
-            "No necesitas escribir manualmente cada ruta"
-        ],
-        [
-            "**Evita errores**",
-            "Las rutas se generan siguiendo el estándar REST"
-        ],
-        [
-            "**Facilita pruebas**",
-            "La interfaz de exploración de la API muestra automáticamente todos los endpoints disponibles"
-        ],
-        [
-            "**Escalable**",
-            "Puedes registrar múltiples ViewSets en un mismo router sin dificultad"
-        ],
-    ]}
-/>
+| Ventajas | Descripción |
+| --- | --- |
+| **Ahorra tiempo** | No necesitas escribir manualmente cada ruta |
+| **Evita errores** | Las rutas se generan siguiendo el estándar REST |
+| **Facilita pruebas** | La interfaz de exploración de la API muestra automáticamente todos los endpoints disponibles |
+| **Escalable** | Puedes registrar múltiples ViewSets en un mismo router sin dificultad |
 
 ## 5. Consumir la API desde React o Postman
 Consumir una API implica realizar peticiones HTTP a sus endpoints y procesar las respuestas en formato JSON. 
@@ -280,24 +194,11 @@ Además, el uso de clientes variados asegura flexibilidad en el desarrollo, desd
 ### Cómo consumir la API desde un cliente
 Una vez que tu **API devuelve datos en formato JSON**, puedes consumirla desde cualquier cliente que realice **peticiones HTTP**. Algunos ejemplos comunes:
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Ejemplos", "Descripción"]}
-    rows={[
-        [
-            "**JavaScript/React**",
-            "Usando `fetch()` o `axios()`"
-        ],
-        [
-            "**Postman**",
-            "Configurando la URL, método HTTP y cabeceras necesarias"
-        ],
-        [
-            "**CURL**",
-            "Desde la línea de comandos"
-        ],
-    ]}
-/>
+| Ejemplos | Descripción |
+| --- | --- |
+| **JavaScript/React** | Usando `fetch()` o `axios()` |
+| **Postman** | Configurando la URL, método HTTP y cabeceras necesarias |
+| **CURL** | Desde la línea de comandos |
 
 **Ejemplo con `fetch()` en JavaScript**
 

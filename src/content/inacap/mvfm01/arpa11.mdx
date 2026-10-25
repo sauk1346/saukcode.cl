@@ -21,15 +21,11 @@ Considera la siguiente infografía del valor total a pagar en un mes determinado
 :::solution
 1. Se convierte el infograma a tabla, y se determinan los puntos a graficar.
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Cantidad Kwh","Costo mensual","Coordenadas"]}
-  rows={[
-    ["1","1100","A = (1, 1100)"],
-    ["2","1300","B = (2, 1300)"],
-    ["3","1500","C = (3, 1500)"]
-  ]}
-/>
+| Cantidad Kwh | Costo mensual | Coordenadas |
+| --- | --- | --- |
+| 1 | 1100 | A = (1, 1100) |
+| 2 | 1300 | B = (2, 1300) |
+| 3 | 1500 | C = (3, 1500) |
 
 2. Se genera la función $f(x)$ mediante el comando `AjustePolinómico(l1,n)`
 3. Se encuentra el valor de $x$ para $f(x) = 8300$ mediante el comando `Resuelve(f(x) = a)`
@@ -62,14 +58,10 @@ Considera la siguiente infografía del valor total a pagar en un mes determinado
 :::solution
 1. Se convierte el infograma a tabla, y se determinan los puntos a graficar.
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Cantidad Kwh","Costo mensual","Coordenadas"]}
-  rows={[
-    ["2","1400","A = (2, 1400)"],
-    ["5","1800","B = (5, 1800)"]
-  ]}
-/>
+| Cantidad Kwh | Costo mensual | Coordenadas |
+| --- | --- | --- |
+| 2 | 1400 | A = (2, 1400) |
+| 5 | 1800 | B = (5, 1800) |
 
 2. Se genera la función $f(x)$ mediante el comando `AjustePolinómico(l1,n)`
 

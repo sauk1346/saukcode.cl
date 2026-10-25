@@ -6,15 +6,13 @@ El objetivo principal de la utilización de diversas técnicas de gestión es **
 
 Existe una diferencia en nombre de host, direcciones IP y rutas de redes
 
-<SmartTable
-	tableLayout="fixed"
-	headers={['Términos', 'Descripción']}
-	rows={[
-		['Nombre de Host', 'Indica un nombre lógico de un host dentro de la red'],
-		['Dirección', 'Indica dónde se encuentra ubicado el host'],
-		['Ruta', 'Indica cómo es posible llegar a acceder al host']
-	]}
-/>
+:::table{layout="fixed"}
+| Términos | Descripción |
+| --- | --- |
+| Nombre de Host | Indica un nombre lógico de un host dentro de la red |
+| Dirección | Indica dónde se encuentra ubicado el host |
+| Ruta | Indica cómo es posible llegar a acceder al host |
+:::
 
 - El **protocolo IP** solo administra las direcciones IP, lo que corresponde a **Dirección**. Hacer corresponder **Nombres** es función de los protocolos de mayor nivel.
 
@@ -63,15 +61,11 @@ Parte de la técnica de subnetting. Indica a los dispositivos qué parte de la d
 
 ## Tipos de Redes
 
-<SmartTable
-	tableLayout="auto"
-	headers={['Clase', 'Máscara', 'Binario']}
-	rows={[
-		['A', '255.0.0.0', '11111111.00000000.00000000.00000000'],
-		['B', '255.255.0.0', '11111111.11111111.00000000.00000000'],
-		['C', '255.255.255.0', '11111111.11111111.11111111.00000000']
-	]}
-/>
+| Clase | Máscara | Binario |
+| --- | --- | --- |
+| A | 255.0.0.0 | 11111111.00000000.00000000.00000000 |
+| B | 255.255.0.0 | 11111111.11111111.00000000.00000000 |
+| C | 255.255.255.0 | 11111111.11111111.11111111.00000000 |
 
 - Si tomamos una dirección IP clase "B" y queremos dividirla en subredes, tomaremos los 16 bits de la parte local y pondremos en estado "1" la parte que queremos represente a las subredes.
 - Por ejemplo, si queremos 8 subredes 

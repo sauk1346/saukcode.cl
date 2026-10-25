@@ -25,25 +25,19 @@ Al igual que en el Ejercicio 1, se asume:
 
 ---
 
-<TableProvider>
-
 **Paso 1: Ventas (neta, IVA y bruta)**
 
 <P indent={2}>
 Como las ventas del enunciado vienen en bruto, primero se obtiene el neto dividiendo por 1,19 y luego se reconstruye el IVA Débito, manteniendo el orden Neta + IVA = Bruta.
 </P>
 
-<SmartTable
-    id="tablaVentasIVA"
-    tableLayout="auto"
-    caption="Ventas: Netas, IVA y Brutas"
-    headers={["Concepto", "Agosto", "Septiembre", "Octubre", "Noviembre"]}
-    rows={[
-        ["Ventas Netas (Bruta ÷1,19)", "\$33.000.000", "\$34.000.000", "\$37.000.000", "\$40.000.000"],
-        ["+ IVA Débito (19%)", "\$6.270.000", "\$6.460.000", "\$7.030.000", "\$7.600.000"],
-        { cells: ["**= Ventas Brutas**", "**\$39.270.000**", "**\$40.460.000**", "**\$44.030.000**", "**\$47.600.000**"], highlight: true }
-    ]}
-/>
+:::table{#tablaVentasIVA caption="Ventas: Netas, IVA y Brutas"}
+| Concepto | Agosto | Septiembre | Octubre | Noviembre |
+| --- | --- | --- | --- | --- |
+| Ventas Netas (Bruta ÷1,19) | \$33.000.000 | \$34.000.000 | \$37.000.000 | \$40.000.000 |
+| + IVA Débito (19%) | \$6.270.000 | \$6.460.000 | \$7.030.000 | \$7.600.000 |
+| :highlight **= Ventas Brutas** | **\$39.270.000** | **\$40.460.000** | **\$44.030.000** | **\$47.600.000** |
+:::
 
 ---
 
@@ -53,20 +47,16 @@ Como las ventas del enunciado vienen en bruto, primero se obtiene el neto dividi
 El 50% de las ventas brutas se cobra el mismo mes, el 25% se cobra a los 30 días y el 25% restante a los 60 días. Por eso, para Octubre y Noviembre aparecen flujos originados en Agosto y Septiembre.
 </P>
 
-<SmartTable
-    id="tablaCobranzaVentas"
-    tableLayout="auto"
-    caption="Cobranza de Ventas"
-    headers={["Concepto", "Agosto", "Septiembre", "Octubre", "Noviembre"]}
-    rows={[
-        ["{{red:50%}} Contado", "\$19.635.000", "\$20.230.000", "\$22.015.000", "\$23.800.000"],
-        ["{{red:25%}} 30 días", "—", "\$9.817.500", "\$10.115.000", "\$11.007.500"],
-        ["{{red:25%}} 60 días", "—", "—", "\$9.817.500", "\$10.115.000"]
-    ]}
-/>
+:::table{#tablaCobranzaVentas caption="Cobranza de Ventas"}
+| Concepto | Agosto | Septiembre | Octubre | Noviembre |
+| --- | --- | --- | --- | --- |
+| :red[50%] Contado | \$19.635.000 | \$20.230.000 | \$22.015.000 | \$23.800.000 |
+| :red[25%] 30 días | — | \$9.817.500 | \$10.115.000 | \$11.007.500 |
+| :red[25%] 60 días | — | — | \$9.817.500 | \$10.115.000 |
+:::
 
 <P indent={3}>
-→ Estos valores llenan las filas **Ventas Contado**, **Ventas 30 días** y **Ventas 60 días** de la <TableRef id="tablaPresupuestoCaja" /> (Presupuesto de Caja, Paso 7).
+→ Estos valores llenan las filas **Ventas Contado**, **Ventas 30 días** y **Ventas 60 días** de la :tableref{#tablaPresupuestoCaja} (Presupuesto de Caja, Paso 7).
 </P>
 
 ---
@@ -77,17 +67,13 @@ El 50% de las ventas brutas se cobra el mismo mes, el 25% se cobra a los 30 día
 Las compras brutas son el 50% de las ventas brutas. Se descompone también en neto e IVA (Neta + IVA = Bruta) para poder calcular el Saldo de IVA del Paso 6.
 </P>
 
-<SmartTable
-    id="tablaComprasIVA"
-    tableLayout="auto"
-    caption="Compras: Netas, IVA y Brutas"
-    headers={["Concepto", "Agosto", "Septiembre", "Octubre", "Noviembre"]}
-    rows={[
-        ["Compras Netas (Bruta ÷1,19)", "\$16.500.000", "\$17.000.000", "\$18.500.000", "\$20.000.000"],
-        ["+ IVA Crédito (19%)", "\$3.135.000", "\$3.230.000", "\$3.515.000", "\$3.800.000"],
-        { cells: ["**= Compras Brutas (50% Ventas Brutas)**", "**\$19.635.000**", "**\$20.230.000**", "**\$22.015.000**", "**\$23.800.000**"], highlight: true }
-    ]}
-/>
+:::table{#tablaComprasIVA caption="Compras: Netas, IVA y Brutas"}
+| Concepto | Agosto | Septiembre | Octubre | Noviembre |
+| --- | --- | --- | --- | --- |
+| Compras Netas (Bruta ÷1,19) | \$16.500.000 | \$17.000.000 | \$18.500.000 | \$20.000.000 |
+| + IVA Crédito (19%) | \$3.135.000 | \$3.230.000 | \$3.515.000 | \$3.800.000 |
+| :highlight **= Compras Brutas (50% Ventas Brutas)** | **\$19.635.000** | **\$20.230.000** | **\$22.015.000** | **\$23.800.000** |
+:::
 
 ---
 
@@ -97,20 +83,16 @@ Las compras brutas son el 50% de las ventas brutas. Se descompone también en ne
 Las compras se pagan con la misma política que las ventas.
 </P>
 
-<SmartTable
-    id="tablaPagoCompras"
-    tableLayout="auto"
-    caption="Pago de Compras"
-    headers={["Concepto", "Agosto", "Septiembre", "Octubre", "Noviembre"]}
-    rows={[
-        ["{{red:50%}} Contado", "\$9.817.500", "\$10.115.000", "\$11.007.500", "\$11.900.000"],
-        ["{{red:25%}} 30 días", "—", "\$4.908.750", "\$5.057.500", "\$5.503.750"],
-        ["{{red:25%}} 60 días", "—", "—", "\$4.908.750", "\$5.057.500"]
-    ]}
-/>
+:::table{#tablaPagoCompras caption="Pago de Compras"}
+| Concepto | Agosto | Septiembre | Octubre | Noviembre |
+| --- | --- | --- | --- | --- |
+| :red[50%] Contado | \$9.817.500 | \$10.115.000 | \$11.007.500 | \$11.900.000 |
+| :red[25%] 30 días | — | \$4.908.750 | \$5.057.500 | \$5.503.750 |
+| :red[25%] 60 días | — | — | \$4.908.750 | \$5.057.500 |
+:::
 
 <P indent={3}>
-→ Estos valores llenan las filas **Compras Contado**, **Compras 30 días** y **Compras 60 días** de la <TableRef id="tablaPresupuestoCaja" /> (Presupuesto de Caja, Paso 7).
+→ Estos valores llenan las filas **Compras Contado**, **Compras 30 días** y **Compras 60 días** de la :tableref{#tablaPresupuestoCaja} (Presupuesto de Caja, Paso 7).
 </P>
 
 ---
@@ -121,20 +103,16 @@ Las compras se pagan con la misma política que las ventas.
 Del sueldo bruto se descuenta el 20% de imposiciones. El sueldo líquido se paga el mismo mes; las imposiciones se enteran al mes siguiente.
 </P>
 
-<SmartTable
-    id="tablaSueldos"
-    tableLayout="auto"
-    caption="Sueldos: Bruto, Imposiciones y Líquido"
-    headers={["Concepto", "Agosto", "Septiembre", "Octubre", "Noviembre"]}
-    rows={[
-        ["Sueldo Bruto", "\$5.000.000", "\$6.000.000", "\$7.000.000", "\$8.000.000"],
-        ["- Imposiciones (20%)", "\$1.000.000", "\$1.200.000", "\$1.400.000", "\$1.600.000"],
-        { cells: ["**= Sueldo Líquido**", "**\$4.000.000**", "**\$4.800.000**", "**\$5.600.000**", "**\$6.400.000**"], highlight: true }
-    ]}
-/>
+:::table{#tablaSueldos caption="Sueldos: Bruto, Imposiciones y Líquido"}
+| Concepto | Agosto | Septiembre | Octubre | Noviembre |
+| --- | --- | --- | --- | --- |
+| Sueldo Bruto | \$5.000.000 | \$6.000.000 | \$7.000.000 | \$8.000.000 |
+| - Imposiciones (20%) | \$1.000.000 | \$1.200.000 | \$1.400.000 | \$1.600.000 |
+| :highlight **= Sueldo Líquido** | **\$4.000.000** | **\$4.800.000** | **\$5.600.000** | **\$6.400.000** |
+:::
 
 <P indent={3}>
-→ El **Sueldo Líquido** llena directamente esa fila de la <TableRef id="tablaPresupuestoCaja" />. Las **Imposiciones** también, pero desplazadas un mes (Septiembre → se pagan en Octubre, Octubre → se pagan en Noviembre).
+→ El **Sueldo Líquido** llena directamente esa fila de la :tableref{#tablaPresupuestoCaja}. Las **Imposiciones** también, pero desplazadas un mes (Septiembre → se pagan en Octubre, Octubre → se pagan en Noviembre).
 </P>
 
 ---
@@ -145,20 +123,16 @@ Del sueldo bruto se descuenta el 20% de imposiciones. El sueldo líquido se paga
 Como las compras brutas son siempre el 50% de las ventas brutas, el IVA Crédito también es el 50% del IVA Débito, por lo que el Saldo de IVA resulta igual al IVA Crédito. Se paga el mes siguiente al que se generó.
 </P>
 
-<SmartTable
-    id="tablaSaldoIVA"
-    tableLayout="auto"
-    caption="Saldo de IVA a pagar"
-    headers={["Concepto", "Agosto", "Septiembre", "Octubre", "Noviembre"]}
-    rows={[
-        ["IVA Débito (Ventas)", "\$6.270.000", "\$6.460.000", "\$7.030.000", "\$7.600.000"],
-        ["- IVA Crédito (Compras)", "\$3.135.000", "\$3.230.000", "\$3.515.000", "\$3.800.000"],
-        { cells: ["**= Saldo IVA**", "**\$3.135.000**", "**\$3.230.000**", "**\$3.515.000**", "**\$3.800.000**"], highlight: true }
-    ]}
-/>
+:::table{#tablaSaldoIVA caption="Saldo de IVA a pagar"}
+| Concepto | Agosto | Septiembre | Octubre | Noviembre |
+| --- | --- | --- | --- | --- |
+| IVA Débito (Ventas) | \$6.270.000 | \$6.460.000 | \$7.030.000 | \$7.600.000 |
+| - IVA Crédito (Compras) | \$3.135.000 | \$3.230.000 | \$3.515.000 | \$3.800.000 |
+| :highlight **= Saldo IVA** | **\$3.135.000** | **\$3.230.000** | **\$3.515.000** | **\$3.800.000** |
+:::
 
 <P indent={3}>
-→ Este saldo llena la fila **Saldo de IVA** de la <TableRef id="tablaPresupuestoCaja" />, desplazado un mes (Septiembre → se paga en Octubre, Octubre → se paga en Noviembre).
+→ Este saldo llena la fila **Saldo de IVA** de la :tableref{#tablaPresupuestoCaja}, desplazado un mes (Septiembre → se paga en Octubre, Octubre → se paga en Noviembre).
 </P>
 
 ---
@@ -169,39 +143,33 @@ Como las compras brutas son siempre el 50% de las ventas brutas, el IVA Crédito
 El **Saldo Inicial** de Octubre (\$1.150.000, saldo final de septiembre) corresponde al efectivo con que la empresa ya contaba, pues no es su primer mes de operación. Se suma dentro del **Total de Ingresos**, por lo que el **Flujo de Caja Neto** (Total Ingresos − Total Egresos) coincide con el **Saldo Final de Caja**.
 </P>
 
-<SmartTable
-    id="tablaPresupuestoCaja"
-    tableLayout="auto"
-    caption="Presupuesto de Caja"
-    headers={["Item", "Octubre", "Noviembre"]}
-    rows={[
-        ["Saldo Inicial", "\$1.150.000", "\$11.393.750"],
-        { section: "Ingresos" },
-        ["Ventas Contado", "\$22.015.000", "\$23.800.000"],
-        ["Ventas 30 días", "\$10.115.000", "\$11.007.500"],
-        ["Ventas 60 días", "\$9.817.500", "\$10.115.000"],
-        ["Arriendo Galpón", "\$700.000", "\$700.000"],
-        { cells: ["**Total Ingresos**", "**\$43.797.500**", "**\$57.016.250**"], highlight: true },
-        { section: "Egresos" },
-        ["Compras Contado", "\$11.007.500", "\$11.900.000"],
-        ["Compras 30 días", "\$5.057.500", "\$5.503.750"],
-        ["Compras 60 días", "\$4.908.750", "\$5.057.500"],
-        ["Costo Administración", "\$1.200.000", "\$1.200.000"],
-        ["Seguro", "\$200.000", "\$200.000"],
-        ["Sueldo Líquido", "\$5.600.000", "\$6.400.000"],
-        ["Imposiciones (mes siguiente)", "\$1.200.000", "\$1.400.000"],
-        ["Saldo de IVA (mes siguiente)", "\$3.230.000", "\$3.515.000"],
-        { cells: ["**Total Egresos**", "**\$32.403.750**", "**\$35.176.250**"], highlight: true },
-        { section: "Resultado" },
-        { cells: ["**Flujo de Caja Neto**", "**\$11.393.750**", "**\$21.840.000**"], highlight: true },
-        { cells: ["**Saldo Final de Caja**", "**\$11.393.750**", "**\$21.840.000**"], highlight: true }
-    ]}
-/>
+:::table{#tablaPresupuestoCaja caption="Presupuesto de Caja"}
+| Item | Octubre | Noviembre |
+| --- | --- | --- |
+| Saldo Inicial | \$1.150.000 | \$11.393.750 |
+| :section[Ingresos] |
+| Ventas Contado | \$22.015.000 | \$23.800.000 |
+| Ventas 30 días | \$10.115.000 | \$11.007.500 |
+| Ventas 60 días | \$9.817.500 | \$10.115.000 |
+| Arriendo Galpón | \$700.000 | \$700.000 |
+| :highlight **Total Ingresos** | **\$43.797.500** | **\$57.016.250** |
+| :section[Egresos] |
+| Compras Contado | \$11.007.500 | \$11.900.000 |
+| Compras 30 días | \$5.057.500 | \$5.503.750 |
+| Compras 60 días | \$4.908.750 | \$5.057.500 |
+| Costo Administración | \$1.200.000 | \$1.200.000 |
+| Seguro | \$200.000 | \$200.000 |
+| Sueldo Líquido | \$5.600.000 | \$6.400.000 |
+| Imposiciones (mes siguiente) | \$1.200.000 | \$1.400.000 |
+| Saldo de IVA (mes siguiente) | \$3.230.000 | \$3.515.000 |
+| :highlight **Total Egresos** | **\$32.403.750** | **\$35.176.250** |
+| :section[Resultado] |
+| :highlight **Flujo de Caja Neto** | **\$11.393.750** | **\$21.840.000** |
+| :highlight **Saldo Final de Caja** | **\$11.393.750** | **\$21.840.000** |
+:::
 
 :::callout[Conclusión]{type="tip"}
 La empresa cierra Octubre con \$11.393.750 en caja (que pasa a ser el saldo inicial de Noviembre) y termina Noviembre con \$21.840.000. Al no existir una fila de ahorro/inversión de excedentes, el Flujo de Caja Neto y el Saldo Final de Caja coinciden en ambos meses.
 :::
-
-</TableProvider>
 
 ::::

@@ -146,56 +146,19 @@ Sabiendo que $M(x)= f'(x)$, conteste:
 3. ¿Cuál es la velocidad de la partícula en el instante 7 segundos?
 4. ¿Cuál es la aceleración de la partícula cuando han transcurrido 2.5 segundos?
 
-:::solution[Solución Pregunta 03]
+::::solution[Solución Pregunta 03]
 
 1. **¿Cuál es la expresión algebraica que modela la pendiente $M(x)$?**
 
-<SmartTable
-    id="tabla01"
-    caption="Sucesión aritmética"
-    tableLayout="auto"
-    headers={["$t$", "Entero","Numerador","Denominador" ]}
-    lists={{
-        R11: [
-            "aumenta de $10$ a $18$",
-            "$\\Delta =18-10=8$"
-        ],
-        R12: [
-            "aumenta de $7$ a $11$",
-            "$\\Delta =11-7=4$"
-        ],
-        R21: [
-            "aumenta de $18$ a $26$",
-            "$\\Delta =26-18=8$"
-        ],
-        R22: [
-            "aumenta de $11$ a $15$",
-            "$\\Delta =15-11=4$"
-        ],
-        R31: [
-            "aumenta de $26$ a $34$",
-            "$\\Delta =34-26=8$"
-        ],
-        R32: [
-            "aumenta de $15$ a $19$",
-            "$\\Delta =19-15=4$"
-        ],
-        R41: [
-            "aumenta de $34$ a $42$",
-            "$\\Delta =42-34=8$"
-        ],
-        R42: [
-            "aumenta de $19$ a $23$",
-            "$\\Delta =23-19=4$"
-        ],
-    }}
-    rows={[
-        ["$2$","@R11","constante","@R12"],
-        ["$3$","@R21","constante","@R22"],
-        ["$4$","@R31","constante","@R32"],
-        ["$5$","@R41","constante","@R42"],
-    ]}
-/>
+:::table{#tabla01 caption="Sucesión aritmética"}
+| $t$ | Entero | Numerador | Denominador |
+| --- | --- | --- | --- |
+| $2$ | :li[aumenta de $10$ a $18$] :li[$\Delta =18-10=8$] | constante | :li[aumenta de $7$ a $11$] :li[$\Delta =11-7=4$] |
+| $3$ | :li[aumenta de $18$ a $26$] :li[$\Delta =26-18=8$] | constante | :li[aumenta de $11$ a $15$] :li[$\Delta =15-11=4$] |
+| $4$ | :li[aumenta de $26$ a $34$] :li[$\Delta =34-26=8$] | constante | :li[aumenta de $15$ a $19$] :li[$\Delta =19-15=4$] |
+| $5$ | :li[aumenta de $34$ a $42$] :li[$\Delta =42-34=8$] | constante | :li[aumenta de $19$ a $23$] :li[$\Delta =23-19=4$] |
+:::
+
 <P indent={2}>
 Entonces:
 - Entero aumenta en $8x$
@@ -258,7 +221,7 @@ Se utiliza el comando `Integral(Función)`. Para este caso sería `Integral(M)`
 	size="large"
 />
 
-:::
+::::
 
 ---
 ### Pregunta 04

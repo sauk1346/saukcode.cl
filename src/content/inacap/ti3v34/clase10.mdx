@@ -17,50 +17,28 @@
 ## Requisitos de PCI DSS
 Tiene 12 requisitos organizados en 6 objetivos principales
 
-<SmartTable
-	tableLayout="fixed"
-	headers={['Objetivos Principales', 'Requisitos']}
-	rows={[
-		[
-			'**Construir y mantener una red segura**',
-			'[Usar firewalls efectivos,No usar contraseñas predeterminadas]'
-		],
-		[
-			'**Proteger los datos del titular de la tarjeta**',
-			'[Proteger los datos almacenados de tarjetas,Cifrar la transmisión de datos sensibles]'
-		],
-		[
-			'**Mantener un programa de gestión de vulnerabilidades**',
-			'[Usar y actualizar software antivirus,Desarrollar sistemas seguros]'
-		],
-		[
-			'**Implementar medidas de control de acceso**',
-			'[Restringir acceso a la información,Identificar y autenticar accesos,Restringir el acceso físico a los datos]'
-		],
-		[
-			'**Monitorear y probar redes regularmente**',
-			'[Rastrear y monitorear accesos a datos,Probar seguridad de sistemas y redes regularmente]'
-		],
-		[
-			'**Mantener una política de seguridad de la información**',
-			'[Mantener y actualizar políticas de seguridad]'
-		]
-	]}
-/>
+:::table{layout="fixed"}
+| Objetivos Principales | Requisitos |
+| --- | --- |
+| **Construir y mantener una red segura** | :li[Usar firewalls efectivos] :li[No usar contraseñas predeterminadas] |
+| **Proteger los datos del titular de la tarjeta** | :li[Proteger los datos almacenados de tarjetas] :li[Cifrar la transmisión de datos sensibles] |
+| **Mantener un programa de gestión de vulnerabilidades** | :li[Usar y actualizar software antivirus] :li[Desarrollar sistemas seguros] |
+| **Implementar medidas de control de acceso** | :li[Restringir acceso a la información] :li[Identificar y autenticar accesos] :li[Restringir el acceso físico a los datos] |
+| **Monitorear y probar redes regularmente** | :li[Rastrear y monitorear accesos a datos] :li[Probar seguridad de sistemas y redes regularmente] |
+| **Mantener una política de seguridad de la información** | :li[Mantener y actualizar políticas de seguridad] |
+:::
 
 ## Cumplimiento y Validación del PCI DSS
 El cumplimiento del PCI DSS depende del nivel de la empresa y la cantidad de transacciones que procesa anualmente. Existen cuatro niveles
 
-<SmartTable
-	tableLayout="fixed"
-	headers={['Niveles', 'Descripción']}
-	rows={[
-		['**Nivel 1**', 'Más de 6 millones de transacciones anuales'],
-		['**Nivel 2**', 'Entre 1 y 6 millones de transacciones'],
-		['**Nivel 3**', 'entre 20.000 y 1 millón de transacciones'],
-		['**Nivel 4**', 'menos de 20.000 transacciones']
-	]}
-/>
+:::table{layout="fixed"}
+| Niveles | Descripción |
+| --- | --- |
+| **Nivel 1** | Más de 6 millones de transacciones anuales |
+| **Nivel 2** | Entre 1 y 6 millones de transacciones |
+| **Nivel 3** | entre 20.000 y 1 millón de transacciones |
+| **Nivel 4** | menos de 20.000 transacciones |
+:::
 
 Los métodos de validación incluyen:
 

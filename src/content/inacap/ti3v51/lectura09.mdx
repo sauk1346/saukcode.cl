@@ -64,52 +64,16 @@ El núcleo de TOGAF es el **Architecture Development Method (ADM)**, un método 
 	size="large"
 />
 
-<SmartTable
-	tableLayout="auto"
-	headers={["Fase", "Nombre", "Descripción"]}
-	rows={[
-		[
-			"**A**",
-			"**Visión de la arquitectura**",
-			"Define el alcance, las restricciones y las expectativas del proyecto de arquitectura. Se establece una visión de alto nivel del estado futuro deseado y se obtiene la aprobación de los interesados"
-		],
-		[
-			"**B**",
-			"**Arquitectura de negocio**",
-			"Desarrolla la arquitectura de negocio objetivo que describe cómo la organización debe operar para cumplir sus metas estratégicas"
-		],
-		[
-			"**C**",
-			"**Arquitecturas de sistemas de información**",
-			"Define las arquitecturas de datos y de aplicaciones que soportan la arquitectura de negocio. Incluye tanto los sistemas que gestionan los datos como las aplicaciones que los utilizan"
-		],
-		[
-			"**D**",
-			"**Arquitectura tecnológica**",
-			"Describe la infraestructura tecnológica necesaria (hardware, software, redes) para soportar las arquitecturas definidas en las fases anteriores"
-		],
-		[
-			"**E**",
-			"**Oportunidades y soluciones**",
-			"Identifica los proyectos de implementación, evalúa alternativas de entrega y define una hoja de ruta inicial para la transición hacia la arquitectura objetivo"
-		],
-		[
-			"**F**",
-			"**Planificación de la migración**",
-			"Prioriza los proyectos identificados en la Fase E y elabora un plan de migración detallado para la transición desde la arquitectura actual a la objetivo"
-		],
-		[
-			"**G**",
-			"**Gobernanza de la implementación**",
-			"Supervisa la implementación de los proyectos para asegurar que se ajusten a la arquitectura definida y a los estándares organizacionales"
-		],
-		[
-			"**H**",
-			"**Gestión del cambio de la arquitectura**",
-			"Monitorea el entorno organizacional y tecnológico para identificar cambios que requieran actualizar la arquitectura, asegurando que esta permanezca vigente y alineada con el negocio"
-		],
-	]}
-/>
+| Fase | Nombre | Descripción |
+| --- | --- | --- |
+| **A** | **Visión de la arquitectura** | Define el alcance, las restricciones y las expectativas del proyecto de arquitectura. Se establece una visión de alto nivel del estado futuro deseado y se obtiene la aprobación de los interesados |
+| **B** | **Arquitectura de negocio** | Desarrolla la arquitectura de negocio objetivo que describe cómo la organización debe operar para cumplir sus metas estratégicas |
+| **C** | **Arquitecturas de sistemas de información** | Define las arquitecturas de datos y de aplicaciones que soportan la arquitectura de negocio. Incluye tanto los sistemas que gestionan los datos como las aplicaciones que los utilizan |
+| **D** | **Arquitectura tecnológica** | Describe la infraestructura tecnológica necesaria (hardware, software, redes) para soportar las arquitecturas definidas en las fases anteriores |
+| **E** | **Oportunidades y soluciones** | Identifica los proyectos de implementación, evalúa alternativas de entrega y define una hoja de ruta inicial para la transición hacia la arquitectura objetivo |
+| **F** | **Planificación de la migración** | Prioriza los proyectos identificados en la Fase E y elabora un plan de migración detallado para la transición desde la arquitectura actual a la objetivo |
+| **G** | **Gobernanza de la implementación** | Supervisa la implementación de los proyectos para asegurar que se ajusten a la arquitectura definida y a los estándares organizacionales |
+| **H** | **Gestión del cambio de la arquitectura** | Monitorea el entorno organizacional y tecnológico para identificar cambios que requieran actualizar la arquitectura, asegurando que esta permanezca vigente y alineada con el negocio |
 
 ## 3. TOGAF y su aplicación en la arquitectura de datos
 
@@ -127,28 +91,12 @@ Ya que el estándar TOGAF tiene relación con la arquitectura completa de un sis
 
 Estos cuatro pasos se enuncian a continuación:
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Pasos", "Descripción"]}
-    rows={[
-        [
-            "**Definición de tablas de dimensiones**",
-            "Las dimensiones representan los aspectos descriptivos a partir de los datos; Dicho de otra forma, corresponden a una forma de clasificación de datos; Tienen atributos de texto y cuantitativos, normalmente están denormalizadas (para favorecer el acceso rápido a los registros de datos) y pueden contener jerarquías de organización de datos, según la granularidad de estos"
-        ],
-        [
-            "**Definición de tablas de hechos**",
-            "En esta etapa se definen y diseñan las tablas que almacenarán los datos cuantitativos o medidas reales, producto de una transacción o evento en el negocio; Pueden contener datos tales como ventas, cantidad, costo, etc.; Se enlazan a las tablas de dimensiones mediante llaves foráneas y también pueden contener llaves compuestas (es decir, de varias columnas) para identificar unívocamente a un registro"
-        ],
-        [
-            "**Definición de granularidad**",
-            "En esta etapa se analiza y revisa cuál es el grado de detalle que se necesita para el almacenamiento de datos en la tabla de hechos; Una alta granularidad indica que se almacenará mucho detalle en cada registro (conllevando esto utilizar más espacio de memoria en el almacén); Una baja granularidad permitirá ahorrar espacio de almacenamiento, a costo de guardar menos detalles sobre los datos importantes del negocio. "
-        ],
-        [
-            "**Estandarización vs denormalización**",
-            "En esta última etapa se tiende a favorecer la denormalización de los datos (esto conlleva a crear tablas de hechos con muchas columnas), donde la reducción en el uso de llaves foráneas favorecerá las búsquedas y transacciones de datos a mayor velocidad, pero con la desventaja de almacenar muchos datos redundantes en la misma tabla de hechos; Sin embargo, esta característica es buscada en los almacenes de datos, a diferencia de las bases de datos RDBMS convencionales, ya que la idea del proceso de análisis OLAP es dar mayor velocidad al procesamiento analítico de datos en el largo plazo."
-        ],
-    ]}
-/>
+| Pasos | Descripción |
+| --- | --- |
+| **Definición de tablas de dimensiones** | :li[Las dimensiones representan los aspectos descriptivos a partir de los datos] :li[Dicho de otra forma, corresponden a una forma de clasificación de datos] :li[Tienen atributos de texto y cuantitativos, normalmente están denormalizadas (para favorecer el acceso rápido a los registros de datos) y pueden contener jerarquías de organización de datos, según la granularidad de estos] |
+| **Definición de tablas de hechos** | :li[En esta etapa se definen y diseñan las tablas que almacenarán los datos cuantitativos o medidas reales, producto de una transacción o evento en el negocio] :li[Pueden contener datos tales como ventas, cantidad, costo, etc.] :li[Se enlazan a las tablas de dimensiones mediante llaves foráneas y también pueden contener llaves compuestas (es decir, de varias columnas) para identificar unívocamente a un registro] |
+| **Definición de granularidad** | :li[En esta etapa se analiza y revisa cuál es el grado de detalle que se necesita para el almacenamiento de datos en la tabla de hechos] :li[Una alta granularidad indica que se almacenará mucho detalle en cada registro (conllevando esto utilizar más espacio de memoria en el almacén)] :li[Una baja granularidad permitirá ahorrar espacio de almacenamiento, a costo de guardar menos detalles sobre los datos importantes del negocio.] |
+| **Estandarización vs denormalización** | :li[En esta última etapa se tiende a favorecer la denormalización de los datos (esto conlleva a crear tablas de hechos con muchas columnas), donde la reducción en el uso de llaves foráneas favorecerá las búsquedas y transacciones de datos a mayor velocidad, pero con la desventaja de almacenar muchos datos redundantes en la misma tabla de hechos] :li[Sin embargo, esta característica es buscada en los almacenes de datos, a diferencia de las bases de datos RDBMS convencionales, ya que la idea del proceso de análisis OLAP es dar mayor velocidad al procesamiento analítico de datos en el largo plazo.] |
 
 
 ## Actividad de Práctica

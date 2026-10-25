@@ -6,52 +6,20 @@ La conexión inalámbrica es un pilar esencial en el funcionamiento de los ecosi
 ### Fundamentos de la comunicación inalámbrica
 La comunicación inalámbrica en el contexto IoT se basa en la transmisión de datos sin necesidad de cables físicos, utilizando ondas electromagnéticas en diversas frecuencias del espectro radioeléctrico. Sus características son las siguientes: 
 
-<SmartTable
-    tableLayout="auto"
-    headers={['Característica', 'Descripción']}
-    rows={[
-        [
-            "**Movilidad**",
-            "Los dispositivos pueden comunicarse independientemente de su ubicación física"
-        ],
-        [
-            "**Escalabilidad**",
-            "Facilita la adición de nuevos dispositivos a la red"
-        ],
-        [
-            "**Flexibilidad**",
-            "Permite configuraciones dinámicas según las necesidades del sistema"
-        ],
-        [
-            "**Eficiencia energética**",
-            "Optimizada para dispositivos con recursos limitados"
-        ],
-    ]}      
-/>
+| Característica | Descripción |
+| --- | --- |
+| **Movilidad** | Los dispositivos pueden comunicarse independientemente de su ubicación física |
+| **Escalabilidad** | Facilita la adición de nuevos dispositivos a la red |
+| **Flexibilidad** | Permite configuraciones dinámicas según las necesidades del sistema |
+| **Eficiencia energética** | Optimizada para dispositivos con recursos limitados |
 
 ### Tecnología Bluetooth en IoT
 Bluetooth es una tecnología de comunicación inalámbrica de corto alcance que opera en la banda ISM de 2.4 GHz. Su evolución hacia Bluetooth Low Energy (BLE) la ha convertido en una opción preferida para aplicaciones IoT debido a su bajo consumo energético y facilidad de implementación.
 
-<SmartTable
-    tableLayout="auto"
-    headers={['Versión Bluetooth', 'Consumo energético', 'Alcance', 'Velocidad', 'Características adicionales']}
-    rows={[
-        [
-            "**4.0** (BLE/Bluetooth Smart)",
-            "Ultra bajo",
-            "10-50 metros",
-            "1 Mbps",
-            "Ideal para sensores y dispositivos alimentados por batería"
-        ],
-        [
-            "**5.0 y superiores**",
-            "",
-            "Hasta 200 metros",
-            "Hasta 2 Mbps",
-            "Mejor coexistencia con wifi, soporte para *mesh networking*"
-        ]
-    ]}
-/>
+| Versión Bluetooth | Consumo energético | Alcance | Velocidad | Características adicionales |
+| --- | --- | --- | --- | --- |
+| **4.0** (BLE/Bluetooth Smart) | Ultra bajo | 10-50 metros | 1 Mbps | Ideal para sensores y dispositivos alimentados por batería |
+| **5.0 y superiores** |  | Hasta 200 metros | Hasta 2 Mbps | Mejor coexistencia con wifi, soporte para *mesh networking* |
 
 ## 2. Estándares de seguridad en IoT
 En un entorno donde millones de dispositivos están constantemente conectados e intercambiando datos, la seguridad en IoT se vuelve una prioridad ineludible. Los estándares internacionales como ISO/IEC 27400 ofrecen marcos de referencia sólidos para proteger la información y garantizar el funcionamiento confiable de estos sistemas.
@@ -60,82 +28,23 @@ En un entorno donde millones de dispositivos están constantemente conectados e 
 La seguridad en IoT requiere un enfoque integral que abarque desde el diseño del hardware hasta la implementación de software y la gestión de datos. Los estándares internacionales proporcionan marcos estructurados para implementar medidas de seguridad efectivas.
 
 ### Desafíos de seguridad específicos de IoT
-<SmartTable
-    tableLayout="auto"
-    headers={['Desafío', 'Descripción']}
-    lists={{
-        R1: [
-            "**Procesamiento limitado:** Capacidad computacional restringida",
-            "**Memoria reducida:** Limitaciones en almacenamiento de claves y certificados",
-            "**Energía limitada:** Imposibilidad de usar algoritmos criptográficos complejos debido al alto consumo energético"
-        ],
-        R2: [
-            "**Gestión masiva de dispositivos:** Millones de dispositivos en una sola red",
-            "**Actualización de firmware:** Distribución segura de actualizaciones",
-            "**Gestión de identidades:** Administración de credenciales a gran escala"   
-        ],
-        R3: [
-            "**Diversos protocolos:** Múltiples estándares de comunicación",
-            "**Diferentes fabricantes:** Variabilidad en implementaciones de seguridad",
-            "**Ciclos de vida variables:** Dispositivos con diferentes períodos de soporte"
-        ]
-    }}
-    rows={[
-        [
-            "**Limitaciones de recursos**",
-            "@R1"
-        ],
-        [
-            "**Escalabilidad**",
-            "@R2"
-        ],
-        [
-            "**Heterogeneidad**",
-            "@R3"
-        ]
-    ]}
-/>
+
+| Desafío | Descripción |
+| --- | --- |
+| **Limitaciones de recursos** | :li[**Procesamiento limitado:** Capacidad computacional restringida] :li[**Memoria reducida:** Limitaciones en almacenamiento de claves y certificados] :li[**Energía limitada:** Imposibilidad de usar algoritmos criptográficos complejos debido al alto consumo energético] |
+| **Escalabilidad** | :li[**Gestión masiva de dispositivos:** Millones de dispositivos en una sola red] :li[**Actualización de firmware:** Distribución segura de actualizaciones] :li[**Gestión de identidades:** Administración de credenciales a gran escala] |
+| **Heterogeneidad** | :li[**Diversos protocolos:** Múltiples estándares de comunicación] :li[**Diferentes fabricantes:** Variabilidad en implementaciones de seguridad] :li[**Ciclos de vida variables:** Dispositivos con diferentes períodos de soporte] |
 
 ## 3. Norma ISO 27400: fundamentos y aplicación
 La norma ISO/IEC 27400 "Cybersecurity — IoT security and privacy — Guidelines" representa un marco comprensivo para abordar los desafíos de seguridad y privacidad específicos del ecosistema IoT. Publicada como parte de la familia ISO 27000, esta norma proporciona directrices prácticas para implementar medidas de seguridad efectivas en sistemas IoT. 
 
 Sus objetivos principales:
-<SmartTable
-    tableLayout="auto"
-    headers={['Objetivo', 'Descripción']}
-    lists={{
-        R1: [
-            "Definición de arquitecturas de seguridad para IoT",
-            "Identificación de amenazas específicas del ecosistema",
-            "Establecimiento de controles de seguridad apropiados"
-        ],
-        R2: [
-            "Metodologías para evaluación de riesgos en IoT",
-            "Estrategias de mitigación adaptadas al contexto",
-            "Monitoreo continuo de amenazas emergentes"
-        ],
-        R3: [
-            "Principios de privacidad por diseño",
-            "Minimización de recolección de datos",
-            "Transparencia en el procesamiento de información"
-        ]
 
-    }}
-    rows={[
-        [
-            "**Establecimiento de marco de seguridad**",
-            "@R1"
-        ],
-        [
-            "**Gestión de riesgos**",
-            "@R2"
-        ],
-        [
-            "**Protección de privacidad**",
-            "@R3"
-        ]
-    ]}
-/>
+| Objetivo | Descripción |
+| --- | --- |
+| **Establecimiento de marco de seguridad** | :li[Definición de arquitecturas de seguridad para IoT] :li[Identificación de amenazas específicas del ecosistema] :li[Establecimiento de controles de seguridad apropiados] |
+| **Gestión de riesgos** | :li[Metodologías para evaluación de riesgos en IoT] :li[Estrategias de mitigación adaptadas al contexto] :li[Monitoreo continuo de amenazas emergentes] |
+| **Protección de privacidad** | :li[Principios de privacidad por diseño] :li[Minimización de recolección de datos] :li[Transparencia en el procesamiento de información] |
 
 ### Estructura y componentes de la norma
 
@@ -144,46 +53,20 @@ La norma define su aplicabilidad a sistemas IoT que incluyen dispositivos conect
 
 #### 2. Arquitectura de seguridad IoT
 
-<SmartTable
-    tableLayout="auto"
-    headers={['Capa', 'Componentes']}
-    rows={[
-        [
-            "**Capa de aplicación**",
-            "Interfaces se usuario, Lógica de negocio, Servicios en la nube"
-        ],,
-        [
-            "**Capa de red**",
-            "Protocolos de comunicación, gestión de conectividad, enrutamiento y switching"
-        ],
-        [
-            "**Capa de percepción**",
-            "Sensores y actuadores, interfaces de hardware, dispositivos de borde"
-        ]
-    ]}
-/>
+| Capa | Componentes |
+| --- | --- |
+| **Capa de aplicación** | Interfaces se usuario, Lógica de negocio, Servicios en la nube |
+| **Capa de red** | Protocolos de comunicación, gestión de conectividad, enrutamiento y switching |
+| **Capa de percepción** | Sensores y actuadores, interfaces de hardware, dispositivos de borde |
 
 #### 3. Controles de seguridad
 Los controles de seguridad en IoT se agrupan en tres grandes categorías. 
 
-<SmartTable
-    tableLayout="auto"
-    headers={['Categoría de control', 'Descripción']}
-    rows={[
-        [
-            "**Controles técnicos**",
-            "Medidas como la criptografía, autenticación y seguridad en comunicaciones"
-        ],
-        [
-            "**Controles organizacionales**",
-            "Políticas de seguridad, gestión de incidentes, capacitación y auditorías"
-        ],
-        [
-            "**Controles físicos**",
-            "Protección del hardware, seguridad de instalaciones y control de acceso físico"
-        ]
-    ]}
-/>
+| Categoría de control | Descripción |
+| --- | --- |
+| **Controles técnicos** | Medidas como la criptografía, autenticación y seguridad en comunicaciones |
+| **Controles organizacionales** | Políticas de seguridad, gestión de incidentes, capacitación y auditorías |
+| **Controles físicos** | Protección del hardware, seguridad de instalaciones y control de acceso físico |
 
 ## 4. Gestión de riesgos según ISO 27400
 

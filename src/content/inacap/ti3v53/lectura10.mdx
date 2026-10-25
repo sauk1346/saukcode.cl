@@ -47,20 +47,10 @@ La arquitectura de control de accesos en la nube define cómo se gestionan las i
 
 Existen distintos enfoques arquitectónicos que permiten habilitar la autenticación y autorización de manera segura y eficiente
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Arquitecturas", "Descripción"]}
-    rows={[
-        [
-            "**Free-Form**",
-            "Los proveedores o fuentes de identidad internas, generalmente servidores de directorio, se **conectan directamente** con los proveedores de servicios en la nube; Cada sistema establece su propia relación de confianza de forma individual, lo que puede resultar funcional en entornos simples, pero complejo en administrar a gran escala"
-        ],
-        [
-            "**Hub and Spoke**",
-            "Los proveedores o fuentes de identidad unternos se comunican promero con un **intermediario central** o repositorio; Este componente actúa como proveedor de identidad principal y se encarga de la federación con los distintos proveedores de servicios en la nube, facilitando una gestión centralizada, coherente y más segura de los accesos"
-        ],
-    ]}
-/>
+| Arquitecturas | Descripción |
+| --- | --- |
+| **Free-Form** | :li[Los proveedores o fuentes de identidad internas, generalmente servidores de directorio, se **conectan directamente** con los proveedores de servicios en la nube] :li[Cada sistema establece su propia relación de confianza de forma individual, lo que puede resultar funcional en entornos simples, pero complejo en administrar a gran escala] |
+| **Hub and Spoke** | :li[Los proveedores o fuentes de identidad unternos se comunican promero con un **intermediario central** o repositorio] :li[Este componente actúa como proveedor de identidad principal y se encarga de la federación con los distintos proveedores de servicios en la nube, facilitando una gestión centralizada, coherente y más segura de los accesos] |
 
 
 ## Actividad de Práctica

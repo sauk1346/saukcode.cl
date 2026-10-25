@@ -3,16 +3,12 @@
 ## Bloques 
 El manejo de excepciones sigue una estructura mediante los bloques:
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Bloques","Descripción"]}
-  rows={[
-    ["`try`","Contiene el código que puede generar una excepción. Si ocurre, la ejecución del bloque `try` se detiene y se pasa al bloque `except`"],
-    ["`except`","Especifica cómo manejar una excepción que se ha producido en el bloque `try`. Pueden existir varios bloques `except` para manejar diferentes tipos de excepciones"],
-    ["`else`","Opcional. Se ejecuta si no se produce ninguna excepción en el bloque `try`"],
-    ["`finally`","Opcional. Este bloque se ejecuta siempre, exista una excepción o no. Útil para realizar acciones de limpieza, como cerrar archivos o conexiones, independientemente de lo que suceda"]
-  ]}
-/>
+| Bloques | Descripción |
+| --- | --- |
+| `try` | Contiene el código que puede generar una excepción. Si ocurre, la ejecución del bloque `try` se detiene y se pasa al bloque `except` |
+| `except` | Especifica cómo manejar una excepción que se ha producido en el bloque `try`. Pueden existir varios bloques `except` para manejar diferentes tipos de excepciones |
+| `else` | Opcional. Se ejecuta si no se produce ninguna excepción en el bloque `try` |
+| `finally` | Opcional. Este bloque se ejecuta siempre, exista una excepción o no. Útil para realizar acciones de limpieza, como cerrar archivos o conexiones, independientemente de lo que suceda |
 
 <SmartFigure
 	id="excepciones-jerarquias"

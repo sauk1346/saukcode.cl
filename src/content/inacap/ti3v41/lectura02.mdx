@@ -4,32 +4,28 @@ La programación del lado del servidor constituye la base invisible que da vida 
 
 ## Lenguajes de servidor
 
-<SmartTable
-	tableLayout="fixed"
-	headers={['Lenguaje', 'Descripción/Frameworks']}
-	rows={[
-		['**Python**', 'Con frameworks como Django o Flask'],
-		['**PHP**', 'Usado en WordPress y muchas páginas dinámicas'],
-		['**Node.js**', 'JavaScript en el servidor'],
-		['**Java**', 'Muy usado en sistemas corporativos'],
-		['**Ruby**', 'Especialmente con el framework Rails'],
-		['**C#**', 'Principalmente en entornos .NET']
-	]}
-/>
+:::table{layout="fixed"}
+| Lenguaje | Descripción/Frameworks |
+| --- | --- |
+| **Python** | Con frameworks como Django o Flask |
+| **PHP** | Usado en WordPress y muchas páginas dinámicas |
+| **Node.js** | JavaScript en el servidor |
+| **Java** | Muy usado en sistemas corporativos |
+| **Ruby** | Especialmente con el framework Rails |
+| **C#** | Principalmente en entornos .NET |
+:::
 
 ### Características de Python como lenguaje de servidor
 Python es uno de los lenguajes más recomendados para comenzar en el desarrollo del lado del servidor por varias razones:
 
-<SmartTable
-	tableLayout="fixed"
-	headers={['Característica', 'Descripción']}
-	rows={[
-		['**Simplicidad en la sintaxis**', 'Facilita el aprendizaje y la lectura del código'],
-		['**Comunidad activa**', 'Miles de desarrolladores colaboran para mejorar librerías y documentación'],
-		['**Gran cantidad de librerías**', 'Puedes hacer desde análisis de datos hasta servidores web'],
-		['**Compatibilidad con múltiples sistemas operativos**', 'Funciona en diferentes plataformas']
-	]}
-/>
+:::table{layout="fixed"}
+| Característica | Descripción |
+| --- | --- |
+| **Simplicidad en la sintaxis** | Facilita el aprendizaje y la lectura del código |
+| **Comunidad activa** | Miles de desarrolladores colaboran para mejorar librerías y documentación |
+| **Gran cantidad de librerías** | Puedes hacer desde análisis de datos hasta servidores web |
+| **Compatibilidad con múltiples sistemas operativos** | Funciona en diferentes plataformas |
+:::
 
 ### Fundamentos del patrón MVC
 El **patrón de arquitectura MVC** (modelo-vista-controlador) es un modelo de organización del código que busca **separar responsabilidades** dentro de una aplicación.
@@ -40,15 +36,11 @@ Esta separación permite:
 - Reutilizar componentes
 - Facilitar el mantenimiento y trabajo en equipo
 
-<SmartTable
-	tableLayout="auto"
-	headers={['Componente', 'Descripción']}
-	rows={[
-		['**Modelo**', 'Se encarga de representar y manipular los datos. Por ejemplo, una clase "Producto" que tiene nombre, precio y stock'],
-		['**Vista**', 'Define lo que el usuario ve (HTML, CSS, imágenes, formularios)'],
-		['**Controlador**', 'Actúa como puente entre el modelo y la vista. Recibe las solicitudes del usuario, obtiene los datos del modelo y los envía a la vista']
-	]}
-/>
+| Componente | Descripción |
+| --- | --- |
+| **Modelo** | Se encarga de representar y manipular los datos. Por ejemplo, una clase "Producto" que tiene nombre, precio y stock |
+| **Vista** | Define lo que el usuario ve (HTML, CSS, imágenes, formularios) |
+| **Controlador** | Actúa como puente entre el modelo y la vista. Recibe las solicitudes del usuario, obtiene los datos del modelo y los envía a la vista |
 
 **Ejemplo**
 
@@ -76,15 +68,13 @@ En el caso de Django, te ahorra trabajo en tareas como:
 
 > Django sigue el patrón MTV (modelo-template-vista), que es **prácticamente equivalente** al MVC
 
-<SmartTable
-	tableLayout="fixed"
-	headers={['Componente', 'Descripción']}
-	rows={[
-		['**Modelo**', 'Define la estructura de los datos'],
-		['**Template (vista)**', 'Controla como se presenta la información'],
-		['**Vista (controlador)**', 'Se encarga de la lógica']
-	]}
-/>
+:::table{layout="fixed"}
+| Componente | Descripción |
+| --- | --- |
+| **Modelo** | Define la estructura de los datos |
+| **Template (vista)** | Controla como se presenta la información |
+| **Vista (controlador)** | Se encarga de la lógica |
+:::
 
 ## Estructura General de un Proyecto Django
 
@@ -97,15 +87,11 @@ django-admin startproject mi_sitio
 
 se crea una carpeta con archivos de configuración global, como:
 
-<SmartTable
-	tableLayout="auto"
-	headers={['Archivo', 'Descripción']}
-	rows={[
-		['`settings.py`', 'Define configuraciones del sitio (base de datos, idiomas, rutas, etc.)'],
-		['`urls.py`', 'Contiene las rutas principales del sitio'],
-		['`wsgi.py` y `asgi.py`', 'Permiten que Django se comunique con servidores web']
-	]}
-/>
+| Archivo | Descripción |
+| --- | --- |
+| `settings.py` | Define configuraciones del sitio (base de datos, idiomas, rutas, etc.) |
+| `urls.py` | Contiene las rutas principales del sitio |
+| `wsgi.py` y `asgi.py` | Permiten que Django se comunique con servidores web |
 
 ### 2. Aplicaciones (apps)
 

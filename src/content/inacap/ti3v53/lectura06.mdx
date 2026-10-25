@@ -10,28 +10,12 @@ Para asegurar la continuidad, se puede implementar una arquitectura multicloud q
 
 ### Principios clave
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Principios", "Descripción"]}
-    rows={[
-        [
-            "**Alta disponibilidad (HA)**",
-            "Construida en capas, permite que un servicio continue operando ante la falla de un componenten o de un centro de datos completo"
-        ],
-        [
-            "**Redundancia geográfica y de zona**",
-            "Replicación de recursos entre múltiples zonas y regiones, asegurando resiliencia frente a desastres naturales o fallos masivos de red"
-        ],
-        [
-            "**Elasticidad de la infraestructura**",
-            "auto-scaling ajusta dinámicamente la capacidad de cómputo según la demanda, optimizando recursos y costos"
-        ],
-        [
-            "**Seguridad y acceso controlado**",
-            "Políticas IAM y monitoreo de red protegen recursos y permiten detectar fallos o accesos no autorizados"
-        ],
-    ]}
-/>
+| Principios | Descripción |
+| --- | --- |
+| **Alta disponibilidad (HA)** | Construida en capas, permite que un servicio continue operando ante la falla de un componenten o de un centro de datos completo |
+| **Redundancia geográfica y de zona** | Replicación de recursos entre múltiples zonas y regiones, asegurando resiliencia frente a desastres naturales o fallos masivos de red |
+| **Elasticidad de la infraestructura** | auto-scaling ajusta dinámicamente la capacidad de cómputo según la demanda, optimizando recursos y costos |
+| **Seguridad y acceso controlado** | Políticas IAM y monitoreo de red protegen recursos y permiten detectar fallos o accesos no autorizados |
 
 ## 2. La reduncancia en la continuidad del negocio
 
@@ -47,32 +31,13 @@ La integración multicloud permite combinar servicios de distintos proveedores (
 
 ### Elementos clave
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Elementos", "Descripción"]}
-    rows={[
-        [
-            "**Selección de proveedores según la industria**",
-            "Algunas industrias requieren alta seguridad o cumplimiento normativo específico",
-        ],
-        [
-            "**Conectividad segura entre nubes**",
-            "VPN Site-to-Site, AWS Direct Connect o Azure ExpressRoute permiten replicación de datos y comunicación privada entre proveedores",
-        ],
-        [
-            "**Replicación de bases de datos y almacenamiento**",
-            "Oracle Data Guard, replicación lógica en PostgreSQL/MySQL y sincronización de buckets aseguran consistencia y disponibilidad de datos críticos",
-        ],
-        [
-            "**Gestión unificada de tráfico y cargas**",
-            "Servicios DNS con health checks (Route 53, Cloudfire) redirigen tráfico automáticamente en caso de fallos de un proveedor",
-        ],
-        [
-            "**Automatización y observabilidad**",
-            "Infraestructura como código y herramientas de monitoreo permiten estandarizar despliegues y detectar fallos proactivamente",
-        ],
-    ]}
-/>
+| Elementos | Descripción |
+| --- | --- |
+| **Selección de proveedores según la industria** | Algunas industrias requieren alta seguridad o cumplimiento normativo específico |
+| **Conectividad segura entre nubes** | VPN Site-to-Site, AWS Direct Connect o Azure ExpressRoute permiten replicación de datos y comunicación privada entre proveedores |
+| **Replicación de bases de datos y almacenamiento** | Oracle Data Guard, replicación lógica en PostgreSQL/MySQL y sincronización de buckets aseguran consistencia y disponibilidad de datos críticos |
+| **Gestión unificada de tráfico y cargas** | Servicios DNS con health checks (Route 53, Cloudfire) redirigen tráfico automáticamente en caso de fallos de un proveedor |
+| **Automatización y observabilidad** | Infraestructura como código y herramientas de monitoreo permiten estandarizar despliegues y detectar fallos proactivamente |
 
 ### Beneficios de la integración cloud
 

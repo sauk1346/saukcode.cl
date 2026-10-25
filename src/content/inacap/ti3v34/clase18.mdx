@@ -24,52 +24,20 @@ Su objetivo es garantizar que los servicios críticos del negocio continúen fun
 
 ## Diferencias entre BCP y DRP
 
-<SmartTable
-	tableLayout="auto"
-	headers={['Aspecto', 'BCP', 'DRP']}
-	rows={[
-		[
-			'**Enfoque**',
-			'Continuidad general del negocio',
-			'Recuperación de sistemas y datos de TI'
-		],
-		[
-			'**Alcance**',
-			'Toda la organización',
-			'Infraestructura tecnológica'
-		],
-		[
-			'**Objetivo Principal**',
-			'Seguir operando con interrupciones',
-			'Restaurar rápidamente sistemas de TI'
-		],
-		[
-			'**Ejemplos**',
-			'Teletrabajo, plan de comunicación',
-			'Backup y restauración de datos, failover'
-		]
-	]}
-/>
+| Aspecto | BCP | DRP |
+| --- | --- | --- |
+| **Enfoque** | Continuidad general del negocio | Recuperación de sistemas y datos de TI |
+| **Alcance** | Toda la organización | Infraestructura tecnológica |
+| **Objetivo Principal** | Seguir operando con interrupciones | Restaurar rápidamente sistemas de TI |
+| **Ejemplos** | Teletrabajo, plan de comunicación | Backup y restauración de datos, failover |
 
 ## RTO y RPO
 Son métricas que ayudan a definir los objetivos de recuperación de sistemas, datos y operaciones
 
-<SmartTable
-	tableLayout="auto"
-	headers={['Métrica', 'Definición', 'Ejemplo']}
-	rows={[
-		[
-			'**Recovery Time Objective (RTO):** Objetivo de Tiempo de Recuperación',
-			'Es el tiempo máximo permitido para restaurar una función, sistema o servicio después de una interrupción, antes de que cause un impacto inaceptable en el negocio',
-			'Si el RTO de tu sistema de ventas es de 4 horas, significa que debe estar funcionando de nuevo en ese plazo para evitar daños importantes'
-		],
-		[
-			'**Recovery Point Objective (RPO):** Objetivo de Punto de Recuperación',
-			'Es la cantidad máxima de datos (medida en tiempo) que puedes perder en caso de una interrupción',
-			'Si tu RPO es de 1 hora, entonces puedes tolerar perder los datos generados en la última hora antes del incidente. Esto afecta la frecuencia de los respaldos'
-		]
-	]}
-/>
+| Métrica | Definición | Ejemplo |
+| --- | --- | --- |
+| **Recovery Time Objective (RTO):** Objetivo de Tiempo de Recuperación | Es el tiempo máximo permitido para restaurar una función, sistema o servicio después de una interrupción, antes de que cause un impacto inaceptable en el negocio | Si el RTO de tu sistema de ventas es de 4 horas, significa que debe estar funcionando de nuevo en ese plazo para evitar daños importantes |
+| **Recovery Point Objective (RPO):** Objetivo de Punto de Recuperación | Es la cantidad máxima de datos (medida en tiempo) que puedes perder en caso de una interrupción | Si tu RPO es de 1 hora, entonces puedes tolerar perder los datos generados en la última hora antes del incidente. Esto afecta la frecuencia de los respaldos |
 
 ## Cómo se calcula el RPO
 

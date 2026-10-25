@@ -96,17 +96,13 @@ Tienen 2 propósitos en informática:
 1. Indexar datos y acceder a ellos rápidamente (cuando tenemos millones de datos).
 2. Seguridad y Criptografía, mediante protocolos como HMAC (*Hash-based Message Authentication*).
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Herramientas","Descripción"]}
-    rows={[
-        ["`hashlib`","Es un módulo de la librería estándar de python"],
-        ["`.sha256()`","*Secure Hash Algorithm 256-bit*. Función hash criptográfica que produce un valor de hash de 256 bits a partir de una entrada de bytes"],
-        ["`.sha224()`","Función hash criptográfica que produce un valor de hash de 224 bits a partir de una entrada de bytes"],
-        ["`.sha512()`","Función hash criptográfica que produce un valor de hash de 512 bits a partir de una entrada de bytes"],
-        ["`.hexdigest()`","Método que permite obtener una representación hexadecimal de un valor hash"],
-        ]}
-/>
+| Herramientas | Descripción |
+| --- | --- |
+| `hashlib` | Es un módulo de la librería estándar de python |
+| `.sha256()` | *Secure Hash Algorithm 256-bit*. Función hash criptográfica que produce un valor de hash de 256 bits a partir de una entrada de bytes |
+| `.sha224()` | Función hash criptográfica que produce un valor de hash de 224 bits a partir de una entrada de bytes |
+| `.sha512()` | Función hash criptográfica que produce un valor de hash de 512 bits a partir de una entrada de bytes |
+| `.hexdigest()` | Método que permite obtener una representación hexadecimal de un valor hash |
 
 Las funciones `sha256()`, `sha224()` y `sha512()` no reciben cadenas de texto. En su lugar, esperan recibir datos en formato de bytes.
 

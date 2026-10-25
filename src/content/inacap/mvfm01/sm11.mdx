@@ -6,17 +6,13 @@
 ## Actividad 01
 Los datos que se muestran a continuación, corresponden al consumo de energía de un hogar en una región de Chile, cuyo servicio eléctrico es brindado por la empresa LUMINUS:
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Consumo estimado mensual (kWh)","Administración del servicio ($)","Electricidad consumida($)","Total a pagar en la boleta($)"]}
-  rows={[
-    ["1","1324","144","1488"],
-    ["2","1324","288","1651"],
-    ["3","1324","432","1815"],
-    ["4","1324","576","1978"],
-    ["5","1324","720","2142"]
-  ]}
-/>
+| Consumo estimado mensual (kWh) | Administración del servicio (\$) | Electricidad consumida(\$) | Total a pagar en la boleta(\$) |
+| --- | --- | --- | --- |
+| 1 | 1324 | 144 | 1488 |
+| 2 | 1324 | 288 | 1651 |
+| 3 | 1324 | 432 | 1815 |
+| 4 | 1324 | 576 | 1978 |
+| 5 | 1324 | 720 | 2142 |
 
 **Existe algún tipo de regularidad en las columnas "Administración del servicio", "Electricidad consumida" y "Total a pagar en la boleta"?**
 
@@ -134,17 +130,13 @@ $\therefore$ Se deben consumir un total de `127.35` kWh para pagar un total de \
 ## Actividad 04
 La empresa ha entregado la siguiente información en su página web:
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Consumo estimado mensual (kWh)","Total a pagar en la boleta ($)"]}
-  rows={[
-    ["50","9502"],
-    ["120","20950"],
-    ["210","35670"],
-    ["310","52025"],
-    ["415","69197"]
-  ]}
-/>
+| Consumo estimado mensual (kWh) | Total a pagar en la boleta (\$) |
+| --- | --- |
+| 50 | 9502 |
+| 120 | 20950 |
+| 210 | 35670 |
+| 310 | 52025 |
+| 415 | 69197 |
 
 1. **¿Cuál es la expresión algebraica que modela el total a pagar en la boleta en función del consumo estimado total?**
 
@@ -251,33 +243,25 @@ $\therefore$ Se deben consumir `117.94` kWh para pagar \$`20000` en la boleta.
 ## Actividad 05 
 La empresa CHISPITA tiene otros costos fijos y variables diferentes a los de la empresa LUMINUS. En la siguiente tabla se ha registrado el servicio eléctrico de cinco hogares pertenecientes a la empresa CHISPITA.
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Consumo estimado mensual (kWh)","Administración del servicio ($)","Electricidad consumida ($)","Transporte de electricidad ($)","Total a pagar en la boleta"]}
-  rows={[
-    ["70","685","8164","1124",""],
-    ["78","685","9098","1254",""],
-    ["79","685","9214","1268",""],
-    ["86","685","10031","1381",""],
-    ["113","685","13178","1816",""]
-  ]}
-/>
+| Consumo estimado mensual (kWh) | Administración del servicio (\$) | Electricidad consumida (\$) | Transporte de electricidad (\$) | Total a pagar en la boleta |
+| --- | --- | --- | --- | --- |
+| 70 | 685 | 8164 | 1124 |  |
+| 78 | 685 | 9098 | 1254 |  |
+| 79 | 685 | 9214 | 1268 |  |
+| 86 | 685 | 10031 | 1381 |  |
+| 113 | 685 | 13178 | 1816 |  |
 
 1. **Completa la tabla anterior, considerando que el total a pagar en la boleta es la suma de la administración del servicio, la electricidad consumida y el transporte de electricidad.**
 
 :::solution
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Consumo estimado mensual (kWh)","Administración del servicio ($)","Electricidad consumida ($)","Transporte de electricidad ($)","Total a pagar en la boleta"]}
-  rows={[
-    ["70","685","8164","1124","9973"],
-    ["78","685","9098","1254","11037"],
-    ["79","685","9214","1268","11167"],
-    ["86","685","10031","1381","12097"],
-    ["113","685","13178","1816","15679"]
-  ]}
-/>
+| Consumo estimado mensual (kWh) | Administración del servicio (\$) | Electricidad consumida (\$) | Transporte de electricidad (\$) | Total a pagar en la boleta |
+| --- | --- | --- | --- | --- |
+| 70 | 685 | 8164 | 1124 | 9973 |
+| 78 | 685 | 9098 | 1254 | 11037 |
+| 79 | 685 | 9214 | 1268 | 11167 |
+| 86 | 685 | 10031 | 1381 | 12097 |
+| 113 | 685 | 13178 | 1816 | 15679 |
 
 :::
 
@@ -352,14 +336,10 @@ Se determina el modelo según los siguientes casos:
 
 Se resumen los siguientes resultados:
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Empresa","Modelo de costo"]}
-  rows={[
-    ["LUMINUS","$f_4(x) \\approx 163,55 \\cdot x + 1324,50$"],
-    ["CHISPITA","$f_5(x) \\approx 132,68 \\cdot x + 685,93$"]
-  ]}
-/>
+| Empresa | Modelo de costo |
+| --- | --- |
+| LUMINUS | $f_4(x) \approx 163,55 \cdot x + 1324,50$ |
+| CHISPITA | $f_5(x) \approx 132,68 \cdot x + 685,93$ |
 
 - De la gráfica se observa que el punto de intersección $K$ es $(-20,69 ; -2059,20)$
 - En el contexto gráfico, $K$ representa el pto. donde el mismo consumo en kWh tiene el mismo costo (\$) en ambas empresas.

@@ -16,34 +16,26 @@ En el entorno de redes, no todas las direcciones tienen el mismo propósito. Es 
 
 Las direcciones privadas no se enrutan en Internet, lo que permite su reutilización dentro de diferentes organizaciones sin conflictos.
 
-<SmartTable
-  id="tabla01"
-  caption="Rangos de direcciones privadas en IPv4"
-  tableLayout="auto"
-  headers={['Rango de red', 'Prefijo', 'Uso típico']}
-  rows={[
-    ['**10.0.0.0** a **10.255.255.255**', '/8', 'Redes corporativas de gran escala.'],
-    ['**172.16.0.0** a **172.31.255.255**', '/12', 'Organizaciones medianas y laboratorios.'],
-    ['**192.168.0.0** a **192.168.255.255**', '/16', 'Redes domésticas y pequeñas oficinas.'],
-  ]}
-/>
+:::table{#tabla01 caption="Rangos de direcciones privadas en IPv4"}
+| Rango de red | Prefijo | Uso típico |
+| --- | --- | --- |
+| **10.0.0.0** a **10.255.255.255** | /8 | Redes corporativas de gran escala. |
+| **172.16.0.0** a **172.31.255.255** | /12 | Organizaciones medianas y laboratorios. |
+| **192.168.0.0** a **192.168.255.255** | /16 | Redes domésticas y pequeñas oficinas. |
+:::
 
 ## 3. Fundamentos y algoritmo VLSM
 
 VLSM (*Variable Length Subnet Mask*) es la técnica que permite dividir una red en segmentos de diferentes tamaños, asignando a cada uno la máscara exacta que requiere según su número de hosts. Esto rompe con el esquema tradicional de subneteo de máscara fija donde todas las subredes tenían el mismo tamaño, provocando desperdicio de IPs.
 
-<SmartTable
-  id="tabla02"
-  caption="Conceptos clave de segmentación"
-  tableLayout="auto"
-  headers={['Término', 'Definición técnica', 'Impacto en el diseño']}
-  rows={[
-    ['**Prefijo /n**', 'Indica cuántos bits corresponden a la porción de red.', 'Determina el tamaño de la subred.'],
-    ['**Bloque**', 'El tamaño total de direcciones en una subred (incluye red y broadcast).', 'Define los saltos entre subredes contiguas.'],
-    ['**Traslape**', 'Error donde dos subredes comparten direcciones.', 'Provoca fallas críticas de comunicación.'],
-    ['**Rango utilizable**', 'Direcciones asignables a hosts (excluye red y broadcast).', 'Es la capacidad real de dispositivos por segmento.'],
-  ]}
-/>
+:::table{#tabla02 caption="Conceptos clave de segmentación"}
+| Término | Definición técnica | Impacto en el diseño |
+| --- | --- | --- |
+| **Prefijo /n** | Indica cuántos bits corresponden a la porción de red. | Determina el tamaño de la subred. |
+| **Bloque** | El tamaño total de direcciones en una subred (incluye red y broadcast). | Define los saltos entre subredes contiguas. |
+| **Traslape** | Error donde dos subredes comparten direcciones. | Provoca fallas críticas de comunicación. |
+| **Rango utilizable** | Direcciones asignables a hosts (excluye red y broadcast). | Es la capacidad real de dispositivos por segmento. |
+:::
 
 ### Pasos
 
@@ -55,34 +47,26 @@ VLSM (*Variable Length Subnet Mask*) es la técnica que permite dividir una red 
 
 Mientras que en IPv4 el foco está en el ahorro de direcciones individuales, en IPv6 el diseño se basa en la planificación jerárquica mediante bloques de prefijos.
 
-<SmartTable
-  id="tabla03"
-  caption="Estándares de diseño por protocolo"
-  tableLayout="auto"
-  headers={['Característica', 'Optimización en IPv4', 'Planificación en IPv6']}
-  rows={[
-    ['**Enfoque principal**', 'Ahorro de bits de host.', 'Asignación por prefijos estándar.'],
-    ['**Redes de usuarios**', 'Variable (ej. /24, /26, /27).', 'Típicamente bloques /64.'],
-    ['**Enlaces punto a punto**', 'Prefijos /30 o /31.', 'Prefijos /64 o /127.'],
-    ['**Asignación de sitios**', 'Variable según máscara.', 'Comúnmente bloques /56 o /48.'],
-  ]}
-/>
+:::table{#tabla03 caption="Estándares de diseño por protocolo"}
+| Característica | Optimización en IPv4 | Planificación en IPv6 |
+| --- | --- | --- |
+| **Enfoque principal** | Ahorro de bits de host. | Asignación por prefijos estándar. |
+| **Redes de usuarios** | Variable (ej. /24, /26, /27). | Típicamente bloques /64. |
+| **Enlaces punto a punto** | Prefijos /30 o /31. | Prefijos /64 o /127. |
+| **Asignación de sitios** | Variable según máscara. | Comúnmente bloques /56 o /48. |
+:::
 
 ### Comparación y rol en el diseño de redes
 
 Un buen plan de direccionamiento es la hoja de ruta para cualquier implementación física. La verificación constante mediante comandos de ruta permite validar que la segmentación lógica sea coherente con la topología.
 
-<SmartTable
-  id="tabla04"
-  caption="Verificación de planes de direccionamiento"
-  tableLayout="auto"
-  headers={['Comando', 'Propósito en el diseño']}
-  rows={[
-    ['`show ip route`', 'Muestra la tabla de enrutamiento y las redes conectadas'],
-    ['`show ip interface brief`', 'Valida qué IP y máscara se aplicó a cada puerto'],
-    ['`ipconfig /all`', 'Confirma que el host tiene la máscara exacta del plan VLSM'],
-  ]}
-/>
+:::table{#tabla04 caption="Verificación de planes de direccionamiento"}
+| Comando | Propósito en el diseño |
+| --- | --- |
+| `show ip route` | Muestra la tabla de enrutamiento y las redes conectadas |
+| `show ip interface brief` | Valida qué IP y máscara se aplicó a cada puerto |
+| `ipconfig /all` | Confirma que el host tiene la máscara exacta del plan VLSM |
+:::
 
 
 ## Actividad de Práctica

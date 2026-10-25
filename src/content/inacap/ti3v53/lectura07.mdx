@@ -23,41 +23,11 @@ Se ejecutan fallos forzados en nodos de AWS y OCI, interrupciones de zonas de di
 
 ### Fases del plan de pruebas
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Fases", "Descripción"]}
-    lists={{
-        R1: [
-            "Se emplean ténicas de ingeniería de caos para simular fallas en instancias EC2 y nodos de OCI, incluyendo apagados repentinos y cortes de zonas de disponibilidad",
-            "Se verifica qué grupos de autoescalado y balanceadores de carga redirigirán tráfico automáticamente, manteniendo la experiencia del usuario sin interrupciones",
-            "El éxito se mide por la capacidad del sistema para restaurar nodos fallidos en menos de 90 segundos, cumpliendo con los SLA establecidos"
-        ],
-        R2: [
-            "Se fuerza la conmutación de roles entre el nodo primario en AWs y el standby en OCI mediante Oracle Data Guard, asegurando que el RPO sea igual a cero y que no haya pérdida de transacciones",
-            "Se mide la latencia de replicación entre Amazon S3 (Simple Storage Service) y OCI Object Storage para confirmar que los archivos y backups críticos estén disponibles",
-            "Se verifica la integridad de los datos y la consistencia de permisos de acceso y cifrado tras la transacción"
-        ],
-        R3: [
-            "Se simula un apagón total del proveedor principal, conometrando la propagación del DNS y la redirección de tráfico hacia OCI",
-            "Se asegura que el RTO sea inferior a 5 minutos y que las políticas de seguridad y firewalls permitan acceso solo a usuarios autorizados",
-            "Se documentan los resultados en una matriz de auditoría, garantizando que la infraestructura sea operativamente capaz de resistir fallos masivos según las normativas técnicas vigentes"
-        ]
-    }}
-    rows={[
-        [
-            "**Validación de resiliencia de cómputo y alta disponibilidad**",
-            "@R1"
-        ],
-        [
-            "**Pruebas críticas de failover y continuidad de datos**",
-            "@R2"
-        ],
-        [
-            "**Validación de acceso y conectividad de red global**",
-            "@R3"
-        ],
-    ]}
-/>
+| Fases | Descripción |
+| --- | --- |
+| **Validación de resiliencia de cómputo y alta disponibilidad** | :li[Se emplean ténicas de ingeniería de caos para simular fallas en instancias EC2 y nodos de OCI, incluyendo apagados repentinos y cortes de zonas de disponibilidad] :li[Se verifica qué grupos de autoescalado y balanceadores de carga redirigirán tráfico automáticamente, manteniendo la experiencia del usuario sin interrupciones] :li[El éxito se mide por la capacidad del sistema para restaurar nodos fallidos en menos de 90 segundos, cumpliendo con los SLA establecidos] |
+| **Pruebas críticas de failover y continuidad de datos** | :li[Se fuerza la conmutación de roles entre el nodo primario en AWs y el standby en OCI mediante Oracle Data Guard, asegurando que el RPO sea igual a cero y que no haya pérdida de transacciones] :li[Se mide la latencia de replicación entre Amazon S3 (Simple Storage Service) y OCI Object Storage para confirmar que los archivos y backups críticos estén disponibles] :li[Se verifica la integridad de los datos y la consistencia de permisos de acceso y cifrado tras la transacción] |
+| **Validación de acceso y conectividad de red global** | :li[Se simula un apagón total del proveedor principal, conometrando la propagación del DNS y la redirección de tráfico hacia OCI] :li[Se asegura que el RTO sea inferior a 5 minutos y que las políticas de seguridad y firewalls permitan acceso solo a usuarios autorizados] :li[Se documentan los resultados en una matriz de auditoría, garantizando que la infraestructura sea operativamente capaz de resistir fallos masivos según las normativas técnicas vigentes] |
 
 
 ## Actividad de Práctica

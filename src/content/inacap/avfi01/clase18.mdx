@@ -26,20 +26,16 @@ $$
 VAN = \sum_{t=1}^{n} \dfrac{FC_t}{(1+i)^t} - I_0
 $$
 
-<SmartTable
-    id="tablaVAN3"
-    tableLayout="auto"
-    caption="Flujos de Caja Descontados al 23%"
-    headers={["Año", "Flujo de Caja", "Cálculo", "Flujo Descontado"]}
-    rows={[
-        ["1", "\$4.200.000", "$\\dfrac{4.200.000}{(1,23)^1}$", "\$3.414.634"],
-        ["2", "\$4.600.000", "$\\dfrac{4.600.000}{(1,23)^2}$", "\$3.040.518"],
-        ["3", "\$5.100.000", "$\\dfrac{5.100.000}{(1,23)^3}$", "\$2.740.658"],
-        ["4", "\$5.500.000", "$\\dfrac{5.500.000}{(1,23)^4}$", "\$2.402.936"],
-        ["5", "\$5.700.000", "$\\dfrac{5.700.000}{(1,23)^5}$", "\$2.024.647"],
-        { cells: ["**Suma Flujos Descontados**", "", "", "**\$13.623.393**"], highlight: true }
-    ]}
-/>
+:::table{#tablaVAN3 caption="Flujos de Caja Descontados al 23%"}
+| Año | Flujo de Caja | Cálculo | Flujo Descontado |
+| --- | --- | --- | --- |
+| 1 | \$4.200.000 | $\dfrac{4.200.000}{(1,23)^1}$ | \$3.414.634 |
+| 2 | \$4.600.000 | $\dfrac{4.600.000}{(1,23)^2}$ | \$3.040.518 |
+| 3 | \$5.100.000 | $\dfrac{5.100.000}{(1,23)^3}$ | \$2.740.658 |
+| 4 | \$5.500.000 | $\dfrac{5.500.000}{(1,23)^4}$ | \$2.402.936 |
+| 5 | \$5.700.000 | $\dfrac{5.700.000}{(1,23)^5}$ | \$2.024.647 |
+| :highlight **Suma Flujos Descontados** |  |  | **\$13.623.393** |
+:::
 
 $$
 \begin{align*}
@@ -64,35 +60,27 @@ $$
 0 = -I_0 + \sum_{t=1}^{n} \dfrac{FC_t}{(1+TIR)^t}
 $$
 
-<SmartTable
-    id="tablaDecisionTIR3"
-    tableLayout="auto"
-    caption="Criterio de Decisión (TIR vs. tasa exigida i)"
-    headers={["Condición", "Decisión"]}
-    rows={[
-        ["TIR > i", "Acepta Proyecto"],
-        ["TIR < i", "Rechaza Proyecto"]
-    ]}
-/>
+:::table{#tablaDecisionTIR3 caption="Criterio de Decisión (TIR vs. tasa exigida i)"}
+| Condición | Decisión |
+| --- | --- |
+| TIR \> i | Acepta Proyecto |
+| TIR \< i | Rechaza Proyecto |
+:::
 
 <P indent={2}>
 **Prueba (solo teoría):** se verifica qué ocurre si la tasa fuera **43%**.
 </P>
 
-<SmartTable
-    id="tablaPruebaTIR3"
-    tableLayout="auto"
-    caption="Prueba de flujos descontados al 43%"
-    headers={["Año", "Flujo de Caja", "Cálculo", "Flujo Descontado"]}
-    rows={[
-        ["1", "\$4.200.000", "$\\dfrac{4.200.000}{(1,43)^1}$", "\$2.937.063"],
-        ["2", "\$4.600.000", "$\\dfrac{4.600.000}{(1,43)^2}$", "\$2.249.499"],
-        ["3", "\$5.100.000", "$\\dfrac{5.100.000}{(1,43)^3}$", "\$1.744.063"],
-        ["4", "\$5.500.000", "$\\dfrac{5.500.000}{(1,43)^4}$", "\$1.315.281"],
-        ["5", "\$5.700.000", "$\\dfrac{5.700.000}{(1,43)^5}$", "\$953.223"],
-        { cells: ["**Suma Flujos Descontados**", "", "", "**\$9.199.129**"], highlight: true }
-    ]}
-/>
+:::table{#tablaPruebaTIR3 caption="Prueba de flujos descontados al 43%"}
+| Año | Flujo de Caja | Cálculo | Flujo Descontado |
+| --- | --- | --- | --- |
+| 1 | \$4.200.000 | $\dfrac{4.200.000}{(1,43)^1}$ | \$2.937.063 |
+| 2 | \$4.600.000 | $\dfrac{4.600.000}{(1,43)^2}$ | \$2.249.499 |
+| 3 | \$5.100.000 | $\dfrac{5.100.000}{(1,43)^3}$ | \$1.744.063 |
+| 4 | \$5.500.000 | $\dfrac{5.500.000}{(1,43)^4}$ | \$1.315.281 |
+| 5 | \$5.700.000 | $\dfrac{5.700.000}{(1,43)^5}$ | \$953.223 |
+| :highlight **Suma Flujos Descontados** |  |  | **\$9.199.129** |
+:::
 
 $$
 9.199.129 - 9.000.000 = \$199.129
@@ -118,17 +106,13 @@ $$
 donde $a$ = año anterior a la recuperación, $b$ = flujo acumulado hasta el año $a$, y $FC_n$ = flujo descontado del año en que se recupera la inversión.
 </P>
 
-<SmartTable
-    id="tablaAcumuladoPRI3"
-    tableLayout="auto"
-    caption="Flujo Descontado Acumulado"
-    headers={["Año", "Flujo Descontado", "Acumulado", "¿Cubierta la inversión?"]}
-    rows={[
-        ["1", "\$3.414.634", "\$3.414.634", "No"],
-        ["2", "\$3.040.518", "\$6.455.152", "No"],
-        { cells: ["3", "\$2.740.658", "\$9.195.810", "**Sí**"], highlight: true }
-    ]}
-/>
+:::table{#tablaAcumuladoPRI3 caption="Flujo Descontado Acumulado"}
+| Año | Flujo Descontado | Acumulado | ¿Cubierta la inversión? |
+| --- | --- | --- | --- |
+| 1 | \$3.414.634 | \$3.414.634 | No |
+| 2 | \$3.040.518 | \$6.455.152 | No |
+| :highlight 3 | \$2.740.658 | \$9.195.810 | **Sí** |
+:::
 
 <P indent={2}>
 La inversión (\$9.000.000) queda cubierta entre el año 2 (\$6.455.152 acumulados) y el año 3 (\$9.195.810 acumulados), por lo que $a = 2$, $b = $ \$6.455.152 y $FC_3 = $ \$2.740.658.

@@ -26,19 +26,15 @@ $$
 VAN = \sum_{t=1}^{n} \dfrac{FC_t}{(1+i)^t} - I_0
 $$
 
-<SmartTable
-    id="tablaVAN"
-    tableLayout="auto"
-    caption="Flujos de Caja Descontados al 20%"
-    headers={["Año", "Flujo de Caja", "Cálculo", "Flujo Descontado"]}
-    rows={[
-        ["1", "\$3.000.000", "$\\dfrac{3.000.000}{(1,2)^1}$", "\$2.500.000"],
-        ["2", "\$3.300.000", "$\\dfrac{3.300.000}{(1,2)^2}$", "\$2.291.667"],
-        ["3", "\$3.700.000", "$\\dfrac{3.700.000}{(1,2)^3}$", "\$2.141.204"],
-        ["4", "\$4.100.000", "$\\dfrac{4.100.000}{(1,2)^4}$", "\$1.977.238"],
-        { cells: ["**Suma Flujos Descontados**", "", "", "**\$8.910.109**"], highlight: true }
-    ]}
-/>
+:::table{#tablaVAN caption="Flujos de Caja Descontados al 20%"}
+| Año | Flujo de Caja | Cálculo | Flujo Descontado |
+| --- | --- | --- | --- |
+| 1 | \$3.000.000 | $\dfrac{3.000.000}{(1,2)^1}$ | \$2.500.000 |
+| 2 | \$3.300.000 | $\dfrac{3.300.000}{(1,2)^2}$ | \$2.291.667 |
+| 3 | \$3.700.000 | $\dfrac{3.700.000}{(1,2)^3}$ | \$2.141.204 |
+| 4 | \$4.100.000 | $\dfrac{4.100.000}{(1,2)^4}$ | \$1.977.238 |
+| :highlight **Suma Flujos Descontados** |  |  | **\$8.910.109** |
+:::
 
 $$
 \begin{align*}
@@ -63,34 +59,26 @@ $$
 0 = -I_0 + \sum_{t=1}^{n} \dfrac{FC_t}{(1+TIR)^t}
 $$
 
-<SmartTable
-    id="tablaDecisionTIR"
-    tableLayout="auto"
-    caption="Criterio de Decisión (TIR vs. tasa exigida i)"
-    headers={["Condición", "Decisión"]}
-    rows={[
-        ["TIR > i", "Acepta Proyecto"],
-        ["TIR < i", "Rechaza Proyecto"]
-    ]}
-/>
+:::table{#tablaDecisionTIR caption="Criterio de Decisión (TIR vs. tasa exigida i)"}
+| Condición | Decisión |
+| --- | --- |
+| TIR \> i | Acepta Proyecto |
+| TIR \< i | Rechaza Proyecto |
+:::
 
 <P indent={2}>
 **Prueba (solo teoría):** se verifica qué ocurre si la tasa fuera **30%**.
 </P>
 
-<SmartTable
-    id="tablaPruebaTIR"
-    tableLayout="auto"
-    caption="Prueba de flujos descontados al 30%"
-    headers={["Año", "Flujo de Caja", "Cálculo", "Flujo Descontado"]}
-    rows={[
-        ["1", "\$3.000.000", "$\\dfrac{3.000.000}{(1,3)^1}$", "\$2.307.692"],
-        ["2", "\$3.300.000", "$\\dfrac{3.300.000}{(1,3)^2}$", "\$1.952.663"],
-        ["3", "\$3.700.000", "$\\dfrac{3.700.000}{(1,3)^3}$", "\$1.684.115"],
-        ["4", "\$4.100.000", "$\\dfrac{4.100.000}{(1,3)^4}$", "\$1.435.524"],
-        { cells: ["**Suma Flujos Descontados**", "", "", "**\$7.379.994**"], highlight: true }
-    ]}
-/>
+:::table{#tablaPruebaTIR caption="Prueba de flujos descontados al 30%"}
+| Año | Flujo de Caja | Cálculo | Flujo Descontado |
+| --- | --- | --- | --- |
+| 1 | \$3.000.000 | $\dfrac{3.000.000}{(1,3)^1}$ | \$2.307.692 |
+| 2 | \$3.300.000 | $\dfrac{3.300.000}{(1,3)^2}$ | \$1.952.663 |
+| 3 | \$3.700.000 | $\dfrac{3.700.000}{(1,3)^3}$ | \$1.684.115 |
+| 4 | \$4.100.000 | $\dfrac{4.100.000}{(1,3)^4}$ | \$1.435.524 |
+| :highlight **Suma Flujos Descontados** |  |  | **\$7.379.994** |
+:::
 
 $$
 7.379.994 - 6.000.000 = \$1.379.994
@@ -116,17 +104,13 @@ $$
 donde $a$ = año anterior a la recuperación, $b$ = flujo acumulado hasta el año $a$, y $FC_n$ = flujo descontado del año en que se recupera la inversión.
 </P>
 
-<SmartTable
-    id="tablaAcumuladoPRI"
-    tableLayout="auto"
-    caption="Flujo Descontado Acumulado"
-    headers={["Año", "Flujo Descontado", "Acumulado", "¿Cubierta la inversión?"]}
-    rows={[
-        ["1", "\$2.500.000", "\$2.500.000", "No"],
-        ["2", "\$2.291.667", "\$4.791.667", "No"],
-        { cells: ["3", "\$2.141.204", "\$6.932.871", "**Sí**"], highlight: true }
-    ]}
-/>
+:::table{#tablaAcumuladoPRI caption="Flujo Descontado Acumulado"}
+| Año | Flujo Descontado | Acumulado | ¿Cubierta la inversión? |
+| --- | --- | --- | --- |
+| 1 | \$2.500.000 | \$2.500.000 | No |
+| 2 | \$2.291.667 | \$4.791.667 | No |
+| :highlight 3 | \$2.141.204 | \$6.932.871 | **Sí** |
+:::
 
 <P indent={2}>
 La inversión (\$6.000.000) queda cubierta entre el año 2 (\$4.791.667 acumulados) y el año 3 (\$6.932.871 acumulados), por lo que $a = 2$, $b = $ \$4.791.667 y $FC_3 = $ \$2.141.204.

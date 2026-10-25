@@ -43,43 +43,11 @@ Para implementar una aplicación Android con **Jetpack Compose**, primero debes 
 ### Prácticas de seguridad implementadas
 Abarcan distintas capas del sistema para proteger la comunicación entre el microcontrolador y la aplicación. Incluyen autenticación de credenciales, validación de comandos y listas blancas en el dispositivo; manejo de estados, sanitización de datos y *timeouts* en la aplicación Android
 
-<SmartTable
-    tableLayout="auto"
-    lists={{
-        R1: [
-            "**Autenticación: verificación de credenciales antes de procesar comandos**",
-            "**Validación de entrada: límites de longitud y formato de comandos**",
-            "**Lista blanca:** solo comandos predefinidos son aceptados",
-            "**Sesiones:** control de estado de autenticación"
-        ],
-        R2: [
-            "**Validación de comandos:** verificación antes del envío",
-            "**Manejo de estados:** control robusto del estado de conexión",
-            "**Timeouts:** gestión de conexiones colgadas",
-            "**Sanitización:** limpieza de datos recibidos"
-        ],
-        R3: [
-            "**Formato estructurado:** mensajes con prefijos identificables",
-            "**Códigos de error:** respuestas claras para situaciones anómalas",
-            "**Desconexión segura:** cierre ordenado de sesiones"
-        ]
-    }}
-    headers={["Capa", "Descripción"]}
-    rows={[
-        [
-            "**Microcontrolador**",
-            "@R1"
-        ],
-        [
-            "**Aplicación Android**",
-            "@R2"
-        ],
-        [
-            "**Protocolo de comunicación**",
-            "@R3"
-        ],
-    ]}
-/>
+| Capa | Descripción |
+| --- | --- |
+| **Microcontrolador** | :li[**Autenticación: verificación de credenciales antes de procesar comandos**] :li[**Validación de entrada: límites de longitud y formato de comandos**] :li[**Lista blanca:** solo comandos predefinidos son aceptados] :li[**Sesiones:** control de estado de autenticación] |
+| **Aplicación Android** | :li[**Validación de comandos:** verificación antes del envío] :li[**Manejo de estados:** control robusto del estado de conexión] :li[**Timeouts:** gestión de conexiones colgadas] :li[**Sanitización:** limpieza de datos recibidos] |
+| **Protocolo de comunicación** | :li[**Formato estructurado:** mensajes con prefijos identificables] :li[**Códigos de error:** respuestas claras para situaciones anómalas] :li[**Desconexión segura:** cierre ordenado de sesiones] |
 
 ## 2. Fundamentos de la comunicación inalambrica (WiFi)
 La comunicación inalámbrica mediante WiFi es una de las soluciones más utilizadas para conectar microcontroladores con aplicaciones móviles, debido a su alcance, velocidad y flexibilidad. En este esquema, la arquitectura del sistema se organiza en distintas capas: desde la física, representada por módulos como el **ESP8266 (Wemos D1)**, hasta la de aplicación, donde intervienen **APIs REST** con autenticación básica para el intercambio de datos.
@@ -110,42 +78,11 @@ Su uso en proyectos con WiFi facilita la implementación práctica de la comunic
 ### Prácticas de seguridad implementadas
 Garantizan que la comunicación entre el microcontrolador y la aplicación móvil se realice de manera confiable y protegida. En el caso de Wemos D1, incluyen el uso de tokens de autenticación, la validación de parámetros y el control de los estados permitidos.
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Caso", "Descripción"]}
-    lists={{
-        R1: [
-            "**Token de autenticación:** verificación simple antes de ejecutar comandos",
-            "**Validación de parámetros:** verificación de argumentos recibidos",
-            "**Control de sesión:** variable booleana para autenticación"
-        ],
-        R2: [
-            "**Verificación de estado:** no envía comandos sin autenticación",
-            "**Manejo de errroes:** respuestas claras para diferentes escenarios",
-            "**Timeout implícito:** OkHttp maneja timeouts automáticamente",
-            "**Validación de IP:** campo editable para configurar dispositivo"
-        ],
-        R3: [
-            "**URLs claras:** /auth, /led, /sensor",
-            "**Parámetros simples:** token, state",
-            "**Respuestas directas:** \"Ok\", \"ERROR\", valores numéricos"
-        ]
-    }}
-    rows={[
-        [
-            "**En el Wemos D1**",
-            "@R1"
-        ],
-        [
-            "**En la Aplicación Android**",
-            "@R2"
-        ],
-        [
-            "**Protocolo Simple**",
-            "@R3"
-        ],
-    ]}
-/>
+| Caso | Descripción |
+| --- | --- |
+| **En el Wemos D1** | :li[**Token de autenticación:** verificación simple antes de ejecutar comandos] :li[**Validación de parámetros:** verificación de argumentos recibidos] :li[**Control de sesión:** variable booleana para autenticación] |
+| **En la Aplicación Android** | :li[**Verificación de estado:** no envía comandos sin autenticación] :li[**Manejo de errroes:** respuestas claras para diferentes escenarios] :li[**Timeout implícito:** OkHttp maneja timeouts automáticamente] :li[**Validación de IP:** campo editable para configurar dispositivo] |
+| **Protocolo Simple** | :li[**URLs claras:** /auth, /led, /sensor] :li[**Parámetros simples:** token, state] :li[**Respuestas directas:** "Ok", "ERROR", valores numéricos] |
 
 
 # Actividad de Práctica

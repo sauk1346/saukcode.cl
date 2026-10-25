@@ -12,49 +12,23 @@
 	size="large"
 />
 
-<SmartTable
-    id="tabla01"
-    caption="Características enrutamiento dinámico"
-    tableLayout="auto"
-    headers={["Característica", "Descripción"]}
-    rows={[
-        [
-            "**Escalabilidad**",
-            "el enrutamiento estático se vuelve inmanejabla a medida que la red crece. OSPF permite el aprendizaje automática de nuevas rutas sin intervención humana constante"
-        ],
-        [
-            "**Resiliencia**",
-            "ante una falla de enlace, el enrutamiento estático requiere reconfiguración manual. OSPF ofrece convergencia, recalculando rutas alternativas automáticamente"
-        ],
-        [
-            "**Reducción de errores**",
-            "minimiza el riesgo humano asociado a la configuración manual ruta por ruta en topologías complejas",
-        ],
-    ]}
-/>
+:::table{#tabla01 caption="Características enrutamiento dinámico"}
+| Característica | Descripción |
+| --- | --- |
+| **Escalabilidad** | el enrutamiento estático se vuelve inmanejabla a medida que la red crece. OSPF permite el aprendizaje automática de nuevas rutas sin intervención humana constante |
+| **Resiliencia** | ante una falla de enlace, el enrutamiento estático requiere reconfiguración manual. OSPF ofrece convergencia, recalculando rutas alternativas automáticamente |
+| **Reducción de errores** | minimiza el riesgo humano asociado a la configuración manual ruta por ruta en topologías complejas |
+:::
 
 ## 2. Lógica del estado de enlace y algoritmo SPF
 
-<SmartTable
-    id="tabla01"
-    caption="Características OSPF"
-    tableLayout="auto"
-    headers={["Característica", "Descripción"]}
-    rows={[
-        [
-            "**Link-state (estado de enlace)**",
-            "a diferencia de los protocolos vector-distancia, OSPF permite que cada router construya un mapa conpleto de la topología de la red"
-        ],
-        [
-            "**Algoritmo SPF**",
-            "utiliza el algoritmo *Shortest Path First* (SPF) para calcular la ruta más eficiente hacia cada destino basándose en el \"costo\" actumulado del enlace"
-        ],
-        [
-            "**OSPFv2**",
-            "específicamente diseñano para redes IPv4, gestiona el anuncio de subredes y el cálculo de métricas para optimizar el tráfico empresarial"
-        ],
-    ]}
-/>
+:::table{#tabla02 caption="Características OSPF"}
+| Característica | Descripción |
+| --- | --- |
+| **Link-state (estado de enlace)** | a diferencia de los protocolos vector-distancia, OSPF permite que cada router construya un mapa conpleto de la topología de la red |
+| **Algoritmo SPF** | utiliza el algoritmo *Shortest Path First* (SPF) para calcular la ruta más eficiente hacia cada destino basándose en el "costo" actumulado del enlace |
+| **OSPFv2** | específicamente diseñano para redes IPv4, gestiona el anuncio de subredes y el cálculo de métricas para optimizar el tráfico empresarial |
+:::
 
 ## 3. Vecindad y adyacencia
 

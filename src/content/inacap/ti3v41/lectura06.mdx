@@ -68,67 +68,19 @@ class Producto(models.Model):
 
 ### Tipos de campos comunes en Django
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Campo", "Descripción", "Ejemplo de uso"]}
-    rows={[
-        [
-            "`CharField`",
-            "Almacena texto corto. Requiere `max_length`",
-            "`nombre = models.CharField(max_length=100)`"
-        ],
-        [
-            "`TextField`",
-            "Almacena texto largo. sin límite práctico",
-            "`descripcion = models.TextField()`"
-        ],
-        [
-            "`IntegerField`",
-            "Almacena números enteros",
-            "`stock = models.IntegerField()`"
-        ],
-        [
-            "`DecimalField`",
-            "Almacena números decimales con precisión. Requiere `max_digits` y `decimal_places`",
-            "`precio = models.DecimalField(max_digits=8, decimal_places=2)`"
-        ],
-        [
-            "`FloatField`",
-            "Almacena decimales, pero con menos precisión que `DecimalField`",
-            "`temperatura = models.FloatField`"
-        ],
-        [
-            "`BooleanField`",
-            "Almacena valores True o False",
-            "`disponible = models.BooleanField(default=True)`"
-        ],
-        [
-            "`DateField`",
-            "Almacena fechas (YYYY-MM-DD)",
-            "`fecha = models.DateField()`"
-        ],
-        [
-            "`DateTimeField`",
-            "Almacena fecha y hora",
-            "`publicado = models.DateTimeField(auto_now_add=True)`"
-        ],
-        [
-            "`EmailField`",
-            "Almacena direcciones de correo eletrónico",
-            "`correo = models.EmailField()`"
-        ],
-        [
-            "`URLField`",
-            "Almacena URLs válidas",
-            "`sitio_web = models.URLFields()`"
-        ],
-        [
-            "`ForeignKey`",
-            "Define relaciones de muchos-a-uno con otros modelos",
-            "`categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)`"
-        ]
-    ]}
-/>
+| Campo | Descripción | Ejemplo de uso |
+| --- | --- | --- |
+| `CharField` | Almacena texto corto. Requiere `max_length` | `nombre = models.CharField(max_length=100)` |
+| `TextField` | Almacena texto largo. sin límite práctico | `descripcion = models.TextField()` |
+| `IntegerField` | Almacena números enteros | `stock = models.IntegerField()` |
+| `DecimalField` | Almacena números decimales con precisión. Requiere `max_digits` y `decimal_places` | `precio = models.DecimalField(max_digits=8, decimal_places=2)` |
+| `FloatField` | Almacena decimales, pero con menos precisión que `DecimalField` | `temperatura = models.FloatField` |
+| `BooleanField` | Almacena valores True o False | `disponible = models.BooleanField(default=True)` |
+| `DateField` | Almacena fechas (YYYY-MM-DD) | `fecha = models.DateField()` |
+| `DateTimeField` | Almacena fecha y hora | `publicado = models.DateTimeField(auto_now_add=True)` |
+| `EmailField` | Almacena direcciones de correo eletrónico | `correo = models.EmailField()` |
+| `URLField` | Almacena URLs válidas | `sitio_web = models.URLFields()` |
+| `ForeignKey` | Define relaciones de muchos-a-uno con otros modelos | `categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)` |
 
 ### Migraciones en Django
 Una migración es la manera en que Django gestiona los cambios en el esquema de la base de datos a lo largo del tiempo. Siempre que agregues, modifiques o elimines modelos o campos, necesitas crear y aplicar migraciones para que esos cambios se reflejen en la base de datos.

@@ -60,34 +60,15 @@ ipv6 enable
 
 ### 4. Por qué es importante la coherencia de prefijos
 
-<SmartTable
-    id="tabla01"
-    caption="Importancia coherencia prefijos"
-    tableLayout="auto"
-    headers={["Característica", "Descripción"]}
-    rows={[
-        [
-            "**SLAAC y coherencia de prefijos**",
-            "La coherencia permite a los hosts formar direcciones correctas automáticamente, evitando problemas de conectividad en redes IPv6"
-        ],
-        [
-            "**NDP y prefijos consistentes**",
-            "El protocolo de Descubrimiento de Vecinos depende de prefijos coherentes para resolver direcciones y mantener la comunicación estable"
-        ],
-        [
-            "**DAD y prefijos únicos**",
-            "La Detección de Direcciones Duplicadas asegura que no existan conflictos de direcciones, requiriendo prefijos únicos en cada enlace"
-        ],
-        [
-            "**Adyacencias en OSPFv3**",
-            "OSPFv3 utiliza direcciones link-local y prefijos consistentes para establecer y mantener adyacencias entre routers en IPv6"
-        ],
-        [
-            "**Impacto de prefijos incorrectos**",
-            "Prefijos desalineados causan direcciones inválidas, rutas incorrectas y fallas en protocolos dinámicos como RIPng y EIGRPv6"
-        ],
-    ]}
-/>
+:::table{#tabla01 caption="Importancia coherencia prefijos"}
+| Característica | Descripción |
+| --- | --- |
+| **SLAAC y coherencia de prefijos** | La coherencia permite a los hosts formar direcciones correctas automáticamente, evitando problemas de conectividad en redes IPv6 |
+| **NDP y prefijos consistentes** | El protocolo de Descubrimiento de Vecinos depende de prefijos coherentes para resolver direcciones y mantener la comunicación estable |
+| **DAD y prefijos únicos** | La Detección de Direcciones Duplicadas asegura que no existan conflictos de direcciones, requiriendo prefijos únicos en cada enlace |
+| **Adyacencias en OSPFv3** | OSPFv3 utiliza direcciones link-local y prefijos consistentes para establecer y mantener adyacencias entre routers en IPv6 |
+| **Impacto de prefijos incorrectos** | Prefijos desalineados causan direcciones inválidas, rutas incorrectas y fallas en protocolos dinámicos como RIPng y EIGRPv6 |
+:::
 
 ## 5. Consistencia: estrategia dual stack
 Dual stack es la estrategia principal de migración, y tiene implicancias directas en el enrutamiento dinámico:

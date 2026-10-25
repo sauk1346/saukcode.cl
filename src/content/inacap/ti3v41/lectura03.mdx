@@ -41,41 +41,15 @@ mi_sitio/
 │ └── wsgi.py
 ```
 
-<SmartTable
-    tableLayout = "auto"
-    headers = {["Archivo", "Descripción"]}
-    rows = {[
-        [
-            "`manage.py`",
-            "Script de utilidad para administrar el proyecto. Permite ejecutar comandos como iniciar el servidor, migrar bases de datos o crear aplicaciones"
-        
-        ],
-        [
-            "`mi_sitio/`",
-            "Carpeta principal del proyecto. Contiene la configuración central"
-        ],
-        [
-            "`__init__.py`",
-            "Indica que esta carpeta es un paquete de python"
-        ],
-        [
-            "`settings.py`",
-            "Archivo clave que define la configuración del proyecto: base de datos, aplicaciones instaladas, zona horaria, idioma, rutas de archivos estáticos, etc."
-        ],
-        [
-            "`urls.py`",
-            "Define las rutas (URL) principales del sitio. Es el punto de entrada para la navegación y el enrutamiento de vistas"
-        ],
-        [
-            "`asgi.py`",
-            "Archivo que actúa como interfaz entre el proyecto. Es una alternativa moderna, diseñada para manejar aplicaciones asincrónicas (WebSockets, tareas en tiempo real, etc.)"
-        ],
-        [
-            "`wsgi.py`",
-            "Archivo que actúa como interfaz entre el proyecto. Se utiliza con servidores tradicionales como Gunicorn (Green Unicorn) o uWSGI (Web Server Gateway Interface)  "
-        ]
-    ]}
-/>
+| Archivo | Descripción |
+| --- | --- |
+| `manage.py` | Script de utilidad para administrar el proyecto. Permite ejecutar comandos como iniciar el servidor, migrar bases de datos o crear aplicaciones |
+| `mi_sitio/` | Carpeta principal del proyecto. Contiene la configuración central |
+| `__init__.py` | Indica que esta carpeta es un paquete de python |
+| `settings.py` | Archivo clave que define la configuración del proyecto: base de datos, aplicaciones instaladas, zona horaria, idioma, rutas de archivos estáticos, etc. |
+| `urls.py` | Define las rutas (URL) principales del sitio. Es el punto de entrada para la navegación y el enrutamiento de vistas |
+| `asgi.py` | Archivo que actúa como interfaz entre el proyecto. Es una alternativa moderna, diseñada para manejar aplicaciones asincrónicas (WebSockets, tareas en tiempo real, etc.) |
+| `wsgi.py` | Archivo que actúa como interfaz entre el proyecto. Se utiliza con servidores tradicionales como Gunicorn (Green Unicorn) o uWSGI (Web Server Gateway Interface) |
 
 ## 3. Creación de una aplicación
 En Django, una aplicación (app) representa una parte funcional y reutilizable del sistema. Cada app se enfoca en una tarea o módulo específico, como un blog, un carrito de compras, un sistema de autenticación o un panel de administración. Un proyecto puede contener múltiples apps y una app puede ser usada en varios proyectos. 
@@ -100,41 +74,15 @@ blog/
 └── init.py
 ```
 
-<SmartTable
-    tableLayout = "auto"
-    headers = {["Archivo", "Descripción"]}
-    rows = {[
-        [
-            "`models.py`",
-            "Aquí se definen los modelos, es decir, las estructuras de datos que Django convierte en tablas en las bases de datos"
-        
-        ],
-        [
-            "`views.py`",
-            "Contiene las funciones o clases que controlan la lógica de las respuestas HTTP: qué mostrar cuando un usuario accede a determinada URL"
-        ],
-        [
-            "`admin.py`",
-            "Permite registrar modelos para gestionarlos desde el panel de administración de Django"
-        ],
-        [
-            "`apps.py`",
-            "Archivo de configuración de la app, utilizado por Django para registrar la aplicación dentro del proyecto"
-        ],
-        [
-            "`tests.py`",
-            "Archivo destinado a pruebas automatizadas de las funcionalidades de la app"
-        ],
-        [
-            "`migrations/`",
-            "Carpeta donde Django guarda los archivos que representan cambios en los modelos (estructuras de bases de datos)"
-        ],
-        [
-            "`urls.py` (no se crea por defecto)",
-            "Si quieres que la app gestione sus propias rutas, es recomendable crear este archivo manualmente. Esto permite modularizar las URL y mantener una mejor organización"
-        ]
-    ]}
-/>
+| Archivo | Descripción |
+| --- | --- |
+| `models.py` | Aquí se definen los modelos, es decir, las estructuras de datos que Django convierte en tablas en las bases de datos |
+| `views.py` | Contiene las funciones o clases que controlan la lógica de las respuestas HTTP: qué mostrar cuando un usuario accede a determinada URL |
+| `admin.py` | Permite registrar modelos para gestionarlos desde el panel de administración de Django |
+| `apps.py` | Archivo de configuración de la app, utilizado por Django para registrar la aplicación dentro del proyecto |
+| `tests.py` | Archivo destinado a pruebas automatizadas de las funcionalidades de la app |
+| `migrations/` | Carpeta donde Django guarda los archivos que representan cambios en los modelos (estructuras de bases de datos) |
+| `urls.py` (no se crea por defecto) | Si quieres que la app gestione sus propias rutas, es recomendable crear este archivo manualmente. Esto permite modularizar las URL y mantener una mejor organización |
 
 ## 5. Registro de la aplicación
 Para que Django reconozca una nueva app, es necesario agregarla en el archivo `settings.py` del proyecto, dentro de la lista `INSTALLED_APPS`:

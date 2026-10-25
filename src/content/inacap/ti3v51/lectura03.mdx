@@ -57,24 +57,11 @@ Los microservicios corresponden a pequeños servicios de datos, componentes de u
 
 Otra arquitectura vista fue la arquitectura Lambda, ligada al mundo de análisis de OLAP. La arquitectura Lambda de Marz y Warren es muy interesante porque, a nivel técnico, ellos proponen la creación de tres capas de procesamiento (o layers).
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Capa Procesamiento", "Descripción"]}
-    rows={[
-        [
-            "**Batch layer (Capa de procesamiento por lotes**",
-            "Para procesamiento de lotes de grandes cantidades de datos a intervaloes regulares programables"
-        ],
-        [
-            "**Serving layer (Capa de servicio)**",
-            "Se implementa sobre una base de datos distribuida que carga datos del procesamiento batch anterior para lograr realizar lecturas aleatorias rápidas sobre estos datos"
-        ],
-        [
-            "**Speed layer (Capa de velocidad)**",
-            "Procesa datos que van entrando al sistema mientras la capa batch sigue realizando su propio proceso sobre los primeros datos"
-        ],
-    ]}
-/>
+| Capa Procesamiento | Descripción |
+| --- | --- |
+| **Batch layer (Capa de procesamiento por lotes** | Para procesamiento de lotes de grandes cantidades de datos a intervaloes regulares programables |
+| **Serving layer (Capa de servicio)** | Se implementa sobre una base de datos distribuida que carga datos del procesamiento batch anterior para lograr realizar lecturas aleatorias rápidas sobre estos datos |
+| **Speed layer (Capa de velocidad)** | Procesa datos que van entrando al sistema mientras la capa batch sigue realizando su propio proceso sobre los primeros datos |
 
 <SmartFigure
 	id="sistema-con-arquitectura-lambda"
@@ -86,54 +73,22 @@ Otra arquitectura vista fue la arquitectura Lambda, ligada al mundo de análisis
 
 ## 3. Arquitecturas cloud para datos
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Arquitectura cloud", "Descripción"]}
-    rows={[
-        [
-            "**Nubes públicas**",
-            "Los recursos utilizados para la creación de la nube se redistribuyen entre todos los participantes de la nube (los inquilinos)"
-        ],
-        [
-            "**Nubes privadas**",
-            "Los recursos se destinan únicamente al usuario que contrata el servicio. Esta nube puede estar creada dentro de los límites físicos de red de la organización del usuario"
-        ],
-        [
-            "**Nubes híbridas**",
-            "Combinan características de los entornos de nubes públicas y privadas"
-        ],
-        [
-            "**Multinubes**",
-            "Corresponden a un sistema constituído por varias nubes interconectadas entre sí"
-        ],
-    ]}
-/>
+| Arquitectura cloud | Descripción |
+| --- | --- |
+| **Nubes públicas** | Los recursos utilizados para la creación de la nube se redistribuyen entre todos los participantes de la nube (los inquilinos) |
+| **Nubes privadas** | Los recursos se destinan únicamente al usuario que contrata el servicio. Esta nube puede estar creada dentro de los límites físicos de red de la organización del usuario |
+| **Nubes híbridas** | Combinan características de los entornos de nubes públicas y privadas |
+| **Multinubes** | Corresponden a un sistema constituído por varias nubes interconectadas entre sí |
 
 Otro tipo de categorización importante, dado por Kuzmiakova en su libro, muestra diferentes tipos de arquitecturas cloud según su **orientación al tipo de base de datos** que pueden implementar. Según esto, las categorías de bases de datos de tipo cloud que se pueden implementarson las siguientes:
 
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Modelo", "Descripción"]}
-    rows={[
-        [
-            "**Base de Datos como un Servicio (DBaaS)**",
-            "El proveedore de servicios de la nube entrega toda la infraestructura, pero los usuarios administran sus propios recursos utilizados"
-        ],
-        [
-            "**Desarrollo basado en máquinas virtuales**",
-            "Las organizaciones despliegan máquinas virtuales en la nube para luego instalar RDBMS dentro de ellas"
-        ],
-        [
-            "**Sin-servidores (Serverless)**",
-            "El proveedore se preocupa de la implementación, configuración y administración, mientras que el usuario solo paga por lo que ocupa en la realidad"
-        ],
-        [
-            "**Arquitectura de bases de datos distribuida**",
-            "Las bases de datos pueden localizar sus datos e infraestructura más allá de las fronteras políticas o geográficas, a veces abarcando varios continentes"
-        ],
-    ]}
-/>
+| Modelo | Descripción |
+| --- | --- |
+| **Base de Datos como un Servicio (DBaaS)** | El proveedore de servicios de la nube entrega toda la infraestructura, pero los usuarios administran sus propios recursos utilizados |
+| **Desarrollo basado en máquinas virtuales** | Las organizaciones despliegan máquinas virtuales en la nube para luego instalar RDBMS dentro de ellas |
+| **Sin-servidores (Serverless)** | El proveedore se preocupa de la implementación, configuración y administración, mientras que el usuario solo paga por lo que ocupa en la realidad |
+| **Arquitectura de bases de datos distribuida** | Las bases de datos pueden localizar sus datos e infraestructura más allá de las fronteras políticas o geográficas, a veces abarcando varios continentes |
 
 
 ## Actividad de Práctica

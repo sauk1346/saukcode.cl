@@ -18,17 +18,15 @@ Un Datamart puede ser:
 
 ### Ventajas de un Datamart
 
-<SmartTable
-    tablelayout="auto"
-    headers={['Ventaja', 'Descripción']}
-    rows={[
-        ["**Poco volumen de datos**", "Contiene solo la información relevante del área"],
-        ["**Mayor rapidez de consulta**", "Al ser más pequeño, las queries son más rápidas"],
-        ["**Consultas SQL/MDX sencillas**", "Menos complejidad en las consultas analíticas"],
-        ["**Validación directa**", "Más fácil de verificar la calidad del dato"],
-        ["**Facilidad para historiales**", "Permite llevar registros históricos del área"]
-    ]}
-/>
+:::table{layout="fixed"}
+| Ventaja | Descripción |
+| --- | --- |
+| **Poco volumen de datos** | Contiene solo la información relevante del área |
+| **Mayor rapidez de consulta** | Al ser más pequeño, las queries son más rápidas |
+| **Consultas SQL/MDX sencillas** | Menos complejidad en las consultas analíticas |
+| **Validación directa** | Más fácil de verificar la calidad del dato |
+| **Facilidad para historiales** | Permite llevar registros históricos del área |
+:::
 
 ## 3. Características de un Data Warehouse
 
@@ -126,14 +124,12 @@ Sistemas OLTP (fuentes)
 
 ## Diferencia clave: OLTP vs Data Warehouse
 
-<SmartTable
-    tablelayout="auto"
-    headers={['Característica', 'OLTP', 'Data Warehouse']}
-    rows={[
-        ["**Propósito**", "Procesar transacciones", "Análisis y reportes"],
-        ["**Datos**", "Actuales", "Históricos"],
-        ["**Operaciones**", "INSERT, UPDATE, DELETE", "Principalmente SELECT"],
-        ["**Usuarios**", "Operativos", "Analistas, ejecutivos"],
-        ["**Volumen de consultas**", "Muchas, pequeñas", "Pocas, grandes y complejas"]
-    ]}
-/>
+:::table{layout="fixed"}
+| Característica | OLTP | Data Warehouse |
+| --- | --- | --- |
+| **Propósito** | Procesar transacciones | Análisis y reportes |
+| **Datos** | Actuales | Históricos |
+| **Operaciones** | INSERT, UPDATE, DELETE | Principalmente SELECT |
+| **Usuarios** | Operativos | Analistas, ejecutivos |
+| **Volumen de consultas** | Muchas, pequeñas | Pocas, grandes y complejas |
+:::

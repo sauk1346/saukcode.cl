@@ -1,22 +1,20 @@
 import { visit } from 'unist-util-visit';
 
 /**
- * Numera SmartTable / SmartFigure en orden de documento,
- * en build time, inyectando un atributo `number` — reemplaza los contextos
- * React (TableProvider/FigureProvider) del sitio Next. Las salidas de terminal
- * (```output / ```terminal) las numera remark-components.
+ * Numera SmartFigure en orden de documento, en build time, inyectando un
+ * atributo `number` — reemplaza el contexto React (FigureProvider) del sitio
+ * Next. Las tablas (:::table) y las salidas de terminal (```output /
+ * ```terminal) las numera remark-components.
  *
  * Replica la semántica original: solo se numeran elementos CON `id` y sin
- * `autoNumber={false}`. Además resuelve TableRef/FigureRef
+ * `autoNumber={false}`. Además resuelve FigureRef
  * inyectándoles el número de su destino.
  */
 const COUNTED = {
-  SmartTable: 'table',
   SmartFigure: 'figure',
 };
 
 const REFS = {
-  TableRef: 'table',
   FigureRef: 'figure',
 };
 
@@ -35,7 +33,7 @@ function isAutoNumberOff(node) {
 
 export default function remarkAutoNumber() {
   return (tree) => {
-    const counters = { table: 0, figure: 0 };
+    const counters = { figure: 0 };
     const numbersById = {};
 
     // Pasada 1: numerar elementos en orden de documento

@@ -104,17 +104,15 @@ Un negocio de barrio se dedica a la venta de completos y papas fritas, esta últ
 
 Según un análisis estadístico de la cantidad de sacos de papas que quedan en el último mes según el consumo diario es:
 
-<SmartTable
-  tableLayout="fixed"
-  headers={["Días","Sacos de papas"]}
-  rows={[
-    ["2","25"],
-    ["4","23"],
-    ["7","22.76"],
-    ["9","22"],
-    ["12","16"]
-  ]}
-/>
+:::table{layout="fixed"}
+| Días | Sacos de papas |
+| --- | --- |
+| 2 | 25 |
+| 4 | 23 |
+| 7 | 22.76 |
+| 9 | 22 |
+| 12 | 16 |
+:::
 
 En base a la información determine:
 
@@ -129,15 +127,12 @@ En base a la información determine:
 	size="large"
 />
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Modelo",""]}
-  rows={[
-    ["$f(x)$","`-0.77x+26.98`"],
-    ["$g(x)$","`-0.10x^2+0.62x+23.40`"],
-    ["$h(x)$","`0.03x^2+0.62x^2-3.78x+30.33`"]
-  ]}
-/>
+| Modelo |  |
+| --- | --- |
+| $f(x)$ | `-0.77x+26.98` |
+| $g(x)$ | `-0.10x^2+0.62x+23.40` |
+| $h(x)$ | `0.03x^2+0.62x^2-3.78x+30.33` |
+
 :::
 
 2. **¿Cuándo quedaría desabastecido el local según la predicción de cada modelo?**
@@ -151,15 +146,12 @@ En base a la información determine:
 	size="large"
 />
 
-<SmartTable
-  tableLayout="auto"
-  headers={["Modelo","Tiempo desabastecimiento (días)"]}
-  rows={[
-    ["$f(x)$","`35.11`"],
-    ["$g(x)$","`18.72`"],
-    ["$f(x)$","`14.90`"]
-  ]}
-/>
+| Modelo | Tiempo desabastecimiento (días) |
+| --- | --- |
+| $f(x)$ | `35.11` |
+| $g(x)$ | `18.72` |
+| $f(x)$ | `14.90` |
+
 :::
 
 3. **¿Cuál de los tres modelos tiene mayor stock a los 16 días, y a cuántos sacos corresponde?**
@@ -181,16 +173,14 @@ El modelo lineal $f(x)$ tiene mayor stock a los 16 días, correspondiente a `14.
 ## Enunciado 1
 La altura de una planta, después de haber sido plantada, depende del agua proporcionada y del clima en el cuál se encuentre. Considerando que estas condiciones son las óptimas para su crecimiento. A medida que transcurren los días, la planta incrementará su altura
 
-<SmartTable
-  tableLayout="fixed"
-  headers={["Tiempo (meses)","Altura (cm)"]}
-  rows={[
-    ["1","3.51"],
-    ["5","4.4"],
-    ["10","4.91"],
-    ["46","6.15"]
-  ]}
-/>
+:::table{layout="fixed"}
+| Tiempo (meses) | Altura (cm) |
+| --- | --- |
+| 1 | 3.51 |
+| 5 | 4.4 |
+| 10 | 4.91 |
+| 46 | 6.15 |
+:::
 
 1. **Si el modelo de crecimiento es logarítmico ¿cuál es la expresión algebraica de ese modelo?**
 

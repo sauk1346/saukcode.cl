@@ -18,24 +18,13 @@ Este diseño aumenta la escalabilidad y flexibilidad de las aplicaciones, pero t
 
 ### Entornos Ideales para REST
 
-<SmartTable
-    tableLayout="fixed"
-    headers={["Entornos", "Descripción"]}
-    rows={[
-        [
-            "**Aplicaciones móviles**",
-            "Que generalmente no usan cookies"
-        ],
-        [
-            "**Aplicaciones de una sola página (SPA)**",
-            "Como las desarrolladoras con React o Angular"
-        ],
-        [
-            "**Sistemas distribuidos o basados en microservicios**",
-            "Donde la escalabilidad y la independencia de componentes son críticas"
-        ],
-    ]}
-/>
+:::table{layout="fixed"}
+| Entornos | Descripción |
+| --- | --- |
+| **Aplicaciones móviles** | Que generalmente no usan cookies |
+| **Aplicaciones de una sola página (SPA)** | Como las desarrolladoras con React o Angular |
+| **Sistemas distribuidos o basados en microservicios** | Donde la escalabilidad y la independencia de componentes son críticas |
+:::
 
 ### Seguridad en REST: el papel de JWT
 Para que REST funcione de manera segura, se necesitan mecanismos de autenticación y autorización portables y reutilizables. Aquí es donde entra **JWT (JSON Web Token)**
@@ -170,36 +159,16 @@ class ProductoViewSet(viewsets.ModelViewSet):
 
 ### Buenas prácticas en el uso de JWT
 
-<SmartTable
-    tableLayout="fixed"
-    headers={["Prácticas", "Descripción"]}
-    rows={[
-        [
-            "**Usar HTTP siempre**",
-            "Aunque el toke esté firmado, puede ser interceptado si la conexión no es segura"
-        ],
-        [
-            "**No almacenar tokens en cookies sin protección**",
-            "Para evitar ataques de tipo CSRF"
-        ],
-        [
-            "**Mantener el access token con vida útil corta**",
-            "Por ejemplo 5 a 15 minutos"
-        ],
-        [
-            "**Reutilizar el refresh token**",
-            "Para extender la sesión sin tener que veolver a iniciar sesión"
-        ],
-        [
-            "**Evitar incluir datos sensibles en el payload del JWT**",
-            "Ya que es descifrable por cualquiera que tenga el token (aunque no puede modificarlos sin invalidarlo)"
-        ],
-        [
-            "**Revocar manualmente tokens si es necesario**",
-            "Por ejemplo, al cerrar sesión o detectar actividad sospechosa"
-        ],
-    ]}
-/>
+:::table{layout="fixed"}
+| Prácticas | Descripción |
+| --- | --- |
+| **Usar HTTP siempre** | Aunque el toke esté firmado, puede ser interceptado si la conexión no es segura |
+| **No almacenar tokens en cookies sin protección** | Para evitar ataques de tipo CSRF |
+| **Mantener el access token con vida útil corta** | Por ejemplo 5 a 15 minutos |
+| **Reutilizar el refresh token** | Para extender la sesión sin tener que veolver a iniciar sesión |
+| **Evitar incluir datos sensibles en el payload del JWT** | Ya que es descifrable por cualquiera que tenga el token (aunque no puede modificarlos sin invalidarlo) |
+| **Revocar manualmente tokens si es necesario** | Por ejemplo, al cerrar sesión o detectar actividad sospechosa |
+:::
 
 ### Ventajas de JWT sobre sesiones tradicionales
 

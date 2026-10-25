@@ -20,40 +20,15 @@ Implica replicar la arquitectura completa en regiones geográficas distintas, po
 
 ### Componentes clave de una solución altamente disponible
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Componentes", "Descripción"]}
-    rows={[
-        [
-            "**Balanceo de carga (load balancing)**",
-            "Distribuye las solicitudes entrantes entre múltiples servidores disponibles"
-        ],
-        [
-            "**Health checks**",
-            "Permiten detectar automáticamente instancias fallidas y redirigir el tráfico"
-        ],
-        [
-            "**Global server load balancing (GSLB)**",
-            "Distribuye el tráfico a nivel mundial según la cercanía del usuario"
-        ],
-        [
-            "**Auto-scaling**",
-            "Ajusta dinámicamente la capacidad según la demanda"
-        ],
-        [
-            "**Estrategias de bases de datos multi-az deployment**",
-            "Incluyen una instancia principal y una secundaria sincronizada"
-        ],
-        [
-            "**Read replicas**",
-            "Optimizan el rendimiento descargando el tráfico de lectura"
-        ],
-        [
-            "**Backups inmutables**",
-            "Protegen las copias de seguridad contra borrados accidentales o ransomware"
-        ],
-    ]}
-/>
+| Componentes | Descripción |
+| --- | --- |
+| **Balanceo de carga (load balancing)** | Distribuye las solicitudes entrantes entre múltiples servidores disponibles |
+| **Health checks** | Permiten detectar automáticamente instancias fallidas y redirigir el tráfico |
+| **Global server load balancing (GSLB)** | Distribuye el tráfico a nivel mundial según la cercanía del usuario |
+| **Auto-scaling** | Ajusta dinámicamente la capacidad según la demanda |
+| **Estrategias de bases de datos multi-az deployment** | Incluyen una instancia principal y una secundaria sincronizada |
+| **Read replicas** | Optimizan el rendimiento descargando el tráfico de lectura |
+| **Backups inmutables** | Protegen las copias de seguridad contra borrados accidentales o ransomware |
 
 Estos componentes trabajan de forma coordinada para garantizar continuidad, rendimiento y protección de datos incluso ante picos de carga o fallos inesperados.
 
@@ -61,56 +36,23 @@ Estos componentes trabajan de forma coordinada para garantizar continuidad, rend
 
 Además del diseño técnico, es fundamental cumplir con normativas internacionales y buenas prácticas reconocidas.
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Normativas", "Descripción"]}
-    rows={[
-        [
-            "**Infraestructura como código (IAC)**",
-            "Uso de Terraform o CloudFormation para entornos reproducibles y sin errores humanos"
-        ],
-        [
-            "**RTO y RPO**",
-            "Defininicion de tiempos y puntos objetivos de recuperación alineados al negocio"
-        ],
-        [
-            "**Observabilidad**",
-            "Monitoreo proactivo con herramientas como CloudWatch o Prometheus"
-        ],
-        [
-            "**Principio de mínimo privilegio**",
-            "Restricción de accesos mediante políticas IAM estrictas"
-        ],
-    ]}
-/>
+| Normativas | Descripción |
+| --- | --- |
+| **Infraestructura como código (IAC)** | Uso de Terraform o CloudFormation para entornos reproducibles y sin errores humanos |
+| **RTO y RPO** | Defininicion de tiempos y puntos objetivos de recuperación alineados al negocio |
+| **Observabilidad** | Monitoreo proactivo con herramientas como CloudWatch o Prometheus |
+| **Principio de mínimo privilegio** | Restricción de accesos mediante políticas IAM estrictas |
 
 ## 3. Continuidad operacional: *disaster recovery (DR)*
 
 La continuidad operacional se apoya en estrategias de recuperación ante desastres, cuya elección depende del nivel de criticidad de la aplicación.
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Normativas", "Descripción"]}
-    rows={[
-        [
-            "**Backup and restore**",
-            "Económica, pero con tiempos de recuperación elevados"
-        ],
-        [
-            "**Pilot light**",
-            "Solo los datos permanecen activos y la infraestructura se levanta en emergencias"
-        ],
-        [
-            "**Warm standby**",
-            "Infraestructura reducida siempre encendida"
-        ],
-        [
-            "**Multi-site active/active**",
-            "Operación completa en 2 ubicaciones simultáneamente, sin tiempo de caída"
-        ],
-
-    ]}
-/>
+| Normativas | Descripción |
+| --- | --- |
+| **Backup and restore** | Económica, pero con tiempos de recuperación elevados |
+| **Pilot light** | Solo los datos permanecen activos y la infraestructura se levanta en emergencias |
+| **Warm standby** | Infraestructura reducida siempre encendida |
+| **Multi-site active/active** | Operación completa en 2 ubicaciones simultáneamente, sin tiempo de caída |
 
 ## 4. Arquitectura activo-pasivo
 
@@ -127,32 +69,12 @@ Se utiliza Amazon Route 53 o Cloudflare con políticas de Health Check. Si AWS d
 
 Para la replicación de datos, se emplea una VPN Site-to-Site o conexiones dedicadas como AWS *Direct Connect* y *Oracle FastConnect*, asegurando comunicación privada y segura.
 
-<SmartTable
-    tableLayout="auto"
-    headers={["Componente", "AWS (primario)", "OCI (contingencia)"]}
-    rows={[
-        [
-            "**Cómputo**",
-            "EC2 con auto-scaling",
-            "OCI Compute Instance"
-        ],
-        [
-            "**Balanceador**",
-            "Application Load Balancer",
-            "OCI Flexible Load Balancer"
-        ],
-        [
-            "**Base de datos**",
-            "Amazon RDS",
-            "OCI Database Service"
-        ],
-        [
-            "**Almacenamiento**",
-            "Amazon S3",
-            "OCI Object Storage"
-        ],
-    ]}
-/>
+| Componente | AWS (primario) | OCI (contingencia) |
+| --- | --- | --- |
+| **Cómputo** | EC2 con auto-scaling | OCI Compute Instance |
+| **Balanceador** | Application Load Balancer | OCI Flexible Load Balancer |
+| **Base de datos** | Amazon RDS | OCI Database Service |
+| **Almacenamiento** | Amazon S3 | OCI Object Storage |
 
 > Esta arquitectura permite separar cargas críticas y asegurar continuidad operativa entre proveedores distintos.
 
