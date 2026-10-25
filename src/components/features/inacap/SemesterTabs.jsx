@@ -57,7 +57,7 @@ const SemesterTabs = ({
                 aria-pressed={isSelected}
                 aria-label={`Semestre ${semester.number}, ${progress.percent}% completado`}
               >
-                {semester.number}°
+                {semester.number}
               </button>
             </React.Fragment>
           );
