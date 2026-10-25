@@ -35,9 +35,9 @@ El router no "adivina". Consulta una base de datos precisa (la tabla de enrutami
     ]}
 />
 
-<Callout type="info" title="Lógica de reenvío">
+:::callout[Lógica de reenvío]{type="info"}
 El router selecciona el camino basándose en la "coincidencia de prefijo más largo" (*Longest Prefix Match*)
-</Callout>
+:::
 ## 3. Precisión Manual: ¿por qué elegir rutas estáticas?
 
 Una ruta estática es un camino configurado manualmente hacia una red remota. No se ajusta automáticamente ante fallas, pero ofrece un control total.
@@ -46,9 +46,9 @@ Una ruta estática es un camino configurado manualmente hacia una red remota. No
 - **Simplicidad Operacional:** Para redes pequeñas (*stub networks*), donde un protocolo dinámico sería excesivo
 - **Control del flujo:** Cuando el ingeniero necesita forzar el tráfico por un camino específico, por seguridad o ancho de banda
 
-<Callout type="warning" title="Desventaja crítica">
+:::callout[Desventaja crítica]{type="warning"}
 Mantenimiento administrativo alto. Si un enlace falla, la ruta estática permanece en la tabla hasta ser removida manualmente.
-</Callout>
+:::
 
 ## 4. El principio de reciprocidad: La ruta de retorno
 

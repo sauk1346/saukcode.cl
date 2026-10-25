@@ -7,7 +7,9 @@ import tailwindcss from '@tailwindcss/vite';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import rehypePrism from 'rehype-prism-plus';
+import remarkDirective from 'remark-directive';
 import remarkAutoNumber from './src/plugins/remark-auto-number.mjs';
+import remarkComponents from './src/plugins/remark-components.mjs';
 
 import sitemap from '@astrojs/sitemap';
 
@@ -27,7 +29,8 @@ export default defineConfig({
     // Desactiva el Shiki integrado: el resaltado lo hace rehype-prism-plus
     // (mismas clases/tokens que el Prism cliente del sitio Next)
     syntaxHighlight: false,
-    remarkPlugins: [remarkAutoNumber, remarkMath],
+    // remark-directive + remark-components: componentes estáticos como `:::callout`
+    remarkPlugins: [remarkAutoNumber, remarkMath, remarkDirective, remarkComponents],
     // rehype-prism-plus resalta el código en build (mismos tokens/clases que
     // el Prism cliente del sitio Next, así el theme CSS aplica igual)
     rehypePlugins: [rehypeKatex, [rehypePrism, { ignoreMissing: true }]],

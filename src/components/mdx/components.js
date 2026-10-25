@@ -6,7 +6,6 @@ import { Paragraph, P } from './Paragraph.jsx';
 import { UnorderedList, OrderedList, ListItem, List } from './Lists.jsx';
 import { Blockquote } from './Blockquote.jsx';
 import Box from './Box.jsx';
-import Callout from './Callout.jsx';
 import MultiColumn from './MultiColumn.jsx';
 import { CustomIframe } from './Iframe.jsx';
 import { SmartLink } from '../ui/SmartLink.jsx';
@@ -35,7 +34,6 @@ export const reactMdxComponents = {
   P,
   List,
   Box,
-  Callout,
   MultiColumn,
   SmartTable,
   TableProvider,
