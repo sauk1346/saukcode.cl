@@ -1,8 +1,8 @@
 # Clientes Potenciales y Socios Diarios
 
 **Tabla** `DailySales`
-<TerminalOutput>
-{`+-------------+---------+
+```output
++-------------+---------+
 | Nombre Col  | Tipo    |
 +-------------+---------+
 | date_id     | date    |
@@ -12,11 +12,11 @@
 +-------------+---------+
 
 - No hay clave primaria (columna con valores únicos) para esta tabla. Puede 
-    contener duplicados.
+  contener duplicados.
 - Esta tabla contiene la fecha y el nombre del producto vendido y los IDs
-    del cliente potencial y socio a quien se vendió.
-- El nombre consiste solo de letras minúsculas en inglés.`}
-</TerminalOutput>
+  del cliente potencial y socio a quien se vendió.
+- El nombre consiste solo de letras minúsculas en inglés.
+```
 
 Para cada `date_id` y `make_name`, encontrar el número de `lead_id` distintos y `partner_id` distintos.
 
@@ -25,8 +25,8 @@ Devuelve la tabla de resultados en cualquier orden
 ## Ejemplo
 
 **Input**
-<TerminalOutput>
-{`Tabla DailySales:
+```output
+Tabla DailySales:
 +-----------+-----------+---------+------------+
 | date_id   | make_name | lead_id | partner_id |
 +-----------+-----------+---------+------------+
@@ -40,12 +40,12 @@ Devuelve la tabla de resultados en cualquier orden
 | 2020-12-7 | honda     | 0       | 1          |
 | 2020-12-7 | honda     | 1       | 2          |
 | 2020-12-7 | honda     | 2       | 1          |
-+-----------+-----------+---------+------------+`}
-</TerminalOutput>
++-----------+-----------+---------+------------+
+```
 
 **Output**
-<TerminalOutput>
-{`+-----------+-----------+------------------+-------------------+
+```output
++-----------+-----------+------------------+-------------------+
 | date_id   | make_name | unique_leads     | unique_partners   |
 +-----------+-----------+------------------+-------------------+
 | 2020-12-8 | toyota    | 2                | 3                 |
@@ -56,13 +56,13 @@ Devuelve la tabla de resultados en cualquier orden
 
 Explicación:
 - Para 2020-12-8, toyota obtiene clientes potenciales = [0, 1] y 
-    socios = [0, 1, 2], mientras que honda obtiene 
-    clientes potenciales = [1, 2] y socios = [1, 2].
+  socios = [0, 1, 2], mientras que honda obtiene 
+  clientes potenciales = [1, 2] y socios = [1, 2].
 
 - Para 2020-12-7, toyota obtiene clientes potenciales = [0] y
-    socios = [1, 2], mientras que honda obtiene 
-    clientes potenciales = [0, 1, 2] y socios = [1, 2].`}
-</TerminalOutput>
+  socios = [1, 2], mientras que honda obtiene 
+  clientes potenciales = [0, 1, 2] y socios = [1, 2].
+```
 
 ## Solución
 :::solution[Python]{icon="Python"}

@@ -1,15 +1,15 @@
 # Llenar Datos Faltantes
 
 **DataFrame** `products`
-<TerminalOutput>
-{`+-------------+--------+
+```output
++-------------+--------+
 | Column Name | Type   |
 +-------------+--------+
 | name        | object |
 | quantity    | int    |
 | price       | int    |
-+-------------+--------+`}
-</TerminalOutput>
++-------------+--------+
+```
 
 Escribe una solución para llenar los valores faltantes con `0` en la columna `quantity`.
 
@@ -18,21 +18,21 @@ Escribe una solución para llenar los valores faltantes con `0` en la columna `q
 ::::columns
 :::col
 **Input:**
-<TerminalOutput>
-{`+-----------------+----------+-------+
+```output
++-----------------+----------+-------+
 | name            | quantity | price |
 +-----------------+----------+-------+
 | Wristwatch      | None     | 135   |
 | WirelessEarbuds | None     | 821   |
 | GolfClubs       | 779      | 9319  |
 | Printer         | 849      | 3051  |
-+-----------------+----------+-------+`}
-</TerminalOutput>
++-----------------+----------+-------+
+```
 :::
 :::col
 **Output:**
-<TerminalOutput>
-{`+-----------------+----------+-------+
+```output
++-----------------+----------+-------+
 | name            | quantity | price |
 +-----------------+----------+-------+
 | Wristwatch      | 0        | 135   |
@@ -43,8 +43,8 @@ Escribe una solución para llenar los valores faltantes con `0` en la columna `q
 
 Explicación: 
 La cantidad para Wristwatch y 
-WirelessEarbuds se reemplaza con 0.`}
-</TerminalOutput>
+WirelessEarbuds se reemplaza con 0.
+```
 :::
 ::::
 

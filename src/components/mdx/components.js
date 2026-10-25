@@ -8,7 +8,6 @@ import { Blockquote } from './Blockquote.jsx';
 import { CustomIframe } from './Iframe.jsx';
 import { SmartLink } from '../ui/SmartLink.jsx';
 import SmartTable, { TableProvider, TableRef } from './SmartTable.jsx';
-import { TerminalOutput, TerminalProvider, TerminalRef } from './TerminalOutput.jsx';
 import { FigureProvider, FigureRef } from './SmartFigure.jsx';
 import { PreBlock } from './Pre.jsx';
 import { Code } from './InlineCode.jsx';
@@ -34,9 +33,6 @@ export const reactMdxComponents = {
   SmartTable,
   TableProvider,
   TableRef,
-  TerminalOutput,
-  TerminalProvider,
-  TerminalRef,
   FigureProvider,
   FigureRef,
   SmartLink,

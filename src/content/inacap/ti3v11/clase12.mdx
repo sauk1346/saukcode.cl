@@ -9,11 +9,11 @@ En python, la instrucción `for()` permite recorrer estructuras, elemento por el
 for i in range(3):
     print(i)
 ```
-<TerminalOutput withBg>
-{`0
+```terminal
+0
 1
-2`}
-</TerminalOutput>
+2
+```
 
 En el ejemplo 1, la instrucción `for()` recorre la estructura `range(3)`, que generará números comanzando desde 0 hasta 2, pero no incluirá el número 3. En otras palabras, `range(3)` es `[0,1,2]`. Luego la instrucción `for()` recorre cada elemento y los imprime en líneas separadas.
 
@@ -22,10 +22,10 @@ En el ejemplo 1, la instrucción `for()` recorre la estructura `range(3)`, que g
 for i in range(1,3):
 	print(i)
 ```
-<TerminalOutput withBg>
-{`1
-2`}
-</TerminalOutput>
+```terminal
+1
+2
+```
 
 En el ejemplo 2, la instrucción `for()` recorre la estructura acotada `range(1,3)`. Esta estructura acotada sigue el principio *"inicio incluyente, final excluyente"*. Esto es, generará números comenzando desde 1 hasta 2, pero no incluirá el número 3. Entonces el rango generado será `[1,2]`
 
@@ -36,8 +36,8 @@ print("largo string:", len(cadena))
 for i in cadena:
 	print(i)
 ```
-<TerminalOutput withBg>
-{`largo string: 9
+```terminal
+largo string: 9
 L
 u
 i
@@ -46,8 +46,8 @@ Y
 a
 n
 e
-z`}
-</TerminalOutput>
+z
+```
 
 En el ejemplo 3, la instrucción `for()` recorre la cadena de caracteres `cadena`, imprimiendo cada letra en el recorrido. También se utiliza la función `len()`, que permite contar la candidad de elementos (letras) dentro de la cadena de caracteres
 

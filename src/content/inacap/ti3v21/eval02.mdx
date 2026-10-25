@@ -172,20 +172,20 @@ print(f"Codigo: {estacionamiento.codigo}")
 print(f"Direccion: {estacionamiento.direccion}")
 print(f"Capacidad: {estacionamiento.capacidad}")
 ```
-<TerminalOutput withBg>
-{`Codigo: Central
+```terminal
+Codigo: Central
 Direccion: None
-Capacidad: 3`}
-</TerminalOutput>
+Capacidad: 3
+```
 
 ```python
 # 2. agregar dirección con setter
 estacionamiento.direccion = "A4"
 print(f"Direccion: {estacionamiento.direccion}")
 ```
-<TerminalOutput withBg>
-{`Direccion: A4`}
-</TerminalOutput>
+```terminal
+Direccion: A4
+```
 
 ```python
 # 3. Ingreso de vehículos
@@ -199,9 +199,9 @@ estacionamiento.entradaVehiculo("PQR789", 3) # Trimoto
 if not estacionamiento.entradaVehiculo("STU000", 4):
     print("\nError, máxima capacidad.")
 ```
-<TerminalOutput withBg>
-{`Error, máxima capacidad.`}
-</TerminalOutput>
+```terminal
+Error, máxima capacidad.
+```
 
 ```python
 # 5. Ver el estado actual del estacionamiento
@@ -210,50 +210,50 @@ print(f"Capacidad total: {estacionamiento.capacidad}")
 print(f"Ocupados: {estacionamiento.ocupados()}")
 print(f"Disponibles: {estacionamiento.disponibles()}")
 ```
-<TerminalOutput withBg>
-{`Estacionamiento: Central
+```terminal
+Estacionamiento: Central
 Capacidad total: 3
 Ocupados: 3
-Disponibles: 0`}
-</TerminalOutput>
+Disponibles: 0
+```
 
 ```python
 # 6. Intentar ingresar un vehículo con patente duplicada
 if not estacionamiento.entradaVehiculo("MNO456", 2):
     print("\nError, patente duplicada.")
 ```
-<TerminalOutput withBg>
-{`Error, patente duplicada.`}
-</TerminalOutput>
+```terminal
+Error, patente duplicada.
+```
 
 ```python
 # 7. Salida de un vehículo con cálculo de total a pagar
 total_pago = estacionamiento.salidaVehiculo("MNO456", 90)
 print(f"\nTotal pagado por MNO456: {total_pago} pesos.")
 ```
-<TerminalOutput withBg>
-{`Vehiculo patente MNO456 ha salido. Total a pagar: 27000 pesos.
+```terminal
+Vehiculo patente MNO456 ha salido. Total a pagar: 27000 pesos.
 
-Total pagado por MNO456: 27000 pesos.`}
-</TerminalOutput>
+Total pagado por MNO456: 27000 pesos.
+```
 
 ```python
 # 8. Intentar sacar un vehículo que no está en el estacionamiento
 if estacionamiento.salidaVehiculo("XYZ999", 60) == 0:
     print("\nError, el vehículo no se encuentra en el estacionamiento.")
 ```
-<TerminalOutput withBg>
-{`Error, el vehículo no se encuentra en el estacionamiento.`}
-</TerminalOutput>
+```terminal
+Error, el vehículo no se encuentra en el estacionamiento.
+```
 
 ```python
 # 9. Ingresar un nuevo vehículo ahora que hay espacio
 if estacionamiento.entradaVehiculo("VWX888", 6):
     print("\nVehiculo ingresado exitosamente.")
 ```
-<TerminalOutput withBg>
-{`Vehiculo ingresado exitosamente.`}
-</TerminalOutput>
+```terminal
+Vehiculo ingresado exitosamente.
+```
 
 ```python
 # 10. Ver vehículos de un tipo específico (Automóviles)
@@ -262,8 +262,8 @@ print("\nAutomóviles en el estacionamiento:")
 for auto in autos:
     print(f"Patente: {auto.patente}, Tipo: {auto.tipoVehiculo()}")
 ```
-<TerminalOutput withBg>
-{`Automóviles en el estacionamiento:
-Patente: JKL123, Tipo: Automovil`}
-</TerminalOutput>
+```terminal
+Automóviles en el estacionamiento:
+Patente: JKL123, Tipo: Automovil
+```
 :::

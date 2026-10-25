@@ -1,8 +1,8 @@
 # Categorías de Salario
 
 **Tabla** `Accounts`
-<TerminalOutput>
-{`+-------------+------+
+```output
++-------------+------+
 | Column Name | Type |
 +-------------+------+
 | account_id  | int  |
@@ -10,8 +10,8 @@
 +-------------+------+
 
 - "account_id" es la clave primaria para esta tabla.
-- Cada fila contiene información sobre el ingreso mensual de una cuenta bancaria.`}
-</TerminalOutput>
+- Cada fila contiene información sobre el ingreso mensual de una cuenta bancaria.
+```
 
 Escribe una solución para calcular el número de cuentas bancarias para cada categoría de salario. Las categorías son:
 
@@ -26,8 +26,8 @@ Devuelve la tabla resultado en **cualquier orden**.
 ## Ejemplo
 
 **Input:**
-<TerminalOutput>
-{`Tabla Accounts:
+```output
+Tabla Accounts:
 +------------+--------+
 | account_id | income |
 +------------+--------+
@@ -35,12 +35,12 @@ Devuelve la tabla resultado en **cualquier orden**.
 | 2          | 12747  |
 | 8          | 87709  |
 | 6          | 91796  |
-+------------+--------+`}
-</TerminalOutput>
++------------+--------+
+```
 
 **Output:**
-<TerminalOutput>
-{`+----------------+----------------+
+```output
++----------------+----------------+
 | category       | accounts_count |
 +----------------+----------------+
 | Low Salary     | 1              |
@@ -51,8 +51,8 @@ Devuelve la tabla resultado en **cualquier orden**.
 Explicación:
 - Low Salary: Cuenta 2.
 - Average Salary: Ninguna cuenta.
-- High Salary: Cuentas 3, 6, y 8.`}
-</TerminalOutput>
+- High Salary: Cuentas 3, 6, y 8.
+```
 
 ## Soluciones
 

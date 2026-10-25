@@ -109,14 +109,14 @@ class UsuarioFirebase {
 
 **Estructura en Firebase:**
 
-<TerminalOutput>
-{`root/
+```output
+root/
 └── usuarios/
-      └── 33/
-          ├── id: 33
-          ├── nombre: "Cata"
-          └── correo: "cata@correo.cl"`}
-</TerminalOutput>
+    └── 33/
+        ├── id: 33
+        ├── nombre: "Cata"
+        └── correo: "cata@correo.cl"
+```
 
 ### Paso 3: MainActivity con Jetpack Compose
 
@@ -152,8 +152,8 @@ class MainActivity : ComponentActivity() {
 
 
 ## 3. Diagrama de Arquitectura
-<TerminalOutput>
-{`┌──────────────────────────────────────────────────────────────┐
+```output
+┌──────────────────────────────────────────────────────────────┐
 │                       ANDROID APP                            │
 ├──────────────────────────────────────────────────────────────┤
 │  ┌─────────────┐    ┌───────────────┐    ┌─────────────────┐ │
@@ -161,16 +161,16 @@ class MainActivity : ComponentActivity() {
 │  │ (UI/Compose)│    │    (Lógica)   │    │    (Instancia)  │ │
 │  └─────────────┘    └───────────────┘    └───────┬─────────┘ │
 └──────────────────────────────────────────────────┼───────────┘
-                                                     │
-                                                     ▼
-                                       ┌─────────────────────────┐
-                                       │   FIREBASE CLOUD        │
-                                       │  ┌───────────────────┐  │
-                                       │  │ Realtime Database │  │
-                                       │  │  /usuarios/33/... │  │
-                                       │  └───────────────────┘  │
-                                       └─────────────────────────┘`}
-</TerminalOutput>
+                                                   │
+                                                   ▼
+                                     ┌─────────────────────────┐
+                                     │   FIREBASE CLOUD        │
+                                     │  ┌───────────────────┐  │
+                                     │  │ Realtime Database │  │
+                                     │  │  /usuarios/33/... │  │
+                                     │  └───────────────────┘  │
+                                     └─────────────────────────┘
+```
 
 ## 4. Resumen de Pasos de Configuración
 

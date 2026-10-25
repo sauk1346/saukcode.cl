@@ -1,8 +1,8 @@
 # N-ésimo Salario más alto
 
 **Tabla:** `Employee`
-<TerminalOutput>
-{`+-------------+------+
+```output
++-------------+------+
 | Column Name | Type |
 +-------------+------+
 | id          | int  |
@@ -10,8 +10,8 @@
 +-------------+------+
 
 - "id" es la clave primaria para esta tabla.
-- Cada fila contiene información sobre el salario de un empleado`}
-</TerminalOutput>
+- Cada fila contiene información sobre el salario de un empleado
+```
 
 Escribe una solución para encontrar el $n^{ésimo}$ salario **distinto** más alto de la tabla `Employee`. Si hay menos de `n` salarios distintos, retorna `null`
 
@@ -20,8 +20,8 @@ Escribe una solución para encontrar el $n^{ésimo}$ salario **distinto** más a
 ::::columns
 :::col
 **Input:**
-<TerminalOutput>
-{`Employee table:
+```output
+Employee table:
 +----+--------+
 | id | salary |
 +----+--------+
@@ -30,18 +30,19 @@ Escribe una solución para encontrar el $n^{ésimo}$ salario **distinto** más a
 | 3  | 300    |
 +----+--------+
 
-n = 2`}
-</TerminalOutput>
+n = 2
+```
 :::
 :::col
-<TerminalOutput>
 **Output:**
-{`+------------------------+
+
+```output
++------------------------+
 | getNthHighestSalary(2) |
 +------------------------+
 | 200                    |
-+------------------------+`}
-</TerminalOutput>
++------------------------+
+```
 :::
 ::::
 
@@ -50,26 +51,26 @@ n = 2`}
 ::::columns
 :::col
 **Input:**
-<TerminalOutput>
-{`Employee table:
+```output
+Employee table:
 +----+--------+
 | id | salary |
 +----+--------+
 | 1  | 100    |
 +----+--------+
 
-n = 2`}
-</TerminalOutput>
+n = 2
+```
 :::
 :::col
 **Output:**
-<TerminalOutput>
-{`+------------------------+
+```output
++------------------------+
 | getNthHighestSalary(2) |
 +------------------------+
 | null                   |
-+------------------------+`}
-</TerminalOutput>
++------------------------+
+```
 :::
 ::::
 

@@ -1,8 +1,8 @@
 # Clasificar Puntajes
 
 Tabla: `Scores`
-<TerminalOutput>
-{`+-------------+---------+
+```output
++-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | id          | int     |
@@ -11,8 +11,8 @@ Tabla: `Scores`
 
 - "id" es la clave primaria para esta tabla.
 - Cada fila contiene el puntaje de un juego. 
-- "Score" es un valor de punto flotante con dos decimales.`}
-</TerminalOutput>
+- "Score" es un valor de punto flotante con dos decimales.
+```
 
 Escribe una solución para encontrar el ranking de los puntajes. El ranking debe calcularse de acuerdo a las siguientes reglas:
 
@@ -27,8 +27,8 @@ Devuelve la tabla resultado ordenada por `score` en orden descendente
 ::::columns
 :::col
 **Input**
-<TerminalOutput>
-{`tabla Scores
+```output
+tabla Scores
 +----+-------+
 | id | score |
 +----+-------+
@@ -38,13 +38,13 @@ Devuelve la tabla resultado ordenada por `score` en orden descendente
 | 4  | 3.85  |
 | 5  | 4.00  |
 | 6  | 3.65  |
-+----+-------+`}
-</TerminalOutput>
++----+-------+
+```
 :::
 :::col
 **Output**
-<TerminalOutput>
-{`Output
+```output
+Output
 +-------+------+
 | score | rank |
 +-------+------+
@@ -54,8 +54,8 @@ Devuelve la tabla resultado ordenada por `score` en orden descendente
 | 3.65  | 3    |
 | 3.65  | 3    |
 | 3.50  | 4    |
-+-------+------+`}
-</TerminalOutput>
++-------+------+
+```
 :::
 ::::
 

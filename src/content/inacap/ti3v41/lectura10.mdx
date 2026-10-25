@@ -51,9 +51,9 @@ Es un **estándar abierto (RFC 7519)** diseñado para la transmisión segura de 
 ### ¿Qué contiene un JWT?
 Está compuesto por tres secciones, separadas por puntos (.)
 
-<TerminalOutput>
-{`<HEADER>.<PAYLOAD>.<SIGNATURE>`}
-</TerminalOutput>
+```output
+<HEADER>.<PAYLOAD>.<SIGNATURE>
+```
 
 1. **Header (Encabezado):** Indica el tipo de token y el algoritmo de firma que se usa para protegerlo, por ejemplo:
     ```json

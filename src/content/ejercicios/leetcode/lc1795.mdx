@@ -1,8 +1,8 @@
 # Reordenar Tabla de Productos
 
 **Tabla:** `Products`
-<TerminalOutput>
-{`+-------------+---------+
+```output
++-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | product_id  | int     |
@@ -13,9 +13,9 @@
 
 - "product_id" es la clave primaria para esta tabla.
 - Cada fila indica el precio del producto en 3 tiendas diferentes 
-    (store1, store2, store3).
-- Si el producto no está disponible, el precio será null`}
-</TerminalOutput>
+  (store1, store2, store3).
+- Si el producto no está disponible, el precio será null
+```
 
 Escribe una solución para reorganizar la tabla `Products` de manera que cada fila tenga `(product_id, store, price)`.
 
@@ -26,19 +26,19 @@ Devuelve la tabla de resultado en **cualquier orden**.
 ## Ejemplo
 
 **Input:**
-<TerminalOutput>
-{`tabla Products:
+```output
+tabla Products:
 +------------+--------+--------+--------+
 | product_id | store1 | store2 | store3 |
 +------------+--------+--------+--------+
 | 0          | 95     | 100    | 105    |
 | 1          | 70     | null   | 80     |
-+------------+--------+--------+--------+`}
-</TerminalOutput>
++------------+--------+--------+--------+
+```
 
 **Output:**
-<TerminalOutput>
-{`+------------+--------+-------+
+```output
++------------+--------+-------+
 | product_id | store  | price |
 +------------+--------+-------+
 | 0          | store1 | 95    |
@@ -51,8 +51,8 @@ Devuelve la tabla de resultado en **cualquier orden**.
 Explicación:
 - El producto 0 está disponible en las 3 tiendas con precios 95, 100 y 105.
 - El producto 1 está disponible en store1 a 70, y en store3 a 80, pero no está 
-    disponible en store2.`}
-</TerminalOutput>
+  disponible en store2.
+```
 ## Soluciones
 
 :::solution[Python]{icon="Python"}

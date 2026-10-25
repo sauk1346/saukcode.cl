@@ -22,11 +22,11 @@ print(f"prueba['Jorge'] = {prueba['Jorge']}")
 print(f"prueba['Julia'] = {prueba['Julia']}")
 ```
 
-<TerminalOutput withBg>
-{`prueba = {'Jorge': 50, 'Diana': 60, 'Rodrigo': 40, 'Julia': 70}
+```terminal
+prueba = {'Jorge': 50, 'Diana': 60, 'Rodrigo': 40, 'Julia': 70}
 prueba['Jorge'] = 50
-prueba['Julia'] = 70`}
-</TerminalOutput>
+prueba['Julia'] = 70
+```
 ## Funciones para Diccionarios
 
 ### dict()
@@ -38,9 +38,9 @@ tel = dict({'sape':4139,'guido':4127,'jack':4098})
 
 print(tel)
 ```
-<TerminalOutput withBg>
-{`{'sape': 4139, 'guido': 4127, 'jack': 4098}`}
-</TerminalOutput>
+```terminal
+{'sape': 4139, 'guido': 4127, 'jack': 4098}
+```
 
 **Ejemplo 02** dict(keyword-arguments)
 ```python
@@ -48,9 +48,9 @@ tel = dict(sape=4139,guido=4127,jack=4098)
 
 print(tel)
 ```
-<TerminalOutput withBg>
-{`{'sape': 4139, 'guido': 4127, 'jack': 4098}`}
-</TerminalOutput>
+```terminal
+{'sape': 4139, 'guido': 4127, 'jack': 4098}
+```
 
 **Ejemplo 03:** dict(lista_de_tuplas)
 ```python
@@ -58,9 +58,9 @@ tel = dict([('sape',4139),('guido',4127),('jack',4098)])
 
 print(tel)
 ```
-<TerminalOutput withBg>
-{`{'sape': 4139, 'guido': 4127, 'jack': 4098}`}
-</TerminalOutput>
+```terminal
+{'sape': 4139, 'guido': 4127, 'jack': 4098}
+```
 
 ### list()
 Genera una nueva lista con todas las `keys`.
@@ -71,9 +71,9 @@ tel = dict([('sape',4139),('guido',4127),('jack',4098)])
 
 print(list(tel))
 ```
-<TerminalOutput withBg>
-{`['sape', 'guido', 'jack']`}
-</TerminalOutput>
+```terminal
+['sape', 'guido', 'jack']
+```
 
 ### sorted()
 Genera una nueva lista con todas las `keys` ordenadas.
@@ -84,9 +84,9 @@ tel = dict([('sape',4139),('guido',4127),('jack',4098)])
 
 print(sorted(tel))
 ```
-<TerminalOutput withBg>
-{`['guido', 'jack', 'sape']`}
-</TerminalOutput>
+```terminal
+['guido', 'jack', 'sape']
+```
 
 
 ### zip()
@@ -98,9 +98,9 @@ dic = dict(zip('abcd',[1,2,3,4]))
 
 print(dic)
 ```
-<TerminalOutput withBg>
-{`{'a': 1, 'b': 2, 'c': 3, 'd': 4}`}
-</TerminalOutput>
+```terminal
+{'a': 1, 'b': 2, 'c': 3, 'd': 4}
+```
 
 ### items()
 Devuelve una lista de tuplas.
@@ -112,9 +112,9 @@ salida = dic.items()
 
 print(salida)
 ```
-<TerminalOutput withBg>
-{`dict_items([('a', 1), ('b', 2), ('c', 3), ('d', 4)])`}
-</TerminalOutput>
+```terminal
+dict_items([('a', 1), ('b', 2), ('c', 3), ('d', 4)])
+```
 
 
 ### keys()
@@ -127,9 +127,9 @@ salida = dic.keys()
 
 print(salida)
 ```
-<TerminalOutput withBg>
-{`dict_keys(['a', 'b', 'c', 'd'])`}
-</TerminalOutput>
+```terminal
+dict_keys(['a', 'b', 'c', 'd'])
+```
 
 
 ### values()
@@ -142,9 +142,9 @@ salida = dic.values()
 
 print(salida)
 ```
-<TerminalOutput withBg>
-{`dict_values([1, 2, 3, 4])`}
-</TerminalOutput>
+```terminal
+dict_values([1, 2, 3, 4])
+```
 
 ### clear()
 Elimina todo el contenido del diccionario.
@@ -156,9 +156,9 @@ dic.clear()
 
 print(dic)
 ```
-<TerminalOutput withBg>
-{`{}`}
-</TerminalOutput>
+```terminal
+{}
+```
 
 ### copy()
 Crea una copia del diccionario.
@@ -170,9 +170,9 @@ copia = dic.copy()
 
 print(copia)
 ```
-<TerminalOutput withBg>
-{`{'a': 1, 'b': 2, 'c': 3, 'd': 4}`}
-</TerminalOutput>
+```terminal
+{'a': 1, 'b': 2, 'c': 3, 'd': 4}
+```
 
 ### get()
 Devuelve el `value` de una `key`. Si no existe devuelve `None`.
@@ -186,10 +186,10 @@ valor2 = dic.get('e')
 print(f'valor1 = {valor1}')
 print(f'valor2 = {valor2}')
 ```
-<TerminalOutput withBg>
-{`valor1 = 2
-valor2 = None`}
-</TerminalOutput>
+```terminal
+valor1 = 2
+valor2 = None
+```
 
 
 ### pop()
@@ -205,11 +205,11 @@ print(f'valor1 = {valor1}')
 print(f'valor2 = {valor2}')
 print(f'dic = {dic}')
 ```
-<TerminalOutput withBg>
-{`valor1 = 2
+```terminal
+valor1 = 2
 valor2 = error, valor no encontrado
-dic = {'a': 1, 'c': 3, 'd': 4}`}
-</TerminalOutput>
+dic = {'a': 1, 'c': 3, 'd': 4}
+```
 
 
 ### setdefault()
@@ -224,9 +224,9 @@ valor = dic.setdefault('a')
 
 print(f'valor = {valor}')
 ```
-<TerminalOutput withBg>
-{`valor = 1`}
-</TerminalOutput>
+```terminal
+valor = 1
+```
 
 
 **Ejemplo 02:** para agregar elementos
@@ -237,9 +237,9 @@ valor = dic.setdefault('e',5)
 
 print(f'dic = {dic}')
 ```
-<TerminalOutput withBg>
-{`dic = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}`}
-</TerminalOutput>
+```terminal
+dic = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+```
 
 ### update()
 
@@ -253,9 +253,9 @@ dic1.update(dic2)
 
 print(f'dic1 = {dic1}')
 ```
-<TerminalOutput withBg>
-{`dic1 = {'a': 1, 'b': 5, 'c': 6, 'd': 4, 'e': 9, 'f': 10}`}
-</TerminalOutput>
+```terminal
+dic1 = {'a': 1, 'b': 5, 'c': 6, 'd': 4, 'e': 9, 'f': 10}
+```
 
 ## Recorrer un Diccionario
 Un diccionario está compuesto por pares clave-valor, por lo que se necesitan 2 variables auxiliares para el recorrido.
@@ -274,10 +274,10 @@ datos = {
 for clave,valor in datos.items():
 	print(f'{clave} => {valor}')
 ```
-<TerminalOutput withBg>
-{`nombre => Marcos
+```terminal
+nombre => Marcos
 apellido => Rojas
 direccion => Balmaceda #1520
-ciudad => La Serena`}
-</TerminalOutput>
+ciudad => La Serena
+```
 

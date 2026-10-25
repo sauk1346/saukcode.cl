@@ -1,8 +1,8 @@
 # Cliente con mayor número de pedidos realizados
 
 **Tabla `Orders`**
-<TerminalOutput>
-{`+-----------------+----------+
+```output
++-----------------+----------+
 | Column Name     | Type     |
 +-----------------+----------+
 | order_number    | int      |
@@ -10,8 +10,8 @@
 +-----------------+----------+
 
 - order_number es la clave primaria (columna con valores únicos) para esta tabla.
-- Esta tabla contiene información sobre el ID del pedido y el ID del cliente`}
-</TerminalOutput>
+- Esta tabla contiene información sobre el ID del pedido y el ID del cliente
+```
 
 Escribe una solución para encontrar el `customer_number` del cliente que ha realizado el mayor número de pedidos.
 
@@ -21,8 +21,8 @@ Los casos de prueba están generados de tal manera que exactamente un cliente ha
 ## Ejemplo
 
 **Input**
-<TerminalOutput>
-{`Orders table:
+```output
+Orders table:
 +--------------+-----------------+
 | order_number | customer_number |
 +--------------+-----------------+
@@ -30,12 +30,12 @@ Los casos de prueba están generados de tal manera que exactamente un cliente ha
 | 2            | 2               |
 | 3            | 3               |
 | 4            | 3               |
-+--------------+-----------------+`}
-</TerminalOutput>
++--------------+-----------------+
+```
 
 **Output**
-<TerminalOutput>
-{`+-----------------+
+```output
++-----------------+
 | customer_number |
 +-----------------+
 | 3               |
@@ -43,9 +43,9 @@ Los casos de prueba están generados de tal manera que exactamente un cliente ha
 
 Explicación:
 - El cliente con número 3 tiene dos pedidos, lo cual es mayor que el cliente 
-    1 o 2, ya que cada uno de ellos solo tiene un pedido.
-- Por lo tanto, el resultado es customer_number 3.`}
-</TerminalOutput>
+  1 o 2, ya que cada uno de ellos solo tiene un pedido.
+- Por lo tanto, el resultado es customer_number 3.
+```
 
 ## Solution
 

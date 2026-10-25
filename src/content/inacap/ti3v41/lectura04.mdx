@@ -57,24 +57,24 @@ def inicio(request):
 
 ### Plantillas dentro de cada aplicación
 
-<TerminalOutput>
-{`mi_proyecto/
+```output
+mi_proyecto/
 ├── blog/
 │   └── templates/
 │       └── blog/
-│           └── inicio.html`}
-</TerminalOutput>
+│           └── inicio.html
+```
 
 - Esta es la estructura por defecto y recomendada para proyectos con varias apps.
 - Si la app está incluída en `INSTALLED_APPS`, no es necesario modificar `settings.py`, ya que Django usa un cargador llamado *app directories loader* que detecta automáticamente estas plantillas
 
 ### Plantillas en una carpeta global (fuera de las apps)
 
-<TerminalOutput>
-{`mi_proyecto/
+```output
+mi_proyecto/
 ├── templates/
-│   └── base.html`}
-</TerminalOutput>
+│   └── base.html
+```
 
 - Esta opción es útil cuando quieres centralizar plantillas comunes para todo el proyecto
 - En este caso si es necesario configurar `settings.py` para que Django sepa dónde buscar

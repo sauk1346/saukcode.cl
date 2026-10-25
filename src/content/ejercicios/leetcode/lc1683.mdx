@@ -1,8 +1,8 @@
 # Tweets No Válidos
 
 **Tabla:** `Tweets`
-<TerminalOutput>
-{`+----------------+---------+
+```output
++----------------+---------+
 | Column Name    | Type    |
 +----------------+---------+
 | tweet_id       | int     |
@@ -11,9 +11,9 @@
 
 - "tweet_id" es la clave primaria para esta tabla.
 - "content" consiste en caracteres alfanuméricos, '!', o ' ' y ningún otro 
-    carácter especial.
-- Esta tabla contiene todos los tweets en una aplicación de redes sociales.`}
-</TerminalOutput>
+  carácter especial.
+- Esta tabla contiene todos los tweets en una aplicación de redes sociales.
+```
 
 Escribe una solución para encontrar los IDs de los tweets inválidos. el tweet es inválido si el número de caracteres usados en el contenido del tweet es **estrictamente mayor** que 15.
 
@@ -22,28 +22,28 @@ Devuelve la tabla de resultados en **cualquier orden**.
 ## Ejemplo
 
 **Input:**
-<TerminalOutput>
-{`Tabla Tweets:
+```output
+Tabla Tweets:
 +----------+-----------------------------------+
 | tweet_id | content                           |
 +----------+-----------------------------------+
 | 1        | Let us Code                       |
 | 2        | More than fifteen chars are here! |
-+----------+-----------------------------------+`}
-</TerminalOutput>
++----------+-----------------------------------+
+```
 
 **Output:** 
-<TerminalOutput>
-{`+----------+
+```output
++----------+
 | tweet_id |
 +----------+
 | 2        |
 +----------+
 
 Explicación:
-    - Tweet 1 tiene longitud = 11. Es un tweet válido.
-    - Tweet 2 tiene longitud = 33. Es un tweet inválido.`}
-</TerminalOutput>
+  - Tweet 1 tiene longitud = 11. Es un tweet válido.
+  - Tweet 2 tiene longitud = 33. Es un tweet inválido.
+```
 
 ## Soluciones
 

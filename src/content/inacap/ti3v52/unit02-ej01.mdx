@@ -423,12 +423,8 @@
 	size="large"
 />
 
-<TerminalOutput 
-	withBg
-	id="salida01"
-	caption="Configuración router RENCA en CLI"
->
-{`# entrar al modo privilegiado
+```terminal id="salida01" caption="Configuración router RENCA en CLI"
+# entrar al modo privilegiado
 enable
 
 # entrar al modo de configuración global
@@ -468,8 +464,8 @@ exit
 end
 
 # guardar configuración en NVRAM
-wr`}
-</TerminalOutput>
+wr
+```
 
 <SmartFigure
 	id="fig69"
@@ -504,12 +500,8 @@ wr`}
 	size="large"
 />
 
-<TerminalOutput
-	id="salida02"
-	caption="Configuración router STGO en CLI"
-	withBg
->
-{`# entrar al modo privilegiado
+```terminal id="salida02" caption="Configuración router STGO en CLI"
+# entrar al modo privilegiado
 enable
 
 # entrar al modo de configuración global
@@ -540,8 +532,8 @@ exit
 end
 
 # guardar configuración en NVRAM
-wr`}
-</TerminalOutput>
+wr
+```
 
 <SmartFigure
 	id="fig71"
@@ -644,10 +636,10 @@ En base a la tabla 7 y figura 34, se obtiene el siguiente resumen de configuraci
 Para el enrutamiento estático se utiliza la siguiente instrucción:
 </P>
 
-<TerminalOutput withBg>
-{`# instrucción para enrutamiento estático
-ip route <red destino> <mascara destino> <IP next-hop>`}
-</TerminalOutput>
+```terminal
+# instrucción para enrutamiento estático
+ip route <red destino> <mascara destino> <IP next-hop>
+```
 
 <List level={1} indent={2}>
 - **red destino:** la red a la que quieres llegar 

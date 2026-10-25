@@ -64,22 +64,22 @@ Crear un nuevo proyecto llamado `proyectomodelo`. Agregar un modelo llamado `Per
     ```sh
     python manage.py makemigrations
     ```
-    <TerminalOutput>
-    {`Migrations for 'core':
+    ```output
+    Migrations for 'core':
     core/migrations/0001_initial.py
-        + Create model Person`}
-    </TerminalOutput>
+       + Create model Person
+    ```
 
 6. **Configuración Base de datos (2):** Subir el script generado anteriormente a la base de datos
     ```sh
     python manage.py migrate
     ```
-    <TerminalOutput>
-    {`Operations to perform:
-        Apply all migrations: admin, auth, contenttypes, core, sessions
+    ```output
+    Operations to perform:
+       Apply all migrations: admin, auth, contenttypes, core, sessions
     Running migrations:
-        Applying core.0001_initial... OK`}
-    </TerminalOutput>
+       Applying core.0001_initial... OK
+    ```
 
 ## 2. Modificar Modelo
 Cambiar el nombre del modelo `Person` a `Persona`
@@ -104,22 +104,22 @@ Cambiar el nombre del modelo `Person` a `Persona`
     ```sh
     python manage.py makemigrations
     ```
-    <TerminalOutput>
-    {`Migrations for 'core':
-        core/migrations/0002_alter_person_table.py
-          ~ Rename table for person to Persona`}
-    </TerminalOutput>
+    ```output
+    Migrations for 'core':
+       core/migrations/0002_alter_person_table.py
+         ~ Rename table for person to Persona
+    ```
 
 3. **Configurar Base de datos (2):** Subir el script con los cambios, a la base de datos
     ```sh
     python manage.py migrate
     ```
-    <TerminalOutput>
-    {`Operations to perform:
-        Apply all migrations: admin, auth, contenttypes, core, sessions
-      Running migrations:
-        Applying core.0002_alter_person_table... OK`}
-    </TerminalOutput>
+    ```output
+    Operations to perform:
+       Apply all migrations: admin, auth, contenttypes, core, sessions
+     Running migrations:
+       Applying core.0002_alter_person_table... OK
+    ```
 
 ## 3. Módulo Admin de Django
 - Una forma de acceder a la información de una base de datos es a través de aplicativos externos, como algún gestor de Base de datos (DB Browser SQLite)
@@ -144,13 +144,13 @@ admin.site.register(Person)
     ```sh
     python manage.py createsuperuser
     ```
-    <TerminalOutput>
-    {`Username (leave blank to use 'sauk'): antonio
+    ```output
+    Username (leave blank to use 'sauk'): antonio
     Email address: antonio@example.cl
     Password: antoniomorales123
     Password (again): antoniomorales123
-    Superuser created successfully.`}
-    </TerminalOutput>
+    Superuser created successfully.
+    ```
 
 2. **Realizar Pruebas:** Levantar el servidor y verificar la ruta de admin
     ```sh
@@ -460,19 +460,19 @@ Agregar el campo `email` al modelo `Persona`
     ```sh
     python manage.py makemigrations
     ```
-    <TerminalOutput>
-    {`Migrations for 'core':
+    ```output
+    Migrations for 'core':
     core/migrations/0003_alter_person_options_person_email.py
-        ~ Change Meta options on person
-        + Add field email to person`}
-    </TerminalOutput>
+       ~ Change Meta options on person
+       + Add field email to person
+    ```
 
     ```sh
     python manage.py migrate
     ```
-    <TerminalOutput>
-    {`Operations to perform:
+    ```output
+    Operations to perform:
     Apply all migrations: admin, auth, contenttypes, core, sessions
     Running migrations:
-    Applying core.0003_alter_person_options_person_email... OK`}
-    </TerminalOutput>
+    Applying core.0003_alter_person_options_person_email... OK
+    ```

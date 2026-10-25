@@ -1,8 +1,8 @@
 # Productos Reciclables y Bajos en Grasa
 
 **Tabla:** `Products`
-<TerminalOutput>
-{`+-------------+---------+
+```output
++-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | product_id  | int     |
@@ -12,10 +12,10 @@
 
 - "product_id" es la clave primaria para esta tabla.
 - "low_fats" es un ENUM (categoría) de tipo ('Y', 'N') donde 'Y' significa 
-    que es un producto bajo en grasas, y 'N' significa que no lo es.
+  que es un producto bajo en grasas, y 'N' significa que no lo es.
 - "recyclable" es un ENUM (categoría) de tipos ('Y', 'N') donde 'Y' significa
-    que este producto es reciclable y 'N' significa que no lo es.`}
-</TerminalOutput>
+  que este producto es reciclable y 'N' significa que no lo es.
+```
 
 Escribe una solución para encontrar los ids de productos que sean tanto bajos en grasa como reciclables.
 
@@ -25,8 +25,8 @@ Devuelve la tabla resultado en **cualquier orden**.
 ## Ejemplos
 
 **Input:**
-<TerminalOutput>
-{`Tabla Products:
+```output
+Tabla Products:
 +-------------+----------+------------+
 | product_id  | low_fats | recyclable |
 +-------------+----------+------------+
@@ -35,12 +35,12 @@ Devuelve la tabla resultado en **cualquier orden**.
 | 2           | N        | Y          |
 | 3           | Y        | Y          |
 | 4           | N        | N          |
-+-------------+----------+------------+`}
-</TerminalOutput>
++-------------+----------+------------+
+```
 
 **Output:**
-<TerminalOutput>
-{`+-------------+
+```output
++-------------+
 | product_id  |
 +-------------+
 | 1           |
@@ -48,8 +48,8 @@ Devuelve la tabla resultado en **cualquier orden**.
 +-------------+
 
 Explicación:
-- solo los productos 1 y 3 son tanto bajos en grasa como reciclables.`}
-</TerminalOutput>
+- solo los productos 1 y 3 son tanto bajos en grasa como reciclables.
+```
 
 ## Solución
 

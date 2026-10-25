@@ -14,42 +14,42 @@ Devuelve *el número máximo de dulces que puedes obtener siguiendo las reglas a
 ## Ejemplos
 
 **Ejemplo 1:**
-<TerminalOutput>
-{`Input: status = [1,0,1,0], 
-         candies = [7,5,4,100],
-         keys = [[],[],[1],[]],
-         containedBoxes = [[1,2],[3],[],[]],
-         initialBoxes = [0]
+```output
+Input: status = [1,0,1,0], 
+       candies = [7,5,4,100],
+       keys = [[],[],[1],[]],
+       containedBoxes = [[1,2],[3],[],[]],
+       initialBoxes = [0]
 
 Output: 16
 
 Explicación: Inicialmente se te dará la caja 0. Encontrarás 7 dulces en ella
-               y las cajas 1 y 2.
-               
-               La caja 1 está cerrada y no tienes una llave para ella, así que
-               abrirás la caja 2. Encontrarás 4 dulces y una llave para la caja 1
-               en la caja 2.
-               
-               En la caja 1, encontrarás 5 dulces y la caja 3, pero no encontrarás
-               una llave para la caja 3, así que la caja 3 permanecerá cerrada.
-               Número total de dulces recolectados = 7 + 4 + 5 = 16 dulces.`}
-</TerminalOutput>
+             y las cajas 1 y 2.
+             
+             La caja 1 está cerrada y no tienes una llave para ella, así que
+             abrirás la caja 2. Encontrarás 4 dulces y una llave para la caja 1
+             en la caja 2.
+             
+             En la caja 1, encontrarás 5 dulces y la caja 3, pero no encontrarás
+             una llave para la caja 3, así que la caja 3 permanecerá cerrada.
+             Número total de dulces recolectados = 7 + 4 + 5 = 16 dulces.
+```
 
 **Ejemplo 2:**
-<TerminalOutput>
-{`Input: status = [1,0,0,0,0,0],
-         candies = [1,1,1,1,1,1],
-         keys = [[1,2,3,4,5],[],[],[],[],[]],
-         containedBoxes = [[1,2,3,4,5],[],[],[],[],[]],
-         initialBoxes = [0]
+```output
+Input: status = [1,0,0,0,0,0],
+       candies = [1,1,1,1,1,1],
+       keys = [[1,2,3,4,5],[],[],[],[],[]],
+       containedBoxes = [[1,2,3,4,5],[],[],[],[],[]],
+       initialBoxes = [0]
 
 Output: 6
 
 Explicación: Inicialmente tienes la caja 0. Al abrirla puedes encontrar las cajas
-               1,2,3,4 y 5 y sus llaves.
-               
-               El número total de dulces será 6.`}
-</TerminalOutput>
+             1,2,3,4 y 5 y sus llaves.
+             
+             El número total de dulces será 6.
+```
 
 ## Soluciones
 

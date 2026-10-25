@@ -231,8 +231,8 @@ Se realiza la misma configuración para los PCs y servidores restantes:
 Configuración para `Switch0` (primer piso)
 
 - Ir a: `Switch0` >> `CLI`
-<TerminalOutput withBg>
-{`# entrar al modo privilegiado
+```terminal
+# entrar al modo privilegiado
 enable
 
 # entrar al modo de configuración global
@@ -251,8 +251,8 @@ no shutdown
 exit
 
 # definir la puerta de enlace para comunicarse fuera de la subred
-ip default-gateway 192.168.18.1`}
-</TerminalOutput>
+ip default-gateway 192.168.18.1
+```
 
 <SmartFigure
 	id="fig34"
@@ -265,8 +265,8 @@ ip default-gateway 192.168.18.1`}
 Configuración para `Switch1` (segundo piso)
 
 - Ir a: `Switch1` >> `CLI`
-<TerminalOutput withBg>
-{`# entrar al modo privilegiado
+```terminal
+# entrar al modo privilegiado
 enable
 
 # entrar al modo de configuración global
@@ -285,8 +285,8 @@ no shutdown
 exit
 
 # definir la puerta de enlace para comunicarse fuera de la subred
-ip default-gateway 192.168.18.1`}
-</TerminalOutput>
+ip default-gateway 192.168.18.1
+```
 
 <SmartFigure
 	id="fig35"
@@ -299,8 +299,8 @@ ip default-gateway 192.168.18.1`}
 Configuración para `Switch2` (tercer piso)
 
 - Ir a: `Switch2` >> `CLI`
-<TerminalOutput withBg>
-{`# entrar al modo privilegiado
+```terminal
+# entrar al modo privilegiado
 enable
 
 # entrar al modo de configuración global
@@ -319,8 +319,8 @@ no shutdown
 exit
 
 # definir la puerta de enlace para comunicarse fuera de la subred
-ip default-gateway 192.168.18.1`}
-</TerminalOutput>
+ip default-gateway 192.168.18.1
+```
 
 <SmartFigure
 	id="fig36"
@@ -351,8 +351,8 @@ ip default-gateway 192.168.18.1`}
 Configuración para `Router0` (tercer piso)
 
 - Ir a: `Router0` >> `CLI`
-<TerminalOutput withBg>
-{`# entrar al modo privilegiado
+```terminal
+# entrar al modo privilegiado
 enable
 configure terminal
 
@@ -391,8 +391,8 @@ line vty 0 4
 no transport input
 transport input ssh
 login local
-exit`}
-</TerminalOutput>
+exit
+```
 
 <SmartFigure
 	id="fig37"
@@ -404,15 +404,15 @@ exit`}
 
 Se elige `PC0` para la ejecución del comando solicitado
 
-<TerminalOutput withBg>
-{`# desde cualquier PC del primer piso, ejecute: ssh -l admin2 192.168.18.1
-C:\>ssh -l admin2 192.168.18.1
+```terminal
+# desde cualquier PC del primer piso, ejecute: ssh -l admin2 192.168.18.1
+C:>ssh -l admin2 192.168.18.1
 
 # ingrese la contraseña de admin2, debe aparecer el nombre del router
 Password: cisco-flex
 
-ANTONIO>`}
-</TerminalOutput>
+ANTONIO>
+```
 
 <SmartFigure
 	id="fig38"

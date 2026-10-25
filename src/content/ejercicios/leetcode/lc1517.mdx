@@ -1,8 +1,8 @@
 # Usuarios con Emails Válidos
 
 **Tabla:** `Users`
-<TerminalOutput>
-{`+---------------+---------+
+```output
++---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
 | user_id       | int     |
@@ -12,8 +12,8 @@
 
 - "user_id" es la clave primaria para esta tabla.
 - Esta tabla contiene información de los usuarios registrados en un 
-    sitio web. Algunos e-mails son inválidos.`}
-</TerminalOutput>
+  sitio web. Algunos e-mails son inválidos.
+```
 
 Escribe una solución para encontrar los usuarios que tienen **emails válidos**
 
@@ -26,8 +26,8 @@ Devuelve el resultado en **cualquier orden**.
 ## Ejemplo
 
 **Input:** 
-<TerminalOutput>
-{`Tabla Users:
+```output
+Tabla Users:
 +---------+-----------+-------------------------+
 | user_id | name      | mail                    |
 +---------+-----------+-------------------------+
@@ -38,12 +38,12 @@ Devuelve el resultado en **cualquier orden**.
 | 5       | Marwan    | quarz#2020@leetcode.com |
 | 6       | David     | david69@gmail.com       |
 | 7       | Shapiro   | .shapo@leetcode.com     |
-+---------+-----------+-------------------------+`}
-</TerminalOutput>
++---------+-----------+-------------------------+
+```
 
 **Output:**
-<TerminalOutput>
-{`+---------+-----------+-------------------------+
+```output
++---------+-----------+-------------------------+
 | user_id | name      | mail                    |
 +---------+-----------+-------------------------+
 | 1       | Winston   | winston@leetcode.com    |
@@ -52,11 +52,11 @@ Devuelve el resultado en **cualquier orden**.
 +---------+-----------+-------------------------+
 
 Explicación:
-    - email del usuario 2 no tiene un dominio.
-    - email del usuario 5 tiene el símbolo "#" que no está permitido.
-    - email del usuario 6 no tiene el dominio leetcode.
-    - email del usuario 7 comienza con un punto.`}
-</TerminalOutput>
+  - email del usuario 2 no tiene un dominio.
+  - email del usuario 5 tiene el símbolo "#" que no está permitido.
+  - email del usuario 6 no tiene el dominio leetcode.
+  - email del usuario 7 comienza con un punto.
+```
 
 
 

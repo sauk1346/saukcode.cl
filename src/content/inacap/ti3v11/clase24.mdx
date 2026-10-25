@@ -18,12 +18,12 @@ print()
 print(f'mensaje1 es de tipo: {type(mensaje1)}')
 print(f'mensaje2 es de tipo: {type(mensaje2)}')
 ```
-<TerminalOutput withBg>
-{`mensaje2: b'LuisYanez'
+```terminal
+mensaje2: b'LuisYanez'
 
 mensaje1 es de tipo: <class 'str'>
-mensaje2 es de tipo: <class 'bytes'>`}
-</TerminalOutput>
+mensaje2 es de tipo: <class 'bytes'>
+```
 
 > El parámetro `utf-8` es opcional. Sirve para carácteres especiales como el acento español.
 
@@ -36,10 +36,10 @@ mensaje2 = b'Cadena de bytes'
 print(f'mensaje1 es de tipo: {type(mensaje1)}')
 print(f'mensaje2 es de tipo: {type(mensaje2)}')
 ```
-<TerminalOutput withBg>
-{`mensaje1 es de tipo: <class 'str'>
-mensaje2 es de tipo: <class 'bytes'>`}
-</TerminalOutput>
+```terminal
+mensaje1 es de tipo: <class 'str'>
+mensaje2 es de tipo: <class 'bytes'>
+```
 
 ## Librería "cryptography"
 
@@ -75,11 +75,11 @@ print(f'Mensaje encriptado: {encriptado}')
 desencriptado = f.decrypt(encriptado) #<6>
 print(f'Mensaje desencriptado: {desencriptado}')
 ```
-<TerminalOutput withBg>
-{`password generado: b'XJnbpee6Q825FYpjn8KD1FOOS1ySi9z3s_m4XIa9x9E='
+```terminal
+password generado: b'XJnbpee6Q825FYpjn8KD1FOOS1ySi9z3s_m4XIa9x9E='
 Mensaje encriptado: b'gAAAAABoldLpPCTOSrR1VBKOjPYwOCfR-I4mx1VUvOZiUI4mZMHPORQdFibRVi-q6DRhTGvJlq4Ee34tmW6RYYVvfyTOAP8fnPa96AxYaHK-IIKoof3-6_M='
-Mensaje desencriptado: b'quiero encriptar este mensaje'`}
-</TerminalOutput>
+Mensaje desencriptado: b'quiero encriptar este mensaje'
+```
 
 
 1. De la librería `criptography`, módulo `fernet`, importar la clase `Fernet`
@@ -122,9 +122,9 @@ print(f'salida 256: {hashlib.sha256(b'programacion segura').hexdigest()}')
 print(f'salida 224: {hashlib.sha224(b'programacion segura').hexdigest()}')
 print(f'salida 512: {hashlib.sha512(b'programacion segura').hexdigest()}')
 ```
-<TerminalOutput withBg>
-{`salida inicial: 3f0eb88c12b73f8235f3bc5a19336d32a41bbe6743291c97e8fb00ea2d3520e0
+```terminal
+salida inicial: 3f0eb88c12b73f8235f3bc5a19336d32a41bbe6743291c97e8fb00ea2d3520e0
 salida 256: 7292226db72b3c4be97004b91f298c963161351393e407869d660aef5e481e25
 salida 224: ce3dc026e94c6b87ed15b7d2178cecc1450caf3998e35022dc55d3b0
-salida 512: dcec6a96bea68592be67a3fac8146d82df0084898503c09dbf4bce250ac50f2a6fc0d2da37855f86daec2ccb0fb4de9b4ce6452f5cdeb50d0b28d730fa0a5ef6`}
-</TerminalOutput>
+salida 512: dcec6a96bea68592be67a3fac8146d82df0084898503c09dbf4bce250ac50f2a6fc0d2da37855f86daec2ccb0fb4de9b4ce6452f5cdeb50d0b28d730fa0a5ef6
+```

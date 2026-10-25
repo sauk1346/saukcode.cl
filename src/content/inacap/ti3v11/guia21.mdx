@@ -8,9 +8,9 @@ Para números enteros.
 var = 5
 print('var es de tipo:',type(var))
 ```
-<TerminalOutput withBg>
-{`var es de tipo: <class 'int'>`}
-</TerminalOutput>
+```terminal
+var es de tipo: <class 'int'>
+```
 
 
 ### float
@@ -19,9 +19,9 @@ Para números decimales.
 var = 3.14
 print('var es de tipo:',type(var))
 ```
-<TerminalOutput withBg>
-{`var es de tipo: <class 'float'>`}
-</TerminalOutput>
+```terminal
+var es de tipo: <class 'float'>
+```
 
 
 ### str
@@ -30,9 +30,9 @@ Para texto.
 var = 'saukCode'
 print('var es de tipo:',type(var))
 ```
-<TerminalOutput withBg>
-{`var es de tipo: <class 'str'>`}
-</TerminalOutput>
+```terminal
+var es de tipo: <class 'str'>
+```
 
 ### bool
 Para valores booleanos `True` y `False`.
@@ -42,10 +42,10 @@ var2 = False
 print('var1 es de tipo:',type(var1))
 print('var2 es de tipo:',type(var2))
 ```
-<TerminalOutput withBg>
-{`var1 es de tipo: <class 'bool'>
-var2 es de tipo: <class 'bool'>`}
-</TerminalOutput>
+```terminal
+var1 es de tipo: <class 'bool'>
+var2 es de tipo: <class 'bool'>
+```
 
 
 ### list
@@ -54,9 +54,9 @@ Para objeto de tipo lista.
 var = [1,2,'texto',3.14,True,None]
 print('var es de tipo:',type(var))
 ```
-<TerminalOutput withBg>
-{`var es de tipo: <class 'list'>`}
-</TerminalOutput>
+```terminal
+var es de tipo: <class 'list'>
+```
 
 ### tuple
 Para objeto de tipo tupla.
@@ -64,9 +64,9 @@ Para objeto de tipo tupla.
 var = (1,2,'texto',3.14,True,None)
 print('var es de tipo:',type(var))
 ```
-<TerminalOutput withBg>
-{`var es de tipo: <class 'tuple'>`}
-</TerminalOutput>
+```terminal
+var es de tipo: <class 'tuple'>
+```
 
 ### dict
 Para objeto de tipo diccionario.
@@ -74,9 +74,9 @@ Para objeto de tipo diccionario.
 var = {'primero':10,'segundo':20,'tercero':30}
 print('var es de tipo:',type(var))
 ```
-<TerminalOutput withBg>
-{`var es de tipo: <class 'dict'>`}
-</TerminalOutput>
+```terminal
+var es de tipo: <class 'dict'>
+```
 
 ## Estructuras de Control
 - Las estructuras de control terminan con 2 puntos **(:)**
@@ -93,9 +93,9 @@ if type(var) == int:
 else:
 	print('var es decimal')
 ```
-<TerminalOutput withBg>
-{`var es decimal`}
-</TerminalOutput>
+```terminal
+var es decimal
+```
 
 **Ejemplo 02:** Verificar si el dato es entero, booleano, texto o decimal
 ```python
@@ -109,9 +109,9 @@ elif type(var) == str:
 elif type(var) == float:
 	print('var es decimal')
 ```
-<TerminalOutput withBg>
-{`var es texto`}
-</TerminalOutput>
+```terminal
+var es texto
+```
 
 ### while()
 Permite repetir indefinidamente un bloque de código mientras la condición sea *Verdadera*. Al utilizar contadores hay que verificar que éstos se actualicen, de lo contrario el bucle puede seguir indefinidamente.
@@ -124,15 +124,15 @@ while (cont <= 5):
 	cont = cont + 1
 print('fin while')
 ```
-<TerminalOutput withBg>
-{`contador vale: 0
+```terminal
+contador vale: 0
 contador vale: 1
 contador vale: 2
 contador vale: 3
 contador vale: 4
 contador vale: 5
-fin while`}
-</TerminalOutput>
+fin while
+```
 
 
 ### for()
@@ -143,12 +143,12 @@ Similar a `while()`. Su ventaja es que además puede iterar sobre una secuencia 
 for i in range(4):
 	print('número:',i)
 ```
-<TerminalOutput withBg>
-{`número: 0
+```terminal
+número: 0
 número: 1
 número: 2
-número: 3`}
-</TerminalOutput>
+número: 3
+```
 
 **Ejemplo 02:** recorrer lista
 ```python
@@ -156,13 +156,13 @@ var = [1,2,3,'cuatro',True]
 for i in var:
 	print('valor:',i)
 ```
-<TerminalOutput withBg>
-{`valor: 1
+```terminal
+valor: 1
 valor: 2
 valor: 3
 valor: cuatro
-valor: True`}
-</TerminalOutput>
+valor: True
+```
 
 **Ejemplo 03:** recorrer tupla
 ```python
@@ -170,13 +170,13 @@ var = (1,2,3,'cuatro',True)
 for i in var:
 	print('valor:',i)
 ```
-<TerminalOutput withBg>
-{`valor: 1
+```terminal
+valor: 1
 valor: 2
 valor: 3
 valor: cuatro
-valor: True`}
-</TerminalOutput>
+valor: True
+```
 
 **Ejemplo 04:** recorrer diccionario
 ```python
@@ -184,12 +184,12 @@ var = {'primero':10,'segundo':20,'tercero':30,'cuarto':40}
 for i,j in var.items():
 	print('clave:',i,' **** ','valor:',j)
 ```
-<TerminalOutput withBg>
-{`clave: primero  ****  valor: 10
+```terminal
+clave: primero  ****  valor: 10
 clave: segundo  ****  valor: 20
 clave: tercero  ****  valor: 30
-clave: cuarto  ****  valor: 40`}
-</TerminalOutput>
+clave: cuarto  ****  valor: 40
+```
 
 
 ## Listas
@@ -221,9 +221,9 @@ lista.append(5)
 
 print(lista)
 ```
-<TerminalOutput withBg>
-{`[1, 'dos', 3, 'cuatro', 5]`}
-</TerminalOutput>
+```terminal
+[1, 'dos', 3, 'cuatro', 5]
+```
 
 
 ### .extend()
@@ -235,9 +235,9 @@ lista1.extend(lista2)
 
 print(lista1)
 ```
-<TerminalOutput withBg>
-{`[1, 2, 3, 4, 5, 10, 20, 30, 40, 50]`}
-</TerminalOutput>
+```terminal
+[1, 2, 3, 4, 5, 10, 20, 30, 40, 50]
+```
 
 
 ### .insert(x,y)
@@ -248,9 +248,9 @@ lista.insert(3,'tomate')
 
 print(lista)
 ```
-<TerminalOutput withBg>
-{`[1, 2, 3, 'tomate', 4, 5]`}
-</TerminalOutput>
+```terminal
+[1, 2, 3, 'tomate', 4, 5]
+```
 
 ### .remove(x)
 Elimina el elemento-x
@@ -260,9 +260,9 @@ lista.remove('tres')
 
 print(lista)
 ```
-<TerminalOutput withBg>
-{`['uno', 2, 4, 'cinco']`}
-</TerminalOutput>
+```terminal
+['uno', 2, 4, 'cinco']
+```
 
 ### .pop(x)
 Devuelve y elimina el elemento en la posición-x
@@ -273,10 +273,10 @@ elemento = lista.pop(2)
 print('elemento:',elemento)
 print('lista:',lista)
 ```
-<TerminalOutput withBg>
-{`elemento: tres
-lista: ['uno', 2, 4, 'cinco']`}
-</TerminalOutput>
+```terminal
+elemento: tres
+lista: ['uno', 2, 4, 'cinco']
+```
 
 ### .clear()
 Elimina todos los elementos
@@ -286,9 +286,9 @@ lista.clear()
 
 print('lista:',lista)
 ```
-<TerminalOutput withBg>
-{`lista: []`}
-</TerminalOutput>
+```terminal
+lista: []
+```
 
 ### index(x)
 Devuelve el índice del primer elemento-x encontrado
@@ -299,9 +299,9 @@ indice = lista.index('cinco')
 
 print('indice:',indice)
 ```
-<TerminalOutput withBg>
-{`indice: 4`}
-</TerminalOutput>
+```terminal
+indice: 4
+```
 
 ### .count(x)
 Devuelve el número de veces que aparece el elemento-x
@@ -312,9 +312,9 @@ cont = lista.count(6)
 print('núm 6 se repite:',cont, 'veces')
 
 ```
-<TerminalOutput withBg>
-{`núm 6 se repite: 3 veces`}
-</TerminalOutput>
+```terminal
+núm 6 se repite: 3 veces
+```
 
 ### .sort()
 Ordena los elementos de menor a mayor. Para invertir el orden se puede utilizar el argumento `reverse=True`
@@ -326,9 +326,9 @@ lista.sort()
 
 print('lista:',lista)
 ```
-<TerminalOutput withBg>
-{`lista: [0, 15, 22, 25, 30, 31, 39]`}
-</TerminalOutput>
+```terminal
+lista: [0, 15, 22, 25, 30, 31, 39]
+```
 
 **Ejemplo 02:** ordenar números de mayor a menor
 ```python
@@ -337,9 +337,9 @@ lista.sort(reverse=True)
 
 print('lista:',lista)
 ```
-<TerminalOutput withBg>
-{`lista: [39, 31, 30, 25, 22, 15, 0]`}
-</TerminalOutput>
+```terminal
+lista: [39, 31, 30, 25, 22, 15, 0]
+```
 
 ### .reverse()
 Invierte la posición de los elementos
@@ -349,9 +349,9 @@ lista.reverse()
 
 print('lista:',lista)
 ```
-<TerminalOutput withBg>
-{`lista: ['python', 'es sobre', 'la prueba']`}
-</TerminalOutput>
+```terminal
+lista: ['python', 'es sobre', 'la prueba']
+```
 
 ### .copy()
 Copia los elementos de una lista a una nueva
@@ -366,11 +366,11 @@ copia.clear()
 print('copia:',copia)
 print('lista:',lista)
 ```
-<TerminalOutput withBg>
-{`copia: [10, 20, 30, 40]
+```terminal
+copia: [10, 20, 30, 40]
 copia: []
-lista: [10, 20, 30, 40]`}
-</TerminalOutput>
+lista: [10, 20, 30, 40]
+```
 
 ## Métodos para Tuplas
 Como las tuplas no se pueden modificar, no existen muchos métodos para su manipulación.
@@ -383,9 +383,9 @@ cont = tupla.count(2)
 
 print('num 2 se repite:',cont, 'veces')
 ```
-<TerminalOutput withBg>
-{`num 2 se repite: 3 veces`}
-</TerminalOutput>
+```terminal
+num 2 se repite: 3 veces
+```
 
 ### .index(x)
 Devuelve el índice del primer elemento-x encontrado
@@ -395,9 +395,9 @@ indice = tupla.index('arroz')
 
 print('índice:',indice)
 ```
-<TerminalOutput withBg>
-{`índice: 1`}
-</TerminalOutput>
+```terminal
+índice: 1
+```
 
 ## Métodos para diccionarios
 
@@ -415,9 +415,9 @@ dic.clear()
 
 print('dic:',dic)
 ```
-<TerminalOutput withBg>
-{`dic: {}`}
-</TerminalOutput>
+```terminal
+dic: {}
+```
 
 ### .copy()
 Copia los elementos a un nuevo diccionario
@@ -433,9 +433,9 @@ dic2 = dic1.copy()
 
 print('dic2:',dic2)
 ```
-<TerminalOutput withBg>
-{`dic2: {'nombre': 'jose', 'direccion': 'miDireccion123', 'telefono': 123456}`}
-</TerminalOutput>
+```terminal
+dic2: {'nombre': 'jose', 'direccion': 'miDireccion123', 'telefono': 123456}
+```
 
 ### .fromkeys(x,y)
 Asigna a la lista/tupla de claves-x el valor-y
@@ -447,9 +447,9 @@ newDic = dict.fromkeys(claves,10)
 
 print('newDic:',newDic)
 ```
-<TerminalOutput withBg>
-{`newDic: {'a': 10, 'b': 10, 'c': 10}`}
-</TerminalOutput>
+```terminal
+newDic: {'a': 10, 'b': 10, 'c': 10}
+```
 
 **Ejemplo 02:** lista con claves
 ```python
@@ -459,9 +459,9 @@ newDic = dict.fromkeys(claves,valores)
 
 print('newDic:',newDic)
 ```
-<TerminalOutput withBg>
-{`newDic: {'a': 9, 'b': 9, 'c': 9}`}
-</TerminalOutput>
+```terminal
+newDic: {'a': 9, 'b': 9, 'c': 9}
+```
 
 ### .get(x)
 Devuelve el valor de la clave-x
@@ -476,9 +476,9 @@ valor = dic.get('direccion')
 
 print('valor:',valor)
 ```
-<TerminalOutput withBg>
-{`valor: miDireccion123`}
-</TerminalOutput>
+```terminal
+valor: miDireccion123
+```
 
 ### .items()
 Devuelve el diccionario como una lista de pares de tuplas clave-valor
@@ -494,11 +494,11 @@ listaTuplas = dic.items()
 for i in listaTuplas:
 	print('tupla:',i)
 ```
-<TerminalOutput withBg>
-{`tupla: ('nombre', 'jose')
+```terminal
+tupla: ('nombre', 'jose')
 tupla: ('direccion', 'miDireccion123')
-tupla: ('telefono', 123456)`}
-</TerminalOutput>
+tupla: ('telefono', 123456)
+```
 
 ### .keys()
 Devuelve una lista con todas las claves
@@ -514,11 +514,11 @@ claves = dic.keys()
 for i in claves:
 	print('clave:',i)
 ```
-<TerminalOutput withBg>
-{`clave: nombre
+```terminal
+clave: nombre
 clave: direccion
-clave: telefono`}
-</TerminalOutput>
+clave: telefono
+```
 
 ### .values()
 Devuelve una lista con todos los valores
@@ -533,11 +533,11 @@ valores = dic.values()
 for i in valores:
 	print('valor:',i)
 ```
-<TerminalOutput withBg>
-{`valor: jose
+```terminal
+valor: jose
 valor: miDireccion123
-valor: 123456`}
-</TerminalOutput>
+valor: 123456
+```
 
 ### .pop(x)
 Devuelve y elimina el valor de la clave-x  
@@ -554,10 +554,10 @@ direccion = dic.pop('direccion')
 print('direccion:',direccion)
 print('dic:',dic)
 ```
-<TerminalOutput withBg>
-{`direccion: miDireccion123
-dic: {'nombre': 'jose', 'telefono': 123456}`}
-</TerminalOutput>
+```terminal
+direccion: miDireccion123
+dic: {'nombre': 'jose', 'telefono': 123456}
+```
 
 ### .setdefault(x,y)
 1. Devuelve el valor de la clave-x
@@ -575,9 +575,9 @@ telefono = dic.setdefault('telefono')
 
 print('telefono:', telefono)
 ```
-<TerminalOutput withBg>
-{`telefono: 123456`}
-</TerminalOutput>
+```terminal
+telefono: 123456
+```
 
 **Ejemplo 02:** inserta par clave-valor
 ```python
@@ -591,9 +591,9 @@ dic.setdefault('correo','mi@correo.cl')
 
 print('dic:',dic)
 ```
-<TerminalOutput withBg>
-{`dic: {'nombre': 'jose', 'direccion': 'miDireccion123', 'telefono': 123456, 'correo': 'mi@correo.cl'}`}
-</TerminalOutput>
+```terminal
+dic: {'nombre': 'jose', 'direccion': 'miDireccion123', 'telefono': 123456, 'correo': 'mi@correo.cl'}
+```
 
 ### .update(x)
 1. Actualiza un diccionario 1 con un diccionario-x
@@ -617,9 +617,9 @@ dic1.update(dic2)
 
 print('dic1:',dic1)
 ```
-<TerminalOutput withBg>
-{`dic1: {'nombre': 'jose', 'direccion': 'nuevaDireccion666', 'telefono': 123456}`}
-</TerminalOutput>
+```terminal
+dic1: {'nombre': 'jose', 'direccion': 'nuevaDireccion666', 'telefono': 123456}
+```
 
 **Ejemplo 02:** insertar par clave-valor
 ```python
@@ -633,9 +633,9 @@ dic1.update({'profesion':'ing. informatico'})
 
 print('dic1:',dic1)
 ```
-<TerminalOutput withBg>
-{`dic1: {'nombre': 'jose', 'direccion': 'miDireccion123', 'telefono': 123456, 'profesion': 'ing. informatico'}`}
-</TerminalOutput>
+```terminal
+dic1: {'nombre': 'jose', 'direccion': 'miDireccion123', 'telefono': 123456, 'profesion': 'ing. informatico'}
+```
 
 ## Algoritmos
 
@@ -651,9 +651,9 @@ else:
 
 print(f'el núm mayor es: {mayor}')
 ```
-<TerminalOutput withBg>
-{`el núm mayor es: 10`}
-</TerminalOutput>
+```terminal
+el núm mayor es: 10
+```
 
 > Si a = b, pasa al `else`.
 
@@ -668,9 +668,9 @@ if num1%2 == 0:
 else:
 	print(f'{num1} es impar')
 ```
-<TerminalOutput withBg>
-{`3 es impar`}
-</TerminalOutput>
+```terminal
+3 es impar
+```
 
 **Ejemplo 2:** 2da forma
 ```python
@@ -680,9 +680,9 @@ if num1%2 > 0:
 else:
 	print(f'{num1} es par')
 ```
-<TerminalOutput withBg>
-{`6 es par`}
-</TerminalOutput>
+```terminal
+6 es par
+```
 
 ### Suma de 2 números
 ```python
@@ -693,9 +693,9 @@ suma = num1 + num2
 
 print(f'la suma de {num1} y {num2} es {suma}')
 ```
-<TerminalOutput withBg>
-{`la suma de 4 y 7 es 11`}
-</TerminalOutput>
+```terminal
+la suma de 4 y 7 es 11
+```
 
 ### Suma de una lista
 
@@ -709,9 +709,9 @@ for i in lista:
 
 print(f'la suma de {lista} es: {suma}')
 ```
-<TerminalOutput withBg>
-{`la suma de [1, 2, 3, 4, 5, 6, 7] es: 28`}
-</TerminalOutput>
+```terminal
+la suma de [1, 2, 3, 4, 5, 6, 7] es: 28
+```
 
 **Ejemplo 2:** 2da forma
 ```python
@@ -720,9 +720,9 @@ suma = sum(lista)
 
 print(f'la suma de {lista} es: {suma}')
 ```
-<TerminalOutput withBg>
-{`la suma de [1, 2, 3, 4, 5, 6, 7] es: 28`}
-</TerminalOutput>
+```terminal
+la suma de [1, 2, 3, 4, 5, 6, 7] es: 28
+```
 
 ### Factorial de un número
 
@@ -734,9 +734,9 @@ for i in range(1,numero+1):
 
 print(f'el factorial de {numero} es: {mult}')
 ```
-<TerminalOutput withBg>
-{`el factorial de 7 es: 5040`}
-</TerminalOutput>
+```terminal
+el factorial de 7 es: 5040
+```
 
 ### Promedio de una lista numérica
 
@@ -752,9 +752,9 @@ promedio = suma / len(lista)
 
 print(f'el promedio de {lista} es: {promedio}')
 ```
-<TerminalOutput withBg>
-{`el promedio de [10, 30, 50, 80, 95] es: 53.0`}
-</TerminalOutput>
+```terminal
+el promedio de [10, 30, 50, 80, 95] es: 53.0
+```
 
 **Ejemplo 02:** 2da forma
 ```python
@@ -763,6 +763,6 @@ promedio = sum(lista) / len(lista)
 
 print(f'el promedio de {lista} es: {promedio}')
 ```
-<TerminalOutput withBg>
-{`el promedio de [10, 30, 50, 80, 95] es: 53.0`}
-</TerminalOutput>
+```terminal
+el promedio de [10, 30, 50, 80, 95] es: 53.0
+```

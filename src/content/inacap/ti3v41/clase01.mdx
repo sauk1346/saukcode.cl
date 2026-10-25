@@ -171,16 +171,16 @@ Crear un proyecto Django y levantar el servidor
 	cd miprimerproyecto
 	```
 
-	<TerminalOutput>
-	{`.
+	```output
+	.
 	├── primerproyecto
 	│   ├── asgi.py
 	│   ├── __init__.py
 	│   ├── settings.py
 	│   ├── urls.py
 	│   └── wsgi.py
-	└── manage.py`}
-	</TerminalOutput>
+	└── manage.py
+	```
 
 	`./primerproyecto/` es un package, porque dentro contiene un `__init__.py`
 
@@ -189,8 +189,8 @@ Crear un proyecto Django y levantar el servidor
 	py manage.py migrate
 	```
 
-	<TerminalOutput>
-	{`.
+	```output
+	.
 	├── primerproyecto
 	│   ├── __pycache__
 	│   │   ├── __init__.cpython-313.pyc
@@ -202,23 +202,23 @@ Crear un proyecto Django y levantar el servidor
 	│   ├── urls.py
 	│   └── wsgi.py
 	├── db.sqlite3
-	└── manage.py`}
-	</TerminalOutput>
+	└── manage.py
+	```
 
 3. **Realizar Pruebas:** Levantar el servidor
 	```sh
 	py manage.py runserver
 	```
-	<TerminalOutput>
-	{`Watching for file changes with StatReloader
+	```output
+	Watching for file changes with StatReloader
 	Performing system checks...
 
 	System check identified no issues (0 silenced).
 	September 03, 2025 - 04:00:12
 	Django version 5.2.5, using settings 'primerproyecto.settings'
 	Starting development server at http://127.0.0.1:8000/
-	Quit the server with CONTROL-C.`}
-	</TerminalOutput>
+	Quit the server with CONTROL-C.
+	```
 	<SmartFigure
         id="pagina-incio-django"
         src="/inacap/ti3v41/images/fig002.png"
@@ -236,8 +236,8 @@ Crear una nueva aplicación dentro del proyecto
 	python manage.py startapp miapp
 	```
 
-	<TerminalOutput>
-	{`.
+	```output
+	.
 	├── db.sqlite3
 	├── manage.py
 	├── miapp
@@ -259,8 +259,8 @@ Crear una nueva aplicación dentro del proyecto
 	    │   └── wsgi.cpython-313.pyc
 	    ├── settings.py
 	    ├── urls.py
-	    └── wsgi.py`}
-	</TerminalOutput>
+	    └── wsgi.py
+	```
 
 2. **Configuración inicial:** Agregar `./miapp/` en `./miprimerproyecto/settings.py` para que el proyecto lo reconozca
 

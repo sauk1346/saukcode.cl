@@ -2,15 +2,15 @@
 
 **DataFrame** `weather`
 
-<TerminalOutput>
-{`+-------------+--------+
+```output
++-------------+--------+
 | Column Name | Type   |
 +-------------+--------+
 | city        | object |
 | month       | object |
 | temperature | int    |
-+-------------+--------+`}
-</TerminalOutput>
++-------------+--------+
+```
 
 Escribe una solución para **pivotear** los datos de modo que cada fila represente las temperaturas de un mes específico, y cada ciudad sea una columna separada.
 
@@ -19,8 +19,8 @@ Escribe una solución para **pivotear** los datos de modo que cada fila represen
 ::::columns
 :::col
 **Input:**
-<TerminalOutput>
-{`+--------------+----------+-------------+
+```output
++--------------+----------+-------------+
 | city         | month    | temperature |
 +--------------+----------+-------------+
 | Jacksonville | January  | 13          |
@@ -33,13 +33,13 @@ Escribe una solución para **pivotear** los datos de modo que cada fila represen
 | ElPaso       | March    | 26          |
 | ElPaso       | April    | 2           |
 | ElPaso       | May      | 43          |
-+--------------+----------+-------------+`}
-</TerminalOutput>
++--------------+----------+-------------+
+```
 :::
 :::col
 **Output:**
-<TerminalOutput>
-{`+----------+--------+--------------+
+```output
++----------+--------+--------------+
 | month    | ElPaso | Jacksonville |
 +----------+--------+--------------+
 | April    | 2      | 5            |
@@ -52,8 +52,8 @@ Escribe una solución para **pivotear** los datos de modo que cada fila represen
 Explicación:
 La tabla se pivota, cada columna 
 representa una ciudad, y cada fila
-representa un mes específico.`}
-</TerminalOutput>
+representa un mes específico.
+```
 :::
 ::::
 

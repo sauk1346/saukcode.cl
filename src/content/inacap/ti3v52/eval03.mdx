@@ -87,10 +87,8 @@
 
 :::solution[Solución Pregunta 02]
 
-<TerminalOutput 
-caption="Configuración enrutamiento OSPFv2 en router SUNOMBRE"
-withBg>
-{`ANTONIO>enable
+```terminal caption="Configuración enrutamiento OSPFv2 en router SUNOMBRE"
+ANTONIO>enable
 ANTONIO#configure terminal
 
 # El valor de X (X=21) fue entregado por el docente, ID de proceso = 1000+X = 1021
@@ -106,8 +104,8 @@ ANTONIO(config-router)#network 172.31.10.128 0.0.0.3 area 0
 
 # No envía información de enrutamiento por interfaces que no sean necesarias o inseguras
 ANTONIO(config-router)#passive-interface default
-ANTONIO(config-router)#no passive-interface s0/0/0`}
-</TerminalOutput>
+ANTONIO(config-router)#no passive-interface s0/0/0
+```
 
 
 :::
@@ -120,10 +118,8 @@ ANTONIO(config-router)#no passive-interface s0/0/0`}
     - No enviar información de enrutamiento por interfaces que no sea necesario o inseguro
 
 :::solution[Solución Pregunta 03]
-<TerminalOutput 
-caption="Configuración enrutamiento OSPFv2 en router PRIMERAPELLIDO"
-withBg>
-{`MORALES>enable
+```terminal caption="Configuración enrutamiento OSPFv2 en router PRIMERAPELLIDO"
+MORALES>enable
 MORALES#configure terminal
 
 # El valor de X (X=21) fue entregado por el docente, ID de proceso = 2000+X = 2021
@@ -138,8 +134,8 @@ MORALES(config-router)#network 172.31.10.133 0.0.0.0 area 0
 MORALES(config-router)#network 172.31.10.130 0.0.0.0 area 0
 
 # No envía información de enrutamiento por interfaces que no sean necesarias o inseguras
-MORALES(config-router)#passive-interface g0/0`}
-</TerminalOutput>
+MORALES(config-router)#passive-interface g0/0
+```
 :::
 
 4. Realice configuración de protocolo de enrutamiento OSPFv2 en router SEGUNDOAPELLIDO:
@@ -153,11 +149,8 @@ MORALES(config-router)#passive-interface g0/0`}
     - Redistribuya la ruta por defecto dentro de ospf
 
 :::solution[Solución Pregunta 04]
-<TerminalOutput 
-caption="Configuración enrutamiento OSPFv2 en router SEGUNDOAPELLIDO"
-withBg
->
-{`CAQUEO>enable
+```terminal caption="Configuración enrutamiento OSPFv2 en router SEGUNDOAPELLIDO"
+CAQUEO>enable
 CAQUEO#configure terminal
 
 # Agrega una Interface Loopback 190 con IP=190.190.190.1 M=255.255.255.255
@@ -189,8 +182,8 @@ CAQUEO(config-router)#passive-interface default
 CAQUEO(config-router)#no passive-interface s0/0/1
 
 # Redistribuye la ruta por defecto dentro de ospf
-CAQUEO(config-router)#default-information originate`}
-</TerminalOutput>
+CAQUEO(config-router)#default-information originate
+```
 
 :::
 
@@ -199,41 +192,29 @@ CAQUEO(config-router)#default-information originate`}
 
 :::solution[Solución Pregunta 05]
 
-<TerminalOutput
-caption="Router PRIMEAPELLIDO"
-withBg
->
-{`MORALES(config)#interface s0/0/0
-MORALES(config-if)#ip hello-interval eigrp 3000 8`}
-</TerminalOutput>
+```terminal caption="Router PRIMEAPELLIDO"
+MORALES(config)#interface s0/0/0
+MORALES(config-if)#ip hello-interval eigrp 3000 8
+```
 
-<TerminalOutput
-caption="Router SEGUNDOAPELLIDO"
-withBg
->
-{`CAQUEO(config)#interface s0/0/1
-CAQUEO(config-if)#ip hello-interval eigrp 3000 8`}
-</TerminalOutput>
+```terminal caption="Router SEGUNDOAPELLIDO"
+CAQUEO(config)#interface s0/0/1
+CAQUEO(config-if)#ip hello-interval eigrp 3000 8
+```
 
 :::
 
 6. Modificar el ancho de banda a 8MB en enlace entre SUNOMBRE y PRIMERAPELLIDO
 :::solution[Solución Pregunta 06]
-<TerminalOutput
-caption="Router SUNOMBRE"
-withBg
->
-{`ANTONIO(config)#interface s0/0/0
-ANTONIO(config-if)#bandwidth 8192`}
-</TerminalOutput>
+```terminal caption="Router SUNOMBRE"
+ANTONIO(config)#interface s0/0/0
+ANTONIO(config-if)#bandwidth 8192
+```
 
-<TerminalOutput
-caption="Router PRIMEAPELLIDO"
-withBg
->
-{`MORALES(config-if)#interface s0/0/1
-MORALES(config-if)#bandwidth 8192`}
-</TerminalOutput>
+```terminal caption="Router PRIMEAPELLIDO"
+MORALES(config-if)#interface s0/0/1
+MORALES(config-if)#bandwidth 8192
+```
 :::
 
 7. Muestre la tabla de enrutamiento, de vecinos y topología:

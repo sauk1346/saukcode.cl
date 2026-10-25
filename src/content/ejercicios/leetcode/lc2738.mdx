@@ -1,8 +1,8 @@
 # Contar Ocurrencias en el Texto
 
 **Tabla:** `Files`
-<TerminalOutput>
-{`+-------------+---------+
+```output
++-------------+---------+
 | Column Name | Type    |
 +-- ----------+---------+
 | file_name   | varchar |
@@ -10,8 +10,8 @@
 +-------------+---------+
 
 - "file_name" es la columna con valores únicos de esta tabla. 
-- Cada fila contiene "file_name" y el contenido de ese archivo.`}
-</TerminalOutput>
+- Cada fila contiene "file_name" y el contenido de ese archivo.
+```
 
 
 Escribe una solución para encontrar el número de archivos que tienen al menos una ocurrencia de las palabras **'bull'** y **'bear'** como **palabra independiente**, respectivamente, ignorando apariciones **dentro de otras palabras** (por ejemplo, 'bullet', 'bears').
@@ -23,8 +23,8 @@ Devuelve *la palabra 'bull' y 'bear' junto con el número correspondiente de ocu
 ## Ejemplo
 
 **Input:**
-<TerminalOutput>
-{`Tabla Files:
+```output
+Tabla Files:
 +------------+----------------------------------------------------------------------------------+
 | file_name  | content                                                                          | 
 +------------+----------------------------------------------------------------------------------+
@@ -36,13 +36,13 @@ Devuelve *la palabra 'bull' y 'bear' junto con el número correspondiente de ocu
 |            | but analysts warn of possibility of too much optimism and that in fact we are    |
 |            | awaiting a bear market. As always predicting the future market is an uncertain   |
 |            | game and all investors should follow their instincts and best practices.         | 
-+------------+----------------------------------------------------------------------------------+`}
-</TerminalOutput>
++------------+----------------------------------------------------------------------------------+
+```
 
 
 **Output:**
-<TerminalOutput>
-{`+------+-------+
+```output
++------+-------+
 | word | count |  
 +------+-------+
 | bull | 3     | 
@@ -51,11 +51,11 @@ Devuelve *la palabra 'bull' y 'bear' junto con el número correspondiente de ocu
 
 Explicación:
 - La palabra "bull" aparece 1 vez en "draft1.txt", 1 vez en "draft2.txt" y 
-    1 vez en "draft3.txt". Por lo tanto, el número total de ocurrencias 
-    para la palabra "bull" es 3.
+  1 vez en "draft3.txt". Por lo tanto, el número total de ocurrencias 
+  para la palabra "bull" es 3.
 - La palabra "bear" aparece 1 vez en "draft2.txt", y 1 vez en "draft3.txt". 
-    Por lo tanto, el número total de ocurrencias para la palabra "bear" es 2.`}
-</TerminalOutput>
+  Por lo tanto, el número total de ocurrencias para la palabra "bear" es 2.
+```
 
 ## Soluciones
 

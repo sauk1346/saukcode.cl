@@ -20,41 +20,41 @@ Devuelve *la cadena equivalente lexicográficamente más pequeña de `baseStr` u
 
 
 **Ejemplo 1:**
-<TerminalOutput>
-{`Input:  s1 = "parker", s2 = "morris", baseStr = "parser"
+```output
+Input:  s1 = "parker", s2 = "morris", baseStr = "parser"
 Output: "makkek"
 
 Explicación:
 - Basándose en la información de equivalencia en s1 y s2, podemos agrupar 
-    sus caracteres como [m,p], [a,o], [k,r,s], [e,i].
+  sus caracteres como [m,p], [a,o], [k,r,s], [e,i].
 - Los caracteres en cada grupo son equivalentes y están ordenados 
-    lexicográficamente.
-- Por lo tanto, la respuesta es "makkek".`}
-</TerminalOutput>
+  lexicográficamente.
+- Por lo tanto, la respuesta es "makkek".
+```
 
 **Ejemplo 2:**
-<TerminalOutput>
-{`Input:  s1 = "hello", s2 = "world", baseStr = "hold"
+```output
+Input:  s1 = "hello", s2 = "world", baseStr = "hold"
 Output: "hdld"
 
 Explicación:
 - Basándose en la información de equivalencia en s1 y s2, podemos agrupar 
-    sus caracteres como [h,w], [d,e,o], [l,r].
+  sus caracteres como [h,w], [d,e,o], [l,r].
 - Por lo tanto, solo la segunda letra 'o' en baseStr se cambia a 'd', 
-    la respuesta es "hdld".`}
-</TerminalOutput>
+  la respuesta es "hdld".
+```
 
 **Ejemplo 3:**
-<TerminalOutput>
-{`Input:  s1 = "leetcode", s2 = "programs", baseStr = "sourcecode"
+```output
+Input:  s1 = "leetcode", s2 = "programs", baseStr = "sourcecode"
 Output: "aauaaaaada"
 
 Explicación:
 - Agrupamos los caracteres equivalentes en s1 y s2 como [a,o,e,r,s,c],
-    [l,p], [g,t] y [d,m].
+  [l,p], [g,t] y [d,m].
 - Por lo tanto, todas las letras en baseStr excepto 'u' y 'd' se 
-    transforman en 'a', la respuesta es "aauaaaaada".`}
-</TerminalOutput>
+  transforman en 'a', la respuesta es "aauaaaaada".
+```
 
 ## Soluciones
 

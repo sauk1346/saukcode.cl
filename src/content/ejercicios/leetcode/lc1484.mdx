@@ -2,8 +2,8 @@
 
 **Tabla** `Activities`
 
-<TerminalOutput>
-{`+-------------+---------+
+```output
++-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | sell_date   | date    |
@@ -11,10 +11,10 @@
 +-------------+---------+
 
 - No hay clave primaria (columna con valores únicos) para esta tabla. Puede 
-    contener duplicados.
+  contener duplicados.
 - Cada fila de esta tabla contiene el npmbre del producto y la fecha en que 
-    fue vendido en un mercado.`}
-</TerminalOutput>
+  fue vendido en un mercado.
+```
 
 Escribe una solución para encontrar para cada fecha el número de productos diferentes vendidos y sus nombres.
 
@@ -25,9 +25,10 @@ Devuelve la tabla de resultados ordenada por `sell_date`.
 ## Ejemplo
 
 **Input**
-<TerminalOutput>
 Tabla Activities:
-{`+------------+------------+
+
+```output
++------------+------------+
 | sell_date  | product     |
 +------------+------------+
 | 2020-05-30 | Headphone  |
@@ -37,12 +38,12 @@ Tabla Activities:
 | 2020-06-01 | Bible      |
 | 2020-06-02 | Mask       |
 | 2020-05-30 | T-Shirt    |
-+------------+------------+`}
-</TerminalOutput>
++------------+------------+
+```
 
 **Output**
-<TerminalOutput>
-{`+------------+----------+------------------------------+
+```output
++------------+----------+------------------------------+
 | sell_date  | num_sold | products                     |
 +------------+----------+------------------------------+
 | 2020-05-30 | 3        | Basketball,Headphone,T-shirt |
@@ -52,11 +53,11 @@ Tabla Activities:
 
 Explicación: 
 - Para 2020-05-30, los artículos vendidos fueron (Headphone, Basketball, T-shirt),
-    los ordenamos lexicográficamente y los separamos por coma.
+  los ordenamos lexicográficamente y los separamos por coma.
 - Para 2020-06-01, los artículos vendidos fueron (Pencil, Bible), los ordenamos 
-    lexicográficamente y los separamos por coma.
-- Para 2020-06-02, el artículo vendido es (Mask), simplemente lo devolvemos.`}
-</TerminalOutput>
+  lexicográficamente y los separamos por coma.
+- Para 2020-06-02, el artículo vendido es (Mask), simplemente lo devolvemos.
+```
 
 ## Solution
 

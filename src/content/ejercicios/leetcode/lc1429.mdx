@@ -11,60 +11,60 @@ Implementa la clase `FirstUnique`:
 ## Ejemplos
 
 **Ejemplo 1:**
-<TerminalOutput>
-{`Input: 
-    ["FirstUnique","showFirstUnique","add","showFirstUnique","add","showFirstUnique","add","showFirstUnique"]
-    [[[2,3,5]],[],[5],[],[2],[],[3],[]]
+```output
+Input: 
+  ["FirstUnique","showFirstUnique","add","showFirstUnique","add","showFirstUnique","add","showFirstUnique"]
+  [[[2,3,5]],[],[5],[],[2],[],[3],[]]
 
 Output: 
-    [null,2,null,2,null,3,null,-1]
+  [null,2,null,2,null,3,null,-1]
 
 Explicación: 
-    FirstUnique firstUnique = new FirstUnique([2,3,5]);
-    firstUnique.showFirstUnique(); // devuelve 2
-    firstUnique.add(5);            // la cola es [2,3,5,5]
-    firstUnique.showFirstUnique(); // devuelve 2
-    firstUnique.add(2);            // la cola es [2,3,5,5,2]
-    firstUnique.showFirstUnique(); // devuelve 3
-    firstUnique.add(3);            // la cola es [2,3,5,5,2,3]
-    firstUnique.showFirstUnique(); // devuelve -1`}
-</TerminalOutput>
+  FirstUnique firstUnique = new FirstUnique([2,3,5]);
+  firstUnique.showFirstUnique(); // devuelve 2
+  firstUnique.add(5);            // la cola es [2,3,5,5]
+  firstUnique.showFirstUnique(); // devuelve 2
+  firstUnique.add(2);            // la cola es [2,3,5,5,2]
+  firstUnique.showFirstUnique(); // devuelve 3
+  firstUnique.add(3);            // la cola es [2,3,5,5,2,3]
+  firstUnique.showFirstUnique(); // devuelve -1
+```
 
 **Ejemplo 2:**
-<TerminalOutput>
-{`Input: 
-    ["FirstUnique","showFirstUnique","add","add","add","add","add","showFirstUnique"]
-    [[[7,7,7,7,7,7]],[],[7],[3],[3],[7],[17],[]]
+```output
+Input: 
+  ["FirstUnique","showFirstUnique","add","add","add","add","add","showFirstUnique"]
+  [[[7,7,7,7,7,7]],[],[7],[3],[3],[7],[17],[]]
 
 Output: 
-    [null,-1,null,null,null,null,null,17]
+  [null,-1,null,null,null,null,null,17]
 
 Explicación: 
-    FirstUnique firstUnique = new FirstUnique([7,7,7,7,7,7]);
-    firstUnique.showFirstUnique(); // devuelve -1
-    firstUnique.add(7);            // la cola es [7,7,7,7,7,7,7]
-    firstUnique.add(3);            // la cola es [7,7,7,7,7,7,7,3]
-    firstUnique.add(3);            // la cola es [7,7,7,7,7,7,7,3,3]
-    firstUnique.add(7);            // la cola es [7,7,7,7,7,7,7,3,3,7]
-    firstUnique.add(17);           // la cola es [7,7,7,7,7,7,7,3,3,7,17]
-    firstUnique.showFirstUnique(); // devuelve 17`}
-</TerminalOutput>
+  FirstUnique firstUnique = new FirstUnique([7,7,7,7,7,7]);
+  firstUnique.showFirstUnique(); // devuelve -1
+  firstUnique.add(7);            // la cola es [7,7,7,7,7,7,7]
+  firstUnique.add(3);            // la cola es [7,7,7,7,7,7,7,3]
+  firstUnique.add(3);            // la cola es [7,7,7,7,7,7,7,3,3]
+  firstUnique.add(7);            // la cola es [7,7,7,7,7,7,7,3,3,7]
+  firstUnique.add(17);           // la cola es [7,7,7,7,7,7,7,3,3,7,17]
+  firstUnique.showFirstUnique(); // devuelve 17
+```
 
 **Ejemplo 3:**
-<TerminalOutput>
-{`Input:
-    ["FirstUnique","showFirstUnique","add","showFirstUnique"]
-    [[[809]],[],[809],[]]
+```output
+Input:
+  ["FirstUnique","showFirstUnique","add","showFirstUnique"]
+  [[[809]],[],[809],[]]
 
 Output: 
-    [null,809,null,-1]
+  [null,809,null,-1]
 
 Explicación: 
-    FirstUnique firstUnique = new FirstUnique([809]);
-    firstUnique.showFirstUnique(); // return 809
-    firstUnique.add(809);          // la cola es [809,809]
-    firstUnique.showFirstUnique(); // return -1`}
-</TerminalOutput>
+  FirstUnique firstUnique = new FirstUnique([809]);
+  firstUnique.showFirstUnique(); // return 809
+  firstUnique.add(809);          // la cola es [809,809]
+  firstUnique.showFirstUnique(); // return -1
+```
 
 ## Soluciones
 

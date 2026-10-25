@@ -43,8 +43,48 @@ function takeLabel(node) {
     : { label: null, body: node.children };
 }
 
+/** Bloques de código que son salidas de terminal: ```output (sin fondo) y ```terminal (CRT). */
+const TERMINAL_LANGS = { output: ['terminal'], terminal: ['terminal', 'terminal-bg'] };
+
+/** Texto plano de la salida; las líneas que empiezan con `#` van atenuadas como comentarios. */
+function terminalChildren(value) {
+  return value.split('\n').flatMap((line, i) => {
+    const node = /^\s*#/.test(line)
+      ? { type: 'element', tagName: 'span', properties: { className: ['terminal-comment'] }, children: [{ type: 'text', value: line }] }
+      : { type: 'text', value: line };
+    return i === 0 ? [node] : [{ type: 'text', value: '\n' }, node];
+  });
+}
+
 export default function remarkComponents() {
   return (tree, file) => {
+    // <samp> (salida de programa) y no <pre>: el mapping MDX cambia <pre> por PreBlock, que agrega
+    // el botón de copiar, y Sätteri no le pasa las props para distinguirlo. Sin <code>, Prism no lo toca.
+    // Con `id` se numera ("Salida N", en orden de documento) y con `caption` lleva título: ambos van en <figure>.
+    let terminalCount = 0;
+    visit(tree, 'code', (node) => {
+      const className = TERMINAL_LANGS[node.lang];
+      if (!className) return;
+      const meta = Object.fromEntries([...(node.meta ?? '').matchAll(/(\w+)="([^"]*)"/g)].map((m) => [m[1], m[2]]));
+      const number = meta.id ? ++terminalCount : null;
+      const caption = number ? `Salida ${number}${meta.caption ? `: ${meta.caption}` : ''}` : meta.caption;
+      const children = terminalChildren(node.value);
+      // Tipo propio: el manejador de `code` envolvería el resultado en un <pre>
+      node.type = 'terminalOutput';
+      if (!caption) {
+        node.data = { hName: 'samp', hProperties: { className }, hChildren: children };
+        return;
+      }
+      node.data = {
+        hName: 'figure',
+        hProperties: { id: meta.id, className: ['terminal-figure'] },
+        hChildren: [
+          { type: 'element', tagName: 'figcaption', properties: { className: ['terminal-caption'] }, children: [{ type: 'text', value: caption }] },
+          { type: 'element', tagName: 'samp', properties: { className: [...className, 'terminal-with-caption'] }, children },
+        ],
+      };
+    });
+
     const source = String(file.value);
     const warn = (node, message) => {
       const name = file.path ? path.relative(process.cwd(), file.path) : 'mdx';

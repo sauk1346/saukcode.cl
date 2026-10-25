@@ -1,15 +1,15 @@
 # Eliminar Filas Duplicadas
 
 **DataFrame** `customers`
-<TerminalOutput>
-{`+-------------+--------+
+```output
++-------------+--------+
 | Column Name | Type   |
 +-------------+--------+
 | customer_id | int    |
 | name        | object |
 | email       | object |
-+-------------+--------+`}
-</TerminalOutput>
++-------------+--------+
+```
 
 Hay algunas filas duplicadas en el DataFrame basadas en la columna `email`.
 
@@ -18,8 +18,8 @@ Escribe una solución para eliminar estas filas duplicadas y mantener solo la **
 ## Ejemplo
 
 **Input**
-<TerminalOutput>
-{`+-------------+---------+---------------------+
+```output
++-------------+---------+---------------------+
 | customer_id | name    | email               |
 +-------------+---------+---------------------+
 | 1           | Ella    | emily@example.com   |
@@ -28,12 +28,12 @@ Escribe una solución para eliminar estas filas duplicadas y mantener solo la **
 | 4           | Alice   | john@example.com    |
 | 5           | Finn    | john@example.com    |
 | 6           | Violet  | alice@example.com   |
-+-------------+---------+---------------------+`}
-</TerminalOutput>
++-------------+---------+---------------------+
+```
 
 **Output**  
-<TerminalOutput>
-{`+-------------+---------+---------------------+
+```output
++-------------+---------+---------------------+
 | customer_id | name    | email               |
 +-------------+---------+---------------------+
 | 1           | Ella    | emily@example.com   |
@@ -45,8 +45,8 @@ Escribe una solución para eliminar estas filas duplicadas y mantener solo la **
 
 Explicación:
 Alice (customer_id = 4) y Finn (customer_id = 5) ambos usan john@example.com, 
-por lo que solo se conserva la primera ocurrencia de este email.`}
-</TerminalOutput>
+por lo que solo se conserva la primera ocurrencia de este email.
+```
 
 ## Soluciones
 

@@ -36,12 +36,12 @@ print(f"Edad: {persona1.edad}")
 persona1.edad = 35
 print(f"Nueva Edad: {persona1.edad}")
 ```
-<TerminalOutput withBg>
-{`Nombre: AAA
+```terminal
+Nombre: AAA
 Rut: 123-4
 Edad: 25
-Nueva Edad: 35`}
-</TerminalOutput>
+Nueva Edad: 35
+```
 :::
 
 ## Ejercicio 02
@@ -73,9 +73,9 @@ class Persona:
 persona1 = Persona("123-4", "AAA", 35)
 print(persona1.mostrarDatos())
 ```
-<TerminalOutput withBg>
-{`Rut: 123-4, Nombre: AAA, Edad: 35`}
-</TerminalOutput>
+```terminal
+Rut: 123-4, Nombre: AAA, Edad: 35
+```
 :::
 
 ## Ejercicio 03
@@ -128,11 +128,11 @@ persona1.agregarCorreo("personal", "personal@gmail.com")
 for i in persona1.mostrarCorreos():
     print(f"Tipo correo: {i.tipo}, Dirección: {i.correo}")
 ```
-<TerminalOutput withBg>
-{`Rut: 123-4, Nombre: AAA, Edad: 35
+```terminal
+Rut: 123-4, Nombre: AAA, Edad: 35
 Tipo correo: trabajo, Dirección: trabajo@gmail.com
-Tipo correo: personal, Dirección: personal@gmail.com`}
-</TerminalOutput>
+Tipo correo: personal, Dirección: personal@gmail.com
+```
 :::
 
 
@@ -212,8 +212,8 @@ persona1.eliminarCorreo("personal@gmail.com")
 for i in persona1.mostrarCorreos():
     print(f"Tipo correo: {i.tipo}, Dirección: {i.direccion}")
 ```
-<TerminalOutput withBg>
-{`Rut: 123-4, Nombre: AAA, Edad: 35
+```terminal
+Rut: 123-4, Nombre: AAA, Edad: 35
 Tipo correo: trabajo, Dirección: trabajo@gmail.com
 Tipo correo: personal, Dirección: personal@gmail.com
 
@@ -224,7 +224,7 @@ Tipo correo: trabajo2, Dirección: nuevo@gmail.com
 
 --elimina un correo--
 Tipo correo: trabajo, Dirección: trabajo@gmail.com
-Tipo correo: trabajo2, Dirección: nuevo@gmail.com`}
-</TerminalOutput>
+Tipo correo: trabajo2, Dirección: nuevo@gmail.com
+```
 :::
 

@@ -1,8 +1,8 @@
 # Clases con al menos 5 Estudiantes
 
 Tabla `Courses`
-<TerminalOutput>
-{`+-------------+---------+
+```output
++-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | student     | varchar |
@@ -10,10 +10,10 @@ Tabla `Courses`
 +-------------+---------+
 
 - (student, class) es la clave primaria (combinación de columnas con valores únicos) 
-    para esta tabla.
+  para esta tabla.
 - Cada fila de esta tabla indica el nombre de un estudiantes y la clase en la que 
-    está inscrito.`}
-</TerminalOutput>
+  está inscrito.
+```
 
 Escribe una solución para encontrar todas las clases que tienen **al menos cinco estudiantes.**
 
@@ -23,8 +23,8 @@ Devuelve la tabla de resultados en **cualquier orden**.
 ## Ejemplo
 
 **Input**
-<TerminalOutput>
-{`tabla Courses:
+```output
+tabla Courses:
 +---------+----------+
 | student | class    |
 +---------+----------+
@@ -37,13 +37,13 @@ Devuelve la tabla de resultados en **cualquier orden**.
 | G       | Math     |
 | H       | Math     |
 | I       | Math     |
-+---------+----------+`}
-</TerminalOutput>
++---------+----------+
+```
 
 
 **Output**
-<TerminalOutput>
-{`+---------+
+```output
++---------+
 | class   |
 +---------+
 | Math    |
@@ -51,11 +51,11 @@ Devuelve la tabla de resultados en **cualquier orden**.
 
 Explicación:
 - La clase de Matemáticas tiene 6 estudiantes (A, C, E, G, H, I), por lo que se 
-    incluye en la salida.
+  incluye en la salida.
 - La clase de Inglés tiene 1 estudiante (B), por lo que no se incluye.
 - La clase de Biología tiene 1 estudiante (D), por lo que no se incluye
-- La clase de Computación tiene 1 estudiante (F), por lo que no se incluye.`}
-</TerminalOutput>
+- La clase de Computación tiene 1 estudiante (F), por lo que no se incluye.
+```
 
 :::solution[Python]{icon="Python"}
 ```python

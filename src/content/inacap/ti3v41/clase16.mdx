@@ -109,8 +109,8 @@ API que proveerá servicios (datos) mediante endpoints REST
     ```sh
     python manage.py migrate
     ```
-    <TerminalOutput>
-    {`Operations to perform:
+    ```output
+    Operations to perform:
     Apply all migrations: admin, auth, contenttypes, sessions
     Running migrations:
     Applying contenttypes.0001_initial... OK
@@ -130,8 +130,8 @@ API que proveerá servicios (datos) mediante endpoints REST
     Applying auth.0010_alter_group_name_max_length... OK
     Applying auth.0011_update_proxy_permissions... OK
     Applying auth.0012_alter_user_first_name_max_length... OK
-    Applying sessions.0001_initial... OK`}
-    </TerminalOutput>
+    Applying sessions.0001_initial... OK
+    ```
 
 4. **Configuración Inicial:** Agregar `api` y `rest_framework` en `settings.py`. Configurar fecha y hora
     ```python
@@ -170,20 +170,20 @@ API que proveerá servicios (datos) mediante endpoints REST
     ```sh
     python manage.py makemigrations
     ```
-    <TerminalOutput>
-    {`Migrations for 'api':
+    ```output
+    Migrations for 'api':
     api/migrations/0001_initial.py
-        + Create model Proyecto`}
-    </TerminalOutput>
+       + Create model Proyecto
+    ```
     ```sh
     python manage.py migrate
     ```
-    <TerminalOutput>
-    {`Operations to perform:
+    ```output
+    Operations to perform:
     Apply all migrations: admin, api, auth, contenttypes, sessions
     Running migrations:
-    Applying api.0001_initial... OK`}
-    </TerminalOutput>
+    Applying api.0001_initial... OK
+    ```
 
 7. **Configuración Serializers:** Crear un nuevo módulo `serializers.py`
     ```python

@@ -35,9 +35,9 @@ try:
 except ValueError as e:
 	print(f"Error: {e}")
 ```
-<TerminalOutput withBg>
-{`Error: invalid literal for int() with base 10: 'treinta'`}
-</TerminalOutput>
+```terminal
+Error: invalid literal for int() with base 10: 'treinta'
+```
 
 ### TypeError
 Cuando una operación o función se aplica a un objeto de tipo inapropiado
@@ -50,9 +50,9 @@ try:
 except TypeError as e:
 	print(f"Error: {e}")
 ```
-<TerminalOutput withBg>
-{`Error: can only concatenate str (not "int") to str`}
-</TerminalOutput>
+```terminal
+Error: can only concatenate str (not "int") to str
+```
 
 ### ZeroDivisionError
 Cuando se intenta dividir un número por 0
@@ -65,9 +65,9 @@ try:
 except ZeroDivisionError as e:
 	print(f"Error: {e}")
 ```
-<TerminalOutput withBg>
-{`Error: division by zero`}
-</TerminalOutput>
+```terminal
+Error: division by zero
+```
 
 ### KeyError
 Para diccionarios. Cuando se intenta acceder a una clave que no existe en el diccionario
@@ -82,9 +82,9 @@ try:
 except KeyError as e:
 	print(f"Error: {e}")
 ```
-<TerminalOutput withBg>
-{`Error: 'apellido'`}
-</TerminalOutput>
+```terminal
+Error: 'apellido'
+```
 
 ### IndexError
 Para listas. Cuando se intenta acceder a un elemento fuera del rango de la lista
@@ -99,9 +99,9 @@ try:
 except IndexError as e:
 	print(f"Error: {e}")
 ```
-<TerminalOutput withBg>
-{`Error: list index out of range`}
-</TerminalOutput>
+```terminal
+Error: list index out of range
+```
 
 ### AttributeError
 Para Clases. Cuando se intenta acceder a un atributo que no existe en un objeto
@@ -116,9 +116,9 @@ try:
 except AttributeError as e:
 	print(f"Error: {e}")
 ```
-<TerminalOutput withBg>
-{`Error: 'int' object has no attribute 'length'`}
-</TerminalOutput>
+```terminal
+Error: 'int' object has no attribute 'length'
+```
 
 ### FileNotFoundError
 Cuando se intenta abrir un archivo que no existe
@@ -131,9 +131,9 @@ try:
 except FileNotFoundError as e:
 	print(f"Error: {e}")
 ```
-<TerminalOutput withBg>
-{`Error: [Errno 2] No such file or directory: 'archivo_inexistente.txt'`}
-</TerminalOutput>
+```terminal
+Error: [Errno 2] No such file or directory: 'archivo_inexistente.txt'
+```
 
 ### FileExistsError
 Cuando se intenta crear un archivo ya existente
@@ -146,9 +146,9 @@ try:
 except FileExistsError as e:
 	print(f"Error: {e}")
 ```
-<TerminalOutput withBg>
-{`Error: [Errno 17] File exists: 'archivo_existene.txt'`}
-</TerminalOutput>
+```terminal
+Error: [Errno 17] File exists: 'archivo_existene.txt'
+```
 
 # Actividad de Práctica 09
 

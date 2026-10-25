@@ -26,20 +26,20 @@ Es posible crear relaciones entre modelos, para así generar tablas relacionales
     ```sh
     python manage.py makemigrations
     ```
-    <TerminalOutput>
-    {`Migrations for 'tienda':
-      tienda/migrations/0002_producto_categoria.py
-        + Add field categoria to producto`}
-    </TerminalOutput>
+    ```output
+    Migrations for 'tienda':
+     tienda/migrations/0002_producto_categoria.py
+       + Add field categoria to producto
+    ```
     ```sh
     python manage.py migrate
     ```
-    <TerminalOutput>
-    {`Operations to perform:
-      Apply all migrations: admin, auth, contenttypes, sessions, tienda
+    ```output
+    Operations to perform:
+     Apply all migrations: admin, auth, contenttypes, sessions, tienda
     Running migrations:
-      Applying tienda.0002_producto_categoria... OK`}
-    </TerminalOutput>
+     Applying tienda.0002_producto_categoria... OK
+    ```
 
 3. **Configurar Admin:** Agregar el nuevo campo a la clase `ProductoAdmin`
     ```python

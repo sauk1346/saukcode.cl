@@ -2,8 +2,8 @@
 
 **Tabla:** `Customers`
 
-<TerminalOutput>
-{`+-------------+---------+
+```output
++-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | id          | int     |
@@ -11,13 +11,13 @@
 +-------------+---------+
 
 - "id" es la clave primaria para esta tabla.
-- Cada fila de esta tabla indica el ID y nombre y un cliente.`}
-</TerminalOutput>
+- Cada fila de esta tabla indica el ID y nombre y un cliente.
+```
 
 **Tabla:** `Orders`
 
-<TerminalOutput>
-{`+-------------+------+
+```output
++-------------+------+
 | Column Name | Type |
 +-------------+------+
 | id          | int  |
@@ -26,8 +26,8 @@
 
 - "id" es la clave primaria de esta tabla.
 - "customerId" es una clave foránea del ID de la tabla Customers.
-- Cada fila de esta tabla indica el ID de un pedido y el ID del cliente que lo ordenó.`}
-</TerminalOutput>
+- Cada fila de esta tabla indica el ID de un pedido y el ID del cliente que lo ordenó.
+```
 
 Escribe una solución para encontrar todos los cliente que nunca ordenan nada.
 
@@ -38,8 +38,8 @@ Devuelve el resultado en **cualquier orden.**
 ::::columns
 :::col
 **Input**
-<TerminalOutput>
-{`Customers table:
+```output
+Customers table:
 +----+-------+
 | id | name  |
 +----+-------+
@@ -55,19 +55,19 @@ Orders table:
 +----+------------+
 | 1  | 3          |
 | 2  | 1          |
-+----+------------+`}
-</TerminalOutput>
++----+------------+
+```
 :::
 :::col
 **Output**
-<TerminalOutput>
-{`+-----------+
+```output
++-----------+
 | Customers |
 +-----------+
 | Henry     |
 | Max       |
-+-----------+`}
-</TerminalOutput>
++-----------+
+```
 :::
 ::::
 

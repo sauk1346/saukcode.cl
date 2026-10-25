@@ -1,8 +1,8 @@
 # Rendimiento de Anuncios
 
 **Tabla:** `Ads`
-<TerminalOutput>
-{`+---------------+---------+
+```output
++---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
 | ad_id         | int     |
@@ -11,12 +11,12 @@
 +---------------+---------+
 
 - (ad_id, user_id) es la clave primaria (combination combinación de columnas 
-    con valores únicos) para esta tabla.
+  con valores únicos) para esta tabla.
 - Cada fila de esta tabla contiene el ID para un Anuncio, el ID de un usuario, 
-    y la acción tomada por este usuario respecto a este Anuncio.
+  y la acción tomada por este usuario respecto a este Anuncio.
 - La columna "action" es un tipo ENUM (categoría) de ('Clicked', 'Viewed', 
-    'Ignored')`}
-</TerminalOutput>
+  'Ignored')
+```
 
 Una empresa está realizando Anuncios y quiere calcular el rendimiento de cada Anuncio. El rendimiento del Anuncio se mide usando la Tasa de Clics (CTR) donde
 
@@ -34,8 +34,8 @@ Devuelve la tabla de resultados ordenada por `ctr` en **orden descendente** y po
 ## Ejemplo
 
 **Input:**
-<TerminalOutput>
-{`Tabla Ads:
+```output
+Tabla Ads:
 +-------+---------+---------+
 | ad_id | user_id | action  |
 +-------+---------+---------+
@@ -49,12 +49,12 @@ Devuelve la tabla de resultados ordenada por `ctr` en **orden descendente** y po
 | 1     | 4       | Viewed  |
 | 2     | 11      | Viewed  |
 | 1     | 2       | Clicked |
-+-------+---------+---------+`}
-</TerminalOutput>
++-------+---------+---------+
+```
 
 **Output:**
-<TerminalOutput>
-{`+-------+-------+
+```output
++-------+-------+
 | ad_id | ctr   |
 +-------+-------+
 | 1     | 66.67 |
@@ -64,13 +64,13 @@ Devuelve la tabla de resultados ordenada por `ctr` en **orden descendente** y po
 +-------+-------+
 
 Explicación:
-  - para ad_id = 1, ctr = (2/(2+1)) * 100 = 66.67
-  - para ad_id = 2, ctr = (1/(1+2)) * 100 = 33.33
-  - para ad_id = 3, ctr = (1/(1+1)) * 100 = 50.00
-  - para ad_id = 5, ctr = 0.00, Nota que ad_id = 5 no tiene clics o vistas.
+- para ad_id = 1, ctr = (2/(2+1)) * 100 = 66.67
+- para ad_id = 2, ctr = (1/(1+2)) * 100 = 33.33
+- para ad_id = 3, ctr = (1/(1+1)) * 100 = 50.00
+- para ad_id = 5, ctr = 0.00, Nota que ad_id = 5 no tiene clics o vistas.
 
-Nota: no nos importan los Anuncios Ignorados.`}
-</TerminalOutput>
+Nota: no nos importan los Anuncios Ignorados.
+```
 
 
 

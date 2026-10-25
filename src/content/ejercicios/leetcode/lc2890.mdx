@@ -2,8 +2,8 @@
 
 **DataFrame** `report`
 
-<TerminalOutput>
-{`+-------------+--------+
+```output
++-------------+--------+
 | Column Name | Type   |
 +-------------+--------+
 | product     | object |
@@ -11,26 +11,26 @@
 | quarter_2   | int    |
 | quarter_3   | int    |
 | quarter_4   | int    |
-+-------------+--------+`}
-</TerminalOutput>
++-------------+--------+
+```
 
 Escribe una solución para **reestructurar** los datos de manera que cada fila represente los datos de ventas de un producto en un trimestre específico.
 
 ## Ejemplo
 
 **Input:**
-<TerminalOutput>
-{`+-------------+-----------+-----------+-----------+-----------+
+```output
++-------------+-----------+-----------+-----------+-----------+
 | product     | quarter_1 | quarter_2 | quarter_3 | quarter_4 |
 +-------------+-----------+-----------+-----------+-----------+
 | Umbrella    | 417       | 224       | 379       | 611       |
 | SleepingBag | 800       | 936       | 93        | 875       |
-+-------------+-----------+-----------+-----------+-----------+`}
-</TerminalOutput>
++-------------+-----------+-----------+-----------+-----------+
+```
 
 **Output:**
-<TerminalOutput>
-{`+-------------+-----------+-------+
+```output
++-------------+-----------+-------+
 | product     | quarter   | sales |
 +-------------+-----------+-------+
 | Umbrella    | quarter_1 | 417   |
@@ -41,8 +41,8 @@ Escribe una solución para **reestructurar** los datos de manera que cada fila r
 | SleepingBag | quarter_3 | 93    |
 | Umbrella    | quarter_4 | 611   |
 | SleepingBag | quarter_4 | 875   |
-+-------------+-----------+-------+`}
-</TerminalOutput>
++-------------+-----------+-------+
+```
 
 ## Soluciones
 

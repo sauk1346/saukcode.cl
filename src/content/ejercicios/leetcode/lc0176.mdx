@@ -1,8 +1,8 @@
 # Segundo Salario más Alto
 
 **Tabla:** `Employee`
-<TerminalOutput>
-{`+-------------+------+
+```output
++-------------+------+
 | Column Name | Type |
 +-------------+------+
 | id          | int  |
@@ -10,8 +10,8 @@
 +-------------+------+
 
 - "id" es la clave primaria para esta tabla.
-- Cada fila contiene información sobre el salario de un empleado.`}
-</TerminalOutput>
+- Cada fila contiene información sobre el salario de un empleado.
+```
 
 Escribe una solución para encontrar el segundo salario **distinto** más alto de la tabla `Employee`. Si no hay un segundo salario más alto, devuelve `null` (Devuelve `None` en Pandas).
 
@@ -22,26 +22,26 @@ Escribe una solución para encontrar el segundo salario **distinto** más alto d
 ::::columns
 :::col
 **Input:**
-<TerminalOutput>
-{`Employee table:
+```output
+Employee table:
 +----+--------+
 | id | salary |
 +----+--------+
 | 1  | 100    |
 | 2  | 200    |
 | 3  | 300    |
-+----+--------+`}
-</TerminalOutput>
++----+--------+
+```
 :::
 :::col
 **Output:**
-<TerminalOutput>
-{`+---------------------+
+```output
++---------------------+
 | SecondHighestSalary |
 +---------------------+
 | 200                 |
-+---------------------+`}
-</TerminalOutput>
++---------------------+
+```
 :::
 ::::
 
@@ -50,24 +50,24 @@ Escribe una solución para encontrar el segundo salario **distinto** más alto d
 ::::columns
 :::col
 **Input:**
-<TerminalOutput>
-{`Employee table:
+```output
+Employee table:
 +----+--------+
 | id | salary |
 +----+--------+
 | 1  | 100    |
-+----+--------+`}
-</TerminalOutput>
++----+--------+
+```
 :::
 :::col
 **Output:**
-<TerminalOutput>
-{`+---------------------+
+```output
++---------------------+
 | SecondHighestSalary |
 +---------------------+
 | null                |
-+---------------------+`}
-</TerminalOutput>
++---------------------+
+```
 :::
 ::::
 

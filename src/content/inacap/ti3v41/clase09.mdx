@@ -23,20 +23,20 @@
     ```sh
     python manage.py makemigrations
     ```
-    <TerminalOutput>
-    {`Migrations for 'tienda':
-      tienda/migrations/0003_producto_imagen.py
-        + Add field imagen to producto`}
-    </TerminalOutput>
+    ```output
+    Migrations for 'tienda':
+     tienda/migrations/0003_producto_imagen.py
+       + Add field imagen to producto
+    ```
     ```sh
     python manage.py migrate
     ```
-    <TerminalOutput>
-    {`Operations to perform:
-      Apply all migrations: admin, auth, contenttypes, sessions, tienda
+    ```output
+    Operations to perform:
+     Apply all migrations: admin, auth, contenttypes, sessions, tienda
     Running migrations:
-      Applying tienda.0003_producto_imagen... OK`}
-    </TerminalOutput>
+     Applying tienda.0003_producto_imagen... OK
+    ```
 
 3. **Configurar Admin:** Agregar el campo `imagen` en la clase `ProductoAdmin`
     ```python

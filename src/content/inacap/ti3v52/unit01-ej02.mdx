@@ -180,8 +180,8 @@ Configuración para `Switch0` (en el primer piso)
 
 - Ir a: `Switch0` >> `CLI`
 - Escribir las siguientes instrucciones:
-<TerminalOutput withBg>
-{`# entrar al modo privilegiado
+```terminal
+# entrar al modo privilegiado
 enable
 
 # entrar al modo de configuración global
@@ -200,8 +200,8 @@ no shutdown
 exit
 
 # definir la puerta de enlace para comunicarse fuera de la subred
-ip default-gateway 172.20.30.1`}
-</TerminalOutput>
+ip default-gateway 172.20.30.1
+```
 
 <SmartFigure
 	id="configuracion-switch0"
@@ -232,8 +232,8 @@ Configuración para `Router0` (en el segundo piso)
 
 - Ir a: `Router0` >> `CLI`
 - Escribir las siguientes instrucciones:
-<TerminalOutput withBg>
-{`# entrar al modo privilegiado
+```terminal
+# entrar al modo privilegiado
 enable
 
 # 1. configuración interfaz e IP
@@ -278,8 +278,8 @@ no transport input
 transport input ssh
 login local
 # salir de las líneas vty
-exit`}
-</TerminalOutput>
+exit
+```
 
 <SmartFigure
 	id="fig07"
@@ -291,9 +291,9 @@ exit`}
 
 Se elige `PC3` para la ejecución del comando solicitado
 
-<TerminalOutput withBg>
-{`# conectarse al router via SSH
-C:\>ssh -l admin 172.20.30.1
+```terminal
+# conectarse al router via SSH
+C:>ssh -l admin 172.20.30.1
 
 Password: cisco-admin
 
@@ -301,8 +301,8 @@ Password: cisco-admin
 ANTONIO>enable
 Password: cisco-ena
 
-ANTONIO#>`}
-</TerminalOutput>
+ANTONIO#>
+```
 
 <SmartFigure
 	id="fig08"

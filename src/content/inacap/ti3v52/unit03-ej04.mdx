@@ -65,8 +65,8 @@ Realice configuración de protocolo de enrutamiento OSPFv2 en router COLLAHUASI:
 
 :::solution[Solución Actividad 02]
 
-<TerminalOutput withBg>
-{`enable
+```terminal
+enable
 configure terminal
 
 # Entrar al proceso OSPF con ID de proceso 100
@@ -84,8 +84,8 @@ network 172.20.10.128 0.0.0.3 area 0     # Enlace serial hacia LOSPELAMBRES
 # No enviar información de enrutamiento por interfaces
 # que no sea necesario o inseguro:
 passive-interface default                
-no passive-interface s0/0/0`}
-</TerminalOutput>
+no passive-interface s0/0/0
+```
 
 :::
 
@@ -100,8 +100,8 @@ Realice configururación de protocolo de enrutamiento OSPFv2 en router LOSPELAMB
 
 :::solution[Solución Actividad 03]
 
-<TerminalOutput withBg>
-{`enable
+```terminal
+enable
 configure terminal
 
 # Entrar al proceso OSPF con ID de proceso 200
@@ -118,8 +118,8 @@ network 172.20.10.133 0.0.0.0 area 0     # Enlace serial hacia ELTENIENTE
 
 # No enviar información de enrutamiento por interfaces
 # que no sea necesario o inseguro:
-passive-interface g0/0`}
-</TerminalOutput>
+passive-interface g0/0
+```
 
 :::
 
@@ -137,8 +137,8 @@ Realice configuración de protocolo de enrutamiento OSPFv2 en router ELTENIENTE:
 
 :::solution[Solución Actividad 04]
 
-<TerminalOutput withBg>
-{`enable
+```terminal
+enable
 configure terminal
 
 # Agregue una Interface Loopback 1 con IP=190.190.190.1, M=255.255.255.255
@@ -176,8 +176,8 @@ passive-interface default
 no passive-interface s0/0/1
 
 # Redistribuya la ruta por defecto dentro del ospf
-default-information originate`}
-</TerminalOutput>
+default-information originate
+```
 
 :::
 ## Actividad 05
@@ -194,10 +194,10 @@ Muestre la tabla de enrutamiento de vecinos y topología
 
 **Aplique el comando para mostrar la tabla de enrutamiento en router COLLAHUASI. Explique resultado de dicho comando**
 
-<TerminalOutput withBg>
-{`enable
-show ip route`}
-</TerminalOutput>
+```terminal
+enable
+show ip route
+```
 
 Qué debería mostrar:
 - Rutas `C`/`L` para las tres redes propias conectadas (172.20.0.0/21, 172.20.9.0/23, 172.20.10.128/30).
@@ -208,10 +208,10 @@ Qué debería mostrar:
 ---
 **Aplique comando para mostrar tabla de vecinos en router LOSPELAMBRES. Explique resultado de dicho comando**
 
-<TerminalOutput withBg>
-{`enable
-show ip ospf neighbor`}
-</TerminalOutput>
+```terminal
+enable
+show ip ospf neighbor
+```
 
 Qué debería mostrar:
 - Dos vecinos: Router ID 100.100.100.100 (COLLAHUASI) por S0/0/0, y 30.30.30.30 (ELTENIENTE) por S0/0/1.
@@ -222,10 +222,10 @@ Qué debería mostrar:
 
 **Aplique comando para mostra tabla de topología en router ELTENIENTE. Explique resultado de dicho comando**
 
-<TerminalOutput withBg>
-{`enable
-show ip ospf database`}
-</TerminalOutput>
+```terminal
+enable
+show ip ospf database
+```
 
 Qué debería mostrar:
 - Sección "Router Link States": una entrada LSA tipo 1 por cada router del dominio (COLLAHUASI, LOSPELAMBRES, ELTENIENTE), identificadas por su Router ID.

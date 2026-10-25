@@ -55,8 +55,8 @@ Datos numéricos que se analizan dentro del cubo. Ejemplos: monto de venta, cant
 ### Jerarquías
 Organización de las dimensiones en niveles de detalle:
 
-<TerminalOutput>
-{`Dimensión Tiempo
+```output
+Dimensión Tiempo
 ├── Año
 │   └── Trimestre
 │       └── Mes
@@ -67,8 +67,8 @@ Dimensión Geografía
 ├── País
 │   └── Región
 │       └── Ciudad
-│           └── Sucursal`}
-</TerminalOutput>
+│           └── Sucursal
+```
 
 ```sql
 -- Ejemplo: operaciones OLAP con SQL puro
@@ -201,10 +201,10 @@ Combina ROLAP y MOLAP: los datos de resumen se guardan en formato multidimension
 - **Ventajas:** equilibrio entre velocidad y flexibilidad.
 - **Desventajas:** mayor complejidad de administración.
 
-<TerminalOutput>
-{`Consulta de alto nivel (totales anuales) → MOLAP (rápido, precalculado)
-Consulta de detalle (transacción específica) → ROLAP (SQL sobre tablas relacionales)`}
-</TerminalOutput>
+```output
+Consulta de alto nivel (totales anuales) → MOLAP (rápido, precalculado)
+Consulta de detalle (transacción específica) → ROLAP (SQL sobre tablas relacionales)
+```
 
 
 ## 5. Diseño de Cubos de Datos
@@ -401,30 +401,30 @@ SUM(f.monto) - LAG(SUM(f.monto), 12) OVER (ORDER BY t.anio, t.mes) AS variacion_
 
 ## 8. Resumen de la arquitectura
 
-<TerminalOutput>
-{`Fuentes OLTP (sistemas transaccionales)
-          │
-          ▼
-    Proceso ETL/ETT
-    ├── Extracción
-    ├── Transformación (limpieza, integración)
-    └── Carga
-          │
-          ▼
-  DATA WAREHOUSE (Kimball o Inmon)
-  ├── Tablas de Hechos
-  ├── Dimensiones (con jerarquías)
-  └── Integridad garantizada (PKs, FKs, CHECKs, Dominios)
-          │
-          ▼
-     Cubos OLAP
-     ├── ROLAP (SQL sobre tablas relacionales)
-     ├── MOLAP (cubos precalculados)
-     └── HOLAP (híbrido)
-          │
-          ▼
+```output
+Fuentes OLTP (sistemas transaccionales)
+        │
+        ▼
+  Proceso ETL/ETT
+  ├── Extracción
+  ├── Transformación (limpieza, integración)
+  └── Carga
+        │
+        ▼
+DATA WAREHOUSE (Kimball o Inmon)
+├── Tablas de Hechos
+├── Dimensiones (con jerarquías)
+└── Integridad garantizada (PKs, FKs, CHECKs, Dominios)
+        │
+        ▼
+   Cubos OLAP
+   ├── ROLAP (SQL sobre tablas relacionales)
+   ├── MOLAP (cubos precalculados)
+   └── HOLAP (híbrido)
+        │
+        ▼
 Análisis: Drill-Down, Roll-Up, Slice, Dice, Pivot
-          │
-          ▼
-  Toma de Decisiones Empresariales 📊`}
-</TerminalOutput>
+        │
+        ▼
+Toma de Decisiones Empresariales 📊
+```

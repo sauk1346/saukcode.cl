@@ -4,8 +4,8 @@
 
 
 
-<TerminalOutput>
-{`+--------------+---------+
+```output
++--------------+---------+
 | Column Name  | Type    |
 +--------------+---------+
 | id           | int     |
@@ -17,13 +17,13 @@
 - "id" es la clave primaria para esta tabla.
 - "departmentId" es una clave foránea del ID de la tabla Department.
 - Cada fila de esta tabla contiene el ID, nombre, y salario de un empleado.
-- También contiene el ID de su departamento.`}
-</TerminalOutput>
+- También contiene el ID de su departamento.
+```
 
 **Tabla:** `Department`
 
-<TerminalOutput>
-{`+-------------+---------+
+```output
++-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | id          | int     |
@@ -32,8 +32,8 @@
 
 - "id" es la clave primaria de esta tabla.
 - Se garantiza que el nombre del departamento no es NULL.
-- Cada fila de esta tabla indica el ID de un departamento y su nombre.`}
-</TerminalOutput>
+- Cada fila de esta tabla indica el ID de un departamento y su nombre.
+```
 
 Escribe una solución para encontrar los empleados que tienen el salario más alto en cada uno de los departamentos.
 
@@ -45,8 +45,8 @@ Devuelve la tabla resultado en **cualquier orden**.
 :::col
 
 **Input:**
-<TerminalOutput>
-{`tabla Employee :
+```output
+tabla Employee :
 +----+-------+--------+--------------+
 | id | name  | salary | departmentId |
 +----+-------+--------+--------------+
@@ -63,14 +63,14 @@ tabla Department:
 +----+-------+
 | 1  | IT    |
 | 2  | Sales |
-+----+-------+`}
-</TerminalOutput>
++----+-------+
+```
 :::
 :::col
 
 **Output:**
-<TerminalOutput>
-{`+------------+----------+--------+
+```output
++------------+----------+--------+
 | Department | Employee | Salary |
 +------------+----------+--------+
 | IT         | Jim      | 90000  |
@@ -82,8 +82,8 @@ Explicación:
 Max y Jim ambos tienen el salario
 más alto en el departamento de IT, 
 y Henry tiene el salario más alto 
-en el departamenteo de Sales.`}
-</TerminalOutput>
+en el departamenteo de Sales.
+```
 :::
 ::::
 

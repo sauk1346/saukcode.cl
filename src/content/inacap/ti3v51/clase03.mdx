@@ -237,21 +237,21 @@ FOR EACH ROW EXECUTE FUNCTION fn_verificar_solvencia();
 
 ## 5. Resumen del flujo de validación SQL
 
-<TerminalOutput>
-{`INSERT / UPDATE
-      │
-      ▼
+```output
+INSERT / UPDATE
+    │
+    ▼
 [Restricción de Dominio]  → ¿El valor pertenece al dominio?
-      │ ✅
-      ▼
+    │ ✅
+    ▼
 [Restricción de Tabla Base]
-  ├── ¿Cumple el CHECK de la fila?
-  ├── ¿La PK es única y no nula?
-  └── ¿La FK apunta a un registro existente?
-      │ ✅
-      ▼
+├── ¿Cumple el CHECK de la fila?
+├── ¿La PK es única y no nula?
+└── ¿La FK apunta a un registro existente?
+    │ ✅
+    ▼
 [Aserciones / Triggers]   → ¿Se mantienen las condiciones globales?
-      │ ✅
-      ▼
- Dato almacenado correctamente ✅`}
-</TerminalOutput>
+    │ ✅
+    ▼
+Dato almacenado correctamente ✅
+```

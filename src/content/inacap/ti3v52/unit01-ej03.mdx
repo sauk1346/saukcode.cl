@@ -144,8 +144,8 @@ En un escenario real obtendría su IP mediante DHCP configurado en el router.
 ---
 **Paso 5: Configurar `Switch0`**
 
-<TerminalOutput withBg>
-{`# entrar al modo privilegiado
+```terminal
+# entrar al modo privilegiado
 enable
 
 # entrar al modo de configuración global
@@ -164,8 +164,8 @@ no shutdown
 exit
 
 # definir la puerta de enlace
-ip default-gateway 172.16.0.1`}
-</TerminalOutput>
+ip default-gateway 172.16.0.1
+```
 
 <SmartFigure
 	id="fig16"
@@ -178,8 +178,8 @@ ip default-gateway 172.16.0.1`}
 ---
 **Paso 6: Configurar `Switch1`**
 
-<TerminalOutput withBg>
-{`# entrar al modo privilegiado
+```terminal
+# entrar al modo privilegiado
 enable
 
 # entrar al modo de configuración global
@@ -198,8 +198,8 @@ no shutdown
 exit
 
 # definir la puerta de enlace
-ip default-gateway 172.16.16.1`}
-</TerminalOutput>
+ip default-gateway 172.16.16.1
+```
 
 <SmartFigure
 	id="fig17"
@@ -211,8 +211,8 @@ ip default-gateway 172.16.16.1`}
 ---
 **Paso 7: Configurar Router `STGO-CENTRO`**
 
-<TerminalOutput withBg>
-{`# entrar al modo privilegiado
+```terminal
+# entrar al modo privilegiado
 enable
 
 # entrar al modo de configuración global
@@ -235,8 +235,8 @@ ip address 172.16.16.1 255.255.240.0
 # activar la interfaz
 no shutdown
 # salir de la interfaz
-exit`}
-</TerminalOutput>
+exit
+```
 
 <SmartFigure
 	id="fig18"

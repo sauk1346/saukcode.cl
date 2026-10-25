@@ -344,13 +344,16 @@ html.dark-mode-override .solution .solution-header {
   line-height: 1.6;
 }
 
-.solution-content pre {
+/* .terminal es <samp> (ver remark-components) pero recibe el mismo trato que un <pre> */
+.solution-content pre,
+.solution-content .terminal {
   margin: 1.25rem 0 1.75rem !important;
   border-radius: var(--radius-md);
   font-size: 0.875rem;
 }
 
-.solution-content figure pre {
+.solution-content figure pre,
+.solution-content figure .terminal {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
@@ -492,5 +495,127 @@ html.dark-mode-override .solution .solution-header {
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+/* ── Salidas de terminal ──
+   ```output → .terminal (sin fondo); ```terminal → .terminal.terminal-bg (CRT) */
+.terminal {
+  display: block;
+  white-space: pre;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 1.25rem 0 1.75rem;
+  padding: var(--spacing-md) 0;
+  background: transparent;
+  border: none;
+  color: var(--foreground);
+  overflow-x: auto;
+  overflow-y: hidden;
+  transition: color 0.3s ease;
+  scrollbar-width: thin;
+}
+
+.terminal-bg {
+  line-height: 1.2;
+  /* CRT fijo en ambos temas: una terminal es oscura por naturaleza */
+  background-color: #0d0d0d;
+  background-clip: padding-box;
+  color: #00ff00;
+  border: 8px solid transparent;
+  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' shape-rendering='crispEdges'%3E%3Cpath fill='%233f3f3f' d='M4 0h4v2H4zM2 2h2v2H2zM0 4h2v4H0zM16 0h4v2h-4zM20 2h2v2h-2zM22 4h2v4h-2zM0 16h2v4H0zM2 20h2v2H2zM4 22h4v2H4zM22 16h2v4h-2zM20 20h2v2h-2zM16 22h4v2h-4zM8 0h8v2H8zM0 8h2v8H0zM22 8h2v8h-2zM8 22h8v2H8z'/%3E%3Cpath fill='%230d0d0d' d='M4 2h4v2H4zM2 4h6v4H2zM16 2h4v2h-4zM16 4h6v4h-6zM2 16h6v4H2zM4 20h4v2H4zM16 16h6v4h-6zM16 20h4v2h-4zM8 2h8v6H8zM2 8h6v8H2zM16 8h6v8h-6zM8 16h8v6H8z'/%3E%3C/svg%3E") 8 / 8px stretch;
+  border-radius: 0;
+  padding: 0.75rem;
+  position: relative;
+}
+
+/* Scanlines CRT: líneas de barrido sutiles sobre el fósforo */
+.terminal-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.045) 0 1px,
+    transparent 1px 3px
+  );
+}
+
+/* Con título o numeración (`caption`, `id`) */
+.terminal-figure {
+  margin: 1.75rem 1.7rem;
+}
+
+.terminal-with-caption {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.terminal-caption {
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--secondary);
+  text-align: left;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* Comentarios: líneas que empiezan con # */
+.terminal-comment {
+  color: var(--secondary);
+  font-style: italic;
+}
+
+.terminal-bg .terminal-comment {
+  color: #00ff00;
+  opacity: 0.6;
+}
+
+.terminal::-webkit-scrollbar {
+  height: 6px;
+}
+
+.terminal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terminal::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.3);
+  border-radius: 0;
+}
+
+.terminal::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.5);
+}
+
+html.dark-mode .terminal:not(.terminal-bg)::-webkit-scrollbar-thumb,
+html.dark-mode-override .terminal:not(.terminal-bg)::-webkit-scrollbar-thumb {
+  background-color: rgba(229, 231, 235, 0.2);
+}
+
+html.dark-mode .terminal:not(.terminal-bg)::-webkit-scrollbar-thumb:hover,
+html.dark-mode-override .terminal:not(.terminal-bg)::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(229, 231, 235, 0.4);
+}
+
+.terminal-bg::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 255, 0, 0.3);
+}
+
+.terminal-bg::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 255, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .terminal {
+    margin: 0.75rem 0;
+    touch-action: pan-x;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .terminal-figure {
+    margin: 0.75rem 0;
   }
 }

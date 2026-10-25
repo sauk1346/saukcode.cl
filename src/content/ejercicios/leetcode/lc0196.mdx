@@ -2,8 +2,8 @@
 
 **Tabla:** `Person`
 
-<TerminalOutput>
-{`+-------------+---------+
+```output
++-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
 | id          | int     |
@@ -12,8 +12,8 @@
 
 - "id" es la clave primaria para esta tabla.
 - Cada fila de esta tabla contiene un email. 
-- Los emails no contienen letras mayúsculas.`}
-</TerminalOutput>
+- Los emails no contienen letras mayúsculas.
+```
 
 
 Escribe una solución para **eliminar** todos los emails duplicados, manteniendo solo un email único con el `id` más pequeño.
@@ -27,21 +27,21 @@ Para usuarios Pandas, tener en cuenta que se debe modificar la tabla `Person`.
 ::::columns
 :::col
 **Input:** 
-<TerminalOutput>
-{`tabla Person:
+```output
+tabla Person:
 +----+------------------+
 | id | email            |
 +----+------------------+
 | 1  | john@example.com |
 | 2  | bob@example.com  |
 | 3  | john@example.com |
-+----+------------------+`}
-</TerminalOutput>
++----+------------------+
+```
 :::
 :::col
 **Output:**
-<TerminalOutput>
-{`+----+------------------+
+```output
++----+------------------+
 | id | email            |
 +----+------------------+
 | 1  | john@example.com |
@@ -50,8 +50,8 @@ Para usuarios Pandas, tener en cuenta que se debe modificar la tabla `Person`.
 
 Explicación:
 john@example.com se repite dos veces. 
-Mantenemos la fila con id más pequeña = 1.`}
-</TerminalOutput>
+Mantenemos la fila con id más pequeña = 1.
+```
 :::
 ::::
 

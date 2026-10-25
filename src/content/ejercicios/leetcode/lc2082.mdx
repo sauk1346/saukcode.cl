@@ -1,8 +1,8 @@
 # Cantidad de Clientes Ricos
 
 **Tabla** `Store`
-<TerminalOutput>
-{`+-------------+------+
+```output
++-------------+------+
 | Column Name | Type |
 +-------------+------+
 | bill_id     | int  |
@@ -12,16 +12,16 @@
 
 - "bill_id" es la clave primaria para esta tabla.
 - Cada fila contiene información sobre el monto de una factura y el cliente
-    asociado.`}
-</TerminalOutput>
+  asociado.
+```
 
 Escribe una solución para reportar el número de clientes que tuvieron **al menos** una factura con un monto **estrictamente mayor** que `500`.
 
 ## Ejemplo
 
 **Input:**
-<TerminalOutput>
-{`Tabla Store:
+```output
+Tabla Store:
 +---------+-------------+--------+
 | bill_id | customer_id | amount |
 +---------+-------------+--------+
@@ -30,12 +30,12 @@ Escribe una solución para reportar el número de clientes que tuvieron **al men
 | 4       | 2           | 394    |
 | 11      | 3           | 657    |
 | 13      | 3           | 257    |
-+---------+-------------+--------+`}
-</TerminalOutput>
++---------+-------------+--------+
+```
 
 **Output:**
-<TerminalOutput>
-{`+------------+
+```output
++------------+
 | rich_count |
 +------------+
 | 2          |
@@ -44,8 +44,8 @@ Escribe una solución para reportar el número de clientes que tuvieron **al men
 Explicación:
 - cliente1 tiene dos facturas con montos estrictamente mayores que 500.
 - cliente2 no tiene ninguna factura con montos estrictamente mayores que 500.
-- cliente3 tiene una factura con un monto estrictamente mayor que 500.`}
-</TerminalOutput>
+- cliente3 tiene una factura con un monto estrictamente mayor que 500.
+```
 
 ## Soluciones
 

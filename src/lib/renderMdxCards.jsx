@@ -5,23 +5,23 @@ import * as runtime from 'react/jsx-runtime';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import remarkComponents from '../plugins/remark-components.mjs';
 import { PreBlock } from '../components/mdx/Pre.jsx';
 import { Code } from '../components/mdx/InlineCode.jsx';
-import { TerminalOutput } from '../components/mdx/TerminalOutput.jsx';
 import SmartFigure from '../components/mdx/SmartFigure.jsx';
 import SmartTable from '../components/mdx/SmartTable.jsx';
 
 const components = {
   pre: PreBlock,
   code: Code,
-  TerminalOutput,
   SmartFigure,
   SmartTable,
 };
 
 const evaluateOptions = {
   ...runtime,
-  remarkPlugins: [remarkGfm, remarkMath],
+  // remark-components: salidas ```output / ```terminal (estilos en src/styles/components.css)
+  remarkPlugins: [remarkGfm, remarkMath, remarkComponents],
   rehypePlugins: [rehypeKatex],
 };
 

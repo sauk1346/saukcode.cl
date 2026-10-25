@@ -35,27 +35,27 @@ Entregar no solo el DW, sino también: herramientas de consulta ad hoc, aplicaci
 
 ### Ciclo de vida Kimball
 
-<TerminalOutput>
-{`Planificación del Proyecto
-        │
-        ▼
+```output
+Planificación del Proyecto
+      │
+      ▼
 Definición de Requisitos del Negocio
-        │
-   ┌────┴────┐
-   ▼         ▼
+      │
+ ┌────┴────┐
+ ▼         ▼
 Diseño     Diseño
 Técnico    Dimensional (Modelo Estrella / Copo de Nieve)
-   │         │
-   └────┬────┘
-        ▼
+ │         │
+ └────┬────┘
+      ▼
 Diseño e Implementación ETL
-        │
-        ▼
+      │
+      ▼
 Diseño de Aplicaciones para Usuarios Finales
-        │
-        ▼
-Implementación → Mantenimiento y Crecimiento`}
-</TerminalOutput>
+      │
+      ▼
+Implementación → Mantenimiento y Crecimiento
+```
 
 ### Tabla de Hechos (Fact Table)
 
@@ -64,16 +64,16 @@ La **tabla de hechos** es la tabla central del modelo dimensional. Almacena los 
 - **Claves foráneas (FK):** apuntan a cada tabla de dimensión, contextualizando el evento (¿cuándo?, ¿qué?, ¿quién?, ¿dónde?).
 - **Medidas:** valores numéricos que cuantifican el evento (monto, cantidad, descuento, costo).
 
-<TerminalOutput>
-{`fact_ventas
+```output
+fact_ventas
 ┌─────────────┬─────────────┬─────────────┬─────────────┬──────────┬─────────┐
 │ id_tiempo   │ id_producto │ id_cliente  │ id_sucursal │ cantidad │  monto  │
 │   (FK) ───► │   (FK) ───► │   (FK) ───► │   (FK) ───► │ medida   │ medida  │
 └─────────────┴─────────────┴─────────────┴─────────────┴──────────┴─────────┘
-      │               │             │              │
-      ▼               ▼             ▼              ▼
- dim_tiempo    dim_producto    dim_cliente    dim_sucursal`}
-</TerminalOutput>
+    │               │             │              │
+    ▼               ▼             ▼              ▼
+dim_tiempo    dim_producto    dim_cliente    dim_sucursal
+```
 
 **Características clave:**
 - Puede contener millones o miles de millones de filas.
@@ -142,24 +142,24 @@ Su premisa clave es que la información se almacene al **máximo nivel de detall
 
 ### Arquitectura CIF (Inmon)
 
-<TerminalOutput>
-{`Fuentes OLTP
-    │
-    ▼
+```output
+Fuentes OLTP
+  │
+  ▼
 [ETL]
-    │
-    ▼
+  │
+  ▼
 ┌─────────────────────────────┐
 │   DATA WAREHOUSE CENTRAL    │  ← Todos los datos al máximo nivel de detalle
 │   (Modelo 3FN / Inmon)      │
 └─────────────┬───────────────┘
-              │ Alimenta
-    ┌─────────┼─────────┐
-    ▼         ▼         ▼
+            │ Alimenta
+  ┌─────────┼─────────┐
+  ▼         ▼         ▼
 Datamart   Datamart  Datamart
 Ventas     RRHH      Finanzas
-(Reporting)(Reporting)(Reporting)`}
-</TerminalOutput>
+(Reporting)(Reporting)(Reporting)
+```
 
 ```sql
 -- En Inmon el DW se modela en 3FN (normalizado), no en estrella
@@ -204,9 +204,9 @@ CREATE TABLE dw_venta_detalle (
 
 El proceso ETL es el puente entre las fuentes de datos y el DW.
 
-<TerminalOutput>
-{`Fuentes OLTP → [Extracción] → [Staging Area] → [Transformación] → [Carga] → DW`}
-</TerminalOutput>
+```output
+Fuentes OLTP → [Extracción] → [Staging Area] → [Transformación] → [Carga] → DW
+```
 
 #### Fase 1: Extracción
 

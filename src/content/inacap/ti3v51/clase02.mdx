@@ -83,8 +83,8 @@ CREATE TABLE pedido (
 
 Permite asegurar que un valor que aparece en una relación (tabla) para un conjunto de atributos determinado, aparezca también en otra relación para un cierto conjunto de atributos. Es decir: una **Clave Foránea (FK)** siempre debe apuntar a un valor existente en la **Clave Primaria (PK)** de la tabla referenciada.
 
-<TerminalOutput>
-{`Tabla Padre: Artículo          Tabla Padre: Orden
+```output
+Tabla Padre: Artículo          Tabla Padre: Orden
 ┌──────────┬──────────────┐   ┌──────────┬─────────────┐
 │ N_Art(PK)│ Nombre_Art   │   │ N_Orden  │ Fecha_Orden │
 ├──────────┼──────────────┤   ├──────────┼─────────────┤
@@ -100,8 +100,8 @@ Tabla Dependiente: Ítem Orden-Artículo
 │  22333   │  40000   │    2     │  ✅ Existe en ambas tablas padre
 │  35555   │  75500   │    8     │  ✅ Existe en ambas tablas padre
 │  99999   │  40000   │    1     │  ❌ N_Orden 99999 no existe → ERROR
-└──────────┴──────────┴──────────┘`}
-</TerminalOutput>
+└──────────┴──────────┴──────────┘
+```
 
 ```sql
 -- Ejemplo completo de integridad referencial
@@ -224,13 +224,13 @@ Atributo(s) de una tabla que referencian la PK de otra tabla. Una restricción r
 
 ## 5. Resumen de Tipos de Restricciones
 
-<TerminalOutput>
-{`Restricciones de Integridad
+```output
+Restricciones de Integridad
 ├── De Dominio        → Valores válidos (tipo de dato, CHECK)
 ├── De Existencia     → NOT NULL
 ├── De Unicidad       → UNIQUE
 ├── De Atributo       → Reglas propias del campo
 ├── Referencial       → FK → PK (integridad entre tablas)
-└── De Transición     → Cambios de estado permitidos`}
-</TerminalOutput>
+└── De Transición     → Cambios de estado permitidos
+```
 

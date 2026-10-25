@@ -2,8 +2,8 @@
 
 **Tabla:** `Views`
 
-<TerminalOutput>
-{`+---------------+---------+
+```output
++---------------+---------+
 | Column Name   | Type    |
 +---------------+---------+
 | article_id    | int     |
@@ -14,11 +14,11 @@
 
 - No hay clave primaria. La tabla puede tener filas duplicadas.
 - Cada fila indica que alguien (viewer_id) vió un artículo (article_id)
-    escrito por un autor (author_id) en alguna fecha (view_date).
+  escrito por un autor (author_id) en alguna fecha (view_date).
 
 Nota: si author_id y viewer_id son iguales indican la misma persona 
-        (el autor vio su propio artículo).`}
-</TerminalOutput>
+      (el autor vio su propio artículo).
+```
 
 Escribe una solución para encontrar todos los autores que vieron al menos uno de sus propios artículos.
 
@@ -27,8 +27,8 @@ Devuelve la tabla de resultados ordenada por `id` en orden ascendente.
 ## Ejemplo
 
 **Input:** 
-<TerminalOutput>
-{`Views table:
+```output
+Views table:
 +------------+-----------+-----------+------------+
 | article_id | author_id | viewer_id | view_date  |
 +------------+-----------+-----------+------------+
@@ -39,18 +39,18 @@ Devuelve la tabla de resultados ordenada por `id` en orden ascendente.
 | 4          | 7         | 1         | 2019-07-22 |
 | 3          | 4         | 4         | 2019-07-21 |
 | 3          | 4         | 4         | 2019-07-21 |
-+------------+-----------+-----------+------------+`}
-</TerminalOutput>
++------------+-----------+-----------+------------+
+```
 
 **Output:** 
-<TerminalOutput>
-{`+------+
+```output
++------+
 | id   |
 +------+
 | 4    |
 | 7    |
-+------+`}
-</TerminalOutput>
++------+
+```
 
 
 ## Soluciones
