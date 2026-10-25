@@ -8,3 +8,7 @@ public/idiomas/
 flashcards.db
 flashcards.db-shm
 flashcards.db-wal
+# intranet INACAP: credenciales, sesión y datos personales extraídos (scripts/inacap)
+scripts/inacap/.env
+scripts/inacap/.auth/
+scripts/inacap/salida/

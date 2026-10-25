@@ -13,7 +13,10 @@
     "db:setup": "node src/lib/db/setup.js",
     "db:seed": "node src/lib/db/seed.js",
     "prebuild": "npm run db:setup && npm run db:seed && node scripts/check-flashcard-links.mjs",
-    "postbuild": "pagefind --site dist"
+    "postbuild": "pagefind --site dist",
+    "inacap:login": "node scripts/inacap/login.mjs",
+    "inacap:explorar": "node scripts/inacap/explorar.mjs",
+    "inacap:ramos": "node scripts/inacap/ramos.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.3",
@@ -47,6 +50,7 @@
   },
   "devDependencies": {
     "js-yaml": "^4.3.2",
-    "pagefind": "^1.5.2"
+    "pagefind": "^1.5.2",
+    "playwright-core": "^1.64.1"
   }
 }
