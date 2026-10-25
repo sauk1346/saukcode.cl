@@ -7,7 +7,7 @@ Es la migración a **Astro** del sitio original hecho en Next.js: todo el conten
 ## Stack
 
 - [Astro 7](https://astro.build) con salida estática; islas de **React** solo donde hay interactividad (quizzes, filtros, flashcards)
-- **MDX** para las lecciones, con KaTeX (fórmulas), rehype-prism-plus (código resaltado en build) y un plugin remark propio que autonumera tablas/figuras
+- **MDX** para las lecciones, con KaTeX (fórmulas), rehype-prism-plus (código resaltado en build) y plugins remark propios: directivas como `:::callout` o `:::table` que se convierten en HTML en el build, y numeración de tablas y figuras
 - **Tailwind 4** para los estilos
 - **Pagefind** como buscador (índice generado en postbuild, atajo `Ctrl+K`)
 - **SQLite** (better-sqlite3 + Drizzle) para compilar los mazos de flashcards desde YAML durante el build
@@ -21,11 +21,16 @@ src/
 ├── components/       # componentes Astro y React (mdx/, features/, layout/)
 ├── layouts/          # BaseLayout, LessonLayout
 ├── pages/            # rutas: /inacap, /ejercicios, flashcards
-└── plugins/          # remark-auto-number
+└── plugins/          # remark-components (directivas), remark-auto-number
 public/inacap/        # imágenes y PDFs de los ramos (NO versionados, ~634MB)
 ```
 
 Las imágenes de `public/inacap/` no están en el repo por tamaño: tras clonar, hay que copiarlas desde una copia existente (`rsync -az public/inacap <destino>/public/`).
+
+## Documentación
+
+- [`docs/spec.md`](docs/spec.md): arquitectura, modelo de datos, pipeline del contenido y registro de decisiones de diseño.
+- [`docs/directivas.md`](docs/directivas.md): sintaxis para escribir lecciones y flashcards.
 
 ## Comandos
 
