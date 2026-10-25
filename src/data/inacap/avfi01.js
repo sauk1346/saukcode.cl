@@ -422,7 +422,7 @@ const courseData = {
       date: 'Dom 30, Ago 2026', 
       description: {
         text: 'Fundamentos de los costos: elementos, clasificación y diferencias con gasto y pérdidas',
-        href: ''
+        href: 'lectura05'
       }
     },
     { 
