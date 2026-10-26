@@ -13,13 +13,19 @@ Recorrido integrador por los fundamentos de la gestión financiera vistos en la 
 | 6 | Punto de equilibrio y decisiones | [Punto de equilibrio](/inacap/avfi01/lectura07) |
 :::
 
+En la práctica, la secuencia del proceso financiero integra: el registro de operaciones contables, la interpretación de estados financieros, el análisis de costos y enfoques de costeo, el cálculo e interpretación del punto de equilibrio y la definición de decisiones financieras.
+
 ## 1. La empresa y su rol en la gestión
 
 La empresa es una unidad económica y social que combina recursos humanos, materiales, tecnológicos y financieros para producir bienes o servicios, con el objetivo de satisfacer necesidades y generar valor. Es el contexto donde se desarrollan las decisiones financieras.
 
-- **Funciones:** producción, comercialización, administración y finanzas, entre otras, coordinadas para alcanzar los objetivos y asegurar la continuidad.
-- **Objetivos:** económicos (maximizar el beneficio, crecer, ser eficiente), sociales (empleo, responsabilidad social, bajo impacto ambiental) y técnicos (optimizar procesos, calidad, innovación).
-- **Clasificación:** según actividad, tamaño, propiedad del capital, ámbito de acción, destino de los beneficios y forma jurídica.
+- **Funciones:** producción, comercialización, administración y finanzas, entre otras, coordinadas para alcanzar los objetivos y asegurar la continuidad. Cada área cumple un rol específico (desde la producción y la gestión de recursos hasta la comercialización y la logística), pero todas se articulan: la empresa opera como un sistema integrado y cada decisión impacta en su desempeño global.
+- **Objetivos:** orientan todas las decisiones y acciones, porque definen qué se busca alcanzar y para quién se trabaja. Son económicos (maximización del beneficio, crecimiento sostenido, eficiencia productiva), sociales (generación de empleo, responsabilidad social, impacto ambiental mínimo) y técnicos (optimización de procesos, calidad del producto o servicio, innovación tecnológica).
+- **Clasificación:** según actividad, tamaño, propiedad del capital, ámbito de acción, destino de los beneficios (finalidad) y forma jurídica, lo que permite comprender su estructura y funcionamiento. Por ejemplo:
+  - **Tamaño:** se relaciona con la cantidad de trabajadores y el nivel de ingresos. Microempresa (pocos trabajadores, operaciones pequeñas), pequeña empresa (estructura simple, mercado reducido), mediana empresa (mayor capacidad productiva y organizacional) y gran empresa (alto número de trabajadores y amplia cobertura).
+  - **Propiedad del capital:** depende de quién aporta los recursos financieros.
+  - **Ámbito de actividad:** se refiere al alcance geográfico de la empresa.
+  - **Destino de los beneficios:** no todas las empresas persiguen los mismos fines económicos.
 
 ## 2. La contabilidad como sistema de información
 
@@ -29,18 +35,34 @@ La contabilidad transforma operaciones en información útil para la gestión, e
 | Función | Aporte de la contabilidad |
 | --- | --- |
 | **Planificación** | Proyectar escenarios, estimar recursos y anticipar resultados para definir objetivos y metas |
-| **Control** | Comparar lo planificado con lo ejecutado, detectar desviaciones y aplicar medidas correctivas |
+| **Control** | Comparar lo planificado con lo ejecutado, detectar desviaciones, corregir errores y mejorar la eficiencia en el uso de los recursos |
 | **Evaluación** | Analizar el desempeño y apoyar decisiones orientadas a la mejora continua |
 :::
 
-Las herramientas de IA pueden apoyar el registro y el análisis contable (automatizar registros repetitivos, clasificar grandes volúmenes de datos, conciliar con los movimientos bancarios, generar reportes y reducir errores de digitación), pero **la revisión no se automatiza**: requieren validación humana, transparencia en los datos y criterio profesional.
+Las herramientas de IA pueden apoyar el registro y el análisis contable:
+
+- **Automatización de registros:** procesa operaciones repetitivas (compras, ventas, pagos) a partir de documentos digitales, con rapidez y consistencia, aunque requiere supervisión humana para una correcta imputación.
+- **Clasificación inteligente:** agrupa grandes volúmenes de datos según su naturaleza o tipo de gasto, lo que mejora el control interno y la trazabilidad de la información.
+- **Conciliación eficiente:** compara automáticamente los registros internos con los movimientos bancarios para detectar discrepancias u omisiones de forma temprana.
+- **Reportes estructurados:** facilita informes sintéticos y claros que sirven como insumo para el análisis operativo y la toma de decisiones.
+- **Calidad de datos:** reduce los errores humanos (duplicidad, fallos de digitación u omisiones) y aumenta la confiabilidad de la información contable.
+
+Al pedirle algo a la IA, es fundamental indicar qué se espera obtener: un registro ordenado, un resumen, una tabla o una explicación. Y **la revisión no se automatiza**: los resultados requieren validación humana, transparencia en los datos y criterio profesional para evitar errores o sesgos.
 
 ## 3. Estados financieros
 
-Ambos estados se complementan y deben analizarse en conjunto:
+La información contable se materializa en los estados financieros, que permiten analizar la situación y el desempeño de una empresa. Ambos se complementan y deben analizarse en conjunto:
 
-- **Balance General** (Estado de Situación Financiera según IFRS): muestra lo que la empresa posee (activos), lo que debe (pasivos) y lo que pertenece a sus dueños (patrimonio) en un momento determinado.
-- **Estado de Resultados:** muestra los ingresos, egresos y el resultado de un período contable.
+:::table{#tabla04 caption="Balance General y Estado de Resultados"}
+| Balance General | Estado de Resultados |
+| --- | --- |
+| Muestra la situación financiera en un momento determinado | Muestra el desempeño económico durante un período |
+| Presenta activos, pasivos y patrimonio | Presenta ingresos, costos y gastos |
+| Permite analizar liquidez, solvencia y estructura financiera | Permite evaluar la rentabilidad de la empresa |
+:::
+
+- **Balance General** (Balance General según la norma chilena; Estado de Situación Financiera según la norma internacional IFRS): muestra lo que la empresa posee (activos), lo que debe (pasivos) y lo que pertenece a sus dueños (patrimonio). Su estructura agrupa los activos en corrientes, diferidos y no corrientes (hasta el total de activos), y los pasivos en corrientes y no corrientes, junto con el patrimonio neto (hasta el total de pasivos).
+- **Estado de Resultados:** informe que muestra los ingresos, egresos y el resultado final de la empresa en un período contable anual.
 
 :::table{#tabla03 caption="Estructura del Estado de Resultados" layout="mixed" widths="320px,auto"}
 | Sección | Descripción |
@@ -62,15 +84,19 @@ Distinguir entre costo, gasto y pérdida permite interpretar correctamente los r
 
 - **Costo:** recursos usados para producir; va primero al inventario y luego se transforma en costo de ventas.
 - **Gasto:** consumo de recursos para operar, pero no para producir; disminuye directamente la utilidad del período.
-- **Pérdida:** disminución de recursos por hechos inesperados o extraordinarios.
+- **Pérdida:** disminución de recursos por hechos inesperados o extraordinarios; su impacto negativo es inmediato y no está asociado a operaciones normales.
 
-Los costos se clasifican según su relación con el producto (directos e indirectos), su comportamiento (fijos y variables) y su función (producción, distribución y administración).
+Los costos se clasifican según:
+
+- **Su relación con el producto:** directos (se identifican en forma exacta en el producto, como los repuestos instalados en mecánica o los ingredientes de un plato) e indirectos (necesarios, pero no asignables directamente, como la luz del taller, la supervisión o la depreciación).
+- **Su comportamiento:** fijos (no varían según la cantidad producida, como el arriendo del taller, el sueldo del jefe de obra o la depreciación) y variables (cambian con el volumen de producción, como materiales, repuestos, ingredientes o combustible en minería).
+- **Su función:** de producción (todo lo relacionado con fabricar o prestar el servicio), de distribución (transporte, marketing, embalaje; no se consideran costos de producción) y administrativos (sueldos administrativos, oficina, contabilidad).
 
 ## 5. Enfoques de costeo e IA
 
 - **Costeo por absorción:** incluye todos los costos de producción, fijos y variables, en el costo del producto. Se usa para valorizar inventarios y elaborar estados financieros.
 - **Costeo variable:** solo los costos variables forman parte del costo del producto; los fijos son gastos del período. Facilita el análisis del margen de contribución y las decisiones de corto plazo.
-- **IA en el costeo:** permite simular escenarios, comparar enfoques y analizar el impacto de cambios en precios, costos o volúmenes, siempre bajo validación profesional.
+- **IA en el costeo:** permite simular escenarios, comparar enfoques y analizar el impacto de cambios en precios, costos o volúmenes, siempre bajo validación profesional. En concreto, apoya la clasificación automática de costos fijos y variables, la simulación de escenarios con distintos enfoques de costeo, la comparación de resultados financieros bajo diferentes métodos y la generación de reportes de apoyo para la toma de decisiones. Su uso debe ser ético, resguardando la transparencia, la calidad de la información y la correcta interpretación de los resultados.
 
 ## 6. Punto de equilibrio y toma de decisiones
 
@@ -79,6 +105,10 @@ El punto de equilibrio integra costos, precios y volumen de ventas para identifi
 - **Bajo el punto de equilibrio:** los ingresos no cubren los costos totales y la empresa genera pérdidas operacionales.
 - **En el punto de equilibrio:** ingresos iguales a costos totales; ni pérdidas ni utilidades.
 - **Sobre el punto de equilibrio:** cubiertos los costos fijos, cada unidad adicional vendida genera utilidad.
+
+Interpretar correctamente este indicador es clave para evaluar la viabilidad económica de la empresa, definir metas, anticipar riesgos y apoyar decisiones financieras en contextos reales de gestión.
+
+En síntesis, la integración de la información contable, los costos y las herramientas de análisis permite tomar decisiones financieras informadas y responsables, y constituye la base para profundizar en análisis financieros más complejos.
 
 :::callout[Para reflexionar]{type="tip"}
 ¿De qué manera la integración de la información contable, los costos y el punto de equilibrio contribuye a una mejor toma de decisiones financieras en una empresa?

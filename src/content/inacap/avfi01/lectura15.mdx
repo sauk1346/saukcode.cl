@@ -10,7 +10,7 @@ Los tres presupuestos de costos son el de **materias primas**, el de **mano de o
 
 ### Presupuesto de costo de materias primas
 
-Estima la cantidad y el costo de los insumos necesarios para cumplir el nivel de producción planificado. Se basa en el volumen de producción y en dos estándares:
+Estima la cantidad y el costo de los insumos necesarios para cumplir el nivel de producción planificado, y las compras requeridas para mantener los niveles de inventario que establece la política. Considera el consumo por unidad producida, el nivel de producción presupuestada, el inventario inicial y el inventario final deseado de materias primas, y los precios de compra proyectados. Sus dos estándares centrales son:
 
 - **Tasa de uso:** consumo de materia prima por unidad producida, según estándares técnicos.
 - **Precio neto de compra:** precio esperado de adquisición, considerando descuentos, condiciones comerciales y mercado proveedor.
@@ -33,6 +33,8 @@ Permite anticipar necesidades de compra, evaluar la coherencia con las política
 
 Traduce el plan de producción en horas de trabajo y costos laborales, en tres etapas:
 
+Considera las horas estándar por unidad producida, las unidades a producir, el costo por hora de mano de obra y la disponibilidad de personal y turnos.
+
 1. **Horas por unidad (HH):** cuántas horas de trabajo requiere cada unidad, según el proceso y el nivel tecnológico.
 2. **Volumen de producción:** el total de unidades determina las horas requeridas en el período.
 3. **Costo laboral total:** las horas totales multiplicadas por la tarifa, incluidas las cargas asociadas y las posibles horas extra.
@@ -51,13 +53,18 @@ Permite analizar la eficiencia del proceso productivo y el impacto de cambios en
 
 ### Presupuesto de costos indirectos de fabricación
 
-Los CIF son costos necesarios para producir que no pueden asignarse directamente a un producto específico: **energía y servicios** (electricidad, agua y otros servicios básicos de la planta), **mantenimiento y supervisión** (cuidado de equipos y gestión operativa) y **arriendos y seguros** (costos fijos que no dependen del volumen producido).
+Los CIF son costos necesarios para producir que no pueden asignarse directamente a un producto específico. Sostienen la producción y su correcta estimación evita desviaciones presupuestarias:
 
-Es fundamental distinguir los CIF **fijos** de los **variables**, porque responden de forma distinta a los cambios en el nivel de actividad y determinan cómo varía el costo total cuando la producción sube o baja.
+- **Energía y servicios:** electricidad, agua y otros servicios básicos de la planta.
+- **Mantenimiento y supervisión:** cuidado de equipos y gestión operativa que asegura la continuidad productiva.
+- **Arriendos y seguros:** costos fijos que no dependen del volumen producido, pero condicionan la estructura de costos.
+- **Depreciación de maquinaria** y **materiales indirectos**.
+
+Es fundamental distinguir los CIF **fijos** de los **variables**, porque responden de forma distinta a los cambios en el nivel de actividad y determinan cómo varía el costo total cuando la producción sube o baja. Esta distinción también es necesaria para el análisis de sensibilidad y el control.
 
 ## 2. Distribución de los CIF
 
-La distribución de los costos indirectos se realiza en tres etapas:
+La distribución permite asignar los costos indirectos a los productos mediante un criterio lógico, lo que facilita el control y la toma de decisiones. Se realiza en tres etapas:
 
 1. **Acumulación:** los CIF de un período (mes, trimestre) se reúnen en una cuenta o centro de costos de fabricación.
 2. **Selección de la base de distribución:** un criterio con relación causa–efecto razonable con la actividad productiva, como horas de mano de obra directa, horas máquina, unidades producidas, costo de mano de obra directa o tiempo de procesamiento.
@@ -93,13 +100,40 @@ Así no solo se sabe cuánto se desvió el costo, sino por qué, lo que facilita
 
 ## 4. El presupuesto de caja
 
-Es el principal presupuesto financiero de corto plazo: proyecta las entradas y salidas **reales** de efectivo del período para asegurar la disponibilidad de recursos líquidos. Es especialmente relevante en pymes y proyectos, donde la falta de liquidez puede comprometer la continuidad del negocio aun cuando exista rentabilidad contable. Permite anticipar déficits por descalces de pagos, gestionar financiamiento a tiempo o detectar excedentes para invertir en el corto plazo.
+Es el principal presupuesto financiero de corto plazo, y el más crítico, especialmente en pymes: proyecta las entradas y salidas **reales** de efectivo del período para asegurar la disponibilidad de recursos líquidos. Es especialmente relevante en pymes y proyectos, donde la falta de liquidez puede comprometer la continuidad del negocio aun cuando exista rentabilidad contable. Permite:
+
+- Identificar períodos de superávit o déficit (por ejemplo, déficits por descalces de pagos).
+- Planificar a tiempo el financiamiento temporal.
+- Detectar excedentes para invertir en el corto plazo y evitar recursos ociosos.
+- Evaluar la viabilidad financiera de las decisiones operativas.
+- Evitar situaciones de iliquidez que comprometan la operación.
+
+Por eso es la herramienta que valida la sostenibilidad financiera real de las operaciones proyectadas.
 
 Se construye con el **saldo inicial** de efectivo, las **entradas** (cobros a clientes, anticipos y otros ingresos), las **salidas** (pagos a proveedores, sueldos, impuestos y otros compromisos) y el **saldo final**, que refleja la posición de liquidez al cierre. Las **condiciones de cobro y pago** son clave, porque determinan cuándo se materializan los flujos.
 
+:::table{#tabla05 caption="Componentes del presupuesto de caja" layout="mixed" widths="200px,auto"}
+| Flujo | Partidas |
+| --- | --- |
+| **Ingresos de efectivo** | :li[Cobros por ventas (según las condiciones de crédito)] :li[Otros ingresos operacionales o financieros] :li[Financiamiento externo, si corresponde] |
+| **Egresos de efectivo** | :li[Pago a proveedores (según las condiciones pactadas)] :li[Pago de remuneraciones] :li[Gastos operacionales y administrativos] :li[Inversiones en activos] :li[Pago de impuestos y obligaciones financieras] |
+:::
+
 :::callout[Rentabilidad versus liquidez]{type="warning"}
 Una organización puede ser rentable en sus resultados y aun así enfrentar problemas de liquidez si los cobros se retrasan o los pagos se concentran en ciertos períodos. La sostenibilidad financiera depende tanto de generar utilidades como de gestionar los flujos de efectivo.
+
+Esta **paradoja rentabilidad–liquidez** aparece cuando la empresa:
+
+- Vende a plazo, pero paga al contado.
+- Aumenta las ventas sin financiar el capital de trabajo adicional.
+- Mantiene exceso de inventarios.
+- Realiza inversiones importantes sin planificar el flujo.
+- Tiene clientes con morosidad alta.
 :::
+
+### IA en el análisis de flujos de efectivo
+
+Las herramientas de IA pueden apoyar el análisis del presupuesto de caja mediante la simulación de escenarios de cobro y pago, la detección de patrones de morosidad, las alertas tempranas de períodos críticos de liquidez y la optimización de las políticas de crédito y pago. Estos análisis deben acompañarse siempre de transparencia sobre los supuestos utilizados y de responsabilidad en la interpretación de los resultados.
 
 ## 5. Decisiones a partir del presupuesto de caja
 
@@ -112,7 +146,9 @@ Una organización puede ser rentable en sus resultados y aun así enfrentar prob
 | **Reprogramar gastos o inversiones** | Postergar lo no urgente libera efectivo para los compromisos prioritarios. Es útil cuando el déficit es transitorio, evaluando el costo de postergar frente al beneficio de mantener la estabilidad |
 :::
 
-Desde el control de gestión, los presupuestos de costos y de caja establecen estándares de desempeño financiero y operativo, y su seguimiento permite detectar problemas a tiempo y corregir de forma oportuna.
+Estas decisiones deben evaluarse considerando sus costos, sus riesgos y sus efectos sobre la continuidad operacional.
+
+Desde el control de gestión, los presupuestos de costos y de caja establecen estándares de desempeño financiero y operativo, y su seguimiento permite detectar problemas a tiempo y corregir de forma oportuna. Más allá de los cálculos, el valor del presupuesto está en su capacidad para explicar lo que ocurre en la organización, orientar las acciones correctivas y sostener la continuidad financiera.
 
 :::callout[Para reflexionar]{type="tip"}
 1. ¿Cómo influye una estimación adecuada de los costos en la toma de decisiones productivas y financieras?

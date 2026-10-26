@@ -15,6 +15,8 @@ El presupuesto de ventas es el pilar central del sistema presupuestario, porque 
 | **Supuestos de mercado** | Estacionalidad, comportamiento del cliente y contexto competitivo: explican por qué las ventas pueden variar |
 :::
 
+Estos componentes permiten analizar no solo el monto de los ingresos, sino también la **razonabilidad** de las proyecciones y su coherencia con el entorno. Los **supuestos de mercado** son las condiciones que se dan por válidas para proyectar las ventas: comportamiento del cliente, precios esperados, competencia y contexto económico.
+
 Un aumento de ingresos puede venir de vender más unidades, de subir precios o de ambas cosas, y cada alternativa tiene implicancias distintas en costos, producción y competitividad.
 
 :::table{#tabla02 caption="Formato del presupuesto de ventas" layout="mixed" widths="auto,140px,140px"}
@@ -29,9 +31,19 @@ Un aumento de ingresos puede venir de vender más unidades, de subir precios o d
 
 ### Supuestos y escenarios
 
-El presupuesto de ventas se apoya en supuestos explícitos: crecimiento esperado del mercado, participación de mercado, comportamiento histórico de la demanda, políticas de precios y descuentos, y capacidad comercial y canales de venta. Una proyección no es una certeza, sino una **hipótesis razonada**: un crecimiento sin respaldo en capacidad comercial o en el mercado aumenta la probabilidad de desviaciones significativas.
+El presupuesto de ventas proyecta las cantidades y valores que se espera vender en cada período considerando la demanda estimada del mercado, la capacidad comercial de la organización, el comportamiento histórico de las ventas, las tendencias del mercado, la estacionalidad, y los precios y políticas comerciales. Para ello se apoya en supuestos explícitos: crecimiento esperado del mercado, participación de mercado, comportamiento histórico de la demanda, políticas de precios y descuentos, y capacidad comercial y canales de venta.
 
-Por eso se construyen escenarios **realista** (datos históricos y supuestos conservadores), **optimista** (mejoras en volumen, precio o mercado) y **pesimista** (contracción de la demanda, presión competitiva o restricciones externas). Permiten evaluar la sensibilidad de los ingresos ante cambios de precio o volumen, identificar el impacto en costos y liquidez, y definir planes alternativos.
+Declarar estos supuestos permite evaluar la **consistencia y el riesgo** del presupuesto. Una proyección no es una certeza, sino una **hipótesis razonada**: un crecimiento sin respaldo en capacidad comercial o en el mercado aumenta la probabilidad de desviaciones significativas. La calidad del presupuesto de ventas depende del realismo de los supuestos y de su coherencia con la capacidad organizacional; las proyecciones excesivamente optimistas generan presupuestos inconsistentes.
+
+Por eso se construyen escenarios alternativos. **Proyectar escenarios** es construir varias versiones coherentes del presupuesto de ventas a partir de distintos supuestos explícitos; cada escenario modifica una o más variables relevantes. No son predicciones, sino herramientas para evaluar riesgos y preparar decisiones:
+
+- **Realista:** basado en datos históricos y supuestos conservadores.
+- **Optimista:** supone mejoras en volumen, precio o condiciones de mercado.
+- **Pesimista:** considera contracción de la demanda, presión competitiva o restricciones externas.
+
+El análisis de escenarios permite evaluar la sensibilidad de los ingresos ante cambios de precio o volumen, identificar el impacto potencial en costos y liquidez, y definir planes de acción alternativos.
+
+**Ejemplo técnico:** una pyme proyecta vender 1.000 unidades a un precio promedio de \$10.000. A partir de variaciones en volumen y precio se construyen los tres escenarios:
 
 :::table{#tabla03 caption="Escenarios de ventas de una pyme"}
 | Escenario | Unidades | Precio promedio | Ingresos |
@@ -41,7 +53,7 @@ Por eso se construyen escenarios **realista** (datos históricos y supuestos con
 | **Optimista** | 1.100 | \$10.200 | \$11.220.000 |
 :::
 
-**Ejemplo:** bajar el precio promedio puede aumentar el volumen, pero disminuir el ingreso total o el margen. El análisis de escenarios anticipa este efecto antes de ejecutar la decisión.
+**Ejemplo:** bajar el precio promedio puede aumentar el volumen, pero disminuir el ingreso total o el margen, afectando la sostenibilidad financiera. El análisis de escenarios anticipa este efecto antes de ejecutar la decisión.
 
 ## 2. El presupuesto de producción
 
@@ -51,7 +63,7 @@ $$
 \text{Unidades a producir} = \text{Ventas proyectadas} + \text{IFPT} - \text{IIPT}
 $$
 
-Donde IFPT es el inventario final de productos terminados (deseado según criterios de seguridad, estacionalidad o estrategia comercial) e IIPT el inventario inicial, cuyo stock reduce la necesidad de producir. La producción no responde solo a las ventas, sino también a las políticas de inventario y a la continuidad operativa.
+Donde las ventas proyectadas establecen la demanda a satisfacer (pero no determinan por sí solas el nivel de producción), IFPT es el inventario final deseado de productos terminados (según criterios de seguridad, estacionalidad o estrategia comercial) e IIPT el inventario inicial, cuyo stock reduce la necesidad de producir. La producción no responde solo a las ventas, sino también a las políticas de inventario y a la continuidad operativa. Una mala planificación productiva puede generar sobrecostos o quiebres de stock críticos.
 
 :::table{#tabla04 caption="Formato del presupuesto de producción" layout="mixed" widths="auto,140px,140px"}
 | Variables | Período 1 | Período 2 |
@@ -64,9 +76,15 @@ Donde IFPT es el inventario final de productos terminados (deseado según criter
 
 ### Capacidad productiva
 
-Proyectar ventas sin considerar las restricciones de capacidad conduce a presupuestos inviables. La capacidad depende de los **recursos físicos** (maquinaria y su nivel de utilización), los **recursos humanos** (personal, turnos y habilidades) y los **procesos y tiempos** (preparación, ciclo y mantenimiento, que determinan los cuellos de botella).
+Proyectar ventas sin considerar las restricciones de capacidad conduce a presupuestos inviables: la capacidad condiciona las decisiones comerciales. Depende de los **recursos físicos** (maquinaria y su nivel de utilización), los **recursos humanos** (personal, turnos y habilidades) y los **procesos y tiempos** (preparación, ciclo y mantenimiento, que determinan los cuellos de botella).
 
-Cuando la demanda proyectada supera la capacidad instalada, hay tres alternativas:
+Desde una perspectiva técnica, el presupuesto de producción permite:
+
+- Identificar cuellos de botella.
+- Evaluar la necesidad de horas extra, subcontratación o inversión.
+- Ajustar las metas comerciales a las capacidades reales de la organización.
+
+Cuando la demanda proyectada supera la capacidad instalada, la empresa debe decidir entre tres alternativas, cada una con costos y riesgos distintos:
 
 :::table{#tabla05 caption="Decisiones ante exceso de demanda"}
 | Alternativa | Ventaja | Costo o riesgo |
@@ -78,7 +96,7 @@ Cuando la demanda proyectada supera la capacidad instalada, hay tres alternativa
 
 ### Impacto en costos y caja
 
-Más producción implica mayor consumo de **materias primas** y desembolsos anticipados, más **mano de obra** (horas extra o turnos adicionales) y mayores **costos indirectos** (energía, mantenimiento, supervisión). Producir más no siempre mejora el resultado si no se evalúa su impacto en la liquidez y la rentabilidad.
+Más producción implica mayor consumo de **materias primas** y desembolsos anticipados, más **mano de obra** (horas extra o turnos adicionales) y mayores **costos indirectos** (energía, mantenimiento, supervisión). Producir más no siempre mejora el resultado si no se evalúa su impacto en la liquidez y la rentabilidad; el análisis conjunto de ventas y producción permite anticipar estas consecuencias y tomar decisiones viables, alineadas con la estrategia, la eficiencia operativa y la disponibilidad de recursos.
 
 ## 3. Ventas, producción y control de gestión
 
@@ -88,12 +106,23 @@ El presupuesto de ventas y producción establece los **estándares de desempeño
 - Identificar ineficiencias productivas.
 - Tomar decisiones correctivas oportunas.
 
+Así, el presupuesto se convierte en una herramienta dinámica de seguimiento y mejora continua. Comprender la relación entre ventas y producción entrega una visión integrada de la gestión: las decisiones comerciales impactan directamente en la operación y en las finanzas, y el éxito no depende solo de vender más, sino de producir de manera eficiente y financieramente sostenible.
+
 ## 4. La IA en el análisis del presupuesto de ventas
 
-El principal desafío del presupuesto de ventas no es el cálculo, sino la incertidumbre. La IA amplía la capacidad de análisis mediante el **análisis de patrones históricos** (tendencias y estacionalidad), la **simulación de supuestos** (recalcular ingresos al cambiar precio, volumen, mix o crecimiento) y el **análisis de sensibilidad** (qué variables impactan más en el resultado).
+El principal desafío del presupuesto de ventas no es el cálculo, sino la incertidumbre: las decisiones comerciales se construyen sobre supuestos de mercado que pueden variar significativamente en el tiempo. La IA apoya la proyección de ventas y producción mediante:
+
+- **Análisis de patrones históricos:** tendencias, estacionalidad y comportamientos recurrentes.
+- **Simulación de supuestos y escenarios:** recalcular ingresos al cambiar precio, volumen, mix o crecimiento (optimista, realista, pesimista).
+- **Análisis de sensibilidad:** qué variables impactan más en el resultado, es decir, la identificación de las variables críticas o *drivers* (factores que explican el resultado).
+
+Sin embargo, el criterio profesional sigue siendo fundamental para validar las proyecciones, ajustar los supuestos y tomar decisiones responsables. Bien usada, la IA permite pasar del cálculo automático a una gestión analítica, preventiva y responsable del presupuesto de ventas.
 
 :::callout{type="warning"}
 La IA no valida supuestos incorrectos: solo los amplifica. Su uso responsable exige declarar los supuestos, contrastar los resultados con la realidad del negocio y no presentar escenarios optimistas como certezas.
+
+- **Buena práctica:** supuestos explícitos y análisis contextual.
+- **Mala práctica:** presentar escenarios optimistas como resultados seguros.
 :::
 
 :::callout[Para reflexionar]{type="tip"}

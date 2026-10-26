@@ -10,12 +10,18 @@ $$
 \text{VAN} = -I_0 + \sum_{t=1}^{n} \frac{F_t}{(1 + r)^t}
 $$
 
-Donde $I_0$ es la inversión inicial, $F_t$ el flujo neto del período $t$, $r$ la tasa de descuento y $n$ el número de períodos. Se basa en el valor del dinero en el tiempo: actualiza los flujos futuros al presente, compara el valor generado con la inversión y exige que la tasa sea consistente con el riesgo asumido. Se expresa en dinero (\$).
+Donde $I_0$ es la inversión inicial, $F_t$ el flujo neto del período $t$, $r$ la tasa de descuento y $n$ el número de períodos. Si la inversión se trata como el flujo del año 0 (con signo negativo), la misma fórmula se escribe como una sola suma desde $t = 0$, en la notación de la infografía del curso ($R_t$: flujo del período $t$; $i$: tasa de descuento):
+
+$$
+\text{VAN} = \sum_{t=0}^{n} \frac{R_t}{(1 + i)^t}
+$$
+
+En otras palabras, se suman los valores presentes de los flujos y se resta la inversión. Se basa en el valor del dinero en el tiempo (un peso hoy vale más que un peso mañana): actualiza los flujos futuros al presente, compara el valor generado con la inversión y exige que la tasa sea consistente con el riesgo asumido. Se expresa en dinero (\$).
 
 :::table{#tabla01 caption="Interpretación del VAN"}
 | Resultado | Significado | Decisión |
 | --- | --- | --- |
-| **VAN > 0** | El proyecto crea valor por sobre la rentabilidad exigida | Se acepta |
+| **VAN > 0** | El proyecto crea valor por sobre la rentabilidad exigida: al descontar los flujos según su riesgo, no solo recupera lo invertido, sino que aporta un excedente económico | Se acepta |
 | **VAN = 0** | El proyecto rinde exactamente lo exigido | Indiferente |
 | **VAN < 0** | El proyecto destruye valor | Se rechaza |
 :::
@@ -28,7 +34,7 @@ $$
 El VAN es positivo: el proyecto genera \$1.978.963 adicionales después de recuperar la inversión y exigir un 10%. Es conveniente.
 :::
 
-El VAN depende directamente del costo de capital: si este aumenta, los flujos se descuentan con mayor exigencia y el VAN disminuye. Por eso siempre se lee en relación con el riesgo y el costo del financiamiento.
+El VAN depende directamente del costo de capital, que representa la rentabilidad mínima exigida por quienes financian el proyecto: si este aumenta, los flujos se descuentan con mayor exigencia y el VAN disminuye; si es menor, el proyecto puede resultar más atractivo. Por eso el VAN no se interpreta de forma aislada: siempre se lee en relación con el riesgo y el costo del financiamiento.
 
 ## 2. Tasa Interna de Retorno (TIR)
 
@@ -38,13 +44,13 @@ $$
 0 = -I_0 + \sum_{t=1}^{n} \frac{F_t}{(1 + \text{TIR})^t}
 $$
 
-Se encuentra probando tasas hasta que el VAN se anule (a mano, con Excel o con apoyo de IA). Se expresa en porcentaje y **siempre se interpreta comparándola** con la tasa de descuento o el costo de capital:
+Se encuentra por aproximación, probando tasas paso a paso hasta que el VAN se anule (a mano, con Excel o con apoyo de IA). Se expresa en porcentaje y **siempre se interpreta comparándola**, nunca de forma aislada: la TIR representa la rentabilidad interna del proyecto, mientras que la tasa de descuento o costo de capital es la rentabilidad mínima exigida para asumir el riesgo de la inversión.
 
 :::table{#tabla02 caption="Interpretación de la TIR"}
 | Resultado | Significado | Decisión |
 | --- | --- | --- |
 | **TIR > tasa de descuento** | La inversión rinde más que el mínimo exigido | Se acepta |
-| **TIR = tasa de descuento** | Rinde exactamente el mínimo esperado | Indiferente |
+| **TIR = tasa de descuento** | Rinde exactamente el mínimo esperado | Indiferente: puede aceptarse o no |
 | **TIR < tasa de descuento** | No alcanza la rentabilidad mínima | Se rechaza |
 :::
 
@@ -60,7 +66,7 @@ La TIR muestra qué tan rentable es el proyecto, pero no cuánto valor crea: es 
 
 ## 3. Período de Recuperación Actualizado (PRA)
 
-El PRA indica cuánto tarda un proyecto en recuperar la inversión **considerando el valor del dinero en el tiempo**. Responde a: ¿en cuánto tiempo recupero la inversión, considerando la tasa de descuento? Se expresa en años o meses: un PRA corto implica menor riesgo y es más atractivo; uno largo, mayor riesgo. Se enfoca en la liquidez y el riesgo, no en la rentabilidad total.
+El PRA indica cuánto tarda un proyecto en recuperar la inversión **considerando el valor del dinero en el tiempo**. Responde a: ¿en cuánto tiempo recupero la inversión, considerando la tasa de descuento? Se expresa en años o meses: un PRA corto implica menor riesgo y es más atractivo; uno largo, mayor riesgo. Se enfoca en la liquidez y el riesgo, no en la rentabilidad total: mide el tiempo que el capital permanece expuesto al riesgo durante la vida inicial del proyecto, por lo que un PRA más corto suele implicar menor riesgo financiero, especialmente en entornos inciertos.
 
 :::table{#tabla03 caption="Período de recuperación simple y actualizado"}
 | PR simple | PRA |
@@ -68,6 +74,10 @@ El PRA indica cuánto tarda un proyecto en recuperar la inversión **considerand
 | Acumula los flujos nominales hasta recuperar la inversión | Acumula los flujos en valor presente |
 | Ignora el valor del dinero en el tiempo | Considera el costo de capital |
 | | Es más riguroso técnicamente |
+:::
+
+:::solution[Ejemplo breve: PR simple frente a PRA]
+Inviertes \$1.000 hoy y recibes \$500 en un año y \$600 en dos años. Con flujos nominales (PR simple), al final del año 1 faltan \$500 y el año 2 aporta \$600: se recupera en $1 + 500/600 \approx 1{,}83$ años. El PRA, en cambio, descuenta los flujos: con una tasa del 10%, valen hoy \$454,55 y \$495,87, que suman \$950,41, de modo que la inversión **no** alcanza a recuperarse dentro de esos dos años. Considerar el valor del dinero en el tiempo alarga el plazo de recuperación.
 :::
 
 :::solution[PRA de la juguería]
@@ -103,9 +113,69 @@ Ninguno es suficiente por sí solo. Los indicadores no entregan decisiones autom
 
 ## 5. La IA en la proyección de la TIR
 
-La TIR no es un cálculo aislado, sino el resultado de supuestos sobre flujos, riesgos y condiciones del proyecto. La IA permite calcular los tres indicadores a la vez y explorar rápidamente escenarios: ¿qué pasa si las ventas bajan un 20%?, ¿y si los costos suben un 15%? Así se ve cómo pequeñas variaciones en los datos influyen en la rentabilidad esperada, pero la decisión final depende de la interpretación crítica y del juicio financiero del profesional.
+La TIR no es un cálculo aislado, sino el resultado de supuestos sobre flujos, riesgos y condiciones del proyecto. La IA permite calcular los tres indicadores a la vez y explorar rápidamente escenarios: ¿qué pasa si las ventas bajan un 20%?, ¿y si los costos suben un 15%? También puede armar una tabla de sensibilidad. Así se ve cómo pequeñas variaciones en los datos influyen en la rentabilidad esperada, pero la decisión final depende de la interpretación crítica y del juicio financiero del profesional.
+
+El proceso de proyección de la TIR con apoyo de IA sigue esta secuencia:
+
+1. **Datos del proyecto:** ingresos, costos e inversión.
+2. **Definición de supuestos:** escenarios y variables clave.
+3. **Simulación con IA:** múltiples escenarios de flujos.
+4. **Cálculo de la TIR:** resultados comparados.
+5. **Análisis e interpretación:** decisión informada.
 
 :::callout[Para reflexionar]{type="tip"}
 1. ¿Por qué es importante analizar un proyecto utilizando más de un indicador de rentabilidad?
 2. ¿En qué situaciones el PRA puede ser relevante, aun cuando el VAN sea positivo?
 :::
+
+## Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "Al evaluar un proyecto, descuentas sus flujos futuros al costo de capital y obtienes un VAN mayor que cero.",
+		questionItems: [],
+		questionSuffix: "¿Qué significa este resultado?",
+		options: [
+			"Que el proyecto solo alcanza a recuperar la inversión inicial, sin excedente",
+			"Que el proyecto recupera lo invertido y además aporta un excedente económico por sobre el costo del capital",
+			"Que la TIR del proyecto es menor que la tasa de descuento",
+			"Que el proyecto recupera la inversión antes del primer año",
+		],
+		correctIndex: 1
+	},
+	{
+		question: "La TIR de un proyecto es mayor que el costo de capital utilizado para su evaluación.",
+		questionItems: [],
+		questionSuffix: "¿Conviene aceptar el proyecto según este criterio?",
+		options: [
+			"No, porque la TIR debe ser igual al costo de capital para aceptar",
+			"No se puede concluir nada, porque la TIR se interpreta de forma aislada",
+			"Sí, porque ofrece una rentabilidad superior a la mínima exigida",
+			"Sí, pero solo si el PRA es mayor que la vida útil del proyecto",
+		],
+		correctIndex: 2
+	},
+	{
+		question: "Un proyecto tiene VAN positivo, pero recupera la inversión inicial en un período prolongado en relación con su vida útil.",
+		questionItems: [],
+		questionSuffix: "¿Cómo se interpreta su PRA?",
+		options: [
+			"Retorno lento: el capital queda expuesto al riesgo durante más tiempo, lo que reduce su atractivo",
+			"Retorno rápido: un PRA largo indica menor riesgo",
+			"El PRA no importa, porque el VAN positivo garantiza que el proyecto es seguro",
+			"El proyecto destruye valor y debe rechazarse",
+		],
+		correctIndex: 0
+	},
+	{
+		question: "Si el costo de capital con que se evalúa un proyecto aumenta, manteniendo los mismos flujos:",
+		questionItems: [],
+		options: [
+			"El VAN aumenta, porque se exige más rentabilidad",
+			"El VAN no cambia, porque solo depende de los flujos",
+			"La TIR disminuye en la misma proporción",
+			"El VAN tiende a disminuir, porque los flujos futuros se descuentan con mayor exigencia",
+		],
+		correctIndex: 3
+	},
+]} />

@@ -1,6 +1,6 @@
 # La información vale más de lo que imaginas
 
-La información es uno de los activos más valiosos de cualquier organización. El crecimiento de los servicios digitales, la computación en la nube y la interconexión de sistemas ha aumentado los desafíos para protegerla frente a accesos no autorizados, pérdidas, alteraciones y ataques. En Chile, además, avanzan las exigencias regulatorias sobre protección de datos personales, continuidad operacional, delitos informáticos y ciberseguridad, por lo que estos fundamentos deben entenderse desde una mirada técnica, organizacional y de cumplimiento.
+La información es uno de los activos más valiosos de cualquier organización, y protegerla es indispensable para la continuidad de las operaciones y la confianza de usuarios, clientes e instituciones. El crecimiento de los servicios digitales, la computación en la nube y la interconexión de sistemas ha aumentado los desafíos para protegerla frente a accesos no autorizados, pérdidas, alteraciones y ataques; por eso las organizaciones adoptan enfoques de gestión que les permiten identificar riesgos, implementar controles adecuados y fortalecer su capacidad para **prevenir, detectar y responder** a incidentes de seguridad. En Chile, además, avanzan las exigencias regulatorias sobre protección de datos personales, continuidad operacional, delitos informáticos y ciberseguridad, por lo que estos fundamentos deben entenderse desde una mirada técnica, organizacional y de cumplimiento.
 
 ## 1. ¿Qué es la seguridad de la información?
 
@@ -10,7 +10,7 @@ No se limita a los sistemas informáticos: también abarca a las **personas**, l
 
 ## 2. La tríada CIA
 
-La tríada CIA (*Confidentiality, Integrity, Availability*) es el fundamento conceptual más importante de la seguridad de la información. Prácticamente todos los controles buscan proteger uno o más de sus principios, por lo que también sirve como criterio para evaluar la efectividad de las estrategias de protección.
+La tríada CIA (*Confidentiality, Integrity, Availability*) es el fundamento conceptual más importante de la seguridad de la información. Prácticamente todos los controles buscan proteger uno o más de sus principios: por ejemplo, el **cifrado** fortalece la confidencialidad, mientras que los **respaldos** contribuyen a garantizar la disponibilidad. Por eso la tríada no es solo un modelo conceptual: también sirve como criterio para evaluar la efectividad de las estrategias de protección.
 
 :::table{#tabla01 caption="Principios de la tríada CIA" layout="mixed" widths="160px,auto,auto,auto"}
 | Principio | Qué asegura | Mecanismos | Ejemplo |
@@ -22,7 +22,7 @@ La tríada CIA (*Confidentiality, Integrity, Availability*) es el fundamento con
 
 ## 3. Amenazas, vulnerabilidades y riesgos
 
-Para proteger la información hay que distinguir tres conceptos estrechamente relacionados.
+Para proteger la información hay que identificar los factores que pueden afectar a los activos, y para ello es fundamental distinguir tres conceptos estrechamente relacionados. Comprender sus diferencias permite evaluar situaciones de seguridad y seleccionar controles adecuados para reducir posibles impactos.
 
 ### Amenaza
 
@@ -30,28 +30,30 @@ Cualquier evento, circunstancia o actor capaz de **causar daño** a un activo de
 
 - **Humanas intencionales:** acciones deliberadas como *ransomware*, robo de credenciales, *phishing*, ataques de denegación de servicio (DoS) y espionaje industrial. Según Barría Huidobro (2021), los ciberdelincuentes usan cada vez más la **ingeniería social** para manipular a los usuarios.
 - **Humanas no intencionales:** errores de usuarios o administradores, como borrar archivos por accidente, configuraciones incorrectas, enviar información al destinatario equivocado o usar indebidamente dispositivos corporativos.
-- **Ambientales o físicas:** incendios, inundaciones, cortes eléctricos, terremotos o fallas de climatización.
+- **Ambientales o físicas:** eventos externos que pueden afectar la operación de los sistemas, como incendios, inundaciones, cortes eléctricos, terremotos o fallas de climatización.
 
 ### Vulnerabilidad
 
 Una **debilidad** dentro de un sistema, proceso o control de seguridad:
 
-- **Tecnológicas:** sistemas desactualizados, aplicaciones sin parches, configuraciones inseguras, protocolos obsoletos.
-- **Humanas:** contraseñas débiles, falta de capacitación, credenciales compartidas, desconocimiento de las políticas.
-- **Organizacionales:** ausencia de políticas de seguridad, falta de controles de acceso, escasa segregación de funciones, auditorías internas deficientes.
+- **Tecnológicas** (relacionadas con *hardware* o *software*): sistemas desactualizados, aplicaciones sin parches, configuraciones inseguras, protocolos obsoletos.
+- **Humanas** (relacionadas con el comportamiento de los usuarios): contraseñas débiles, falta de capacitación, credenciales compartidas, desconocimiento de las políticas.
+- **Organizacionales** (deficiencias en procesos o procedimientos): ausencia de políticas de seguridad, falta de controles de acceso, escasa segregación de funciones, auditorías internas deficientes.
 
 Según Chicano Tejada (2023), muchas brechas no se deben a atacantes sofisticados, sino a **vulnerabilidades conocidas que no se corrigieron a tiempo**.
 
 ### Riesgo
 
-El riesgo surge cuando una amenaza puede **explotar una vulnerabilidad** y generar un **impacto** sobre un activo. Para analizarlo hay que reconocer el activo afectado, la amenaza, la vulnerabilidad, la probabilidad de ocurrencia y el impacto para la organización:
+El riesgo surge cuando una amenaza puede **explotar una vulnerabilidad** y generar un **impacto** sobre un activo. Para analizarlo no basta con identificar una amenaza y una vulnerabilidad: también hay que reconocer el **activo afectado** y el **impacto** que tendría el incidente para la organización. Por ejemplo, una base de datos de clientes puede ser el activo; una campaña de *phishing*, la amenaza; la falta de autenticación multifactor, la vulnerabilidad, y la exposición de datos personales, el impacto.
+
+De forma más completa, el riesgo es la combinación entre un activo expuesto, una amenaza, una vulnerabilidad, la probabilidad de ocurrencia y el impacto del evento sobre la organización; para efectos de análisis, el nivel de riesgo suele estimarse combinando la probabilidad con el impacto. En términos simples:
 
 $$
-\text{Activo} + \text{Amenaza} + \text{Vulnerabilidad} \rightarrow \text{Evento de riesgo}
-$$
-
-$$
-\text{Nivel de riesgo} = \text{Probabilidad} \times \text{Impacto}
+\begin{align*}
+\text{Activo} + \text{Amenaza} + \text{Vulnerabilidad} &\rightarrow \text{Evento de riesgo}\\[6pt]
+\text{Riesgo} &= \text{Probabilidad de ocurrencia} \times \text{Impacto sobre el activo}\\[6pt]
+\text{Nivel de riesgo} &= \text{Probabilidad} \times \text{Impacto}
+\end{align*}
 $$
 
 :::solution[Ejemplo: análisis de un riesgo]
@@ -67,7 +69,7 @@ La probabilidad y el impacto son altos, por lo que el nivel de riesgo también l
 
 ## 4. Relación entre los conceptos clave
 
-La tríada CIA representa los **objetivos** que la organización busca proteger; las amenazas, vulnerabilidades y riesgos son los **factores** que pueden comprometerlos. Por eso se implementan controles de seguridad.
+La tríada CIA representa los **objetivos** que la organización busca proteger; las amenazas, vulnerabilidades y riesgos son los **factores** que pueden comprometerlos. Comprender esta relación explica por qué las organizaciones implementan **controles de seguridad** para proteger la información y garantizar la continuidad de sus operaciones.
 
 :::table{#tabla02 caption="Cómo se conectan estos elementos"}
 | Principio CIA | Amenaza asociada | Posible impacto |
@@ -91,9 +93,11 @@ La empresa almacena información sobre inventarios, clientes y rutas de distribu
 | **Vulnerabilidades** | Equipos sin actualizar; colaborador sin capacitación para reconocer el correo fraudulento |
 | **Principios afectados** | Confidencialidad, integridad y disponibilidad de la información |
 
+El caso muestra cómo una amenaza puede aprovechar una vulnerabilidad para generar riesgos que afectan directamente la tríada CIA.
+
 **Medidas para reducir la probabilidad y el impacto:** actualización periódica de los sistemas, autenticación multifactor, respaldos protegidos, protección de los equipos, capacitación contra *phishing* y monitoreo de eventos de seguridad.
 :::
 
 :::callout[Para reflexionar]{type="tip"}
-La seguridad de la información no depende solo de la tecnología, sino también de las personas, los procesos y las decisiones que se toman para proteger los recursos críticos. Piensa en los sistemas y servicios que usas a diario: ¿qué riesgos podrían afectarlos y qué medidas ayudarían a proteger la información que contienen?
+Estos conceptos son la base para analizar situaciones de seguridad: identificar amenazas y vulnerabilidades permite **anticipar incidentes**, **priorizar medidas de protección** y reducir posibles impactos sobre la operación. La seguridad de la información no depende solo de la tecnología, sino también de las personas, los procesos y las decisiones que se toman para proteger los recursos críticos, y estos fundamentos están presentes en todas las áreas de la ciberseguridad. Piensa en los sistemas y servicios que usas a diario: ¿qué riesgos podrían afectarlos y qué medidas ayudarían a proteger la información que contienen?
 :::

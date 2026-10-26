@@ -32,28 +32,61 @@ No todos los datos tienen el mismo valor. Existe una jerarquía de cuatro nivele
 | **4. Sabiduría** (cúspide) | Conocimiento aplicado con juicio y experiencia para decidir | «Como enero es el mes de mayor consumo, las distribuidoras deben asegurar capacidad adicional y los usuarios pueden optar por tarifas diferenciadas por horario» |
 :::
 
-La minería de datos trabaja principalmente en los niveles de **información** y **conocimiento**: toma datos brutos, los procesa y contextualiza, y aplica algoritmos para revelar patrones. La **sabiduría** sigue dependiendo del juicio humano, del contexto y de la interpretación ética de los resultados.
+En el nivel de conocimiento ya no solo se sabe el dato, sino que se comprende su significado y sus implicaciones; la sabiduría, en cambio, combina ese conocimiento técnico con el contexto del negocio para tomar decisiones estratégicas.
+
+La minería de datos trabaja principalmente en los niveles de **información** y **conocimiento**: toma datos brutos (nivel 1), los procesa y contextualiza (nivel 2) y aplica algoritmos para revelar patrones y generar conocimiento (nivel 3). La **sabiduría** sigue dependiendo del juicio humano, del contexto y de la interpretación ética de los resultados.
 
 ## 3. Relación con otras disciplinas
 
-La minería de datos es un campo **interdisciplinario**:
+La minería de datos no es una disciplina aislada, sino un campo **interdisciplinario**. Comprender estas relaciones te ayuda a ubicarla en el ecosistema tecnológico y a identificar qué habilidades complementarias son valiosas:
 
 - **Estadística:** entrega la base matemática para analizar datos, calcular probabilidades, medir correlaciones y validar si un patrón es significativo o solo ruido aleatorio.
 - **Bases de datos:** permiten almacenar, organizar y consultar grandes volúmenes de información con sistemas relacionales (SQL) y no relacionales (NoSQL).
-- **Inteligencia artificial y *machine learning*:** aportan algoritmos que aprenden patrones a partir de ejemplos, como árboles de decisión, redes neuronales o *clustering* (agrupamiento).
+- **Inteligencia artificial y *machine learning*:** aportan algoritmos que aprenden patrones a partir de ejemplos y ajustan sus resultados mediante entrenamiento sobre datos, como árboles de decisión, redes neuronales o *clustering* (agrupamiento).
 - **Visualización de datos:** gráficos y *dashboards* (paneles) comunican los hallazgos a quienes deciden sin conocimientos técnicos.
 - **Conocimiento del dominio:** un experto en el área determina si una correlación tiene sentido práctico o es una coincidencia; por ejemplo, un médico valida si un patrón tiene relevancia clínica.
 
 ## 4. Tipos de datos según su estructura
 
-Cada tipo de dato requiere herramientas y técnicas de procesamiento distintas.
+No todos los datos se crean iguales. Según cómo estén organizados, se clasifican en tres categorías, y entender sus diferencias es crítico porque cada tipo requiere herramientas y técnicas de procesamiento distintas.
 
-:::table{#tabla03 caption="Datos estructurados, semiestructurados y no estructurados" layout="mixed" widths="150px,auto,auto,auto"}
-| Tipo | Características | Ejemplos | Ventajas y desafíos |
-| --- | --- | --- | --- |
-| **Estructurados** | Filas y columnas con un esquema fijo; cada columna tiene un tipo (texto, número, fecha) y cada fila es un registro | Registros de ventas, cuentas bancarias, mediciones de sensores industriales | Fáciles de almacenar, consultar y analizar con bases relacionales (MySQL, PostgreSQL, Oracle). No todo el mundo real cabe en tablas |
-| **Semiestructurados** | Sin esquema rígido, pero con organización interna mediante etiquetas, jerarquías o metadatos. Formatos: **JSON**, **XML** y **YAML** | Respuestas de APIs web, *logs* (registros) de servidores, archivos de configuración | Flexibles: se agregan campos sin romper la estructura. Requieren *parseo* (análisis sintáctico) antes de analizarse |
-| **No estructurados** | Sin esquema tabular; su contenido principal no está en filas y columnas | Publicaciones en redes sociales, imágenes médicas, grabaciones de llamadas, documentos PDF | Más del 80% de los datos del mundo. Requieren técnicas avanzadas: NLP para texto, visión computacional para imágenes, reconocimiento de voz para audio |
+### Datos estructurados
+
+Organizados en **filas y columnas**, con un esquema fijo y predefinido. Cada columna tiene un tipo de dato específico (texto, número, fecha) y cada fila representa un registro: piensa en una planilla Excel perfectamente ordenada o en una tabla de una base de datos SQL.
+
+- **Registros de ventas:** cada fila es una transacción, con columnas para fecha, producto, cantidad, precio, cliente y sucursal.
+- **Bases de datos bancarias:** cada fila es una cuenta, con número de cuenta, titular, saldo, fecha de apertura y tipo de cuenta.
+- **Sensores industriales:** cada fila es una medición, con *timestamp* (marca de tiempo), temperatura, presión, humedad y ubicación del sensor.
+
+**Ventajas:** son fáciles de almacenar, consultar y analizar. Los sistemas de bases de datos relacionales (MySQL, PostgreSQL, Oracle) están optimizados para ellos, y las búsquedas, filtros y agregaciones son rápidas y eficientes. **Limitaciones:** no todos los datos del mundo real encajan en tablas; forzar datos no estructurados (imágenes, textos largos) en este formato puede resultar ineficiente o imposible.
+
+### Datos semiestructurados
+
+No siguen un esquema rígido de tabla, pero tienen cierta **organización interna** mediante etiquetas, jerarquías o metadatos: no son completamente libres como un texto narrativo, pero tampoco están confinados a filas y columnas. Los formatos más comunes son **JSON** (*JavaScript Object Notation*), **XML** (*eXtensible Markup Language*) y **YAML**.
+
+- **APIs web:** al consultar el clima en una aplicación, la respuesta llega en JSON con campos como «ciudad», «temperatura», «humedad» y «pronóstico».
+- ***Logs* (registros) de servidores:** suelen estar en JSON o XML, con *timestamp*, nivel de error, mensaje y usuario afectado.
+- **Documentos de configuración:** archivos YAML o JSON que definen parámetros de aplicaciones, con secciones anidadas y listas de valores.
+
+**Ventajas:** son flexibles y adaptables; puedes agregar campos nuevos sin romper la estructura existente. Son ideales para datos que evolucionan con el tiempo o que provienen de múltiples fuentes con esquemas ligeramente distintos. **Limitaciones:** requieren *parseo* (análisis sintáctico) antes de analizarse. Aunque tradicionalmente se procesan con herramientas NoSQL o especializadas, muchos motores SQL modernos permiten consultar JSON o XML mediante extensiones específicas.
+
+### Datos no estructurados
+
+No siguen un esquema tabular o relacional predefinido. Pueden tener metadatos asociados, pero su contenido principal no está en filas y columnas: textos libres, imágenes, videos, audios, documentos PDF, publicaciones en redes sociales, correos electrónicos. Representan la mayor parte de los datos del mundo digital.
+
+- **Redes sociales:** tweets, publicaciones de Instagram, comentarios en YouTube; de longitud variable, con emojis, menciones y *hashtags* (etiquetas), sin formato fijo.
+- **Imágenes médicas:** radiografías, resonancias magnéticas, tomografías; archivos binarios con píxeles, no números en columnas.
+- **Grabaciones de llamadas:** los centros de atención graban miles de llamadas diarias, cada una única en duración, contenido y calidad.
+- **Documentos PDF:** contratos, informes técnicos, artículos científicos; tienen texto, pero también tablas, imágenes, gráficos y formatos mixtos.
+
+**Desafíos:** requieren técnicas avanzadas de procesamiento: procesamiento de lenguaje natural (NLP, *Natural Language Processing*) para textos, visión computacional para imágenes y reconocimiento de voz para audios. El volumen es masivo: se estima que **más del 80%** de los datos generados en el mundo son no estructurados. **Oportunidades:** contienen información riquísima que los datos estructurados no capturan. Analizar comentarios de clientes en redes sociales puede revelar problemas de calidad antes de que afecten las ventas, y detectar patrones en imágenes médicas puede identificar enfermedades en etapas tempranas.
+
+:::table{#tabla03 caption="Resumen: datos estructurados, semiestructurados y no estructurados" layout="mixed" widths="150px,auto,auto"}
+| Tipo | Organización | Herramientas típicas |
+| --- | --- | --- |
+| **Estructurados** | Filas y columnas con esquema fijo | Bases relacionales (SQL): MySQL, PostgreSQL, Oracle |
+| **Semiestructurados** | Etiquetas, jerarquías o metadatos (JSON, XML, YAML) | Herramientas NoSQL como MongoDB o Elasticsearch; extensiones JSON/XML de motores SQL |
+| **No estructurados** | Sin esquema tabular | NLP, visión computacional, reconocimiento de voz |
 :::
 
 Un proyecto real suele combinar los tres tipos. Una empresa puede tener transacciones en una base SQL (estructurados), archivos JSON de configuración (semiestructurados) y millones de correos de clientes (no estructurados): SQL para lo primero, MongoDB o Elasticsearch para lo segundo y técnicas de NLP para lo tercero.
@@ -77,5 +110,6 @@ Para profundizar en datos no estructurados existen bibliotecas como **NLTK** o *
 1. Piensa en una aplicación que uses a diario (transporte, *delivery*, redes sociales). ¿Qué datos estructurados, semiestructurados y no estructurados crees que recopila sobre ti?
 2. Una empresa de telecomunicaciones almacena registros de llamadas, mensajes y ubicación GPS. ¿Qué nivel de la pirámide alcanza si solo los almacena? ¿Y si detecta patrones de movilidad para ubicar mejor sus antenas?
 3. ¿Recuerdas un caso donde mucho conocimiento técnico no bastó para tomar una buena decisión? ¿Qué factores humanos o de contexto faltaron?
-4. ¿Qué implicaciones éticas tiene el análisis masivo de datos personales?
+4. ¿Cuántos datos generas en un día promedio y de qué tipo? ¿Eres consciente de toda la información que compartes? ¿Qué implicaciones éticas tiene el análisis masivo de datos personales?
+5. Si tuvieras que explicarle a alguien sin conocimientos técnicos la diferencia entre datos, información, conocimiento y sabiduría, ¿qué analogía usarías? Intenta crear una propia, distinta de las de esta lectura.
 :::

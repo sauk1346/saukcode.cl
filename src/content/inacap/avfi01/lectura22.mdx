@@ -6,6 +6,12 @@ En la evaluación de proyectos, el riesgo no es una excepción: es la condición
 
 Son herramientas estructuradas para identificar, evaluar y priorizar los riesgos de un proyecto según dos dimensiones: la **probabilidad** de que ocurran y su **impacto** sobre los resultados (financieros, operativos o estratégicos). Responden a: ¿qué puede salir mal, qué tan probable es y qué tan grave sería? Permiten ordenar los riesgos por importancia, identificar los críticos, decidir dónde concentrar esfuerzos y apoyar las decisiones financieras. No eliminan el riesgo, pero ayudan a gestionarlo racionalmente.
 
+El resultado es una clasificación visual y analítica: al cruzar ambas dimensiones se obtiene un nivel de criticidad que indica qué riesgos requieren atención inmediata, cuáles deben monitorearse y cuáles pueden aceptarse. Toda matriz tiene tres componentes principales:
+
+1. **Riesgo identificado:** el evento que puede afectar al proyecto (por ejemplo, ventas menores a lo esperado).
+2. **Probabilidad:** qué tan probable es que ocurra.
+3. **Impacto:** qué tan grave sería su efecto.
+
 :::table{#tabla01 caption="Escalas de probabilidad e impacto" layout="mixed" widths="100px,auto,auto"}
 | Nivel | Probabilidad: ¿qué tan posible es que ocurra? | Impacto: si ocurre, ¿qué tan grave sería? |
 | --- | --- | --- |
@@ -14,7 +20,7 @@ Son herramientas estructuradas para identificar, evaluar y priorizar los riesgos
 | **Alta** | Evento frecuente o muy probable según el contexto o los datos históricos | Puede volver negativo el VAN o afectar la TIR significativamente |
 :::
 
-**Ejemplos:** un cambio menor en el precio de los insumos tiene probabilidad media; una nueva regulación ya anunciada, probabilidad alta. Un aumento leve de los costos administrativos tiene impacto bajo; la pérdida del cliente principal, impacto alto.
+**Ejemplos:** un cambio menor en el precio de los insumos o una caída leve de las ventas en un mercado estable tienen probabilidad media; una nueva regulación ya anunciada (un cambio regulatorio inminente), probabilidad alta. Un aumento leve de los costos administrativos tiene impacto bajo; la pérdida del cliente principal, impacto alto.
 
 :::table{#tabla02 caption="Matriz de riesgo 3×3"}
 | Probabilidad | Impacto bajo | Impacto medio | Impacto alto |
@@ -26,13 +32,13 @@ Son herramientas estructuradas para identificar, evaluar y priorizar los riesgos
 
 Se lee cruzando una fila con una columna: se identifica el riesgo (caída de ventas, aumento de costos, retraso en cobros), se evalúa su probabilidad y la gravedad de su impacto, y se ubica en la celda correspondiente.
 
-:::table{#tabla03 caption="Decisión según el nivel de riesgo" layout="mixed" widths="140px,auto,auto,auto"}
-| Nivel | Significado | Decisión típica | Ejemplo financiero |
-| --- | --- | --- | --- |
-| **Muy bajo / bajo** | Baja incidencia y efecto limitado | Se acepta y solo se monitorea | Variación menor en gastos administrativos sin efecto en el VAN o la caja |
-| **Moderado** | Puede afectar los resultados, pero no compromete por sí solo la viabilidad | Seguimiento y planes de mitigación simples | Aumento puntual de costos que reduce el VAN sin volverlo negativo |
-| **Alto** | Puede cambiar la decisión de inversión | Acciones concretas de mitigación o ajustes al proyecto | Caída sostenida de ventas que afecta significativamente la TIR |
-| **Crítico** | Amenaza directamente la viabilidad financiera | Rediseñar, postergar o rechazar la inversión | Incertidumbre regulatoria muy probable que invalida los flujos proyectados |
+:::table{#tabla03 caption="Decisión según el nivel de riesgo" layout="mixed" widths="120px,150px,auto,auto,auto"}
+| Nivel | Ubicación en la matriz | Significado | Decisión típica | Ejemplo financiero |
+| --- | --- | --- | --- | --- |
+| **Muy bajo / bajo** | :li[Probabilidad baja + impacto bajo] :li[Probabilidad baja + impacto medio] :li[Probabilidad media + impacto bajo] | Baja incidencia y efecto limitado | Se acepta y solo se monitorea | Variación menor en gastos administrativos sin efecto en el VAN o la caja |
+| **Moderado** | :li[Probabilidad alta + impacto bajo] :li[Probabilidad media + impacto medio] :li[Probabilidad baja + impacto alto] | Puede afectar los resultados, pero no compromete por sí solo la viabilidad | Seguimiento y planes de mitigación simples | Aumento puntual de costos que reduce el VAN sin volverlo negativo |
+| **Alto** | :li[Probabilidad media + impacto alto] :li[Probabilidad alta + impacto medio] | Puede cambiar la decisión de inversión | Acciones concretas de mitigación o ajustes al proyecto | Caída sostenida de ventas que afecta significativamente la TIR |
+| **Crítico** | Probabilidad alta + impacto alto | Amenaza directamente la viabilidad financiera | Rediseñar, postergar o rechazar la inversión | Incertidumbre regulatoria muy probable que invalida los flujos proyectados |
 :::
 
 :::table{#tabla04 caption="Riesgos de la juguería de jugos naturales"}
@@ -47,7 +53,16 @@ Las matrices ayudan a explicar por qué la tasa de descuento es más alta en pro
 
 ## 2. Análisis de sensibilidad univariado
 
-El análisis de sensibilidad evalúa cómo cambian los resultados cuando cambian las variables clave: responde a **¿qué pasa si algo cambia?** El análisis **univariado** modifica una sola variable a la vez (ventas, costos, inversión inicial o tasa de descuento) y mantiene constantes las demás, para observar su impacto individual sobre el VAN, la TIR o el PRA. No predice el futuro, pero detecta vulnerabilidades, muestra qué supuestos requieren mayor control y sirve de base para los escenarios multivariados.
+El análisis de sensibilidad evalúa cómo cambian los resultados cuando cambian las variables clave: responde a **¿qué pasa si algo cambia?** El análisis **univariado** modifica una sola variable a la vez (ventas, costos, inversión inicial o tasa de descuento) y mantiene constantes las demás, para observar su impacto individual sobre el VAN, la TIR o el PRA. No predice el futuro, pero detecta vulnerabilidades, muestra qué supuestos requieren mayor control y sirve de base para los escenarios multivariados. Por ejemplo, se puede evaluar qué sucede si las ventas disminuyen un 10%, si la tasa de descuento aumenta 2 puntos porcentuales o si la inversión inicial se incrementa un 15%. En el contexto profesional, permite anticipar desviaciones razonables antes de comprometer recursos financieros.
+
+:::table{#tabla07 caption="Variables típicas del análisis univariado" layout="mixed" widths="180px,auto"}
+| Variable | Qué representa y qué revela |
+| --- | --- |
+| **Ventas (ingresos)** | Varían por precio, demanda o competencia. Mide si el proyecto resiste caídas en las ventas |
+| **Costos operacionales** | Gastos operativos vulnerables a la inflación y a los proveedores. Identifica dónde se necesita mayor control |
+| **Inversión inicial** | Desembolso que puede crecer por sobrecostos. Obliga a prever financiamiento adicional |
+| **Tasa de descuento** | Costo de capital que refleja el riesgo. Muestra la sensibilidad a cambios en las condiciones financieras |
+:::
 
 :::solution[Sensibilidad de la juguería]
 Datos base de la [lectura 20](/inacap/avfi01/lectura20): inversión de \$3.000.000, ingresos anuales de \$4.000.000, egresos anuales de \$2.300.000, rescate de \$1.000.000, tasa del 10% y VAN de \$1.978.963.
@@ -80,15 +95,25 @@ El análisis de escenarios modifica **simultáneamente** varias variables críti
 | --- | --- |
 | **Optimista** | Las variables evolucionan mejor de lo esperado: mayores ingresos, menor inversión, condiciones financieras estables. Muestra el potencial máximo de creación de valor |
 | **Base** | Los supuestos originales, considerados más probables. Es el punto de referencia para comparar |
-| **Pesimista** | Varias variables se deterioran a la vez: menores ventas, mayor inversión, tasa más alta. Muestra si el proyecto destruye valor en condiciones adversas |
+| **Pesimista** | Varias variables se deterioran a la vez: menores ventas, mayor inversión, tasa más alta. Muestra si el proyecto destruye valor en condiciones adversas y es clave para decisiones conservadoras o de rechazo |
 | **Realista–conservador** | Ajustes prudentes y plausibles: arranque lento, pequeños sobrecostos, mayor costo de capital. Es clave para decisiones profesionales, porque evita apoyarse solo en proyecciones optimistas |
+:::
+
+:::solution[Ejemplo: escenarios de ventas de una pyme]
+Una pyme proyecta vender 1.000 unidades a un precio promedio de \$10.000. Variando a la vez el volumen y el precio, construye tres escenarios de ingresos:
+
+| Escenario | Unidades | Precio promedio | Ventas |
+| --- | ---: | ---: | ---: |
+| **Optimista** | 1.100 | \$10.200 | \$11.220.000 |
+| **Realista** | 1.000 | \$10.000 | \$10.000.000 |
+| **Pesimista** | 900 | \$9.800 | \$8.820.000 |
 :::
 
 Un proyecto **robusto** es el que mantiene un VAN positivo incluso en escenarios pesimistas razonables; si solo es viable en condiciones muy favorables, el riesgo es alto.
 
 ## 4. La IA en la simulación de escenarios
 
-La IA permite simular rápidamente múltiples escenarios, sensibilizar variables críticas y apoyar la interpretación de los indicadores, con una exploración sistemática que a mano tomaría mucho tiempo.
+La IA permite simular rápidamente múltiples escenarios, sensibilizar variables críticas y apoyar la interpretación de los indicadores, con una exploración sistemática de variaciones en ventas, tasas e inversión que a mano tomaría mucho tiempo. También facilita la construcción de matrices de riesgo. Sin embargo, la IA automatiza cálculos, depende de los supuestos ingresados y puede generar una falsa certeza: sus resultados deben interpretarse críticamente, considerando el contexto y los dilemas éticos asociados.
 
 :::solution[Ejemplo de prompt: proyecto e-commerce]
 «Analiza la sensibilidad del proyecto e-commerce. Datos base: inversión de \$50.000.000; flujos de \$20 MM al año durante 3 años más \$5 MM en el año 4; tasa del 12%; VAN base de +\$1,21 MM. Sensibiliza las ventas (−20% a +20%, en pasos de 5%), la tasa (8% a 16%, en pasos de 2%) y la inversión (−10% a +20%, en pasos de 5%). Genera una tabla de sensibilidad univariada por variable, un gráfico tornado (variables ordenadas por impacto), una tabla de escenarios (optimista, base, pesimista y conservador), el punto de equilibrio de ventas y una recomendación basada en la robustez.»
@@ -105,17 +130,17 @@ La IA permite simular rápidamente múltiples escenarios, sensibilizar variables
 
 ## 5. Dilemas éticos en la evaluación con IA
 
-Un dilema ético ocurre cuando hay que elegir entre usar la IA de manera responsable y transparente, o usarla de forma conveniente pero incorrecta, aunque el resultado «se vea bien». La IA facilita cálculos y escenarios, pero puede usarse para forzar decisiones favorables.
+La IA amplía las capacidades de análisis, pero también introduce desafíos éticos: las proyecciones automatizadas pueden verse influidas por presiones organizacionales, sesgos en los supuestos o una confianza excesiva en los resultados. Un dilema ético ocurre cuando hay que elegir entre usar la IA de manera responsable y transparente, o usarla de forma conveniente pero incorrecta, aunque el resultado «se vea bien». La IA facilita cálculos y escenarios, pero puede usarse para forzar decisiones favorables. En la juguería, la emprendedora usa IA para calcular los flujos de fondos, estimar el VAN, la TIR y el PRA y analizar escenarios, con el objetivo de presentar el proyecto a un inversionista o banco.
 
-:::table{#tabla06 caption="El dilema en la juguería: presentar el proyecto a un inversionista o banco" layout="mixed" widths="180px,auto"}
-| Elemento | En la juguería |
-| --- | --- |
-| **Análisis ético** | ¿Uso la IA para analizar con honestidad o para que el proyecto «resulte bien»? Hay que verificar que los supuestos sean realistas, que los riesgos estén representados y que los resultados no muestren solo el mejor escenario |
-| **Tentación** | Con ventas normales el VAN es positivo, pero subiendo un poco las ventas, bajando los costos o usando una tasa menor, el proyecto se ve mucho más atractivo: «si ajusto un poco los datos, consigo el financiamiento» |
-| **Riesgo de la IA** | No valida la veracidad de los datos, solo calcula: puede aceptar proyecciones irreales, repetir sesgos del usuario, generar una falsa sensación de certeza u ocultar riesgos bajo números «bonitos». No detecta intencionalidad ética |
-| **Problema ético** | No es usar IA, sino manipular supuestos, omitir escenarios negativos o no transparentar cómo se obtuvieron los resultados; por ejemplo, presentar solo el escenario optimista y ocultar la sensibilidad del proyecto |
-| **Consecuencias** | A corto plazo se aprueba el proyecto o se obtiene financiamiento. A mediano y largo plazo no se alcanzan los resultados prometidos, se pierde la confianza de los inversionistas y hay problemas financieros y daño reputacional. El error no fue técnico, fue ético |
-| **Conducta correcta** | Presentar los escenarios base, pesimista y optimista; justificar la tasa de descuento según el riesgo real; declarar los supuestos y transparentar los riesgos identificados |
+:::table{#tabla06 caption="El dilema en la juguería: presentar el proyecto a un inversionista o banco" layout="mixed" widths="150px,auto,170px"}
+| Elemento | En la juguería | En síntesis |
+| --- | --- | --- |
+| **Análisis ético** | ¿Uso la IA para analizar con honestidad o para que el proyecto «resulte bien»? Hay que verificar que los supuestos sean realistas, que los riesgos estén representados y que los resultados no muestren solo el mejor escenario | Ver si los supuestos son realistas |
+| **Tentación** | Con ventas normales el VAN es positivo, pero subiendo un poco las ventas, bajando los costos o usando una tasa menor, el proyecto se ve mucho más atractivo: «si ajusto un poco los datos, consigo el financiamiento» | Ajustar datos para que el VAN sea mayor |
+| **Riesgo de la IA** | No valida la veracidad de los datos, solo calcula: puede aceptar proyecciones irreales, repetir sesgos del usuario, generar una falsa sensación de certeza u ocultar riesgos bajo números «bonitos». No detecta intencionalidad ética | Aceptar resultados sin cuestionarlos |
+| **Problema ético** | No es usar IA, sino manipular supuestos, omitir escenarios negativos o no transparentar cómo se obtuvieron los resultados; por ejemplo, presentar solo el escenario optimista y ocultar la sensibilidad del proyecto | Manipular u ocultar información |
+| **Consecuencias** | A corto plazo se aprueba el proyecto o se obtiene financiamiento. A mediano y largo plazo no se alcanzan los resultados prometidos, se pierde la confianza de los inversionistas y hay problemas financieros y daño reputacional. El error no fue técnico, fue ético | Pérdida financiera y de confianza |
+| **Conducta correcta** | Presentar los escenarios base, pesimista y optimista; justificar la tasa de descuento según el riesgo real; declarar los supuestos y transparentar los riesgos identificados | Transparencia y responsabilidad |
 :::
 
 Una conducta ejemplar sería decir: «la IA muestra que el proyecto es rentable, pero también revela que es sensible a una caída de las ventas; este riesgo debe gestionarse». Un buen proyecto no se fuerza: se explica.
@@ -130,9 +155,66 @@ Una empresa evalúa un proyecto con un VAN de **+\$35 MM** en el escenario optim
 - **Aprobar con condiciones (la decisión que integra rentabilidad y riesgo):** analizar la probabilidad del escenario adverso, diseñar medidas de mitigación, implementar un piloto, asegurar contratos de venta y revisar la estructura de financiamiento.
 :::
 
+En síntesis, la evaluación financiera comienza identificando la inversión inicial, proyectando los flujos netos de fondos y determinando una tasa de descuento coherente con el costo de capital y el riesgo del proyecto: sin estos tres elementos no es posible calcular indicadores de rentabilidad. El VAN es el indicador más sólido desde la perspectiva financiera; la TIR y el PRA lo complementan, pero no lo reemplazan.
+
 Evaluar un proyecto implica calcular indicadores, analizar la sensibilidad, construir escenarios, integrar matrices de riesgo y usar la IA de forma ética. La decisión profesional no depende solo de la rentabilidad esperada, sino de la **robustez del proyecto frente a la incertidumbre**.
 
 :::callout[Para reflexionar]{type="tip"}
 1. ¿Qué variables de un proyecto consideras más críticas al analizar su sensibilidad y por qué?
 2. ¿Cómo puede el uso ético de la inteligencia artificial fortalecer la toma de decisiones financieras en contextos de incertidumbre?
+3. ¿Cómo aplicarías estos indicadores para evaluar un proyecto en tu futura área profesional?
+4. ¿Qué peso darías al riesgo y a la ética en tu decisión?
 :::
+
+## Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "Una emprendedora usa IA para proyectar el VAN de su proyecto. Descubre que, si aumenta ligeramente las ventas proyectadas, el VAN mejora considerablemente.",
+		questionItems: [],
+		questionSuffix: "¿Dónde está el dilema ético?",
+		options: [
+			"En declarar todos los escenarios, incluido el pesimista",
+			"En ajustar los datos para obtener el financiamiento",
+			"En validar los supuestos con datos reales",
+			"En usar IA para calcular el VAN, la TIR y el PRA",
+		],
+		correctIndex: 1
+	},
+	{
+		question: "En una matriz de riesgo 3×3, un riesgo tiene probabilidad alta y un impacto medio sobre el proyecto.",
+		questionItems: [],
+		questionSuffix: "¿Qué nivel de riesgo le corresponde y qué decisión típica exige?",
+		options: [
+			"Bajo: se acepta y solo se monitorea",
+			"Moderado: basta con un plan de mitigación simple",
+			"Alto: exige acciones concretas de mitigación o ajustes al proyecto",
+			"Crítico: hay que rediseñar, postergar o rechazar la inversión",
+		],
+		correctIndex: 2
+	},
+	{
+		question: "Un analista modifica solo la tasa de descuento, de 10% a 12%, manteniendo constantes las ventas, los costos y la inversión, para observar cómo cambia el VAN.",
+		questionItems: [],
+		questionSuffix: "¿Qué tipo de análisis está realizando?",
+		options: [
+			"Análisis de sensibilidad univariado",
+			"Análisis de escenarios multivariados",
+			"Matriz de análisis de riesgo",
+			"Escenario realista–conservador",
+		],
+		correctIndex: 0
+	},
+	{
+		question: "Eres gerente financiero. Un proyecto e-commerce tiene un VAN de +$35 MM en el escenario optimista, +$18 MM en el base y −$12 MM en el pesimista, y el análisis de sensibilidad indica que depende fuertemente del nivel de ventas.",
+		questionItems: [],
+		questionSuffix: "¿Qué decisión integra mejor rentabilidad y riesgo?",
+		options: [
+			"Aprobar inmediatamente, porque el escenario base es positivo",
+			"Rechazar el proyecto, porque el escenario pesimista tiene VAN negativo",
+			"Aprobar con condiciones: analizar la probabilidad del escenario adverso, mitigar, implementar un piloto y asegurar contratos de venta",
+			"Presentar solo el escenario optimista para conseguir financiamiento",
+		],
+		correctIndex: 2
+	},
+]} />

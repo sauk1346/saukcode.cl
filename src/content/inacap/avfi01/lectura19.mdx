@@ -4,32 +4,42 @@ Evaluar financieramente un proyecto consiste en determinar si una inversión gen
 
 La evaluación responde preguntas como: ¿el proyecto crea o destruye valor?, ¿es rentable frente a otras alternativas?, ¿cuándo se recupera la inversión? y ¿qué tan sensible es a cambios en variables clave? Un proyecto puede parecer atractivo por sus ventas o márgenes, pero si no genera flujos de efectivo positivos o su riesgo es excesivo respecto de la rentabilidad esperada, puede no convenir.
 
+Por eso la evaluación financiera no es un ejercicio mecánico de aplicación de fórmulas, sino un proceso de análisis que exige comprender conceptos económicos, validar supuestos, construir información coherente y aplicar criterio profesional para interpretar los resultados.
+
+:::solution[Ejemplo: expandir la línea actual o entrar a un nuevo mercado]
+Una empresa evalúa dos proyectos de inversión: expandir su línea de productos actual o ingresar a un nuevo mercado. Ambos requieren una inversión similar, pero tienen perfiles de riesgo y retorno diferentes. La evaluación financiera permite compararlos de manera objetiva, considerando no solo la rentabilidad, sino también la liquidez, el riesgo y la coherencia estratégica.
+:::
+
 ## 1. Costo de oportunidad
 
-El costo de oportunidad es el valor de la **mejor alternativa sacrificada** al tomar una decisión. No es un costo contable (no aparece en los estados financieros), pero es crucial para decidir racionalmente: el verdadero costo de una inversión incluye tanto el desembolso directo como el beneficio al que se renuncia.
+El costo de oportunidad es el valor de la **mejor alternativa sacrificada** al tomar una decisión. No es un costo contable (no aparece en los estados financieros), pero es crucial para decidir racionalmente desde una perspectiva de asignación eficiente de los recursos. **Principio económico:** cada decisión de inversión implica renunciar a otras opciones; el verdadero costo de una inversión incluye tanto el desembolso directo como el beneficio al que se renuncia.
 
 :::solution[Ejemplo: depósito a plazo o mercadería]
 Una persona dispone de \$1.000.000 por un año y tiene dos alternativas excluyentes:
 
-- **A:** depósito a plazo con una rentabilidad segura del 6% anual.
-- **B:** comprar mercadería para revender, con una ganancia esperada del 10% anual, pero con mayor riesgo.
+| Alternativa | Inversión | Ganancia al año | Riesgo |
+| --- | ---: | ---: | --- |
+| **A:** depósito a plazo | \$1.000.000 | \$60.000 (6%, segura) | Muy bajo |
+| **B:** compra de mercadería para revender | \$1.000.000 | \$100.000 (10%, esperada) | Medio (puede venderse menos de lo esperado) |
+
+Ambas usan el mismo capital durante el mismo período y solo se puede elegir una.
 
 Si elige **A**, su costo de oportunidad es la ganancia que deja de obtener en B: \$100.000 (10%). Si elige **B**, su costo de oportunidad es la ganancia segura del depósito: \$60.000 (6%).
 :::
 
-Invertir es comparar alternativas, no evaluar una opción aislada: toda inversión debe compararse con la mejor alternativa disponible.
+Invertir es comparar alternativas, no evaluar una opción aislada: toda inversión debe compararse con la mejor alternativa disponible. El costo de oportunidad obliga a considerar explícitamente qué se sacrifica, incorporando no solo el retorno absoluto, sino también el **retorno relativo** frente a las alternativas disponibles.
 
 ## 2. Costo de capital
 
 El costo de capital es la **rentabilidad mínima** que un proyecto debe generar para compensar a quienes aportan el dinero (dueños y acreedores), considerando el riesgo que asumen. Dicho de forma simple, es el precio de usar dinero para financiar un proyecto. Si el proyecto no alcanza esa rentabilidad, no compensa a los dueños, no cubre el costo de la deuda y no conviene realizarlo, aunque genere utilidades contables.
 
-Se calcula como un promedio ponderado según la estructura de financiamiento (WACC simplificado):
+Se determina mediante el costo de capital promedio ponderado (*WACC*, *weighted average cost of capital*), que pondera el costo de cada fuente según la estructura de financiamiento del proyecto (fórmula conceptual simplificada):
 
 $$
 \text{Costo de capital} = (\%\,\text{Deuda} \times \text{Costo de la deuda}) + (\%\,\text{Capital propio} \times \text{Costo del capital propio})
 $$
 
-:::table{#tabla01 caption="Costo de capital de un proyecto de $10.000.000 (dueños exigen 12%, el banco cobra 8%)" layout="mixed" widths="200px,200px,90px,auto"}
+:::table{#tabla01 caption="Costo de capital de un proyecto de $10.000.000 a 1 año (dueños exigen 12%, el banco cobra 8%)" layout="mixed" widths="200px,200px,90px,auto"}
 | Financiamiento | Cálculo | Costo de capital | Interpretación |
 | --- | --- | ---: | --- |
 | **100% capital propio** | $(0 \times 8\%) + (1 \times 12\%)$ | 12% | Debe cubrir la ganancia esperada por los dueños: \$1.200.000 |
@@ -70,7 +80,7 @@ $$
 | **Flujo neto** | −\$3.000.000 | \$1.700.000 | \$1.700.000 | \$2.700.000 |
 :::
 
-Los flujos de los años 1 a 3 son futuros: para compararlos con la inversión de hoy hay que traerlos a valor presente con una tasa de descuento.
+El flujo de fondos es la base de toda evaluación financiera: siempre parte con una salida grande de dinero en el año 0 (la inversión inicial) y luego vienen los flujos de entrada y salida de cada año. La idea es que los flujos netos sean positivos y suficientes para cubrir la inversión inicial, generando así rentabilidad. Pero los flujos de los años 1 a 3 son futuros (proyectados para el fin de cada año): para compararlos con la inversión de hoy hay que traerlos a valor presente con una tasa de descuento.
 
 ## 4. Tasa de descuento y valor del dinero en el tiempo
 
@@ -79,8 +89,10 @@ La tasa de descuento es el porcentaje que se usa para traer al presente el diner
 $$
 \text{Tasa de descuento} = \text{Tasa base} + \text{Primas de riesgo}
 \qquad
-\text{Valor presente} = \frac{F_t}{(1 + r)^t}
+\text{Valor presente} = \frac{\text{Flujo}}{(1 + \text{tasa})^n}
 $$
+
+Donde $n$ es el número de períodos. Aplicando esta fórmula a cada flujo futuro se obtiene su equivalente en valor presente, lo que permite compararlos y sumarlos de manera coherente.
 
 La **tasa base** es una rentabilidad segura, sin riesgo (depósito a plazo, bono del Estado). La **prima de riesgo** compensa la incertidumbre del proyecto: riesgo del negocio, del mercado, financiero, tecnológico u operativo, y riesgo país. A mayor riesgo, mayor rentabilidad exigida y mayor tasa de descuento.
 
@@ -94,11 +106,11 @@ En la juguería, un negocio pequeño de riesgo moderado, el dueño exige una ren
 | 3 | \$2.700.000 | $2.700.000 / 1{,}1^3$ | \$2.028.550 |
 :::
 
-Con estos valores ya se pueden calcular los indicadores del proyecto (VAN, TIR y PRA), comparar proyectos y analizar si el negocio realmente crea valor.
+Con apoyo de IA se puede simular la tasa de descuento para distintos niveles de riesgo del proyecto, lo que cambia los flujos en valor presente. Con estos valores ya se pueden calcular los indicadores del proyecto (VAN, TIR y PRA), comparar proyectos y analizar si el negocio realmente crea valor.
 
 ## 5. La IA en el análisis del costo de oportunidad y de capital
 
-La IA no decide: solo apoya el análisis. Es útil para comparar retornos, calcular el costo de capital, simular estructuras de financiamiento y reducir errores matemáticos, porque permite probar combinaciones sin rehacer todo el ejercicio.
+La IA no decide: solo apoya el análisis. Es útil para comparar retornos, calcular el costo de capital (WACC), simular distintas estructuras de financiamiento, comparar su impacto en los flujos de caja y reducir errores matemáticos, porque permite probar combinaciones sin rehacer todo el ejercicio.
 
 :::solution[Ejemplo de prompt: costo de oportunidad]
 «Tengo \$2.000.000 y tres alternativas con retornos del 6%, 10% y 12%. Ayúdame a comparar retornos, identificar el costo de oportunidad y mostrarlo en una tabla simple.»
