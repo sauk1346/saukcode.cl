@@ -1,0 +1,64 @@
+## Control 01
+
+<Quiz questions={[
+	{
+		question: "Una empresa minera implementa sensores en maquinaria pesada y recopila 500 GB de datos diarios sobre temperatura, vibraciones y presión. Antes de aplicar algoritmos de predicción de fallas, el equipo identifica que el 40% de los sensores tienen desfases de timestamp de hasta 10 minutos, hay valores negativos imposibles en temperatura y algunos sensores duplican registros. ¿En qué etapa del proceso KDD se encuentran y qué deben hacer?",
+		options: [
+			"Minería de datos: deben aplicar algoritmos robustos a outliers como random forest que toleran naturalmente estos errores sistemáticos.",
+			"Selección: deben redefinir los criterios de muestreo y elegir únicamente los sensores que han demostrado ser confiables históricamente.",
+			"Transformación: deben normalizar los valores negativos convirtiéndolos a su valor absoluto y estandarizar las escalas de medición.",
+			"Preprocesamiento: deben limpiar las inconsistencias, sincronizar timestamps, corregir valores imposibles y eliminar registros duplicados."
+		],
+		correctIndex: 3
+	},
+	{
+		question: "Una empresa minera utiliza sensores IoT que registran cada 5 minutos: timestamp, ID del sensor, temperatura del motor, vibraciones en mm/s, presión hidráulica en PSI y estado operacional (activo/inactivo). Los datos se almacenan en una base de datos PostgreSQL. ¿Cómo se clasifican estos datos?",
+		options: [
+			"No estructurados, porque son datos de telemetría industrial capturados en tiempo real desde dispositivos heterogéneos de campo.",
+			"Semiestructurados, porque combinan información numérica continua (temperatura, presión) con datos categóricos discretos (estado operacional).",
+			"Estructurados, porque están organizados en un esquema relacional fijo con columnas predefinidas y tipos de datos específicos en PostgreSQL.",
+			"Semiestructurados, porque provienen de múltiples sensores distribuidos geográficamente con características técnicas potencialmente distintas."
+		],
+		correctIndex: 2
+	},
+	{
+		question: "Un equipo de retail construyó un modelo que predice con 88% de precisión qué productos se agotarán en cada sucursal. Celebran el éxito, pero 3 meses después descubren que nadie en la empresa usa el modelo porque no está integrado con el sistema de reabastecimiento y requiere exportar manualmente archivos CSV cada semana. ¿Qué fase de CRISP-DM descuidaron?",
+		options: [
+			"Modelado: deberían haber construido un modelo más simple y explicable que justificara el esfuerzo de adopción por parte del equipo.",
+			"Despliegue: no integraron el modelo en los sistemas operacionales existentes ni automatizaron su ejecución y uso por parte del negocio.",
+			"Comprensión del negocio: malinterpretaron el objetivo real, que era automatizar reabastecimiento, no solo predecir quiebres de stock.",
+			"Evaluación: no validaron correctamente si la precisión del 88% se mantiene con datos reales de producción en operación continua."
+		],
+		correctIndex: 1
+	},
+	{
+		question: "Un hospital recopila imágenes de resonancias magnéticas de 5.000 pacientes con sospecha de tumores cerebrales. Cada imagen es un archivo DICOM de aproximadamente 512x512 píxeles en escala de grises, sin estructura tabular. ¿Qué tipo de datos representan estas imágenes?",
+		options: [
+			"Semiestructurados, porque, aunque el formato DICOM incluye metadatos del paciente, la información no sigue un esquema relacional completo.",
+			"Estructurados, porque cada archivo sigue el estándar DICOM con campos técnicos definidos y están organizados sistemáticamente en carpetas.",
+			"Estructurados, porque los píxeles pueden representarse como una matriz numérica de 512x512 con valores de intensidad definidos.",
+			"No estructurados, porque las imágenes no tienen organización tabular y requieren técnicas especializadas de visión computacional para su procesamiento."
+		],
+		correctIndex: 3
+	},
+	{
+		question: "Un instituto profesional tiene: (1) una base de datos SQL con inscripciones de estudiantes, (2) archivos JSON con evaluaciones de profesores y (3) grabaciones de clases en formato MP4. Un equipo quiere analizar qué factores influyen en la deserción estudiantil. ¿Qué afirmación es correcta sobre el enfoque de análisis?",
+		options: [
+			"Los datos no estructurados (MP4) aportan escaso valor al análisis y deberían descartarse para simplificar el proyecto.",
+			"Se puede usar únicamente SQL porque todos los tipos de datos pueden normalizarse y convertirse a tablas relacionales estándar.",
+			"Se requieren técnicas distintas para cada tipo: SQL para (1), parseo JSON para (2) y reconocimiento de voz con NLP para (3).",
+			"Se debe convertir todo a formato JSON unificado antes del análisis para homogeneizar el procesamiento de todas las fuentes."
+		],
+		correctIndex: 2
+	},
+	{
+		question: "En un proyecto de segmentación de clientes para una tienda online, el equipo usa CRISP-DM. En la fase de Modelado, prueban clustering k-means con k=3, 5 y 7 clusters. El k=7 tiene mejor métrica de silhouette (0.72 vs 0.65), pero en la fase de Evaluación, el equipo de marketing dice que 7 segmentos son demasiados para diseñar campañas diferenciadas. ¿Qué deberían hacer?",
+		options: [
+			"Volver a la fase de Comprensión del Negocio y plantear la cancelación del proyecto completo de segmentación de clientes.",
+			"Usar k=7 porque tiene la mejor métrica de silhouette; marketing debe adaptar su estrategia a la realidad técnica de los datos.",
+			"Elegir k=3 o k=5 aunque tenga métrica ligeramente inferior, porque la solución debe ser operacionalmente viable para el negocio.",
+			"Probar algoritmos alternativos de clustering como DBSCAN o jerárquico que produzcan exactamente 4 segmentos de manera natural."
+		],
+		correctIndex: 2
+	}
+]} />

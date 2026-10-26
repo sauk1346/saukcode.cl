@@ -61,7 +61,7 @@ const courseData = {
         },
         {
           text: 'Controles',
-          href: '',
+          href: 'controles',
         },
       ]
         
