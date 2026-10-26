@@ -91,6 +91,66 @@ async function genially(request, id) {
 
 const GENIALLY = /view\.genially\.com\/([0-9a-f]{24})/g;
 
+// --- Bloques personalizados de Rise (mondrian) ---------------------------------------------------
+
+/** Documento tiptap → Markdown (párrafos, títulos, listas, negrita, cursiva y enlaces). */
+function tiptap(nodo, prefijo = '') {
+  if (!nodo) return '';
+  const hijos = (n, p = '') => (n.content ?? []).map((c) => tiptap(c, p));
+  switch (nodo.type) {
+    case 'text': {
+      let t = nodo.text ?? '';
+      const marcas = (nodo.marks ?? []).map((m) => m.type);
+      if (t.trim() && marcas.includes('bold')) t = t.replace(/^(\s*)(.*?)(\s*)$/s, '$1**$2**$3');
+      if (t.trim() && marcas.includes('italic')) t = t.replace(/^(\s*)(.*?)(\s*)$/s, '$1*$2*$3');
+      const link = nodo.marks?.find((m) => m.type === 'link')?.attrs?.href;
+      return link ? `[${t}](${link})` : t;
+    }
+    case 'hardBreak':
+      return '\n';
+    case 'paragraph':
+      return hijos(nodo).join('').trim();
+    case 'heading':
+      return `**${hijos(nodo).join('').replace(/\*\*/g, '').trim()}**`;
+    case 'bulletList':
+    case 'orderedList':
+      return (nodo.content ?? [])
+        .map((li, i) => `${prefijo}${nodo.type === 'orderedList' ? `${i + 1}.` : '-'} ${hijos(li, prefijo + '  ').filter(Boolean).join('\n').trim()}`)
+        .join('\n');
+    default:
+      return hijos(nodo, prefijo).filter(Boolean).join('\n\n');
+  }
+}
+
+/** Textos de un bloque personalizado, ordenados por posición (arriba-abajo, izquierda-derecha);
+ *  incluye los estados ocultos (ventanas emergentes de los puntos interactivos). */
+function mondrian(course, blockumentId) {
+  const items = Object.values(course.mondrian?.items ?? {}).filter((i) => i.blockumentId === blockumentId && !i.removed);
+  const porId = new Map(items.map((i) => [i.id, i]));
+  const posicion = (i) => {
+    let x = 0, y = 0;
+    for (let n = i; n; n = porId.get(n.parentId)) {
+      x += n.states?.default?.x ?? 0;
+      y += n.states?.default?.y ?? 0;
+    }
+    return { x, y };
+  };
+  const textos = items
+    .map((i) => ({
+      ...posicion(i),
+      texto: Object.values(i.states ?? {})
+        .map((s) => (s.text?.json ? tiptap(s.text.json).trim() : ''))
+        .filter(Boolean),
+    }))
+    .filter((t) => t.texto.length)
+    .sort((a, b) => a.y - b.y || a.x - b.x);
+  const vistos = new Set();
+  return textos
+    .flatMap((t) => t.texto)
+    .filter((t) => !vistos.has(t) && vistos.add(t))
+    .join('\n\n');
+}
+
 // --- Rise ---------------------------------------------------------------------------------------
 
 /** Curso Rise (runtime-data.js, JSON en base64) → Markdown. */
@@ -111,7 +171,9 @@ async function rise(request, contentUrl) {
       const items = block.items ?? [];
       const variant = block.variant ?? block.family;
       if (block.type === 'divider') continue;
-      if (block.type === 'text' || block.type === 'quote' || block.type === 'image') {
+      if (block.type === 'custom' && block.blockumentId) {
+        partes.push(mondrian(course, block.blockumentId));
+      } else if (block.type === 'text' || block.type === 'quote' || block.type === 'image') {
         for (const it of items) {
           const titulo = md(it.heading ?? it.title ?? '');
           const cuerpo = md(it.paragraph ?? it.description ?? it.caption ?? '');
