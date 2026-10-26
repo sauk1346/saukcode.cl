@@ -56,7 +56,11 @@ const courseData = {
       weighting: '15%',
       description: [
         {
-          text: '',
+          text: 'Evaluación Diagnóstica',
+          href: 'diagnostica',
+        },
+        {
+          text: 'Controles',
           href: '',
         },
       ]
