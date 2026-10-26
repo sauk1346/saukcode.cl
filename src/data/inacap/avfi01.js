@@ -494,7 +494,7 @@ const courseData = {
       date: 'Dom 27, Sep 2026', 
       description: {
         text: 'Tecnología y ética en la gestión presupuestaria',
-        href: ''
+        href: 'lectura13'
       }
     },
     { 
@@ -503,43 +503,25 @@ const courseData = {
       date: 'Dom 27, Sep 2026', 
       description: {
         text: 'Del control a la sostenibilidad: cierre de la gestión presupuestaria',
-        href: ''
+        href: 'lectura14'
       }
     },
     { 
       week: '08', 
-      lecture: '15', 
-      date: 'Dom 04, Oct 2026', 
-      description: {
-        text: 'Del control a la sostenibilidad: cierre de la gestión presupuestaria',
-        href: ''
-      }
-    },
-    { 
-      week: '08', 
-      lecture: '16', 
-      date: 'Dom 04, Oct 2026', 
-      description: {
-        text: 'Del control a la sostenibilidad: cierre de la gestión presupuestaria',
-        href: ''
-      }
-    },
-    { 
-      week: '09', 
       lecture: '17', 
-      date: 'Dom 11, Oct 2026', 
+      date: 'Dom 04, Oct 2026', 
       description: {
-        text: 'Fundamentos del costo de capital y oportunidad',
-        href: ''
+        text: 'Fundamentos del costo de capital y de oportunidad',
+        href: 'lectura17'
       }
     },
     { 
-      week: '09', 
+      week: '08', 
       lecture: '18', 
-      date: 'Dom 11, Oct 2026', 
+      date: 'Dom 04, Oct 2026', 
       description: {
         text: 'Flujos netos de fondos simples',
-        href: ''
+        href: 'lectura18'
       }
     },
     { 
@@ -547,8 +529,8 @@ const courseData = {
       lecture: '19', 
       date: 'Dom 11, Oct 2026', 
       description: {
-        text: 'Riesgo y sensibilidad en fondos financieros',
-        href: ''
+        text: 'Riesgo y sensibilidad en proyectos financieros',
+        href: 'lectura19'
       }
     },
   ]

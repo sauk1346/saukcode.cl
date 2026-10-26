@@ -1,0 +1,113 @@
+# Flujos netos de fondos simples
+
+Los indicadores de rentabilidad sintetizan los flujos de fondos y la tasa de descuento en métricas comparables y objetivas. Cada uno evalúa el proyecto desde una perspectiva distinta: el **Valor Actual Neto (VAN)** mide el valor creado, la **Tasa Interna de Retorno (TIR)** la rentabilidad y el **Período de Recuperación Actualizado (PRA)** el tiempo en que se recupera la inversión. Esta lectura los aplica al ejemplo de la juguería de la [lectura 17](/inacap/avfi01/lectura17): inversión de \$3.000.000, flujos netos de \$1.700.000, \$1.700.000 y \$2.700.000, y tasa de descuento del 10%.
+
+## 1. Valor Actual Neto (VAN)
+
+El VAN indica cuánto valor gana o pierde un proyecto **hoy**, después de recuperar la inversión inicial y de exigir una rentabilidad mínima (la tasa de descuento). Responde a la pregunta: **¿este proyecto crea o destruye valor?**
+
+$$
+\text{VAN} = -I_0 + \sum_{t=1}^{n} \frac{F_t}{(1 + r)^t}
+$$
+
+Donde $I_0$ es la inversión inicial, $F_t$ el flujo neto del período $t$, $r$ la tasa de descuento y $n$ el número de períodos. Se basa en el valor del dinero en el tiempo: actualiza los flujos futuros al presente, compara el valor generado con la inversión y exige que la tasa sea consistente con el riesgo asumido. Se expresa en dinero (\$).
+
+:::table{#tabla01 caption="Interpretación del VAN"}
+| Resultado | Significado | Decisión |
+| --- | --- | --- |
+| **VAN > 0** | El proyecto crea valor por sobre la rentabilidad exigida | Se acepta |
+| **VAN = 0** | El proyecto rinde exactamente lo exigido | Indiferente |
+| **VAN < 0** | El proyecto destruye valor | Se rechaza |
+:::
+
+:::solution[VAN de la juguería]
+$$
+\text{VAN} = -3.000.000 + 1.545.455 + 1.404.959 + 2.028.550 = \$1.978.963
+$$
+
+El VAN es positivo: el proyecto genera \$1.978.963 adicionales después de recuperar la inversión y exigir un 10%. Es conveniente.
+:::
+
+El VAN depende directamente del costo de capital: si este aumenta, los flujos se descuentan con mayor exigencia y el VAN disminuye. Por eso siempre se lee en relación con el riesgo y el costo del financiamiento.
+
+## 2. Tasa Interna de Retorno (TIR)
+
+La TIR es la rentabilidad porcentual que genera el proyecto: la tasa de interés que el proyecto «paga» por la inversión. Matemáticamente, es la tasa que hace que el VAN sea cero:
+
+$$
+0 = -I_0 + \sum_{t=1}^{n} \frac{F_t}{(1 + \text{TIR})^t}
+$$
+
+Se encuentra probando tasas hasta que el VAN se anule (a mano, con Excel o con apoyo de IA). Se expresa en porcentaje y **siempre se interpreta comparándola** con la tasa de descuento o el costo de capital:
+
+:::table{#tabla02 caption="Interpretación de la TIR"}
+| Resultado | Significado | Decisión |
+| --- | --- | --- |
+| **TIR > tasa de descuento** | La inversión rinde más que el mínimo exigido | Se acepta |
+| **TIR = tasa de descuento** | Rinde exactamente el mínimo esperado | Indiferente |
+| **TIR < tasa de descuento** | No alcanza la rentabilidad mínima | Se rechaza |
+:::
+
+:::solution[TIR de la juguería]
+| Tasa | 10% | 20% | 30% | 40% | 45% |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| **VAN** | \$1.978.963 | \$1.159.722 | \$542.558 | \$65.598 | −\$133.380 |
+
+El VAN cambia de signo entre el 40% y el 45%: la TIR es de aproximadamente **41,6%**, muy superior al 10% exigido. El negocio es muy rentable.
+:::
+
+La TIR muestra qué tan rentable es el proyecto, pero no cuánto valor crea: es un indicador complementario al VAN.
+
+## 3. Período de Recuperación Actualizado (PRA)
+
+El PRA indica cuánto tarda un proyecto en recuperar la inversión **considerando el valor del dinero en el tiempo**. Responde a: ¿en cuánto tiempo recupero la inversión, considerando la tasa de descuento? Se expresa en años o meses: un PRA corto implica menor riesgo y es más atractivo; uno largo, mayor riesgo. Se enfoca en la liquidez y el riesgo, no en la rentabilidad total.
+
+:::table{#tabla03 caption="Período de recuperación simple y actualizado"}
+| PR simple | PRA |
+| --- | --- |
+| Acumula los flujos nominales hasta recuperar la inversión | Acumula los flujos en valor presente |
+| Ignora el valor del dinero en el tiempo | Considera el costo de capital |
+| | Es más riguroso técnicamente |
+:::
+
+:::solution[PRA de la juguería]
+| Año | VP del flujo | VP acumulado |
+| ---: | ---: | ---: |
+| 0 | −\$3.000.000 | −\$3.000.000 |
+| 1 | \$1.545.455 | −\$1.454.545 |
+| 2 | \$1.404.959 | −\$49.587 |
+| 3 | \$2.028.550 | \$1.978.963 |
+
+Al final del año 2 faltan \$49.587, y en el año 3 entran \$2.028.550 en valor presente:
+
+$$
+\text{Fracción} = \frac{49.587}{2.028.550} = 0{,}024
+\qquad
+\text{PRA} = 2 + 0{,}024 \approx 2{,}02 \text{ años}
+$$
+
+La inversión se recupera unos 9 días después de terminado el segundo año.
+:::
+
+## 4. Los tres indicadores en conjunto
+
+:::table{#tabla04 caption="VAN, TIR y PRA" layout="mixed" widths="120px,auto,100px,auto,auto"}
+| Indicador | Qué mide | Unidad | Pregunta que responde | Rol |
+| --- | --- | --- | --- | --- |
+| **VAN** | Valor creado | \$ | ¿Cuánto gano o pierdo? | Principal: decide |
+| **TIR** | Rentabilidad | % | ¿Qué tasa rinde el proyecto? | Complementario |
+| **PRA** | Tiempo de recuperación | Años | ¿Cuándo recupero la inversión? | Apoyo: riesgo y liquidez |
+:::
+
+Ninguno es suficiente por sí solo. Los indicadores no entregan decisiones automáticas, sino señales: interpretarlos de forma integrada permite evaluar valor, rentabilidad y riesgo. Incluso con un VAN positivo, un PRA largo en relación con la vida útil indica que el capital queda expuesto al riesgo durante más tiempo.
+
+## 5. La IA en la proyección de la TIR
+
+La TIR no es un cálculo aislado, sino el resultado de supuestos sobre flujos, riesgos y condiciones del proyecto. La IA permite calcular los tres indicadores a la vez y explorar rápidamente escenarios: ¿qué pasa si las ventas bajan un 20%?, ¿y si los costos suben un 15%? Así se ve cómo pequeñas variaciones en los datos influyen en la rentabilidad esperada, pero la decisión final depende de la interpretación crítica y del juicio financiero del profesional.
+
+:::callout[Para reflexionar]{type="tip"}
+1. ¿Por qué es importante analizar un proyecto utilizando más de un indicador de rentabilidad?
+2. ¿En qué situaciones el PRA puede ser relevante, aun cuando el VAN sea positivo?
+:::
+
+Recurso complementario: [Qué es el VAN y cómo se calcula, explicado para principiantes](https://youtu.be/nv4TQShwdSo) (video).
