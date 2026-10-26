@@ -1,0 +1,111 @@
+# Introducción a la minería de datos
+
+La **minería de datos** es el proceso de **detectar patrones** útiles en grandes conjuntos de datos: relaciones, tendencias, grupos o anomalías que no son evidentes a simple vista y que sirven para tomar decisiones.
+
+## 1. Áreas relacionadas
+
+La minería de datos convive con otras disciplinas que se superponen entre sí:
+
+:::table{#tabla01 caption="Áreas relacionadas con la minería de datos" layout="mixed" widths="220px,auto"}
+| Área | Descripción |
+| --- | --- |
+| **Inteligencia artificial** | Campo que busca que los sistemas realicen tareas que requieren inteligencia. Incluye el *machine learning* y el *deep learning* |
+| **Machine learning** (aprendizaje automático) | Sistemas que **aprenden solos** a partir de los datos, sin programar explícitamente cada regla |
+| **Deep learning** (aprendizaje profundo) | Subconjunto del *machine learning* basado en **redes neuronales** de muchas capas; destaca en datos complejos como audio, imágenes y video |
+| **Ciencia de datos** | Perfil **transversal** a todas estas áreas: combina estadística, programación y conocimiento del negocio para extraer valor de los datos |
+| **Big data** | También transversal: tecnologías y técnicas para **procesar grandes volúmenes** de información, que llegan a gran velocidad y en formatos variados |
+| **Robótica** | Aplica estas técnicas a sistemas físicos que perciben su entorno y actúan sobre él |
+:::
+
+## 2. Tipos de datos según su estructura
+
+:::table{#tabla02 caption="Datos estructurados, semiestructurados y no estructurados" layout="mixed" widths="200px,auto,auto"}
+| Tipo | Características | Ejemplos |
+| --- | --- | --- |
+| **Estructurados** | Siguen un esquema fijo de filas y columnas | Tablas de una base de datos relacional (SQL), planillas |
+| **Semiestructurados** | No tienen un esquema rígido, pero usan etiquetas o claves que organizan la información | Archivos **JSON** y **XML**; bases de datos documentales como MongoDB |
+| **No estructurados** | No tienen un formato predefinido | Texto libre, imágenes, audio, video, correos |
+:::
+
+Para almacenar datos que no encajan en tablas se usan bases de datos **NoSQL**, como **MongoDB** (documentos tipo JSON) o **HBase** (columnas, pensada para volúmenes muy grandes).
+
+## 3. Metodologías: CRISP-DM y KDD
+
+Los proyectos de minería de datos siguen una metodología. En Chile se usa mayoritariamente **CRISP-DM**, que parte desde la **comprensión del negocio**: la capa del negocio es la primera.
+
+:::table{#tabla03 caption="Fases de CRISP-DM" layout="mixed" widths="240px,auto"}
+| Fase | Qué se hace |
+| --- | --- |
+| **1. Comprensión del negocio** | Definir el problema y los objetivos desde la perspectiva de la organización |
+| **2. Comprensión de los datos** | Recolectar los datos, explorarlos (EDA) y evaluar su calidad |
+| **3. Preparación de los datos** | Limpiar, transformar e integrar los datos para el modelado |
+| **4. Modelado** | Aplicar algoritmos de minería de datos (agrupamiento, clasificación, etc.) |
+| **5. Evaluación** | Verificar que el modelo cumpla los objetivos del negocio |
+| **6. Despliegue** | Poner el modelo en uso dentro de la organización |
+:::
+
+**KDD** (*Knowledge Discovery in Databases*, descubrimiento de conocimiento en bases de datos) es el proceso más general del que la minería de datos es una etapa: selección de los datos → preprocesamiento → transformación → **minería de datos** → interpretación y evaluación.
+
+En ambas metodologías existe una etapa de **procesamiento** de los datos antes de aplicar los algoritmos.
+
+## 4. Datos categóricos y numéricos
+
+:::table{#tabla04 caption="Tipos de variables"}
+| Tipo | Descripción | Ejemplos |
+| --- | --- | --- |
+| **Categóricos** | Representan categorías o grupos | Sexo, comuna donde vive, rango etario («18–25 años») |
+| **Numéricos** | Representan cantidades medibles | Edad, ingresos, cantidad de compras |
+:::
+
+Una variable numérica puede convertirse en categórica agrupándola en rangos: la **edad** es numérica, pero el **rango etario** es categórico.
+
+## 5. Análisis exploratorio de datos (EDA)
+
+El **EDA** (*Exploratory Data Analysis*) es el primer acercamiento a los datos: resúmenes estadísticos, gráficos y detección de problemas antes de modelar. Analizar las variables **una a una** es un **análisis univariado**.
+
+Una herramienta clave es el **rango intercuartílico (IQR)**, que permite detectar **valores atípicos** (*outliers*):
+
+$$
+\text{IQR} = Q_3 - Q_1
+$$
+
+Donde $Q_1$ es el primer cuartil (25% de los datos) y $Q_3$ el tercer cuartil (75%). Se considera atípico todo valor fuera del intervalo:
+
+$$
+[\,Q_1 - 1{,}5 \cdot \text{IQR},\; Q_3 + 1{,}5 \cdot \text{IQR}\,]
+$$
+
+### Datos desbalanceados
+
+En clasificación (predecir a qué clase pertenece un dato), los datos deben representar bien a todas las clases. Un caso conocido es el de una **red neuronal que quedó sesgada por el color de piel**: los datos de entrenamiento estaban **desbalanceados**, con muchos más ejemplos de un grupo que de otros, y el modelo aprendió ese sesgo.
+
+## 6. Algoritmos: K-means, DBSCAN y K-NN
+
+:::table{#tabla05 caption="Algoritmos vistos en clase" layout="mixed" widths="140px,160px,auto"}
+| Algoritmo | Tipo | Cómo funciona |
+| --- | --- | --- |
+| **K-means** | No supervisado (agrupamiento) | Agrupa los datos en $k$ grupos: asigna cada punto al centroide más cercano y recalcula los centroides hasta que se estabilizan. **No necesita** datos etiquetados |
+| **DBSCAN** | No supervisado (agrupamiento) | Forma grupos según la **densidad** de puntos; detecta grupos de forma irregular y marca como ruido los puntos aislados |
+| **K-NN** (*k vecinos más cercanos*) | Supervisado (clasificación) | Clasifica un dato nuevo según la clase mayoritaria de sus $k$ vecinos más cercanos: «juzga por su entorno». **Necesita** ejemplos etiquetados |
+:::
+
+Ambos trabajan con la **distancia euclidiana** entre dos puntos:
+
+$$
+d = \sqrt{(x_1 - x_0)^2 + (y_1 - y_0)^2}
+$$
+
+:::solution[Ejemplo: distancia euclidiana]
+La distancia entre los puntos $(1, 2)$ y $(4, 6)$ es:
+
+$$
+d = \sqrt{(4 - 1)^2 + (6 - 2)^2} = \sqrt{9 + 16} = \sqrt{25} = 5
+$$
+:::
+
+## Resumen
+
+1. **Comprensión del negocio:** qué problema se quiere resolver.
+2. **Comprensión de los datos:** qué datos hay, de qué tipo y con qué calidad (EDA).
+3. **Limpieza de los datos:** tratar valores atípicos, faltantes y desbalances.
+4. **Minería de datos:** aplicar algoritmos como K-means, DBSCAN o K-NN para encontrar patrones.

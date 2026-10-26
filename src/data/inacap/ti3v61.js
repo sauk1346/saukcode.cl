@@ -70,8 +70,8 @@ const courseData = {
       date: 'Lun 19, Oct 2026', 
       description: [
         {
-          text: '',
-          href: ''
+          text: 'Introducción a Minería de Datos',
+          href: 'clase01'
         }
       ]
     },
@@ -81,8 +81,8 @@ const courseData = {
       date: 'Jue 22, Oct 2026', 
       description: [
         {
-          text: '',
-          href: ''
+          text: 'no asistí',
+          strikethrough: true
         }
       ]
     },
