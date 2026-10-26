@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
-# Publica saukcode.cl: sube las imágenes no versionadas al VPS y hace push,
+# Publica saukcode.cl: sube los archivos no versionados de public/ al VPS y hace push,
 # que dispara el deploy automático de GitHub Actions (pull + build + publicar).
 # Si no hay commits nuevos (solo cambiaron imágenes), lanza el workflow a mano.
 # Uso: ./deploy.sh   (con los cambios ya commiteados)
 set -euo pipefail
 cd "$(dirname "$0")"
-
-VPS=root@69.62.91.38
 
 if ! git diff --quiet || ! git diff --cached --quiet; then
   echo "Hay cambios sin commitear — commitea antes de desplegar." >&2
@@ -14,8 +12,8 @@ if ! git diff --quiet || ! git diff --cached --quiet; then
   exit 1
 fi
 
-echo "== 1/2 Sincronizando imágenes (public/inacap) al VPS =="
-rsync -az --info=stats1 public/inacap "$VPS":~/saukcode-astro/public/
+echo "== 1/2 Sincronizando archivos no versionados de public/ al VPS =="
+scripts/sync-assets.sh
 
 echo "== 2/2 Desplegando =="
 git fetch -q origin master

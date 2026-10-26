@@ -3,7 +3,6 @@ dist/
 .astro/
 # assets multimedia (no versionados, igual que en el sitio Next)
 public/inacap/
-public/idiomas/
 # derivados
 flashcards.db
 flashcards.db-shm

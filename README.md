@@ -25,7 +25,7 @@ src/
 public/inacap/        # imágenes y PDFs de los ramos (NO versionados, ~634MB)
 ```
 
-Las imágenes de `public/inacap/` no están en el repo por tamaño: tras clonar, hay que copiarlas desde una copia existente (`rsync -az public/inacap <destino>/public/`).
+Las imágenes de `public/inacap/` no están en el repo por tamaño: tras clonar, hay que copiarlas desde una copia existente (`rsync -az public/inacap <destino>/public/`). Para publicarlas en el VPS se usa `scripts/sync-assets.sh`, que sube todo lo no versionado de `public/` (lo llama `deploy.sh` y, si está instalado, el hook `pre-push`).
 
 ## Documentación
 

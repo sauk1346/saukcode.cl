@@ -50,7 +50,7 @@ astro.config.mjs          configuración: integraciones, plugins Markdown, alias
 deploy.sh                 sincroniza imágenes al VPS y hace push (dispara el deploy)
 scripts/                  guardias del build (mazos de flashcards sin enlazar)
 docs/                     esta especificación y la guía de sintaxis
-public/                   archivos estáticos; public/inacap/ e idiomas/ NO se versionan (~634 MB)
+public/                   archivos estáticos; public/inacap/ NO se versiona (~634 MB)
 src/
 ├── content.config.ts     colecciones inacap y ejercicios (schema laxo: los MDX no tienen frontmatter)
 ├── content/
@@ -281,10 +281,10 @@ npm run build
   - El buscador no funciona en desarrollo, porque el índice solo existe después del build.
   - **Los plugins remark no se recargan solos**: después de editar `src/plugins/`, hay que reiniciar el servidor.
 - **Despliegue**:
-  1. `./deploy.sh` exige un árbol limpio, sincroniza `public/inacap` al VPS con rsync y hace `git push`. Si no hay commits nuevos, lanza el workflow a mano.
+  1. `./deploy.sh` exige un árbol limpio, sincroniza al VPS con `scripts/sync-assets.sh` todo lo no versionado de `public/` (rsync, sin borrar) y hace `git push`. Un *hook* local `pre-push` (`.git/hooks/pre-push`, no versionado) ejecuta la misma sincronización en cada push a `master`. Si no hay commits nuevos, lanza el workflow a mano.
   2. `.github/workflows/deploy.yml`, en cada push a `master`, entra por SSH. La clave está restringida a un solo comando y la huella del servidor está fijada.
   3. En el VPS: `git pull`, `npm ci`, `npm run build` y publicación de `dist/` en el directorio que sirve Nginx.
-- **Archivos no versionados**: `public/inacap/` y `public/idiomas/` (imágenes, PDFs y audio). Viven en la máquina local y en el VPS. Al clonar el repositorio hay que copiarlos aparte.
+- **Archivos no versionados**: `public/inacap/` (imágenes, PDFs, Excel y audio). Viven en la máquina local y en el VPS. Al clonar el repositorio hay que copiarlos aparte.
 
 ---
 
