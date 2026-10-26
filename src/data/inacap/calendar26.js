@@ -857,22 +857,58 @@ export const calendar26 = [
     titulo: "[TI3V61] Evaluación 03",
     description: "Minería de Datos"
   },
+  {
+    id: 145,
+    fecha: "2026-10-23",
+    titulo: "[TI3V61] Control 01",
+    description: "Minería de Datos"
+  },
+  {
+    id: 146,
+    fecha: "2026-10-30",
+    titulo: "[TI3V61] Control 02",
+    description: "Minería de Datos"
+  },
+  {
+    id: 147,
+    fecha: "2026-11-6",
+    titulo: "[TI3V61] Control 03",
+    description: "Minería de Datos"
+  },
+  {
+    id: 148,
+    fecha: "2026-11-13",
+    titulo: "[TI3V61] Control 04",
+    description: "Minería de Datos"
+  },
+  {
+    id: 149,
+    fecha: "2026-11-20",
+    titulo: "[TI3V61] Control 05",
+    description: "Minería de Datos"
+  },
+  {
+    id: 150,
+    fecha: "2026-12-27",
+    titulo: "[TI3V61] Control 06",
+    description: "Minería de Datos"
+  },
 
 // ----- [TI3V62] Gestión de Seguridad de la Información -----
   {
-    id: 145,
+    id: 151,
     fecha: "2026-11-3",
     titulo: "[TI3V62] Evaluación 01",
     description: "Gestión de Seguridad de la Información"
   },
   {
-    id: 146,
+    id: 152,
     fecha: "2026-11-17",
     titulo: "[TI3V62] Evaluación 02",
     description: "Gestión de Seguridad de la Información"
   },
   {
-    id: 147,
+    id: 153,
     fecha: "2026-11-28",
     titulo: "[TI3V62] Evaluación 03",
     description: "Gestión de Seguridad de la Información"
@@ -880,19 +916,19 @@ export const calendar26 = [
 
 // ----- [CVET01] Estadística -----
   {
-    id: 148,
+    id: 154,
     fecha: "2026-11-5",
     titulo: "[CVET01] Evaluación 01",
     description: "Estadística"
   },
   {
-    id: 149,
+    id: 155,
     fecha: "2026-11-26",
     titulo: "[CVET01] Evaluación 02",
     description: "Estadística"
   },
   {
-    id: 150,
+    id: 156,
     fecha: "2026-12-10",
     titulo: "[CVET01] Evaluación 03",
     description: "Estadística"
