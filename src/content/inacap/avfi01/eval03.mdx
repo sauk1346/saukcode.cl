@@ -1,0 +1,152 @@
+# Evaluación 03
+
+## Item I: Presupuesto de Caja (16 ptos)
+**Resuelva el siguiente ejercicio en los espacios asignados para su desarrollo**
+
+<P indent={2}>
+1 punto cada ítem incorporado en el presupuesto de caja (0,5 puntos por cada valor).
+</P>
+
+Construya el presupuesto de caja para los meses de noviembre y diciembre del año 2026 de la empresa Telecomunicaciones Ltda., considerando la siguiente información:
+
+1. El saldo final de caja de octubre es de \$1.150.000.
+2. Ventas proyectadas netas: septiembre \$35.000.000, octubre \$37.000.000, noviembre \$38.000.000 y diciembre \$40.000.000.
+3. La política de cobro de las ventas es: 40% al contado, 30% a 30 días y 30% a 60 días.
+4. La empresa tiene una oficina arrendada por la que le cancelan \$800.000 mensuales.
+5. Las compras netas corresponden al 30% de las ventas netas y se cancelarán de la misma manera que las ventas (40% al contado, 30% a 30 días y 30% a 60 días).
+6. La empresa tiene costos fijos de administración por \$1.000.000 mensuales.
+7. Cancela un seguro por \$100.000 mensuales.
+8. Los sueldos mensuales brutos son: octubre \$4.000.000, noviembre \$4.800.000 y diciembre \$5.200.000; las imposiciones son 20%.
+
+::::solution[Solución Item I]
+
+**Paso 1: Ventas brutas**
+
+<P indent={2}>
+El cobro a clientes incluye el IVA, por lo que primero se calculan las ventas brutas: ventas netas + IVA (19%).
+</P>
+
+:::table{#tablaVentas caption="Ventas"}
+| Ventas | Septiembre | Octubre | Noviembre | Diciembre |
+| --- | ---: | ---: | ---: | ---: |
+| Netas | \$35.000.000 | \$37.000.000 | \$38.000.000 | \$40.000.000 |
+| + IVA (19%) | \$6.650.000 | \$7.030.000 | \$7.220.000 | \$7.600.000 |
+| :highlight **= Brutas** | **\$41.650.000** | **\$44.030.000** | **\$45.220.000** | **\$47.600.000** |
+:::
+
+---
+
+**Paso 2: Cobro de ventas**
+
+<P indent={2}>
+Cada venta bruta se cobra 40% en el mismo mes, 30% al mes siguiente y 30% dos meses después. Por eso noviembre recibe cuotas de las ventas de septiembre, octubre y noviembre.
+</P>
+
+:::table{#tablaCobros caption="Cobro de ventas"}
+| Cobro ventas | Septiembre | Octubre | Noviembre | Diciembre |
+| --- | ---: | ---: | ---: | ---: |
+| 40% contado | \$16.660.000 | \$17.612.000 | \$18.088.000 | \$19.040.000 |
+| 30% a 30 días | — | \$12.495.000 | \$13.209.000 | \$13.566.000 |
+| 30% a 60 días | — | — | \$12.495.000 | \$13.209.000 |
+:::
+
+---
+
+**Paso 3: Compras brutas**
+
+<P indent={2}>
+Las compras netas son el 30% de las ventas netas; luego se suma el IVA (19%).
+</P>
+
+:::table{#tablaCompras caption="Compras"}
+| Compras | Septiembre | Octubre | Noviembre | Diciembre |
+| --- | ---: | ---: | ---: | ---: |
+| Netas (30% de ventas netas) | \$10.500.000 | \$11.100.000 | \$11.400.000 | \$12.000.000 |
+| + IVA (19%) | \$1.995.000 | \$2.109.000 | \$2.166.000 | \$2.280.000 |
+| :highlight **= Brutas** | **\$12.495.000** | **\$13.209.000** | **\$13.566.000** | **\$14.280.000** |
+:::
+
+---
+
+**Paso 4: Pago de compras**
+
+<P indent={2}>
+Las compras se pagan con la misma política que las ventas: 40% contado, 30% a 30 días y 30% a 60 días.
+</P>
+
+:::table{#tablaPagos caption="Pago de compras"}
+| Pago compras | Septiembre | Octubre | Noviembre | Diciembre |
+| --- | ---: | ---: | ---: | ---: |
+| 40% contado | \$4.998.000 | \$5.283.600 | \$5.426.400 | \$5.712.000 |
+| 30% a 30 días | — | \$3.748.500 | \$3.962.700 | \$4.069.800 |
+| 30% a 60 días | — | — | \$3.748.500 | \$3.962.700 |
+:::
+
+---
+
+**Paso 5: Sueldos e imposiciones**
+
+<P indent={2}>
+El sueldo líquido (bruto − 20% de imposiciones) se paga en el mismo mes; las imposiciones se pagan al mes siguiente. En noviembre se pagan el líquido de noviembre y las imposiciones de octubre.
+</P>
+
+:::table{#tablaSueldos caption="Sueldos"}
+| Sueldos | Octubre | Noviembre | Diciembre |
+| --- | ---: | ---: | ---: |
+| Bruto | \$4.000.000 | \$4.800.000 | \$5.200.000 |
+| − Imposiciones (20%) | \$800.000 | \$960.000 | \$1.040.000 |
+| :highlight **= Líquido** | **\$3.200.000** | **\$3.840.000** | **\$4.160.000** |
+:::
+
+---
+
+**Paso 6: Saldo de IVA**
+
+<P indent={2}>
+El IVA a pagar es el IVA débito (ventas) menos el IVA crédito (compras), y se paga al mes siguiente. En noviembre se paga el saldo de octubre.
+</P>
+
+:::table{#tablaIVA caption="Saldo IVA"}
+| Saldo IVA | Octubre | Noviembre | Diciembre |
+| --- | ---: | ---: | ---: |
+| IVA débito (ventas) | \$7.030.000 | \$7.220.000 | \$7.600.000 |
+| − IVA crédito (compras) | \$2.109.000 | \$2.166.000 | \$2.280.000 |
+| :highlight **= Saldo IVA a pagar** | **\$4.921.000** | **\$5.054.000** | **\$5.320.000** |
+:::
+
+---
+
+**Paso 7: Presupuesto de caja**
+
+<P indent={2}>
+El arriendo de la oficina es un **ingreso**, porque a la empresa le pagan por ella. El saldo inicial de diciembre es el saldo final de noviembre, y en este formato el total de ingresos incluye el saldo inicial.
+</P>
+
+:::table{#tablaPresupuestoCaja caption="Presupuesto de caja"}
+| Ítem | Noviembre | Diciembre |
+| --- | ---: | ---: |
+| :highlight **Saldo inicial** | **\$1.150.000** | **\$21.943.400** |
+| :section[Ingresos] |
+| Cobro ventas 40% contado | \$18.088.000 | \$19.040.000 |
+| Cobro ventas 30% a 30 días | \$13.209.000 | \$13.566.000 |
+| Cobro ventas 30% a 60 días | \$12.495.000 | \$13.209.000 |
+| Arriendo oficina | \$800.000 | \$800.000 |
+| :highlight **Total ingresos** | **\$45.742.000** | **\$68.558.400** |
+| :section[Egresos] |
+| Pago compras 40% contado | \$5.426.400 | \$5.712.000 |
+| Pago compras 30% a 30 días | \$3.962.700 | \$4.069.800 |
+| Pago compras 30% a 60 días | \$3.748.500 | \$3.962.700 |
+| Costos de administración | \$1.000.000 | \$1.000.000 |
+| Seguro | \$100.000 | \$100.000 |
+| Sueldos líquidos | \$3.840.000 | \$4.160.000 |
+| Imposiciones (mes anterior) | \$800.000 | \$960.000 |
+| Saldo IVA (mes anterior) | \$4.921.000 | \$5.054.000 |
+| :highlight **Total egresos** | **\$23.798.600** | **\$25.018.500** |
+| :highlight{color="green"} **Saldo final (ingresos − egresos)** | **\$21.943.400** | **\$43.539.900** |
+:::
+
+:::callout[Conclusión]{type="tip"}
+La empresa mantiene un saldo de caja positivo y creciente: termina noviembre con \$21.943.400 y diciembre con \$43.539.900. Los cobros superan holgadamente a los pagos, por lo que no requiere financiamiento de corto plazo y podría evaluar invertir los excedentes.
+:::
+
+::::

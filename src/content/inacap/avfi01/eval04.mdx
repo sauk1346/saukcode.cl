@@ -1,0 +1,245 @@
+# Evaluación 04
+
+## Item I: Selección Múltiple (13 ptos)
+**Marque con una X la alternativa correcta** (1 pto c/u)
+
+<Quiz questions={[
+	{
+		question: "Un beneficio de los presupuestos es:",
+		options: [
+			"Disponer de valores exactos",
+			"El presupuesto es un fin en sí mismo",
+			"Prever en cifras monetarias",
+			"No tener que modificar datos"
+		],
+		correctIndex: 2
+	},
+	{
+		question: "El presupuesto «maestro» es aquel que:",
+		options: [
+			"Muestra el pronóstico de las futuras entradas y salidas de dinero en efectivo",
+			"Agrupa todos los presupuestos que han sido previamente realizados",
+			"Es un documento que prevé las inversiones y su financiamiento",
+			"Es la predicción de ganancias y de egresos de un determinado negocio"
+		],
+		correctIndex: 1
+	},
+	{
+		question: "Los resultados que indican los presupuestos:",
+		options: [
+			"Se obtendrán al momento de presupuestar",
+			"Se obtendrán cuando el presupuesto comience a ejecutarse",
+			"Se obtendrán al año siguiente",
+			"Se obtendrán al semestre siguiente"
+		],
+		correctIndex: 1
+	},
+	{
+		question: "Uno de los beneficios que los presupuestos proporcionan a la administración general es:",
+		options: [
+			"Entrega resultados calculados en forma individual",
+			"Obliga a la administración a fijar los objetivos y metas en forma anticipada",
+			"El presupuesto es un medio para conseguir fines y no es un fin en sí mismo",
+			"Los presupuestos son una estimación aproximada"
+		],
+		correctIndex: 1
+	},
+	{
+		question: "Estimar los resultados de la empresa para un período determinado es un objetivo del presupuesto como herramienta de:",
+		options: [
+			"Planificación",
+			"Organizacional",
+			"Dirección",
+			"Control"
+		],
+		correctIndex: 0
+	},
+	{
+		question: "Los beneficios que genera la mejor alternativa rechazada se refieren a:",
+		options: [
+			"Costo de capital",
+			"Tasa de interés",
+			"Costo de oportunidad",
+			"Tasa de descuento"
+		],
+		correctIndex: 2
+	},
+	{
+		question: "Corresponde a la máxima rentabilidad que se le puede exigir a un proyecto:",
+		options: [
+			"Costo de capital",
+			"Tasa de interés",
+			"Costo de oportunidad",
+			"Tasa Interna de Retorno"
+		],
+		correctIndex: 3
+	},
+	{
+		question: "Para aprobar un proyecto utilizando el criterio del Valor Actual Neto, el resultado debe ser:",
+		options: [
+			"Menor a cero",
+			"Mayor a cero",
+			"Igual a cero",
+			"Mayor a uno"
+		],
+		correctIndex: 1
+	},
+	{
+		question: "Una de las principales ventajas del Valor Actual Neto como método para evaluar proyectos es:",
+		options: [
+			"Fácil de calcular",
+			"Considera el valor del dinero en el tiempo",
+			"Permite calcular n años",
+			"Considera la inversión inicial"
+		],
+		correctIndex: 1
+	},
+	{
+		question: "La rentabilidad mínima exigida a un proyecto para su implementación corresponde a:",
+		options: [
+			"Tasa de descuento",
+			"Tasa de interés",
+			"Costo de venta",
+			"Costo de compra"
+		],
+		correctIndex: 0
+	},
+	{
+		question: "Un proyecto es rentable según la TIR cuando:",
+		options: [
+			"La TIR es menor que la tasa de descuento",
+			"La TIR es igual a cero",
+			"La TIR es mayor que la tasa de descuento",
+			"La TIR siempre es igual al VAN"
+		],
+		correctIndex: 2
+	},
+	{
+		question: "Un ROI del 20% significa que:",
+		options: [
+			"El proyecto recupera la inversión en 5 años",
+			"El proyecto genera un retorno de 20% sobre lo invertido",
+			"El VAN debe ser positivo sobre el 20%",
+			"La TIR es igual al 20%"
+		],
+		correctIndex: 1
+	},
+	{
+		question: "¿Cuál es la definición principal del Valor Actual Neto (VAN)?",
+		options: [
+			"Es el tiempo exacto que tarda una empresa en recuperar la inversión inicial realizada",
+			"Es el porcentaje de beneficio o pérdida que tendrá una inversión a lo largo del tiempo",
+			"Es la suma aritmética de todos los flujos de efectivo sin considerar el valor del dinero en el tiempo",
+			"Es un procedimiento que calcula el valor presente de flujos de caja futuros originados por una inversión"
+		],
+		correctIndex: 3
+	}
+]}
+/>
+
+## Item II: Ejercicio (13 ptos)
+**Resuelva los siguientes ejercicios en los espacios asignados para su desarrollo**
+
+Considerando los siguientes datos, calcule:
+
+1. Valor Actual Neto (VAN) e indique, dado el resultado, si se acepta o no el proyecto (7 ptos).
+2. Retorno sobre la inversión (ROI), interpretando el resultado (3 ptos).
+3. Período de recuperación (*payback*), interpretando su resultado (3 ptos).
+
+:::table{#tablaDatosEval04 caption="Datos del proyecto"}
+| Dato | Valor |
+| --- | ---: |
+| Flujo de caja año 1 | \$5.500.000 |
+| Flujo de caja año 2 | \$6.600.000 |
+| Flujo de caja año 3 | \$7.200.000 |
+| Flujo de caja año 4 | \$8.700.000 |
+| **Inversión inicial $(I_0)$** | **\$14.000.000** |
+| **Tasa de descuento $(r)$** | **21%** |
+:::
+
+::::solution[Solución Item II]
+
+**1. Valor Actual Neto (VAN)**
+
+<P indent={2}>
+Cada flujo se trae a valor presente dividiéndolo por $(1 + r)^t$, y luego se resta la inversión inicial.
+</P>
+
+$$
+\text{VAN} = -I_0 + \sum_{t=1}^{4} \frac{F_t}{(1 + 0{,}21)^t}
+$$
+
+:::table{#tablaVPEval04 caption="Valor presente de los flujos (r = 21%)"}
+| Año | Flujo | Factor $(1{,}21)^t$ | Valor presente |
+| ---: | ---: | ---: | ---: |
+| 1 | \$5.500.000 | 1,21 | \$4.545.455 |
+| 2 | \$6.600.000 | 1,4641 | \$4.507.889 |
+| 3 | \$7.200.000 | 1,771561 | \$4.064.212 |
+| 4 | \$8.700.000 | 2,14358881 | \$4.058.614 |
+| :highlight **Total** | | | **\$17.176.170** |
+:::
+
+$$
+\begin{align*}
+\text{VAN} &= 17.176.170 - 14.000.000\\[10pt]
+\text{VAN} &= \$3.176.170
+\end{align*}
+$$
+
+<P indent={2}>
+Como el **VAN > 0**, el proyecto **se acepta**: después de recuperar la inversión y exigir un 21% anual, genera \$3.176.170 adicionales en valor presente.
+</P>
+
+---
+
+**2. Retorno sobre la inversión (ROI)**
+
+$$
+\text{ROI} = \frac{\text{VAN}}{I_0} \times 100 = \frac{3.176.170}{14.000.000} \times 100 = 22{,}69\%
+$$
+
+<P indent={2}>
+Por cada peso invertido, el proyecto entrega un **22,69% de beneficio** adicional en valor presente, por sobre la rentabilidad mínima exigida del 21%.
+</P>
+
+---
+
+**3. Período de recuperación (*payback*)**
+
+<P indent={2}>
+Se acumulan los flujos en valor presente hasta cubrir la inversión. Al final del año 3 todavía no se recupera, así que la recuperación ocurre durante el año 4:
+</P>
+
+:::table{#tablaPBEval04 caption="Flujos en valor presente acumulados"}
+| Año | Valor presente | Acumulado | ¿Recupera \$14.000.000? |
+| ---: | ---: | ---: | --- |
+| 1 | \$4.545.455 | \$4.545.455 | No |
+| 2 | \$4.507.889 | \$9.053.343 | No |
+| 3 | \$4.064.212 | \$13.117.556 | No |
+| :highlight 4 | \$4.058.614 | \$17.176.170 | **Sí** |
+:::
+
+$$
+\text{PB} = a + \frac{I_0 - b}{F_c}
+$$
+
+<P indent={2}>
+Donde $a$ es el último año en que el acumulado aún no cubre la inversión (año 3), $b$ es el acumulado de ese año (\$13.117.556) y $F_c$ es el flujo en valor presente del año siguiente (\$4.058.614).
+</P>
+
+$$
+\begin{align*}
+\text{PB} &= 3 + \frac{14.000.000 - 13.117.556}{4.058.614} = 3 + \frac{882.444}{4.058.614}\\[10pt]
+\text{PB} &= 3 + 0{,}22 = 3{,}22 \text{ años}
+\end{align*}
+$$
+
+<P indent={2}>
+La inversión se recupera en **3,22 años** (unos 3 años y 2,6 meses), dentro de la vida del proyecto (4 años), aunque cerca de su final: el capital queda expuesto al riesgo durante casi todo el horizonte.
+</P>
+
+:::callout[Conclusión]{type="tip"}
+El proyecto se acepta: crea valor (VAN de \$3.176.170), rinde un 22,69% sobre lo invertido en valor presente y recupera la inversión en 3,22 años, dentro de su horizonte de 4 años.
+:::
+
+::::
