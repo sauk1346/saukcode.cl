@@ -431,7 +431,7 @@ const courseData = {
       date: 'Dom 30, Ago 2026', 
       description: {
         text: 'Método de costeo y el uso de IA para simular escenarios de costo',
-        href: ''
+        href: 'lectura06'
       }
     },
     { 
@@ -440,7 +440,7 @@ const courseData = {
       date: 'Dom 06, Sep 2026', 
       description: {
         text: 'Punto de equilibrio',
-        href: ''
+        href: 'lectura07'
       }
     },
     { 
@@ -449,7 +449,7 @@ const courseData = {
       date: 'Dom 06, Sep 2026', 
       description: {
         text: 'La contabilidad y la importancia de la información financiera',
-        href: ''
+        href: 'lectura08'
       }
     },
     { 
@@ -458,7 +458,7 @@ const courseData = {
       date: 'Dom 13, Sep 2026', 
       description: {
         text: 'El presupuesto como brújula financiera',
-        href: ''
+        href: 'lectura09'
       }
     },
     { 
@@ -467,24 +467,87 @@ const courseData = {
       date: 'Dom 13, Sep 2026', 
       description: {
         text: 'Estructura del presupuesto y herramientas digitales',
-        href: ''
+        href: 'lectura10'
       }
     },
     { 
       week: '06', 
-      lecture: '10', 
+      lecture: '11', 
       date: 'Dom 20, Sep 2026', 
       description: {
         text: 'Cómo construir tu presupuesto operativo',
-        href: ''
+        href: 'lectura11'
       }
     },
     { 
       week: '06', 
-      lecture: '10', 
+      lecture: '12', 
       date: 'Dom 20, Sep 2026', 
       description: {
         text: 'Análisis de variaciones y control presupuestario',
+        href: 'lectura12'
+      }
+    },
+    { 
+      week: '07', 
+      lecture: '13', 
+      date: 'Dom 27, Sep 2026', 
+      description: {
+        text: 'Tecnología y ética en la gestión presupuestaria',
+        href: ''
+      }
+    },
+    { 
+      week: '07', 
+      lecture: '14', 
+      date: 'Dom 27, Sep 2026', 
+      description: {
+        text: 'Del control a la sostenibilidad: cierre de la gestión presupuestaria',
+        href: ''
+      }
+    },
+    { 
+      week: '08', 
+      lecture: '15', 
+      date: 'Dom 04, Oct 2026', 
+      description: {
+        text: 'Del control a la sostenibilidad: cierre de la gestión presupuestaria',
+        href: ''
+      }
+    },
+    { 
+      week: '08', 
+      lecture: '16', 
+      date: 'Dom 04, Oct 2026', 
+      description: {
+        text: 'Del control a la sostenibilidad: cierre de la gestión presupuestaria',
+        href: ''
+      }
+    },
+    { 
+      week: '09', 
+      lecture: '17', 
+      date: 'Dom 11, Oct 2026', 
+      description: {
+        text: 'Fundamentos del costo de capital y oportunidad',
+        href: ''
+      }
+    },
+    { 
+      week: '09', 
+      lecture: '18', 
+      date: 'Dom 11, Oct 2026', 
+      description: {
+        text: 'Flujos netos de fondos simples',
+        href: ''
+      }
+    },
+    { 
+      week: '09', 
+      lecture: '19', 
+      date: 'Dom 11, Oct 2026', 
+      description: {
+        text: 'Riesgo y sensibilidad en fondos financieros',
         href: ''
       }
     },

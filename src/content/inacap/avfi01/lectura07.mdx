@@ -1,0 +1,116 @@
+# Punto de equilibrio
+
+El punto de equilibrio es una herramienta fundamental de la gestión financiera, ya que permite comprender la relación entre costos, precios y volumen de ventas. A partir de su análisis es posible evaluar la viabilidad económica de un producto o servicio y anticipar escenarios antes de tomar decisiones relevantes para el negocio.
+
+## 1. ¿Qué es el punto de equilibrio?
+
+Es el nivel de actividad en el que los **ingresos totales por ventas se igualan con los costos totales** (costos variables y costos fijos). En ese punto la empresa no tiene ni pérdidas ni ganancias (Sepúlveda Díaz, s.f.).
+
+- Antes del punto de equilibrio → pérdidas
+- Después del punto de equilibrio → ganancias
+
+Desde la gestión financiera, el punto de equilibrio permite:
+
+- Evaluar la viabilidad económica básica de un producto o servicio.
+- Apoyar decisiones sobre precios, volúmenes de producción y estructura de costos.
+- Analizar escenarios antes de comprometer recursos.
+
+## 2. Fundamentos de costeo aplicados
+
+Para calcular el punto de equilibrio se utiliza el **enfoque de costeo variable**, porque permite identificar con claridad el margen de contribución: cuánto aporta cada unidad vendida a cubrir los costos fijos y a generar utilidades.
+
+:::table{#tabla01 caption="Elementos del cálculo del punto de equilibrio" layout="mixed" widths="220px,auto,auto"}
+| Elemento | Descripción | Ejemplos |
+| --- | --- | --- |
+| **Costos fijos (CF)** | No varían con el nivel de producción en el corto plazo, dentro de un rango relevante de actividad. Deben ser cubiertos por el margen de contribución | Arriendo de instalaciones, sueldos administrativos, servicios básicos fijos, seguros y licencias |
+| **Costo variable unitario (CVu)** | Cambia directamente según el volumen producido. Si no se producen unidades, no se genera | Materia prima directa (MPD), mano de obra directa (MOD), costos indirectos variables (energía productiva, insumos) |
+| **Precio de venta neto (PV)** | Valor de venta por unidad **sin impuestos**: los impuestos no son un ingreso real para la empresa, y usar precios brutos distorsiona el análisis | Precio bruto / 1,19 |
+| **Cantidad (Q)** | Número de unidades producidas o vendidas | — |
+:::
+
+$$
+\text{Margen de contribución unitario} = PV - CVu
+$$
+
+## 3. Fórmulas
+
+:::table{#tabla02 caption="Fórmulas del punto de equilibrio" layout="mixed" widths="280px,auto"}
+| Cálculo | Fórmula |
+| --- | --- |
+| **Cantidad de equilibrio** | $Q_e = \dfrac{CF}{PV - CVu}$ |
+| **Ventas de equilibrio** | $V_e = Q_e \times PV$ |
+| **Cantidad para una utilidad deseada** (antes de impuestos) | $Q = \dfrac{CF + UT}{PV - CVu}$ |
+| **Cantidad para una utilidad después de impuestos** | $Q = \dfrac{CF + \frac{UT}{1 - t}}{PV - CVu}$ |
+:::
+
+Donde $UT$ es la utilidad deseada y $t$ la tasa de impuesto.
+
+## 4. Ejercicio aplicado
+
+La empresa Textiles «Ropa Sucia» vende su producto «pantalones picados» a un precio de venta bruto de \$4.165. Sus costos y gastos fijos mensuales son \$3.400.000, y sus costos variables unitarios (MPD + MOD + CIF), \$1.500 por unidad.
+
+1. ¿Cuál es la cantidad mínima de producción para que la empresa no tenga pérdidas ni utilidades?
+2. ¿Cuántas unidades debe vender para obtener una utilidad antes de impuestos de \$4.000.000 mensuales?
+
+:::solution[Solución pregunta 1]
+El precio debe expresarse en valor neto, sin IVA:
+
+$$
+PV = \frac{4.165}{1{,}19} \approx 3.500
+$$
+
+$$
+Q_e = \frac{3.400.000}{3.500 - 1.500} = \frac{3.400.000}{2.000} = 1.700 \text{ unidades}
+$$
+
+La empresa debe vender **1.700 pantalones mensuales** para cubrir exactamente sus costos totales.
+
+**Comprobación:**
+
+| Concepto | Cálculo | Monto |
+| --- | --- | ---: |
+| Ingresos | 1.700 × 3.500 | \$5.950.000 |
+| Costos variables | 1.700 × 1.500 | \$2.550.000 |
+| Costos fijos | — | \$3.400.000 |
+| **Utilidad operacional** | 5.950.000 – (2.550.000 + 3.400.000) | **\$0** |
+:::
+
+:::solution[Solución pregunta 2]
+$$
+Q = \frac{3.400.000 + 4.000.000}{3.500 - 1.500} = \frac{7.400.000}{2.000} = 3.700 \text{ unidades}
+$$
+
+**Comprobación:**
+
+$$
+(3.700 \times 3.500) - [3.400.000 + (3.700 \times 1.500)] = 4.000.000
+$$
+:::
+
+## 5. Interpretación de los resultados
+
+El margen de contribución unitario, de \$2.000 por unidad, es el elemento clave del análisis: cada unidad vendida aporta ese monto para cubrir los costos fijos y, una vez superados, generar utilidades. Por eso, pequeñas variaciones en el precio o en los costos variables tienen un impacto significativo en los resultados.
+
+:::table{#tabla03 caption="Interpretación del punto de equilibrio de Textiles «Ropa Sucia»" layout="mixed" widths="200px,auto,auto"}
+| Ventas mensuales | Qué ocurre | Implicancias para la gestión |
+| --- | --- | --- |
+| **Menos de 1.700** | El margen de contribución total no alcanza a absorber los costos fijos: la empresa opera con pérdidas y debe financiar el déficit con recursos propios, deuda o reduciendo gastos | :li[Riesgo de liquidez en el corto plazo] :li[Revisar precios, costos o volumen de ventas] :li[Señal de alerta para tomar medidas correctivas] |
+| **1.700** | Ingresos iguales a los costos totales: ni pérdidas ni utilidades | Nivel mínimo de operación para sostener el negocio en el corto plazo |
+| **Más de 1.700** | Los costos fijos ya están cubiertos y cada unidad adicional aporta directamente a la utilidad. Con 3.700 unidades se alcanza la meta de \$4.000.000 | :li[Reinvertir en el negocio] :li[Mayor margen para enfrentar imprevistos] :li[Evaluar expansión o nuevas inversiones] |
+:::
+
+El análisis permite definir metas mínimas de ventas, evaluar cambios en precios o costos, analizar escenarios de crecimiento y determinar la viabilidad de un producto o proyecto, siempre contrastando las metas con la capacidad operativa y el mercado disponible.
+
+## 6. Herramientas digitales e IA
+
+El cálculo puede hacerse de forma manual o con apoyo de herramientas digitales: planillas de cálculo con funciones automatizadas, asistentes de IA para verificar cálculos y simular escenarios, y software contable con módulos de análisis financiero. La IA permite simular variaciones en precios, costos o volúmenes, evaluar escenarios optimistas, pesimistas y realistas, y reducir errores operativos.
+
+Su uso plantea desafíos éticos:
+
+- **Transparencia:** comprender y comunicar los supuestos de las herramientas automatizadas.
+- **Confiabilidad de los datos:** evitar decisiones basadas en información incompleta o errónea.
+- **Responsabilidad profesional:** no delegar completamente el análisis financiero en algoritmos sin juicio humano.
+
+:::callout[Para reflexionar]{type="tip"}
+¿Cómo cambiaría el punto de equilibrio de una empresa si aumenta el precio de venta o se reducen los costos variables?
+:::
