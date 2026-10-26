@@ -105,21 +105,11 @@ const courseData = {
         },
         {
           text: 'ARPA01: Selección de Personal',
-          href: 'docs/unit01-arpa01.pdf'
+          href: ''
         },
         {
           text: 'SM01: Radiografía de la matrícula en la educación superior chilena',
-          href: 'docs/unit01-sm01.pdf'
-        },
-        {
-          text: 'Evolución de la matrícula de pregrado 2020-2024',
-          href: 'docs/evolucion-matricula-pregrado-2020-2024(SM1).xlsx',
-          sub: true
-        },
-        {
-          text: 'Matrícula de pregrado 2024',
-          href: 'docs/matricula-pregrado-2024(SM1).xlsx',
-          sub: true
+          href: ''
         }
       ]
     },
