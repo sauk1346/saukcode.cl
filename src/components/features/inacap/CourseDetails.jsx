@@ -45,6 +45,8 @@ const CourseDetails = ({
     if (!item) return null;
 
     const key = `content-${index}`;
+    // `sub: true`: ítem anidado bajo el anterior (p. ej., los Excel de una actividad)
+    const itemClass = item.sub ? `${styles.contentItem} ${styles.contentSubItem}` : styles.contentItem;
 
     // La viñeta la pinta CSS (::before ▸); se limpia cualquier guion de los datos
     const displayText = item.text.replace(/^\s*[-•*]\s*/, '');
@@ -61,7 +63,7 @@ const CourseDetails = ({
 
       const linkContent = <SmartLink href={fullHref}>{displayText}</SmartLink>;
       return (
-        <div key={key} className={styles.contentItem}>
+        <div key={key} className={itemClass}>
           {item.strikethrough ? <del>{linkContent}</del> : linkContent}
         </div>
       );
@@ -69,7 +71,7 @@ const CourseDetails = ({
       // Es texto simple
       const textContent = <span>{displayText}</span>;
       return (
-        <div key={key} className={styles.contentItem}>
+        <div key={key} className={itemClass}>
           {item.strikethrough ? <del>{textContent}</del> : textContent}
         </div>
       );

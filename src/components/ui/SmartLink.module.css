@@ -88,6 +88,10 @@
   background-color: var(--orange);
 }
 
+.chipExcel {
+  background-color: var(--success);
+}
+
 .chipAudio {
   background-color: var(--cyan);
 }

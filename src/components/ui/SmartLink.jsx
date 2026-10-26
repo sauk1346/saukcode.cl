@@ -19,6 +19,7 @@ export const SmartLink = ({ href, children, newTab, className, ...props }) => {
   
   // Detectar si es un archivo PDF
   const isPdfFile = href && href.toLowerCase().includes('.pdf');
+  const isExcelFile = href && /\.(xlsx|xls|csv)$/i.test(href);
 
   // Detectar mazos de flashcards (rutas internas /flashcards/)
   const isFlashcards = href && href.includes('/flashcards/');
@@ -44,6 +45,7 @@ export const SmartLink = ({ href, children, newTab, className, ...props }) => {
         {/* Chips de tipo de recurso: dicen qué se abre antes del click */}
         {(isYouTube || isVideoFile) && <span className={`${styles.chip} ${styles.chipVideo}`}>video</span>}
         {isPdfFile && <span className={`${styles.chip} ${styles.chipPdf}`}>pdf</span>}
+        {isExcelFile && <span className={`${styles.chip} ${styles.chipExcel}`}>xlsx</span>}
         {isAudioFile && <span className={`${styles.chip} ${styles.chipAudio}`}>audio</span>}
 
         {/* Enlace externo común: flecha tipográfica */}
