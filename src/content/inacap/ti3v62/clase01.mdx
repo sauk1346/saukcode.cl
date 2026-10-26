@@ -1,0 +1,101 @@
+# Introducción a la gestión de seguridad de la información
+
+Un **sistema de gestión de seguridad de la información** (SGSI) busca proteger los activos de información de una organización. Esta primera clase revisa vocabulario básico de seguridad en sitios web, la protección mediante cabeceras HTTP, la interceptación de comunicaciones, el cifrado y el **no repudio** como principio que complementa a la tríada CIA.
+
+## 1. Vocabulario
+
+:::table{#tabla01 caption="Conceptos básicos de seguridad en sitios web" layout="mixed" widths="160px,auto,auto"}
+| Concepto | Qué es | Para qué sirve |
+| --- | --- | --- |
+| **CAPTCHA** | Prueba que distingue a una persona de un programa automatizado (*bot*): escribir letras deformadas, seleccionar imágenes o marcar «No soy un robot» | Evitar que *bots* creen cuentas falsas, envíen *spam* o prueben contraseñas de forma masiva en formularios web |
+| **DDoS** (*Distributed Denial of Service*) | Ataque de denegación de servicio distribuido: miles de equipos, muchas veces infectados (una *botnet*), envían tráfico a un servidor al mismo tiempo | Su objetivo es saturar el servicio para que deje de responder: ataca la **disponibilidad** |
+| **Rate limit** (límite de tasa) | Límite de solicitudes que un cliente puede hacer en un período, por ejemplo 100 peticiones por minuto por IP | Frenar abusos como el uso excesivo de una API, la fuerza bruta contra un inicio de sesión o parte del tráfico de un ataque |
+| **Headers** (cabeceras HTTP) | Información que acompaña cada solicitud y respuesta HTTP, además del contenido de la página | Algunas cabeceras indican al navegador cómo comportarse de forma segura con el sitio |
+:::
+
+## 2. Cabeceras de seguridad: HSTS
+
+Un sitio web necesita **protección de cabecera**: configurar en el servidor cabeceras HTTP que obliguen al navegador a aplicar medidas de seguridad.
+
+La cabecera **HSTS** (*HTTP Strict Transport Security*) obliga al navegador a comunicarse con el sitio **solo por HTTPS (puerto 443)** y no por HTTP (puerto 80):
+
+| Puerto | Protocolo | Tráfico |
+| --- | --- | --- |
+| **80** | HTTP | Viaja en texto plano: cualquiera que lo intercepte puede leerlo |
+| **443** | HTTPS | Viaja cifrado con TLS |
+
+```http
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+```
+
+Con esta cabecera, el navegador recuerda durante `max-age` segundos (aquí, un año) que debe usar HTTPS, incluso si el usuario escribe `http://` o sigue un enlace inseguro.
+
+:::table{#tabla02 caption="Otras cabeceras de seguridad habituales" layout="mixed" widths="240px,auto"}
+| Cabecera | Protege contra |
+| --- | --- |
+| `Content-Security-Policy` | Limita desde qué orígenes se cargan *scripts*, estilos e imágenes; reduce el riesgo de inyección de código (XSS) |
+| `X-Frame-Options` | Impide que el sitio se incruste en un `<iframe>` de otra página (*clickjacking*) |
+| `X-Content-Type-Options: nosniff` | Evita que el navegador interprete un archivo como un tipo distinto del declarado |
+| `Referrer-Policy` | Controla cuánta información de la URL de origen se envía a otros sitios |
+:::
+
+## 3. Integridad e interceptación de la comunicación
+
+La **integridad** asegura que los datos que envía A lleguen a B sin modificaciones. Se puede expresar como una función aplicada a la transmisión:
+
+$$
+f(x)\;\{A \rightarrow B\}
+$$
+
+A envía los datos $x$ por una red (por ejemplo, Internet) y B debe recibir exactamente lo mismo. En la práctica, $f$ suele ser una **función *hash***: A calcula el *hash* de los datos y lo envía junto con ellos; B recalcula el *hash* al recibirlos y, si ambos coinciden, los datos no fueron alterados.
+
+### La «oreja»: interceptación
+
+En una **transmisión** entre A y B puede aparecer una **«oreja»**: alguien que intercepta el mensaje en el camino.
+
+```
+   A (datos) ─────── red ─────── B
+                      │
+                   «oreja»
+```
+
+- Si solo **escucha** (*eavesdropping* o *sniffing*), compromete la **confidencialidad**.
+- Si además **modifica** o **suplanta** el mensaje, es un ataque de **intermediario** (*man-in-the-middle*) y compromete la **integridad**.
+
+La defensa principal es **cifrar** la comunicación: aunque la oreja capture el tráfico, no puede leerlo, y cualquier alteración se detecta.
+
+### Wireshark
+
+**Wireshark** es un programa que **captura y analiza el tráfico de red** paquete por paquete. Se usa para diagnosticar problemas de red y en auditorías de seguridad, y permite ver en la práctica la diferencia entre el tráfico HTTP (legible) y el HTTPS (cifrado): es exactamente lo que vería una «oreja» en la red.
+
+## 4. Cifrado
+
+**Cifrar** (también se dice **encriptar**) es transformar la información con un algoritmo y una clave para que solo quien tenga la clave adecuada pueda leerla.
+
+:::table{#tabla03 caption="Cifrado en tránsito y en reposo" layout="mixed" widths="180px,auto,auto"}
+| Tipo | Qué protege | Ejemplos |
+| --- | --- | --- |
+| **Cifrado en tránsito** | Los datos mientras viajan por la red, frente a una «oreja» | HTTPS/TLS (puerto 443), VPN, SSH |
+| **Cifrado en reposo** | Los datos almacenados, frente al robo de discos, equipos o respaldos | Cifrado de disco (BitLocker, LUKS), bases de datos y respaldos cifrados |
+:::
+
+Ambos se complementan: un sitio con HTTPS protege los datos en el camino, pero si su base de datos no está cifrada, el robo del servidor expone igual la información.
+
+## 5. Más allá de la tríada: el no repudio
+
+La **tríada CIA** (confidencialidad, integridad y disponibilidad) es la base clásica de la seguridad, pero hoy se considera **insuficiente** por sí sola. Se complementa con el **no repudio**: la garantía de que quien realizó una acción **no pueda negar haberla hecho**.
+
+El no repudio se apoya en:
+
+- **Trazabilidad:** poder reconstruir quién hizo qué, cuándo y desde dónde.
+- **Logs** (registros): cada sistema registra los eventos relevantes, como inicios de sesión, cambios y accesos.
+- **Auditoría:** los registros permiten revisar después lo ocurrido y demostrarlo.
+
+**Ejemplo:** una transferencia bancaria firmada digitalmente y registrada en los *logs* del banco no puede ser negada después por quien la realizó, porque existe evidencia de su autoría.
+
+:::callout[Para recordar]{type="tip"}
+- Las **cabeceras de seguridad**, como HSTS, obligan al navegador a usar conexiones seguras (443 en vez de 80).
+- Una **«oreja»** que intercepta la comunicación entre A y B amenaza la confidencialidad y la integridad; el **cifrado en tránsito** es la defensa.
+- El **cifrado en reposo** protege los datos almacenados.
+- La tríada CIA se complementa con el **no repudio**, sostenido por trazabilidad, *logs* y auditoría.
+:::

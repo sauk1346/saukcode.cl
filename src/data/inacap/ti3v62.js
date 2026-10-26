@@ -70,8 +70,8 @@ const courseData = {
       date: 'Lun 19, Oct 2026', 
       description: [
         {
-          text: '',
-          href: ''
+          text: 'Introducción GSI',
+          href: 'clase01'
         }
       ]
     },
@@ -81,8 +81,8 @@ const courseData = {
       date: 'Mar 20, Oct 2026', 
       description: [
         {
-          text: '',
-          href: ''
+          text: 'Suspensión Clases: Comunicado Sede',
+          strikethrough: true
         }
       ]
     },
@@ -269,13 +269,22 @@ const courseData = {
       lecture: '01', 
       date: 'Sáb 24, Oct 2026', 
       description: {
+          text: 'Fundamentos de la gestión de seguridad de la información',
+          href: 'docs/lectura01.pdf'
+      }
+    },
+    { 
+      week: '01', 
+      lecture: '02', 
+      date: 'Sáb 24, Oct 2026', 
+      description: {
           text: 'La información vale más de lo que imaginas',
-          href: ''
+          href: 'lectura02'
       }
     },
     { 
       week: '02', 
-      lecture: '02', 
+      lecture: '03', 
       date: 'Sáb 31, Oct 2026', 
       description: {
           text: 'La seguridad funciona mejor por capas',
@@ -284,16 +293,16 @@ const courseData = {
     },
     { 
       week: '03', 
-      lecture: '03', 
+      lecture: '04', 
       date: 'Sáb 07, Nov 2026', 
       description: {
-          text: 'La nube exige desiciones seguras',
+          text: 'La nube exige decisiones seguras',
           href: ''
       }
     },
     { 
       week: '04', 
-      lecture: '04', 
+      lecture: '05', 
       date: 'Sáb 14, Nov 2026', 
       description: {
           text: 'La auditoría revela lo que otros no observan',
@@ -302,7 +311,7 @@ const courseData = {
     },
     { 
       week: '05', 
-      lecture: '05', 
+      lecture: '06', 
       date: 'Sáb 21, Nov 2026', 
       description: {
           text: 'Cada dispositivo puede convertirse en una vulnerabilidad',
@@ -311,7 +320,7 @@ const courseData = {
     },
     { 
       week: '06', 
-      lecture: '06', 
+      lecture: '07', 
       date: 'Sáb 28, Nov 2026', 
       description: {
           text: 'Cada conexión deja una señal en la red',
