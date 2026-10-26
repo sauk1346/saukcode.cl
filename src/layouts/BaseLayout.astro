@@ -58,17 +58,18 @@ const {
       }
     </script>
     <script>
-      // Botón "Copiar" de los bloques de código (delegación de eventos): en lecciones y flashcards
+      // Botón de copiar (ícono) de los bloques de código (delegación de eventos): en lecciones y flashcards
       document.addEventListener('click', (e) => {
-        const target = e.target as HTMLElement;
-        if (!target.classList.contains('js-copy-code')) return;
-        const pre = target.parentElement?.querySelector('pre');
+        const button = (e.target as HTMLElement).closest<HTMLElement>('.js-copy-code');
+        if (!button) return;
+        const pre = button.parentElement?.querySelector('pre');
         if (!pre) return;
         navigator.clipboard.writeText(pre.textContent || '').then(() => {
-          const original = target.textContent;
-          target.textContent = '✓ Copiado';
+          button.dataset.copied = '';
+          button.setAttribute('aria-label', 'Copiado');
           setTimeout(() => {
-            target.textContent = original;
+            delete button.dataset.copied;
+            button.setAttribute('aria-label', 'Copiar código');
           }, 2000);
         });
       });

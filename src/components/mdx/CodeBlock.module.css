@@ -14,13 +14,16 @@
 /* Botón de copiar - FIJO independiente del scroll horizontal */
 .copyButton {
   position: absolute;
-  top: 0.6rem;
-  right: 2.5rem;
+  top: 0.35rem;
+  right: 0.35rem;
   color: var(--secondary);
   font-family: var(--font-code);
   font-size: 0.7rem;
   border-radius: 0;
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: var(--spacing-xs);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0.85;
   transition: opacity 0.15s ease, background-color 0.15s ease;
   z-index: 10;
@@ -31,6 +34,17 @@
 
 .copyButton:hover {
   opacity: 1;
+}
+
+/* Ícono de copiar; al copiar (data-copied) se reemplaza por un check durante 2 s */
+.iconCheck,
+.copyButton[data-copied] .iconCopy {
+  display: none;
+}
+
+.copyButton[data-copied] .iconCheck {
+  display: block;
+  color: var(--success, #22c55e);
 }
 
 .buttonLight {

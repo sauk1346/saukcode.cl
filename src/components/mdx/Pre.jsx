@@ -1,4 +1,5 @@
 import React from 'react';
+import { Copy, Check } from 'lucide-react';
 import styles from './CodeBlock.module.css';
 
 // Bloques de código: el resaltado ya viene hecho del build (rehype-prism-plus,
@@ -14,8 +15,10 @@ export const PreBlock = ({ children, className, class: classAttr, ...props }) =>
         type="button"
         className={`${styles.copyButton} ${styles.buttonLight} js-copy-code`}
         aria-label="Copiar código"
+        title="Copiar"
       >
-        Copiar
+        <Copy className={styles.iconCopy} size={14} aria-hidden="true" />
+        <Check className={styles.iconCheck} size={14} aria-hidden="true" />
       </button>
       <pre className={`${cls} ${styles.relative} ${styles.pre} ${styles.lightTheme}`} {...props}>
         {children}
