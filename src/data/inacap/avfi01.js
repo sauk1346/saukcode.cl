@@ -448,16 +448,16 @@ const courseData = {
       lecture: '08', 
       date: 'Dom 06, Sep 2026', 
       description: {
-        text: 'La contabilidad y la importancia de la información financiera',
-        href: 'lectura08'
+        text: 'Síntesis: del dato a la decisión, fundamentos de la gestión financiera',
+        href: 'docs/lectura08.pdf'
       }
     },
     { 
-      week: '05', 
+      week: '04', 
       lecture: '09', 
-      date: 'Dom 13, Sep 2026', 
+      date: 'Dom 06, Sep 2026', 
       description: {
-        text: 'El presupuesto como brújula financiera',
+        text: 'La contabilidad y la importancia de la información financiera',
         href: 'lectura09'
       }
     },
@@ -466,52 +466,70 @@ const courseData = {
       lecture: '10', 
       date: 'Dom 13, Sep 2026', 
       description: {
-        text: 'Estructura del presupuesto y herramientas digitales',
-        href: 'lectura10'
+        text: 'Formulación y control presupuestario',
+        href: 'docs/lectura10.pdf'
       }
     },
     { 
-      week: '06', 
+      week: '05', 
       lecture: '11', 
-      date: 'Dom 20, Sep 2026', 
+      date: 'Dom 13, Sep 2026', 
       description: {
-        text: 'Cómo construir tu presupuesto operativo',
+        text: 'El presupuesto como brújula financiera',
         href: 'lectura11'
       }
     },
     { 
-      week: '06', 
+      week: '05', 
       lecture: '12', 
-      date: 'Dom 20, Sep 2026', 
+      date: 'Dom 13, Sep 2026', 
       description: {
-        text: 'Análisis de variaciones y control presupuestario',
+        text: 'Estructura del presupuesto y herramientas digitales',
         href: 'lectura12'
       }
     },
     { 
-      week: '07', 
+      week: '06', 
       lecture: '13', 
-      date: 'Dom 27, Sep 2026', 
+      date: 'Dom 20, Sep 2026', 
       description: {
-        text: 'Tecnología y ética en la gestión presupuestaria',
+        text: 'Cómo construir tu presupuesto operativo',
         href: 'lectura13'
       }
     },
     { 
-      week: '07', 
+      week: '06', 
       lecture: '14', 
-      date: 'Dom 27, Sep 2026', 
+      date: 'Dom 20, Sep 2026', 
       description: {
-        text: 'Del control a la sostenibilidad: cierre de la gestión presupuestaria',
+        text: 'Análisis de variaciones y control presupuestario',
         href: 'lectura14'
       }
     },
     { 
-      week: '08', 
-      lecture: '17', 
-      date: 'Dom 04, Oct 2026', 
+      week: '07', 
+      lecture: '15', 
+      date: 'Dom 27, Sep 2026', 
       description: {
-        text: 'Fundamentos del costo de capital y de oportunidad',
+        text: 'Tecnología y ética en la gestión presupuestaria',
+        href: 'lectura15'
+      }
+    },
+    { 
+      week: '07', 
+      lecture: '16', 
+      date: 'Dom 27, Sep 2026', 
+      description: {
+        text: 'Síntesis: gestión presupuestaria integrada, del control a la sostenibilidad',
+        href: 'docs/lectura16.pdf'
+      }
+    },
+    { 
+      week: '07', 
+      lecture: '17', 
+      date: 'Dom 27, Sep 2026', 
+      description: {
+        text: 'Del control a la sostenibilidad: cierre de la gestión presupuestaria',
         href: 'lectura17'
       }
     },
@@ -520,17 +538,44 @@ const courseData = {
       lecture: '18', 
       date: 'Dom 04, Oct 2026', 
       description: {
+        text: 'Evaluación financiera de proyectos',
+        href: 'docs/lectura18.pdf'
+      }
+    },
+    { 
+      week: '08', 
+      lecture: '19', 
+      date: 'Dom 04, Oct 2026', 
+      description: {
+        text: 'Fundamentos del costo de capital y de oportunidad',
+        href: 'lectura19'
+      }
+    },
+    { 
+      week: '08', 
+      lecture: '20', 
+      date: 'Dom 04, Oct 2026', 
+      description: {
         text: 'Flujos netos de fondos simples',
-        href: 'lectura18'
+        href: 'lectura20'
       }
     },
     { 
       week: '09', 
-      lecture: '19', 
+      lecture: '21', 
+      date: 'Dom 11, Oct 2026', 
+      description: {
+        text: 'Síntesis: indicadores de rentabilidad y análisis de proyectos',
+        href: 'docs/lectura21.pdf'
+      }
+    },
+    { 
+      week: '09', 
+      lecture: '22', 
       date: 'Dom 11, Oct 2026', 
       description: {
         text: 'Riesgo y sensibilidad en proyectos financieros',
-        href: 'lectura19'
+        href: 'lectura22'
       }
     },
   ]

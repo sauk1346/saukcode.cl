@@ -1,140 +1,130 @@
-# Riesgo y sensibilidad en proyectos financieros
+# Fundamentos del costo de capital y de oportunidad
 
-En la evaluación de proyectos, el riesgo no es una excepción: es la condición normal. Las ventas pueden no cumplirse, los costos pueden subir y las tasas pueden variar. Por eso no basta con calcular el VAN o la TIR: hay que analizar qué tan sensibles son esos resultados frente a escenarios adversos o favorables. Esta lectura aborda las matrices de riesgo, el análisis de sensibilidad, los escenarios multivariados y el uso ético de la IA en la simulación.
+Evaluar financieramente un proyecto consiste en determinar si una inversión genera valor económico suficiente para justificar el uso de los recursos, considerando el riesgo asociado y las alternativas disponibles. No basta con mirar utilidades contables: toda decisión de inversión implica **renuncias**, **riesgos** y una **rentabilidad mínima exigida**. El costo de oportunidad y el costo de capital transforman estas nociones en criterios técnicos, y son la base de los indicadores de rentabilidad (VAN, TIR y PRA) de las lecturas siguientes.
 
-## 1. Matrices de análisis de riesgo
+La evaluación responde preguntas como: ¿el proyecto crea o destruye valor?, ¿es rentable frente a otras alternativas?, ¿cuándo se recupera la inversión? y ¿qué tan sensible es a cambios en variables clave? Un proyecto puede parecer atractivo por sus ventas o márgenes, pero si no genera flujos de efectivo positivos o su riesgo es excesivo respecto de la rentabilidad esperada, puede no convenir.
 
-Son herramientas estructuradas para identificar, evaluar y priorizar los riesgos de un proyecto según dos dimensiones: la **probabilidad** de que ocurran y su **impacto** sobre los resultados (financieros, operativos o estratégicos). Responden a: ¿qué puede salir mal, qué tan probable es y qué tan grave sería? Permiten ordenar los riesgos por importancia, identificar los críticos, decidir dónde concentrar esfuerzos y apoyar las decisiones financieras. No eliminan el riesgo, pero ayudan a gestionarlo racionalmente.
+## 1. Costo de oportunidad
 
-:::table{#tabla01 caption="Escalas de probabilidad e impacto" layout="mixed" widths="100px,auto,auto"}
-| Nivel | Probabilidad: ¿qué tan posible es que ocurra? | Impacto: si ocurre, ¿qué tan grave sería? |
-| --- | --- | --- |
-| **Baja** | Evento poco probable, antecedentes escasos | Afecta marginalmente el flujo de caja |
-| **Media** | Posibilidad razonable en condiciones normales | Reduce la rentabilidad, pero no compromete la viabilidad |
-| **Alta** | Evento frecuente o muy probable según el contexto o los datos históricos | Puede volver negativo el VAN o afectar la TIR significativamente |
+El costo de oportunidad es el valor de la **mejor alternativa sacrificada** al tomar una decisión. No es un costo contable (no aparece en los estados financieros), pero es crucial para decidir racionalmente: el verdadero costo de una inversión incluye tanto el desembolso directo como el beneficio al que se renuncia.
+
+:::solution[Ejemplo: depósito a plazo o mercadería]
+Una persona dispone de \$1.000.000 por un año y tiene dos alternativas excluyentes:
+
+- **A:** depósito a plazo con una rentabilidad segura del 6% anual.
+- **B:** comprar mercadería para revender, con una ganancia esperada del 10% anual, pero con mayor riesgo.
+
+Si elige **A**, su costo de oportunidad es la ganancia que deja de obtener en B: \$100.000 (10%). Si elige **B**, su costo de oportunidad es la ganancia segura del depósito: \$60.000 (6%).
 :::
 
-**Ejemplos:** un cambio menor en el precio de los insumos tiene probabilidad media; una nueva regulación ya anunciada, probabilidad alta. Un aumento leve de los costos administrativos tiene impacto bajo; la pérdida del cliente principal, impacto alto.
+Invertir es comparar alternativas, no evaluar una opción aislada: toda inversión debe compararse con la mejor alternativa disponible.
 
-:::table{#tabla02 caption="Matriz de riesgo 3×3"}
-| Probabilidad | Impacto bajo | Impacto medio | Impacto alto |
-| --- | --- | --- | --- |
-| **Alta** | Moderado | Alto | :red[**Crítico**] |
-| **Media** | Bajo | Moderado | Alto |
-| **Baja** | Muy bajo | Bajo | Moderado |
+## 2. Costo de capital
+
+El costo de capital es la **rentabilidad mínima** que un proyecto debe generar para compensar a quienes aportan el dinero (dueños y acreedores), considerando el riesgo que asumen. Dicho de forma simple, es el precio de usar dinero para financiar un proyecto. Si el proyecto no alcanza esa rentabilidad, no compensa a los dueños, no cubre el costo de la deuda y no conviene realizarlo, aunque genere utilidades contables.
+
+Se calcula como un promedio ponderado según la estructura de financiamiento (WACC simplificado):
+
+$$
+\text{Costo de capital} = (\%\,\text{Deuda} \times \text{Costo de la deuda}) + (\%\,\text{Capital propio} \times \text{Costo del capital propio})
+$$
+
+:::table{#tabla01 caption="Costo de capital de un proyecto de $10.000.000 (dueños exigen 12%, el banco cobra 8%)" layout="mixed" widths="200px,200px,90px,auto"}
+| Financiamiento | Cálculo | Costo de capital | Interpretación |
+| --- | --- | ---: | --- |
+| **100% capital propio** | $(0 \times 8\%) + (1 \times 12\%)$ | 12% | Debe cubrir la ganancia esperada por los dueños: \$1.200.000 |
+| **100% préstamo bancario** | $(1 \times 8\%) + (0 \times 12\%)$ | 8% | Debe cubrir los intereses del banco: \$800.000 |
+| **60% capital propio, 40% deuda** | $(0{,}4 \times 8\%) + (0{,}6 \times 12\%)$ | 10,4% | Debe cubrir la ganancia de los dueños (\$6.000.000 × 12% = \$720.000) y los intereses (\$4.000.000 × 8% = \$320.000) |
 :::
 
-Se lee cruzando una fila con una columna: se identifica el riesgo (caída de ventas, aumento de costos, retraso en cobros), se evalúa su probabilidad y la gravedad de su impacto, y se ubica en la celda correspondiente.
+La estructura de financiamiento influye directamente en la rentabilidad mínima exigida: un proyecto financiado mayormente con deuda tiene menor costo de capital, pero mayor riesgo financiero; uno financiado con capital propio tiene mayor costo de capital, pero menor riesgo de insolvencia.
 
-:::table{#tabla03 caption="Decisión según el nivel de riesgo" layout="mixed" widths="140px,auto,auto,auto"}
-| Nivel | Significado | Decisión típica | Ejemplo financiero |
-| --- | --- | --- | --- |
-| **Muy bajo / bajo** | Baja incidencia y efecto limitado | Se acepta y solo se monitorea | Variación menor en gastos administrativos sin efecto en el VAN o la caja |
-| **Moderado** | Puede afectar los resultados, pero no compromete por sí solo la viabilidad | Seguimiento y planes de mitigación simples | Aumento puntual de costos que reduce el VAN sin volverlo negativo |
-| **Alto** | Puede cambiar la decisión de inversión | Acciones concretas de mitigación o ajustes al proyecto | Caída sostenida de ventas que afecta significativamente la TIR |
-| **Crítico** | Amenaza directamente la viabilidad financiera | Rediseñar, postergar o rechazar la inversión | Incertidumbre regulatoria muy probable que invalida los flujos proyectados |
+## 3. Flujos netos de fondos
+
+El flujo de fondos es el registro ordenado y cronológico del dinero que entra y sale de un proyecto: muestra **cuánto entra, cuánto sale y en qué momento**. Se estructura en cuatro componentes:
+
+1. **Inversión inicial (año 0):** desembolsos antes de operar (activos fijos, capital de trabajo inicial, estudios, permisos). Va con signo negativo.
+2. **Ingresos operacionales:** entradas de efectivo de la actividad principal, según volumen, precios y condiciones de cobro.
+3. **Egresos operacionales:** insumos, remuneraciones, gastos administrativos y de comercialización, impuestos, según condiciones de pago.
+4. **Valor de rescate:** al cierre, la venta de activos usados y la recuperación del capital de trabajo, que se suman al último año.
+
+$$
+\text{Flujo neto} = \text{Ingresos} - \text{Egresos}
+$$
+
+:::solution[Ejemplo: juguería de jugos naturales]
+Un negocio de jugos naturales tiene una vida de 3 años.
+
+**Inversión inicial (año 0):** máquina exprimidora \$1.500.000, muebles y utensilios \$800.000 y capital de trabajo \$700.000: en total, **−\$3.000.000**.
+
+**Años 1 a 3:** ventas por \$4.000.000; compra de frutas por \$1.500.000 y gastos básicos (agua, luz, envases) por \$800.000.
+
+$$
+\text{Flujo neto} = 4.000.000 - (1.500.000 + 800.000) = \$1.700.000
+$$
+
+**Rescate (año 3):** venta de la máquina usada \$300.000 más recuperación del capital de trabajo \$700.000 = \$1.000.000.
+
+| Año | 0 | 1 | 2 | 3 |
+| --- | ---: | ---: | ---: | ---: |
+| **Flujo neto** | −\$3.000.000 | \$1.700.000 | \$1.700.000 | \$2.700.000 |
 :::
 
-:::table{#tabla04 caption="Riesgos de la juguería de jugos naturales"}
-| Riesgo | Nivel | Mitigación |
-| --- | --- | --- |
-| **Ventas menores a lo esperado** | Crítico | Promociones, publicidad en redes, diversificar productos |
-| **Aumento del precio de la fruta** | Moderado | Proveedores alternativos, ajuste de precios |
-| **Fallas en la maquinaria** | Bajo | Mantención preventiva, fondo de emergencia |
+Los flujos de los años 1 a 3 son futuros: para compararlos con la inversión de hoy hay que traerlos a valor presente con una tasa de descuento.
+
+## 4. Tasa de descuento y valor del dinero en el tiempo
+
+La tasa de descuento es el porcentaje que se usa para traer al presente el dinero que se recibirá en el futuro: responde a **¿cuánto valen hoy los ingresos que recibiré más adelante?** Es necesaria porque el dinero hoy vale más que mañana, el futuro tiene riesgo y siempre existe un costo de oportunidad. Por eso \$1.000.000 hoy no equivale a \$1.000.000 en 3 años, y los flujos no se pueden sumar directamente.
+
+$$
+\text{Tasa de descuento} = \text{Tasa base} + \text{Primas de riesgo}
+\qquad
+\text{Valor presente} = \frac{F_t}{(1 + r)^t}
+$$
+
+La **tasa base** es una rentabilidad segura, sin riesgo (depósito a plazo, bono del Estado). La **prima de riesgo** compensa la incertidumbre del proyecto: riesgo del negocio, del mercado, financiero, tecnológico u operativo, y riesgo país. A mayor riesgo, mayor rentabilidad exigida y mayor tasa de descuento.
+
+En la juguería, un negocio pequeño de riesgo moderado, el dueño exige una rentabilidad mínima del 10% anual, sin prima adicional:
+
+:::table{#tabla02 caption="Valor presente de los flujos de la juguería (r = 10%)"}
+| Año | Flujo futuro | Cálculo | Valor hoy |
+| ---: | ---: | --- | ---: |
+| 1 | \$1.700.000 | $1.700.000 / 1{,}1$ | \$1.545.455 |
+| 2 | \$1.700.000 | $1.700.000 / 1{,}1^2$ | \$1.404.959 |
+| 3 | \$2.700.000 | $2.700.000 / 1{,}1^3$ | \$2.028.550 |
 :::
 
-Las matrices ayudan a explicar por qué la tasa de descuento es más alta en proyectos riesgosos, a justificar escenarios pesimistas, a entender por qué un proyecto con VAN positivo puede igualmente ser riesgoso y a diseñar planes de contingencia. **Un proyecto rentable no siempre es seguro.**
+Con estos valores ya se pueden calcular los indicadores del proyecto (VAN, TIR y PRA), comparar proyectos y analizar si el negocio realmente crea valor.
 
-## 2. Análisis de sensibilidad univariado
+## 5. La IA en el análisis del costo de oportunidad y de capital
 
-El análisis de sensibilidad evalúa cómo cambian los resultados cuando cambian las variables clave: responde a **¿qué pasa si algo cambia?** El análisis **univariado** modifica una sola variable a la vez (ventas, costos, inversión inicial o tasa de descuento) y mantiene constantes las demás, para observar su impacto individual sobre el VAN, la TIR o el PRA. No predice el futuro, pero detecta vulnerabilidades, muestra qué supuestos requieren mayor control y sirve de base para los escenarios multivariados.
+La IA no decide: solo apoya el análisis. Es útil para comparar retornos, calcular el costo de capital, simular estructuras de financiamiento y reducir errores matemáticos, porque permite probar combinaciones sin rehacer todo el ejercicio.
 
-:::solution[Sensibilidad de la juguería]
-Datos base de la [lectura 18](/inacap/avfi01/lectura18): inversión de \$3.000.000, ingresos anuales de \$4.000.000, egresos anuales de \$2.300.000, rescate de \$1.000.000, tasa del 10% y VAN de \$1.978.963.
+:::solution[Ejemplo de prompt: costo de oportunidad]
+«Tengo \$2.000.000 y tres alternativas con retornos del 6%, 10% y 12%. Ayúdame a comparar retornos, identificar el costo de oportunidad y mostrarlo en una tabla simple.»
 
-| Variable | Cambio | VAN |
+| Alternativa elegida | Retorno esperado | Costo de oportunidad |
+| --- | ---: | --- |
+| Depósito a plazo | 6% | 12% (curso) |
+| Mercadería | 10% | 12% (curso) |
+| Curso | 12% | 10% (mercadería) |
+
+La IA facilita la comparación, pero no evalúa motivaciones personales ni mide bien los beneficios cualitativos (aprendizaje, reputación).
+:::
+
+:::solution[Ejemplo de prompt: costo de capital]
+«Calcula el costo de capital de un proyecto de \$10.000.000 en tres escenarios: 100% capital propio, 100% deuda y 50% deuda / 50% capital.»
+
+| Estructura | Cálculo | Costo de capital |
 | --- | --- | ---: |
-| **Ventas** | −10% | \$984.222 |
-| :highlight | **−20%** | **−\$10.518** |
-| **Costos operacionales** | +10% | \$1.406.987 |
-| | +20% | \$835.011 |
-| | +30% | \$263.035 |
-| **Tasa de descuento** | 15% | \$1.538.999 |
-| | 20% | \$1.159.722 |
-| **Inversión inicial** | +10% | \$1.678.963 |
-| | +20% | \$1.378.963 |
-
-Las **ventas** son la variable crítica: con una caída de aproximadamente un 20% (ingresos de unos \$3.200.000 al año), el VAN llega a cero, y por debajo el proyecto destruye valor. Los costos tendrían que subir cerca de un 35% para anular el VAN, y la tasa y la inversión tienen un impacto menor.
+| 100% capital propio | — | 12% |
+| 100% deuda | — | 8% |
+| 50% deuda / 50% capital | $(0{,}5 \times 8\%) + (0{,}5 \times 12\%)$ | 10% |
 :::
-
-:::callout{type="warning"}
-El recurso original de INACAP presenta este caso con cifras distintas (un VAN base de \$1.980.166, ventas que resisten una caída del 20% y costos que vuelven negativo el VAN con un alza del 30%). Las cifras de esta lectura están recalculadas con los flujos del ejemplo; la conclusión cambia: la variable crítica son las ventas, no los costos.
-:::
-
-## 3. Escenarios multivariados
-
-El análisis de escenarios modifica **simultáneamente** varias variables críticas (ventas, costos, inversión, tasa de descuento, valor de rescate) para representar contextos posibles de la realidad. A diferencia del univariado, combina cambios coherentes entre sí y refleja mejor la incertidumbre real.
-
-:::table{#tabla05 caption="Tipos de escenarios" layout="mixed" widths="200px,auto"}
-| Escenario | Características |
-| --- | --- |
-| **Optimista** | Las variables evolucionan mejor de lo esperado: mayores ingresos, menor inversión, condiciones financieras estables. Muestra el potencial máximo de creación de valor |
-| **Base** | Los supuestos originales, considerados más probables. Es el punto de referencia para comparar |
-| **Pesimista** | Varias variables se deterioran a la vez: menores ventas, mayor inversión, tasa más alta. Muestra si el proyecto destruye valor en condiciones adversas |
-| **Realista–conservador** | Ajustes prudentes y plausibles: arranque lento, pequeños sobrecostos, mayor costo de capital. Es clave para decisiones profesionales, porque evita apoyarse solo en proyecciones optimistas |
-:::
-
-Un proyecto **robusto** es el que mantiene un VAN positivo incluso en escenarios pesimistas razonables; si solo es viable en condiciones muy favorables, el riesgo es alto.
-
-## 4. La IA en la simulación de escenarios
-
-La IA permite simular rápidamente múltiples escenarios, sensibilizar variables críticas y apoyar la interpretación de los indicadores, con una exploración sistemática que a mano tomaría mucho tiempo.
-
-:::solution[Ejemplo de prompt: proyecto e-commerce]
-«Analiza la sensibilidad del proyecto e-commerce. Datos base: inversión de \$50.000.000; flujos de \$20 MM al año durante 3 años más \$5 MM en el año 4; tasa del 12%; VAN base de +\$1,21 MM. Sensibiliza las ventas (−20% a +20%, en pasos de 5%), la tasa (8% a 16%, en pasos de 2%) y la inversión (−10% a +20%, en pasos de 5%). Genera una tabla de sensibilidad univariada por variable, un gráfico tornado (variables ordenadas por impacto), una tabla de escenarios (optimista, base, pesimista y conservador), el punto de equilibrio de ventas y una recomendación basada en la robustez.»
-
-| Análisis | Resultado | Observación |
-| --- | --- | --- |
-| **Ventas** (−20% / +20%) | VAN entre −\$9,4 MM y +\$11,9 MM | Mayor impacto: variable crítica |
-| **Tasa** (8% / 16%) | VAN entre +\$7,2 MM y −\$2,7 MM | Impacto alto |
-| **Inversión** (±10%) | VAN entre +\$6,2 MM y −\$3,8 MM | Impacto medio |
-| **Ventas para VAN = 0** | \$19,5 MM al año | Margen de reducción admisible de solo 2,5% |
-| **Simulación de escenarios** | 50% con VAN negativo | Alta probabilidad de resultados desfavorables |
-| **Decisión** | Proyecto de alto riesgo | Validar el mercado con un piloto antes de la inversión total |
-:::
-
-## 5. Dilemas éticos en la evaluación con IA
-
-Un dilema ético ocurre cuando hay que elegir entre usar la IA de manera responsable y transparente, o usarla de forma conveniente pero incorrecta, aunque el resultado «se vea bien». La IA facilita cálculos y escenarios, pero puede usarse para forzar decisiones favorables.
-
-:::table{#tabla06 caption="El dilema en la juguería: presentar el proyecto a un inversionista o banco" layout="mixed" widths="180px,auto"}
-| Elemento | En la juguería |
-| --- | --- |
-| **Análisis ético** | ¿Uso la IA para analizar con honestidad o para que el proyecto «resulte bien»? Hay que verificar que los supuestos sean realistas, que los riesgos estén representados y que los resultados no muestren solo el mejor escenario |
-| **Tentación** | Con ventas normales el VAN es positivo, pero subiendo un poco las ventas, bajando los costos o usando una tasa menor, el proyecto se ve mucho más atractivo: «si ajusto un poco los datos, consigo el financiamiento» |
-| **Riesgo de la IA** | No valida la veracidad de los datos, solo calcula: puede aceptar proyecciones irreales, repetir sesgos del usuario, generar una falsa sensación de certeza u ocultar riesgos bajo números «bonitos». No detecta intencionalidad ética |
-| **Problema ético** | No es usar IA, sino manipular supuestos, omitir escenarios negativos o no transparentar cómo se obtuvieron los resultados; por ejemplo, presentar solo el escenario optimista y ocultar la sensibilidad del proyecto |
-| **Consecuencias** | A corto plazo se aprueba el proyecto o se obtiene financiamiento. A mediano y largo plazo no se alcanzan los resultados prometidos, se pierde la confianza de los inversionistas y hay problemas financieros y daño reputacional. El error no fue técnico, fue ético |
-| **Conducta correcta** | Presentar los escenarios base, pesimista y optimista; justificar la tasa de descuento según el riesgo real; declarar los supuestos y transparentar los riesgos identificados |
-:::
-
-Una conducta ejemplar sería decir: «la IA muestra que el proyecto es rentable, pero también revela que es sensible a una caída de las ventas; este riesgo debe gestionarse». Un buen proyecto no se fuerza: se explica.
-
-## 6. Caso: decidir como gerente financiero
-
-:::solution[Proyecto e-commerce con tres escenarios]
-Una empresa evalúa un proyecto con un VAN de **+\$35 MM** en el escenario optimista, **+\$18 MM** en el base y **−\$12 MM** en el pesimista. El análisis de sensibilidad indica que depende fuertemente del nivel de ventas. ¿Qué harías?
-
-- **Aprobar inmediatamente:** ignora el riesgo del escenario pesimista. Un VAN negativo en condiciones adversas indica vulnerabilidad ante caídas de ventas.
-- **Rechazar el proyecto:** es conservador, pero no considera que el escenario base es positivo. Antes habría que analizar la probabilidad real del escenario pesimista, la posibilidad de mitigarlo y los ajustes posibles al diseño.
-- **Aprobar con condiciones (la decisión que integra rentabilidad y riesgo):** analizar la probabilidad del escenario adverso, diseñar medidas de mitigación, implementar un piloto, asegurar contratos de venta y revisar la estructura de financiamiento.
-:::
-
-Evaluar un proyecto implica calcular indicadores, analizar la sensibilidad, construir escenarios, integrar matrices de riesgo y usar la IA de forma ética. La decisión profesional no depende solo de la rentabilidad esperada, sino de la **robustez del proyecto frente a la incertidumbre**.
 
 :::callout[Para reflexionar]{type="tip"}
-1. ¿Qué variables de un proyecto consideras más críticas al analizar su sensibilidad y por qué?
-2. ¿Cómo puede el uso ético de la inteligencia artificial fortalecer la toma de decisiones financieras en contextos de incertidumbre?
+1. ¿Qué riesgos existen al tomar decisiones de inversión sin considerar el costo de oportunidad?
+2. ¿Cómo influye el costo de capital en la decisión de aprobar o rechazar un proyecto?
 :::
 
-Recurso complementario: [Análisis de proyecto de inversión: puntos críticos, escenarios, VAN, sensibilidad, flujo de caja y TIR](https://youtu.be/DaF3Zmm_4AQ) (video).
+Recurso complementario: [Entendiendo el costo de capital](https://youtu.be/07V68rFTNVQ) (video).
