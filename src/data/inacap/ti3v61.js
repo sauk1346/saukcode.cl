@@ -269,13 +269,22 @@ const courseData = {
       lecture: '01', 
       date: 'Dom 25, Oct 2026', 
       description: {
+          text: 'Fundamentos de la minería de datos',
+          href: 'docs/lectura01.pdf'
+      }
+    },
+    { 
+      week: '01', 
+      lecture: '02', 
+      date: 'Dom 25, Oct 2026', 
+      description: {
           text: 'Datos en todas partes: el origen de la minería de datos',
-          href: ''
+          href: 'lectura02'
       }
     },
     { 
       week: '02', 
-      lecture: '02', 
+      lecture: '03', 
       date: 'Dom 01, Nov 2026', 
       description: {
           text: 'Precedir o describir: dos miradas para entender los datos y datos limpios, decisiones certeras',
@@ -284,7 +293,7 @@ const courseData = {
     },
     { 
       week: '03', 
-      lecture: '03', 
+      lecture: '04', 
       date: 'Dom 08, Nov 2026', 
       description: {
           text: 'R como aliado: tus primeros pasos en estadística',
@@ -293,7 +302,7 @@ const courseData = {
     },
     { 
       week: '04', 
-      lecture: '04', 
+      lecture: '05', 
       date: 'Dom 15, Nov 2026', 
       description: {
           text: 'El origen de la minería de datos - De lo crudo a lo útil',
@@ -302,7 +311,7 @@ const courseData = {
     },
     { 
       week: '05', 
-      lecture: '05', 
+      lecture: '06', 
       date: 'Dom 22, Nov 2026', 
       description: {
           text: 'Describir para comprender: Análisis descriptivo en R',
@@ -311,7 +320,7 @@ const courseData = {
     },
     { 
       week: '06', 
-      lecture: '06', 
+      lecture: '07', 
       date: 'Dom 29, Nov 2026', 
       description: {
           text: 'Anticipar el futuro: regresión y predicción en R',
@@ -320,7 +329,7 @@ const courseData = {
     },
     { 
       week: '07', 
-      lecture: '07', 
+      lecture: '08', 
       date: 'Dom 06, Dic 2026', 
       description: {
           text: 'El arsenal analítico: técnicas que transforman datos, normas ISO y marcos de referencia',
@@ -329,7 +338,7 @@ const courseData = {
     },
     { 
       week: '08', 
-      lecture: '08', 
+      lecture: '09', 
       date: 'Dom 13, Dic 2026', 
       description: {
           text: 'Normas en acción: analítica con estándares e inferencia estadística en R',
@@ -338,7 +347,7 @@ const courseData = {
     },
     { 
       week: '09', 
-      lecture: '09', 
+      lecture: '10', 
       date: 'Dom 20, Dic 2026', 
       description: {
           text: 'Datos que hablan: interpretar resultados con criterio',

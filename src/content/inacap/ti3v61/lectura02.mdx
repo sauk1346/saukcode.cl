@@ -1,0 +1,81 @@
+# Datos en todas partes: el origen de la minería de datos
+
+Cada vez que envías un mensaje, buscas una dirección, revisas el clima o pides comida a domicilio, generas datos. Multiplicado por miles de millones de personas cada día, ese volumen de información digital es el punto de partida de la minería de datos. Plataformas como Netflix, Spotify o los bancos lo usan para anticipar gustos o detectar comportamientos sospechosos. Para transformar esos datos en conocimiento, el primer paso es entender **qué es la minería de datos** y **qué tipo de datos** se está enfrentando: un archivo CSV con ventas mensuales no se procesa igual que un conjunto de imágenes médicas o una colección de tweets.
+
+## 1. ¿Qué es la minería de datos?
+
+La minería de datos es el proceso de descubrir **patrones**, **correlaciones**, **tendencias** y **conocimiento** útil a partir de grandes volúmenes de datos, utilizando métodos computacionales, estadísticos y de inteligencia artificial. No se trata de «mirar» los datos, sino de **aplicar algoritmos y técnicas sistemáticas** que revelen información oculta que no es evidente a simple vista (Han et al., 2012).
+
+:::callout[Analogía: una mina de oro]{type="info"}
+Los datos brutos son como el mineral extraído de la tierra: contienen valor, pero mezclado con tierra, piedras y material inútil. La minería de datos separa, refina y extrae el oro, el conocimiento valioso. Lo que se obtiene al final no es solo información, sino **decisiones accionables**: qué productos promocionar, a qué clientes dirigirse, qué riesgos mitigar o qué tendencias aprovechar.
+:::
+
+:::table{#tabla01 caption="La minería de datos en distintos sectores" layout="mixed" widths="140px,auto"}
+| Sector | Aplicación |
+| --- | --- |
+| **Retail** | Analizar millones de transacciones para encontrar patrones de compra. Si los clientes que compran pañales también compran cerveza los viernes por la tarde, se pueden ubicar cerca o crear promociones combinadas |
+| **Banca** | Detectar fraudes en tiempo real: si una tarjeta que se usa en Santiago registra de pronto compras en otro país, el sistema puede bloquearla. También predecir qué clientes tienen mayor probabilidad de no pagar sus créditos |
+| **Minería** | Mantenimiento predictivo: sensores en la maquinaria pesada alertan cuando un motor vibra de forma inusual o se calienta, antes de una detención costosa |
+| **Salud** | Analizar historiales clínicos para identificar factores de riesgo, como indicadores sanguíneos y hábitos que aumentan la probabilidad de diabetes tipo 2, y actuar preventivamente |
+:::
+
+## 2. La pirámide informacional
+
+No todos los datos tienen el mismo valor. Existe una jerarquía de cuatro niveles que transforma datos brutos en conocimiento accionable, donde cada nivel agrega valor al anterior:
+
+:::table{#tabla02 caption="Niveles de la pirámide informacional" layout="mixed" widths="150px,auto,auto"}
+| Nivel | Definición | Ejemplo |
+| --- | --- | --- |
+| **1. Datos** (base) | Hechos brutos, sin procesar ni contextualizar | «27 °C», «250 unidades», «12:35 PM»: valores aislados que por sí solos no dicen nada |
+| **2. Información** | Datos procesados y contextualizados que responden preguntas básicas | «La temperatura en Santiago es de 27 °C a las 12:35 PM»: el dato ahora tiene ubicación y hora |
+| **3. Conocimiento** | Información analizada, interpretada y conectada con experiencia previa | «En enero, las temperaturas en Santiago suelen superar los 30 °C al mediodía, lo que aumenta el consumo eléctrico por aire acondicionado» |
+| **4. Sabiduría** (cúspide) | Conocimiento aplicado con juicio y experiencia para decidir | «Como enero es el mes de mayor consumo, las distribuidoras deben asegurar capacidad adicional y los usuarios pueden optar por tarifas diferenciadas por horario» |
+:::
+
+La minería de datos trabaja principalmente en los niveles de **información** y **conocimiento**: toma datos brutos, los procesa y contextualiza, y aplica algoritmos para revelar patrones. La **sabiduría** sigue dependiendo del juicio humano, del contexto y de la interpretación ética de los resultados.
+
+## 3. Relación con otras disciplinas
+
+La minería de datos es un campo **interdisciplinario**:
+
+- **Estadística:** entrega la base matemática para analizar datos, calcular probabilidades, medir correlaciones y validar si un patrón es significativo o solo ruido aleatorio.
+- **Bases de datos:** permiten almacenar, organizar y consultar grandes volúmenes de información con sistemas relacionales (SQL) y no relacionales (NoSQL).
+- **Inteligencia artificial y *machine learning*:** aportan algoritmos que aprenden patrones a partir de ejemplos, como árboles de decisión, redes neuronales o *clustering* (agrupamiento).
+- **Visualización de datos:** gráficos y *dashboards* (paneles) comunican los hallazgos a quienes deciden sin conocimientos técnicos.
+- **Conocimiento del dominio:** un experto en el área determina si una correlación tiene sentido práctico o es una coincidencia; por ejemplo, un médico valida si un patrón tiene relevancia clínica.
+
+## 4. Tipos de datos según su estructura
+
+Cada tipo de dato requiere herramientas y técnicas de procesamiento distintas.
+
+:::table{#tabla03 caption="Datos estructurados, semiestructurados y no estructurados" layout="mixed" widths="150px,auto,auto,auto"}
+| Tipo | Características | Ejemplos | Ventajas y desafíos |
+| --- | --- | --- | --- |
+| **Estructurados** | Filas y columnas con un esquema fijo; cada columna tiene un tipo (texto, número, fecha) y cada fila es un registro | Registros de ventas, cuentas bancarias, mediciones de sensores industriales | Fáciles de almacenar, consultar y analizar con bases relacionales (MySQL, PostgreSQL, Oracle). No todo el mundo real cabe en tablas |
+| **Semiestructurados** | Sin esquema rígido, pero con organización interna mediante etiquetas, jerarquías o metadatos. Formatos: **JSON**, **XML** y **YAML** | Respuestas de APIs web, *logs* (registros) de servidores, archivos de configuración | Flexibles: se agregan campos sin romper la estructura. Requieren *parseo* (análisis sintáctico) antes de analizarse |
+| **No estructurados** | Sin esquema tabular; su contenido principal no está en filas y columnas | Publicaciones en redes sociales, imágenes médicas, grabaciones de llamadas, documentos PDF | Más del 80% de los datos del mundo. Requieren técnicas avanzadas: NLP para texto, visión computacional para imágenes, reconocimiento de voz para audio |
+:::
+
+Un proyecto real suele combinar los tres tipos. Una empresa puede tener transacciones en una base SQL (estructurados), archivos JSON de configuración (semiestructurados) y millones de correos de clientes (no estructurados): SQL para lo primero, MongoDB o Elasticsearch para lo segundo y técnicas de NLP para lo tercero.
+
+:::solution[Actividad: clasifica cada ejemplo según su estructura]
+| Ejemplo | Tipo |
+| --- | --- |
+| Consumo eléctrico de una casa inteligente | Estructurado |
+| Inventario de una farmacia | Estructurado |
+| Producción diaria de una mina | Estructurado |
+| Archivo JSON de sensores agrícolas | Semiestructurado |
+| Archivo XML con resultados de exámenes médicos | Semiestructurado |
+| Radiografía de tórax de un paciente | No estructurado |
+| Audio de llamada a un call center | No estructurado |
+| Imagen satelital de un cultivo afectado por sequía | No estructurado |
+:::
+
+Para profundizar en datos no estructurados existen bibliotecas como **NLTK** o **spaCy** para textos, **OpenCV** para imágenes y **Librosa** para audio.
+
+:::callout[Para reflexionar]{type="tip"}
+1. Piensa en una aplicación que uses a diario (transporte, *delivery*, redes sociales). ¿Qué datos estructurados, semiestructurados y no estructurados crees que recopila sobre ti?
+2. Una empresa de telecomunicaciones almacena registros de llamadas, mensajes y ubicación GPS. ¿Qué nivel de la pirámide alcanza si solo los almacena? ¿Y si detecta patrones de movilidad para ubicar mejor sus antenas?
+3. ¿Recuerdas un caso donde mucho conocimiento técnico no bastó para tomar una buena decisión? ¿Qué factores humanos o de contexto faltaron?
+4. ¿Qué implicaciones éticas tiene el análisis masivo de datos personales?
+:::
