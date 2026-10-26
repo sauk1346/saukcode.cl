@@ -70,8 +70,8 @@ const courseData = {
       date: 'Mar 20, Oct 2026', 
       description: [
         {
-          text: '',
-          href: ''
+          text: 'Suspensión Clases: Comunicado Sede',
+          strikethrough: true
         }
       ]
     },
@@ -81,8 +81,45 @@ const courseData = {
       date: 'Jue 22, Oct 2026', 
       description: [
         {
-          text: '',
-          href: ''
+          text: 'AT01: Tablas de frecuencia en Excel',
+          href: 'docs/unit01-at01.pdf'
+        },
+        {
+          text: 'Datos de estudiantes',
+          href: 'docs/datos-estudiantes(AT1).xlsx',
+          sub: true
+        },
+        {
+          text: 'Pesos de envases de yogurt',
+          href: 'docs/pesos-envases-yogurt(AT1).xlsx',
+          sub: true
+        },
+        {
+          text: 'AT02: Gráficos en Excel',
+          href: 'docs/unit01-at02.pdf'
+        },
+        {
+          text: 'Gráficos en Excel',
+          href: 'docs/graficos-en-excel(AT2).xlsx',
+          sub: true
+        },
+        {
+          text: 'ARPA01: Selección de Personal',
+          href: 'docs/unit01-arpa01.pdf'
+        },
+        {
+          text: 'SM01: Radiografía de la matrícula en la educación superior chilena',
+          href: 'docs/unit01-sm01.pdf'
+        },
+        {
+          text: 'Evolución de la matrícula de pregrado 2020-2024',
+          href: 'docs/evolucion-matricula-pregrado-2020-2024(SM1).xlsx',
+          sub: true
+        },
+        {
+          text: 'Matrícula de pregrado 2024',
+          href: 'docs/matricula-pregrado-2024(SM1).xlsx',
+          sub: true
         }
       ]
     },
