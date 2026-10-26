@@ -45,7 +45,7 @@ const courseData = {
       weighting: '35%', 
       description: {
         text: 'Informe 03',
-        href: ''
+        href: 'docs/informe03.pdf'
       }
     },
     { 
@@ -238,7 +238,7 @@ const courseData = {
       description: [
         {
           text: 'Roadmap TI',
-          href: ''
+          href: 'docs/clase16.pdf'
         },
       ]
     },
@@ -249,7 +249,7 @@ const courseData = {
       description: [
         {
           text: 'Mejora Continua del Servicio',
-          href: ''
+          href: 'docs/clase17.pdf'
         },
       ]
     },
@@ -272,56 +272,82 @@ const courseData = {
       lecture: '01', 
       date: 'Sáb 15, Ago 2026', 
       description: {
+        text: 'Estableciendo un gobierno TI',
+        href: 'docs/lectura01.pdf'
+      }
+    },
+    { 
+      week: '01', 
+      lecture: '02', 
+      date: 'Sáb 15, Ago 2026', 
+      description: {
         text: 'Gobierno TI: decisiones estratégicas para organizaciones digitales',
-        href: ''
+        href: 'lectura02'
       }
     },
     { 
       week: '02', 
-      lecture: '02', 
+      lecture: '03', 
       date: 'Sáb 22, Ago 2026', 
       description: {
         text: 'COBIT y estándares TI: control, estrategia y mejora organizacional',
-        href: ''
+        href: 'lectura03'
       }
     },
     { 
       week: '03', 
-      lecture: '03', 
+      lecture: '04', 
+      date: 'Sáb 29, Ago 2026', 
+      description: {
+        text: 'Gestión de los servicios TI',
+        href: 'docs/lectura04.pdf'
+      }
+    },
+    { 
+      week: '03', 
+      lecture: '05', 
       date: 'Sáb 29, Ago 2026', 
       description: {
         text: 'ITIL y el ciclo de vida que transforma los servicios TI',
-        href: ''
+        href: 'lectura05'
       }
     },
     { 
       week: '04', 
-      lecture: '04', 
+      lecture: '06', 
       date: 'Sáb 05, Sep 2026', 
       description: {
         text: 'Incidentes y problemas TI: respuestas clave para servicios de calidad',
-        href: ''
+        href: 'lectura06'
       }
     },
     { 
       week: '05', 
-      lecture: '05', 
+      lecture: '07', 
+      date: 'Sáb 12, Sep 2026', 
+      description: {
+        text: 'Implantación de gobierno TI',
+        href: 'docs/lectura07.pdf'
+      }
+    },
+    { 
+      week: '05', 
+      lecture: '08', 
       date: 'Sáb 12, Sep 2026', 
       description: {
         text: 'Servicios TI bajo control: evaluación, análisis y mejora continua',
-        href: ''
+        href: 'lectura08'
       }
     },
     { 
       week: '06', 
-      lecture: '06', 
+      lecture: '09', 
       date: 'Sáb 19, Sep 2026', 
       description: {
-        text: 'Roadmap TI: planificación y merjora para servicios de calidad',
-        href: ''
+        text: 'Roadmap TI: planificación y mejora para servicios de calidad',
+        href: 'lectura09'
       }
     },
-    
   ]
 };
 

@@ -1,0 +1,58 @@
+# Incidentes y problemas TI: respuestas clave para servicios de calidad
+
+Las organizaciones dependen cada vez más de servicios digitales para actividades críticas: ventas, atención de clientes, educación, salud y operaciones financieras. Cuando esos servicios fallan, se afectan la productividad, la experiencia de los usuarios y la continuidad operacional. Por eso se necesitan mecanismos para identificar incidentes, restaurar los servicios en el menor tiempo posible y abordar las causas de los problemas recurrentes. En ITIL, la **gestión de incidentes**, la **gestión de problemas** y la **garantía de servicio** cumplen ese papel.
+
+## 1. Diferencia entre incidente y problema
+
+Ambos conceptos suelen usarse como sinónimos, pero en ITIL cumplen funciones distintas. Diferenciarlos permite responder a las interrupciones y, a la vez, atacar sus causas, lo que reduce costos operacionales y fortalece la estabilidad (Steinberg, 2011).
+
+:::table{#tabla01 caption="Incidente o problema: ¿cuál es la diferencia?" layout="mixed" widths="170px,auto,auto"}
+| Aspecto | Incidente | Problema |
+| --- | --- | --- |
+| **Definición** | Interrupción no planificada, degradación o falla de un servicio TI | Causa subyacente que origina uno o más incidentes |
+| **Objetivo principal** | Restaurar el servicio lo más rápido posible | Identificar la causa raíz y evitar recurrencias |
+| **Enfoque** | Resolver el impacto inmediato sobre el servicio | Investigar y corregir el origen de la falla |
+| **Impacto** | Afecta directamente la operación y la experiencia de los usuarios | Puede generar incidentes repetitivos si no se corrige |
+| **Ejemplos** | Caída de una plataforma, lentitud del sistema, interrupción del acceso remoto | Error de configuración, falla de infraestructura, problema de capacidad |
+| **Resultado esperado** | Recuperación rápida del servicio | Mayor estabilidad y menos incidentes futuros |
+:::
+
+**Ejemplo:** si la plataforma de pagos de una empresa se cae todos los lunes por la mañana, cada caída es un **incidente** que hay que resolver de inmediato para que los clientes vuelvan a pagar. La causa que se repite (por ejemplo, un proceso programado que satura el servidor) es el **problema**, y corregirla evita los incidentes siguientes.
+
+## 2. Procesos de garantía de servicio
+
+La garantía de servicio reúne los mecanismos que aseguran que los servicios TI funcionen de manera confiable, segura y continua. Según Cannon (2011), permite mantener niveles adecuados de:
+
+- **Disponibilidad:** que el servicio esté operativo cuando se necesita.
+- **Continuidad:** que el servicio pueda sostenerse o recuperarse ante eventos graves.
+- **Capacidad:** que soporte la demanda de usuarios y transacciones.
+- **Seguridad:** que proteja la información y los accesos.
+- **Calidad del servicio:** que cumpla lo comprometido con los usuarios.
+
+Para sostenerlos se usan el **monitoreo continuo**, la **gestión de disponibilidad**, los **respaldos de información**, los **planes de continuidad** y los **acuerdos de nivel de servicio**.
+
+### Acuerdos de nivel de servicio (SLA)
+
+Los SLA establecen compromisos formales sobre el desempeño de los servicios TI: tiempos de respuesta, disponibilidad, soporte, niveles de calidad y tiempos de recuperación. Según Nair (2020), fortalecen la relación entre TI y los usuarios mediante indicadores claros y medibles.
+
+## 3. Propuestas de mejora con enfoque ITIL
+
+La transformación digital exige servicios capaces de adaptarse rápido, por lo que la mejora continua es uno de los componentes más relevantes de la gestión de servicios. Implica interpretar información de desempeño, disponibilidad, incidentes, capacidad y continuidad para detectar brechas, debilidades, riesgos y oportunidades (Lloyd, 2014).
+
+1. **Medir:** indicadores de desempeño, métricas de disponibilidad, análisis de incidentes, tiempos de recuperación y satisfacción de usuarios.
+2. **Evaluar brechas:** comparar el desempeño esperado con el real en disponibilidad, cumplimiento de SLA, tiempos de respuesta, frecuencia de incidentes y satisfacción.
+3. **Priorizar:** según el impacto organizacional, la criticidad del servicio, los riesgos operacionales y los recursos disponibles.
+4. **Proponer:** acciones como actualizar infraestructura, automatizar el monitoreo, fortalecer el soporte, revisar los SLA o implementar planes de continuidad.
+5. **Integrar:** coordinar la mejora con las demás fases del ciclo de vida (estrategia, diseño, transición y operación).
+
+Las propuestas de mejora no solo resuelven fallas técnicas inmediatas: fortalecen la sostenibilidad y la madurez de la organización en la gestión de servicios TI.
+
+:::callout[Para recordar]{type="tip"}
+La gestión de incidentes restablece el servicio; la gestión de problemas elimina sus causas; la garantía de servicio y los SLA aseguran disponibilidad, continuidad y calidad. Juntas convierten una falla puntual en una oportunidad de mejora permanente.
+:::
+
+Recursos complementarios:
+
+- [Las cambiantes funciones de la gestión de problemas e incidentes](https://www.atlassian.com/es/incident-management/devops/incident-vs-problem-management) (Atlassian).
+- [La gestión de problemas en ITIL](https://youtu.be/6rhI1bvI-c0) (video, InvGate).
+- [¿Qué es la gestión de problemas?](https://invgate.com/es/itsm/problem-management) (InvGate).
