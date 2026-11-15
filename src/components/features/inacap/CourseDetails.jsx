@@ -12,21 +12,36 @@ const parseFecha = (str) => {
   const m = /(\d{1,2}),\s*([A-Za-z]+)\s+(\d{4})/.exec(str || '');
   if (!m) return null;
   const mes = MESES[m[2].slice(0, 3).toLowerCase()];
-  return mes == null ? null : new Date(Number(m[3]), mes, Number(m[1]));
+  // Día civil como medianoche UTC: se compara por fecha, sin depender del huso del dispositivo
+  return mes == null ? null : Date.UTC(Number(m[3]), mes, Number(m[1]));
 };
 
-// Semana "actual": la más próxima cuyo último día aún no pasó
+const DIA_MS = 24 * 60 * 60 * 1000;
+
+// Fecha de hoy en Chile (medianoche UTC de ese día civil), sea cual sea el huso del visitante
+const hoyEnChile = () => {
+  const [y, m, d] = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Santiago' })
+    .format(new Date())
+    .split('-')
+    .map(Number);
+  return Date.UTC(y, m - 1, d);
+};
+
+// Lunes de la semana calendario (lunes a domingo) a la que pertenece un día
+const lunesDe = (dia) => dia - ((new Date(dia).getUTCDay() + 6) % 7) * DIA_MS;
+
+// Semana actual: aquella cuya semana calendario (lunes a domingo) contiene el día de hoy en Chile.
+// Si hoy no cae en ninguna (antes del inicio, receso, después del término), no se marca ninguna.
 const getCurrentWeek = (byWeek) => {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  let best = null;
+  const hoy = hoyEnChile();
   for (const [week, items] of Object.entries(byWeek)) {
-    const dates = items.map((i) => parseFecha(i.date)).filter(Boolean);
-    if (!dates.length) continue;
-    const max = Math.max(...dates.map((d) => d.getTime()));
-    if (max >= today.getTime() && (best === null || max < best.max)) best = { week, max };
+    const dias = items.map((i) => parseFecha(i.date)).filter((d) => d != null);
+    if (!dias.length) continue;
+    const desde = lunesDe(Math.min(...dias));
+    const hasta = lunesDe(Math.max(...dias)) + 6 * DIA_MS;
+    if (hoy >= desde && hoy <= hasta) return week;
   }
-  return best ? best.week : null;
+  return null;
 };
 
 const CourseDetails = ({
