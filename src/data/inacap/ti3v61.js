@@ -363,7 +363,7 @@ const courseData = {
       date: 'Dom 01, Nov 2026', 
       description: {
           text: 'Precedir o describir: dos miradas para entender los datos y datos limpios, decisiones certeras',
-          href: ''
+          href: 'lectura03'
       }
     },
     { 

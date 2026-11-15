@@ -1,0 +1,420 @@
+# Predecir o describir: dos miradas para entender los datos, y datos limpios, decisiones certeras
+
+Una tienda revisa las ventas del mes pasado y descubre que el 35 % de sus clientes compra café y galletas juntos: puede ubicar ambos productos cerca para vender más. Si además pudiera anticipar qué clientes que nunca han comprado galletas probablemente lo harán la próxima semana, podría enviarles un cupón en el momento justo. Ambos enfoques son valiosos, pero resuelven problemas distintos: el primero **describe** lo que pasó (análisis descriptivo) y el segundo **anticipa** lo que podría pasar (análisis predictivo).
+
+Elegir el tipo de modelo equivocado es uno de los errores más costosos en un proyecto de minería de datos. Y antes de cualquier modelo están los datos: la **limpieza** consume entre el 50 % y el 70 % del tiempo total de un proyecto, aunque muchas veces se subestima. Un dato incorrecto no solo reduce la precisión de los modelos: puede llevar a decisiones erróneas o a sistemas que discriminan injustamente a grupos de personas. Decidir qué modelo usar y cómo limpiar los datos no son tareas mecánicas: requieren pensamiento crítico, conocimiento del dominio y responsabilidad ética.
+
+## 1. Modelos descriptivos
+
+Los **modelos descriptivos**, también llamados **no supervisados**, buscan identificar patrones, estructuras, agrupaciones o relaciones en datos históricos **sin tener una variable objetivo** que predecir. No intentan anticipar el futuro: resumen y organizan la información de maneras que revelan conocimiento útil.
+
+:::callout[Analogía: el explorador]{type="info"}
+Un modelo descriptivo es como un explorador que llega a un territorio desconocido y dibuja un mapa: no predice dónde estarán las montañas mañana, sino que describe dónde están hoy para que otros puedan recorrerlo mejor.
+:::
+
+Características clave:
+
+- No requieren etiquetas ni variable objetivo: trabajan solo con los datos de entrada.
+- Buscan patrones naturales en los datos: agrupaciones, asociaciones, anomalías.
+- Son útiles para exploración, segmentación, simplificación y detección de *outliers* (valores atípicos).
+- Su éxito se mide por la interpretabilidad y la utilidad práctica, no por la precisión de una predicción.
+
+Las técnicas descriptivas más comunes son cuatro.
+
+### Clustering (agrupamiento)
+
+Agrupa objetos similares en *clusters* (grupos) sin saber de antemano cuántos grupos existen ni qué los define. Los objetos dentro de un *cluster* son similares entre sí y diferentes de los objetos de otros *clusters*.
+
+:::callout[Ejemplo: cadena de farmacias]{type="note"}
+Una cadena de farmacias analiza el comportamiento de compra de 500.000 clientes. Aplica *clustering* k-means y descubre 5 segmentos: adultos mayores que compran medicamentos crónicos cada mes, familias jóvenes que compran pañales y productos infantiles, deportistas que compran suplementos y proteínas, compradores ocasionales que solo compran con receta médica, y clientes de cosméticos y cuidado personal. El algoritmo no conocía esas categorías: emergieron de los patrones de compra. Marketing usa los segmentos para diseñar 5 estrategias de comunicación diferenciadas.
+:::
+
+:::table{#tabla01 caption="Algoritmos comunes de clustering" layout="mixed" widths="220px,auto"}
+| Algoritmo | Características |
+| --- | --- |
+| **K-means** | El más usado y rápido, pero requiere definir de antemano *k*, el número de *clusters* |
+| **DBSCAN** | Identifica *clusters* de forma arbitraria y detecta *outliers* automáticamente |
+| **Clustering jerárquico** | Construye un dendrograma que muestra las relaciones entre *clusters* a distintos niveles |
+:::
+
+### Reglas de asociación
+
+Descubren relaciones entre variables en transacciones o eventos. La regla tiene la forma «si compra X, entonces compra Y con Z % de probabilidad». Se popularizaron con el análisis de la canasta de compras (*market basket*).
+
+:::callout[Ejemplo: supermercado]{type="note"}
+Un supermercado chileno analiza 10 millones de transacciones y descubre: «si un cliente compra pañales y cerveza, hay un 68 % de probabilidad de que compre *snacks* salados». La regla tiene un soporte de 12 % (aparece en el 12 % de todas las transacciones) y una confianza de 68 % (de las transacciones con pañales y cerveza, el 68 % incluye *snacks*). El supermercado crea la promoción «lleva pañales y cerveza y obtén 20 % de descuento en papas fritas», y las ventas de *snacks* aumentan un 15 %.
+:::
+
+:::table{#tabla02 caption="Métricas de una regla de asociación" layout="mixed" widths="160px,auto"}
+| Métrica | Qué mide |
+| --- | --- |
+| **Soporte** | Qué tan frecuente es la regla en los datos (%) |
+| **Confianza** | Qué tan confiable es la regla: la probabilidad condicional de Y dado X |
+| **Lift** | Cuánto más probable es Y dado X, comparado con la probabilidad base de Y |
+:::
+
+Un *lift* mayor que 1 indica asociación positiva; igual a 1, independencia; y menor que 1, asociación negativa.
+
+El algoritmo clásico para encontrar reglas de asociación es **Apriori**: genera candidatos de conjuntos de ítems (*itemsets*) frecuentes y los filtra según un soporte mínimo.
+
+### Reducción de dimensionalidad
+
+Simplifica conjuntos de datos con muchas variables (dimensiones) proyectándolos a un espacio de menor dimensión que conserva la mayor parte de la información. Es útil para visualizar y para evitar la «maldición de la dimensionalidad».
+
+:::callout[Ejemplo: exámenes de sangre]{type="note"}
+Un hospital tiene datos de 150 exámenes sanguíneos por paciente. Es imposible visualizar 150 dimensiones. Aplica PCA y descubre que el 85 % de la variabilidad se captura en solo 5 componentes principales. Ahora puede visualizar a los pacientes en un gráfico de 2 o 3 dimensiones e identificar grupos con perfiles similares, que podrían responder a tratamientos específicos.
+:::
+
+:::table{#tabla03 caption="Técnicas de reducción de dimensionalidad" layout="mixed" widths="280px,auto"}
+| Técnica | Características |
+| --- | --- |
+| **PCA** (*Principal Component Analysis*) | Transforma variables correlacionadas en componentes ortogonales no correlacionados |
+| **t-SNE** | Excelente para visualizar en 2 o 3 dimensiones datos de alta dimensión |
+| **Autoencoders** | Redes neuronales que aprenden representaciones comprimidas de los datos |
+:::
+
+### Detección de anomalías
+
+Identifica observaciones que se desvían significativamente del patrón normal. No predice si algo es anómalo: describe qué es normal y señala lo que no encaja.
+
+:::callout[Ejemplo: tarjetas de crédito]{type="note"}
+Una empresa de tarjetas de crédito usa detección de anomalías para identificar transacciones sospechosas. El modelo aprende el patrón de gasto normal de cada cliente: montos típicos, categorías frecuentes, horarios habituales y ubicaciones. Cuando detecta una transacción que se desvía drásticamente (una compra de 2.000 dólares en electrónica en otro país a las 3 de la mañana, de un cliente que normalmente gasta entre 50 y 200 dólares en supermercados locales), la marca como anómala para revisión humana.
+:::
+
+## 2. Modelos predictivos
+
+Los **modelos predictivos**, también llamados **supervisados**, aprenden la relación entre las variables de entrada (*features* o predictores) y una **variable objetivo** (*target*) usando datos históricos etiquetados, para luego predecir la variable objetivo en datos nuevos sin etiquetar.
+
+:::callout[Analogía: aprender de la experiencia]{type="info"}
+Si históricamente los clientes con los comportamientos X, Y y Z terminaron abandonando el servicio, se puede identificar a los clientes actuales con esos mismos comportamientos y anticipar que probablemente también se irán.
+:::
+
+Características clave:
+
+- Requieren datos etiquetados: necesitan ejemplos donde se conoce la respuesta correcta.
+- Aprenden a mapear entradas a salidas: $f(X) = Y$.
+- Su éxito se mide por la precisión de la predicción en datos no vistos (generalización).
+- Se dividen en **clasificación** (predecir categorías) y **regresión** (predecir valores numéricos).
+
+### Clasificación
+
+Predice a qué categoría o clase pertenece una observación. La variable objetivo es **categórica**: spam o no spam, alto o bajo riesgo, aprobado o rechazado.
+
+:::callout[Ejemplo: créditos impagos]{type="note"}
+Un banco chileno quiere predecir qué solicitantes de crédito no pagarán. Tiene 50.000 créditos históricos etiquetados como «pagado» o «impago», cada uno con edad, ingreso, antigüedad laboral, deuda existente e historial crediticio. Entrena un modelo de *random forest* que aprende patrones como «si el ingreso es menor que \$600.000, la antigüedad laboral es menor que 1 año y la relación deuda/ingreso supera el 50 %, hay alta probabilidad de impago». Cuando llega una solicitud nueva, el modelo predice la probabilidad de impago; si supera el 40 %, se rechaza o se ofrece con una tasa de interés mayor.
+:::
+
+:::table{#tabla04 caption="Algoritmos comunes de clasificación" layout="mixed" widths="280px,auto"}
+| Algoritmo | Características |
+| --- | --- |
+| **Regresión logística** | Modelo lineal simple y muy interpretable |
+| **Árboles de decisión** | Fáciles de visualizar y de explicar a personas no técnicas |
+| **Random forest** | Conjunto (*ensemble*) de árboles, más robusto y preciso |
+| **Support Vector Machines (SVM)** | Efectivas en espacios de alta dimensión |
+| **Redes neuronales** | Poderosas, pero requieren muchos datos y son difíciles de interpretar |
+:::
+
+:::table{#tabla05 caption="Métricas de evaluación en clasificación" layout="mixed" widths="220px,auto"}
+| Métrica | Qué mide |
+| --- | --- |
+| **Exactitud** (*accuracy*) | Porcentaje de predicciones correctas. Simple, pero engañosa si las clases están desbalanceadas |
+| **Precisión y recall** | El balance entre falsos positivos y falsos negativos |
+| **F1-score** | Media armónica de precisión y *recall* |
+| **AUC-ROC** | Capacidad del modelo de distinguir entre clases en todos los umbrales posibles |
+:::
+
+### Regresión
+
+Predice un **valor numérico continuo**. La variable objetivo no es una categoría, sino una cantidad: precio, temperatura, ventas, tiempo, probabilidad.
+
+:::callout[Ejemplo: precio de departamentos]{type="note"}
+Una inmobiliaria quiere estimar el precio de departamentos en Santiago. Tiene 10.000 ventas históricas con metros cuadrados, número de dormitorios, comuna, piso, antigüedad y estacionamientos. Entrena un modelo de regresión que aprende una relación del tipo «precio = 40.000 × m² + 15.000.000 × dormitorios + ajuste por comuna + ajuste por piso…». Cuando un cliente quiere tasar su departamento de 80 m² y 2 dormitorios en Providencia, piso 10, el modelo predice 185 millones de pesos. Así la inmobiliaria fija precios competitivos basados en datos reales y no solo en la intuición.
+:::
+
+:::table{#tabla06 caption="Algoritmos comunes de regresión" layout="mixed" widths="280px,auto"}
+| Algoritmo | Características |
+| --- | --- |
+| **Regresión lineal** | Modelo base; asume una relación lineal entre los predictores y el objetivo |
+| **Regresión polinómica** | Captura relaciones no lineales |
+| **Random forest regressor** | Conjunto de árboles que maneja bien relaciones complejas |
+| **Gradient boosting** (XGBoost, LightGBM) | Estado del arte en muchos problemas con datos tabulares |
+| **Redes neuronales** | Para problemas muy complejos con grandes volúmenes de datos |
+:::
+
+:::table{#tabla07 caption="Métricas de evaluación en regresión" layout="mixed" widths="280px,auto"}
+| Métrica | Qué mide |
+| --- | --- |
+| **MAE** (*Mean Absolute Error*) | Error promedio, en las mismas unidades que la variable objetivo |
+| **MSE y RMSE** (*Root Mean Squared Error*) | Penalizan los errores grandes más que el MAE |
+| **R²** (coeficiente de determinación) | Qué porcentaje de la variabilidad explica el modelo |
+:::
+
+## 3. Descriptivo o predictivo: cuándo usar cada uno
+
+La diferencia no es solo técnica: refleja qué pregunta de negocio se está respondiendo.
+
+:::table{#tabla08 caption="Cuándo usar cada tipo de modelo" layout="mixed" widths="auto,auto"}
+| Modelos descriptivos | Modelos predictivos |
+| --- | --- |
+| **Entender la estructura de los datos:** ¿hay grupos naturales de clientes? | **Anticipar eventos futuros:** ¿qué clientes se irán el próximo mes? |
+| **Segmentar:** ¿cómo agrupar productos o clientes para estrategias diferenciadas? | **Clasificar observaciones nuevas:** ¿este correo es spam?, ¿este tumor es maligno? |
+| **Buscar asociaciones:** ¿qué cosas ocurren juntas con frecuencia? | **Estimar valores numéricos:** ¿cuánto se venderá el próximo trimestre? |
+| **Simplificar:** ¿se pueden representar 100 variables con solo 5? | **Hay datos históricos etiquetados:** se conoce qué pasó y se quiere predecir qué pasará |
+| **No hay datos etiquetados:** no se conoce la «respuesta correcta» para entrenar un modelo | **La decisión depende del pronóstico:** solo se actúa si el modelo predice X |
+:::
+
+### Cómo trabajan juntas
+
+En un mismo proyecto de analítica, las técnicas descriptivas y predictivas suelen usarse de manera **complementaria**. Muchos proyectos siguen este flujo:
+
+**Datos → Análisis descriptivo → Comprensión del negocio → Modelo predictivo → Decisiones**
+
+Una plataforma de *streaming* como Netflix usa ambos tipos:
+
+:::table{#tabla09 caption="Ejemplo integrado: plataforma de streaming" layout="mixed" widths="220px,auto"}
+| Etapa | Qué ocurre |
+| --- | --- |
+| **Los usuarios generan datos** | Miles de usuarios generan información constantemente: series vistas, tiempo de reproducción, géneros favoritos, horarios de consumo y dispositivos utilizados |
+| **Análisis descriptivo** | Se aplica *clustering* para identificar grupos de usuarios con comportamientos similares: fans de comedia, amantes de documentales, maratonistas de series dramáticas. Aquí no se predice nada: se descubren patrones existentes |
+| **Decisiones de negocio** | Los *clusters* responden preguntas como «¿qué tipo de contenido deberíamos producir?». Si existe un grupo muy grande de usuarios interesados en documentales de naturaleza, se decide producir más contenido de ese tipo |
+| **Análisis predictivo** | Se construye un modelo de clasificación para una pregunta nueva: ¿qué usuarios podrían cancelar su suscripción? Resultado: el usuario A tiene una probabilidad de cancelación de 70 % |
+| **Acción** | Como el modelo predice una alta probabilidad de cancelación, se envía una promoción personalizada antes de que el usuario abandone la plataforma |
+:::
+
+Muchos proyectos comienzan con un análisis descriptivo para entender los datos y luego construyen modelos predictivos. El *clustering* inicial puede convertirse en la variable objetivo de un modelo predictivo: «predecir a qué *cluster* pertenecerá un usuario nuevo».
+
+Para la implementación práctica, la biblioteca scikit-learn (Python) implementa la mayoría de estos algoritmos. K-means y DBSCAN son el punto de partida habitual en *clustering*; los árboles de decisión y *random forest*, en clasificación y regresión.
+
+### Actividad: ¿descriptivo o predictivo?
+
+:::table{#tabla10 caption="Clasificación de cada acción" layout="mixed" widths="auto,160px"}
+| Acción | Tipo de análisis |
+| --- | --- |
+| Agrupar usuarios según sus hábitos de visualización | Descriptivo |
+| Analizar los patrones de consumo para definir la estrategia de contenido | Descriptivo |
+| Utilizar *clustering* para encontrar perfiles de usuarios | Descriptivo |
+| Estimar la probabilidad de que un usuario cancele su suscripción | Predictivo |
+| Predecir a qué *cluster* pertenecerá un usuario nuevo | Predictivo |
+| Anticipar el comportamiento futuro de un usuario | Predictivo |
+| Enviar una oferta personalizada a un usuario con alta probabilidad de abandono | Predictivo |
+:::
+
+## 4. Calidad de datos
+
+:::callout[Analogía: el chef]{type="info"}
+Un chef de alta cocina puede tener las mejores recetas, técnicas perfectas y equipo de última generación. Si le entregan ingredientes en mal estado, no podrá preparar un plato extraordinario. En minería de datos ocurre lo mismo: con los algoritmos más sofisticados y el equipo más brillante, si los datos son incorrectos, incompletos, inconsistentes o sesgados, los resultados serán inútiles o, peor aún, peligrosamente incorrectos. Es la máxima de la ciencia de datos: **basura entra, basura sale**.
+:::
+
+La **calidad de datos** es el grado en que los datos son **adecuados para el propósito** para el cual serán usados. No es un concepto absoluto: datos «de calidad» para un contexto pueden ser inadecuados para otro. Aun así, hay seis dimensiones universales que la definen:
+
+:::table{#tabla11 caption="Dimensiones de la calidad de datos" layout="mixed" widths="200px,auto,auto"}
+| Dimensión | Pregunta | Ejemplo |
+| --- | --- | --- |
+| **Exactitud** (*accuracy*) | ¿Los datos reflejan correctamente la realidad? | Un cliente con 150 años, o una transacción por −\$500, no son datos exactos |
+| **Completitud** (*completeness*) | ¿Están presentes todos los datos requeridos? | Si falta el 40 % de los correos electrónicos de los clientes y se planea una campaña por correo, los datos están incompletos para ese propósito |
+| **Consistencia** (*consistency*) | ¿Los mismos datos se representan de la misma manera en todo el conjunto? | «Santiago» aparece también como «Stgo», «Sgo» y «SANTIAGO» |
+| **Validez** (*validity*) | ¿Los datos cumplen las reglas de negocio definidas? | El campo «género» admite M o F, pero hay valores como «X», «N/A» o «123» |
+| **Actualidad** (*timeliness*) | ¿Los datos están actualizados? | Predecir la demanda con ventas de hace 5 años puede llevar a errores si el mercado cambió |
+| **Unicidad** (*uniqueness*) | ¿Cada entidad está representada una sola vez? | El mismo cliente aparece duplicado 3 veces con ligeras variaciones en el nombre |
+:::
+
+:::callout[Limpiar no es eliminar]{type="warning"}
+La limpieza de datos **no** es simplemente «eliminar los registros con problemas». Esa es la solución más fácil, pero con frecuencia la peor: cada registro eliminado es información perdida, un posible sesgo introducido y una representatividad reducida. La limpieza inteligente implica **evaluar caso por caso** qué estrategia conserva más información útil e introduce menos sesgo.
+:::
+
+## 5. Problemas comunes de calidad y cómo tratarlos
+
+Los problemas más frecuentes son cuatro: valores faltantes, duplicados, inconsistencias y *outliers*. No existe una solución única: la estrategia correcta depende del contexto, del tipo de dato y del impacto que tendrá en el análisis posterior.
+
+### Valores faltantes
+
+Son el problema más frecuente. Un valor faltante (*missing value*) significa que, para cierta observación y cierta variable, no hay dato. Puede aparecer como `NaN`, `NULL`, una celda vacía o un valor centinela como 999, −1 o «N/A».
+
+Causas:
+
+- Error humano al ingresar datos (un campo olvidado).
+- Falla técnica en los sistemas de captura (un sensor desconectado, un formulario web con errores).
+- Intencional: el usuario no quiso responder una pregunta opcional.
+- Estructural: ciertos datos no aplican («número de hijos» para una persona sin hijos).
+
+:::table{#tabla12 caption="Estrategias para tratar valores faltantes" layout="mixed" widths="220px,auto,auto"}
+| Estrategia | En qué consiste y cuándo usarla | Ejemplo |
+| --- | --- | --- |
+| **Eliminación de registros** | Borrar las filas con valores faltantes. Solo es viable si el porcentaje faltante es muy bajo (menos del 5 %), los faltantes son completamente aleatorios y eliminarlos no introduce sesgo | En 100.000 clientes, 200 no tienen edad y no hay patrón: es aceptable eliminarlos |
+| **Eliminación de variables** | Borrar columnas completas con muchos faltantes. Una variable con más del 60 % de valores faltantes probablemente aporta poco y causa más problemas que beneficios | El campo «ingreso anual» solo tiene datos para el 15 % de los clientes: eliminarlo es más sensato que imputar el 85 % restante |
+| **Imputación por medidas centrales** | Rellenar con la media, la mediana o la moda. Simple y rápida, pero introduce sesgo porque reduce artificialmente la varianza. Solo cuando el porcentaje faltante es bajo (menos del 10 %) y la variable no es crítica | La altura de los clientes de un gimnasio falta en el 8 % de los registros: imputar con la mediana (170 cm) es razonable |
+| **Imputación por grupos** | Calcular la media o la mediana por subgrupos y rellenar según el grupo. Más inteligente que la imputación global | Un salario faltante se rellena con el promedio de las personas del mismo cargo, región y antigüedad, no con el promedio global que mezcla gerentes con cargos iniciales |
+| **Imputación predictiva** | Usar las otras variables para predecir el valor faltante. Más sofisticada, pero requiere que las otras variables sean predictivas | La edad faltante se predice con un modelo basado en ingresos, nivel educativo, cargo y años de experiencia |
+| **Categoría especial** | Crear una categoría «Desconocido» o «No responde». Útil cuando el hecho de que el dato falte es informativo | En encuestas sobre ingresos, quienes no responden suelen tener ingresos muy altos o muy bajos |
+:::
+
+:::callout[Ejemplo: presión arterial]{type="note"}
+Un hospital tiene datos de 50.000 pacientes. El campo «presión arterial» falta en 5.000 casos (10 %). Al analizar, descubre que los faltantes no son aleatorios: ocurren principalmente en consultas de urgencia, donde no hubo tiempo de tomar todos los signos vitales. Estrategia: entrena un modelo de regresión que predice la presión arterial a partir de la edad, el IMC, el diagnóstico y los medicamentos, e imputa los 5.000 valores con esas predicciones. Conserva la información sin eliminar el 10 % de los datos.
+:::
+
+### Duplicados
+
+Ocurren cuando la misma observación aparece varias veces en el conjunto de datos, a veces con ligeras variaciones.
+
+Causas:
+
+- Múltiples fuentes de datos que no se integraron correctamente.
+- Errores en el proceso ETL (*Extract, Transform, Load*) que cargan los mismos registros varias veces.
+- Usuarios que envían el mismo formulario más de una vez.
+
+:::table{#tabla13 caption="Estrategias para tratar duplicados" layout="mixed" widths="220px,auto"}
+| Tipo | Tratamiento |
+| --- | --- |
+| **Duplicados exactos** | Si dos filas son idénticas en todas las columnas, eliminar una es trivial. La mayoría de las herramientas tiene funciones automáticas, como `drop_duplicates()` en pandas o `DISTINCT` en SQL |
+| **Duplicados aproximados** | El mismo cliente aparece como «Juan Pérez» y «Juan Perez», con correos distintos pero el mismo teléfono. Requiere técnicas de coincidencia aproximada (*fuzzy matching*) o de vinculación de registros (*record linkage*): comparar campos clave y decidir si representan la misma entidad según un umbral de similitud |
+:::
+
+:::callout[Ejemplo: base de clientes]{type="note"}
+Una empresa de logística tiene una base de 80.000 clientes. Al limpiarla, encuentra 6.000 duplicados: el mismo RUT con nombres ligeramente distintos («Constructora ABC Ltda», «Constructora ABC LTDA», «Const. ABC»). Usa algoritmos de similitud de texto (distancia de Levenshtein) junto con el RUT como llave única, consolida a un solo registro por RUT y reduce la base a 74.000 clientes únicos. Así evita enviar varias facturas al mismo cliente.
+:::
+
+### Inconsistencias
+
+Los mismos datos se representan de formas distintas a lo largo del conjunto de datos.
+
+Tipos comunes:
+
+- **Formatos de fecha:** «2024-05-20», «20/05/2024», «May 20, 2024», «20-may-24».
+- **Unidades de medida:** precios en pesos chilenos (\$890) y en dólares (USD 1,1), sin especificar.
+- **Codificación de texto:** algunos campos con tildes y otros sin ellas, mezclados.
+- **Abreviaturas:** «M» y «Masculino», «Stgo» y «Santiago», «USA» y «Estados Unidos».
+
+:::table{#tabla14 caption="Estrategias para tratar inconsistencias" layout="mixed" widths="220px,auto"}
+| Estrategia | En qué consiste |
+| --- | --- |
+| **Estandarización** | Definir un formato único y convertir todo a ese formato: fechas en ISO 8601 (AAAA-MM-DD), montos siempre en pesos chilenos, género con códigos (M, F, O), lugares con su nombre oficial completo |
+| **Normalización de texto** | Convertir todo a minúsculas o a mayúsculas, eliminar tildes si no son relevantes, quitar espacios extra y unificar caracteres especiales |
+| **Mapeo de categorías** | Crear diccionarios de equivalencias, como «Stgo», «Sgo» y «Santiago de Chile» → «Santiago», y aplicarlos |
+:::
+
+:::callout[Ejemplo: ventas en tres monedas]{type="note"}
+Un comercio electrónico registra ventas en pesos chilenos, dólares y euros. Al analizar los ingresos mensuales suma directamente los montos: \$500.000 + \$1.000 + €800 = \$501.800, lo que no tiene sentido. Estrategia: identifica la moneda de cada registro y convierte todo a pesos chilenos con el tipo de cambio del día de la transacción. Ahora sí puede sumar: \$500.000 + \$890.000 (1.000 dólares) + \$850.000 (800 euros) = \$2.240.000.
+:::
+
+### *Outliers* (valores atípicos)
+
+Son observaciones que se desvían significativamente del patrón general. **No todos los *outliers* son errores**: algunos son datos legítimos extremos que contienen información valiosa.
+
+:::table{#tabla15 caption="Tipos de outliers" layout="mixed" widths="260px,auto"}
+| Tipo | Ejemplo y tratamiento |
+| --- | --- |
+| **Errores de medición o de entrada** | Edad de 150 años, precio de −\$5.000, altura de 300 cm. Son claramente imposibles y deben corregirse o eliminarse |
+| **Eventos excepcionales legítimos** | Un cliente que normalmente gasta \$50.000 al mes gasta de repente \$5.000.000 porque compró un auto. Es atípico, pero real y relevante: eliminarlo sería perder información crítica |
+:::
+
+:::table{#tabla16 caption="Estrategias para tratar outliers" layout="mixed" widths="240px,auto"}
+| Estrategia | En qué consiste |
+| --- | --- |
+| **Detección estadística** | Usar reglas como el método del diagrama de caja (valores fuera de $[Q_1 - 1{,}5 \cdot IQR,\; Q_3 + 1{,}5 \cdot IQR]$) o el puntaje Z (valores a más de 3 desviaciones estándar de la media) |
+| **Investigación manual** | Para los *outliers* críticos, revisar el registro completo y validar si es un error o un evento real. No automatizar a ciegas la eliminación |
+| **Winsorización** | En lugar de eliminar, reemplazar los *outliers* extremos por el valor del percentil 95 o 99. Reduce el impacto de los extremos sin perder observaciones |
+| **Transformación** | Aplicar un logaritmo u otra transformación que comprima los valores extremos. Útil cuando la distribución es muy sesgada |
+| **Mantener con análisis robusto** | Usar algoritmos menos sensibles a los *outliers*: la mediana en vez de la media, árboles de decisión en vez de regresión lineal |
+:::
+
+:::callout[Ejemplo: siniestros de autos]{type="note"}
+Una aseguradora analiza siniestros de autos. La mayoría cuesta entre \$200.000 y \$3.000.000, pero hay 15 casos que superan los \$50.000.000 (accidentes con autos de lujo o con múltiples víctimas). Decide **no** eliminarlos, porque son eventos reales y críticos para el negocio. En su lugar, entrena el modelo predictivo con *random forest*, que es robusto a los *outliers*, en vez de regresión lineal, que es muy sensible, y modela por separado los siniestros catastróficos.
+:::
+
+### Actividad: detectar problemas en una base de datos
+
+:::table{#tabla17 caption="Problemas detectados y su tratamiento" layout="mixed" widths="200px,170px,auto"}
+| Error en la base | Tipo de problema | Cómo abordarlo |
+| --- | --- | --- |
+| Edad de 150 años | *Outlier* | Es un valor extremadamente improbable y debe validarse antes de usarlo. No todos los *outliers* son errores, pero este requiere revisión |
+| Ciudad «Stgo» cuando el resto usa «Santiago» | Inconsistencia | Estandarizar usando un único formato antes de analizar |
+| Fechas en distintos formatos | Inconsistencia | Convertir todas las fechas a un formato estándar, por ejemplo ISO 8601 (AAAA-MM-DD) |
+| Montos en pesos chilenos y en dólares mezclados | Inconsistencia | Convertir todos los valores a una misma moneda antes de comparar o sumar |
+| Edad vacía | Valor faltante | Analizar antes de decidir si conviene imputar o eliminar el registro, según el contexto y el porcentaje de datos faltantes |
+| ID 1006 repetido dos veces | Duplicado | Los duplicados pueden distorsionar las estadísticas y los modelos predictivos: se identifican y se eliminan cuando corresponde |
+:::
+
+## 6. Recomendaciones generales para la limpieza de datos
+
+1. **Documentar todo.** Llevar un registro detallado de cada decisión de limpieza: qué problema se detectó, qué estrategia se aplicó, cuántos registros afectó y por qué se eligió esa solución. Es crítico para la reproducibilidad y para explicar los resultados a los interesados (*stakeholders*).
+2. **Validar con expertos del dominio.** Un científico de datos puede detectar que «el paciente tiene 200 años», pero solo un médico puede determinar si una presión arterial de 95/60 es un *outlier* preocupante o está dentro de lo normal para ciertos perfiles.
+3. **Automatizar, pero supervisar.** Crear *scripts* reproducibles para la limpieza, y revisar siempre muestras a mano antes de aplicarlos masivamente. Una regla de limpieza mal diseñada puede corromper miles de registros en segundos.
+4. **Preservar los datos originales.** Nunca sobrescribir los datos crudos: guardar una copia sin tocar y trabajar sobre copias. Si una decisión de limpieza resulta errónea, se puede volver atrás.
+5. **Evaluar el impacto.** Después de limpiar, comparar las estadísticas descriptivas de antes y después. Si la media cambió un 40 %, algo puede estar mal. Si se eliminó el 30 % de los registros, hay que preguntarse si se introdujo sesgo.
+6. **No todo dato «sucio» es inútil.** A veces, el hecho de que un dato falte, sea inconsistente o atípico es en sí mismo información relevante. Los clientes que no responden encuestas de satisfacción suelen ser los más insatisfechos; ignorar ese patrón es perder conocimiento.
+7. **La perfección no existe.** Nunca habrá datos 100 % perfectos. La pregunta es si los datos son suficientemente buenos para el propósito: un conjunto con un 3 % de errores puede ser excelente para un análisis exploratorio, pero inaceptable para un sistema de detección de fraudes, donde cada error cuenta.
+
+Para la práctica, la librería pandas de Python tiene las funciones `fillna`, `dropna` y `drop_duplicates`; missingno permite visualizar los valores faltantes; fuzzywuzzy hace coincidencia aproximada, y scipy.stats sirve para detectar *outliers*.
+
+## Preguntas de reflexión
+
+- ¿Qué problemas de calidad de datos podría enfrentar un proyecto de datos real, y cómo se abordarían?
+- Un conjunto de datos tiene un 40 % de valores faltantes en la variable «ingreso mensual». ¿Bajo qué circunstancias conviene eliminar esa variable por completo, y cuándo intentar imputar los valores?
+- «Basura entra, basura sale»: ¿hay ejemplos reales donde datos de mala calidad llevaron a decisiones empresariales incorrectas o a consecuencias negativas?
+- ¿Por qué la limpieza de datos consume entre el 50 % y el 70 % del tiempo de un proyecto, pero muchas veces se subestima en la planificación inicial? ¿Qué implica eso para los científicos de datos y sus organizaciones?
+- Una edad de 150 años es claramente un error. Pero un gasto de \$5.000.000 cuando el promedio es \$50.000 podría ser un error o un evento legítimo. ¿Cómo decidir qué hacer con este tipo de *outliers* ambiguos?
+
+## Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "Una cadena hotelera analiza 100.000 reservas y aplica k-means clustering, identificando 4 grupos: (1) viajeros de negocios que reservan entre semana, (2) parejas que reservan fines de semana largos, (3) familias con niños en vacaciones escolares y (4) turistas extranjeros con estadías prolongadas.",
+		questionItems: [],
+		questionSuffix: "¿Qué tipo de modelo están usando y para qué sirve este resultado?",
+		options: [
+			"Modelo predictivo de clasificación que permite predecir automáticamente a qué categoría de cliente pertenecerá cada reserva nueva",
+			"Modelo descriptivo de clustering que agrupa clientes históricos por similitud para diseñar estrategias de servicio segmentadas",
+			"Modelo predictivo de regresión que permite estimar con precisión cuántos días se hospedará cada tipo específico de cliente",
+			"Modelo descriptivo de asociación que identifica qué servicios adicionales (spa, restaurante) compran juntos diferentes grupos de huéspedes",
+		],
+		correctIndex: 1
+	},
+	{
+		question: "Una compañía de seguros de salud tiene 500.000 asegurados con datos de edad, enfermedades preexistentes, hábitos (fumador o no fumador), IMC y costo médico anual. Quiere predecir cuánto gastará un nuevo asegurado el próximo año para ajustar las primas.",
+		questionItems: [],
+		questionSuffix: "¿Qué tipo de modelo debe construir?",
+		options: [
+			"Modelo descriptivo de clustering para identificar y agrupar asegurados según perfiles de riesgo médico similares entre sí",
+			"Modelo predictivo de regresión para estimar el valor numérico continuo del costo médico esperado por cada asegurado nuevo",
+			"Modelo predictivo de clasificación para categorizar a cada asegurado en niveles discretos de gasto (alto, medio, bajo, muy bajo)",
+			"Modelo descriptivo de asociación para identificar qué combinaciones de enfermedades preexistentes tienden a aparecer juntas frecuentemente",
+		],
+		correctIndex: 1
+	},
+	{
+		question: "Un supermercado analiza transacciones y descubre la regla: «si compra vino tinto y queso, hay un 72 % de probabilidad de comprar pan francés» (soporte 8 %, confianza 72 %, lift 2,1).",
+		questionItems: [],
+		questionSuffix: "¿Qué tipo de modelo es y qué significa el lift de 2,1?",
+		options: [
+			"Modelo predictivo de clasificación que permite predecir con 72 % de precisión si el próximo cliente comprará pan francés",
+			"Modelo descriptivo de clustering que agrupa automáticamente productos según patrones de compra similares entre distintos clientes",
+			"Modelo descriptivo de asociación que identifica productos comprados juntos; un lift de 2,1 significa que comprar pan es 2,1 veces más probable con vino y queso",
+			"Modelo predictivo de regresión que estima la cantidad esperada de unidades de pan que comprará cada cliente según su canasta",
+		],
+		correctIndex: 2
+	},
+	{
+		question: "Un comercio electrónico registra precios en distintas monedas sin etiquetar: algunos en pesos chilenos ($50.000), otros en dólares ($50) y otros en euros (€50). Al sumar los ingresos mensuales, obtiene resultados sin sentido.",
+		questionItems: [],
+		questionSuffix: "¿Qué dimensión de la calidad de datos se violó?",
+		options: [
+			"Exactitud: los valores de precio ingresados al sistema no reflejan correctamente las transacciones reales realizadas por clientes",
+			"Completitud: faltan las etiquetas o metadatos que especifican explícitamente la moneda utilizada en cada transacción",
+			"Consistencia: los precios no están representados de manera uniforme en una sola moneda estándar a lo largo del conjunto de datos",
+			"Validez: los valores de precio no cumplen con las reglas de negocio establecidas para el formato de montos monetarios",
+		],
+		correctIndex: 2
+	},
+	{
+		question: "Un hospital tiene datos de 30.000 pacientes. El campo «presión arterial» está ausente en 8.000 casos (27 %). Al investigar, descubre que los faltantes ocurren principalmente en consultas de urgencia, donde no hubo tiempo de tomar los signos vitales.",
+		questionItems: [],
+		questionSuffix: "¿Qué estrategia de tratamiento es más apropiada?",
+		options: [
+			"Eliminar los 8.000 registros con presión faltante porque el 27 % de datos ausentes excede el umbral aceptable del 20 %",
+			"Imputar todos los valores faltantes usando la media de presión arterial calculada globalmente sobre los 22.000 pacientes completos",
+			"Imputar usando modelos predictivos basados en otras variables (edad, diagnóstico) o calcular medias por grupos según el tipo de consulta",
+			"Eliminar completamente la variable presión arterial del análisis porque presenta problemas estructurales graves de completitud",
+		],
+		correctIndex: 2
+	},
+]} />
