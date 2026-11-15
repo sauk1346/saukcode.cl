@@ -92,8 +92,8 @@ const courseData = {
       date: 'Lun 26, Oct 2026', 
       description: [
         {
-          text: '',
-          href: ''
+          text: 'no asistí',
+          strikethrough: true
         }
       ]
     },
@@ -136,7 +136,7 @@ const courseData = {
       date: 'Lun 09, Nov 2026', 
       description: [
         {
-          text: '',
+          text: 'Evaluación 01 (1)',
           href: ''
         }
       ]
@@ -147,7 +147,7 @@ const courseData = {
       date: 'Mar 10, Nov 2026', 
       description: [
         {
-          text: '',
+          text: 'Evaluación 01 (2)',
           href: ''
         }
       ]

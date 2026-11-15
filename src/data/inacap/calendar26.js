@@ -847,7 +847,7 @@ export const calendar26 = [
   },
   {
     id: 143,
-    fecha: "2026-12-3",
+    fecha: "2026-11-26",
     titulo: "[TI3V61] Evaluación 02",
     description: "Minería de Datos"
   },
@@ -897,19 +897,19 @@ export const calendar26 = [
 // ----- [TI3V62] Gestión de Seguridad de la Información -----
   {
     id: 151,
-    fecha: "2026-11-3",
+    fecha: "2026-11-9",
     titulo: "[TI3V62] Evaluación 01",
     description: "Gestión de Seguridad de la Información"
   },
   {
     id: 152,
-    fecha: "2026-11-17",
+    fecha: "2026-11-23",
     titulo: "[TI3V62] Evaluación 02",
     description: "Gestión de Seguridad de la Información"
   },
   {
     id: 153,
-    fecha: "2026-11-28",
+    fecha: "2026-12-7",
     titulo: "[TI3V62] Evaluación 03",
     description: "Gestión de Seguridad de la Información"
   },
@@ -923,7 +923,7 @@ export const calendar26 = [
   },
   {
     id: 155,
-    fecha: "2026-11-26",
+    fecha: "2026-11-19",
     titulo: "[CVET01] Evaluación 02",
     description: "Estadística"
   },
