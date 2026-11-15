@@ -288,7 +288,7 @@ const courseData = {
       date: 'Sáb 31, Oct 2026', 
       description: {
           text: 'La seguridad funciona mejor por capas',
-          href: ''
+          href: 'lectura03'
       }
     },
     { 
