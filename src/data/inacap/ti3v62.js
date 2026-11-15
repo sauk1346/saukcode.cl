@@ -24,16 +24,22 @@ const courseData = {
     {
       evaluationNumber: 1,
       date: 'Mar 03, Nov 2026',
-      weighting: '20%',
-      description: {
-        text: '',
-        href: '',
-      }
+      weighting: '15%',
+      description: [
+        {
+          text: 'Informe 01',
+          href: 'docs/informe01.pdf',
+        },
+        {
+          text: 'Presentación',
+          href: 'docs/presentacion.pdf',
+        }
+      ]
     },
     {
       evaluationNumber: 2,
       date: 'Mar 17, Nov 2026',
-      weighting: '30%',
+      weighting: '35%',
       description: {
         text: '',
         href: '',
@@ -42,7 +48,7 @@ const courseData = {
     {
       evaluationNumber: 3,
       date: 'Sáb 28, Nov 2026',
-      weighting: '40%',
+      weighting: '35%',
       description:[ 
         {
           text: '',
@@ -53,7 +59,7 @@ const courseData = {
     {
       evaluationNumber: 4,
       date: 'Lun 14, Dic 2026',
-      weighting: '10%',
+      weighting: '15%',
       description: [
         {
           text: '',

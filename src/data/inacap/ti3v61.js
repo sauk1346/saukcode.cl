@@ -76,7 +76,15 @@ const courseData = {
         {
           text: 'Introducción a Minería de Datos',
           href: 'clase01'
-        }
+        },
+        {
+          text: 'De los datos a modelos útiles',
+          href: 'docs/clase01a.pdf'
+        },
+        {
+          text: 'Estadística, distancias y ganancias de información',
+          href: 'docs/clase01b.pdf'
+        },
       ]
     },
     { 
@@ -129,7 +137,7 @@ const courseData = {
       date: 'Jue 05, Nov 2026', 
       description: [
         {
-          text: '',
+          text: 'Evaluación 01',
           href: ''
         }
       ]
@@ -140,7 +148,7 @@ const courseData = {
       date: 'Lun 09, Nov 2026', 
       description: [
         {
-          text: '',
+          text: 'Revisión Evaluación 01',
           href: ''
         }
       ]
@@ -151,7 +159,7 @@ const courseData = {
       date: 'Jue 12, Nov 2026', 
       description: [
         {
-          text: '',
+          text: 'Introducción R',
           href: ''
         }
       ]
