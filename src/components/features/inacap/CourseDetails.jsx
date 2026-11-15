@@ -76,7 +76,8 @@ const CourseDetails = ({
         fullHref = buildCourseResourceLink('inacap', courseCode.toLowerCase(), item.href);
       }
 
-      const linkContent = <SmartLink href={fullHref}>{displayText}</SmartLink>;
+      // `newTab: true` abre una página interna en pestaña nueva (p. ej., el laboratorio)
+      const linkContent = <SmartLink href={fullHref} newTab={item.newTab}>{displayText}</SmartLink>;
       return (
         <div key={key} className={itemClass}>
           {item.strikethrough ? <del>{linkContent}</del> : linkContent}

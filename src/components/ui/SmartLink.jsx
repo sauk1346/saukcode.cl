@@ -12,7 +12,7 @@ export const SmartLink = ({ href, children, newTab, className, ...props }) => {
   );
   
   // Detección ampliada de archivos (case insensitive)
-  const isFileLink = href && /\.(csv|pdf|xlsx|docx|zip|rar|jpg|jpeg|png|gif|svg|webp|mp4|mp3|avi|mov)$/i.test(href);
+  const isFileLink = href && /\.(csv|pdf|xlsx|docx|zip|rar|ipynb|jpg|jpeg|png|gif|svg|webp|mp4|mp3|avi|mov)$/i.test(href);
   
   // ✨ NUEVO: Detectar si es un archivo de audio
   const isAudioFile = href && /\.(mp3|wav|ogg|m4a|aac|flac)$/i.test(href);
@@ -61,6 +61,8 @@ export const SmartLink = ({ href, children, newTab, className, ...props }) => {
     <Link
       href={href}
       className={`${styles.link} ${className || ''}`.trim()}
+      target={newTab === true ? '_blank' : undefined}
+      rel={newTab === true ? 'noopener' : undefined}
       {...props}
     >
       {children}
