@@ -85,32 +85,13 @@ const courseData = {
           href: 'docs/unit01-at01.pdf'
         },
         {
-          text: 'Datos de estudiantes',
-          href: 'docs/datos-estudiantes(AT1).xlsx',
-          sub: true
-        },
-        {
-          text: 'Pesos de envases de yogurt',
-          href: 'docs/pesos-envases-yogurt(AT1).xlsx',
-          sub: true
-        },
-        {
           text: 'AT02: Gráficos en Excel',
           href: 'docs/unit01-at02.pdf'
-        },
-        {
-          text: 'Gráficos en Excel',
-          href: 'docs/graficos-en-excel(AT2).xlsx',
-          sub: true
         },
         {
           text: 'ARPA01: Selección de Personal',
           href: ''
         },
-        {
-          text: 'SM01: Radiografía de la matrícula en la educación superior chilena',
-          href: ''
-        }
       ]
     },
     { 
@@ -119,9 +100,14 @@ const courseData = {
       date: 'Mar 27, Oct 2026', 
       description: [
         {
-          text: '',
+          text: 'AT03: Medidas de tendencia central en Excel',
           href: ''
-        }
+        },
+        {
+          text: 'SM01: Radiografía de la matrícula en la educación superior chilena',
+          href: ''
+        },
+                
       ]
     },
     { 
@@ -129,10 +115,15 @@ const courseData = {
       class: '04', 
       date: 'Jue 29, Oct 2026', 
       description: [
+        
         {
-          text: '',
+          text: 'AT04: Medidas de dispersión en Excel',
           href: ''
-        }
+        },
+        {
+          text: 'SM02: ¿Dónde abrir la nueva sucursal?',
+          href: ''
+        },
       ]
     },
     { 
@@ -141,9 +132,13 @@ const courseData = {
       date: 'Mar 03, Nov 2026', 
       description: [
         {
-          text: '',
+          text: 'AT05: Medidas de Posición en Excel',
           href: ''
-        }
+        },
+        {
+          text: 'SM03: ¿Dónde se espera menos para ser atendido?',
+          href: ''
+        },
       ]
     },
     { 
@@ -152,7 +147,7 @@ const courseData = {
       date: 'Jue 05, Nov 2026', 
       description: [
         {
-          text: '',
+          text: 'Evaluación 01',
           href: ''
         }
       ]
@@ -163,9 +158,17 @@ const courseData = {
       date: 'Mar 10, Nov 2026', 
       description: [
         {
-          text: '',
+          text: 'AT01: Tablas y gráficos bivariados en Excel',
           href: ''
-        }
+        },
+        {
+          text: 'ARPA01: Encuesta regional de escolaridad',
+          href: ''
+        },
+        {
+          text: 'SM01: Explorando la oferta académica 2025',
+          href: ''
+        },
       ]
     },
     { 
@@ -174,9 +177,13 @@ const courseData = {
       date: 'Jue 12, Nov 2026', 
       description: [
         {
-          text: '',
+          text: 'AT02: Medidas en datos bivariados en Excel',
           href: ''
-        }
+        },
+        {
+          text: 'SM02: ¿Cómo se reparte y se comporta el mercado?',
+          href: ''
+        },
       ]
     },
     { 
@@ -187,7 +194,11 @@ const courseData = {
         {
           text: '',
           href: ''
-        }
+        },
+        {
+          text: '',
+          href: ''
+        },
       ]
     },
     { 
@@ -196,9 +207,9 @@ const courseData = {
       date: 'Jue 19, Nov 2026', 
       description: [
         {
-          text: '',
+          text: 'Evaluación 02',
           href: ''
-        }
+        },
       ]
     },
     { 
