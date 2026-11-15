@@ -332,7 +332,7 @@ const courseData = {
       date: 'Jue 17, Dic 2026', 
       description: [
         {
-          text: '',
+          text: 'Evaluación 03',
           href: ''
         }
       ]
