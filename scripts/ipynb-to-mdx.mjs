@@ -2,12 +2,13 @@
 // Convierte un cuaderno Jupyter (.ipynb) en un borrador MDX para una clase.
 //
 //   node scripts/ipynb-to-mdx.mjs <cuaderno.ipynb> [--out borrador.mdx]
-//        [--img-dir public/inacap/<ramo>/img/<clase>] [--img-url /inacap/<ramo>/img/<clase>]
+//        [--img-dir public/inacap/<ramo>/img/<clase>] [--img-url /inacap/<ramo>/img/<clase>] [--plain]
 //
 // - Celdas de texto: se copian tal cual.
 // - Celdas de código: bloque con el lenguaje del cuaderno (r, python…).
+//   Las celdas sin salida se unen con la celda de código siguiente.
 // - Salidas de texto y errores: bloque `terminal` (la salida de terminal del sitio).
-// - Tablas HTML (data frames): tabla Markdown.
+// - Tablas HTML (data frames): tabla Markdown; con --plain, el texto de consola.
 // - Gráficos: se guardan en --img-dir y se enlazan con --img-url (sin esas
 //   opciones se deja un comentario indicando que la celda tenía un gráfico).
 //
@@ -33,6 +34,8 @@ const lang = (nb.metadata?.language_info?.name || nb.metadata?.kernelspec?.langu
   .replace(/^ir$/, 'r');
 const imgDir = opt('img-dir');
 const imgUrl = opt('img-url');
+// --plain: matrices y data frames como los imprime la consola de R, en vez de tabla Markdown
+const plainTables = args.includes('--plain');
 const slug = basename(file, '.ipynb').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 const text = (v) => (Array.isArray(v) ? v.join('') : v || '');
@@ -58,8 +61,53 @@ function tableToMd(html) {
   return [`| ${pad(head).join(' | ')} |`, `| ${Array(width).fill('---').join(' | ')} |`, ...body.map((r) => `| ${pad(r).join(' | ')} |`)].join('\n');
 }
 
+// Tabla HTML del cuaderno → texto como lo imprime la consola de R.
+// El cuaderno guarda las matrices y data frames ya formateados por columna; aquí solo se
+// reconstruye la disposición de print(): etiquetas [i,] y [,j], alineación y corte a 80 columnas.
+function tableToConsole(html) {
+  const caption = decode((html.match(/<caption>([\s\S]*?)<\/caption>/i) || [])[1] || '');
+  const isMatrix = /matrix/i.test(caption);
+  const isChr = isMatrix && /of type chr/i.test(caption);
+  const cells = (row, tag) => [...row.matchAll(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, 'gi'))].map((c) => decode(c[1].replace(/<[^>]+>/g, '')).trim());
+  const head = (html.match(/<thead>([\s\S]*?)<\/thead>/i) || [])[1];
+  const body = (html.match(/<tbody>([\s\S]*?)<\/tbody>/i) || [])[1];
+  if (!body) return null;
+  const rows = [...body.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi)].map((r) => ({ label: cells(r[1], 'th')[0], values: cells(r[1], 'td') }));
+  if (!rows.length) return null;
+  const n = Math.max(...rows.map((r) => r.values.length));
+  const hasRowNames = rows.some((r) => r.label !== undefined);
+  let names = null;
+  if (head) {
+    const first = cells((head.match(/<tr[^>]*>([\s\S]*?)<\/tr>/i) || [])[1] || '', 'th');
+    names = first.slice(first.length - n); // descarta la celda vacía sobre los nombres de fila
+  }
+  const header = Array.from({ length: n }, (_, j) => (names ? names[j] || '' : isMatrix ? `[,${j + 1}]` : ''));
+  const labels = rows.map((r, i) => (hasRowNames ? r.label || '' : isMatrix ? `[${i + 1},]` : String(i + 1)));
+  const value = (v) => (isChr && v !== 'NA' ? `"${v}"` : v);
+  const cols = header.map((h, j) => {
+    const vals = rows.map((r) => value(r.values[j] ?? ''));
+    const width = Math.max(h.length, ...vals.map((v) => v.length));
+    const fit = (t) => (isChr ? t.padEnd(width) : t.padStart(width));
+    return { width, head: fit(h), vals: vals.map(fit) };
+  });
+  const labelWidth = Math.max(...labels.map((l) => l.length));
+  // print() corta las tablas anchas en bloques de columnas que caben en 80 caracteres
+  const blocks = [];
+  let current = [], used = labelWidth;
+  cols.forEach((c) => {
+    if (current.length && used + 1 + c.width > 80) { blocks.push(current); current = []; used = labelWidth; }
+    current.push(c); used += 1 + c.width;
+  });
+  blocks.push(current);
+  return blocks.map((block) => [
+    [''.padEnd(labelWidth), ...block.map((c) => c.head)].join(' '),
+    ...rows.map((_, i) => [labels[i].padEnd(labelWidth), ...block.map((c) => c.vals[i])].join(' ')),
+  ].map((l) => l.replace(/\s+$/, isChr ? ' ' : '')).join('\n')).join('\n');
+}
+
 const out = [];
 let images = 0;
+let pending = '';
 nb.cells.forEach((cell, index) => {
   const source = text(cell.source).replace(/\s+$/, '');
   if (cell.cell_type === 'markdown') {
@@ -67,7 +115,15 @@ nb.cells.forEach((cell, index) => {
     return;
   }
   if (cell.cell_type !== 'code' || !source.trim()) return;
-  out.push(block(lang, source));
+  // Una celda sin salida seguida de otra de código (p. ej. asignar y luego mostrar) va en el mismo bloque
+  const code = pending ? `${pending}\n${source}` : source;
+  pending = '';
+  const next = nb.cells[index + 1];
+  if (!(cell.outputs || []).length && next?.cell_type === 'code' && text(next.source).trim()) {
+    pending = code;
+    return;
+  }
+  out.push(block(lang, code));
 
   const plain = [];
   const flush = () => {
@@ -76,7 +132,8 @@ nb.cells.forEach((cell, index) => {
   };
   for (const o of cell.outputs || []) {
     const data = o.data || {};
-    const image = Object.keys(data).find((k) => k.startsWith('image/'));
+    // Algunos cuadernos traen el PNG vacío y el gráfico solo en JPEG o SVG
+    const image = ['image/png', 'image/jpeg', 'image/svg+xml'].find((k) => text(data[k]).trim());
     const html = text(data['text/html']);
     if (o.output_type === 'stream') {
       plain.push(text(o.text).replace(/\s+$/, ''));
@@ -96,7 +153,9 @@ nb.cells.forEach((cell, index) => {
       } else {
         out.push(`{/* Celda ${index + 1}: gráfico (${image}). Repite con --img-dir y --img-url para extraerlo. */}`);
       }
-    } else if (/<table/i.test(html)) {
+    } else if (/^\s*<table/i.test(html) && plainTables) {
+      plain.push(tableToConsole(html) || text(data['text/plain']).replace(/\s+$/, ''));
+    } else if (/^\s*<table/i.test(html)) {
       flush();
       out.push(tableToMd(html) || block('terminal', text(data['text/plain'])));
     } else if (data['text/plain']) {
