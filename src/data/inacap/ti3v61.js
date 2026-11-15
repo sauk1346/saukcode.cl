@@ -26,7 +26,7 @@ const courseData = {
       date: 'Jue 05, Nov 2026',
       weighting: '15%',
       description: {
-        text: '',
+        text: 'Prueba Mixta (alternativa-escrita)',
         href: '',
       }
     },
@@ -35,7 +35,7 @@ const courseData = {
       date: 'Jue 03, Dic 2026',
       weighting: '35%',
       description: {
-        text: '',
+        text: 'Interrogación sobre R',
         href: '',
       }
     },
@@ -234,7 +234,7 @@ const courseData = {
       date: 'Jue 26, Nov 2026', 
       description: [
         {
-          text: '',
+          text: 'Evaluación 02',
           href: ''
         }
       ]
