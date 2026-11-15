@@ -1,0 +1,164 @@
+# Control de acceso, protección de datos y gestión de ambientes
+
+La seguridad de la información se sostiene en decidir **quién puede hacer qué**, en **proteger los datos** según su valor y en **controlar cómo llega el software a producción**. Esta clase revisa los roles y el ciclo de vida de los usuarios, los privilegios del usuario común, la clasificación de la información y el DLP, los ambientes de trabajo y el control de cambios, el *hacking* ético y la inteligencia de fuentes abiertas.
+
+## 1. Roles y ciclo de vida de los usuarios
+
+### Roles
+
+Los **roles** los define **Recursos Humanos (RR. HH.)**: para cada cargo establece una **plantilla** con los datos a los que accede y los controles que se le aplican. Sobre esa definición opera el **RBAC** (*Role-Based Access Control*, control de acceso basado en roles): los permisos se asignan al rol, y cada persona recibe los del rol que ocupa.
+
+### ABM: altas, bajas y modificaciones
+
+El ciclo de vida de una cuenta de usuario se gestiona con tres operaciones, conocidas como **ABM**:
+
+:::table{#tabla01 caption="Operaciones ABM sobre las cuentas de usuario" layout="mixed" widths="160px,auto"}
+| Operación | Cuándo ocurre |
+| --- | --- |
+| **Alta** | Ingresa una persona: se crea su cuenta con los permisos del rol |
+| **Baja** | La persona deja la organización: la cuenta se deshabilita o elimina de inmediato |
+| **Modificación** | La persona cambia de cargo o de área: se ajustan sus permisos al nuevo rol |
+:::
+
+### ERP
+
+Un **ERP** (*Enterprise Resource Planning*, planificación de recursos empresariales) es el sistema que integra los procesos centrales de una organización: finanzas, personal, compras, inventario y ventas. Los ERP de **clase mundial** (*world class*) son los que usan las grandes empresas; el ejemplo más conocido es **SAP**. Como concentran la información más sensible, los roles y las operaciones ABM se aplican en ellos con especial cuidado.
+
+## 2. Privilegios del usuario común
+
+Siguiendo el principio de **mínimo privilegio**, el **usuario común** trabaja con una cuenta restringida:
+
+- **No instala software.**
+- **No conecta ni instala hardware.**
+- **No cambia configuraciones** del equipo.
+- **No usa dispositivos USB.**
+- Su equipo está supervisado por un **EDR** o **XDR**.
+- Solo usa **inteligencia artificial controlada**: las herramientas de IA autorizadas por la organización, para no entregar datos internos a servicios externos.
+
+:::table{#tabla02 caption="EDR y XDR" layout="mixed" widths="130px,auto"}
+| Sigla | Qué hace |
+| --- | --- |
+| **EDR** (*Endpoint Detection and Response*) | Vigila cada equipo (*endpoint*), detecta comportamientos sospechosos y permite responder: por ejemplo, aislar el equipo de la red |
+| **XDR** (*Extended Detection and Response*) | Extiende el EDR: correlaciona lo que ocurre en los equipos con la red, el correo y la nube |
+:::
+
+## 3. Clasificación y protección de la información
+
+### Información confidencial
+
+Toda la información de la organización, incluidos los documentos de Word, Excel y PowerPoint, está **protegida y clasificada**. Son confidenciales, por ejemplo:
+
+- Los **contratos**.
+- La **nómina de remuneraciones**.
+- La cartera de **clientes**.
+- Los **productos**.
+- Los **casos de éxito**.
+
+### Niveles y etiquetas
+
+Al analizar la información se distingue quién puede verla:
+
+- **Confidencial:** solo accede un **grupo** determinado.
+- **Interna:** es **pública dentro** de la organización, pero **privada hacia fuera**.
+
+Cada archivo va **etiquetado**: su clasificación se guarda en los **metadatos**, de modo que la etiqueta viaja con el archivo adonde vaya.
+
+### DLP
+
+El **DLP** (*Data Loss Prevention*, prevención de pérdida de datos) es el control que vigila y **bloquea la salida no autorizada** de información. Por ejemplo, si un usuario instala una extensión de Chrome que no está autorizada, el DLP la bloquea.
+
+Las etiquetas permiten además seguir el recorrido de un archivo:
+
+```
+Se comparte un archivo por correo
+        │
+El DLP lee su etiqueta (metadatos)
+        │
+El evento queda reportado
+        │
+Se reconstruye la traza: la ruta de usuarios por los que pasó
+```
+
+### Marco legal
+
+- **Receptación:** recibir, guardar o usar información obtenida de forma ilícita es un **delito**, aunque quien la reciba no la haya sustraído. En Chile, la Ley 21.459 de delitos informáticos sanciona la receptación de datos informáticos.
+- **LPDP** (Ley de Protección de Datos Personales): regula cómo se tratan los datos de las personas y obliga a las organizaciones a protegerlos.
+
+## 4. Ambientes de trabajo y control de cambios
+
+### Ambientes
+
+El software pasa por tres **ambientes** separados antes de llegar a los usuarios:
+
+```
+Desarrollo ───► QA ───► Producción
+```
+
+- **Desarrollo:** donde se construye y modifica el código.
+- **QA** (*Quality Assurance*, aseguramiento de calidad): donde se prueba.
+- **Producción:** donde opera el sistema real, con datos reales.
+
+Una aplicación se organiza además en **capas**, y las tres existen en cada ambiente:
+
+- ***Frontend*:** lo que ve y usa el usuario.
+- ***Middleware*:** la capa intermedia que comunica e integra los componentes.
+- ***Backend*:** la lógica del servidor y los datos.
+
+### QA
+
+:::table{#tabla03 caption="Pruebas en el ambiente de QA" layout="mixed" widths="160px,auto"}
+| Prueba | Qué verifica |
+| --- | --- |
+| **Volumétrica** | El comportamiento del sistema con **grandes volúmenes de datos** |
+| **Ácida** | La prueba más exigente y decisiva: si el sistema la supera, está listo para avanzar |
+| **De estrés** | El sistema **más allá de su carga normal**, hasta encontrar el punto en que falla |
+:::
+
+Además de las pruebas se revisa el código con herramientas como **SonarQube**, que analiza el código fuente de forma automática y detecta errores, vulnerabilidades y malas prácticas.
+
+### Control de cambios
+
+- ***Delivery manager*:** es el **dueño de las llaves de los ambientes**. Está a cargo del **traslado** del software de un ambiente al siguiente.
+- **CAB** (*Change Advisory Board*, comité de cambios): revisa y **aprueba** los cambios antes de que pasen a producción.
+- **Segregación de funciones:** quien desarrolla un cambio no es quien lo aprueba ni quien lo lleva a producción. Así, ninguna persona puede modificar el sistema real por sí sola.
+
+## 5. *Hacking* ético
+
+El ***hacking* ético** (EH, *Ethical Hacking*) consiste en atacar los sistemas de una organización **con su autorización**, para encontrar las vulnerabilidades antes que un atacante real. Sus características:
+
+- **Evaluación pactada:** se acuerda por contrato antes de empezar; sin ese acuerdo, sería un delito.
+- ***Scope* (alcance):** define qué sistemas se pueden atacar y cuáles no.
+- **Ambiente:** se acuerda sobre qué ambiente se ejecutan las pruebas.
+- **Modalidad:** según cuánta información recibe el evaluador.
+
+:::table{#tabla04 caption="Modalidades de evaluación" layout="mixed" widths="160px,auto"}
+| Modalidad | Información que recibe el evaluador |
+| --- | --- |
+| **Caja negra** | Ninguna: actúa como un atacante externo |
+| **Caja gris** | Parcial: por ejemplo, una cuenta de usuario común |
+| **Caja blanca** | Completa: código fuente, arquitectura y credenciales |
+:::
+
+### Consultores
+
+Como los consultores acceden a información sensible, no se contrata a cualquiera:
+
+- Deben ser **conocidos**, con trayectoria comprobable.
+- Se revisan sus **antecedentes**.
+- Deben contar con **seguros** que respondan por los daños que pueda causar su trabajo.
+
+## 6. Inteligencia de fuentes abiertas
+
+- **OSINT** (*Open Source Intelligence*, inteligencia de fuentes abiertas): recopila y analiza información **disponible públicamente**. Revisa todo lo que una persona u organización ha publicado.
+- **SOCMINT** (*Social Media Intelligence*, inteligencia de redes sociales): es la rama de OSINT dedicada a todo lo que proviene de las **redes sociales**.
+
+Un atacante las usa para preparar un ataque, por ejemplo de ingeniería social, y un evaluador las usa en la etapa de reconocimiento de un *hacking* ético.
+
+:::callout[Para recordar]{type="tip"}
+- **RR. HH.** define los roles, y las cuentas se gestionan con **ABM**: altas, bajas y modificaciones.
+- El **usuario común** no instala software ni hardware, no cambia configuraciones y no usa USB.
+- La información se **clasifica y etiqueta** en sus metadatos; el **DLP** bloquea su salida y permite reconstruir la traza.
+- El software avanza de **desarrollo** a **QA** y a **producción**; el ***delivery manager*** lo traslada y el **CAB** aprueba los cambios.
+- El ***hacking* ético** es una evaluación pactada, con alcance definido, en caja negra, gris o blanca.
+- **OSINT** revisa todo lo publicado; **SOCMINT** es su rama de redes sociales.
+:::

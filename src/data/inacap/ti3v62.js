@@ -100,33 +100,33 @@ const courseData = {
     { 
       week: '02', 
       class: '04', 
-      date: 'Mar 27, Oct 2026', 
+      date: 'Mar 27, Oct 2026',
       description: [
         {
-          text: '',
-          href: ''
+          text: 'Gobierno de seguridad y marco legal',
+          href: 'clase04'
         }
       ]
     },
     { 
       week: '03', 
       class: '05', 
-      date: 'Lun 02, Nov 2026', 
+      date: 'Lun 02, Nov 2026',
       description: [
         {
-          text: '',
-          href: ''
+          text: 'Controles, diseño seguro y vulnerabilidades',
+          href: 'clase05'
         }
       ]
     },
     { 
       week: '03', 
       class: '06', 
-      date: 'Mar 03, Nov 2026', 
+      date: 'Mar 03, Nov 2026',
       description: [
         {
-          text: '',
-          href: ''
+          text: 'Acceso, protección de datos y ambientes',
+          href: 'clase06'
         }
       ]
     },

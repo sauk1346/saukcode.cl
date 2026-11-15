@@ -1,0 +1,92 @@
+# Gobierno de seguridad y marco legal de la ciberseguridad en Chile
+
+El **gobierno de seguridad** define cómo una organización administra sus accesos, evalúa sus sistemas y cumple la ley. Esta clase revisa la gestión de usuarios, las modalidades de evaluación de seguridad, el OWASP Top 10 y los programas de *bug bounty*, y luego el marco legal chileno: la ley de delitos informáticos, la ley marco de ciberseguridad, la ANCI, los CSIRT y la clasificación de las organizaciones en OIV y ESE.
+
+## 1. Gestión de usuarios
+
+### ABM
+
+Las cuentas de usuario se administran con tres operaciones, conocidas como **ABM**:
+
+- **Altas:** crear la cuenta de quien ingresa.
+- **Bajas:** deshabilitar la cuenta de quien se va.
+- **Modificaciones:** ajustar los permisos de quien cambia de cargo.
+
+### Variable exógena
+
+Una **variable exógena** es un factor **externo** a la organización, que esta no controla y que **afecta a todos por igual, independientemente del rol**. Por ejemplo, el **IVA** y las **cotizaciones previsionales**: los fija la ley y se aplican a todos, sin importar el cargo o los permisos de cada persona.
+
+## 2. Evaluación de la seguridad
+
+### Caja blanca, gris y negra
+
+Las evaluaciones de seguridad se distinguen por cuánto acceso y conocimiento previo tiene quien evalúa:
+
+:::table{#tabla01 caption="Modalidades de evaluación" layout="mixed" widths="160px,auto"}
+| Modalidad | Acceso y conocimiento del evaluador |
+| --- | --- |
+| **Caja blanca** | Completo: puede ver **todo el código** y la aplicación |
+| **Caja gris** | **Poco** acceso o conocimiento |
+| **Caja negra** | **Ningún** acceso ni conocimiento previo |
+:::
+
+En la práctica se usan la caja **blanca** y la **negra**; la caja gris casi no se usa, y en Chile ya no se utiliza.
+
+### OWASP Top 10
+
+El **OWASP Top 10** es un **estándar de referencia** que enumera los **riesgos de seguridad más críticos para las aplicaciones web**. Lo publica OWASP (*Open Worldwide Application Security Project*), una fundación sin fines de lucro, y se actualiza cada ciertos años. Incluye riesgos como el control de acceso defectuoso, las fallas criptográficas y la inyección de código.
+
+### Bug bounty
+
+Un programa de ***bug bounty*** recompensa a quienes encuentran y reportan vulnerabilidades en los sistemas de una organización. Quienes participan son **cazadores de vulnerabilidades**: investigadores externos que buscan fallas a cambio de una recompensa.
+
+## 3. Marco legal chileno
+
+:::table{#tabla02 caption="Hitos de la legislación chilena de ciberseguridad" layout="mixed" widths="100px,auto,auto"}
+| Año | Hito | Qué establece |
+| --- | --- | --- |
+| **2022** | **Ley de delitos informáticos** (Ley 21.459) | Tipifica delitos como el acceso ilícito, la interceptación, el ataque a la integridad de datos y sistemas, la falsificación y el fraude informáticos, y la receptación de datos |
+| **2024** | **Ley marco de ciberseguridad** e infraestructura crítica de la información (Ley 21.663) | Crea la institucionalidad de ciberseguridad del país y fija obligaciones para las organizaciones que prestan servicios esenciales |
+| **2025** | Entra en funciones la **ANCI** | Comienza a clasificar a las organizaciones públicas y privadas como OIV y ESE |
+:::
+
+## 4. Institucionalidad: ANCI y CSIRT
+
+- **ANCI** (Agencia Nacional de Ciberseguridad): organismo creado por la ley marco. Regula, fiscaliza y sanciona en materia de ciberseguridad.
+- **CSIRT** (*Computer Security Incident Response Team*, equipo de respuesta ante incidentes de seguridad informática): organismo **técnico** encargado de **prevenir, coordinar y responder** ante incidentes de ciberseguridad.
+
+Existen distintos CSIRT según el ámbito que atienden:
+
+:::table{#tabla03 caption="Tipos de CSIRT" layout="mixed" widths="180px,auto"}
+| CSIRT | Ámbito |
+| --- | --- |
+| **CSIRT financiero** | Los **bancos** y el sector financiero |
+| **CSIRT militar** | Defensa y seguridad: los ministerios del Interior y de Defensa, las Fuerzas Armadas, Carabineros y la PDI |
+| **CSIRT público** | Las **personas** y los organismos en general |
+:::
+
+## 5. OIV y ESE
+
+Desde 2025, la ANCI clasifica a las organizaciones **públicas y privadas** en dos categorías:
+
+- **ESE** (operadores de **servicios esenciales**): organizaciones que prestan servicios de los que depende el funcionamiento del país.
+- **OIV** (**operadores de importancia vital**): las organizaciones cuya interrupción tendría un impacto grave. Están sujetas a las obligaciones más exigentes.
+
+Sectores en que se encuentran los OIV:
+
+- **Financiero** (banca y medios de pago)
+- **Agua**
+- **Transporte**
+- **Energía**
+- **Educación**
+- **Telecomunicaciones**
+- **Salud**
+
+:::callout[Para recordar]{type="tip"}
+- **ABM** son las altas, bajas y modificaciones de cuentas; una **variable exógena** afecta a todos sin importar el rol.
+- La evaluación puede ser de **caja blanca**, **gris** o **negra**; en Chile se usan la blanca y la negra.
+- El **OWASP Top 10** enumera los riesgos más críticos de las aplicaciones web.
+- **2022:** ley de delitos informáticos. **2024:** ley marco de ciberseguridad. **2025:** la ANCI comienza a operar.
+- Los **CSIRT** previenen, coordinan y responden ante incidentes.
+- La ANCI clasifica a las organizaciones como **ESE** y **OIV**.
+:::

@@ -1,0 +1,116 @@
+# Controles, diseño seguro y gestión de vulnerabilidades
+
+Gestionar la seguridad implica **priorizar** los riesgos, **justificar** cuánto se invierte en ellos y **diseñar** los sistemas para que resistan un ataque. Esta clase revisa la clasificación por severidad, los parámetros ALE y ROSI, los principios de diseño seguro, los controles más habituales, la superficie de ataque, el ciclo de vulnerabilidades y parches, y la preparación ante incidentes.
+
+## 1. Clasificación por severidad
+
+Los riesgos y hallazgos de seguridad se ordenan por **severidad**, de mayor a menor, para decidir qué se atiende primero:
+
+1. **Críticos**
+2. **Altos**
+3. **Medios**
+4. **Bajos**
+5. Niveles inferiores, por ejemplo **informativos**
+
+Términos asociados a esta priorización:
+
+- **Backlog:** lista de **pendientes**. Los hallazgos que no se resuelven de inmediato quedan aquí, ordenados por prioridad.
+- **Deuda técnica:** los hallazgos de **severidad baja** suelen postergarse y se acumulan como deuda técnica, es decir, trabajo pendiente que tarde o temprano habrá que pagar.
+- **Brecha** (*gap*): distancia entre el estado **actual** de la seguridad y el estado **deseado** o exigido por una norma. Mientras la brecha exista, hay espacio para que un riesgo se materialice.
+
+## 2. Parámetros económicos: ALE y ROSI
+
+Dos parámetros permiten expresar el riesgo en dinero y justificar la inversión en controles:
+
+:::table{#tabla01 caption="Parámetros para cuantificar el riesgo y la inversión" layout="mixed" widths="130px,auto,auto"}
+| Parámetro | Qué es | Para qué sirve |
+| --- | --- | --- |
+| **ALE** (*Annualized Loss Expectancy*) | Expectativa de pérdida anualizada: cuánto dinero se espera perder en un año por un riesgo determinado | Comparar riesgos entre sí y saber cuánto vale la pena gastar en mitigarlos |
+| **ROSI** (*Return on Security Investment*) | Retorno de la inversión en seguridad: relación entre la pérdida que un control evita y lo que cuesta | Decidir si un control se justifica económicamente |
+:::
+
+El ALE se obtiene multiplicando la pérdida esperada por cada incidente (SLE, *Single Loss Expectancy*) por la cantidad de veces que se espera que ocurra en un año (ARO, *Annualized Rate of Occurrence*):
+
+$$
+\text{ALE} = \text{SLE} \times \text{ARO}
+$$
+
+El ROSI compara la reducción del ALE que logra un control con el costo de ese control:
+
+$$
+\text{ROSI} = \frac{\text{reducción del ALE} - \text{costo del control}}{\text{costo del control}}
+$$
+
+Un ROSI positivo indica que el control evita más pérdidas de las que cuesta.
+
+## 3. Principios de diseño seguro
+
+:::table{#tabla02 caption="Principios de diseño seguro" layout="mixed" widths="220px,auto"}
+| Principio | Idea central |
+| --- | --- |
+| **Mínimo privilegio** | Cada usuario o sistema tiene solo los permisos estrictamente necesarios para su tarea |
+| **Segregación de funciones** | Ninguna persona controla por sí sola un proceso crítico completo: quien solicita no es quien aprueba |
+| **Defensa en profundidad** | Varias capas de protección: si una falla, la siguiente contiene el ataque |
+| **Seguridad por defecto y por diseño** | La seguridad se incorpora desde el diseño, y la configuración inicial es la más segura |
+| **Falla segura** | Ante un error, el sistema queda en un estado seguro: por ejemplo, deniega el acceso en vez de permitirlo |
+| **Confianza cero** (*Zero Trust*) | No se confía en nadie por estar dentro de la red: cada acceso se verifica siempre |
+| **Simplicidad y superficie mínima** | Un sistema simple es más fácil de proteger; se reduce al mínimo lo que queda expuesto |
+| **El eslabón más débil** | Un sistema es tan seguro como su componente más débil, que muchas veces es el factor humano |
+:::
+
+## 4. Controles de seguridad
+
+### Controles de acceso
+
+- **MFA** (*Multi-Factor Authentication*, autenticación multifactor): exige dos o más factores para identificarse: algo que se sabe (contraseña), algo que se tiene (teléfono, *token*) o algo que se es (huella).
+- **RBAC** (*Role-Based Access Control*, control de acceso basado en roles): los permisos se asignan a **roles y perfiles**, no a cada persona; el usuario recibe los permisos del rol que ocupa.
+- **SSO** (*Single Sign-On*, inicio de sesión único): el usuario se autentica una sola vez y accede a varios sistemas con esa misma identidad.
+
+### Active Directory
+
+**Active Directory** es el servicio de directorio de Microsoft: centraliza los **datos de los usuarios** (cuentas, grupos, equipos y permisos). Permite consultar esos datos y **compararlos**: al iniciar sesión, las credenciales ingresadas se contrastan con las registradas en el directorio.
+
+### Firewall
+
+El **firewall** (cortafuegos) protege el **perímetro** de la red: es la defensa frente al mundo exterior. Filtra el tráfico entrante y saliente según reglas, y deja pasar solo lo permitido.
+
+## 5. Superficie de ataque
+
+La **superficie de ataque** es el conjunto de todos los puntos por los que un atacante o un *malware* puede entrar a un sistema. Cada elemento nuevo la **expande**, y por eso en entornos controlados:
+
+- **No se instala software** que no esté autorizado.
+- **No se usan dispositivos USB** de origen desconocido.
+
+Mientras menor es la superficie de ataque, menos hay que defender.
+
+## 6. Vulnerabilidades, pruebas y actualizaciones
+
+### Detección de vulnerabilidades
+
+- **Zero day** (día cero): vulnerabilidad, o el ataque que la aprovecha, que **no está informada en ningún lado**: el fabricante no la conoce y todavía no existe parche.
+- **Bug bounty:** programa en que una organización **recompensa** a investigadores externos por encontrar y reportar fallas al **testear su software**.
+- **Prueba documentada:** toda prueba se documenta para que sea **replicable**: otra persona debe poder repetir los pasos y obtener el mismo resultado.
+
+### Actualización de componentes
+
+:::table{#tabla03 caption="Tipos de actualización" layout="mixed" widths="160px,auto"}
+| Tipo | Característica |
+| --- | --- |
+| **Hotfix** | Arreglo **rápido** y puntual para un problema urgente |
+| **Parche** (*patch*) | Corrección más **ingenieril y sistémica**: se planifica, se prueba y se distribuye |
+| **Service pack** | **Conjunto de parches** acumulados que se instalan como un solo paquete |
+:::
+
+## 7. Preparación ante incidentes
+
+- **DRP** (*Disaster Recovery Plan*, plan de recuperación ante desastres): define cómo restablecer los sistemas después de un incidente grave. Un DRP **se practica**, mediante ejercicios de ***tabletop***: simulaciones «de escritorio» en que el equipo recorre un escenario y ensaya cómo respondería.
+- **TTP** (*Tactics, Techniques and Procedures*, tácticas, técnicas y procedimientos): describen cómo operan los atacantes en **ataques ya conocidos**. Estudiarlas sirve para aprender a **contrarrestarlos**.
+
+:::callout[Para recordar]{type="tip"}
+- Los hallazgos se priorizan por **severidad**; lo de severidad baja queda en el ***backlog*** como **deuda técnica**.
+- **ALE** expresa el riesgo en dinero y **ROSI** indica si un control se justifica.
+- **MFA**, **RBAC** y **SSO** controlan el acceso; **Active Directory** centraliza los usuarios y el **firewall** protege el perímetro.
+- Todo lo que se instala o conecta **expande la superficie de ataque**.
+- **Hotfix** es rápido, **parche** es sistémico y **service pack** agrupa parches.
+- Un **DRP** se practica con ejercicios de ***tabletop***; las **TTP** enseñan a contrarrestar ataques conocidos.
+:::
