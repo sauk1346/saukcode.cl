@@ -1,0 +1,367 @@
+# Análisis descriptivo con R
+
+**Material:** [Cuaderno original (.ipynb)](/inacap/ti3v61/docs/clase10c.ipynb)
+
+Repasa con más explicación lo visto en la [tercera clase](/inacap/ti3v61/clase10b): estadísticos descriptivos y correlación.
+
+Una de las fases principales de un proyecto de ciencia de datos es el **análisis exploratorio de datos**. En esta etapa se hacen los primeros hallazgos, se verifica la calidad de los datos, se detectan anomalías, se identifican patrones y se plantean las preguntas clave que permiten comenzar a hacer inferencias o, si es el caso, a proponer modelos con fines predictivos.
+
+## I. Estadísticos descriptivos
+
+- **Medidas de posición:** valores que permiten dividir la muestra en conjuntos con aproximadamente la misma cantidad de individuos.
+- **Medidas de tendencia central:** valores en torno a los cuales tienden a agruparse los datos de la muestra.
+- **Medidas de dispersión:** cuantifican el nivel de heterogeneidad de una variable numérica.
+
+En R hay funciones para todas ellas:
+
+:::table{#tabla01 caption="Funciones para estadísticos descriptivos" layout="mixed" widths="160px,auto"}
+| Función | Qué entrega |
+| --- | --- |
+| `summary()` | Por defecto, estadísticos de posición (cuartiles), mínimo, máximo y media |
+| `quantile()` | Uno o varios percentiles de interés |
+| `mean()` | La media de un vector numérico |
+| `median()` | La mediana de un vector numérico |
+| `sd()` | La desviación estándar muestral |
+| `var()` | La varianza muestral |
+:::
+
+### I.1. Descripción de `mpg`
+
+```r
+library(ggplot2)
+data(mpg)
+mpg
+```
+
+```terminal
+   manufacturer              model displ year cyl      trans drv cty hwy fl
+1          audi                 a4   1.8 1999   4   auto(l5)   f  18  29  p
+2          audi                 a4   1.8 1999   4 manual(m5)   f  21  29  p
+3          audi                 a4   2.0 2008   4 manual(m6)   f  20  31  p
+4          audi                 a4   2.0 2008   4   auto(av)   f  21  30  p
+5          audi                 a4   2.8 1999   6   auto(l5)   f  16  26  p
+6          audi                 a4   2.8 1999   6 manual(m5)   f  18  26  p
+7          audi                 a4   3.1 2008   6   auto(av)   f  18  27  p
+8          audi         a4 quattro   1.8 1999   4 manual(m5)   4  18  26  p
+9          audi         a4 quattro   1.8 1999   4   auto(l5)   4  16  25  p
+10         audi         a4 quattro   2.0 2008   4 manual(m6)   4  20  28  p
+# ... se muestran 10 de las 234 filas; falta la columna class
+```
+
+```r
+summary(mpg$cty)
+```
+
+```terminal
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   9.00   14.00   17.00   16.86   19.00   35.00
+```
+
+```r
+quantile(mpg$cty, probs = c(0.25, 0.5, 0.75))
+```
+
+```terminal
+25% 50% 75% 
+ 14  17  19
+```
+
+`options(digits = 3)` le pide a R mostrar los números con tres cifras significativas. No cambia los valores, solo cómo se imprimen: por eso los resultados que siguen aparecen más cortos que en la tercera clase.
+
+```r
+options(digits = 3)
+mean(mpg$cty)
+median(mpg$cty)
+```
+
+```terminal
+[1] 16.9
+[1] 17
+```
+
+```r
+sqrt(var(mpg$cty))
+sd(mpg$cty)
+```
+
+```terminal
+[1] 4.26
+[1] 4.26
+```
+
+```r
+# Coeficiente de variación
+sd(mpg$cty) / mean(mpg$cty)
+```
+
+```terminal
+[1] 0.252
+```
+
+## II. Correlación de variables
+
+Las medidas de correlación buscan cuantificar el nivel de asociación que existe entre dos variables. Uno de los coeficientes más populares para medir la dependencia lineal entre dos variables es el coeficiente de correlación de **Pearson**.
+
+Matemáticamente, el coeficiente de correlación de Pearson entre dos variables aleatorias $X$ e $Y$ se define como:
+
+$$
+\rho = \dfrac{\mathbb{E}[(X-\mu_X)(Y-\mu_Y)]}{\sigma_X \, \sigma_Y}
+$$
+
+Donde $\mu_X$ y $\mu_Y$ son las medias y $\sigma_X$ y $\sigma_Y$ las desviaciones estándar de cada variable. Este coeficiente varía entre −1 y 1, y alcanza esos valores extremos cuando $X$ e $Y$ forman una recta.
+
+### Cilindrada y rendimiento
+
+```r
+library(ggplot2)
+data(mpg)
+```
+
+Al cargar `dplyr`, R avisa que algunas de sus funciones tienen el mismo nombre que otras que ya existían, como `filter`, y que desde ahora se usarán las de `dplyr`. Es un aviso normal, no un error.
+
+```r
+library(dplyr)   # manipular tablas
+```
+
+```terminal
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+```
+
+El código de un gráfico se puede escribir en varias líneas, terminando cada una con `+`. Las partes que están después de un `#` quedan desactivadas: son opciones para probar, como `alpha`, que hace los puntos transparentes, o `geom_jitter()`, que los desplaza un poco para que no se tapen entre sí.
+
+```r
+data2 <- select(mpg, displ, hwy)
+ggplot(data2) +
+    aes(x = displ, y = hwy) +
+    geom_point() +   #alpha=0.3)#+
+   # geom_jitter()
+    geom_smooth(method = "lm")
+```
+
+<img
+	src="/inacap/ti3v61/images/clase10c-01.jpg"
+	alt="Gráfico de dispersión de cilindrada contra rendimiento en carretera, con una recta de tendencia descendente"
+	style={{ display: 'block', margin: '0 auto', width: '70%', background: '#fff' }}
+/>
+
+```r
+data2 <- select(mpg, displ, hwy)
+ggplot(data2 %>% filter(displ < 7)) +
+    aes(x = displ, y = hwy) +
+    geom_point() +   #alpha=0.3)#+
+   # geom_jitter()
+    geom_smooth(method = "auto")
+```
+
+```terminal
+`geom_smooth()` using method = 'loess'
+```
+
+<img
+	src="/inacap/ti3v61/images/clase10c-02.jpg"
+	alt="El mismo gráfico con una curva de tendencia: desciende y vuelve a subir levemente en las cilindradas más altas"
+	style={{ display: 'block', margin: '0 auto', width: '70%', background: '#fff' }}
+/>
+
+Con `method = "auto"` la tendencia es una curva. Muestra algo que la recta ocultaba: en las cilindradas más altas el rendimiento deja de bajar.
+
+```r
+?geom_smooth
+cor(data2)
+```
+
+```terminal
+       displ    hwy
+displ  1.000 -0.766
+hwy   -0.766  1.000
+```
+
+```r
+?cor
+
+cor(data2, method = "spearman")
+#install.packages("tidyverse")
+
+#install.packages("corrplot")
+```
+
+```terminal
+       displ    hwy
+displ  1.000 -0.827
+hwy   -0.827  1.000
+```
+
+### Una relación no lineal
+
+Se generan datos donde `y` depende de `x` al cubo, más un ruido aleatorio `e`.
+
+```r
+x <- rnorm(100)
+e <- rnorm(100, sd = 1)
+
+y <- 1 + 3 * x^3 + e
+
+A <- data.frame(x = x, y = y)
+
+library(ggplot2)
+ggplot(A) + aes(x, y) + geom_point()
+```
+
+<img
+	src="/inacap/ti3v61/images/clase10c-03.jpg"
+	alt="Nube de puntos con forma de curva cúbica"
+	style={{ display: 'block', margin: '0 auto', width: '70%', background: '#fff' }}
+/>
+
+```r
+plot(x, y)
+```
+
+<img
+	src="/inacap/ti3v61/images/clase10c-04.jpg"
+	alt="El mismo gráfico de dispersión hecho con la función plot"
+	style={{ display: 'block', margin: '0 auto', width: '70%', background: '#fff' }}
+/>
+
+```r
+cor(x, y, method = "pearson")
+cor(x, y, method = "spearman")
+```
+
+```terminal
+[1] 0.778055
+[1] 0.8820522
+```
+
+Pearson, que mide qué tan cerca están los puntos de una recta, da 0,78. Spearman, que solo mide si `y` crece cuando `x` crece, da 0,88: capta mejor esta relación porque es creciente pero curva. Como los datos son aleatorios, los valores cambian en cada ejecución.
+
+### Varias variables a la vez: `mtcars`
+
+```r
+library(dplyr)
+library(ggplot2)
+library(corrplot)
+```
+
+```terminal
+corrplot 0.84 loaded
+```
+
+```r
+data(mtcars)
+?mtcars
+```
+
+Cuando a `plot()` se le pasa una tabla con varias columnas, dibuja una **matriz de gráficos de dispersión**: un gráfico por cada par de variables. El nombre en la diagonal indica qué variable va en esa fila y en esa columna.
+
+```r
+select(mtcars, mpg, disp, hp, drat, wt, qsec) %>% plot()
+```
+
+<img
+	src="/inacap/ti3v61/images/clase10c-05.jpg"
+	alt="Matriz de gráficos de dispersión de seis variables de mtcars, dibujada en tamaño pequeño"
+	style={{ display: 'block', margin: '0 auto', width: '60%', background: '#fff' }}
+/>
+
+El gráfico sale apretado porque el espacio es pequeño para 36 gráficos. Las opciones `repr.plot.width` y `repr.plot.height` cambian el tamaño de los gráficos en un cuaderno; fuera de un cuaderno no tienen efecto.
+
+```r
+# instalar repr
+library("repr")
+data(mtcars)
+library(dplyr)
+options(repr.plot.width = 8, repr.plot.height = 6)
+
+aux <- select(mtcars, mpg, disp, hp, drat, wt, qsec)
+aux %>% plot()
+```
+
+<img
+	src="/inacap/ti3v61/images/clase10c-06.jpg"
+	alt="La misma matriz de gráficos de dispersión, en tamaño mayor y legible"
+	style={{ display: 'block', margin: '0 auto', width: '85%', background: '#fff' }}
+/>
+
+```r
+?mtcars
+```
+
+Las variables seleccionadas son `mpg` (millas por galón), `disp` (cilindrada), `hp` (potencia), `drat` (relación del eje trasero), `wt` (peso) y `qsec` (tiempo en el cuarto de milla).
+
+### P1. Comando `cor`
+
+Investigar el comando `cor` y usarlo con la selección previa de columnas. ¿Qué se observa?
+
+### P2. Cambiar el método
+
+De acuerdo con la documentación, cambiar el método de cálculo a `"spearman"`. ¿Qué se observa?
+
+```r
+cor(aux)
+cor(aux, method = "spearman")
+```
+
+```terminal
+            mpg       disp         hp        drat         wt        qsec
+mpg   1.0000000 -0.8475514 -0.7761684  0.68117191 -0.8676594  0.41868403
+disp -0.8475514  1.0000000  0.7909486 -0.71021393  0.8879799 -0.43369788
+hp   -0.7761684  0.7909486  1.0000000 -0.44875912  0.6587479 -0.70822339
+drat  0.6811719 -0.7102139 -0.4487591  1.00000000 -0.7124406  0.09120476
+wt   -0.8676594  0.8879799  0.6587479 -0.71244065  1.0000000 -0.17471588
+qsec  0.4186840 -0.4336979 -0.7082234  0.09120476 -0.1747159  1.00000000
+            mpg       disp         hp        drat         wt        qsec
+mpg   1.0000000 -0.9088824 -0.8946646  0.65145546 -0.8864220  0.46693575
+disp -0.9088824  1.0000000  0.8510426 -0.68359210  0.8977064 -0.45978176
+hp   -0.8946646  0.8510426  1.0000000 -0.52012499  0.7746767 -0.66660602
+drat  0.6514555 -0.6835921 -0.5201250  1.00000000 -0.7503904  0.09186863
+wt   -0.8864220  0.8977064  0.7746767 -0.75039041  1.0000000 -0.22540120
+qsec  0.4669358 -0.4597818 -0.6666060  0.09186863 -0.2254012  1.00000000
+```
+
+La primera matriz es la de Pearson y la segunda la de Spearman.
+
+:::solution[Qué se observa]
+**P1.** `cor()` entrega la correlación de cada par de variables. El rendimiento (`mpg`) tiene una correlación negativa fuerte con la cilindrada (−0,85), el peso (−0,87) y la potencia (−0,78): los autos más grandes, pesados y potentes rinden menos. La cilindrada y el peso se mueven juntos (0,89). En cambio, `drat` y `qsec` casi no se relacionan entre sí (0,09).
+
+**P2.** Con Spearman los signos no cambian, pero varias correlaciones se hacen más fuertes: la de `mpg` con `disp` pasa de −0,85 a −0,91 y la de `mpg` con `hp` de −0,78 a −0,89. Eso indica que la relación entre esas variables es consistente pero no del todo recta, como se ve en las curvas de la matriz de gráficos.
+:::
+
+### Gráfico de correlación
+
+```r
+library(corrplot)
+corrplot(cor(aux, method = "pearson"),
+         method = "circle")
+```
+
+<img
+	src="/inacap/ti3v61/images/clase10c-07.jpg"
+	alt="Gráfico de correlación de seis variables de mtcars, con círculos azules para las correlaciones positivas y rojos para las negativas"
+	style={{ display: 'block', margin: '0 auto', width: '75%', background: '#fff' }}
+/>
+
+El gráfico resume la matriz de un vistazo: círculos grandes y rojos para las correlaciones negativas fuertes (como `mpg` con `wt`), grandes y azules para las positivas fuertes (como `disp` con `wt`) y pequeños y pálidos para las débiles (como `drat` con `qsec`).
+
+### P3. Opciones de `corrplot`
+
+Identificar, en la documentación de la función `corrplot`, otros métodos de visualización.
+
+:::solution[Otros métodos de visualización]
+El argumento `method` acepta siete valores: `"circle"` (círculos), `"square"` (cuadrados), `"ellipse"` (elipses), `"number"` (el valor numérico), `"shade"` (sombreado), `"color"` (casillas de color) y `"pie"` (gráficos de torta).
+
+Por ejemplo, para ver los valores:
+
+```r
+corrplot(cor(aux, method = "pearson"), method = "number")
+```
+:::

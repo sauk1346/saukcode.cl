@@ -1,0 +1,90 @@
+# Ejercicios de repaso: vectores, lógicos y secuencias
+
+Cuatro ejercicios sobre lo visto en la [primera clase](/inacap/ti3v61/clase08a) y en la [vista general de R](/inacap/ti3v61/clase08b). Se resuelven en la consola de R o en un cuaderno de [Google Colab](https://colab.research.google.com/). Casi todos admiten más de una respuesta: los valores de los vectores son libres.
+
+## Ejercicio 01. Vectores y raíz cuadrada
+
+Crear tres vectores: uno de tipo carácter y los otros dos de tipo numérico. Calcular la raíz cuadrada del primer elemento y del último elemento de uno de los vectores numéricos.
+
+:::solution[Solución Ejercicio 01]
+```r
+nombres <- c("Ana", "Luis", "Marta")
+edades  <- c(16, 25, 49)
+notas   <- c(4.0, 5.5, 6.3)
+
+sqrt(edades[1])
+sqrt(edades[length(edades)])
+```
+
+```terminal
+[1] 4
+[1] 7
+```
+
+El primer elemento es el de la posición 1. Para el último se usa `length()`, que devuelve la cantidad de elementos del vector: así el código sirve para un vector de cualquier largo. En este caso `edades[3]` daría lo mismo.
+:::
+
+## Ejercicio 02. Operaciones lógicas entre vectores
+
+Se tienen dos vectores con valores `TRUE` y `FALSE`, con la misma cantidad de elementos. Operar ambos vectores con «y» (`&`) y con «o» (`|`).
+
+:::solution[Solución Ejercicio 02]
+```r
+a <- c(TRUE, FALSE, TRUE, FALSE)
+b <- c(TRUE, TRUE, FALSE, FALSE)
+
+a & b
+a | b
+```
+
+```terminal
+[1]  TRUE FALSE FALSE FALSE
+[1]  TRUE  TRUE  TRUE FALSE
+```
+
+La operación se hace elemento por elemento: el primero de `a` con el primero de `b`, y así sucesivamente. Con `&` el resultado es `TRUE` solo donde ambos lo son; con `|`, donde al menos uno lo es.
+:::
+
+## Ejercicio 03. Secuencia y repetición
+
+Crear una secuencia de números que parta en 10 y termine en 100, con incrementos de 10 en 10, y luego repetir el resultado 3 veces.
+
+:::solution[Solución Ejercicio 03]
+```r
+secuencia <- seq(10, 100, by = 10)
+secuencia
+```
+
+```terminal
+ [1]  10  20  30  40  50  60  70  80  90 100
+```
+
+```r
+rep(secuencia, 3)
+```
+
+`rep()` también repite vectores completos: el resultado tiene 30 valores, la secuencia del 10 al 100 tres veces seguidas.
+
+Se puede escribir en una sola línea: `rep(seq(10, 100, by = 10), 3)`.
+:::
+
+## Ejercicio 04. Distribución uniforme
+
+Generar una distribución de datos uniforme y aleatoria de 50 muestras, con valores entre 1 y 50. En una distribución uniforme, todos los valores tienen igual probabilidad.
+
+:::solution[Solución Ejercicio 04]
+```r
+muestra <- runif(n = 50, min = 1, max = 50)
+muestra
+```
+
+No se muestra la salida porque los valores son aleatorios: cambian en cada ejecución. Deben aparecer 50 números con decimales, todos entre 1 y 50.
+
+Si se necesitan números enteros, se usa `sample()`, que elige al azar entre los valores indicados:
+
+```r
+sample(1:50, size = 50, replace = TRUE)
+```
+
+`replace = TRUE` permite que un mismo valor salga más de una vez.
+:::

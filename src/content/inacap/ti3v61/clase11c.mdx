@@ -1,0 +1,39 @@
+# Tarea: análisis gráfico de tenistas chilenos
+
+Tarea de análisis gráfico. Los gráficos se ven en el [caso práctico](/inacap/ti3v61/clase10a), en [Estadística descriptiva y correlación](/inacap/ti3v61/clase10b) y en [Regresión lineal](/inacap/ti3v61/clase11b).
+
+## Caso
+
+Analizando el desempeño de las últimas 5 temporadas en el circuito tenístico, realizar un análisis gráfico sobre el desempeño de los jugadores chilenos del circuito.
+
+Considerar, por tipo de superficie:
+
+- cantidad de partidos por temporada,
+- cantidad de primeros servicios,
+- cantidad de dobles faltas,
+- cantidad de partidos perdidos y ganados.
+
+## Se pide
+
+1. Un análisis gráfico del desempeño de los jugadores chilenos, con las variables anteriores.
+2. Mostrar y analizar gráficamente cuál es el mejor jugador por tipo de superficie.
+3. Un gráfico que muestre cuál es el mejor jugador chileno por partidos ganados.
+
+## Datos
+
+La tarea no incluye un archivo de datos: hay que conseguir o construir la tabla. Una forma de organizarla es una fila por jugador, temporada y superficie, con una columna para cada variable del enunciado:
+
+:::table{#tabla01 caption="Estructura sugerida para la tabla de datos" layout="mixed" widths="200px,auto"}
+| Columna | Contenido |
+| --- | --- |
+| `jugador` | Nombre del tenista |
+| `temporada` | Año |
+| `superficie` | Tipo de superficie: arcilla, dura o césped |
+| `partidos` | Partidos jugados |
+| `ganados` | Partidos ganados |
+| `perdidos` | Partidos perdidos |
+| `primer_servicio` | Cantidad de primeros servicios |
+| `dobles_faltas` | Cantidad de dobles faltas |
+:::
+
+Guardada como CSV, la tabla se lee con `read.csv()` y se grafica con las herramientas de la unidad: `matplot()` para comparar a los jugadores a lo largo de las temporadas, y `ggplot()` con `aes()` para asociar el color a la superficie o al jugador.

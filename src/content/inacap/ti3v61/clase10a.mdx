@@ -1,0 +1,496 @@
+# Caso práctico: matrices, gráficos y cruce de tablas
+
+**Material:**
+
+- [Cuaderno original (.ipynb)](/inacap/ti3v61/docs/clase10a.ipynb)
+- [datosDemograficos.csv](/inacap/ti3v61/data/datosDemograficos.csv)
+
+Este caso aplica lo visto en la [clase 09](/inacap/ti3v61/clase09a) (matrices, funciones y *data frames*) y presenta tres herramientas nuevas que se usan en las clases siguientes: graficar, leer un archivo CSV y cruzar dos tablas con `merge()`.
+
+Tiene dos partes. La primera trabaja con los goles de cuatro jugadores en cuatro temporadas. La segunda, con datos demográficos de países.
+
+## 1. Goles por jugador y temporada
+
+### Vectores de partida
+
+```r
+# Nombres de los jugadores
+jugador <- c("EstebanParedes", "LucasBarrio", "EduardoVargas", "AlexisSanchez")
+
+# Años de las temporadas
+temporada <- c(2019, 2020, 2021, 2022)
+
+jugador
+```
+
+```terminal
+[1] "EstebanParedes" "LucasBarrio"    "EduardoVargas"  "AlexisSanchez"
+```
+
+```r
+temporada
+```
+
+```terminal
+[1] 2019 2020 2021 2022
+```
+
+Un vector por jugador, con sus goles en cada temporada:
+
+```r
+estebanGoles <- c(15, 12, 14, 20)
+lucasGoles   <- c(7, 9, 12, 4)
+eduardoGoles <- c(2, 4, 5, 6)
+alexisGoles  <- c(12, 22, 31, 15)
+```
+
+### Matriz de goles
+
+`rbind()` une los cuatro vectores como filas de una matriz. Cada fila toma el nombre de su vector.
+
+```r
+matrizGoles <- rbind(estebanGoles, lucasGoles, eduardoGoles, alexisGoles)
+matrizGoles
+```
+
+```terminal
+             [,1] [,2] [,3] [,4]
+estebanGoles   15   12   14   20
+lucasGoles      7    9   12    4
+eduardoGoles    2    4    5    6
+alexisGoles    12   22   31   15
+```
+
+`rownames()` y `colnames()` asignan nombres a las filas y a las columnas: los jugadores y las temporadas.
+
+```r
+rownames(matrizGoles) <- c(jugador)
+colnames(matrizGoles) <- c(temporada)
+matrizGoles
+```
+
+```terminal
+               2019 2020 2021 2022
+EstebanParedes   15   12   14   20
+LucasBarrio       7    9   12    4
+EduardoVargas     2    4    5    6
+AlexisSanchez    12   22   31   15
+```
+
+### Matriz de partidos
+
+Se repite el procedimiento con los partidos jugados.
+
+```r
+estebanPartido <- c(20, 22, 23, 20)
+lucasPartido   <- c(15, 22, 31, 30)
+eduardoPartido <- c(12, 44, 11, 30)
+alexisPartido  <- c(33, 12, 30, 19)
+
+matrizPartido <- rbind(estebanPartido, lucasPartido, eduardoPartido, alexisPartido)
+
+matrizPartido
+```
+
+```terminal
+               [,1] [,2] [,3] [,4]
+estebanPartido   20   22   23   20
+lucasPartido     15   22   31   30
+eduardoPartido   12   44   11   30
+alexisPartido    33   12   30   19
+```
+
+```r
+rownames(matrizPartido) <- c(jugador)
+colnames(matrizPartido) <- c(temporada)
+matrizPartido
+```
+
+```terminal
+               2019 2020 2021 2022
+EstebanParedes   20   22   23   20
+LucasBarrio      15   22   31   30
+EduardoVargas    12   44   11   30
+AlexisSanchez    33   12   30   19
+```
+
+### Operar entre matrices
+
+Como ambas matrices tienen la misma forma, se pueden dividir casilla por casilla. El resultado son los **partidos por gol** de cada jugador en cada temporada, redondeados a un decimal con `round()`: mientras más bajo el valor, más efectivo fue el jugador.
+
+```r
+round(matrizPartido / matrizGoles, 1)
+```
+
+```terminal
+               2019 2020 2021 2022
+EstebanParedes  1.3  1.8  1.6  1.0
+LucasBarrio     2.1  2.4  2.6  7.5
+EduardoVargas   6.0 11.0  2.2  5.0
+AlexisSanchez   2.8  0.5  1.0  1.3
+```
+
+`t()` traspone la matriz: las temporadas pasan a ser las filas y los jugadores las columnas.
+
+```r
+t(matrizGoles)
+```
+
+```terminal
+     EstebanParedes LucasBarrio EduardoVargas AlexisSanchez
+2019             15           7             2            12
+2020             12           9             4            22
+2021             14          12             5            31
+2022             20           4             6            15
+```
+
+### Graficar una matriz
+
+`matplot()` dibuja una línea por cada **columna** de la matriz. Por eso se le entrega la matriz traspuesta: así cada línea es un jugador y el eje horizontal recorre las temporadas.
+
+- `type = "b"`: gráfico con líneas y puntos.
+- `pch = 15:20`: un tipo de punto distinto para cada línea.
+- `col = c(1:4)`: un color distinto para cada línea.
+
+```r
+matplot(t(matrizGoles), type = "b", pch = 15:20, col = c(1:4))
+```
+
+<img
+	src="/inacap/ti3v61/images/clase10a-01.png"
+	alt="Gráfico de líneas con los goles de cuatro jugadores en cuatro temporadas"
+	style={{ display: 'block', margin: '0 auto', width: '70%', background: '#fff' }}
+/>
+
+El eje horizontal muestra 1 a 4, que es la posición de cada temporada, no el año. Falta además una leyenda que diga qué línea es de cada jugador.
+
+### Agregar una leyenda
+
+Un ejemplo aparte, con datos de prueba, muestra cómo se agrega. `plot()` dibuja los puntos y `legend()` añade la leyenda sobre el gráfico ya hecho: se indica su posición (`"topright"`, arriba a la derecha), los textos y los mismos símbolos y colores del gráfico.
+
+```r
+# Datos de ejemplo
+x <- c(1, 2, 3, 4)
+y <- c(10, 15, 13, 17)
+jugador <- c("Jugador 1", "Jugador 2", "Jugador 3", "Jugador 4")
+
+# Crear el gráfico
+plot(x, y, pch = 15:18, col = 1:4, main = "Ejemplo de gráfico con leyenda")
+
+# Añadir la leyenda
+legend("topright", inset = 0.01, legend = jugador, pch = 15:18, col = c(1:4))
+```
+
+<img
+	src="/inacap/ti3v61/images/clase10a-02.png"
+	alt="Gráfico de cuatro puntos con una leyenda arriba a la derecha"
+	style={{ display: 'block', margin: '0 auto', width: '70%', background: '#fff' }}
+/>
+
+:::callout[El vector `jugador` cambia]{type="warning"}
+El ejemplo vuelve a definir el vector `jugador`, ahora con los textos «Jugador 1» a «Jugador 4». Desde aquí, `jugador` ya no contiene los nombres reales. La matriz no cambia, porque sus nombres de fila se asignaron antes, pero la leyenda del gráfico final mostrará esos textos genéricos.
+:::
+
+### Seleccionar filas y columnas
+
+Entre corchetes van primero las filas y después las columnas. Si un lado queda vacío, se toman todas.
+
+```r
+# Jugadores 1 y 3, todas las temporadas
+matrizGoles[c(1, 3), ]
+```
+
+```terminal
+               2019 2020 2021 2022
+EstebanParedes   15   12   14   20
+EduardoVargas     2    4    5    6
+```
+
+```r
+# Jugadores 1 a 3, temporadas 2020 y 2022 (columnas 2 y 4)
+matrizGoles[1:3, c(2, 4)]
+```
+
+```terminal
+               2020 2022
+EstebanParedes   12   20
+LucasBarrio       9    4
+EduardoVargas     4    6
+```
+
+```r
+# Jugadores 1 y 4, temporadas 2019 y 2021 (columnas 1 y 3)
+matrizGoles[c(1, 4), c(1, 3)]
+```
+
+```terminal
+               2019 2021
+EstebanParedes   15   14
+AlexisSanchez    12   31
+```
+
+### Una función propia para graficar
+
+Con `function()` se define una función propia: entre paréntesis van sus argumentos y entre llaves el código que ejecuta. Esta junta los dos pasos anteriores, graficar y agregar la leyenda, y permite elegir qué jugadores y qué temporadas mostrar.
+
+- `datos`: matriz de datos a graficar.
+- `legendaDatos`: vector con los nombres de los jugadores.
+- `filas`: posiciones de las filas (jugadores) a graficar.
+- `columnas`: posiciones de las columnas (temporadas) a graficar.
+
+```r
+generarGraficoEjemplo <- function(datos, legendaDatos, filas, columnas) {
+  # Graficar los datos seleccionados
+  matplot(t(datos[c(filas), c(columnas)]), type = "b", pch = 15:20, col = c(1:4))
+  # Añadir leyenda
+  legend("topright", inset = 0.01, legend = legendaDatos, pch = 15:20, col = c(1:4))
+}
+```
+
+La versión final cambia dos cosas: la leyenda va arriba a la izquierda (`"topleft"`) y solo incluye a los jugadores seleccionados (`legendaDatos[filas]`). Después se llama a la función con todos los jugadores y todas las temporadas.
+
+```r
+generarGraficoEjemplo <- function(datos, legendaDatos, filas, columnas) {
+  # Graficar los datos seleccionados
+  matplot(t(datos[c(filas), c(columnas)]), type = "b", pch = 15:20, col = c(1:4))
+  # Añadir leyenda
+  legend("topleft", inset = 0.01, legend = legendaDatos[filas], pch = 15:20, col = c(1:4))
+}
+
+# Gráfico con todos los jugadores y todas las temporadas
+generarGraficoEjemplo(matrizGoles, jugador, 1:4, 1:4)
+
+matrizGoles
+```
+
+```terminal
+               2019 2020 2021 2022
+EstebanParedes   15   12   14   20
+LucasBarrio       7    9   12    4
+EduardoVargas     2    4    5    6
+AlexisSanchez    12   22   31   15
+```
+
+<img
+	src="/inacap/ti3v61/images/clase10a-03.png"
+	alt="Gráfico de líneas de goles por temporada con leyenda arriba a la izquierda"
+	style={{ display: 'block', margin: '0 auto', width: '70%', background: '#fff' }}
+/>
+
+La leyenda dice «Jugador 1» a «Jugador 4» por lo explicado en el recuadro anterior. Para que muestre los nombres reales, basta pasarle los nombres de fila de la matriz:
+
+```r
+generarGraficoEjemplo(matrizGoles, rownames(matrizGoles), 1:4, 1:4)
+```
+
+## 2. Datos demográficos de países
+
+### Leer un archivo CSV
+
+`read.csv()` lee un archivo CSV (valores separados por comas) y lo entrega como *data frame*. `head()` muestra las primeras seis filas.
+
+```r
+valores <- read.csv("datosDemograficos.csv")
+
+head(valores)
+```
+
+```terminal
+           Nombre.Pais Codigo.Pais Tasa.Natalidad CantPersonas.Internet
+1                Aruba         ABW         10.244                  78.9
+2          Afghanistan         AFG         35.253                   5.9
+3               Angola         AGO         45.985                  19.1
+4              Albania         ALB         12.877                  57.2
+5 United Arab Emirates         ARE         11.044                  88.0
+6            Argentina         ARG         17.716                  59.9
+      Grupo.Ingresos
+1       Ingreso alto
+2       Ingreso bajo
+3 Ingreso medio alto
+4 Ingreso medio alto
+5       Ingreso alto
+6       Ingreso alto
+```
+
+Cuando la tabla es más ancha que la pantalla, R la corta y muestra las columnas restantes más abajo, repitiendo el número de fila.
+
+:::callout[Ruta del archivo]{type="info"}
+En Google Colab, los archivos que se suben quedan en la carpeta `/content/`, y la ruta es `'/content/datosDemograficos.csv'`. Fuera de Colab, si el archivo está en el directorio de trabajo, basta con el nombre.
+:::
+
+La tabla tiene 195 países y cinco columnas: nombre, código, tasa de natalidad, porcentaje de personas con acceso a internet y grupo de ingresos.
+
+### Una segunda tabla, creada a mano
+
+La segunda tabla indica la región de cada país. Se arma con tres vectores: nombres, códigos y regiones.
+
+```r
+# Crear un vector con los nombres de los países
+Pais_dataset_p2 <- c("Aruba","Afghanistan","Angola","Albania","United Arab Emirates","Argentina","Armenia","Antigua and Barbuda","Australia","Austria","Azerbaijan","Burundi","Belgium","Benin","Burkina Faso","Bangladesh","Bulgaria","Bahrain","Bahamas, The","Bosnia and Herzegovina","Belarus","Belize","Bermuda","Bolivia","Brazil","Barbados","Brunei Darussalam","Bhutan","Botswana","Central African Republic","Canada","Switzerland","Chile","China","Cote d'Ivoire","Cameroon","Congo, Rep.","Colombia","Comoros","Cabo Verde","Costa Rica","Cuba","Cayman Islands","Cyprus","Czech Republic","Germany","Djibouti","Denmark","Dominican Republic","Algeria","Ecuador","Egypt, Arab Rep.","Eritrea","Spain","Estonia","Ethiopia","Finland","Fiji","France","Micronesia, Fed. Sts.","Gabon","United Kingdom","Georgia","Ghana","Guinea","Gambia, The","Guinea-Bissau","Equatorial Guinea","Greece","Grenada","Greenland","Guatemala","Guam","Guyana","Hong Kong SAR, China","Honduras","Croatia","Haiti","Hungary","Indonesia","India","Ireland","Iran, Islamic Rep.","Iraq","Iceland","Israel","Italy","Jamaica","Jordan","Japan","Kazakhstan","Kenya","Kyrgyz Republic","Cambodia","Kiribati","Korea, Rep.","Kuwait","Lao PDR","Lebanon","Liberia","Libya","St. Lucia","Liechtenstein","Sri Lanka","Lesotho","Lithuania","Luxembourg","Latvia","Macao SAR, China","Morocco","Moldova","Madagascar","Maldives","Mexico","Macedonia, FYR","Mali","Malta","Myanmar","Montenegro","Mongolia","Mozambique","Mauritania","Mauritius","Malawi","Malaysia","Namibia","New Caledonia","Niger","Nigeria","Nicaragua","Netherlands","Norway","Nepal","New Zealand","Oman","Pakistan","Panama","Peru","Philippines","Papua New Guinea","Poland","Puerto Rico","Portugal","Paraguay","French Polynesia","Qatar","Romania","Russian Federation","Rwanda","Saudi Arabia","Sudan","Senegal","Singapore","Solomon Islands","Sierra Leone","El Salvador","Somalia","Serbia","South Sudan","Sao Tome and Principe","Suriname","Slovak Republic","Slovenia","Sweden","Swaziland","Seychelles","Syrian Arab Republic","Chad","Togo","Thailand","Tajikistan","Turkmenistan","Timor-Leste","Tonga","Trinidad and Tobago","Tunisia","Turkey","Tanzania","Uganda","Ukraine","Uruguay","United States","Uzbekistan","St. Vincent and the Grenadines","Venezuela, RB","Virgin Islands (U.S.)","Vietnam","Vanuatu","West Bank and Gaza","Samoa","Yemen, Rep.","South Africa","Congo, Dem. Rep.","Zambia","Zimbabwe")
+
+# Crear un vector con los códigos de los países
+Codigo_Pais_dataset_p2 <- c("ABW","AFG","AGO","ALB","ARE","ARG","ARM","ATG","AUS","AUT","AZE","BDI","BEL","BEN","BFA","BGD","BGR","BHR","BHS","BIH","BLR","BLZ","BMU","BOL","BRA","BRB","BRN","BTN","BWA","CAF","CAN","CHE","CHL","CHN","CIV","CMR","COG","COL","COM","CPV","CRI","CUB","CYM","CYP","CZE","DEU","DJI","DNK","DOM","DZA","ECU","EGY","ERI","ESP","EST","ETH","FIN","FJI","FRA","FSM","GAB","GBR","GEO","GHA","GIN","GMB","GNB","GNQ","GRC","GRD","GRL","GTM","GUM","GUY","HKG","HND","HRV","HTI","HUN","IDN","IND","IRL","IRN","IRQ","ISL","ISR","ITA","JAM","JOR","JPN","KAZ","KEN","KGZ","KHM","KIR","KOR","KWT","LAO","LBN","LBR","LBY","LCA","LIE","LKA","LSO","LTU","LUX","LVA","MAC","MAR","MDA","MDG","MDV","MEX","MKD","MLI","MLT","MMR","MNE","MNG","MOZ","MRT","MUS","MWI","MYS","NAM","NCL","NER","NGA","NIC","NLD","NOR","NPL","NZL","OMN","PAK","PAN","PER","PHL","PNG","POL","PRI","PRT","PRY","PYF","QAT","ROU","RUS","RWA","SAU","SDN","SEN","SGP","SLB","SLE","SLV","SOM","SRB","SSD","STP","SUR","SVK","SVN","SWE","SWZ","SYC","SYR","TCD","TGO","THA","TJK","TKM","TLS","TON","TTO","TUN","TUR","TZA","UGA","UKR","URY","USA","UZB","VCT","VEN","VIR","VNM","VUT","PSE","WSM","YEM","ZAF","COD","ZMB","ZWE")
+
+# Crear un vector con las regiones de los países
+Region_dataset_p2 <- c("The Americas","Asia","Africa","Europe","Middle East","The Americas","Asia","The Americas","Oceania","Europe","Asia","Africa","Europe","Africa","Africa","Asia","Europe","Middle East","The Americas","Europe","Europe","The Americas","The Americas","The Americas","The Americas","The Americas","Asia","Asia","Africa","Africa","The Americas","Europe","The Americas","Asia","Africa","Africa","Africa","The Americas","Africa","Africa","The Americas","The Americas","The Americas","Europe","Europe","Europe","Africa","Europe","The Americas","Africa","The Americas","Africa","Africa","Europe","Europe","Africa","Europe","Oceania","Europe","Oceania","Africa","Europe","Asia","Africa","Africa","Africa","Africa","Africa","Europe","The Americas","The Americas","The Americas","Oceania","The Americas","Asia","The Americas","Europe","The Americas","Europe","Asia","Asia","Europe","Middle East","Middle East","Europe","Middle East","Europe","The Americas","Middle East","Asia","Asia","Africa","Asia","Asia","Oceania","Asia","Middle East","Asia","Middle East","Africa","Africa","The Americas","Europe","Asia","Africa","Europe","Europe","Europe","Asia","Africa","Europe","Africa","Asia","The Americas","Europe","Africa","Europe","Asia","Europe","Asia","Africa","Africa","Africa","Africa","Asia","Africa","Oceania","Africa","Africa","The Americas","Europe","Europe","Asia","Oceania","Middle East","Asia","The Americas","The Americas","Asia","Oceania","Europe","The Americas","Europe","The Americas","Oceania","Middle East","Europe","Europe","Africa","Middle East","Africa","Africa","Asia","Oceania","Africa","The Americas","Africa","Europe","Africa","Africa","The Americas","Europe","Europe","Europe","Africa","Africa","Middle East","Africa","Africa","Asia","Asia","Asia","Asia","Oceania","The Americas","Africa","Europe","Africa","Africa","Europe","The Americas","The Americas","Asia","The Americas","The Americas","The Americas","Asia","Oceania","Middle East","Oceania","Middle East","Africa","Africa","Africa","Africa")
+
+dataFrameValores2 <- data.frame(
+  Pais = Pais_dataset_p2,
+  Codigo = Codigo_Pais_dataset_p2,
+  Region = Region_dataset_p2
+)
+```
+
+Se revisan las primeras filas de ambas tablas. En la segunda instrucción, `valores[, c(1:4)]` selecciona las columnas 1 a 4.
+
+```r
+head(dataFrameValores2)
+
+head(valores[, c(1:4)])
+```
+
+```terminal
+                  Pais Codigo       Region
+1                Aruba    ABW The Americas
+2          Afghanistan    AFG         Asia
+3               Angola    AGO       Africa
+4              Albania    ALB       Europe
+5 United Arab Emirates    ARE  Middle East
+6            Argentina    ARG The Americas
+           Nombre.Pais Codigo.Pais Tasa.Natalidad CantPersonas.Internet
+1                Aruba         ABW         10.244                  78.9
+2          Afghanistan         AFG         35.253                   5.9
+3               Angola         AGO         45.985                  19.1
+4              Albania         ALB         12.877                  57.2
+5 United Arab Emirates         ARE         11.044                  88.0
+6            Argentina         ARG         17.716                  59.9
+```
+
+Al escribir solo el nombre, se imprime la tabla completa.
+
+```r
+valores
+```
+
+```terminal
+                      Nombre.Pais Codigo.Pais Tasa.Natalidad
+1                           Aruba         ABW         10.244
+2                     Afghanistan         AFG         35.253
+3                          Angola         AGO         45.985
+4                         Albania         ALB         12.877
+5            United Arab Emirates         ARE         11.044
+6                       Argentina         ARG         17.716
+7                         Armenia         ARM         13.308
+8             Antigua and Barbuda         ATG         16.447
+9                       Australia         AUS         13.200
+10                        Austria         AUT          9.400
+# ... se muestran 10 de las 195 filas y 3 de las 5 columnas
+```
+
+```r
+dataFrameValores2
+```
+
+```terminal
+                             Pais Codigo       Region
+1                           Aruba    ABW The Americas
+2                     Afghanistan    AFG         Asia
+3                          Angola    AGO       Africa
+4                         Albania    ALB       Europe
+5            United Arab Emirates    ARE  Middle East
+6                       Argentina    ARG The Americas
+7                         Armenia    ARM         Asia
+8             Antigua and Barbuda    ATG The Americas
+9                       Australia    AUS      Oceania
+10                        Austria    AUT       Europe
+# ... se muestran 10 de las 195 filas
+```
+
+### Cruzar las tablas con `merge()`
+
+Las dos tablas hablan de los mismos países, pero cada una tiene datos que la otra no. `merge()` las une en una sola, emparejando las filas que comparten el mismo valor en una columna clave. Aquí la clave es el código del país, que se llama distinto en cada tabla: `by.x` es su nombre en la primera y `by.y` en la segunda.
+
+```r
+dataFrame3 <- merge(
+  valores,
+  dataFrameValores2,
+  by.x = "Codigo.Pais",
+  by.y = "Codigo"
+)
+
+head(dataFrame3)
+```
+
+```terminal
+  Codigo.Pais          Nombre.Pais Tasa.Natalidad CantPersonas.Internet
+1         ABW                Aruba         10.244                  78.9
+2         AFG          Afghanistan         35.253                   5.9
+3         AGO               Angola         45.985                  19.1
+4         ALB              Albania         12.877                  57.2
+5         ARE United Arab Emirates         11.044                  88.0
+6         ARG            Argentina         17.716                  59.9
+      Grupo.Ingresos                 Pais       Region
+1       Ingreso alto                Aruba The Americas
+2       Ingreso bajo          Afghanistan         Asia
+3 Ingreso medio alto               Angola       Africa
+4 Ingreso medio alto              Albania       Europe
+5       Ingreso alto United Arab Emirates  Middle East
+6       Ingreso alto            Argentina The Americas
+```
+
+La tabla resultante tiene la columna clave primero, luego las columnas de la primera tabla y al final las de la segunda. Ahora cada país tiene también su región.
+
+La columna `Pais` repite a `Nombre.Pais`. Para quitarla se le asigna `NULL`:
+
+```r
+dataFrame3$Pais <- NULL
+```
+
+### Graficar con `ggplot2`
+
+`ggplot2` es una librería para hacer gráficos. No viene con R: se instala una vez con `install.packages()` y se carga en cada sesión con `library()`.
+
+```r
+install.packages("ggplot2")
+```
+
+Un gráfico de `ggplot2` se arma por partes que se suman con `+`:
+
+- `ggplot(data = ...)` indica la tabla de datos.
+- `aes()` asocia columnas a propiedades del gráfico: aquí, el eje horizontal (`x`), el eje vertical (`y`) y el color.
+- `geom_point()` dibuja un punto por cada fila, es decir, un gráfico de dispersión.
+
+```r
+library(ggplot2)
+
+ggplot(data = dataFrame3, aes(x = CantPersonas.Internet, y = Tasa.Natalidad, size = 2, color = Region)) +
+  geom_point()
+```
+
+<img
+	src="/inacap/ti3v61/images/clase10a-04.png"
+	alt="Gráfico de dispersión: a mayor acceso a internet, menor tasa de natalidad; los puntos de África se concentran arriba a la izquierda y los de Europa abajo a la derecha"
+	style={{ display: 'block', margin: '0 auto', width: '80%', background: '#fff' }}
+/>
+
+Cada punto es un país. Se ve una relación inversa: los países con más acceso a internet tienen menor tasa de natalidad. El color, que viene de la tabla de regiones, muestra que África se concentra en el extremo de alta natalidad y poco acceso, y Europa en el opuesto. Este gráfico solo es posible gracias al cruce: la región no estaba en el archivo CSV.
+
+El segundo gráfico cambia el eje vertical por el grupo de ingresos, que es una categoría.
+
+```r
+# Penetración de internet por grupo de ingresos
+ggplot(data = dataFrame3, aes(x = CantPersonas.Internet, y = Grupo.Ingresos, size = 2, color = Region)) +
+  geom_point()
+```
+
+<img
+	src="/inacap/ti3v61/images/clase10a-05.png"
+	alt="Gráfico de puntos por grupo de ingresos: los países de ingreso alto tienen mayor acceso a internet y los de ingreso bajo, menor"
+	style={{ display: 'block', margin: '0 auto', width: '80%', background: '#fff' }}
+/>
+
+A mayor nivel de ingresos, mayor acceso a internet: los países de ingreso bajo no pasan del 20 %, mientras que casi todos los de ingreso alto superan el 45 %.
+
+:::callout[Sobre `size = 2`]{type="note"}
+Dentro de `aes()`, `size = 2` no fija el tamaño de los puntos: `ggplot2` lo interpreta como una variable más y por eso agrega la leyenda «size» que se ve en ambos gráficos. Para fijar el tamaño se escribe fuera de `aes()`, en `geom_point(size = 2)`.
+:::

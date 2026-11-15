@@ -1,0 +1,251 @@
+# Regresión lineal
+
+**Material:**
+
+- [Cuaderno original (.ipynb)](/inacap/ti3v61/docs/clase11b.ipynb)
+- [datos_compras.csv](/inacap/ti3v61/data/datos_compras.csv)
+
+La [correlación](/inacap/ti3v61/clase10b) dice qué tan relacionadas están dos variables. La **regresión lineal** va un paso más allá: busca la recta que mejor describe esa relación, y con ella permite **predecir** el valor de una variable a partir de otras.
+
+La variable que se quiere predecir se llama **respuesta**, y las que se usan para predecirla, **explicativas** o covariables.
+
+## 1. Los datos
+
+El archivo `datos_compras.csv` tiene 99 ventas de teléfonos, con la fecha, el producto, la cantidad vendida, el precio unitario y el total de la venta.
+
+```r
+library(ggplot2)
+```
+
+A diferencia del archivo del [caso práctico](/inacap/ti3v61/clase10a), este no viene en el formato que `read.csv()` espera por defecto, así que hay que indicarle:
+
+- `header = TRUE`: la primera línea contiene los nombres de las columnas.
+- `sep = ";"`: las columnas están separadas por punto y coma, no por coma.
+- `fileEncoding = "Windows-1252"`: la codificación del archivo, para que lea bien los caracteres especiales.
+
+```r
+Total <- read.csv("datos_compras.csv", header = TRUE, row.names = NULL, sep = ";", fileEncoding = "Windows-1252")
+```
+
+:::callout[Ruta del archivo]{type="info"}
+En Google Colab, los archivos que se suben quedan en la carpeta `/content/`, y la ruta es `'/content/datos_compras.csv'`. Fuera de Colab, si el archivo está en el directorio de trabajo, basta con el nombre.
+:::
+
+`head()` acepta la cantidad de filas a mostrar.
+
+```r
+head(Total, 5)
+```
+
+```terminal
+       fecha           producto cantidad precio total
+1 01/01/2014 Samsung Galaxy A20        4    263  1052
+2 02/01/2014    BLU Advance 5.0        2    330   660
+3 02/01/2014 Samsung Galaxy S69        1    324   324
+4 02/01/2014 Samsung Galaxy S69        2    324   648
+5 02/01/2014  Samsung Galaxy J7        4    154   616
+```
+
+## 2. Un modelo con una variable
+
+`lm()` (*linear model*) ajusta una regresión lineal. La relación se escribe como una **fórmula**: a la izquierda de `~` va la variable respuesta y a la derecha las explicativas. `total ~ precio` se lee «el total en función del precio».
+
+```r
+mod_lm1 <- lm(formula = total ~ precio, data = Total)
+```
+
+Al imprimir el modelo aparecen sus **coeficientes**.
+
+```r
+mod_lm1
+```
+
+```terminal
+
+Call:
+lm(formula = total ~ precio, data = Total)
+
+Coefficients:
+(Intercept)       precio  
+    472.238        1.824
+```
+
+Los coeficientes definen la recta:
+
+$$
+\text{total} = 472{,}238 + 1{,}824 \cdot \text{precio}
+$$
+
+- El **intercepto** (`(Intercept)`) es el valor de la recta cuando el precio es cero.
+- El coeficiente de `precio` es la **pendiente**: por cada unidad que sube el precio, el total estimado sube 1,824.
+
+### Resumen del modelo
+
+`summary()` entrega el detalle del ajuste.
+
+```r
+summary(mod_lm1)
+```
+
+```terminal
+
+Call:
+lm(formula = total ~ precio, data = Total)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1257.6  -426.1  -392.7   -84.2  6105.1 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 472.2377   232.8882   2.028 0.045329 *  
+precio        1.8240     0.4862   3.751 0.000299 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1271 on 97 degrees of freedom
+Multiple R-squared:  0.1267,	Adjusted R-squared:  0.1177 
+F-statistic: 14.07 on 1 and 97 DF,  p-value: 0.0002993
+```
+
+Del resumen se puede leer lo siguiente:
+
+:::table{#tabla01 caption="Partes del resumen de un modelo lineal" layout="mixed" widths="220px,auto"}
+| Sección | Qué muestra |
+| --- | --- |
+| **Residuals** | Estadísticos de posición de los residuos, es decir, de las diferencias entre cada valor real y el que predice el modelo |
+| **Coefficients** | Los coeficientes estimados (`Estimate`), su error estándar (`Std. Error`), el estadístico t (`t value`), con el que se evalúa si el coeficiente es significativo, y el valor p de esa prueba (`Pr(>\|t\|)`) |
+| **Residual standard error** | Error estándar del ajuste: la raíz cuadrada del error cuadrático medio, penalizado por los grados de libertad |
+| **Multiple R-squared** | Porcentaje de la varianza de la respuesta que explica el modelo |
+| **Adjusted R-squared** | Versión penalizada del anterior, que toma en cuenta posibles sobreajustes del modelo |
+| **F-statistic** | Estadístico de la prueba F de Fisher, que evalúa si el modelo en su conjunto es significativo |
+:::
+
+Un coeficiente se considera **significativo** cuando su valor p es menor que 0,05, el nivel de significancia habitual. Los asteriscos lo indican de un vistazo: mientras más asteriscos, menor el valor p.
+
+En este modelo:
+
+- El coeficiente de `precio` tiene un valor p de 0,0003: es significativo. El precio sí se relaciona con el total.
+- El **R cuadrado** es 0,1267: el precio explica apenas un 12,7 % de la variación del total. El modelo es significativo, pero predice mal.
+- Los residuos confirman que hay ventas que el modelo no logra describir: el mayor es de 6105, una venta cuyo total real superó en esa cantidad a la predicción.
+
+## 3. Un modelo con dos variables
+
+Las variables explicativas se suman en la fórmula con `+`. El segundo modelo agrega la cantidad vendida.
+
+```r
+#names(Total)
+
+mod_lm2 <- lm(total ~ cantidad + precio, data = Total)
+
+mod_lm2
+```
+
+```terminal
+
+Call:
+lm(formula = total ~ cantidad + precio, data = Total)
+
+Coefficients:
+(Intercept)     cantidad       precio  
+   -678.717      295.101        2.286
+```
+
+$$
+\text{total} = -678{,}717 + 295{,}101 \cdot \text{cantidad} + 2{,}286 \cdot \text{precio}
+$$
+
+Cada coeficiente indica cuánto cambia el total estimado cuando esa variable sube una unidad y la otra se mantiene fija: 295,1 por cada teléfono adicional y 2,29 por cada unidad de precio.
+
+## 4. Predecir con `predict()`
+
+`predict()` aplica un modelo a datos nuevos. Recibe el modelo y un *data frame* con los valores de las variables explicativas, que deben llamarse igual que en el modelo.
+
+Con el segundo modelo, para una venta de 4 teléfonos a un precio de 263:
+
+```r
+test <- data.frame(precio = 263, cantidad = 4)
+predict(mod_lm2, test)
+```
+
+```terminal
+       1 
+1102.991
+```
+
+Con el primer modelo, que solo conoce el precio:
+
+```r
+test <- data.frame(precio = 263)
+predict(mod_lm1, test)
+```
+
+```terminal
+       1 
+951.9613
+```
+
+Esos valores son los de la primera fila de la tabla, cuyo total real es 1052. El modelo con dos variables se equivoca por 51 y el de una variable por 100.
+
+## 5. Graficar la recta ajustada
+
+¿Cómo se agrega la recta del modelo al gráfico de dispersión? Con `geom_line()`, usando como altura los valores que predice el modelo. Cuando a `predict()` no se le entregan datos nuevos, devuelve los valores ajustados para los mismos datos con que se entrenó el modelo.
+
+```r
+ggplot(Total) +
+  aes(x = precio, y = total) +
+  geom_point() +
+  geom_line(aes(x = precio, y = predict(mod_lm1)), col = "red")
+```
+
+<img
+	src="/inacap/ti3v61/images/clase11b-01.png"
+	alt="Gráfico de dispersión de precio contra total, con una recta roja ascendente que deja muchos puntos lejos"
+	style={{ display: 'block', margin: '0 auto', width: '70%', background: '#fff' }}
+/>
+
+La recta sube, pero muchos puntos quedan lejos de ella, sobre todo las ventas de total alto con precios bajos. Es lo que anticipaba el R cuadrado de 0,13.
+
+¿Y si se incluyen las demás covariables? Se repite el gráfico con el segundo modelo.
+
+```r
+ggplot(Total) +
+  aes(x = precio, y = total) +
+  geom_point() +
+  geom_line(aes(x = precio, y = predict(mod_lm2)), col = "red")
+```
+
+<img
+	src="/inacap/ti3v61/images/clase11b-02.png"
+	alt="El mismo gráfico con las predicciones del segundo modelo: la línea roja zigzaguea siguiendo de cerca los puntos"
+	style={{ display: 'block', margin: '0 auto', width: '70%', background: '#fff' }}
+/>
+
+La línea ya no es una recta sino un zigzag. No es un error: el segundo modelo depende también de la cantidad, y el gráfico solo tiene el precio en el eje horizontal. Dos ventas con el mismo precio y distinta cantidad tienen predicciones distintas, y la línea salta entre ellas. Lo importante es que ahora pasa mucho más cerca de los puntos.
+
+:::callout[Por qué mejora tanto]{type="tip"}
+En esta tabla, el total de cada venta es exactamente la cantidad por el precio. Una regresión lineal no multiplica variables, las suma, así que no puede reproducir esa relación de forma exacta, pero al conocer la cantidad se acerca mucho más que cuando solo ve el precio.
+:::
+
+## 6. Intervalos de confianza
+
+Los coeficientes son estimaciones hechas a partir de una muestra. `confint()` entrega un **intervalo de confianza** para cada uno: el rango donde se espera que esté el valor real, con el nivel de confianza indicado en `level`.
+
+```r
+confint(mod_lm2, level = 0.95)
+```
+
+```terminal
+                  2.5 %     97.5 %
+(Intercept) -831.856904 -525.57728
+cantidad     276.859847  313.34277
+precio         2.001757    2.57089
+```
+
+Las columnas `2.5 %` y `97.5 %` son los límites inferior y superior del intervalo del 95 %. Cada fila es un coeficiente del modelo:
+
+- **Intercepto:** entre −831,86 y −525,58.
+- **Cantidad:** entre 276,86 y 313,34. Con un 95 % de confianza, cada teléfono adicional aumenta el total entre 277 y 313.
+- **Precio:** entre 2,00 y 2,57. Cada unidad adicional de precio aumenta el total entre 2,00 y 2,57.
+
+Los intervalos permiten ver no solo el efecto estimado de cada variable, sino también la precisión de esa estimación: mientras más estrecho el intervalo, más precisa es. Además, ninguno de los tres incluye el cero, lo que indica que los tres coeficientes son significativos.

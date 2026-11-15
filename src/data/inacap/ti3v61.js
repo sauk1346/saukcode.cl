@@ -186,6 +186,14 @@ const courseData = {
           href: 'clase08a'
         },
         {
+          text: 'Vista general de R',
+          href: 'clase08b'
+        },
+        {
+          text: 'Ejercicios de repaso',
+          href: 'clase08c'
+        },
+        {
           text: 'Libro: R para principiantes (J. B. Mendoza)',
           href: 'https://bookdown.org/jboscomendoza/r-principiantes4/'
         },
@@ -201,9 +209,17 @@ const courseData = {
       date: 'Lun 16, Nov 2026', 
       description: [
         {
-          text: '',
-          href: ''
-        }
+          text: 'Matrices, valores especiales y texto',
+          href: 'clase09a'
+        },
+        {
+          text: 'Vista general de R (continuación)',
+          href: 'clase09b'
+        },
+        {
+          text: 'Condicionales y ciclos',
+          href: 'clase09c'
+        },
       ]
     },
     { 
@@ -212,9 +228,17 @@ const courseData = {
       date: 'Jue 19, Nov 2026', 
       description: [
         {
-          text: '',
-          href: ''
-        }
+          text: 'Caso práctico: matrices, gráficos y cruce de tablas',
+          href: 'clase10a'
+        },
+        {
+          text: 'Estadística descriptiva y correlación',
+          href: 'clase10b'
+        },
+        {
+          text: 'Análisis descriptivo con R',
+          href: 'clase10c'
+        },
       ]
     },
     { 
@@ -223,9 +247,17 @@ const courseData = {
       date: 'Lun 23, Nov 2026', 
       description: [
         {
-          text: '',
-          href: ''
-        }
+          text: 'Tarea: análisis descriptivo de mtcars',
+          href: 'clase11a'
+        },
+        {
+          text: 'Regresión lineal',
+          href: 'clase11b'
+        },
+        {
+          text: 'Tarea: análisis gráfico de tenistas chilenos',
+          href: 'clase11c'
+        },
       ]
     },
     { 

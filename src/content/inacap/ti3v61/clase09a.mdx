@@ -1,0 +1,813 @@
+# Matrices, valores especiales y texto
+
+**Material:** [Cuaderno original (.ipynb)](/inacap/ti3v61/docs/clase09a.ipynb)
+
+Segunda clase de R. Se pasa de los vectores a las **matrices**, se revisan los valores especiales con que R representa datos faltantes o resultados indefinidos, y se ven las primeras funciones para trabajar con texto. Al final hay un repaso corto de la [primera clase](/inacap/ti3v61/clase08a).
+
+## 1. Crear una matriz
+
+Una **matriz** es un arreglo de dos dimensiones, con filas y columnas, que guarda datos de un mismo tipo. Se crea con `matrix()`, indicando los valores y la cantidad de filas (`nrow`) y de columnas (`ncol`).
+
+Con `byrow = TRUE` los valores se van colocando **por filas**: primero se completa la fila 1, luego la 2.
+
+```r
+A <- matrix(c(1, 5, 3, 2, 1, 1), nrow = 2, ncol = 3, byrow = TRUE)
+A
+```
+
+```terminal
+     [,1] [,2] [,3]
+[1,]    1    5    3
+[2,]    2    1    1
+```
+
+En la salida, `[1,]` identifica la fila 1 y `[,1]` la columna 1.
+
+## 2. Unir vectores y matrices
+
+Se crean dos vectores: uno de largo 2, que calza como columna de `A`, y otro de largo 3, que calza como fila.
+
+```r
+c1 <- c(9, 10)
+f1 <- c(7, 8, 9)
+c1; f1
+```
+
+```terminal
+[1]  9 10
+[1] 7 8 9
+```
+
+Las dos instrucciones también se pueden escribir en líneas separadas:
+
+```r
+c1 <- c(9, 10)
+f1 <- c(7, 8, 9)
+c1
+f1
+```
+
+```terminal
+[1]  9 10
+[1] 7 8 9
+```
+
+`cbind()` une **por columnas**: agrega `c1` como una columna nueva. La columna conserva el nombre del vector.
+
+```r
+A; c1
+cbind(A, c1)
+```
+
+```terminal
+     [,1] [,2] [,3]
+[1,]    1    5    3
+[2,]    2    1    1
+[1]  9 10
+           c1
+[1,] 1 5 3  9
+[2,] 2 1 1 10
+```
+
+`cbind()` devuelve una matriz nueva, pero no modifica `A`. Para conservar el resultado hay que asignarlo:
+
+```r
+A <- cbind(A, c1)
+A
+```
+
+```terminal
+           c1
+[1,] 1 5 3  9
+[2,] 2 1 1 10
+```
+
+`rbind()` une **por filas**. Ahora `A` tiene 4 columnas y `c1` solo 2 valores; R **recicla** el vector, es decir, lo repite hasta completar la fila.
+
+```r
+f1
+rbind(A, c1)
+```
+
+```terminal
+[1] 7 8 9
+          c1
+   1  5 3  9
+   2  1 1 10
+c1 9 10 9 10
+```
+
+### El reciclaje puede esconder errores
+
+Para los ejemplos que siguen se vuelve a definir `A` con los mismos valores, pero con `byrow = FALSE`: ahora se colocan **por columnas**, primero la columna 1, luego la 2 y después la 3.
+
+```r
+A <- matrix(c(1, 5, 3, 2, 1, 1), nrow = 2, ncol = 3, byrow = FALSE)
+A
+```
+
+```terminal
+     [,1] [,2] [,3]
+[1,]    1    3    1
+[2,]    5    2    1
+```
+
+Si los largos no calzan de forma exacta, R igual recicla, pero avisa con una advertencia. Aquí la matriz queda con 7 columnas y `f1` tiene 3 valores: se repite dos veces completas y sobra un 7.
+
+```r
+c1; f1
+rbind(cbind(A, c1, c1, c1, c1), f1)
+```
+
+```terminal
+[1]  9 10
+[1] 7 8 9
+Warning message in rbind(cbind(A, c1, c1, c1, c1), f1):
+“number of columns of result is not a multiple of vector length (arg 2)”
+         c1 c1 c1 c1
+   1 3 1  9  9  9  9
+   5 2 1 10 10 10 10
+f1 7 8 9  7  8  9  7
+```
+
+Entre matrices no hay reciclaje: para unirlas por filas deben tener la misma cantidad de columnas.
+
+```r
+u1 <- cbind(A, c1)   # 2x4
+u2 <- rbind(A, f1)   # 3x3
+u1; u2
+```
+
+```terminal
+           c1
+[1,] 1 3 1  9
+[2,] 5 2 1 10
+   [,1] [,2] [,3]
+      1    3    1
+      5    2    1
+f1    7    8    9
+```
+
+```r
+rbind(u1, u2)
+```
+
+```terminal
+Error in rbind(u1, u2): number of columns of matrices must match (see arg 2)
+```
+
+## 3. Matriz diagonal, dimensiones y tipo
+
+`diag()` crea una matriz diagonal: los valores van en la diagonal y el resto son ceros.
+
+```r
+diag(c(1, 2, 3, 4, 5))
+```
+
+```terminal
+     [,1] [,2] [,3] [,4] [,5]
+[1,]    1    0    0    0    0
+[2,]    0    2    0    0    0
+[3,]    0    0    3    0    0
+[4,]    0    0    0    4    0
+[5,]    0    0    0    0    5
+```
+
+`dim()` devuelve la cantidad de filas y de columnas, en ese orden.
+
+```r
+dim(A)
+```
+
+```terminal
+[1] 2 3
+```
+
+Como el resultado es un vector, se puede pedir cada valor por separado: el primero son las filas y el segundo las columnas.
+
+```r
+dim(A)[1]
+```
+
+```terminal
+[1] 2
+```
+
+```r
+dim(A)[2]
+```
+
+```terminal
+[1] 3
+```
+
+```r
+class(A)
+typeof(A)
+```
+
+```terminal
+[1] "matrix" "array"
+[1] "double"
+```
+
+## 4. Acceder y modificar elementos
+
+Con un solo índice, R recorre la matriz **por columnas**, como si fuera un vector largo. En `A`, ese orden es 1, 5, 3, 2, 1, 1, así que el segundo elemento es 5.
+
+```r
+A[2]
+```
+
+```terminal
+[1] 5
+```
+
+```r
+B <- matrix(c(1, 2, 3, 4, 5, 6, 7, 8, 9), nrow = 3, ncol = 3)
+```
+
+Cuando no se indica `byrow`, la matriz se llena por columnas.
+
+```r
+B
+```
+
+```terminal
+     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9
+```
+
+```r
+B[4]
+```
+
+```terminal
+[1] 4
+```
+
+Lo habitual es indicar **fila y columna**, separadas por coma.
+
+```r
+A[1, 2]
+```
+
+```terminal
+[1] 3
+```
+
+Si se deja vacío el lugar de la columna, se obtiene la fila completa.
+
+```r
+A[2, ]
+```
+
+```terminal
+[1] 5 2 1
+```
+
+Para modificar un elemento se le asigna un valor nuevo.
+
+```r
+A[2, 3] <- 9
+A
+```
+
+```terminal
+     [,1] [,2] [,3]
+[1,]    1    3    1
+[2,]    5    2    9
+```
+
+Una comparación se evalúa en cada casilla y devuelve una matriz lógica.
+
+```r
+A > 5
+```
+
+```terminal
+      [,1]  [,2]  [,3]
+[1,] FALSE FALSE FALSE
+[2,] FALSE FALSE  TRUE
+```
+
+## 5. Operaciones con matrices
+
+Las operaciones aritméticas con un número se aplican a cada casilla.
+
+```r
+A + 2
+```
+
+```terminal
+     [,1] [,2] [,3]
+[1,]    3    5    3
+[2,]    7    4   11
+```
+
+### Multiplicación matricial
+
+```r
+A; B
+```
+
+```terminal
+     [,1] [,2] [,3]
+[1,]    1    3    1
+[2,]    5    2    9
+     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9
+```
+
+El operador `%*%` es la multiplicación de matrices. Exige que la cantidad de columnas de la primera sea igual a la cantidad de filas de la segunda: `A` es de 2×3 y `B` de 3×3, así que el resultado es de 2×3.
+
+```r
+M1 <- A %*% B
+M1
+```
+
+```terminal
+     [,1] [,2] [,3]
+[1,]   10   25   40
+[2,]   36   84  132
+```
+
+El operador `*`, en cambio, multiplica casilla por casilla.
+
+```r
+A * A
+```
+
+```terminal
+     [,1] [,2] [,3]
+[1,]    1    9    1
+[2,]   25    4   81
+```
+
+`A %*% A` no se puede calcular: `A` tiene 3 columnas pero 2 filas, y las dimensiones no calzan.
+
+```r
+A %*% A
+```
+
+```terminal
+Error in A %*% A: non-conformable arguments
+```
+
+### Traspuesta, determinante e inversa
+
+`t()` entrega la **traspuesta**: las filas pasan a ser columnas.
+
+```r
+A; t(A)
+```
+
+```terminal
+     [,1] [,2] [,3]
+[1,]    1    3    1
+[2,]    5    2    9
+     [,1] [,2]
+[1,]    1    5
+[2,]    3    2
+[3,]    1    9
+```
+
+`det()` calcula el **determinante**, que solo existe para matrices cuadradas. `A` no lo es, así que da error.
+
+```r
+det(A)
+```
+
+```terminal
+Error in determinant.matrix(x, logarithm = TRUE, ...): 'x' must be a square matrix
+```
+
+```r
+C <- matrix(c(1, 2, 3, 4), nrow = 2, ncol = 2)
+C; det(C)
+```
+
+```terminal
+     [,1] [,2]
+[1,]    1    3
+[2,]    2    4
+[1] -2
+```
+
+`solve()` calcula la **inversa** de una matriz cuadrada.
+
+```r
+c2_inv <- solve(C)
+c2_inv
+```
+
+```terminal
+     [,1] [,2]
+[1,]   -2  1.5
+[2,]    1 -0.5
+```
+
+Una matriz multiplicada por su inversa da la matriz identidad.
+
+```r
+C %*% c2_inv
+```
+
+```terminal
+     [,1] [,2]
+[1,]    1    0
+[2,]    0    1
+```
+
+## 6. Comparaciones y valores especiales
+
+```r
+3 > 4
+```
+
+```terminal
+[1] FALSE
+```
+
+El doble signo igual, `==`, compara; un solo `=` asigna.
+
+```r
+3 == 3
+```
+
+```terminal
+[1] TRUE
+```
+
+Al comparar un número con un texto, R convierte el número a texto y compara `"3"` con `"a"`.
+
+```r
+3 == "a"
+```
+
+```terminal
+[1] FALSE
+```
+
+`NA` (*not available*) representa un **dato faltante**. Cualquier comparación con `NA` da `NA`: si no se conoce el valor, tampoco se puede saber si es igual a otro. Eso vale incluso entre dos `NA`.
+
+```r
+3 == NA
+```
+
+```terminal
+[1] NA
+```
+
+```r
+NA == NA
+```
+
+```terminal
+[1] NA
+```
+
+Por eso, para preguntar si un valor falta se usa `is.na()` y no `==`.
+
+```r
+is.na(3)
+```
+
+```terminal
+[1] FALSE
+```
+
+```r
+is.na(NA)
+```
+
+```terminal
+[1] TRUE
+```
+
+`NaN` (*not a number*) es el resultado de una operación indefinida; `is.na()` también lo considera faltante. `Inf` es infinito, que sí es un valor.
+
+```r
+is.na(NaN)
+```
+
+```terminal
+[1] TRUE
+```
+
+```r
+is.na(Inf)
+```
+
+```terminal
+[1] FALSE
+```
+
+```r
+Inf > 10000000000
+```
+
+```terminal
+[1] TRUE
+```
+
+Dividir por cero no es un error en R: da infinito, con el signo del numerador.
+
+```r
+1/0
+```
+
+```terminal
+[1] Inf
+```
+
+```r
+-1/0
+```
+
+```terminal
+[1] -Inf
+```
+
+Una operación con un dato faltante da un dato faltante.
+
+```r
+0/NA
+```
+
+```terminal
+[1] NA
+```
+
+```r
+Inf + Inf
+```
+
+```terminal
+[1] Inf
+```
+
+Las operaciones que no tienen un resultado definido dan `NaN`.
+
+```r
+0/0
+```
+
+```terminal
+[1] NaN
+```
+
+```r
+Inf * 0
+```
+
+```terminal
+[1] NaN
+```
+
+## 7. Operaciones con vectores
+
+Las operaciones entre vectores se hacen elemento por elemento.
+
+```r
+x <- c(4, 16, 9)
+c(1, 2, 3) + c(1, 1, 4)
+```
+
+```terminal
+[1] 2 3 7
+```
+
+Las funciones también: `sqrt()` calcula la raíz de cada elemento.
+
+```r
+sqrt(x)
+```
+
+```terminal
+[1] 2 4 3
+```
+
+## 8. Funciones para texto
+
+`nchar()` cuenta los caracteres.
+
+```r
+nchar("hola")
+```
+
+```terminal
+[1] 4
+```
+
+`substr()` extrae un trozo del texto, entre las posiciones `start` y `stop`. Los espacios cuentan como caracteres.
+
+```r
+substr("Hola soy miguel", start = 2, stop = 6)
+```
+
+```terminal
+[1] "ola s"
+```
+
+Las funciones se pueden anidar: la de más adentro se ejecuta primero. Aquí `substr()` extrae `"02"`, `nchar()` cuenta sus 2 caracteres y `as.numeric()` convierte el resultado a número.
+
+```r
+as.numeric(nchar(substr("02_miguel", 1, 2)))
+```
+
+```terminal
+[1] 2
+```
+
+Para convertir a número el texto extraído, `as.numeric()` se aplica directamente sobre él: `as.numeric(substr("02_miguel", 1, 2))` convierte `"02"` en el número 2.
+
+`grepl()` busca un texto dentro de otro y responde `TRUE` o `FALSE`.
+
+```r
+grepl("ab", "sabcdf")
+```
+
+```terminal
+[1] TRUE
+```
+
+`gsub()` busca un texto y lo reemplaza por otro. Aquí quita los guiones de dos fechas.
+
+```r
+fecha <- gsub("-", "", c("2019-05-15", "2019-05-09"))
+fecha
+```
+
+```terminal
+[1] "20190515" "20190509"
+```
+
+El resultado sigue siendo texto, aunque parezca un número.
+
+```r
+typeof(fecha)
+```
+
+```terminal
+[1] "character"
+```
+
+### Matrices de texto
+
+Una matriz también puede guardar texto. En la salida, las comillas indican que los valores son de tipo carácter.
+
+```r
+c("1", "2", "3")
+P <- matrix(c("1", "2", "3"), nrow = 1, ncol = 3)
+P
+```
+
+```terminal
+[1] "1" "2" "3"
+     [,1] [,2] [,3]
+[1,] "1"  "2"  "3"
+```
+
+Como todos los valores de una matriz deben ser del mismo tipo, al asignar el número 7 R lo convierte en el texto `"7"`.
+
+```r
+P[1, 3] <- 7
+P
+```
+
+```terminal
+     [,1] [,2] [,3]
+[1,] "1"  "2"  "7"
+```
+
+`length()` cuenta todos los elementos de la matriz y `dim()` entrega sus filas y columnas.
+
+```r
+length(P)
+```
+
+```terminal
+[1] 3
+```
+
+```r
+dim(P)
+```
+
+```terminal
+[1] 1 3
+```
+
+## 9. Repaso de la primera clase
+
+```r
+sqrt(5)
+```
+
+```terminal
+[1] 2.236068
+```
+
+```r
+factorial(7)
+```
+
+```terminal
+[1] 5040
+```
+
+```r
+abs(-4)
+```
+
+```terminal
+[1] 4
+```
+
+```r
+f <- TRUE
+rm(f)
+```
+
+Los nombres de un vector siempre son texto, aunque se escriban como números.
+
+```r
+y <- c(1, 2)
+names(y) <- c(4, 6)
+y
+```
+
+```terminal
+4 6 
+1 2
+```
+
+```r
+which.max(y)
+```
+
+```terminal
+6 
+2
+```
+
+El máximo está en la posición 2, cuyo nombre es `"6"`.
+
+```r
+2 %in% y
+```
+
+```terminal
+[1] TRUE
+```
+
+```r
+rep("lala", 20)
+```
+
+```terminal
+ [1] "lala" "lala" "lala" "lala" "lala" "lala" "lala" "lala" "lala" "lala"
+[11] "lala" "lala" "lala" "lala" "lala" "lala" "lala" "lala" "lala" "lala"
+```
+
+```r
+seq(1, 10, 1)
+```
+
+```terminal
+ [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+Si el incremento va en dirección contraria al término, R da un error: no se puede llegar de 1 a 10 restando.
+
+```r
+seq(1, 10, -1)
+```
+
+```terminal
+Error in seq.default(1, 10, -1): wrong sign in 'by' argument
+```
+
+```r
+w1 <- runif(n = 10, min = 0, max = 100)
+w1
+```
+
+```terminal
+ [1] 23.10843 58.39097 89.94026 37.80956 87.71402 13.23537 93.34333 23.52358
+ [9] 24.48540 31.98796
+```
+
+```r
+mean(w1); median(w1)
+```
+
+```terminal
+[1] 48.35389
+[1] 34.89876
+```

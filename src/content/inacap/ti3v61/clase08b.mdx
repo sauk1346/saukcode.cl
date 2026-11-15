@@ -1,0 +1,624 @@
+# Vista general de R
+
+**Material:** [Cuaderno original (.ipynb)](/inacap/ti3v61/docs/clase08b.ipynb)
+
+Los mismos temas de la [primera clase](/inacap/ti3v61/clase08a), con más explicación y otros ejemplos: R como calculadora, variables y tipos de datos, y vectores.
+
+## Conociendo R
+
+**R** es un lenguaje funcional orientado principalmente al análisis de datos. Fue desarrollado por Ross Ihaka y Robert Gentleman; la inicial de sus nombres dio origen al nombre del lenguaje.
+
+Hay varias maneras de ejecutar R:
+
+- **De manera local:** descargando la última versión, disponible para Windows, Linux y macOS, desde el repositorio [CRAN](https://cran.r-project.org/).
+- **En cuadernos en línea** (*notebooks*), como Google Colab, que ejecutan R de manera remota sin necesidad de instalarlo. En un cuaderno se puede intercalar texto con celdas de código.
+
+### Un primer vistazo
+
+Antes de entrar en detalle, tres instrucciones muestran para qué sirve R. `iris` es un conjunto de datos que viene incluido: mide el sépalo y el pétalo de 150 flores de tres especies. `summary()` resume cada columna.
+
+```r
+summary(iris)
+```
+
+```terminal
+  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+ Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+ 1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+ Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+ Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+ 3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+ Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+       Species  
+ setosa    :50  
+ versicolor:50  
+ virginica :50
+```
+
+El signo `$` selecciona una columna. Sobre el largo del sépalo se calculan la media y la desviación estándar, y `hist()` dibuja su histograma.
+
+```r
+mean(iris$Sepal.Length)
+sd(iris$Sepal.Length)
+hist(iris$Sepal.Length)
+```
+
+```terminal
+[1] 5.843333
+[1] 0.8280661
+```
+
+<img
+	src="/inacap/ti3v61/images/clase08b-histograma.png"
+	alt="Histograma del largo del sépalo en iris: la mayor frecuencia está entre 5,5 y 6,5"
+	style={{ display: 'block', margin: '0 auto', width: '70%', background: '#fff' }}
+/>
+
+`boxplot()` dibuja el diagrama de caja de la misma variable.
+
+```r
+boxplot(iris$Sepal.Length)
+```
+
+<img
+	src="/inacap/ti3v61/images/clase08b-caja.png"
+	alt="Diagrama de caja del largo del sépalo en iris"
+	style={{ display: 'block', margin: '0 auto', width: '70%', background: '#fff' }}
+/>
+
+## 1. R, una gran calculadora
+
+En R se pueden ejecutar directamente en la consola operaciones aritméticas simples, junto con una gran cantidad de funciones disponibles por defecto.
+
+:::table{#tabla01 caption="Operadores y funciones matemáticas" layout="mixed" widths="260px,auto"}
+| Operador o función | Qué calcula |
+| --- | --- |
+| `+`, `-`, `/`, `*`, `^` | Suma, resta, división, multiplicación y potencia |
+| `%%` | Resto de la división |
+| `%*%` | Multiplicación de matrices |
+| `log()` | Logaritmo natural |
+| `sin()`, `cos()`, `tan()`, `asin()`, `acos()`, `atan()` | Funciones trigonométricas |
+| `exp()` | Función exponencial |
+| `sqrt()` | Raíz cuadrada |
+| `abs()` | Valor absoluto |
+| `floor()` | Parte entera |
+| `trunc()` | Truncar |
+| `round(x, n)` | Redondear `x` a `n` decimales |
+| `factorial()` | Factorial |
+| `choose(n, k)` | Número combinatorio |
+:::
+
+```r
+# Calcula la raíz cuadrada
+sqrt(4)
+```
+
+```terminal
+[1] 2
+```
+
+Las líneas que comienzan con `#` son comentarios: R no las ejecuta.
+
+```r
+factorial(3)
+abs(-3)
+choose(3, 2)
+```
+
+```terminal
+[1] 6
+[1] 3
+[1] 3
+```
+
+`choose(3, 2)` cuenta de cuántas formas se pueden elegir 2 elementos de un total de 3.
+
+## 2. Variables y tipos de datos
+
+En R se pueden guardar distintos tipos de datos u objetos en símbolos llamados **variables** (en R todo es, en esencia, un objeto). La manera más sencilla de asignar un objeto a una variable es con `<-`.
+
+Los tipos de datos más usados son:
+
+- `integer` (entero)
+- `numeric` (número)
+- `logical` (valor lógico)
+- `character` (texto)
+- `factor` (categoría)
+
+A diferencia de otros lenguajes, no hace falta declarar explícitamente el tipo de dato que guardará una variable: R lo deduce del valor.
+
+```r
+# Variable numérica
+x <- 4
+x
+```
+
+```terminal
+[1] 4
+```
+
+```r
+# Texto (character)
+x <- "a"
+y <- 'a'
+x; y
+x
+y
+```
+
+```terminal
+[1] "a"
+[1] "a"
+[1] "a"
+[1] "a"
+```
+
+```r
+# Valores lógicos
+x <- TRUE
+y <- TRUE
+
+# Conectores lógicos: & es «y», | es «o»
+x & y
+x | y
+
+3 > 2
+```
+
+```terminal
+[1] TRUE
+[1] TRUE
+[1] TRUE
+```
+
+### Las variables se copian por valor
+
+Al asignar una variable a otra, R copia el valor. Si después cambia la original, la copia no se actualiza.
+
+```r
+x <- 5
+y <- x
+y
+```
+
+```terminal
+[1] 5
+```
+
+```r
+x <- 6
+x
+```
+
+```terminal
+[1] 6
+```
+
+```r
+# ¿Se actualiza y?
+y
+```
+
+```terminal
+[1] 5
+```
+
+### Tipo y clase de una variable
+
+`typeof()` muestra el tipo de dato almacenado y `class()` la clase del objeto.
+
+```r
+x <- 78
+typeof(x)
+class(x)
+```
+
+```terminal
+[1] "double"
+[1] "numeric"
+```
+
+### Fechas
+
+Una fecha escrita entre comillas es texto.
+
+```r
+fecha_string <- "2019-05-08"
+fecha_string
+
+typeof(fecha_string)
+```
+
+```terminal
+[1] "2019-05-08"
+[1] "character"
+```
+
+`as.Date()` la convierte en una fecha.
+
+```r
+fecha_date <- as.Date(fecha_string)
+fecha_date
+class(fecha_date)
+#year(fecha_date)
+```
+
+```terminal
+[1] "2019-05-08"
+[1] "Date"
+```
+
+La última línea está comentada porque `year()`, que extrae el año, no viene con R: pertenece al paquete `lubridate`.
+
+### Observaciones
+
+1. Cada vez que se define una variable en R, queda almacenada en memoria. Una manera de limpiar las variables definidas es con la función `rm()`.
+2. Para acceder a la documentación de una función o de una librería se escribe `?` antes de su nombre, o se usa `help()`.
+3. Cada vez que se define una variable con un nombre que ya existe, simplemente se actualiza su valor.
+
+```r
+# Elimina una de las variables creadas antes
+rm(x)
+```
+
+Como `x` ya no existe, consultarla produce un error, y R detiene ahí la ejecución de la celda: las líneas siguientes no llegan a ejecutarse.
+
+```r
+x
+fecha_date
+rm(fecha_date)
+fecha_date
+```
+
+```terminal
+Error in eval(expr, envir, enclos): object 'x' not found
+```
+
+## 3. Vectores
+
+En R, como en la mayoría de los lenguajes de programación, uno de los objetos más usuales para guardar información son los **vectores**: arreglos de una dimensión que almacenan un mismo tipo de dato en cada una de sus entradas.
+
+Todo vector se declara con la letra `c`, seguida de sus elementos entre paréntesis y separados por comas.
+
+```r
+v_pe <- c(1, 1, 2, 3, 5, 8, 13)
+v_pe
+class(v_pe)
+typeof(v_pe)
+```
+
+```terminal
+[1]  1  1  2  3  5  8 13
+[1] "numeric"
+[1] "double"
+```
+
+`names()` asigna un nombre a cada entrada, y también sirve para consultarlos.
+
+```r
+x <- c(1, 2, 4)
+names(x) <- c("a", "b", "c")
+names(x)
+x
+```
+
+```terminal
+[1] "a" "b" "c"
+a b c 
+1 2 4
+```
+
+`c` es la abreviación de *combine* (combinar): también une vectores.
+
+```r
+v_pe
+x
+
+c(x, v_pe)
+```
+
+```terminal
+[1]  1  1  2  3  5  8 13
+a b c 
+1 2 4
+ a  b  c                      
+ 1  2  4  1  1  2  3  5  8 13
+```
+
+Al combinar, cada elemento conserva su nombre si lo tenía; los demás quedan sin nombre.
+
+```r
+v1 <- c(400, 200, 1000)
+v2 <- c(450, 678)
+names(v2) <- c("uno", "dos")
+c(v1, v2)
+x <- c(20, 4, 6)
+c(v1, v2, x)
+```
+
+```terminal
+                uno  dos 
+ 400  200 1000  450  678
+                uno  dos                
+ 400  200 1000  450  678   20    4    6
+```
+
+### 3.1 Acceso a los elementos de un vector
+
+Se puede acceder a los elementos de un vector indicando la **posición** del elemento (las posiciones parten en 1), el **nombre** de la casilla que lo contiene, o mediante **condiciones lógicas** que devuelvan `TRUE` en la posición deseada.
+
+#### Por posición
+
+```r
+v1
+v1[2]
+```
+
+```terminal
+[1]  400  200 1000
+[1] 200
+```
+
+`3:5` es lo mismo que `c(3, 4, 5)`. En `v1[0:3]` se piden las posiciones 0, 1, 2 y 3; como la posición 0 no existe, R la ignora.
+
+```r
+v1[0:3]
+3:5
+```
+
+```terminal
+[1]  400  200 1000
+[1] 3 4 5
+```
+
+```r
+v1[c(1, 2)]
+v1[3]
+v1[3:3]
+v1[c(3)]
+```
+
+```terminal
+[1] 400 200
+[1] 1000
+[1] 1000
+[1] 1000
+```
+
+Los elementos de un vector se modifican reasignando valores.
+
+```r
+v1
+v1[3] <- 3000
+v1
+```
+
+```terminal
+[1]  400  200 1000
+[1]  400  200 3000
+```
+
+Se pueden modificar varias posiciones a la vez, con un mismo valor:
+
+```r
+v1[c(1, 2)] <- 90
+v1
+```
+
+```terminal
+[1]   90   90 3000
+```
+
+O con un valor distinto para cada posición:
+
+```r
+v1[c(1, 3)] <- c(100, 200)
+v1
+```
+
+```terminal
+[1] 100  90 200
+```
+
+#### Por nombre
+
+```r
+v2
+```
+
+```terminal
+uno dos 
+450 678
+```
+
+```r
+v2
+v2["uno"]
+v2["dos"]
+
+v2[c("uno", "dos")]
+```
+
+```terminal
+uno dos 
+450 678
+uno 
+450
+dos 
+678
+uno dos 
+450 678
+```
+
+#### Por condición lógica
+
+También se accede a los elementos de un vector con expresiones lógicas que devuelvan `TRUE` en la posición deseada. Para escribirlas sirven estos operadores y funciones:
+
+:::table{#tabla02 caption="Operadores y funciones para condiciones" layout="mixed" widths="260px,auto"}
+| Operador o función | Significado |
+| --- | --- |
+| `&`, `&&` | Conector «y» |
+| `\|`, `\|\|` | Conector «o» |
+| `==` | Igual |
+| `!` | Negación |
+| `!=` | Distinto |
+| `>`, `>=` | Mayor que, mayor o igual que |
+| `<`, `<=` | Menor que, menor o igual que |
+| `is.na()` | ¿Es `NA` (dato faltante)? |
+| `which()` | ¿En qué posiciones es verdadera la expresión? |
+| `which.min()`, `which.max()` | ¿En qué posición se alcanza el mínimo o el máximo? |
+| `%in%` | ¿Los elementos están en el otro vector? |
+:::
+
+```r
+v2
+v2 > 500
+
+v2[v2 > 500]
+```
+
+```terminal
+uno dos 
+450 678
+  uno   dos 
+FALSE  TRUE
+dos 
+678
+```
+
+`which.max()` devuelve la posición donde se alcanza el máximo; `which.min()`, la del mínimo.
+
+```r
+#?which.max
+
+which.max(v2)
+v2[which.max(v2)]
+```
+
+```terminal
+dos 
+  2
+dos 
+678
+```
+
+```r
+678 %in% v2
+
+c(34, 678) %in% v2
+```
+
+```terminal
+[1] TRUE
+[1] FALSE  TRUE
+```
+
+### 3.2 Secuencias
+
+En R se pueden generar de manera rápida y sencilla secuencias y guardarlas en un vector. Dos funciones para eso son `rep()` y `seq()`. Más adelante se verá cómo generar números aleatorios que sigan una distribución de interés.
+
+```r
+?rep
+```
+
+`rep()` repite un valor, de cualquier tipo de dato.
+
+```r
+v_lala <- rep("lala", 20)
+v_lala
+
+rep(TRUE, 10)
+rep(1, 3)
+```
+
+```terminal
+ [1] "lala" "lala" "lala" "lala" "lala" "lala" "lala" "lala" "lala" "lala"
+[11] "lala" "lala" "lala" "lala" "lala" "lala" "lala" "lala" "lala" "lala"
+ [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+[1] 1 1 1
+```
+
+`seq()` genera una secuencia desde un valor hasta otro, con un incremento. Los argumentos se pueden escribir en orden o con su nombre (`from`, `to`, `by`), en cuyo caso el orden no importa.
+
+```r
+#?seq
+
+seq(1, 10, 2)
+seq(to = 10, from = 1, by = 2)
+seq(10, 1, -2)
+```
+
+```terminal
+[1] 1 3 5 7 9
+[1] 1 3 5 7 9
+[1] 10  8  6  4  2
+```
+
+Para bajar de 10 a 1 el incremento debe ser negativo. Con un incremento positivo la secuencia no puede avanzar hacia el término, y R responde con un error:
+
+```r
+seq(10, 1, 2)
+```
+
+```terminal
+Error in seq.default(10, 1, 2): wrong sign in 'by' argument
+```
+
+```r
+?seq
+```
+
+El incremento puede ser decimal, con o sin el nombre `by`:
+
+```r
+seq(1, 10, by = 0.1)
+```
+
+```terminal
+ [1]  1.0  1.1  1.2  1.3  1.4  1.5  1.6  1.7  1.8  1.9  2.0  2.1  2.2  2.3  2.4
+[16]  2.5  2.6  2.7  2.8  2.9  3.0  3.1  3.2  3.3  3.4  3.5  3.6  3.7  3.8  3.9
+[31]  4.0  4.1  4.2  4.3  4.4  4.5  4.6  4.7  4.8  4.9  5.0  5.1  5.2  5.3  5.4
+[46]  5.5  5.6  5.7  5.8  5.9  6.0  6.1  6.2  6.3  6.4  6.5  6.6  6.7  6.8  6.9
+[61]  7.0  7.1  7.2  7.3  7.4  7.5  7.6  7.7  7.8  7.9  8.0  8.1  8.2  8.3  8.4
+[76]  8.5  8.6  8.7  8.8  8.9  9.0  9.1  9.2  9.3  9.4  9.5  9.6  9.7  9.8  9.9
+[91] 10.0
+```
+
+```r
+seq(1, 10, 0.1)
+```
+
+```terminal
+ [1]  1.0  1.1  1.2  1.3  1.4  1.5  1.6  1.7  1.8  1.9  2.0  2.1  2.2  2.3  2.4
+[16]  2.5  2.6  2.7  2.8  2.9  3.0  3.1  3.2  3.3  3.4  3.5  3.6  3.7  3.8  3.9
+[31]  4.0  4.1  4.2  4.3  4.4  4.5  4.6  4.7  4.8  4.9  5.0  5.1  5.2  5.3  5.4
+[46]  5.5  5.6  5.7  5.8  5.9  6.0  6.1  6.2  6.3  6.4  6.5  6.6  6.7  6.8  6.9
+[61]  7.0  7.1  7.2  7.3  7.4  7.5  7.6  7.7  7.8  7.9  8.0  8.1  8.2  8.3  8.4
+[76]  8.5  8.6  8.7  8.8  8.9  9.0  9.1  9.2  9.3  9.4  9.5  9.6  9.7  9.8  9.9
+[91] 10.0
+```
+
+Con `length.out` se indica cuántos valores se quieren, en lugar del incremento:
+
+```r
+seq(from = 1, to = 10, length.out = 10)
+```
+
+```terminal
+ [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+### 3.3 Un vector aleatorio
+
+`runif()` genera un vector de números al azar que siguen una distribución uniforme. Los valores cambian en cada ejecución.
+
+```r
+#?runif
+vector_uniforme <- runif(n = 10, min = 0, max = 100)
+vector_uniforme
+```
+
+```terminal
+ [1] 16.14459 83.33814 69.03540 23.42744 12.44768 31.16604 35.57940 43.79623
+ [9] 51.50037 95.13095
+```

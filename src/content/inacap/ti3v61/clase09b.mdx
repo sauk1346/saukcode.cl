@@ -1,0 +1,1358 @@
+# Vista general de R (continuación)
+
+**Material:** [Cuaderno original (.ipynb)](/inacap/ti3v61/docs/clase09b.ipynb)
+
+Continuación de la [vista general de R](/inacap/ti3v61/clase08b). Repasa con más explicación lo visto en la [segunda clase](/inacap/ti3v61/clase09a) (matrices, valores especiales y texto) y agrega tres temas nuevos: funciones vectorizadas, **listas** y ***data frames***. Termina con un mini taller que construye una tabla de datos paso a paso y la guarda en un archivo.
+
+## 3.2 Matrices
+
+En R, como en otros lenguajes de programación, una **matriz** es un arreglo de dos dimensiones, donde las entradas horizontales son las filas y las verticales las columnas. Se puede imaginar como un conjunto de vectores del mismo largo, puestos como columnas o como filas.
+
+- **¿Qué se guarda en una matriz?** Solo datos de un mismo tipo.
+- **¿Cómo se declara?** De varias maneras: indicando los elementos que la componen, o combinando vectores como filas o columnas.
+- **¿Cómo se accede a sus elementos?** Indicando la posición de la fila, seguida de la posición de la columna.
+
+```r
+?matrix
+
+A <- matrix(c(1, 5, 3, 2, 1, 1)
+            , nrow = 2
+            , ncol = 3
+            , byrow = FALSE
+           )
+A
+```
+
+```terminal
+     [,1] [,2] [,3]
+[1,]    1    3    1
+[2,]    5    2    1
+```
+
+Se generan dos vectores. Para mostrar ambos objetos en una línea, las instrucciones se separan con `;`.
+
+```r
+c1 <- c(9, 10)
+f1 <- c(7, 8, 9)
+
+c1; f1
+```
+
+```terminal
+[1]  9 10
+[1] 7 8 9
+```
+
+`cbind()` une vectores como columnas y `rbind()` los une como filas.
+
+```r
+#?cbind
+
+cbind(A, c1)
+rbind(A, f1)
+```
+
+```terminal
+           c1
+[1,] 1 3 1  9
+[2,] 5 2 1 10
+   [,1] [,2] [,3]
+      1    3    1
+      5    2    1
+f1    7    8    9
+```
+
+Al combinar ambas operaciones hay que tener cuidado: R **recicla** valores. La fila `f1` tiene 3 valores y la matriz 7 columnas, así que R repite el vector para completar la fila; el último 7 no debería estar ahí.
+
+```r
+rbind(cbind(A, c1, c1, c1, c1), f1)
+```
+
+```terminal
+Warning message in rbind(cbind(A, c1, c1, c1, c1), f1):
+“number of columns of result is not a multiple of vector length (arg 2)”
+         c1 c1 c1 c1
+   1 3 1  9  9  9  9
+   5 2 1 10 10 10 10
+f1 7 8 9  7  8  9  7
+```
+
+```r
+u1 <- cbind(A, c1)   # 2x4
+u2 <- rbind(A, f1)   # 3x3
+u1; u2
+```
+
+```terminal
+           c1
+[1,] 1 3 1  9
+[2,] 5 2 1 10
+   [,1] [,2] [,3]
+      1    3    1
+      5    2    1
+f1    7    8    9
+```
+
+Dos matrices solo se pueden unir por filas si tienen la misma cantidad de columnas.
+
+```r
+rbind(u1, u2)
+```
+
+```terminal
+Error in rbind(u1, u2): number of columns of matrices must match (see arg 2)
+```
+
+`diag()` define matrices diagonales.
+
+```r
+#?diag
+diag(c(1, 2, 3, 4, 5))
+```
+
+```terminal
+     [,1] [,2] [,3] [,4] [,5]
+[1,]    1    0    0    0    0
+[2,]    0    2    0    0    0
+[3,]    0    0    3    0    0
+[4,]    0    0    0    4    0
+[5,]    0    0    0    0    5
+```
+
+### Dimensión y tipo
+
+```r
+A
+```
+
+```terminal
+     [,1] [,2] [,3]
+[1,]    1    3    1
+[2,]    5    2    1
+```
+
+```r
+dim(A)
+```
+
+```terminal
+[1] 2 3
+```
+
+```r
+#?dim
+```
+
+`dim()` devuelve un vector de dos valores: primero las filas y después las columnas. Si se pide una posición que no existe, el resultado es `NA`.
+
+```r
+# filas
+dim(A)[1]
+# columnas
+dim(A)[2]
+dim(A)[5]   # no hay dato en esta posición
+```
+
+```terminal
+[1] 2
+[1] 3
+[1] NA
+```
+
+```r
+class(A)
+typeof(A)
+```
+
+```terminal
+[1] "matrix" "array"
+[1] "double"
+```
+
+### Acceso a los elementos
+
+Se accede a los elementos de una matriz indicando la posición de la fila y de la columna de la casilla. Con un solo índice, en cambio, R recorre la matriz por columnas como si fuera un vector; funciona, pero no es la forma recomendada.
+
+```r
+# Así no:
+A[1]
+A[2]
+A[3]
+```
+
+```terminal
+[1] 1
+[1] 5
+[1] 3
+```
+
+```r
+# Así sí:
+A[1, 2]   # elemento de la fila 1, columna 2
+A[2, 3]   # elemento de la fila 2, columna 3
+```
+
+```terminal
+[1] 3
+[1] 1
+```
+
+```r
+# Una fila completa
+A[2, ]
+# Una columna completa
+A[, 3]
+```
+
+```terminal
+[1] 5 2 1
+[1] 1 1
+```
+
+Para actualizar un dato se le asigna un valor nuevo.
+
+```r
+A
+A[2, 3] <- 9
+A
+```
+
+```terminal
+     [,1] [,2] [,3]
+[1,]    1    3    1
+[2,]    5    2    1
+     [,1] [,2] [,3]
+[1,]    1    3    1
+[2,]    5    2    9
+```
+
+```r
+# Dos casillas a la vez
+c(A[1, 1], A[2, 3])
+```
+
+```terminal
+[1] 1 9
+```
+
+### Matrices lógicas
+
+`T` y `F` son abreviaturas de `TRUE` y `FALSE`.
+
+```r
+ejemplo <- matrix(c(T, F, F, F, F, T)
+            , nrow = 2
+            , ncol = 3
+            , byrow = TRUE)
+ejemplo
+```
+
+```terminal
+      [,1]  [,2]  [,3]
+[1,]  TRUE FALSE FALSE
+[2,] FALSE FALSE  TRUE
+```
+
+```r
+typeof(ejemplo); class(ejemplo)
+```
+
+```terminal
+[1] "logical"
+[1] "matrix" "array"
+```
+
+Las casillas de una matriz se pueden evaluar con condiciones lógicas.
+
+```r
+mayores_4 <- A >= 5
+mayores_4
+```
+
+```terminal
+      [,1]  [,2]  [,3]
+[1,] FALSE FALSE FALSE
+[2,]  TRUE FALSE  TRUE
+```
+
+Una matriz lógica sirve como filtro: devuelve los elementos que están en las casillas `TRUE`.
+
+```r
+A[ejemplo]
+```
+
+```terminal
+[1] 1 9
+```
+
+```r
+A[mayores_4]
+```
+
+```terminal
+[1] 5 9
+```
+
+### Álgebra de matrices
+
+La suma, la resta y la ponderación por un escalar usan los mismos operadores que los números y los vectores (`+`, `-`, `*`, `/`). Para multiplicar matrices se usa el operador `%*%`; para invertirlas, la función `solve()`; `t()` para trasponer, y `det()` para calcular el determinante de una matriz cuadrada.
+
+```r
+A
+B <- A + 2
+B
+# Suma de matrices
+#A + B
+```
+
+```terminal
+     [,1] [,2] [,3]
+[1,]    1    3    1
+[2,]    5    2    9
+     [,1] [,2] [,3]
+[1,]    3    5    3
+[2,]    7    4   11
+```
+
+```r
+M1 <- matrix(c(1, 1, 2, 3, 5, 8), ncol = 2)   # 3x2
+M1
+```
+
+```terminal
+     [,1] [,2]
+[1,]    1    3
+[2,]    1    5
+[3,]    2    8
+```
+
+El operador `*` no es la multiplicación matricial: multiplica casilla por casilla, así que exige matrices de la misma dimensión. `A` es de 2×3 y `M1` de 3×2.
+
+```r
+A * M1
+```
+
+```terminal
+Error in A * M1: non-conformable arrays
+```
+
+```r
+A * A
+#A * B
+```
+
+```terminal
+     [,1] [,2] [,3]
+[1,]    1    9    1
+[2,]   25    4   81
+```
+
+```r
+dim(A); dim(M1)
+```
+
+```terminal
+[1] 2 3
+[1] 3 2
+```
+
+`%*%` es la multiplicación matricial.
+
+```r
+M2 <- A %*% M1
+M2
+```
+
+```terminal
+     [,1] [,2]
+[1,]    6   26
+[2,]   25   97
+```
+
+```r
+# Trasposición
+A
+t(A)
+```
+
+```terminal
+     [,1] [,2] [,3]
+[1,]    1    3    1
+[2,]    5    2    9
+     [,1] [,2]
+[1,]    1    5
+[2,]    3    2
+[3,]    1    9
+```
+
+```r
+# Determinante
+det(M2)
+```
+
+```terminal
+[1] -68
+```
+
+```r
+# Inversa
+M2_inv <- solve(M2)
+M2_inv
+```
+
+```terminal
+           [,1]        [,2]
+[1,] -1.4264706  0.38235294
+[2,]  0.3676471 -0.08823529
+```
+
+```r
+M2 %*% M2_inv
+```
+
+```terminal
+              [,1]         [,2]
+[1,]  1.000000e+00 8.326673e-17
+[2,] -3.441691e-15 1.000000e+00
+```
+
+El resultado es la matriz identidad. Los valores fuera de la diagonal no salen exactamente cero porque el computador trabaja con decimales de precisión limitada: `8.326673e-17` es notación científica para un número con 16 ceros después de la coma, es decir, prácticamente cero.
+
+## 4. Valores faltantes
+
+En R existen valores especiales para representar la ausencia de un dato o un resultado indefinido: `NA`, `NaN`, `Inf`, `-Inf` y `NULL`.
+
+```r
+3 > 4
+```
+
+```terminal
+[1] FALSE
+```
+
+```r
+3 == 3
+```
+
+```terminal
+[1] TRUE
+```
+
+```r
+3 == "a"
+```
+
+```terminal
+[1] FALSE
+```
+
+Comparar con `NA` (dato faltante) siempre da `NA`, incluso entre dos `NA`.
+
+```r
+3 == NA
+```
+
+```terminal
+[1] NA
+```
+
+```r
+NA == NA
+```
+
+```terminal
+[1] NA
+```
+
+Para reconocer un dato faltante se usa `is.na()`. `NaN` (resultado indefinido) también cuenta como faltante; `Inf` (infinito) no.
+
+```r
+is.na(3)
+```
+
+```terminal
+[1] FALSE
+```
+
+```r
+is.na(NA)
+is.na(NaN)
+is.na(Inf)
+```
+
+```terminal
+[1] TRUE
+[1] TRUE
+[1] FALSE
+```
+
+```r
+Inf > 1000000000
+```
+
+```terminal
+[1] TRUE
+```
+
+```r
+1/0
+-1/0
+```
+
+```terminal
+[1] Inf
+[1] -Inf
+```
+
+```r
+0/NA
+```
+
+```terminal
+[1] NA
+```
+
+```r
+0/0
+```
+
+```terminal
+[1] NaN
+```
+
+```r
+Inf + Inf
+```
+
+```terminal
+[1] Inf
+```
+
+```r
+Inf * 0
+```
+
+```terminal
+[1] NaN
+```
+
+## 5. Funciones (primera parte)
+
+### 5.1 Funciones vectorizadas y operaciones con vectores
+
+R es un lenguaje funcional, en el sentido de que prácticamente cada llamada a R es una función que puede recibir (o no) argumentos de entrada. Una de sus ventajas es la enorme variedad de funciones disponibles, tanto en las librerías que vienen con la instalación como en las publicadas en CRAN y en toda la comunidad de R.
+
+Una función $f$ se dice **vectorizada** si, dado un vector $\mathbf{x}=(x_1,x_2,\dots,x_n)$, se tiene que $f(\mathbf{x})=(f(x_1),f(x_2),\dots,f(x_n))$: se aplica a cada elemento. Esto hace que la aritmética de vectores sea más sencilla de escribir y más rápida de calcular. Gran parte de las funciones de las librerías (*packages*) de R son vectorizadas.
+
+Algunas de las más básicas, aritméticas y para trabajar con texto, son: `+`, `-`, `*`, `/`, `abs()`, `sqrt()`, `cos()`, `sin()`, `tan()`, `nchar()`, `substr()`, `grepl()` y `gsub()`.
+
+```r
+x <- c(4, 16, 9)
+c(1, 2, 3) + c(1, 1, 4)
+```
+
+```terminal
+[1] 2 3 7
+```
+
+```r
+sqrt(x)   # raíz cuadrada
+```
+
+```terminal
+[1] 2 4 3
+```
+
+### Funciones para manipular texto
+
+```r
+nchar("hola")   # cantidad de caracteres
+
+nchar(c("hola", "soy", "miguel"))
+substr("Hola soy miguel", start = 2, stop = 6)   # el texto tiene largo 15
+```
+
+```terminal
+[1] 4
+[1] 4 3 6
+[1] "ola s"
+```
+
+```r
+numero_letra <- substr("02_miguel", 1, 2)
+numero_letra
+```
+
+```terminal
+[1] "02"
+```
+
+`as.numeric()` convierte un texto en número.
+
+```r
+as.numeric(numero_letra)
+# o bien as.numeric(substr("02_miguel", 1, 2))
+```
+
+```terminal
+[1] 2
+```
+
+`grepl()` evalúa si un texto está contenido en otro, como el `LIKE` de SQL.
+
+```r
+#?grepl()
+
+grepl("ab", "sabcd")
+grepl("ab", c("sabcd", "csdd", "sxxabcd"))
+```
+
+```terminal
+[1] TRUE
+[1]  TRUE FALSE  TRUE
+```
+
+`gsub()` reemplaza caracteres dentro de un texto. Aquí se quitan los guiones de dos fechas, se extraen los seis primeros caracteres (año y mes) y se convierten a número, con lo que ya se puede operar: por ejemplo, sumar 1.
+
+```r
+fecha <- gsub("-", "", c("2019-05-15", "2019-05-29"))
+fecha_char <- substr(fecha, 1, 6)
+num <- as.numeric(fecha_char)
+
+fecha
+```
+
+```terminal
+[1] "20190515" "20190529"
+```
+
+```r
+fecha_char
+```
+
+```terminal
+[1] "201905" "201905"
+```
+
+```r
+typeof(fecha_char)
+```
+
+```terminal
+[1] "character"
+```
+
+```r
+typeof(num)
+```
+
+```terminal
+[1] "double"
+```
+
+### Un solo tipo de dato por vector o matriz
+
+No se pueden mezclar tipos de datos en un mismo vector: si hay un texto, R convierte todo a texto.
+
+```r
+c("1", 2, 3)
+
+M <- matrix(c(1, 2, 3, 4), ncol = 2)
+M
+```
+
+```terminal
+[1] "1" "2" "3"
+     [,1] [,2]
+[1,]    1    3
+[2,]    2    4
+```
+
+Lo mismo ocurre en una matriz: al asignar un texto en una casilla, todas las demás pasan a ser texto.
+
+```r
+M[1, 1] <- "a"
+M
+```
+
+```terminal
+     [,1] [,2]
+[1,] "a"  "3" 
+[2,] "2"  "4"
+```
+
+## 6. Listas y *data frames*
+
+### 6.1 Listas
+
+Hasta aquí hay dos tipos de objetos para guardar datos: vectores y matrices. Ambos tienen la limitación de que no permiten combinar distintos tipos de datos. Un objeto más flexible es la **lista**: un arreglo de una dimensión donde cada entrada puede guardar un **objeto** distinto, que a su vez puede contener cualquier tipo de dato u otros objetos.
+
+- **¿Qué son?** Arreglos de una dimensión que guardan distintos tipos de datos u objetos.
+- **¿Cómo se declaran?** Con `list()`, o combinando listas existentes.
+- **¿Cómo se accede a sus elementos?** Con `[]`, que devuelve una lista, o con `[[]]`, que devuelve el objeto. En ambos casos se indica la posición o el nombre. Otra manera es con el signo `$` seguido del nombre.
+
+Los objetos se pueden guardar en casillas con nombre.
+
+```r
+l <- list(num = 1
+          , pepito = "hola"
+          , logy = TRUE
+          , vecstop = c(1, 2, 3)
+          , matifer = M)
+l
+```
+
+```terminal
+$num
+[1] 1
+
+$pepito
+[1] "hola"
+
+$logy
+[1] TRUE
+
+$vecstop
+[1] 1 2 3
+
+$matifer
+     [,1] [,2]
+[1,] "a"  "3" 
+[2,] "2"  "4" 
+
+```
+
+```r
+M1
+```
+
+```terminal
+     [,1] [,2]
+[1,]    1    3
+[2,]    1    5
+[3,]    2    8
+```
+
+```r
+l2 <- list(matifer2 = M1)
+l2
+```
+
+```terminal
+$matifer2
+     [,1] [,2]
+[1,]    1    3
+[2,]    1    5
+[3,]    2    8
+
+```
+
+Las listas se combinan con `c()`, igual que los vectores.
+
+```r
+l3 <- c(l, l2)
+l3
+```
+
+```terminal
+$num
+[1] 1
+
+$pepito
+[1] "hola"
+
+$logy
+[1] TRUE
+
+$vecstop
+[1] 1 2 3
+
+$matifer
+     [,1] [,2]
+[1,] "a"  "3" 
+[2,] "2"  "4" 
+
+$matifer2
+     [,1] [,2]
+[1,]    1    3
+[2,]    1    5
+[3,]    2    8
+
+```
+
+#### Acceso por posición
+
+```r
+l3[1]            # devuelve una lista con la casilla 1
+class(l3[1])
+
+l3[[1]]          # devuelve el objeto de la casilla 1
+class(l3[[1]])
+```
+
+```terminal
+$num
+[1] 1
+
+[1] "list"
+[1] 1
+[1] "numeric"
+```
+
+#### Acceso por nombre
+
+```r
+l3["num"]
+l3[["num"]]
+
+# o bien, más fácil:
+l3$num
+```
+
+```terminal
+$num
+[1] 1
+
+[1] 1
+[1] 1
+```
+
+#### Crear casillas nuevas
+
+Se crea una casilla nueva indicando su nombre entre `[[]]` y asignándole un valor.
+
+```r
+l3[["new_slot"]] <- c("gracias", "armin")
+l3
+```
+
+```terminal
+$num
+[1] 1
+
+$pepito
+[1] "hola"
+
+$logy
+[1] TRUE
+
+$vecstop
+[1] 1 2 3
+
+$matifer
+     [,1] [,2]
+[1,] "a"  "3" 
+[2,] "2"  "4" 
+
+$matifer2
+     [,1] [,2]
+[1,]    1    3
+[2,]    1    5
+[3,]    2    8
+
+$new_slot
+[1] "gracias" "armin"  
+
+```
+
+O indicando el nombre después de `$`.
+
+```r
+l3$new_slot2 <- "cualquier cosa vera"
+l3
+```
+
+```terminal
+$num
+[1] 1
+
+$pepito
+[1] "hola"
+
+$logy
+[1] TRUE
+
+$vecstop
+[1] 1 2 3
+
+$matifer
+     [,1] [,2]
+[1,] "a"  "3" 
+[2,] "2"  "4" 
+
+$matifer2
+     [,1] [,2]
+[1,]    1    3
+[2,]    1    5
+[3,]    2    8
+
+$new_slot
+[1] "gracias" "armin"  
+
+$new_slot2
+[1] "cualquier cosa vera"
+
+```
+
+#### Largo y nombres
+
+`length()` entrega el largo de una lista o de un vector, y `names()` sus nombres.
+
+```r
+length(l3)
+nchar(l3)
+names(l3)
+```
+
+```terminal
+[1] 8
+      num    pepito      logy   vecstop   matifer  matifer2  new_slot new_slot2 
+        1         4         4        10        21        19        21        19 
+[1] "num"       "pepito"    "logy"      "vecstop"   "matifer"   "matifer2" 
+[7] "new_slot"  "new_slot2"
+```
+
+`nchar()` sobre una lista no cuenta sus elementos: cuenta los caracteres del texto con que R escribe cada uno. Por eso `vecstop` da 10, que es el largo de `c(1, 2, 3)`. Rara vez es útil; para saber cuántos elementos hay se usa `length()`.
+
+Para renombrar las casillas se asigna un vector de nombres.
+
+```r
+names(l3) <- c("n1", "n2", "n3", "n4", "n5", "n6", "n7", "n8")
+names(l3)
+l3
+```
+
+```terminal
+[1] "n1" "n2" "n3" "n4" "n5" "n6" "n7" "n8"
+$n1
+[1] 1
+
+$n2
+[1] "hola"
+
+$n3
+[1] TRUE
+
+$n4
+[1] 1 2 3
+
+$n5
+     [,1] [,2]
+[1,] "a"  "3" 
+[2,] "2"  "4" 
+
+$n6
+     [,1] [,2]
+[1,]    1    3
+[2,]    1    5
+[3,]    2    8
+
+$n7
+[1] "gracias" "armin"  
+
+$n8
+[1] "cualquier cosa vera"
+
+```
+
+### 6.2 *Data frames*
+
+Un ***data frame*** es un caso particular de lista, donde cada entrada es un vector de datos y todos tienen el mismo largo. Cada vector es una columna, y la cantidad de filas es el largo común. El resultado es una **tabla** cuyas columnas pueden tener distintos tipos de datos entre sí.
+
+- **¿Cómo se declara?** Con la función `data.frame()`, indicando los vectores que formarán las columnas.
+- **¿Cómo se accede a los datos?** Al ser una lista, de la misma manera que a una lista. También se puede acceder como a los elementos de una matriz.
+
+```r
+# 1:5 es lo mismo que c(1, 2, 3, 4, 5)
+df <- data.frame(id = 1:5,
+                 nombre = c("armin", "alfredo", "paula", "alejandro", "claudio"))
+
+df
+```
+
+```terminal
+  id    nombre
+1  1     armin
+2  2   alfredo
+3  3     paula
+4  4 alejandro
+5  5   claudio
+```
+
+```r
+names(df)
+dim(df)
+class(df)
+```
+
+```terminal
+[1] "id"     "nombre"
+[1] 5 2
+[1] "data.frame"
+```
+
+Con `$` se obtiene una columna, que es un vector.
+
+```r
+df$nombre
+```
+
+```terminal
+[1] "armin"     "alfredo"   "paula"     "alejandro" "claudio"
+```
+
+### 6.3 Mini taller
+
+Los *data frames* son uno de los objetos más usados en R para analizar datos en forma de tabla. Por eso es frecuente tener que consultarlos: filtrar, cruzar tablas, crear columnas. Por ahora se verá una de las formas más básicas de manipularlos, con el siguiente ejercicio.
+
+#### Paso 1
+
+Con la función `rnorm()`, generar una muestra aleatoria de 100 datos con media 21 y desviación estándar 8, y guardarla en una variable llamada `temp`.
+
+```r
+temp <- rnorm(100, mean = 21, sd = 8)
+temp
+```
+
+```terminal
+  [1] 28.396394 24.438470 10.278359 -1.142277 26.102700 11.709060 23.986930
+  [8] 23.417032 15.603776 19.855620 11.051838 12.462772 40.918281 30.230326
+ [15] 11.955109 14.712203 13.049607 15.986505 21.141780 27.015049 17.614056
+ [22] 19.812060 25.014811 20.148269  8.023997 28.343199 16.192686 28.577904
+ [29] 15.699407 11.443483 22.141646 18.017334 20.234809 28.324475 18.435118
+ [36] 21.600890 10.372046 22.878281 18.398312 27.579043 27.710132 19.476947
+ [43] 20.656686 29.919876 29.533203 15.356595 18.240654 26.765036 21.919298
+ [50] 14.860498 11.705766 17.113075 19.761075 16.947228 25.964384 20.556063
+ [57] 37.701077  3.393022 13.928455 22.005581 13.197294 21.415429 20.768161
+ [64] 22.938615 26.256073 19.372564 22.206062 33.827502  2.815568 22.372329
+ [71] 22.787404 29.144141 28.823019 17.689763 28.451808 19.722381 24.990976
+ [78] 29.350063 22.056243 27.370992 13.030566 15.224406 33.689356 19.441785
+ [85] 35.565262 22.503138  1.391577 32.397397 16.825284 28.754671 24.731817
+ [92] 20.925418 23.227614 14.431788 27.226628 16.789133 19.358595 25.501475
+ [99] 21.253497 14.549180
+```
+
+:::callout[Datos aleatorios]{type="info"}
+`rnorm()` genera números al azar con distribución normal, así que cada ejecución entrega valores distintos. Todas las salidas de este taller corresponden a la muestra de arriba.
+:::
+
+```r
+mean(temp)
+```
+
+```terminal
+[1] 20.75911
+```
+
+```r
+median(temp)
+```
+
+```terminal
+[1] 20.84679
+```
+
+#### Paso 2
+
+Generar un vector llamado `dia`, del mismo largo que `temp`, que contenga los días consecutivos de la semana partiendo del lunes, usando la función `rep()`.
+
+```r
+length(temp)
+```
+
+```terminal
+[1] 100
+```
+
+Con `length.out`, `rep()` repite el vector hasta completar el largo pedido.
+
+```r
+dia <- rep(c("L", "M", "W", "J", "V", "S", "D")
+           , length.out = length(temp)
+          )
+dia
+```
+
+```terminal
+  [1] "L" "M" "W" "J" "V" "S" "D" "L" "M" "W" "J" "V" "S" "D" "L" "M" "W" "J"
+ [19] "V" "S" "D" "L" "M" "W" "J" "V" "S" "D" "L" "M" "W" "J" "V" "S" "D" "L"
+ [37] "M" "W" "J" "V" "S" "D" "L" "M" "W" "J" "V" "S" "D" "L" "M" "W" "J" "V"
+ [55] "S" "D" "L" "M" "W" "J" "V" "S" "D" "L" "M" "W" "J" "V" "S" "D" "L" "M"
+ [73] "W" "J" "V" "S" "D" "L" "M" "W" "J" "V" "S" "D" "L" "M" "W" "J" "V" "S"
+ [91] "D" "L" "M" "W" "J" "V" "S" "D" "L" "M"
+```
+
+```r
+?rep
+```
+
+#### Paso 3
+
+Generar un vector llamado `est`, del mismo largo que `temp`, que contenga el valor `"E1"` en el primer tercio, `"E2"` en el segundo y `"E3"` en el tercero. Por ejemplo, si `temp` tuviese 10 datos, `est` sería (E1, E1, E1, E2, E2, E2, E3, E3, E3, E3).
+
+```r
+veces <- round(length(temp) / 3) + 1
+veces
+```
+
+```terminal
+[1] 34
+```
+
+Con `each`, `rep()` repite cada elemento esa cantidad de veces antes de pasar al siguiente.
+
+```r
+est <- rep(c("E1", "E2", "E3")
+           , each = veces
+           , length.out = length(temp)
+          )
+
+est
+```
+
+```terminal
+  [1] "E1" "E1" "E1" "E1" "E1" "E1" "E1" "E1" "E1" "E1" "E1" "E1" "E1" "E1" "E1"
+ [16] "E1" "E1" "E1" "E1" "E1" "E1" "E1" "E1" "E1" "E1" "E1" "E1" "E1" "E1" "E1"
+ [31] "E1" "E1" "E1" "E1" "E2" "E2" "E2" "E2" "E2" "E2" "E2" "E2" "E2" "E2" "E2"
+ [46] "E2" "E2" "E2" "E2" "E2" "E2" "E2" "E2" "E2" "E2" "E2" "E2" "E2" "E2" "E2"
+ [61] "E2" "E2" "E2" "E2" "E2" "E2" "E2" "E2" "E3" "E3" "E3" "E3" "E3" "E3" "E3"
+ [76] "E3" "E3" "E3" "E3" "E3" "E3" "E3" "E3" "E3" "E3" "E3" "E3" "E3" "E3" "E3"
+ [91] "E3" "E3" "E3" "E3" "E3" "E3" "E3" "E3" "E3" "E3"
+```
+
+#### Paso 4
+
+Generar un vector llamado `lluvia`, del mismo largo que `temp`, que sea `TRUE` en las posiciones en que `temp` sea menor que 20 y `FALSE` en caso contrario. Se puede usar la función `which()`.
+
+**Opción 1.** La comparación ya devuelve el vector lógico que se busca.
+
+```r
+lluvia <- temp < 20
+lluvia
+```
+
+```terminal
+  [1] FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+ [13] FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE
+ [25]  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE
+ [37]  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE
+ [49] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE
+ [61]  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE
+ [73] FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE
+ [85] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
+ [97]  TRUE FALSE FALSE  TRUE
+```
+
+**Opción 2** (la vuelta larga). `which()` devuelve las posiciones donde se cumple la condición.
+
+```r
+posic <- which(temp < 20)
+posic
+```
+
+```terminal
+ [1]   3   4   6   9  10  11  12  15  16  17  18  21  22  25  27  29  30  32  35
+[20]  37  39  42  46  47  50  51  52  53  54  58  59  61  66  69  74  76  81  82
+[39]  84  87  89  94  96  97 100
+```
+
+Después se crea un vector con 100 valores `FALSE` y se cambian a `TRUE` solo esas posiciones. El resultado es el mismo.
+
+```r
+lluvia <- rep(FALSE, 100)
+lluvia[posic] <- TRUE
+lluvia
+```
+
+```terminal
+  [1] FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+ [13] FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE
+ [25]  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE
+ [37]  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE
+ [49] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE
+ [61]  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE
+ [73] FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE
+ [85] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE
+ [97]  TRUE FALSE FALSE  TRUE
+```
+
+#### Paso 5
+
+Finalmente, crear un *data frame* llamado `precipitaciones` con las siguientes columnas:
+
+- `Dia_semana`, con los valores del vector `dia`.
+- `Temperatura`, con los valores del vector `temp`.
+- `Llueve`, con los valores del vector `lluvia`.
+- `Estacion`, con los valores del vector `est`.
+
+```r
+precipitaciones <- data.frame(Dia_semana = dia,
+                              Temperatura = temp,
+                              Llueve = lluvia,
+                              Estacion = est)
+precipitaciones
+```
+
+```terminal
+   Dia_semana Temperatura Llueve Estacion
+1           L   28.396394  FALSE       E1
+2           M   24.438470  FALSE       E1
+3           W   10.278359   TRUE       E1
+4           J   -1.142277   TRUE       E1
+5           V   26.102700  FALSE       E1
+6           S   11.709060   TRUE       E1
+7           D   23.986930  FALSE       E1
+8           L   23.417032  FALSE       E1
+9           M   15.603776   TRUE       E1
+10          W   19.855620   TRUE       E1
+# ... se muestran 10 de las 100 filas
+```
+
+```r
+dim(precipitaciones)
+names(precipitaciones)
+```
+
+```terminal
+[1] 100   4
+[1] "Dia_semana"  "Temperatura" "Llueve"      "Estacion"
+```
+
+`summary()` resume cada columna según su tipo: para los números entrega mínimo, cuartiles, media y máximo; para los valores lógicos, cuántos `TRUE` y `FALSE` hay.
+
+```r
+summary(precipitaciones)
+```
+
+```terminal
+  Dia_semana         Temperatura       Llueve          Estacion        
+ Length:100         Min.   :-1.142   Mode :logical   Length:100        
+ Class :character   1st Qu.:15.915   FALSE:55        Class :character  
+ Mode  :character   Median :20.847   TRUE :45        Mode  :character  
+                    Mean   :20.759                                     
+                    3rd Qu.:26.141                                     
+                    Max.   :40.918
+```
+
+#### Texto como factores
+
+```r
+class(precipitaciones$Estacion)
+```
+
+```terminal
+[1] "character"
+```
+
+:::callout[Cambio entre versiones de R]{type="warning"}
+Hasta la versión 3.6, `data.frame()` convertía automáticamente las columnas de texto en **factores**, y esta instrucción respondía `"factor"`. Desde R 4.0 las deja como texto (`character`), que es lo que muestra el resumen anterior. La conversión a texto del paso siguiente solo es necesaria en esas versiones antiguas; en una actual no cambia nada.
+:::
+
+```r
+precipitaciones$Estacion <- as.character(precipitaciones$Estacion)
+class(precipitaciones$Estacion)
+```
+
+```terminal
+[1] "character"
+```
+
+```r
+summary(precipitaciones)
+```
+
+El resumen es el mismo de antes, porque la columna ya era texto.
+
+Un **factor** es una variable categórica: una columna que solo toma un conjunto limitado de valores, como el día de la semana o la estación. Cuando una variable se declara como factor, R trata cada categoría como una columna de ceros y unos: un 1 si la fila pertenece a esa categoría y un 0 si no. Para `Dia` y `Estacion`, esa codificación (la matriz de diseño) se vería así:
+
+:::table{#tabla01 caption="Codificación de los factores Dia y Estacion" layout="mixed"}
+| Dia | Estacion | Dia.L | Dia.M | Dia.W | Dia.J | Dia.V | Dia.S | Dia.D | Est.1 | Est.2 | Est.3 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| L | E1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |
+| M | E1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |
+| J | E3 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 |
+| S | E3 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 |
+:::
+
+Cuando se quiere resumir una variable categórica, o incluirla en el entrenamiento de un modelo, es necesario declararla como factor. Con una columna declarada así, `summary()` cuenta cuántas filas hay en cada categoría en vez de mostrar solo el largo.
+
+#### Un poco de exploración
+
+Tres preguntas sobre la tabla:
+
+1. ¿Cuál es la temperatura promedio cuando llovió?
+2. ¿Qué día era cuando se alcanzó la temperatura mínima? ¿Y la máxima?
+3. Se sabe que la estación E3 falla todos los domingos, por lo que hay que eliminar esos registros de la tabla.
+
+:::solution[Solución de la exploración]
+**1.** Se filtra la columna de temperatura con la columna lógica `Llueve` y se promedia.
+
+```r
+mean(precipitaciones$Temperatura[precipitaciones$Llueve])
+```
+
+Con la muestra de este taller hay 45 días de lluvia y su temperatura promedio es de unos 14,3.
+
+**2.** `which.min()` y `which.max()` entregan la fila donde está el mínimo y el máximo; con esa fila se consulta el día.
+
+```r
+precipitaciones$Dia_semana[which.min(precipitaciones$Temperatura)]
+precipitaciones$Dia_semana[which.max(precipitaciones$Temperatura)]
+```
+
+La mínima (−1,14) está en la fila 4, un jueves (`"J"`), y la máxima (40,92) en la fila 13, un sábado (`"S"`).
+
+**3.** Un *data frame* se filtra como una matriz: entre corchetes van primero las filas y después las columnas. Se conservan las filas que **no** cumplen ambas condiciones a la vez.
+
+```r
+falla <- precipitaciones$Estacion == "E3" & precipitaciones$Dia_semana == "D"
+precipitaciones <- precipitaciones[!falla, ]
+dim(precipitaciones)
+```
+
+Se eliminan 5 filas (las 70, 77, 84, 91 y 98) y la tabla queda con 95.
+
+Si la pregunta 3 se resuelve antes de guardar, el archivo de la sección siguiente queda con 95 filas en vez de 100.
+:::
+
+### 6.4 Guardar variables y el ambiente de trabajo
+
+#### Directorio de trabajo
+
+El **directorio de trabajo** es la carpeta del sistema de archivos desde la cual la sesión de R guarda y carga datos directamente. `getwd()` indica en qué directorio se está trabajando y `setwd()` lo cambia.
+
+```r
+# Para saber en qué directorio se está trabajando
+getwd()
+
+# Para cambiar el directorio de trabajo
+setwd("ruta/de/la/carpeta")
+```
+
+#### Formato rds
+
+Una manera de guardar variables creadas en la sesión de R es el formato `.rds`. Permite guardar un objeto y leerlo rápidamente en cualquier sesión posterior. Es útil, por ejemplo, para guardar en disco modelos entrenados y usarlos después en predicciones.
+
+`saveRDS()` guarda el *data frame* `precipitaciones` en el directorio actual. Este archivo es el que se carga en [Condicionales y ciclos](/inacap/ti3v61/clase09c).
+
+```r
+saveRDS(precipitaciones, "precipitaciones.rds")
+```
+
+Para leerlo después se usa `readRDS()`:
+
+```r
+precipitaciones <- readRDS("precipitaciones.rds")
+```
+
+#### Formato RData
+
+Cuando se quiere guardar el ambiente de trabajo completo, o varios objetos a la vez, se usa la función `save()`. Los objetos se recuperan con `load()`, con los mismos nombres que tenían.
+
+```r
+# Guarda uno o más objetos del ambiente
+save(precipitaciones, temp, file = "taller.RData")
+
+# Los carga de vuelta
+load("taller.RData")
+```
