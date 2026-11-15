@@ -85,8 +85,8 @@ const courseData = {
       date: 'Jue 22, Oct 2026', 
       description: [
         {
-          text: 'no asistí',
-          strikethrough: true
+          text: 'Guía de ejercicios Unidad 1',
+          href: 'clase02'
         }
       ]
     },
