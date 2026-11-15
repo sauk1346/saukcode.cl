@@ -1,0 +1,295 @@
+# Guía de preparación: prueba mixta de la Unidad 1
+
+**Material:** [Guía de preparación prueba mixta](/inacap/ti3v61/docs/guia-prueba-mixta.pdf)
+
+Guía de práctica con **12 ejercicios** para la prueba mixta de la **Unidad 1**: alternativas, completación y casos aplicados. No reproduce los casos del material anterior: usa situaciones nuevas con la misma lógica de **interpretar → justificar → decidir**.
+
+## Estructura de la guía
+
+:::table{#tabla01 caption="Tipos de pregunta" layout="mixed" widths="200px,120px,auto"}
+| Tipo | Cantidad | Qué se busca |
+| --- | --- | --- |
+| **Alternativas** | 5 | Reconocer y distinguir |
+| **Completación** | 3 | Relacionar conceptos |
+| **Casos aplicados** | 4 | Interpretar y decidir |
+:::
+
+:::table{#tabla02 caption="Distribución de la práctica" layout="mixed" widths="140px,auto"}
+| Ejercicios | Tema |
+| --- | --- |
+| **1 y 2** | Fundamentos |
+| **3 y 4** | Tipo de problema y de aprendizaje |
+| **5 y 8** | KDD y CRISP-DM |
+| **6 y 12** | Entropía y ganancia de información |
+| **9** | Estadística |
+| **10** | Distancia y escalamiento |
+| **7 y 11** | Aplicación, *text mining*, *web mining* y decisión |
+:::
+
+## Criterios evaluados
+
+:::table{#tabla03 caption="Criterios de evaluación" layout="mixed" widths="100px,280px,auto"}
+| Código | Criterio | Qué abarca |
+| --- | --- | --- |
+| **1.1.1** | Minería de datos y aprendizaje automático | Características, propósito y diferencias generales |
+| **1.1.2** | Descubrimiento de conocimiento | KDD y organización del proceso |
+| **1.1.3** | Modelos, técnicas y áreas de aplicación | Clasificación, regresión, *clustering*, anomalías, distancias y entropía |
+| **1.1.4** | *Text mining* y *web mining* | Técnicas aplicables en empresas y elección según el problema |
+| **1.1.5** | Información y variables | Identificar qué datos se necesitan, la variable objetivo y las variables explicativas |
+:::
+
+## Ejercicio 01. Fundamentos de minería de datos
+
+**Alternativas.** Una cadena de farmacias posee años de ventas y quiere descubrir combinaciones de productos que suelen comprarse juntas para diseñar promociones. ¿Cuál descripción representa mejor el propósito de la minería de datos?
+
+- **A.** Mostrar un reporte mensual con las ventas totales.
+- **B.** Descubrir patrones útiles no evidentes en los datos.
+- **C.** Guardar las ventas en una base de datos.
+- **D.** Diseñar una interfaz para registrar las ventas.
+
+Elige una alternativa y explica en una frase qué diferencia hay entre «mostrar datos» y «descubrir patrones».
+
+*Criterio asociado: 1.1.1.*
+
+:::solution[Solución Ejercicio 01]
+**B. Descubrir patrones útiles no evidentes en los datos.**
+
+La minería de datos busca extraer regularidades, relaciones o comportamientos que puedan transformarse en conocimiento útil para una decisión.
+
+**Clave de interpretación:** un reporte puede pertenecer a BI. Aquí el objetivo no es solo describir lo ocurrido, sino encontrar relaciones entre productos que no estaban explícitas.
+:::
+
+## Ejercicio 02. BI, minería de datos y *machine learning*
+
+**Completación.** Completa las tres frases usando: **BI · Minería de datos · Machine learning**.
+
+1. Un tablero que muestra ventas históricas por sucursal corresponde principalmente a: \_\_\_\_\_\_\_\_
+2. Buscar patrones de abandono de clientes en una base histórica corresponde principalmente a: \_\_\_\_\_\_\_\_
+3. Entrenar un modelo que prediga si un cliente abandonará el servicio corresponde principalmente a: \_\_\_\_\_\_\_\_
+
+*Criterio asociado: 1.1.1.*
+
+:::solution[Solución Ejercicio 02]
+1. **BI**
+2. **Minería de datos**
+3. ***Machine learning***
+
+La frontera puede superponerse en proyectos reales, pero la intención principal de cada frase permite distinguirlas.
+
+**Idea central:**
+
+- **BI:** describir y monitorear.
+- **Minería de datos:** descubrir patrones.
+- **ML:** aprender un modelo para predecir o decidir.
+:::
+
+## Ejercicio 03. Tipo de problema
+
+**Alternativas.** Una empresa desea estimar el monto en pesos que gastará un cliente durante el próximo mes. ¿Qué tipo de problema corresponde?
+
+- **A.** Clasificación
+- **B.** Regresión
+- **C.** *Clustering*
+- **D.** Asociación
+
+Pista: mira el tipo de salida que se quiere obtener.
+
+*Criterio asociado: 1.1.3.*
+
+:::solution[Solución Ejercicio 03]
+**B. Regresión.**
+
+La salida esperada es un valor numérico continuo: el monto futuro de compra. Si la pregunta fuera «¿comprará o no?», sería clasificación.
+
+**Regla rápida:**
+
+- Categoría → clasificación.
+- Número continuo → regresión.
+- Grupos sin etiqueta → *clustering*.
+:::
+
+## Ejercicio 04. Supervisado y no supervisado
+
+**Completación.** Completa el razonamiento usando: **Variable objetivo / etiqueta · Supervisado · No supervisado**.
+
+- Si existe una columna histórica «fraude = sí/no», entonces hay una \_\_\_\_\_\_\_\_; por ello el aprendizaje puede ser \_\_\_\_\_\_\_\_.
+- Si solo queremos agrupar clientes parecidos sin una etiqueta previa, el enfoque será \_\_\_\_\_\_\_\_.
+
+*Criterios asociados: 1.1.3 y 1.1.5.*
+
+:::solution[Solución Ejercicio 04]
+**Variable objetivo / etiqueta → supervisado → no supervisado.**
+
+El punto decisivo es si existe o no una respuesta histórica conocida que el modelo debe aprender a reproducir.
+
+**Criterio 1.1.5:** antes de elegir la técnica, identifica qué variable representa la respuesta que deseas predecir.
+:::
+
+## Ejercicio 05. Proceso KDD
+
+**Alternativas.** Un equipo ya seleccionó los datos relevantes y detectó valores faltantes, duplicados y formatos inconsistentes. ¿Qué etapa de KDD está realizando principalmente?
+
+- **A.** Preprocesamiento
+- **B.** Minería de datos
+- **C.** Interpretación
+- **D.** Despliegue
+
+*Criterio asociado: 1.1.2.*
+
+:::solution[Solución Ejercicio 05]
+**A. Preprocesamiento.**
+
+En esta etapa se mejora la calidad de los datos antes de transformarlos o aplicar técnicas de minería.
+
+**Secuencia KDD:** selección → preprocesamiento → transformación → minería de datos → interpretación y evaluación.
+:::
+
+## Ejercicio 06. Entropía
+
+**Alternativas.** Un nodo de un árbol de decisión contiene 50 clientes que compran y 50 que no compran. ¿Cómo describirías su entropía en términos conceptuales?
+
+- **A.** Baja: el grupo es muy puro.
+- **B.** Alta: existe mucha incertidumbre o mezcla.
+- **C.** Cero: ambas clases aparecen por igual.
+- **D.** No puede interpretarse sin calcular la media.
+
+*Criterio asociado: 1.1.3.*
+
+:::solution[Solución Ejercicio 06]
+**B. Alta: existe mucha incertidumbre o mezcla.**
+
+Cuando las clases están muy mezcladas, la incertidumbre es alta. Cuando un grupo queda dominado por una clase, la entropía disminuye.
+
+**Imagen mental:**
+
+- 50 / 50 → máxima mezcla.
+- 100 / 0 → grupo puro.
+- La entropía mide incertidumbre, no «cantidad de datos».
+:::
+
+## Ejercicio 07. *Text mining*: opiniones de clientes
+
+**Caso aplicado.** Una empresa de *delivery* recibe 40.000 comentarios escritos al mes. La gerencia quiere saber cuáles reclamos se relacionan con retrasos, cobros y mala atención, y priorizar acciones.
+
+- **A.** ¿Qué enfoque es más apropiado: *text mining* o *web mining*? Justifica.
+- **B.** ¿Qué información o variables extra pedirías para convertir el hallazgo en una decisión concreta?
+
+No basta nombrar una técnica: debes relacionarla con el tipo de dato y la decisión que se quiere tomar.
+
+*Criterios asociados: 1.1.3, 1.1.4 y 1.1.5.*
+
+:::solution[Solución Ejercicio 07]
+- **A.** ***Text mining***, porque la fuente principal son comentarios de texto no estructurado. Se podrían extraer temas, palabras frecuentes, categorías o sentimiento.
+- **B.** Conviene asociar el texto con variables como fecha, local, tiempo real de entrega, tipo de pedido, monto, canal y evaluación del cliente. Así el análisis permite detectar dónde y cuándo ocurren los problemas y priorizar acciones.
+
+**Decisión posible:** si «retraso» aparece especialmente en determinadas zonas y franjas horarias, la empresa puede ajustar dotación, rutas o tiempos prometidos.
+:::
+
+## Ejercicio 08. KDD y CRISP-DM
+
+**Completación.** Completa usando: **CRISP-DM · KDD · Iterativos**.
+
+- **A.** \_\_\_\_\_\_\_\_ pone especial énfasis en comprender el problema de negocio y definir qué significa éxito.
+- **B.** \_\_\_\_\_\_\_\_ describe el proceso de descubrir conocimiento desde la selección hasta la interpretación de patrones.
+- **C.** Ambos procesos son \_\_\_\_\_\_\_\_: al encontrar problemas, puede ser necesario volver a etapas anteriores.
+
+*Criterio asociado: 1.1.2.*
+
+:::solution[Solución Ejercicio 08]
+- **A.** **CRISP-DM**
+- **B.** **KDD**
+- **C.** **Iterativos**
+
+La diferencia central está en el énfasis: CRISP-DM parte explícitamente desde el negocio; KDD organiza el descubrimiento de conocimiento en los datos.
+
+**No confundir:** «iterativo» significa que el proyecto puede retroceder y ajustar decisiones anteriores. No es una secuencia rígida que se ejecuta una sola vez.
+:::
+
+## Ejercicio 09. Estadística e interpretación
+
+**Caso aplicado.** La jefatura quiere definir un tiempo «típico» de atención. Los tiempos de atención registrados, en minutos, son:
+
+$$
+7,\ 8,\ 8,\ 9,\ 28
+$$
+
+- **A.** Calcula media, mediana y moda. ¿Cuál representa mejor el tiempo típico?
+- **B.** ¿Qué debería revisar la empresa antes de cambiar su estándar de atención?
+
+*Criterios asociados: 1.1.3 y 1.1.5.*
+
+:::solution[Solución Ejercicio 09]
+- **A.** Media, mediana y moda:
+
+$$
+\bar{x} = \frac{7+8+8+9+28}{5} = \frac{60}{5} = 12 \text{ min} \qquad \text{mediana} = 8 \text{ min} \qquad \text{moda} = 8 \text{ min}
+$$
+
+La **mediana** representa mejor el comportamiento típico, porque el valor 28 eleva fuertemente la media.
+
+- **B.** Antes de cambiar un estándar, conviene revisar si 28 es un caso real, un evento excepcional o un error de registro.
+
+**Decisión:** un estadístico no debe tomarse aisladamente. La medida elegida debe representar el fenómeno y considerar posibles *outliers* (valores atípicos).
+:::
+
+## Ejercicio 10. Distancia y escalamiento
+
+**Caso aplicado.** Se quiere usar KNN para recomendar productos a los siguientes clientes:
+
+| Cliente | Edad | Ingreso |
+| --- | --- | --- |
+| A | 25 | \$600.000 |
+| B | 27 | \$650.000 |
+| C | 55 | \$620.000 |
+
+- **A.** ¿Por qué sería problemático usar directamente edad e ingreso en la distancia euclidiana?
+- **B.** ¿Qué acción de preparación de datos realizarías antes de calcular similitud?
+
+*Criterios asociados: 1.1.3 y 1.1.5.*
+
+:::solution[Solución Ejercicio 10]
+- **A.** El ingreso tiene una escala numérica muchísimo mayor que la edad, por lo que dominaría la distancia.
+- **B.** Antes de usar KNN conviene **escalar o normalizar** las variables para que ambas contribuyan de forma comparable. Luego la cercanía puede interpretarse como similitud en el espacio de características.
+
+**Idea visual:**
+
+- Sin escalar: los «pesos» aplastan a los «años».
+- Con escalamiento: cada variable aporta según su posición relativa, no por el tamaño de su unidad.
+:::
+
+## Ejercicio 11. *Web mining* y decisión comercial
+
+**Caso aplicado.** Un *e-commerce* detecta que muchas visitas llegan desde redes sociales, revisan varios productos y abandonan antes de pagar. La empresa quiere entender el recorrido digital y anticipar qué sesiones tienen mayor probabilidad de compra.
+
+- **A.** ¿Qué tipo de información de *web mining* sería útil para describir el recorrido?
+- **B.** Si se quiere predecir compra/no compra, identifica la variable objetivo, dos variables explicativas y el tipo de problema.
+
+*Criterios asociados: 1.1.3, 1.1.4 y 1.1.5.*
+
+:::solution[Solución Ejercicio 11]
+- **A.** Datos de navegación: páginas vistas, secuencia de clics, fuente de tráfico, tiempo por página, productos visitados, carrito y punto de abandono.
+- **B.** **Variable objetivo:** compra/no compra. **Variables explicativas posibles:** número de productos vistos, tiempo de sesión, origen del tráfico, uso de cupón y monto del carrito. **Tipo de problema:** clasificación supervisada.
+
+**Decisión posible:** la empresa podría activar una intervención distinta según el comportamiento: recordatorio, cupón, recomendación o mejora del flujo de compra.
+:::
+
+## Ejercicio 12. Ganancia de información y selección de variables
+
+**Caso aplicado.** Un modelo quiere predecir si un estudiante aprobará. Se prueban dos variables para dividir los datos:
+
+| Variable | Resultado después de dividir |
+| --- | --- |
+| **A.** «Entregó actividades» | Los grupos quedan bastante puros |
+| **B.** «Color favorito» | Los grupos continúan muy mezclados |
+
+¿Cuál variable tendría mayor ganancia de información? ¿Qué implica eso para la selección de variables del modelo?
+
+*Criterios asociados: 1.1.3 y 1.1.5.*
+
+:::solution[Solución Ejercicio 12]
+**«Entregó actividades»** tendría mayor ganancia de información, porque reduce más la incertidumbre sobre la aprobación.
+
+La ganancia de información ayuda a identificar variables que separan mejor las clases. Una variable con baja ganancia puede aportar poco poder discriminativo, aunque su utilidad final debe validarse en el contexto del modelo.
+
+**Decisión analítica:** no se selecciona una variable porque «suene interesante», sino porque demuestra aportar información útil para distinguir la variable objetivo.
+:::

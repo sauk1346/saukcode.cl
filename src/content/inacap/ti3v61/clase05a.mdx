@@ -1,5 +1,7 @@
 # Guía de ejercicios: fundamentos de minería de datos
 
+**Material:** [Guía Unidad 01](docs/guia-unidad01.pdf)
+
 Guía de práctica de la **Unidad 1**: estadística descriptiva, distribución, distancias, entropía y selección de variables. Los casos son similares a los que pueden ser evaluados en la unidad. No requiere R ni programación: se resuelve con cálculo básico, interpretación y razonamiento.
 
 ## Criterios de evaluación de la Unidad 1
@@ -39,7 +41,7 @@ Guía de práctica de la **Unidad 1**: estadística descriptiva, distribución, 
 | **Ganancia de información** | $IG(S,A) = H(S) -$ entropía ponderada después de dividir por $A$ |
 :::
 
-## Ejercicio 1. Identificar problema, información y variables
+## Ejercicio 01. Identificar problema, información y variables
 
 **Caso.** Una empresa de telecomunicaciones quiere anticipar qué clientes podrían cancelar su contrato durante los próximos 30 días. Dispone de información histórica de sus clientes.
 
@@ -63,7 +65,7 @@ Guía de práctica de la **Unidad 1**: estadística descriptiva, distribución, 
 
 *Criterios asociados: 1.1.1, 1.1.3 y 1.1.5.*
 
-:::solution[Solución]
+:::solution[Solución Ejercicio 01]
 1. **Problema:** anticipar qué clientes podrían cancelar su contrato.
 2. **Variable objetivo:** «Abandonó la empresa» (Sí/No).
 3. **Numéricas:** edad, antigüedad, pago mensual, número de reclamos y consumo mensual. **Categóricas:** plan, canal de contratación y abandono.
@@ -72,7 +74,7 @@ Guía de práctica de la **Unidad 1**: estadística descriptiva, distribución, 
 6. Información adicional posible: atrasos de pago, contactos con soporte, cambios de plan, satisfacción y promociones recibidas.
 :::
 
-## Ejercicio 2. Distribución de una muestra
+## Ejercicio 02. Distribución de una muestra
 
 **Caso.** Una tienda analiza las edades de 20 clientes que realizaron una compra durante una campaña.
 
@@ -91,7 +93,7 @@ Guía de práctica de la **Unidad 1**: estadística descriptiva, distribución, 
 
 *Criterios asociados: 1.1.2 y 1.1.5.*
 
-:::solution[Solución]
+:::solution[Solución Ejercicio 02]
 1. Frecuencias relativas:
 
 | Intervalo de edad | Cálculo | Frecuencia relativa |
@@ -107,7 +109,7 @@ Guía de práctica de la **Unidad 1**: estadística descriptiva, distribución, 
 4. No se puede asegurar que represente a toda la población sin evaluar cómo fue obtenida la muestra.
 :::
 
-## Ejercicio 3. Media, mediana, moda y valores extremos
+## Ejercicio 03. Media, mediana, moda y valores extremos
 
 **Caso.** Una empresa compara las ventas diarias de siete vendedores. Los valores son:
 
@@ -123,7 +125,7 @@ $$
 
 *Criterios asociados: 1.1.2, 1.1.3 y 1.1.5.*
 
-:::solution[Solución]
+:::solution[Solución Ejercicio 03]
 1. Media:
 
 $$
@@ -136,7 +138,7 @@ $$
 5. El valor 40 arrastra la media hacia arriba, lo que demuestra que la media es sensible a valores extremos.
 :::
 
-## Ejercicio 4. Misma media, distinta dispersión
+## Ejercicio 04. Misma media, distinta dispersión
 
 **Caso.** Dos sucursales presentan los siguientes niveles de ventas diarias:
 
@@ -156,7 +158,7 @@ $$
 
 *Criterios asociados: 1.1.2 y 1.1.3.*
 
-:::solution[Solución]
+:::solution[Solución Ejercicio 04]
 1. Medias:
 
 $$
@@ -169,7 +171,7 @@ $$
 5. La **sucursal A** parece más estable, porque sus ventas se concentran cerca de 20.
 :::
 
-## Ejercicio 5. Varianza y desviación estándar
+## Ejercicio 05. Varianza y desviación estándar
 
 **Caso.** Un centro de soporte registra los tiempos de atención de cinco solicitudes:
 
@@ -186,7 +188,7 @@ $$
 
 *Criterios asociados: 1.1.2, 1.1.3 y 1.1.5.*
 
-:::solution[Solución]
+:::solution[Solución Ejercicio 05]
 1. Media:
 
 $$
@@ -219,7 +221,7 @@ $$
 6. Los tiempos se alejan típicamente alrededor de 2,83 minutos de la media de 8 minutos.
 :::
 
-## Ejercicio 6. Distribución normal y puntaje Z
+## Ejercicio 06. Distribución normal y puntaje Z
 
 **Caso.** En un centro de distribución, el tiempo de preparación de pedidos se comporta aproximadamente como una distribución normal, con media $\mu = 40$ minutos y desviación estándar $\sigma = 5$ minutos.
 
@@ -231,7 +233,7 @@ $$
 
 *Criterios asociados: 1.1.2 y 1.1.3.*
 
-:::solution[Solución]
+:::solution[Solución Ejercicio 06]
 1. El 68,3% se ubica en $\mu \pm 1\sigma = 40 \pm 5$: entre **35 y 45 minutos**.
 2. El 95,4% se ubica en $\mu \pm 2\sigma = 40 \pm 10$: entre **30 y 50 minutos**.
 3. Puntaje Z:
@@ -244,7 +246,7 @@ $$
 5. Es relativamente alejado del promedio: en una distribución normal está justo en el límite del intervalo aproximado que contiene el 95,4%.
 :::
 
-## Ejercicio 7. Distancia euclidiana y similitud entre clientes
+## Ejercicio 07. Distancia euclidiana y similitud entre clientes
 
 **Caso.** Una empresa representa a sus clientes usando dos variables ya estandarizadas. Se dispone de tres perfiles:
 
@@ -262,7 +264,7 @@ $$
 
 *Criterios asociados: 1.1.1, 1.1.3 y 1.1.5.*
 
-:::solution[Solución]
+:::solution[Solución Ejercicio 07]
 1. Distancia entre A y B:
 
 $$
@@ -280,7 +282,7 @@ $$
 5. Técnicas que usan cercanía: **KNN** y **clustering** (agrupamiento).
 :::
 
-## Ejercicio 8. Distancia estadística o de Gauss
+## Ejercicio 08. Distancia estadística o de Gauss
 
 **Caso.** El gasto promedio mensual de los clientes de una empresa es \$70.000 y la desviación estándar es \$10.000. Un cliente gasta \$85.000.
 
@@ -290,7 +292,7 @@ $$
 
 *Criterios asociados: 1.1.2, 1.1.3 y 1.1.5.*
 
-:::solution[Solución]
+:::solution[Solución Ejercicio 08]
 1. Distancia estadística:
 
 $$
@@ -301,7 +303,7 @@ $$
 3. La estandarización expresa la diferencia en unidades comparables de desviación estándar: \$10.000, 10 años o 10 puntos no tienen el mismo significado si sus dispersiones son distintas.
 :::
 
-## Ejercicio 9. Distancia de Hamming aplicada a perfiles binarios
+## Ejercicio 09. Distancia de Hamming aplicada a perfiles binarios
 
 **Caso.** Dos clientes son descritos mediante siete respuestas binarias, donde 1 significa «sí» y 0 significa «no».
 
@@ -317,7 +319,7 @@ $$
 
 *Criterios asociados: 1.1.3 y 1.1.5.*
 
-:::solution[Solución]
+:::solution[Solución Ejercicio 09]
 1. `1011101` frente a `1001001` difiere en las posiciones **3 y 5**.
 2. Distancia de Hamming: $d_H = 2$.
 3. Distancia normalizada:
@@ -341,7 +343,7 @@ $$
 
 *Criterios asociados: 1.1.2 y 1.1.3.*
 
-:::solution[Solución]
+:::solution[Solución Ejercicio 10]
 1. Proporciones:
 
 $$
@@ -369,7 +371,7 @@ $$
 
 *Criterios asociados: 1.1.1, 1.1.3 y 1.1.5.*
 
-:::solution[Solución]
+:::solution[Solución Ejercicio 11]
 1. Ganancia de información:
 
 $$
@@ -393,29 +395,10 @@ $$
 
 *Criterios asociados: 1.1.4 y 1.1.5.*
 
-:::solution[Solución]
+:::solution[Solución Ejercicio 12]
 1. Predominan datos **no estructurados**: comentarios y reseñas en lenguaje natural.
 2. La **minería de textos** sirve para analizar el contenido textual; el ***webmining*** es útil cuando además se exploran datos provenientes del comportamiento o del contenido de la web.
 3. Variables posibles: sentimiento, tema principal, frecuencia de palabras o términos, y presencia de conceptos como «demora», «precio» o «atención».
 4. Información web complementaria: puntuación de las reseñas, fecha, canal, página visitada, ubicación general de la sucursal o interacción con el contenido.
 5. El análisis puede traducirse en decisiones: mejorar tiempos de atención, capacitar al personal, corregir productos o priorizar las sucursales con mayor insatisfacción.
-:::
-
-## Relación entre ejercicios y criterios
-
-:::table{#tabla03 caption="Matriz de relación entre ejercicios y criterios"}
-| Ejercicio | 1.1.1 | 1.1.2 | 1.1.3 | 1.1.4 | 1.1.5 |
-| --- | --- | --- | --- | --- | --- |
-| 1 | ✓ | | ✓ | | ✓ |
-| 2 | | ✓ | | | ✓ |
-| 3 | | ✓ | ✓ | | ✓ |
-| 4 | | ✓ | ✓ | | |
-| 5 | | ✓ | ✓ | | ✓ |
-| 6 | | ✓ | ✓ | | |
-| 7 | ✓ | | ✓ | | ✓ |
-| 8 | | ✓ | ✓ | | ✓ |
-| 9 | | | ✓ | | ✓ |
-| 10 | | ✓ | ✓ | | |
-| 11 | ✓ | | ✓ | | ✓ |
-| 12 | | | | ✓ | ✓ |
 :::

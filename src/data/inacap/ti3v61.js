@@ -74,17 +74,14 @@ const courseData = {
       date: 'Lun 19, Oct 2026', 
       description: [
         {
-          text: 'Introducción a Minería de Datos',
-          href: 'clase01'
-        },
-        {
-          text: 'De los datos a modelos útiles',
+          text: 'Presentación Inicial',
           href: 'docs/clase01a.pdf'
         },
         {
-          text: 'Estadística, distancias y ganancias de información',
+          text: 'Introducción a Minería de Datos',
           href: 'docs/clase01b.pdf'
         },
+        
       ]
     },
     { 
@@ -93,9 +90,13 @@ const courseData = {
       date: 'Jue 22, Oct 2026', 
       description: [
         {
-          text: 'Guía de ejercicios Unidad 1',
-          href: 'clase02'
-        }
+          text: 'De los datos a modelos útiles',
+          href: 'docs/clase02a.pdf'
+        },
+        {
+          text: 'Fundamentos matemáticos',
+          href: 'docs/clase02b.pdf'
+        },
       ]
     },
     { 
@@ -104,9 +105,17 @@ const courseData = {
       date: 'Lun 26, Oct 2026', 
       description: [
         {
-          text: '',
-          href: ''
-        }
+          text: 'Estadística, distancias y ganancias de información',
+          href: 'docs/clase03a.pdf'
+        },
+        {
+          text: 'Estadística Descriptiva e Inferencial',
+          href: 'docs/clase03b.pdf'
+        },
+        {
+          text: 'Temario prueba Unidad I',
+          href: 'docs/clase03c.pdf'
+        },
       ]
     },
     { 
@@ -126,8 +135,12 @@ const courseData = {
       date: 'Lun 02, Nov 2026', 
       description: [
         {
-          text: '',
-          href: ''
+          text: 'Guía de ejercicios Unidad 1',
+          href: 'clase05a'
+        },
+        {
+          text: 'Guía de preparación prueba mixta',
+          href: 'clase05b'
         }
       ]
     },
