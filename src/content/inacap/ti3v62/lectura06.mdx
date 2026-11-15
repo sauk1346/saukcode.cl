@@ -1,0 +1,143 @@
+# La auditoría revela lo que otros no observan
+
+La seguridad en entornos *cloud* requiere mecanismos que permitan **verificar permanentemente** el funcionamiento de los controles implementados. En este contexto, la auditoría es una herramienta fundamental para evaluar riesgos, detectar brechas y fortalecer la protección de los datos: contribuye a verificar accesos, configuraciones, cumplimiento normativo y efectividad de los controles, apoyándose en marcos de referencia como NIST y CSA y en prácticas como los registros de auditoría, el monitoreo continuo, la revisión de accesos y los indicadores de seguridad.
+
+## 1. ¿Qué es una auditoría de seguridad *cloud*?
+
+Una **auditoría de seguridad *cloud*** es un **proceso sistemático** de revisión y evaluación de los controles implementados en los servicios de computación en la nube.
+
+Su objetivo no es únicamente verificar si un control **existe**, sino comprobar que esté **correctamente configurado**, **operativo**, que **genere evidencia** y que responda al riesgo que busca mitigar. Para ello se analizan configuraciones, registros de actividad, mecanismos de control y evidencias operacionales que permitan determinar la efectividad de las medidas implementadas.
+
+:::callout[Ejemplo]{type="info"}
+No basta con declarar que existe MFA: también debe verificarse si está habilitado para los usuarios críticos, si se aplica a las cuentas privilegiadas y si existen excepciones documentadas.
+:::
+
+Según Majumdar (2019), la auditoría *cloud* permite evaluar la **postura de seguridad** de una organización y aporta una visión más amplia que las auditorías tradicionales. A diferencia de una auditoría centrada exclusivamente en infraestructura local, incorpora elementos propios de **entornos distribuidos, servicios compartidos y recursos administrados por proveedores externos**.
+
+### Objetivos de la auditoría
+
+:::table{#tabla01 caption="Objetivos de una auditoría cloud" layout="mixed" widths="220px,auto"}
+| Objetivo | Descripción |
+| --- | --- |
+| **Verificar cumplimiento** | Comprueba que los controles de seguridad se alineen con políticas internas, normativas legales, estándares internacionales y requisitos regulatorios |
+| **Detectar vulnerabilidades** | Identifica configuraciones inseguras, debilidades operacionales o prácticas que puedan aumentar la exposición a incidentes o ser aprovechadas por atacantes |
+| **Evaluar la efectividad de los controles** | Determina si los mecanismos implementados cumplen efectivamente el propósito para el cual fueron diseñados |
+| **Mejorar la gestión de riesgos** | Utiliza los hallazgos obtenidos para fortalecer la evaluación, el tratamiento y el seguimiento de los riesgos de seguridad |
+:::
+
+## 2. Marcos de referencia
+
+Las auditorías de seguridad *cloud* suelen apoyarse en marcos de referencia que proporcionan **criterios, controles y buenas prácticas** para evaluar la protección de los datos y la efectividad de los controles. Entre los más utilizados destacan NIST y la Cloud Security Alliance (CSA).
+
+### NIST
+
+El **National Institute of Standards and Technology (NIST)** ha desarrollado marcos de trabajo ampliamente utilizados para gestionar y evaluar la seguridad de la información. Uno de los más relevantes es el **Cybersecurity Framework (CSF)**, que organiza la gestión de la seguridad en cinco funciones principales:
+
+:::table{#tabla02 caption="Funciones del NIST Cybersecurity Framework" layout="mixed" widths="170px,auto"}
+| Función | Qué busca |
+| --- | --- |
+| **1. Identificar** | Comprender activos, riesgos, dependencias y contexto organizacional |
+| **2. Proteger** | Incluye controles orientados a gestión de identidades, capacitación, protección de datos y tecnologías de seguridad |
+| **3. Detectar** | Identificar actividades anómalas o potenciales incidentes de seguridad |
+| **4. Responder** | Establece procedimientos para contener y gestionar incidentes |
+| **5. Recuperar** | Restaurar las operaciones y fortalecer la resiliencia organizacional |
+:::
+
+Estas funciones proporcionan una base sólida para evaluar la **madurez de los controles** implementados en entornos *cloud*.
+
+### Cloud Security Alliance (CSA)
+
+La **Cloud Security Alliance** es una organización internacional dedicada a promover buenas prácticas de seguridad para entornos de computación en la nube. Entre sus principales aportes destacan:
+
+- **Cloud Controls Matrix (CCM)**.
+- ***Security Guidance for Critical Areas of Cloud Computing***.
+- Programas de certificación y evaluación.
+
+La CSA proporciona marcos de referencia que permiten evaluar aspectos de **gobernanza, gestión de identidades, protección de datos, seguridad de aplicaciones y cumplimiento normativo**.
+
+Muchas organizaciones utilizan simultáneamente los lineamientos de NIST y CSA para fortalecer sus procesos de auditoría *cloud*.
+
+## 3. Auditoría en entornos *cloud*
+
+Una auditoría *cloud* requiere revisar múltiples evidencias y controles para determinar si los mecanismos de seguridad funcionan correctamente. Los aspectos más importantes son los registros de actividad, el monitoreo continuo, los controles de acceso, la protección de los datos y los indicadores con que se evalúa el desempeño de la seguridad.
+
+### Registros de auditoría (*logs*)
+
+Los registros de auditoría son una de las **principales fuentes de evidencia** durante una auditoría de seguridad. Permiten reconstruir eventos, investigar incidentes y conocer las acciones realizadas dentro de los sistemas.
+
+Ejemplos de eventos registrados:
+
+- Inicio de sesión de usuarios.
+- Modificación de permisos.
+- Acceso a bases de datos.
+- Eliminación de recursos.
+- Configuración de servicios.
+- Intentos fallidos de autenticación.
+
+Los *logs* proporcionan **trazabilidad** y permiten demostrar **qué ocurrió, cuándo ocurrió y quién realizó cada acción**.
+
+### Monitoreo continuo
+
+Los entornos *cloud* cambian constantemente, por lo que las auditorías requieren mecanismos de **supervisión permanente** además de las revisiones periódicas.
+
+| El monitoreo permite detectar | Herramientas utilizadas |
+| --- | --- |
+| Actividades sospechosas | Azure Monitor |
+| Configuraciones incorrectas | Microsoft Sentinel |
+| Accesos no autorizados | AWS CloudTrail |
+| Incrementos anómalos de privilegios | Google Cloud Logging |
+| Transferencias inusuales de datos | Sistemas SIEM |
+
+### Evaluación de controles de acceso
+
+La revisión de identidades y permisos es una de las actividades más importantes de una auditoría *cloud*, ya que muchos incidentes se originan por **privilegios excesivos o accesos mal administrados**. En esta revisión suelen verificarse los usuarios activos, los roles asignados, los permisos privilegiados, el uso de MFA, la aplicación del mínimo privilegio y las cuentas inactivas.
+
+:::table{#tabla03 caption="Matriz de revisión de accesos" layout="mixed" widths="190px,auto,auto"}
+| Elemento auditado | Evidencia esperada | Riesgo asociado |
+| --- | --- | --- |
+| **Usuarios activos** | Listado actualizado de cuentas habilitadas | Cuentas no autorizadas o usuarios desvinculados con acceso vigente |
+| **Roles asignados** | Reporte de roles por usuario o grupo | Permisos incompatibles con la función del usuario |
+| **Permisos privilegiados** | Inventario de cuentas administrativas | Abuso de privilegios o cambios no autorizados |
+| **Uso de MFA** | Reporte de estado de MFA por usuario | Acceso no autorizado mediante credenciales comprometidas |
+| **Cuentas inactivas** | Reporte de último inicio de sesión | Cuentas huérfanas disponibles para abuso |
+| **Revisión periódica** | Registro de revisiones y aprobaciones | Acumulación de privilegios excesivos |
+:::
+
+### Auditoría de protección de datos
+
+Además de los accesos, una auditoría debe verificar que los datos estén protegidos de acuerdo con su nivel de **sensibilidad y criticidad**.
+
+:::table{#tabla04 caption="Controles según sensibilidad, criticidad y exposición" layout="mixed" widths="190px,auto,auto"}
+| Aspecto auditado | Evidencia esperada | Control relacionado |
+| --- | --- | --- |
+| **Clasificación de datos** | Inventario o etiquetado de información sensible | Gobierno de datos y clasificación |
+| **Cifrado en reposo** | Configuración de cifrado habilitada | Protección de confidencialidad |
+| **Cifrado en tránsito** | Uso de HTTPS, TLS o canales seguros | Protección durante la transmisión |
+| **Control de acceso** | Políticas asociadas a usuarios, grupos o roles | Mínimo privilegio |
+| **Retención de datos** | Políticas de conservación y eliminación | Cumplimiento y ciclo de vida |
+| **Registro de actividad** | *Logs* de acceso o modificación | Trazabilidad y auditoría |
+:::
+
+Controles frecuentemente evaluados:
+
+- Cifrado de datos.
+- Respaldos y recuperación.
+- Clasificación de información.
+- Retención y eliminación segura.
+
+### Indicadores de auditoría
+
+Las auditorías utilizan **métricas** para medir objetivamente la efectividad de los controles implementados. Indicadores frecuentes:
+
+- Porcentaje de usuarios con MFA habilitado.
+- Intentos fallidos de autenticación.
+- Cantidad de cuentas privilegiadas.
+- Tiempo de detección de incidentes.
+- Tiempo de respuesta.
+- Vulnerabilidades identificadas.
+
+Estos indicadores permiten evaluar el **nivel de madurez** de la seguridad y apoyar la toma de decisiones basada en evidencia.
+
+:::callout[Para reflexionar]{type="tip"}
+La auditoría de seguridad en entornos *cloud* transforma datos, registros y evidencias en información útil para la toma de decisiones. Con la revisión sistemática de accesos, configuraciones, controles de protección y mecanismos de monitoreo, las organizaciones identifican debilidades, miden la efectividad de sus controles y fortalecen su postura de seguridad frente a riesgos cambiantes. Así, la auditoría deja de ser una actividad aislada y se convierte en un **proceso permanente de mejora y gobernanza**. Piensa en cómo la evidencia, el monitoreo y la evaluación continua contribuyen a construir entornos *cloud* más seguros y resilientes.
+:::

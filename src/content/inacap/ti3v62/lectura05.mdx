@@ -1,0 +1,176 @@
+# La nube exige decisiones seguras
+
+La adopción masiva de servicios en la nube ha transformado la forma en que las organizaciones almacenan información, ejecutan aplicaciones y ofrecen servicios digitales, y su seguridad se ha vuelto esencial para proteger la información y garantizar la continuidad de esos servicios. Estos entornos plantean desafíos de protección de datos, gestión de identidades, control de accesos y cumplimiento normativo. A diferencia de los modelos tradicionales, la seguridad en la nube se basa en esquemas de **responsabilidad compartida**, que exigen una gestión activa por parte de las organizaciones para reducir riesgos y proteger sus activos de información.
+
+## 1. ¿Qué es *cloud computing*?
+
+El ***cloud computing*** (computación en la nube) es un modelo tecnológico que permite **acceder a recursos informáticos a través de Internet bajo demanda**, cuando se necesitan, sin depender completamente de infraestructura física propia.
+
+Estos recursos pueden incluir **servidores**, **bases de datos**, **aplicaciones**, **almacenamiento**, **redes** y diversos **servicios especializados**. Gracias a este modelo, las organizaciones usan capacidades tecnológicas de manera flexible y se adaptan a los cambios en la demanda sin realizar grandes inversiones en equipamiento.
+
+Según Majumdar (2019), la computación en la nube permite a las organizaciones aumentar su capacidad tecnológica de forma flexible y escalable, reduciendo la necesidad de mantener infraestructura física propia. Una de sus principales ventajas es la posibilidad de **ajustar los recursos dinámicamente** según las necesidades operacionales del negocio.
+
+:::table{#tabla01 caption="Ventajas principales" layout="mixed" widths="220px,auto"}
+| Ventaja | Beneficio |
+| --- | --- |
+| **Escalabilidad** | Ajustar recursos según la demanda |
+| **Flexibilidad** | Acceder a servicios desde distintos lugares |
+| **Disponibilidad** | Mantener servicios accesibles de forma continua |
+| **Optimización de costos** | Reducir inversiones en infraestructura propia |
+| **Agilidad operativa** | Implementar soluciones con mayor rapidez |
+:::
+
+## 2. Modelos de servicio en la nube
+
+Los servicios de *cloud computing* pueden implementarse mediante distintos modelos. La principal diferencia entre ellos es la **distribución de responsabilidades** entre el proveedor y la organización usuaria. Comprender estas diferencias permite seleccionar soluciones adecuadas según las necesidades de seguridad, gestión y operación.
+
+:::table{#tabla02 caption="Modelos de cloud computing" layout="mixed" widths="90px,auto,auto,auto"}
+| Modelo | ¿Qué entrega el proveedor? | ¿Qué administra principalmente el cliente? | Ejemplos |
+| --- | --- | --- | --- |
+| **IaaS** | Infraestructura virtualizada, redes, almacenamiento y cómputo | Sistema operativo, aplicaciones, datos, configuraciones de seguridad, usuarios y accesos | Microsoft Azure Virtual Machines, Amazon EC2, Google Compute Engine |
+| **PaaS** | Plataforma administrada para desarrollar, ejecutar y desplegar aplicaciones | Código, configuración de la aplicación, datos, identidades, permisos y lógica de negocio | Azure App Service, Google App Engine, Heroku |
+| **SaaS** | Aplicación lista para usar a través de Internet | Usuarios, permisos, datos, configuración del servicio y uso seguro de la aplicación | Microsoft 365, Google Workspace, Salesforce |
+:::
+
+A medida que se avanza desde IaaS hacia SaaS, **el proveedor asume una mayor responsabilidad** sobre la infraestructura tecnológica, mientras que la organización se concentra cada vez más en la gestión de usuarios, datos y uso seguro de los servicios.
+
+### Responsabilidad compartida
+
+Uno de los principios más importantes de la seguridad en la nube es comprender que la protección de los servicios **no depende únicamente del proveedor**. La responsabilidad se distribuye entre ambas partes y su alcance varía según el modelo contratado:
+
+- En **IaaS**, el cliente conserva mayor responsabilidad sobre sistemas operativos, aplicaciones y configuraciones.
+- En **PaaS**, el proveedor asume más componentes de plataforma, mientras que el cliente mantiene responsabilidades sobre datos, identidades y configuración de la aplicación.
+- En **SaaS**, el proveedor administra la mayor parte de la infraestructura y la aplicación, pero el cliente sigue siendo responsable de usuarios, permisos, datos y uso seguro del servicio.
+
+| ¿Qué protege el proveedor? | ¿Qué protege el cliente? |
+| --- | --- |
+| Centros de datos | Usuarios e identidades |
+| Infraestructura física | Permisos y accesos |
+| Redes principales | Configuraciones de seguridad |
+| *Hardware* | Datos almacenados |
+| Servicios base de la plataforma | Uso seguro de las aplicaciones |
+
+Una configuración incorrecta realizada por la organización puede generar vulnerabilidades **incluso cuando la infraestructura del proveedor sea altamente segura**. Por eso, en la nube no basta con confiar en la seguridad del proveedor: la organización debe administrar correctamente sus identidades, permisos, configuraciones, datos, respaldos, monitoreo y políticas de acceso. Aunque el proveedor proteja la infraestructura base, una mala configuración del cliente puede exponer información sensible o permitir accesos no autorizados.
+
+### Microsoft Azure Well-Architected Framework
+
+A medida que las organizaciones migran sus servicios a la nube, surge la necesidad de contar con marcos de referencia para diseñar arquitecturas **seguras, resilientes y eficientes**. Microsoft desarrolló **Azure Well-Architected Framework** con este propósito: entrega recomendaciones y buenas prácticas orientadas a maximizar el rendimiento y la seguridad de las soluciones implementadas en la nube.
+
+El *framework* se estructura sobre **pilares** que permiten evaluar la calidad de una arquitectura *cloud* desde múltiples dimensiones:
+
+- Fiabilidad.
+- Seguridad.
+- Optimización de costos.
+- Excelencia operativa.
+- Eficiencia del rendimiento.
+
+El pilar de **seguridad** ocupa un rol fundamental, ya que busca proteger los activos de información mediante controles preventivos, mecanismos de monitoreo y estrategias de gestión de riesgos. Según Microsoft, una arquitectura *cloud* segura debe considerar permanentemente:
+
+- Protección de identidades.
+- Seguridad de redes.
+- Protección de datos.
+- Gestión de accesos.
+- Supervisión continua.
+- Respuesta ante incidentes.
+
+La aplicación de estos principios permite reducir vulnerabilidades y fortalecer la resiliencia de los servicios implementados en la nube.
+
+## 3. Gestión de identidades y accesos
+
+En los entornos *cloud*, proteger las identidades digitales es tan importante como proteger los datos. La **gestión de identidades y accesos**, conocida como **IAM** (*identity and access management*), es uno de los pilares más importantes de la seguridad *cloud*: su propósito es garantizar que **únicamente los usuarios autorizados** puedan acceder a los recursos tecnológicos de la organización, controlando quién accede, qué acciones puede realizar y con qué condiciones.
+
+IAM permite responder preguntas fundamentales:
+
+- ¿**Quién** solicita acceso?
+- ¿**Qué recursos** puede utilizar?
+- ¿**Qué acciones** puede realizar?
+- ¿**Durante cuánto tiempo** puede acceder?
+
+La correcta administración de identidades reduce significativamente los riesgos asociados a accesos indebidos, errores de configuración, uso inapropiado o excesivo de privilegios y compromisos de cuentas.
+
+En entornos *cloud* modernos, los sistemas IAM permiten administrar **usuarios**, **roles**, **grupos**, **permisos**, **políticas de acceso** y **dispositivos autorizados**.
+
+:::callout[Cuentas privilegiadas]{type="warning"}
+Las cuentas privilegiadas requieren especial atención, ya que pueden modificar configuraciones críticas, crear recursos, acceder a datos sensibles o desactivar controles de seguridad. Deben protegerse mediante autenticación multifactor, revisión periódica de permisos, uso de roles específicos, registro de actividad y aplicación estricta del principio de mínimo privilegio.
+:::
+
+### Roles y permisos
+
+Dentro de IAM, los permisos suelen administrarse mediante **roles**. Un rol representa un conjunto de privilegios previamente definidos que puede asignarse a distintos usuarios.
+
+La asignación de roles debe hacerse de acuerdo con las **funciones reales del usuario** y no por comodidad operativa. Un error frecuente es asignar permisos administrativos a usuarios que solo requieren visualizar información o ejecutar tareas limitadas: esta práctica aumenta la superficie de exposición y puede facilitar accesos indebidos o cambios no autorizados.
+
+Este enfoque permite aplicar el **principio de mínimo privilegio**. Según las buenas prácticas de Microsoft, los usuarios deben disponer únicamente de los permisos necesarios para desarrollar sus funciones, evitando privilegios excesivos que puedan transformarse en vulnerabilidades de seguridad.
+
+### Autenticación multifactor (MFA)
+
+La autenticación multifactor es uno de los mecanismos más efectivos para fortalecer la seguridad de las identidades digitales. La autenticación tradicional depende únicamente de la contraseña, pero las contraseñas pueden verse comprometidas mediante *phishing*, ingeniería social, fuerza bruta o robo de credenciales. Por eso las organizaciones incorporan factores adicionales:
+
+:::table{#tabla03 caption="Factores de autenticación" layout="mixed" widths="190px,auto"}
+| Factor | Ejemplos |
+| --- | --- |
+| **Algo que sabes** | Contraseña, PIN |
+| **Algo que tienes** | Teléfono móvil, *token* físico, aplicación autenticadora |
+| **Algo que eres** | Huella digital, reconocimiento facial, biometría |
+:::
+
+La combinación de múltiples factores reduce significativamente la probabilidad de acceso no autorizado. No obstante, la efectividad de MFA depende del **método utilizado** y de su correcta implementación: una aplicación autenticadora o una llave de seguridad física suele ofrecer mayor protección que los códigos enviados por SMS, que pueden verse afectados por técnicas como la duplicación de SIM o la interceptación de mensajes.
+
+### Modelo *Zero Trust*
+
+Durante muchos años, las organizaciones diseñaron sus redes bajo el supuesto de que todo lo que estaba dentro del perímetro corporativo podía considerarse confiable. La expansión del trabajo remoto, la nube y los dispositivos móviles modificó radicalmente este escenario, y como respuesta surge el modelo ***Zero Trust***.
+
+Su principio fundamental es: **nunca confiar, siempre verificar**. Ningún usuario, dispositivo o aplicación debe considerarse automáticamente seguro, independientemente de su ubicación.
+
+En entornos *cloud* este principio es especialmente relevante, porque los usuarios pueden conectarse desde distintas redes, ubicaciones, dispositivos y aplicaciones. Por ello, el acceso debe validarse considerando **identidad, dispositivo, ubicación, comportamiento, nivel de riesgo y sensibilidad del recurso** solicitado.
+
+La seguridad moderna en la nube combina **IAM, MFA y *Zero Trust*** para proteger identidades, limitar privilegios y reducir la probabilidad de accesos no autorizados.
+
+## 4. Amenazas frecuentes en entornos *cloud*
+
+A pesar de las ventajas de la computación en la nube, las organizaciones deben enfrentar riesgos asociados a la gestión de accesos, las configuraciones y la protección de datos. Entre las amenazas más comunes destacan:
+
+- **Configuraciones incorrectas:** una de las principales causas de incidentes *cloud*. Por ejemplo, un contenedor de almacenamiento mal configurado podría permitir que archivos internos, respaldos o datos personales queden accesibles desde Internet sin autenticación adecuada.
+- **Robo de credenciales:** los atacantes buscan obtener acceso a cuentas privilegiadas mediante *phishing*, *malware* o ingeniería social.
+- **Exposición de datos sensibles:** puede producirse cuando la información se almacena sin controles adecuados de acceso o cifrado.
+- **Uso indebido de privilegios:** usuarios internos con permisos excesivos pueden provocar pérdidas o modificaciones no autorizadas de información.
+
+Según Majumdar (2019), gran parte de los incidentes *cloud* modernos se relacionan más con **errores de administración y gobernanza** que con vulnerabilidades de la infraestructura del proveedor.
+
+:::table{#tabla04 caption="Amenazas vs. controles" layout="mixed" widths="170px,auto,auto"}
+| Amenaza *cloud* | Ejemplo | Control recomendado |
+| --- | --- | --- |
+| **Configuración incorrecta** | Almacenamiento expuesto públicamente | Revisión de configuraciones, políticas de seguridad, plantillas seguras y monitoreo continuo |
+| **Robo de credenciales** | Acceso mediante usuario y contraseña filtrados | Autenticación multifactor, detección de inicios de sesión anómalos y capacitación contra *phishing* |
+| **Permisos excesivos** | Usuario con privilegios mayores a los necesarios | Mínimo privilegio, revisión periódica de roles y segregación de funciones |
+| **Exposición de datos sensibles** | Datos almacenados sin cifrado o sin control de acceso | Cifrado, clasificación de información, control de acceso y auditoría de permisos |
+| **Falta de monitoreo** | Actividad maliciosa no detectada oportunamente | *Logs* centralizados, alertas, SIEM y revisión periódica de eventos |
+:::
+
+## 5. Escenario aplicado: migración segura a Microsoft Azure
+
+:::solution[Caso: una organización de servicios de salud]
+Una organización dedicada a servicios de salud decide migrar sus aplicaciones clínicas a Microsoft Azure para mejorar la disponibilidad y escalabilidad de sus servicios.
+
+| Elemento | En el caso |
+| --- | --- |
+| **Información sensible** | Fichas médicas, resultados de exámenes, información financiera y datos personales de pacientes |
+| **Riesgos identificados** | Accesos no autorizados, exposición de datos sensibles, configuraciones incorrectas y uso indebido de privilegios |
+
+**Medidas adoptadas:** para reducir los riesgos, la organización implementa una estrategia basada en buenas prácticas de gestión de identidades y protección de datos:
+
+- Gestión centralizada de identidades mediante IAM.
+- Autenticación multifactor para todo el personal clínico.
+- Aplicación del principio de mínimo privilegio.
+- Monitoreo continuo de actividades.
+- Revisión periódica de permisos.
+- Cifrado de información sensible.
+
+Además, la arquitectura se evalúa con los principios de Azure Well-Architected Framework, para verificar que los controles de seguridad estén alineados con las buenas prácticas de la industria.
+
+El escenario muestra que la seguridad en la nube no depende únicamente del proveedor del servicio: la correcta gestión de identidades, permisos y controles de acceso es fundamental para proteger información crítica y reducir los riesgos de los entornos *cloud*.
+:::
+
+:::callout[Para reflexionar]{type="tip"}
+La nube ofrece escalabilidad, flexibilidad y disponibilidad, pero también introduce desafíos de protección de la información. Comprender los modelos de servicio, la responsabilidad compartida y las amenazas más frecuentes permite interpretar mejor los riesgos, y prácticas como IAM, la autenticación multifactor, el mínimo privilegio y *Zero Trust* fortalecen la protección de los datos. Piensa en cómo estos controles pueden aplicarse en distintos contextos: una adecuada gestión de accesos e identidades puede marcar la diferencia entre un servicio seguro y una exposición innecesaria al riesgo.
+:::

@@ -296,22 +296,31 @@ const courseData = {
       lecture: '04', 
       date: 'Sáb 07, Nov 2026', 
       description: {
+          text: 'Seguridad en cloud computing',
+          href: 'docs/lectura04.pdf'
+      }
+    },
+    { 
+      week: '03', 
+      lecture: '05', 
+      date: 'Sáb 07, Nov 2026', 
+      description: {
           text: 'La nube exige decisiones seguras',
-          href: ''
+          href: 'lectura05'
       }
     },
     { 
       week: '04', 
-      lecture: '05', 
+      lecture: '06', 
       date: 'Sáb 14, Nov 2026', 
       description: {
           text: 'La auditoría revela lo que otros no observan',
-          href: ''
+          href: 'lectura06'
       }
     },
     { 
       week: '05', 
-      lecture: '06', 
+      lecture: '07', 
       date: 'Sáb 21, Nov 2026', 
       description: {
           text: 'Cada dispositivo puede convertirse en una vulnerabilidad',
@@ -320,7 +329,7 @@ const courseData = {
     },
     { 
       week: '06', 
-      lecture: '07', 
+      lecture: '08', 
       date: 'Sáb 28, Nov 2026', 
       description: {
           text: 'Cada conexión deja una señal en la red',
