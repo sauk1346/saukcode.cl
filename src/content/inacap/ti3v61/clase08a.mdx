@@ -1,0 +1,569 @@
+# Introducción a R
+
+**Material:** [Cuaderno original (.ipynb)](/inacap/ti3v61/docs/clase08a.ipynb)
+
+**R** es un lenguaje pensado para estadística y análisis de datos. En esta clase se revisan sus piezas básicas: funciones matemáticas, variables, tipos de datos, vectores, secuencias y un primer cálculo estadístico. Cada bloque de código va seguido de la salida que entrega R en la terminal.
+
+## 1. Funciones matemáticas básicas
+
+Una **función** se llama por su nombre, con sus argumentos entre paréntesis. El `[1]` que antecede a cada resultado indica la posición del primer elemento mostrado: en R incluso un número suelto es un vector de un elemento.
+
+```r
+# Raíz cuadrada
+sqrt(4)
+```
+
+```terminal
+[1] 2
+```
+
+El **factorial** de un número es el producto de todos los enteros desde ese número hasta 1: $n! = n \cdot (n-1) \cdots 1$.
+
+```r
+factorial(3)
+```
+
+```terminal
+[1] 6
+```
+
+El **valor absoluto** es la distancia de un número al cero, sin signo: $|-3| = 3$ y $|3| = 3$.
+
+```r
+abs(-3)
+```
+
+```terminal
+[1] 3
+```
+
+## 2. Variables y asignación
+
+Una **variable** guarda un valor bajo un nombre. En R se asigna con `<-`; para ver el valor basta escribir el nombre.
+
+```r
+# Variable con un número
+x <- 3
+x
+```
+
+```terminal
+[1] 3
+```
+
+También se puede asignar con `=`, aunque la convención en R es usar `<-`.
+
+```r
+y = 5
+y
+```
+
+```terminal
+[1] 5
+```
+
+El texto va entre comillas dobles o simples. El punto y coma separa dos instrucciones en una misma línea, lo que permite ver dos variables a la vez.
+
+```r
+# Variables con texto
+c <- "ale"
+d <- 'pepe'
+c; d
+```
+
+```terminal
+[1] "ale"
+[1] "pepe"
+```
+
+:::callout[Nombres que conviene evitar]{type="warning"}
+`c` es también el nombre de la función que crea vectores (sección 4). R permite usarlo como variable y la función sigue funcionando, pero es mejor elegir otro nombre para no confundirse.
+:::
+
+### Valores lógicos
+
+Los valores lógicos (o booleanos) son `TRUE` y `FALSE`. Se combinan con `|` (o lógico: verdadero si al menos uno lo es) y `&` (y lógico: verdadero solo si ambos lo son).
+
+```r
+p <- TRUE
+q <- FALSE
+p | q   # o lógico
+```
+
+```terminal
+[1] TRUE
+```
+
+```r
+p & q   # y lógico
+```
+
+```terminal
+[1] FALSE
+```
+
+### Asignar una variable a otra
+
+Al asignar una variable a otra se **copia el valor** en ese momento. Si después cambia la original, la copia no se entera.
+
+```r
+z <- x
+z
+```
+
+```terminal
+[1] 3
+```
+
+```r
+# x cambia, pero z conserva el valor que copió
+x <- 10
+z
+```
+
+```terminal
+[1] 3
+```
+
+## 3. Tipos de datos
+
+`typeof()` indica cómo guarda R un valor internamente y `class()` indica qué tipo de objeto es para efectos de uso.
+
+```r
+typeof(x)
+```
+
+```terminal
+[1] "double"
+```
+
+```r
+class(x)
+```
+
+```terminal
+[1] "numeric"
+```
+
+:::callout[¿Por qué «double» si es un entero?]{type="info"}
+R guarda los números como decimales de doble precisión (`double`) salvo que se pida otra cosa. Para un entero propiamente tal se agrega una `L`: `typeof(3L)` devuelve `"integer"`.
+:::
+
+### Fechas
+
+Una fecha escrita entre comillas es solo texto: R no sabe que es una fecha.
+
+```r
+fechax <- "2019-05-08"
+fechax
+typeof(fechax)
+class(fechax)
+```
+
+```terminal
+[1] "2019-05-08"
+[1] "character"
+[1] "character"
+```
+
+`as.Date()` la convierte en una fecha real, con la que se puede calcular (restar fechas, sumar días).
+
+```r
+fechadate <- as.Date(fechax)
+fechadate
+typeof(fechadate)
+class(fechadate)
+```
+
+```terminal
+[1] "2019-05-08"
+[1] "double"
+[1] "Date"
+```
+
+El tipo interno es `double` porque R guarda una fecha como el número de días transcurridos desde el 1 de enero de 1970; la clase `Date` es la que hace que se muestre como fecha.
+
+### Borrar una variable
+
+`rm()` elimina una variable de la memoria. Si se consulta después, R responde con un error porque el objeto ya no existe.
+
+```r
+x
+rm(x)
+x
+```
+
+```terminal
+[1] 10
+Error in eval(expr, envir, enclos): object 'x' not found
+```
+
+### Ayuda
+
+El signo `?` delante de una función abre su documentación.
+
+```r
+?rm
+```
+
+## 4. Vectores
+
+Un **vector** es una colección ordenada de valores **del mismo tipo**. Se crea con `c()`, que viene de *combine* (combinar).
+
+```r
+x <- c(1, 2, 4)
+x
+```
+
+```terminal
+[1] 1 2 4
+```
+
+`names()` le pone un nombre a cada elemento.
+
+```r
+names(x) <- c("A", "B", "C")
+x
+```
+
+```terminal
+A B C 
+1 2 4
+```
+
+`c()` también une vectores. Los elementos que no tienen nombre quedan con el nombre vacío.
+
+```r
+v1 <- c(4, 5, 6, 7, 8)
+v1
+```
+
+```terminal
+[1] 4 5 6 7 8
+```
+
+```r
+c(x, v1)
+```
+
+```terminal
+A B C           
+1 2 4 4 5 6 7 8
+```
+
+### Acceder a los elementos
+
+Se accede con corchetes. En R las posiciones **parten en 1**, no en 0.
+
+```r
+# Un elemento por su posición
+x[2]
+```
+
+```terminal
+B 
+2
+```
+
+```r
+# Un rango de posiciones
+x[1:2]
+```
+
+```terminal
+A B 
+1 2
+```
+
+El operador `:` genera la secuencia de enteros entre dos valores; es lo mismo que escribirlos con `c()`.
+
+```r
+3:5
+```
+
+```terminal
+[1] 3 4 5
+```
+
+```r
+c(3, 4, 5)
+```
+
+```terminal
+[1] 3 4 5
+```
+
+```r
+c(2:4)
+```
+
+```terminal
+[1] 2 3 4
+```
+
+Un vector puede contener números negativos, como cualquier otro valor:
+
+```r
+c(1, 3, -5)
+```
+
+```terminal
+[1]  1  3 -5
+```
+
+Para pedir varias posiciones salteadas se pasa un vector de posiciones. Si una posición no existe, R devuelve `NA` (dato faltante) en lugar de un error: `x` tiene tres elementos, así que la posición 4 no existe.
+
+```r
+x[c(1, 4)]
+```
+
+```terminal
+   A <NA> 
+   1   NA
+```
+
+### Modificar elementos
+
+Se asigna sobre la posición que se quiere cambiar.
+
+```r
+x[2] <- 1000
+x
+```
+
+```terminal
+   A    B    C 
+   1 1000    4
+```
+
+Con un vector de posiciones se cambian varias a la vez:
+
+```r
+x[c(1, 3)] <- 10
+x
+```
+
+```terminal
+   A    B    C 
+  10 1000   10
+```
+
+También se puede acceder a un elemento por su nombre. Aquí devuelve el valor ya modificado:
+
+```r
+x["A"]
+```
+
+```terminal
+ A 
+10
+```
+
+### Filtrar con condiciones
+
+Una comparación sobre un vector se evalúa elemento por elemento y devuelve un vector lógico.
+
+```r
+x > 15
+```
+
+```terminal
+    A     B     C 
+FALSE  TRUE FALSE
+```
+
+Ese vector lógico sirve para filtrar: entre corchetes, deja solo los elementos donde la condición es `TRUE`.
+
+```r
+x[x > 15]
+```
+
+```terminal
+   B 
+1000
+```
+
+### Buscar dentro de un vector
+
+`which.max()` devuelve la **posición** del valor máximo, no el valor. Para obtener el valor, se usa esa posición entre corchetes.
+
+```r
+which.max(x)
+```
+
+```terminal
+B 
+2
+```
+
+```r
+x[which.max(x)]
+```
+
+```terminal
+   B 
+1000
+```
+
+El operador `%in%` pregunta si cada elemento de la izquierda está en el vector de la derecha.
+
+```r
+# ¿Está el valor 1000 en x?
+1000 %in% x
+```
+
+```terminal
+[1] TRUE
+```
+
+```r
+# ¿Están 34 y 658 en el vector que solo contiene 10?
+c(34, 658) %in% 10
+```
+
+```terminal
+[1] FALSE FALSE
+```
+
+## 5. Repeticiones y secuencias
+
+`rep()` repite un valor la cantidad de veces indicada. Cuando la salida ocupa más de una línea, el número entre corchetes al inicio de cada una indica la posición del primer elemento de esa línea.
+
+```r
+vl <- rep("lala", 20)
+vl
+```
+
+```terminal
+ [1] "lala" "lala" "lala" "lala" "lala" "lala" "lala" "lala" "lala" "lala"
+[11] "lala" "lala" "lala" "lala" "lala" "lala" "lala" "lala" "lala" "lala"
+```
+
+```r
+rep(TRUE, 3)
+```
+
+```terminal
+[1] TRUE TRUE TRUE
+```
+
+```r
+rep(1, 3)
+```
+
+```terminal
+[1] 1 1 1
+```
+
+`seq()` crea una secuencia indicando el inicio, el término y el incremento.
+
+```r
+seq(1, 20, 2)
+```
+
+```terminal
+ [1]  1  3  5  7  9 11 13 15 17 19
+```
+
+Con un incremento negativo la secuencia desciende:
+
+```r
+seq(10, 1, -2)
+```
+
+```terminal
+[1] 10  8  6  4  2
+```
+
+El incremento puede ser decimal y escribirse con su nombre, `by`:
+
+```r
+seq(1, 10, by = 0.1)
+```
+
+```terminal
+ [1]  1.0  1.1  1.2  1.3  1.4  1.5  1.6  1.7  1.8  1.9  2.0  2.1  2.2  2.3  2.4
+[16]  2.5  2.6  2.7  2.8  2.9  3.0  3.1  3.2  3.3  3.4  3.5  3.6  3.7  3.8  3.9
+[31]  4.0  4.1  4.2  4.3  4.4  4.5  4.6  4.7  4.8  4.9  5.0  5.1  5.2  5.3  5.4
+[46]  5.5  5.6  5.7  5.8  5.9  6.0  6.1  6.2  6.3  6.4  6.5  6.6  6.7  6.8  6.9
+[61]  7.0  7.1  7.2  7.3  7.4  7.5  7.6  7.7  7.8  7.9  8.0  8.1  8.2  8.3  8.4
+[76]  8.5  8.6  8.7  8.8  8.9  9.0  9.1  9.2  9.3  9.4  9.5  9.6  9.7  9.8  9.9
+[91] 10.0
+```
+
+En lugar del incremento se puede pedir una **cantidad de valores** con `length.out`; R calcula el paso para repartirlos de forma pareja.
+
+```r
+seq(from = 1, to = 10, length.out = 5)
+```
+
+```terminal
+[1]  1.00  3.25  5.50  7.75 10.00
+```
+
+## 6. Distribución uniforme
+
+En una **distribución uniforme**, todos los valores dentro de un rango tienen la misma probabilidad de ocurrir.
+
+- **Discreta:** al lanzar un dado justo, cada número del 1 al 6 tiene la misma probabilidad de salir.
+- **Continua:** cualquier valor dentro de un intervalo, por ejemplo entre 0 y 100, tiene la misma probabilidad de ser elegido.
+
+`runif()` genera números al azar de una distribución uniforme continua: `n` es la cantidad de valores y `min` y `max` son los límites del intervalo.
+
+```r
+v2 <- runif(n = 10, min = 0, max = 100)
+v2
+```
+
+```terminal
+ [1] 60.644014 50.811394  4.789002 95.854093 47.172855 15.995953 52.602884
+ [8] 96.539216 68.575201 19.111881
+```
+
+:::callout[Los valores cambian en cada ejecución]{type="info"}
+Como son números al azar, cada vez que se ejecuta `runif()` salen valores distintos, y con ellos cambian la media y la mediana. Para repetir exactamente los mismos números se fija antes una semilla, por ejemplo `set.seed(123)`.
+:::
+
+Sobre ese vector se calculan la **media aritmética** y la **mediana**:
+
+```r
+mean(v2)
+```
+
+```terminal
+[1] 51.20965
+```
+
+```r
+median(v2)
+```
+
+```terminal
+[1] 51.70714
+```
+
+Ambas quedan cerca de 50, el centro del intervalo: en una distribución uniforme entre 0 y 100, ese es el valor esperado.
+
+## Resumen de funciones
+
+:::table{#tabla01 caption="Funciones y operadores vistos en la clase" layout="mixed" widths="220px,auto"}
+| Función u operador | Qué hace |
+| --- | --- |
+| `sqrt()`, `factorial()`, `abs()` | Raíz cuadrada, factorial y valor absoluto |
+| `<-`, `=` | Asignan un valor a una variable |
+| `\|`, `&` | O lógico e y lógico |
+| `typeof()`, `class()` | Tipo interno y clase de un objeto |
+| `as.Date()` | Convierte un texto en fecha |
+| `rm()` | Elimina una variable de la memoria |
+| `?función` | Abre la ayuda de una función |
+| `c()` | Crea un vector o une varios |
+| `names()` | Asigna nombres a los elementos de un vector |
+| `x[i]`, `x["nombre"]`, `x[condición]` | Acceden a elementos por posición, por nombre o por condición |
+| `a:b` | Secuencia de enteros entre `a` y `b` |
+| `which.max()` | Posición del valor máximo |
+| `%in%` | Indica si un valor está en un vector |
+| `rep()` | Repite un valor |
+| `seq()` | Crea una secuencia con incremento (`by`) o con cantidad de valores (`length.out`) |
+| `runif()` | Genera números al azar con distribución uniforme |
+| `mean()`, `median()` | Media aritmética y mediana |
+:::

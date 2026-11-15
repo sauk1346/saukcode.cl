@@ -183,8 +183,16 @@ const courseData = {
       description: [
         {
           text: 'Introducción R',
-          href: ''
-        }
+          href: 'clase08a'
+        },
+        {
+          text: 'Libro: R para principiantes (J. B. Mendoza)',
+          href: 'https://bookdown.org/jboscomendoza/r-principiantes4/'
+        },
+        {
+          text: 'Libro: R para principiantes (E. Paradis)',
+          href: 'https://cran.r-project.org/doc/contrib/rdebuts_es.pdf'
+        },
       ]
     },
     { 
