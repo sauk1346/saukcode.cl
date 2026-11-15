@@ -124,9 +124,19 @@ const courseData = {
       date: 'Jue 29, Oct 2026', 
       description: [
         {
-          text: '',
-          href: ''
-        }
+          text: 'Reforzamiento Unidad I',
+          href: 'docs/clase04a.pdf'
+        },
+        {
+          text: 'Laboratorio interactivo',
+          href: 'laboratorio',
+          newTab: true
+        },
+        {
+          text: 'Banco de preguntas',
+          href: 'banco-preguntas',
+          newTab: true
+        },
       ]
     },
     { 

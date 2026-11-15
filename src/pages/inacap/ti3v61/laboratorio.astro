@@ -1,0 +1,8 @@
+---
+// Laboratorio interactivo del ramo: página independiente (HTML, CSS y JS
+// propios) con la piel de saukcode. Ver src/labs/ti3v61/README.md.
+import source from '../../../labs/ti3v61/laboratorio.html?raw';
+import { renderLab } from '../../../labs/ti3v61/render.js';
+---
+
+<Fragment set:html={renderLab(source)} />

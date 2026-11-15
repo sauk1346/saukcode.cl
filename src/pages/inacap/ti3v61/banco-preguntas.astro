@@ -1,0 +1,8 @@
+---
+// Banco de preguntas del ramo: página independiente con la misma piel que el
+// laboratorio. Ver src/labs/ti3v61/README.md.
+import source from '../../../labs/ti3v61/banco.html?raw';
+import { renderLab } from '../../../labs/ti3v61/render.js';
+---
+
+<Fragment set:html={renderLab(source)} />
