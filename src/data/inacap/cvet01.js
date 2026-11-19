@@ -63,6 +63,15 @@ const courseData = {
         
     },
   ],
+  // Pestaña «Laboratorio»: material de repaso que condensa el ramo
+  labData: [
+    {
+      title: 'Excel para Estadística',
+      href: 'laboratorio',
+      meta: 'Unidades 1 y 2',
+      description: 'Las siete actividades tecnológicas en láminas: los conceptos, los pasos en Excel con sus capturas y un resumen de comandos.',
+    },
+  ],
   classData: [
     { 
       week: '01', 

@@ -1,0 +1,1090 @@
+---
+// Laboratorio «Excel para Estadística»: resumen de las actividades
+// tecnológicas (AT) del ramo, una lámina por tema. El contenido vive en
+// src/labs/cvet01/ (ver su README.md) y se dibuja completo al compilar; el
+// script del final solo muestra la lámina que pide el hash de la URL.
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { MODS as EXCEL, TEORIA, RESUMEN, GUIA } from '../../../labs/cvet01/contenido.js';
+import { bloques, esc } from '../../../labs/cvet01/render.js';
+
+const DOCS = '/inacap/cvet01/docs/';
+// Conceptos primero, después los módulos de Excel de cada unidad
+const MODS = [...TEORIA, ...EXCEL, ...RESUMEN];
+const etiqueta = (m) => (m.u === 0 ? `Teoría · ${m.at}` : m.u === 3 ? 'Resumen' : `U${m.u} · ${m.at}`);
+const UNIDADES = [
+  { u: 0, corto: 'Conceptos', largo: 'Conceptos · La teoría detrás de las guías' },
+  { u: 1, corto: 'Unidad 1 · Univariados', largo: 'Unidad 1 · Datos univariados (una variable)' },
+  { u: 2, corto: 'Unidad 2 · Bivariados', largo: 'Unidad 2 · Datos bivariados (dos variables)' },
+  { u: 3, corto: 'Resumen', largo: 'Resumen · Los comandos en una hoja' },
+];
+
+const laminas = MODS.flatMap((m) => m.pages.map((p, i) => ({ ...p, id: `${m.id}-${i + 1}`, m, i })));
+const rutas = [{ id: 'inicio', t: 'Inicio' }, { id: 'guia', t: 'Buscador' }, ...laminas];
+const porId = Object.fromEntries(laminas.map((l) => [l.id, l]));
+const vecinos = (id) => {
+  const n = rutas.findIndex((r) => r.id === id);
+  return { n, prev: rutas[n - 1], next: rutas[n + 1] };
+};
+const archivos = [...new Set(MODS.flatMap((m) => m.files))];
+---
+
+<BaseLayout
+  title="Excel para Estadística | CVET01"
+  description="Laboratorio de Excel para Estadística (CVET01): tablas de frecuencia, gráficos y medidas de tendencia central, dispersión y posición, paso a paso."
+>
+  <div class="xlab">
+    <aside class="xl-side" aria-label="Índice del laboratorio">
+      <button type="button" class="xl-idx-btn" aria-expanded="false" aria-controls="xl-idx">
+        <span>Índice</span><span class="xl-where" id="xl-where">Inicio</span>
+      </button>
+      <nav id="xl-idx" class="xl-idx" data-pagefind-ignore>
+        <div class="xl-grp">
+          <a class="xl-item on" href="#inicio"><span class="n">⌂</span><span>Inicio</span></a>
+          <a class="xl-item" href="#guia"><span class="n">?</span><span>Buscador</span></a>
+        </div>
+        {
+          UNIDADES.map(({ u, corto }) => (
+            <div class="xl-grp" data-u={u}>
+              <div class="xl-grp-t">{corto}</div>
+              {MODS.filter((m) => m.u === u).map((m) => (
+                <div class="xl-mod" data-m={m.id}>
+                  <a class="xl-item" href={`#${m.id}-1`}>
+                    <span class="n">{m.at}</span>
+                    <span>{m.name}</span>
+                  </a>
+                  <div class="xl-sub">
+                    {m.pages.map((p, i) => (
+                      <a href={`#${m.id}-${i + 1}`}>{p.t}</a>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))
+        }
+      </nav>
+    </aside>
+
+    <div class="xl-main">
+      <!-- Inicio -->
+      <section class="xl-lam on" data-r="inicio" data-t="Inicio">
+        <header class="xl-head">
+          <div class="xl-meta"><span class="xl-badge">CVET01</span><span>Estadística · Actividades tecnológicas</span></div>
+          <h1 id="inicio">Excel para Estadística</h1>
+          <p class="xl-muted">
+            Resumen de las siete actividades tecnológicas, con los conceptos que usan. Cada tema de Excel ocupa una
+            lámina con el mismo orden: cuándo usarlo, los pasos o la fórmula, la captura de Excel de la guía y cómo
+            leer el resultado.
+          </p>
+        </header>
+        <div class="xl-body">
+          {
+            UNIDADES.map(({ u, largo }) => (
+              <>
+                <h3>{largo}</h3>
+                <div class="xl-cards" data-u={u}>
+                  {MODS.filter((m) => m.u === u).map((m) => (
+                    <a class="xl-card pixel-box pixel-press" href={`#${m.id}-1`}>
+                      <span class="xl-badge">
+                        {m.at} · {m.pages.length} temas
+                      </span>
+                      <b>{m.name}</b>
+                      <span>{m.desc}</span>
+                    </a>
+                  ))}
+                </div>
+              </>
+            ))
+          }
+          <h3>Antes de empezar</h3>
+          <p>
+            ¿No sabes en qué actividad está lo que necesitas? Usa el <a href="#guia">buscador</a>: escribe «moda»,
+            «porcentaje» o «gráfico» y te lleva al tema.
+          </p>
+          <p>
+            Haz clic en cualquier captura para verla ampliada. Puedes avanzar y retroceder con las flechas ← → del
+            teclado.
+          </p>
+          <div class="xl-tip">
+            <b>Separadores.</b> Las guías escriben los argumentos separados por punto y coma y los decimales con punto
+            (<code>0.27</code>). Si tu Excel usa coma decimal, escribe <code>0,27</code>.
+          </div>
+          <h3>Archivos de práctica</h3>
+          <p>Los libros de Excel que usan las guías, para repetir cada paso con los mismos datos:</p>
+          <ul class="xl-files">
+            {
+              archivos.map((f) => (
+                <li>
+                  <a href={DOCS + f} download>
+                    {f}
+                  </a>
+                  <span class="xl-muted">
+                    {MODS.filter((m) => m.files.includes(f))
+                      .map(etiqueta)
+                      .join(', ')}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <nav class="xl-pager" aria-label="Paginación">
+          <a class="next pixel-press" href="#guia"><small>Siguiente →</small><span>Buscador</span></a>
+        </nav>
+      </section>
+
+      <!-- Buscador «necesito… → función» -->
+      <section class="xl-lam" data-r="guia" data-t="Buscador">
+        <header class="xl-head">
+          <div class="xl-meta"><span class="xl-badge">Buscador</span></div>
+          <h2 id="guia">¿Qué necesitas hacer?</h2>
+          <p class="xl-muted">Filtra por palabra y entra al tema que lo explica.</p>
+        </header>
+        <div class="xl-body">
+          <input
+            id="xl-filtro"
+            type="search"
+            placeholder="Por ejemplo: moda, porcentaje, gráfico…"
+            aria-label="Filtrar la tabla"
+            autocomplete="off"
+          />
+          <div class="xl-scroll">
+            <table class="xl-table" id="xl-guia">
+              <thead>
+                <tr><th>Necesito…</th><th>Herramienta o función</th><th>Tema</th></tr>
+              </thead>
+              <tbody>
+                {
+                  GUIA.map(([need, tool, id]) => (
+                    <tr>
+                      <td>{need}</td>
+                      <td>
+                        <code>{tool}</code>
+                      </td>
+                      <td>
+                        <a class="xl-nowrap" href={`#${id}`}>
+                          {etiqueta(porId[id].m)} →
+                        </a>
+                      </td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
+          <p class="xl-muted" id="xl-nada" hidden>Ninguna fila coincide con el filtro.</p>
+        </div>
+        <nav class="xl-pager" aria-label="Paginación">
+          <a class="prev pixel-press" href="#inicio"><small>← Anterior</small><span>Inicio</span></a>
+          <a class="next pixel-press" href={`#${laminas[0].id}`}><small>Siguiente →</small><span>{laminas[0].t}</span></a>
+        </nav>
+      </section>
+
+      <!-- Una lámina por tema -->
+      {
+        laminas.map((p) => {
+          const { n, prev, next } = vecinos(p.id);
+          return (
+            <section class="xl-lam" data-r={p.id} data-m={p.m.id} data-u={p.m.u} data-t={p.t}>
+              <header class="xl-head">
+                <div class="xl-meta">
+                  <span class="xl-badge">{etiqueta(p.m)}</span>
+                  <span>{p.m.name}</span>
+                  <span class="xl-seg" data-pagefind-ignore>
+                    {p.m.pages.map((q, i) => (
+                      <a href={`#${p.m.id}-${i + 1}`} title={q.t} aria-label={q.t} class={i === p.i ? 'on' : undefined} />
+                    ))}
+                  </span>
+                  <span class="xl-count">
+                    {p.i + 1} / {p.m.pages.length}
+                  </span>
+                </div>
+                <h2 id={p.id}>{p.t}</h2>
+                <div class="xl-when">
+                  <b class="xl-lbl">{p.lbl || 'Cuándo usarlo'}</b>
+                  <p>{p.when}</p>
+                </div>
+              </header>
+              <div class="xl-body" set:html={bloques(p.b)} />
+              {p.m.files.length > 0 && (
+                <p class="xl-data" data-pagefind-ignore>
+                  <span class="xl-lbl">Datos</span>
+                  {p.m.files.map((f) => (
+                    <a href={DOCS + f} download>
+                      {f}
+                    </a>
+                  ))}
+                </p>
+              )}
+              <nav class="xl-pager" aria-label="Paginación" data-pagefind-ignore>
+                {prev && (
+                  <a class="prev pixel-press" href={`#${prev.id}`}>
+                    <small>← Anterior</small>
+                    <span>{prev.t}</span>
+                  </a>
+                )}
+                {next && (
+                  <a class="next pixel-press" href={`#${next.id}`}>
+                    <small>Siguiente →</small>
+                    <span>{next.t}</span>
+                  </a>
+                )}
+              </nav>
+              <p class="xl-keys" data-pagefind-ignore>
+                Lámina {n + 1} de {rutas.length} · Usa ← → para cambiar de lámina
+              </p>
+            </section>
+          );
+        })
+      }
+    </div>
+  </div>
+
+  <!-- Visor: captura ampliada en una ventana a pantalla completa -->
+  <dialog id="xl-visor" aria-label="Captura ampliada">
+    <div class="xl-visor-bar">
+      <span id="xl-visor-cap"></span>
+      <button type="button" id="xl-visor-x">Cerrar ✕</button>
+    </div>
+    <div class="xl-visor-img" id="xl-visor-fondo"><img id="xl-visor-img" alt="" /></div>
+  </dialog>
+
+  <script is:inline>
+    (function () {
+      var root = document.querySelector('.xlab');
+      var lams = [].slice.call(root.querySelectorAll('.xl-lam'));
+      var side = root.querySelector('.xl-side');
+      var idxBtn = root.querySelector('.xl-idx-btn');
+      var visor = document.getElementById('xl-visor');
+      var BASE = 'Excel para Estadística | CVET01';
+
+      function current() {
+        var h = '';
+        try { h = decodeURIComponent(location.hash.slice(1)); } catch (e) {}
+        if (/^[mtr]\d$/.test(h)) h += '-1';
+        var el = h && document.getElementById(h);
+        return (el && el.closest('.xl-lam')) || lams[0];
+      }
+      function menu(open) {
+        side.classList.toggle('open', open);
+        idxBtn.setAttribute('aria-expanded', String(open));
+      }
+      function show(scroll) {
+        var cur = current(), r = cur.dataset.r, m = cur.dataset.m;
+        lams.forEach(function (l) { l.classList.toggle('on', l === cur); });
+        [].forEach.call(side.querySelectorAll('.xl-mod'), function (g) {
+          var on = g.dataset.m === m;
+          g.classList.toggle('on', on);
+          g.querySelector('.xl-item').classList.toggle('on', on);
+        });
+        [].forEach.call(side.querySelectorAll('.xl-grp:first-child .xl-item, .xl-sub a'), function (a) {
+          var on = a.getAttribute('href') === '#' + r;
+          a.classList.toggle('on', on);
+          if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+        });
+        var badge = cur.querySelector('.xl-badge');
+        document.getElementById('xl-where').textContent = m ? badge.textContent.replace(/\s+/g, ' ').trim() + ' · ' + cur.dataset.t : cur.dataset.t;
+        document.title = (r === 'inicio' ? '' : cur.dataset.t + ' · ') + BASE;
+        menu(false);
+        if (scroll) window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+      window.addEventListener('hashchange', function () { show(true); });
+      show(false);
+      // Al entrar con un hash el navegador baja hasta el título: se vuelve al inicio de la lámina
+      if (location.hash) window.addEventListener('load', function () { window.scrollTo({ top: 0, behavior: 'instant' }); });
+
+      idxBtn.addEventListener('click', function () { menu(!side.classList.contains('open')); });
+
+      document.addEventListener('click', function (e) {
+        var s = e.target.closest('.xl-shot');
+        if (s) {
+          var im = s.querySelector('img'), big = document.getElementById('xl-visor-img');
+          big.src = im.currentSrc || im.src; big.alt = im.alt;
+          big.style.setProperty('--w', Math.round((im.naturalWidth || 1040) * 1.7) + 'px');
+          document.getElementById('xl-visor-cap').textContent = im.alt;
+          visor.showModal();
+          return;
+        }
+        if (e.target.closest('#xl-visor-x') || e.target.closest('#xl-visor-fondo')) { visor.close(); return; }
+        var c = e.target.closest('.xl-copy');
+        if (c) {
+          var code = c.parentElement.querySelector('code');
+          var done = function () { c.textContent = 'Copiado'; setTimeout(function () { c.textContent = 'Copiar'; }, 1400); };
+          var select = function () { var rg = document.createRange(); rg.selectNodeContents(code); var sel = getSelection(); sel.removeAllRanges(); sel.addRange(rg); };
+          try { navigator.clipboard.writeText(code.textContent).then(done, select); } catch (err) { select(); }
+        }
+      });
+
+      // ← → cambian de lámina (salvo al escribir o con una ventana abierta)
+      document.addEventListener('keydown', function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || document.querySelector('dialog[open]')) return;
+        if (/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) return;
+        var step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        var t = step && lams[lams.indexOf(current()) + step];
+        if (t) location.hash = t.dataset.r;
+      });
+
+      // Filtro del buscador: ignora mayúsculas y tildes
+      var inp = document.getElementById('xl-filtro'), rows = document.querySelectorAll('#xl-guia tbody tr'), none = document.getElementById('xl-nada');
+      var norm = function (s) { return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
+      inp.addEventListener('input', function () {
+        var q = norm(inp.value.trim()), vis = 0;
+        [].forEach.call(rows, function (tr) { var ok = norm(tr.textContent).indexOf(q) !== -1; tr.hidden = !ok; if (ok) vis++; });
+        none.hidden = vis > 0;
+      });
+    })();
+  </script>
+</BaseLayout>
+
+<style is:global>
+  /* Laboratorio de Excel: mismas piezas que el resto del sitio (tokens de
+     global.css, marcos pixel, sombra dura, insignias mono). Cada unidad
+     tiene su tinte: --u. */
+  .xlab {
+    --u: var(--success);
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0.5rem 1rem 3rem;
+    display: grid;
+    grid-template-columns: 17rem minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+  .xlab [data-u='2'] {
+    --u: var(--cyan);
+  }
+  .xlab [data-u='0'] {
+    --u: var(--accent);
+  }
+  .xlab [data-u='3'] {
+    --u: var(--orange);
+  }
+  /* En las tablas de fórmulas el código no se corta a mitad de palabra */
+  .xlab .xl-table code {
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+  /* Esquemas dibujados en SVG: toman los colores del tema */
+  .xl-diagram {
+    max-width: 34rem;
+    padding: 0.5rem;
+    border: 2px solid var(--border-color);
+    background: var(--card-bg);
+    box-shadow: var(--shadow-sm);
+  }
+  .xl-diagram svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    fill: var(--foreground);
+  }
+  .xl-diagram .ln {
+    stroke: var(--foreground);
+    stroke-width: 2;
+    fill: none;
+  }
+  .xl-diagram .box {
+    stroke: var(--foreground);
+    stroke-width: 2;
+    fill: color-mix(in srgb, var(--u) 28%, transparent);
+  }
+  .xl-diagram .gd {
+    stroke: var(--secondary);
+    stroke-width: 1;
+    stroke-dasharray: 3 3;
+    fill: none;
+  }
+  .xl-diagram .mut {
+    fill: var(--secondary);
+  }
+  .xl-diagram .acc {
+    fill: var(--u);
+  }
+  .xl-math {
+    max-width: 46rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.2rem 0;
+  }
+  .xl-math .katex-display {
+    margin: 0;
+    text-align: left;
+  }
+  .xl-math .katex-display > .katex {
+    text-align: left;
+  }
+  .xlab [hidden] {
+    display: none !important;
+  }
+  .xlab a {
+    color: var(--primary);
+  }
+  .xlab code {
+    font-size: 0.88em;
+    background: var(--surface);
+    padding: 0.05em 0.35em;
+    overflow-wrap: anywhere;
+  }
+  .xlab .ui {
+    font-weight: 700;
+  }
+  .xl-muted {
+    color: var(--secondary);
+  }
+  .xl-nowrap {
+    white-space: nowrap;
+  }
+  .xl-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .xl-lbl {
+    display: block;
+    font-family: var(--font-pixel);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.15rem;
+  }
+
+  /* ---------- Índice lateral ---------- */
+  .xl-side {
+    position: sticky;
+    top: 4.5rem;
+    max-height: calc(100vh - 5.5rem);
+    overflow-y: auto;
+    border: 2px solid var(--border-color);
+    background: var(--card-bg);
+    box-shadow: var(--shadow-sm);
+  }
+  .xl-idx-btn {
+    display: none;
+  }
+  .xl-idx {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 0.75rem 0.5rem;
+  }
+  .xl-grp-t {
+    font-family: var(--font-pixel);
+    font-size: 14px;
+    line-height: 1.35;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--u);
+    padding: 0.15rem 0.5rem 0.4rem;
+    margin-bottom: 0.25rem;
+    border-bottom: 2px solid var(--border-color);
+  }
+  .xlab a.xl-item {
+    display: flex;
+    gap: 0.5rem;
+    align-items: baseline;
+    padding: 0.35rem 0.5rem;
+    border-left: 3px solid transparent;
+    color: var(--foreground);
+    text-decoration: none;
+    font-size: 0.92rem;
+    line-height: 1.3;
+  }
+  .xl-item .n {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--secondary);
+    min-width: 2.2rem;
+  }
+  .xlab a.xl-item:hover {
+    background: var(--surface);
+    border-left-color: var(--border-color);
+  }
+  .xlab a.xl-item.on {
+    background: var(--surface);
+    border-left-color: var(--u);
+    font-weight: 700;
+  }
+  .xl-item.on .n {
+    color: var(--u);
+  }
+  .xl-sub {
+    display: none;
+    flex-direction: column;
+    margin: 0.15rem 0 0.4rem 1.2rem;
+    padding-left: 0.5rem;
+    border-left: 2px solid var(--border-color);
+  }
+  .xl-mod.on .xl-sub {
+    display: flex;
+  }
+  .xlab .xl-sub a {
+    padding: 0.25rem 0.5rem;
+    color: var(--secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    line-height: 1.3;
+  }
+  .xlab .xl-sub a:hover {
+    color: var(--foreground);
+    background: var(--surface);
+  }
+  .xlab .xl-sub a.on {
+    color: var(--foreground);
+    font-weight: 700;
+  }
+
+  /* ---------- Lámina ---------- */
+  .xl-lam {
+    display: none;
+  }
+  .xl-lam.on {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+  .xl-head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .xl-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.7rem;
+    font-size: 0.85rem;
+    color: var(--secondary);
+  }
+  .xl-badge {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.4;
+    background: var(--u);
+    color: var(--background);
+    padding: 2px 8px;
+    box-shadow: inset -2px -2px 0 rgba(0, 0, 0, 0.22);
+    white-space: nowrap;
+  }
+  .xl-seg {
+    display: flex;
+    gap: 3px;
+  }
+  .xl-seg a {
+    width: 18px;
+    height: 8px;
+    background: color-mix(in srgb, var(--secondary) 26%, transparent);
+  }
+  .xl-seg a:hover {
+    background: var(--secondary);
+  }
+  .xl-seg a.on {
+    background: var(--u);
+  }
+  .xl-count {
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+  .xl-head h1,
+  .xl-head h2 {
+    position: relative;
+    padding-bottom: 14px;
+    font-weight: 700;
+    line-height: 1.15;
+    text-wrap: balance;
+    scroll-margin-top: 6rem;
+  }
+  .xl-head h1 {
+    font-family: var(--font-pixel);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: clamp(1.35rem, 3vw, 1.9rem);
+    line-height: 1.3;
+  }
+  .xl-head h2 {
+    font-size: clamp(1.6rem, 3.6vw, 2.15rem);
+  }
+  /* Línea con cuadrado al final, como los títulos del laboratorio de TI3V61 */
+  .xl-head h1::before,
+  .xl-head h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 14px;
+    bottom: 3px;
+    height: 2px;
+    background: var(--u);
+  }
+  .xl-head h1::after,
+  .xl-head h2::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 8px;
+    height: 8px;
+    background: var(--u);
+  }
+  .xl-when,
+  .xl-read,
+  .xl-tip {
+    max-width: 46rem;
+    padding: 0.7rem 1rem;
+    background: var(--surface);
+    border-left: 4px solid var(--u);
+    box-shadow: var(--shadow-sm);
+  }
+  .xl-when .xl-lbl {
+    color: var(--u);
+  }
+  .xl-read {
+    border-left-color: var(--primary);
+  }
+  .xl-read .xl-lbl {
+    color: var(--primary);
+  }
+  .xl-tip {
+    border-left-color: var(--warning-fill);
+    font-size: 0.95rem;
+  }
+  .xlab .xl-tip code {
+    background: none;
+    padding: 0;
+    font-weight: 700;
+  }
+
+  /* ---------- Bloques ---------- */
+  .xl-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+  }
+  .xl-body > p {
+    max-width: 46rem;
+  }
+  .xl-body h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-top: 0.4rem;
+  }
+  .xl-step {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: 0.3rem 0.75rem;
+  }
+  .xl-num {
+    width: 1.9rem;
+    height: 1.9rem;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    background: var(--u);
+    color: var(--background);
+    box-shadow: inset -2px -2px 0 rgba(0, 0, 0, 0.22);
+  }
+  .xl-txt {
+    max-width: 44rem;
+    padding-top: 0.05rem;
+  }
+  .xl-step .xl-fig {
+    grid-column: 2;
+    margin-top: 0.6rem;
+  }
+  .xl-fig {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    min-width: 0;
+  }
+  .xl-shot {
+    position: relative;
+    align-self: flex-start;
+    max-width: 100%;
+    padding: 0;
+    border: 2px solid var(--border-color);
+    background: #fff;
+    box-shadow: var(--shadow-md);
+    cursor: zoom-in;
+    overflow: hidden;
+  }
+  .xl-shot img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  .xl-shot.grow,
+  .xl-shot.grow img {
+    width: 100%;
+  }
+  .xl-shot::after {
+    content: 'Ampliar';
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: #20282a;
+    color: #fff;
+    padding: 2px 8px;
+    opacity: 0;
+  }
+  .xl-shot:hover::after,
+  .xl-shot:focus-visible::after {
+    opacity: 0.92;
+  }
+  html.dark .xl-shot img {
+    filter: brightness(0.93);
+  }
+  .xl-fig figcaption {
+    font-size: 0.88rem;
+    color: var(--secondary);
+    max-width: 46rem;
+  }
+
+  /* Barra de fórmulas */
+  .xl-fx {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    border: 2px solid var(--border-color);
+    background: var(--card-bg);
+    box-shadow: var(--shadow-sm);
+  }
+  .xl-fx-l {
+    display: flex;
+    align-items: center;
+    padding: 0.55rem 0.75rem;
+    font-family: var(--font-code);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--secondary);
+    background: var(--surface);
+    border-right: 2px solid var(--border-color);
+  }
+  .xlab .xl-fx code {
+    flex: 1 1 15rem;
+    min-width: 0;
+    align-self: center;
+    background: none;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.95rem;
+  }
+  .xl-fx-r {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 0.85rem;
+    border-left: 2px solid var(--border-color);
+    font-family: var(--font-code);
+    font-weight: 700;
+    font-size: 0.95rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--u);
+    white-space: nowrap;
+  }
+  .xl-fx-r small {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 11px;
+    color: var(--secondary);
+  }
+  .xl-copy {
+    min-height: 2.5rem;
+    padding: 0 0.85rem;
+    border-left: 2px solid var(--border-color);
+    background: var(--surface);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--secondary);
+    cursor: pointer;
+  }
+  .xl-copy:hover {
+    color: var(--foreground);
+  }
+
+  /* Tablas */
+  .xl-scroll {
+    overflow-x: auto;
+    min-width: 0;
+  }
+  .xl-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid var(--border-color);
+    background: var(--card-bg);
+    font-size: 0.93rem;
+  }
+  /* Tablas de cuatro o más columnas: en pantallas angostas se deslizan en vez de apretarse */
+  .xl-table:has(th:nth-child(4)) {
+    min-width: 40rem;
+  }
+  .xl-table th,
+  .xl-table td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.55rem 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .xl-table th {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--secondary);
+    background: var(--surface);
+    border-bottom-width: 2px;
+  }
+  .xl-table tbody tr:hover {
+    background: var(--surface);
+  }
+  #xl-filtro {
+    width: 100%;
+    max-width: 30rem;
+    padding: 0.6rem 0.85rem;
+    border: 2px solid var(--input-border);
+    background: var(--input-bg);
+    color: var(--foreground);
+  }
+
+  /* ---------- Inicio ---------- */
+  .xl-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr));
+    gap: 1rem;
+  }
+  .xlab a.xl-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.55rem 0.7rem 0.7rem;
+    color: var(--foreground);
+    text-decoration: none;
+  }
+  .xl-card .xl-badge {
+    align-self: flex-start;
+  }
+  .xl-card b {
+    font-size: 1.1rem;
+    line-height: 1.25;
+  }
+  .xl-card:hover b {
+    color: var(--u);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .xl-card > span:last-child {
+    font-size: 0.88rem;
+    line-height: 1.45;
+    color: var(--secondary);
+  }
+  .xl-files {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .xl-files li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem 0.75rem;
+    align-items: baseline;
+    font-size: 0.93rem;
+  }
+  .xl-files li::before {
+    content: '▸';
+    color: var(--secondary);
+  }
+  .xl-files a,
+  .xl-data a {
+    font-family: var(--font-code);
+    font-size: 0.85rem;
+    overflow-wrap: anywhere;
+  }
+  .xl-files span {
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+  .xl-data {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.3rem 0.9rem;
+  }
+  .xl-data .xl-lbl {
+    color: var(--secondary);
+  }
+
+  /* ---------- Paginador ---------- */
+  .xl-pager {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+    padding-top: 1.2rem;
+    border-top: 2px solid var(--border-color);
+  }
+  .xlab .xl-pager a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+    padding: 0.6rem 0.9rem;
+    border: 2px solid var(--border-color);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+    color: var(--foreground);
+    text-decoration: none;
+  }
+  .xlab .xl-pager a:hover {
+    border-color: var(--foreground);
+  }
+  .xl-pager small {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--secondary);
+  }
+  .xl-pager a span {
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .xl-pager a.next {
+    grid-column: 2;
+    text-align: right;
+  }
+  .xl-keys {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--secondary);
+    text-align: center;
+  }
+
+  /* ---------- Visor de capturas ---------- */
+  #xl-visor {
+    inset: 0;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    border: 0;
+    background: transparent;
+  }
+  #xl-visor[open] {
+    display: flex;
+    flex-direction: column;
+  }
+  #xl-visor::backdrop {
+    background: rgba(8, 11, 16, 0.9);
+  }
+  .xl-visor-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.6rem 1rem;
+    color: #e7e9e2;
+    font-size: 0.9rem;
+  }
+  #xl-visor-x {
+    flex: none;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    border: 2px solid #9aa3b2;
+    background: #1b2430;
+    color: #e7e9e2;
+    padding: 0.35rem 0.7rem;
+    cursor: pointer;
+  }
+  .xl-visor-img {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    display: flex;
+    padding: 0 1rem 1rem;
+    cursor: zoom-out;
+  }
+  /* En teléfono la captura no baja de 700 px: se recorre deslizando */
+  .xl-visor-img img {
+    display: block;
+    flex: none;
+    margin: auto;
+    width: min(max(100%, 700px), var(--w));
+    max-width: none;
+    height: auto;
+    background: #fff;
+  }
+
+  /* ---------- Pantallas angostas: el índice se pliega bajo un botón ---------- */
+  @media (max-width: 900px) {
+    .xlab {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.1rem;
+    }
+    .xl-side {
+      position: static;
+      max-height: none;
+    }
+    .xl-idx-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      text-align: left;
+      cursor: pointer;
+    }
+    .xl-idx-btn span:first-child {
+      flex: none;
+      white-space: nowrap;
+    }
+    .xl-idx-btn span:first-child::before {
+      content: '▸ ';
+    }
+    .xl-side.open .xl-idx-btn span:first-child::before {
+      content: '▾ ';
+    }
+    .xl-where {
+      min-width: 0;
+      color: var(--secondary);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .xl-idx {
+      display: none;
+      border-top: 2px solid var(--border-color);
+    }
+    .xl-side.open .xl-idx {
+      display: flex;
+    }
+    .xl-keys {
+      display: none;
+    }
+    .xl-step {
+      grid-template-columns: 1.9rem minmax(0, 1fr);
+      gap: 0.3rem 0.6rem;
+    }
+    /* En teléfono las capturas usan todo el ancho, no solo la columna del texto */
+    .xl-step .xl-fig {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (pointer: coarse) {
+    .xlab a.xl-item,
+    .xlab .xl-sub a {
+      padding-block: 0.55rem;
+    }
+    .xl-seg a {
+      height: 12px;
+    }
+  }
+</style>
