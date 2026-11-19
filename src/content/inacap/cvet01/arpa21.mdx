@@ -1,0 +1,145 @@
+# ARPA 1: Encuesta regional de escolaridad
+
+**Material:**
+- [ARPA1.pdf](/inacap/cvet01/docs/unit02-arpa01.pdf)
+- [ARPA1 Extensión.pdf](/inacap/cvet01/docs/unit02-arpa01-extension.pdf)
+
+Las capturas de esta página son de Excel para la web; las fórmulas son las mismas en Excel de escritorio.
+
+En una comuna de la Región del Biobío se realizó una encuesta a 328 personas adultas, con el objetivo de conocer el nivel de escolaridad alcanzado por la población. La encuesta incluía dos preguntas cerradas:
+
+- **Pregunta 1:** ¿Cuál es el nivel máximo de escolaridad que usted alcanzó?
+  1. Básica completa
+  2. Media completa
+  3. Superior completa
+  4. Postgrado completo
+- **Pregunta 2:** ¿Cuál es su género?
+  1. Masculino
+  2. Femenino
+
+Los encuestadores reportaron los siguientes resultados:
+
+- 134 personas declararon haber alcanzado la enseñanza media completa, de las cuales 102 son hombres.
+- Del total de mujeres encuestadas, 46 indicaron haber completado estudios superiores completos.
+- 191 personas indicaron haber alcanzado de manera completa estudios de nivel superior o de postgrado.
+- La mitad de quienes alcanzaron estudios de postgrado completo son mujeres.
+- Todas las personas que declararon tener sólo estudios básicos completos son hombres.
+- El número de hombres encuestados triplicó al de mujeres.
+
+## Ejercicio
+
+Con base en la información anterior, ¿se puede determinar qué porcentaje de las mujeres encuestadas alcanzó la enseñanza media completa? Explicar cómo se llega a la respuesta.
+
+::::solution
+**La idea.** Sí se puede. Las dos preguntas definen una **tabla de doble entrada**: el nivel de escolaridad en las filas y el género en las columnas ([Tabla de doble entrada](/inacap/cvet01/laboratorio#t6-2)). Cada dato del enunciado completa una celda o un total, y con ellos se reconstruye la tabla entera.
+
+**Preparar la hoja.** En Excel se arma la tabla vacía en `A1:D6` (niveles en `A2:A5`, totales en la fila 6) y, al lado, los datos del enunciado en `F2:G7`. Así cada celda de la tabla se calcula con una fórmula que apunta a esos datos.
+
+<SmartFigure
+	src="/inacap/cvet01/images/arpa21-vacia.jpg"
+	alt="Tabla vacía con los niveles de escolaridad en A2:A5, Total en A6 y columnas Hombres, Mujeres y Total; a la derecha, los seis datos del enunciado en F2:G7"
+	caption="La tabla vacía y los datos del enunciado"
+/>
+
+**Paso 1. Datos directos.** Cuatro celdas salen tal cual del enunciado: `D6` `=G2` (328 encuestados), `D3` `=G3` (134 con media completa), `B3` `=G4` (102 hombres con media completa) y `C4` `=G5` (46 mujeres con superior completa).
+
+<SmartFigure
+	src="/inacap/cvet01/images/arpa21-datos-directos.jpg"
+	alt="Tabla con 102 y 134 en la fila de Media completa, 46 en Superior completa de Mujeres y 328 en el total general"
+	caption="Las cuatro celdas que da el enunciado"
+/>
+
+**Paso 2. Totales por género.** Los hombres triplican a las mujeres: por cada mujer hay 3 hombres, así que el total se reparte en 1 + 3 = 4 partes iguales, y las mujeres son una de ellas.
+
+| Celda | Fórmula | Resultado |
+| --- | --- | --- |
+| `C6` | `=D6/(1+G7)` | 82 mujeres |
+| `B6` | `=G7*C6` | 246 hombres |
+
+<SmartFigure
+	src="/inacap/cvet01/images/arpa21-mujeres-total.jpg"
+	alt="Celda C6 con la fórmula =D6/(1+G7) en edición; D6 marcada en azul y G7 (3 hombres por mujer) en rojo"
+	caption="Total de mujeres: 328 dividido en 4 partes"
+/>
+
+**Paso 3. Media y básica completa.**
+
+| Celda | Fórmula | Por qué | Resultado |
+| --- | --- | --- | --- |
+| `C3` | `=D3-B3` | Media completa sin los hombres | 32 |
+| `D2` | `=D6-D3-G6` | El total menos media y menos superior o postgrado | 3 |
+| `B2` | `=D2` | Todos los de básica son hombres | 3 |
+| `C2` | `0` | Ninguna mujer tiene solo básica | 0 |
+
+<SmartFigure
+	src="/inacap/cvet01/images/arpa21-basica.jpg"
+	alt="Celda D2 con la fórmula =D6-D3-G6 en edición; D6 en azul, D3 en rojo y G6 (191, superior o postgrado) en morado"
+	caption="Básica completa: lo que falta para llegar a 328"
+/>
+
+**Paso 4. Postgrado y superior.** Las mujeres de los cuatro niveles suman 82; la mitad del postgrado son mujeres.
+
+| Celda | Fórmula | Por qué | Resultado |
+| --- | --- | --- | --- |
+| `C5` | `=C6-C2-C3-C4` | Las mujeres que faltan | 4 |
+| `D5` | `=2*C5` | Esas 4 son la mitad del postgrado | 8 |
+| `B5` | `=D5-C5` | La otra mitad son hombres | 4 |
+| `D4` | `=G6-D5` | Superior o postgrado, menos postgrado | 183 |
+| `B4` | `=D4-C4` | Superior sin las mujeres | 137 |
+
+<SmartFigure
+	src="/inacap/cvet01/images/arpa21-postgrado.jpg"
+	alt="Celda C5 con la fórmula =C6-C2-C3-C4 en edición; C6, C2, C3 y C4 marcadas con colores"
+	caption="Mujeres con postgrado: las que faltan para llegar a 82"
+/>
+
+**Comprobación.** En la fila 8, `=SUMA(B2:B5)`, `=SUMA(C2:C5)` y `=SUMA(D2:D5)` dan 246, 82 y 328: coinciden con los totales de la fila 6, así que la tabla es consistente.
+
+<SmartFigure
+	src="/inacap/cvet01/images/arpa21-completa.jpg"
+	alt="Tabla completa: Básica 3, 0, 3; Media 102, 32, 134; Superior 137, 46, 183; Postgrado 4, 4, 8; Total 246, 82, 328; en la fila 8 la comprobación 246, 82, 328"
+	caption="Tabla completa y comprobación"
+/>
+
+| Nivel máximo de escolaridad | Hombres | Mujeres | Total |
+| --- | --- | --- | --- |
+| Básica completa | 3 | 0 | 3 |
+| Media completa | 102 | 32 | 134 |
+| Superior completa | 137 | 46 | 183 |
+| Postgrado completo | 4 | 4 | 8 |
+| **Total** | **246** | **82** | **328** |
+
+**Respuesta.** La pregunta es sobre las **mujeres**, así que el porcentaje se calcula sobre el total de la columna Mujeres (82), no sobre el total general. En `D10`, con formato de porcentaje y dos decimales:
+
+```
+=C3/C6
+```
+
+<SmartFigure
+	src="/inacap/cvet01/images/arpa21-final.jpg"
+	alt="Tabla completa y, debajo, D10 con 39,02% (mujeres con media completa) y D11 con 76,64% (hombres entre quienes no tienen superior ni postgrado)"
+	caption="Respuestas en D10 y D11"
+/>
+
+El **39,02%** de las mujeres encuestadas alcanzó como máximo la enseñanza media completa.
+::::
+
+## Extensión
+
+**1.** ¿Cuántas mujeres tienen sólo estudios superiores completos?
+
+:::solution
+**46 mujeres** (`C4`). Es un dato del enunciado: corresponde a la celda Superior completa × Mujeres. «Sólo» indica que no siguieron un postgrado; las 4 mujeres con postgrado completo (`C5`) se cuentan aparte.
+:::
+
+**2.** ¿Qué porcentaje de las personas que no alcanzaron estudios superiores completos ni de postgrado corresponde a hombres?
+
+:::solution
+Las personas que no alcanzaron estudios superiores ni de postgrado son las de básica y media completa (filas 2 y 3). La base ya no es el total general, sino ese subgrupo: `D2+D3` = 3 + 134 = 137 personas, de las cuales `B2+B3` = 3 + 102 = 105 son hombres. En `D11`, con formato de porcentaje:
+
+```
+=(B2+B3)/(D2+D3)
+```
+
+El **76,64%** de quienes no alcanzaron estudios superiores ni de postgrado son hombres.
+:::

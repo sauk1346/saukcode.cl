@@ -1,0 +1,164 @@
+# Actividad Tecnológica 1: Tablas y gráficos bivariados en Excel
+
+**Material:**
+- [AT1.pdf](/inacap/cvet01/docs/unit02-at01.pdf)
+- [Datos de estudiantes.xlsx](/inacap/cvet01/docs/datos-estudiantes(AT1).xlsx)
+
+Esta actividad tiene por objetivo familiarizar a los estudiantes, mediante la incorporación de Excel, con la construcción de tablas dinámicas y gráficos entre dos variables, con el fin de explorar relaciones entre variables cualitativas y/o cuantitativas presentes en una base de datos.
+
+Las capturas de esta página son de Excel para la web. En Excel de escritorio los menús tienen los mismos nombres, salvo donde se indica.
+
+## Actividad 1: Iniciar el trabajo con Excel
+
+Abrir el archivo «Datos de estudiantes.xlsx» entregado por la docente. Este archivo contiene un conjunto de datos que se utiliza para construir tablas dinámicas y gráficos bivariados en Excel.
+
+:::solution
+Es el mismo archivo de la AT1 de la Unidad 1: 20 estudiantes, uno por fila, en `A2:D21`.
+
+| Columna | Variable | Tipo |
+| --- | --- | --- |
+| `A` | Comuna de residencia | Cualitativa nominal |
+| `B` | Nivel de satisfacción con la carrera | Cualitativa ordinal (Muy baja, Baja, Media, Alta, Muy alta) |
+| `C` | Número de hermanos | Cuantitativa discreta |
+| `D` | Edad | Cuantitativa |
+
+En la Unidad 1 cada variable se analizaba por separado. Ahora se **cruzan dos variables**: una tabla de doble entrada cuenta cuántos estudiantes hay en cada combinación de comuna y nivel de satisfacción ([Cruzar dos variables](/inacap/cvet01/laboratorio#m6-1)).
+:::
+
+## Actividad 2: Construir una tabla de doble entrada utilizando una tabla dinámica
+
+Para construir la tabla de doble entrada que involucra la variable cualitativa nominal «Comuna de residencia» y la variable cualitativa ordinal «Nivel de satisfacción con la carrera», utilizando una tabla dinámica, seguir estos pasos:
+
+1. Verificar que el rango de datos seleccionado para la tabla dinámica incluya todas las columnas, desde `A1` hasta `D21`. Si el rango no se completa automáticamente, escribirlo o ajustarlo manualmente en el campo «Tabla o rango» al momento de crear la tabla dinámica.
+2. En la pestaña **Insertar**, hacer clic en **Tabla dinámica**.
+3. En la ventana emergente, seleccionar «Hoja de cálculo nueva» y presionar **Aceptar**.
+4. En el panel de campos de la tabla dinámica:
+   - Arrastrar el campo Comuna de residencia al área de **Filas**.
+   - Arrastrar el campo Nivel de satisfacción con la carrera al área de **Columnas**.
+   - Arrastrar cualquier variable (por ejemplo, Edad) al área de **Valores** y asegurarse de que esté configurada como «Recuento».
+
+Revisar la tabla dinámica resultante y asegurarse de que muestre correctamente cuántos estudiantes de cada comuna reportaron cada nivel de satisfacción.
+
+Las categorías de la variable «Nivel de satisfacción con la carrera» deben quedar ordenadas de menor a mayor nivel de satisfacción, ya que este orden es fundamental para que las interpretaciones sean coherentes. Si las categorías no se muestran en el orden correcto, realizar los siguientes pasos adicionales:
+
+5. Hacer clic derecho en la etiqueta de columna «Muy baja» en la tabla dinámica.
+6. Seleccionar **Mover** en el menú contextual.
+7. Aparecen opciones como:
+   - Mover «Muy baja» al principio
+   - Mover «Muy baja» hacia arriba
+8. Hacer clic en la opción Mover «Muy baja» al principio; de este modo, se ubica como la primera categoría, correspondiente al menor nivel de satisfacción.
+9. Hacer clic derecho sobre la etiqueta de columna «Baja» en la tabla dinámica y seleccionar la opción Mover «Baja» hacia arriba; así, se posiciona como la segunda categoría en los niveles de satisfacción.
+10. Hacer clic derecho sobre la etiqueta de columna «Alta» en la tabla dinámica y seleccionar la opción Mover «Alta» hacia abajo; así, se posiciona como la cuarta categoría en los niveles de satisfacción.
+
+De este modo, la variable Nivel de satisfacción con la carrera queda ordenada correctamente, desde «Muy baja» hasta «Muy alta».
+
+:::callout[Error en el PDF]{type="warning"}
+En el paso 10, el PDF dice que sobre «Alta» se elige la opción Mover «Baja» hacia abajo. La opción que aparece al hacer clic derecho sobre «Alta» es Mover «Alta» hacia abajo.
+:::
+
+::::solution
+**Paso 1. Insertar la tabla dinámica.** Con una celda de los datos seleccionada, **Insertar → Tabla dinámica**. En Excel para la web se abre un panel a la derecha: el origen ya dice `Datos de estudiantes!A1:D21`, y se elige **Insertar en: Hoja nueva**.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at21-insertar.jpg"
+	alt="Panel Insertar tabla dinámica con el origen Datos de estudiantes!A1:D21 y el puntero sobre Hoja nueva"
+	caption="Insertar → Tabla dinámica → Hoja nueva"
+/>
+
+**Paso 2. Ubicar los campos.** En el panel **Campos de tabla dinámica**, arrastrar Comuna de residencia a **Filas**, Nivel de satisfacción con la carrera a **Columnas** y Edad a **Valores**.
+
+Como Edad es un número, Excel la **suma** («Suma de Edad»): la tabla muestra la suma de las edades, no la cantidad de estudiantes.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at21-campos.jpg"
+	alt="Tabla dinámica con Suma de Edad, por ejemplo 21 y 20 en Independencia y 452 en total, y el panel de campos con Comuna en Filas, Nivel de satisfacción en Columnas y Suma de Edad en Valores"
+	caption="Con Edad en Valores, Excel suma las edades"
+/>
+
+**Paso 3. Cambiar a recuento.** En **Valores**, abrir la flecha de «Suma de Edad» **→ Configuración de campo de valor → Resumir valor por → Recuento → Aceptar**. Excel para la web lo nombra «Cuenta de Edad»: es lo mismo que «Recuento».
+
+<SmartFigure
+	src="/inacap/cvet01/images/at21-recuento.jpg"
+	alt="Ventana Configuración de campo de valor con la pestaña Resumir valor por y Recuento seleccionado"
+	caption="Resumir valor por → Recuento"
+/>
+
+<SmartFigure
+	src="/inacap/cvet01/images/at21-sin-orden.jpg"
+	alt="Tabla de doble entrada con Cuenta de Edad: columnas Alta, Baja, Media, Muy alta y Muy baja, en orden alfabético; total general 20"
+	caption="Las columnas salen en orden alfabético"
+/>
+
+**Paso 4. Ordenar los niveles.** Excel ordena las columnas alfabéticamente (Alta, Baja, Media, Muy alta, Muy baja), y el nivel de satisfacción es **ordinal**: tiene un orden natural ([Ordenar categorías ordinales](/inacap/cvet01/laboratorio#m1-3)). Con clic derecho sobre cada etiqueta de columna **→ Mover**:
+
+| Clic derecho sobre | Opción | Orden que queda |
+| --- | --- | --- |
+| Muy baja | Mover «Muy baja» al principio | Muy baja, Alta, Baja, Media, Muy alta |
+| Baja | Mover «Baja» arriba | Muy baja, Baja, Alta, Media, Muy alta |
+| Alta | Mover «Alta» abajo | Muy baja, Baja, Media, Alta, Muy alta |
+
+En Excel para la web las opciones dicen «arriba» y «abajo» aunque las categorías estén en columnas: «arriba» mueve hacia la izquierda y «abajo», hacia la derecha.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at21-mover.jpg"
+	alt="Menú contextual sobre Muy baja con el submenú Mover abierto y el puntero sobre Mover Muy baja al principio"
+	caption="Clic derecho → Mover → Mover «Muy baja» al principio"
+/>
+
+<SmartFigure
+	src="/inacap/cvet01/images/at21-ordenada.jpg"
+	alt="Tabla de doble entrada ordenada de Muy baja a Muy alta: Independencia 1, 1, 1, 1, 0; Maipú 0, 2, 0, 1, 1; Recoleta 0, 1, 1, 1, 0; San Miguel 1, 0, 0, 0, 1; Santiago 4, 0, 2, 1, 0"
+	caption="Tabla de doble entrada ordenada de Muy baja a Muy alta"
+/>
+
+**Resultado.**
+
+| Comuna | Muy baja | Baja | Media | Alta | Muy alta | Total |
+| --- | --- | --- | --- | --- | --- | --- |
+| Independencia | 1 | 1 | 1 | 1 | | 4 |
+| Maipú | | 2 | | 1 | 1 | 4 |
+| Recoleta | | 1 | 1 | 1 | | 3 |
+| San Miguel | 1 | | | | 1 | 2 |
+| Santiago | 4 | | 2 | 1 | | 7 |
+| **Total general** | **6** | **4** | **4** | **4** | **2** | **20** |
+
+Cada celda cuenta a los estudiantes que cumplen las dos condiciones a la vez: por ejemplo, 4 estudiantes viven en Santiago **y** tienen satisfacción muy baja. La columna y la fila «Total general» son las tablas de frecuencia de cada variable por separado.
+::::
+
+## Actividad 3: Crear un gráfico a partir de una tabla de doble entrada
+
+Para optimizar el tiempo, el gráfico se construye directamente a partir de la tabla dinámica elaborada en la actividad anterior, con el objetivo de representar visualmente la relación entre las variables «Comuna de residencia» y «Nivel de satisfacción con la carrera».
+
+Para construir un gráfico entre las variables «Comuna de residencia» y «Nivel de satisfacción con la carrera», a partir de la tabla dinámica elaborada en la actividad anterior, seguir estos pasos:
+
+1. Asegurarse de tener activa la hoja donde se construyó la tabla dinámica con las variables «Comuna de residencia» y «Nivel de satisfacción con la carrera».
+2. Hacer clic en cualquier celda dentro de la tabla dinámica.
+3. Ir a la pestaña **Insertar** del menú superior y seleccionar un tipo de gráfico adecuado. Se recomienda:
+   - Gráfico de columnas agrupadas para comparar la satisfacción entre comunas (seleccionado).
+   - Gráfico de barras para facilitar la lectura horizontal.
+4. Una vez insertado el gráfico, verificar que los ejes estén correctamente rotulados:
+   - El eje horizontal debe mostrar las comunas de residencia.
+   - El eje vertical debe indicar la cantidad de estudiantes.
+   - Las series deben representar los distintos niveles de satisfacción.
+5. Si es necesario, ajustar el título del gráfico, los colores o las etiquetas para que la información sea más clara.
+6. Observar el gráfico resultante y asegurarse de que represente adecuadamente los datos de la tabla dinámica.
+
+::::solution
+**Paso 1. Insertar.** Con una celda de la tabla dinámica seleccionada, **Insertar →** galería de gráficos **→ Columna agrupada** ([Graficar el cruce de dos variables](/inacap/cvet01/laboratorio#m6-3)). No hace falta seleccionar un rango: Excel toma la tabla dinámica completa, sin el total general. Las comunas (Filas) quedan en el eje horizontal y cada nivel de satisfacción (Columnas) es una serie, con su color, en el mismo orden de la tabla.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at21-galeria.jpg"
+	alt="Galería de gráficos abierta sobre la tabla dinámica, con el puntero sobre Columna agrupada"
+	caption="Insertar → galería → Columna agrupada"
+/>
+
+**Paso 2. Títulos.** El título se cambia en **Gráfico → Formato → Título del gráfico**. Los títulos de los ejes se agregan en **Gráfico → Títulos del eje → Título de eje horizontal primario → Editar título** («Comuna de residencia») y lo mismo con el vertical («Cantidad de estudiantes»).
+
+<SmartFigure
+	src="/inacap/cvet01/images/at21-grafico.jpg"
+	alt="Gráfico de columnas agrupadas: para cada comuna, una columna por nivel de satisfacción; Santiago tiene 4 estudiantes con satisfacción muy baja, la columna más alta"
+	caption="Niveles de satisfacción con la carrera por comuna de residencia"
+/>
+
+**Lectura.** La columna más alta es la de **Santiago con satisfacción muy baja** (4 estudiantes): es la comuna con más estudiantes y la mayoría de ellos está poco satisfecha. En cambio, en Maipú predomina la satisfacción baja (2) y los demás niveles aparecen una vez cada uno. Con tan pocos estudiantes por comuna (de 2 a 7), estas diferencias son una primera exploración, no una conclusión.
+::::

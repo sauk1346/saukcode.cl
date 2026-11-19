@@ -95,11 +95,11 @@ const courseData = {
         },
         {
           text: 'AT02: Gráficos en Excel',
-          href: 'docs/unit01-at02.pdf'
+          href: 'at12'
         },
         {
           text: 'ARPA01: Selección de Personal',
-          href: ''
+          href: 'arpa11'
         },
       ]
     },
@@ -110,11 +110,11 @@ const courseData = {
       description: [
         {
           text: 'AT03: Medidas de tendencia central en Excel',
-          href: ''
+          href: 'at13'
         },
         {
           text: 'SM01: Radiografía de la matrícula en la educación superior chilena',
-          href: ''
+          href: 'sm11'
         },
                 
       ]
@@ -127,11 +127,11 @@ const courseData = {
         
         {
           text: 'AT04: Medidas de dispersión en Excel',
-          href: ''
+          href: 'at14'
         },
         {
           text: 'SM02: ¿Dónde abrir la nueva sucursal?',
-          href: ''
+          href: 'sm12'
         },
       ]
     },
@@ -141,12 +141,12 @@ const courseData = {
       date: 'Mar 03, Nov 2026', 
       description: [
         {
-          text: 'AT05: Medidas de Posición en Excel',
-          href: ''
+          text: 'AT05: Medidas de posición en Excel',
+          href: 'at15'
         },
         {
           text: 'SM03: ¿Dónde se espera menos para ser atendido?',
-          href: ''
+          href: 'sm13'
         },
       ]
     },
@@ -168,15 +168,15 @@ const courseData = {
       description: [
         {
           text: 'AT01: Tablas y gráficos bivariados en Excel',
-          href: ''
+          href: 'at21'
         },
         {
           text: 'ARPA01: Encuesta regional de escolaridad',
-          href: ''
+          href: 'arpa21'
         },
         {
           text: 'SM01: Explorando la oferta académica 2025',
-          href: ''
+          href: 'sm21'
         },
       ]
     },
@@ -187,11 +187,11 @@ const courseData = {
       description: [
         {
           text: 'AT02: Medidas en datos bivariados en Excel',
-          href: ''
+          href: 'docs/unit02-at02.pdf'
         },
         {
           text: 'SM02: ¿Cómo se reparte y se comporta el mercado?',
-          href: ''
+          href: 'sm22'
         },
       ]
     },

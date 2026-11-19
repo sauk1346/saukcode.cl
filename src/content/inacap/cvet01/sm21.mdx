@@ -1,0 +1,405 @@
+# Situación de Modelación 1: Explorando la oferta académica 2025
+
+**Material:**
+- [SM1.pdf](/inacap/cvet01/docs/unit02-sm01.pdf)
+- [Oferta académica 2025 INACAP.xlsx](/inacap/cvet01/docs/unit02-oferta-academica-2025(SM1).xlsx)
+
+Comprender y analizar datos a través de tablas y gráficos es fundamental para interpretar situaciones reales. Estas representaciones permiten identificar patrones, contrastar información y tomar decisiones informadas. Leer visual y numéricamente los datos es una habilidad clave en múltiples contextos.
+
+La plataforma Acceso Educación Superior, del Mineduc, reúne información relevante sobre los programas de estudio que conforman la oferta académica 2025 de las instituciones de educación superior en Chile. Esta oferta incluye carreras técnicas y profesionales impartidas por Centros de Formación Técnica (CFT), Institutos Profesionales (IP) y Universidades. Con base en estos datos, se ha preparado una base que contiene exclusivamente la oferta académica de INACAP para sus tres subniveles institucionales, considerando variables como región, área de conocimiento, modalidad y duración de las carreras, entre otros aspectos relevantes para tomar decisiones informadas.
+
+En todas las actividades de esta situación de modelación se trabaja con la base de datos disponible en el archivo «Oferta académica 2025 INACAP.xlsx».
+
+## Actividad 1 (actividad generadora)
+
+**a.** ¿En qué regiones se observa una mayor cantidad de carreras universitarias dentro de la oferta académica de INACAP? Fundamentar la respuesta en una tabla construida a partir de los datos.
+
+::::solution
+**Datos en el archivo.** La base está en la hoja «Oferta academica 2025 INACAP», en `A1:L2701`: 2700 filas de datos más los encabezados. Cada fila es una carrera ofrecida en una sede y una jornada, así que contar carreras es contar filas.
+
+Las capturas son de Excel para la web. Ahí la tabla dinámica empieza en `A2` de la hoja nueva; si en otro Excel empieza en otra celda (por ejemplo, `A3`), todas las referencias se corren en la misma cantidad de filas.
+
+**El concepto.** Una **tabla de doble entrada** cruza dos variables: cada celda cuenta las carreras que cumplen las dos condiciones a la vez, por ejemplo, «Antofagasta y CFT». En Excel se construye con una tabla dinámica.
+
+**Paso 1. Crear la tabla dinámica** ([Tabla de doble entrada](/inacap/cvet01/laboratorio#m6-1)).
+
+1. Clic en cualquier celda de la base → **Insertar → Tabla dinámica**.
+2. En **Origen** queda el rango `'Oferta academica 2025 INACAP'!$A$1:$L$2701` → **Hoja nueva**.
+3. En el panel **Campos de tabla dinámica**, arrastrar:
+   - **Región Sede** a **Filas**.
+   - **Tipo Institución** a **Columnas**.
+   - **Tipo Institución** otra vez a **Valores**. Excel lo resume como **Cuenta**, porque es texto.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm21-campos.jpg"
+	alt="Tabla dinámica de región por tipo de institución y, a la derecha, el panel Campos de tabla dinámica con Región Sede en Filas, Tipo Institución en Columnas y Cuenta de Tipo Institución en Valores"
+	caption="La tabla dinámica y su configuración"
+/>
+
+La tabla queda así: las regiones en `A4:A19`, el Total general en la fila 20, y las columnas `B` (CFT), `C` (IP), `D` (Universidades) y `E` (Total general). En el archivo, Valparaíso aparece escrito «ValparaÌso» por un error de codificación del texto.
+
+**Paso 2. Buscar los valores más altos de la columna Universidades** con `K.ESIMO.MAYOR` ([Valor según su posición](/inacap/cvet01/laboratorio#m5-4)).
+
+1. En `A26:A30` escribir los números 1 a 5 (la posición *k*).
+2. En `B26` escribir la fórmula y copiarla hasta `B30`:
+
+```
+=K.ESIMO.MAYOR($D$4:$D$19;A26)
+```
+
+El rango `$D$4:$D$19` va fijo y no incluye el Total general (fila 20).
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm21-k-esimo-mayor.jpg"
+	alt="Celda B26 con la fórmula =K.ESIMO.MAYOR($D$4:$D$19;A26) en edición; debajo, 44, 39, 36 y 33"
+	caption="K.ESIMO.MAYOR sobre la columna Universidades"
+/>
+
+Cada valor se busca en la columna `D`: 134 es Metropolitana (`D16`), 44 es Biobío (`D8`), 39 es Los Lagos (`D12`), 36 es Maule (`D15`) y 33 es Antofagasta (`D4`).
+
+**Paso 3. Comparar Metropolitana con el resto.**
+
+```
+=D16/D20
+=D16/D8
+```
+
+La primera, con formato de porcentaje, da **26,48%**: la parte de las carreras universitarias de INACAP que está en la Región Metropolitana. La segunda da **3,05**: Metropolitana tiene el triple que Biobío. Las dos están en `B32` y `B33` de la captura de la actividad 1c.
+
+**Respuesta.** Las regiones con más carreras universitarias son **Metropolitana (134)**, Biobío (44), Los Lagos (39), Maule (36) y Antofagasta (33). Metropolitana concentra el 26,48% de la oferta universitaria, el triple que la segunda región.
+::::
+
+**b.** ¿Qué tipo de institución ofrece más carreras a nivel nacional? Justificar la respuesta utilizando una tabla construida a partir de los datos.
+
+::::solution
+Se usa la fila **Total general** (fila 20) de la tabla dinámica anterior, y bajo ella se calcula el porcentaje de cada tipo ([Frecuencia porcentual](/inacap/cvet01/laboratorio#m1-2)).
+
+1. En `B21` escribir la fórmula y copiarla hasta `E21`:
+
+```
+=B20/$E$20
+```
+
+2. Con `B21:E21` seleccionado, **Inicio → Porcentaje** y dos veces **Aumentar decimales**.
+
+El `$` deja fijo el total (`E20`) al copiar hacia la derecha. `E21` debe dar 100%.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm21-porcentaje-total.jpg"
+	alt="Celda B21 con la fórmula =B20/$E$20 en edición; B20 en azul y E20 en rojo; C21 y D21 ya muestran 32,26% y 18,74%"
+	caption="Porcentaje de carreras por tipo de institución"
+/>
+
+**Respuesta.** Los **Centros de Formación Técnica** ofrecen más carreras: 1323 de 2700, el **49,00%**. Siguen los IP (871, 32,26%) y las Universidades (506, 18,74%).
+::::
+
+**c.** Si una persona quisiera estudiar en una región con una oferta amplia y equilibrada entre los tres tipos de institución, ¿qué región se le recomendaría? Justificar la elección en base a la información obtenida de la tabla construida.
+
+::::solution
+Se buscan regiones con muchas carreras en total (columna `E`) y cantidades parecidas en `B`, `C` y `D`. Bajo la tabla, en `A32:B40`, se escriben los cálculos de apoyo de esta y otras actividades:
+
+| Celda | Fórmula | Resultado | Para qué sirve |
+| --- | --- | --- | --- |
+| `B34` | `=K.ESIMO.MAYOR(E4:E19;5)` | 151 | Total de la quinta región con más carreras (Antofagasta) |
+| `B35` | `=B16/D16` | 3,00 | En Metropolitana hay 3 carreras de CFT por cada universitaria |
+| `B36` | `=B8/D8` | 3,34 | En Biobío hay 3,34 carreras de CFT por cada universitaria |
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm21-calculos.png"
+	alt="Cálculos de apoyo en A32:B40, con B32 seleccionada y la fórmula =D16/D20 en la barra de fórmulas"
+	caption="Cálculos de apoyo de las actividades 1, 2 y 5"
+/>
+
+**Respuesta.** **Antofagasta** (fila 4). Tiene una oferta amplia, 151 carreras (la quinta región con más), y sus tres tipos tienen cantidades parecidas: 64 de CFT, 54 de IP y 33 universitarias. En las regiones más grandes el CFT pesa mucho más: en Metropolitana y Biobío hay unas tres carreras de CFT por cada universitaria. La actividad 2 lo confirma con porcentajes.
+::::
+
+## Actividad 2
+
+**a.** ¿Qué diferencias se observan entre regiones en cuanto a la distribución de la oferta académica? Fundamentar la respuesta en una tabla construida a partir de los datos.
+
+::::solution
+**Los datos.** Se parte de la tabla dinámica de la actividad 1. Cada fila es una región y cada columna, un tipo de institución: CFT (Centro de Formación Técnica), IP (Instituto Profesional) y Universidad. Los números son cantidades de carreras; por ejemplo, Antofagasta tiene 64 carreras de CFT. La columna `E`, **Total general**, suma las tres: Antofagasta tiene 151 carreras en total.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm21-2a-datos.jpg"
+	alt="Tabla dinámica con las regiones en A4:A19, los tipos de institución en las columnas B a D y el total en la columna E; las columnas G a J todavía vacías"
+	caption="Punto de partida: la tabla dinámica de la actividad 1"
+/>
+
+**¿Por qué porcentajes?** Las regiones tienen tamaños muy distintos: Metropolitana tiene 800 carreras y Aysén, solo 51. Comparando cantidades, Metropolitana siempre gana. Para comparar de forma justa se calcula qué parte de su propio total representa cada tipo de institución: cada cantidad dividida por el total de su región.
+
+**Paso 1. Escribir la fórmula.** En `G3:J3` se escriben los encabezados `% CFT`, `% IP`, `% Universidades` y `% Total`. Luego, clic en `G4` y escribir:
+
+```
+=B4/$E4
+```
+
+En la fórmula no van los números, sino las celdas donde están: `B4` son las carreras de CFT de Antofagasta y `E4`, su total. Mientras se escribe, Excel pinta cada celda con un color (B4 en azul y E4 en rojo), lo que permite revisar que la fórmula apunta a las celdas correctas.
+
+El **signo `$`** es necesario porque, al copiar la fórmula hacia la derecha, Excel corre las columnas: sin él, `E4` pasaría a `F4`, que está vacía. Con `$E4`, la columna del total queda fija y solo cambia la fila al copiar hacia abajo.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm21-2a-formula.jpg"
+	alt="Celda G4 en edición con la fórmula =B4/$E4; Excel marca B4 en azul y E4 en rojo"
+	caption="La fórmula en G4: Excel marca con colores las celdas que usa"
+/>
+
+Al presionar **Enter**, `G4` muestra 0,423841: la parte de las carreras de Antofagasta que son de CFT.
+
+**Paso 2. Copiar la fórmula.** Con `G4` seleccionada, se arrastra el **cuadradito verde** de la esquina inferior derecha de la celda hacia la derecha, hasta la columna `J`. Con las cuatro celdas seleccionadas, se arrastra el mismo cuadradito hacia abajo, hasta la fila 20 (Total general). Excel ajusta la fórmula en cada celda y, gracias al `$`, siempre divide por el total de su fila.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm21-2a-relleno.jpg"
+	alt="Rango G4:J20 con la fórmula copiada: valores decimales como 0,423841 y la columna J con 1 en todas las filas"
+	caption="La fórmula copiada hasta J20, todavía en formato General"
+/>
+
+**Paso 3. Formato de porcentaje.** Con `G4:J20` seleccionado: pestaña **Inicio** → lista de formatos (la que dice **General**) → **Porcentaje**. Luego, dos clics en **Aumentar decimales** para ver dos decimales.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm21-2a-formato.jpg"
+	alt="Lista de formatos de número abierta en la pestaña Inicio, con la opción Porcentaje marcada"
+	caption="Inicio → lista de formatos → Porcentaje"
+/>
+
+**Comprobación.** La columna `J` (% Total) debe decir 100,00% en todas las filas: si es así, la fórmula está bien.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm21-2a-resultado.jpg"
+	alt="Columnas G a J con el porcentaje de cada tipo dentro de cada región, con dos decimales; la columna J muestra 100,00% en todas las filas"
+	caption="Porcentaje de cada tipo de institución dentro de cada región"
+/>
+
+**Paso 4. Máximo y mínimo de cada columna** (se usan también en las actividades 2c y 5). En `G22` escribir `=MAX(G4:G19)` y en `G23`, `=MIN(G4:G19)`, y copiar ambas hacia la derecha hasta la columna `I`. El rango termina en la fila 19 para no incluir el Total general.
+
+| | `G` % CFT | `H` % IP | `I` % Universidades |
+| --- | --- | --- | --- |
+| Máximo (fila 22) | 57,33% (Magallanes) | 35,76% (Antofagasta) | 23,53% (Aysén) |
+| Mínimo (fila 23) | 42,38% (Antofagasta) | 19,61% (Aysén) | 15,07% (Arica y Parinacota) |
+
+**¿Qué muestran los datos?**
+- **El mismo orden en todo el país:** en todas las regiones el CFT es el que más carreras ofrece (entre el 42,38% y el 57,33%), seguido del IP y luego la Universidad.
+- **Cambia la intensidad:** en Magallanes y Aysén el CFT pasa del 56%; en Antofagasta y Tarapacá no llega al 44%.
+- **Aysén es la excepción:** es la única región donde la Universidad (`I7`, 23,53%) tiene más carreras que el IP (`H7`, 19,61%).
+
+**Respuesta.** En todo el país se repite el orden CFT, IP y Universidad, pero con distinta intensidad según la región, y Aysén es la excepción.
+::::
+
+**b.** ¿Hay alguna región en la que un tipo de institución tenga una presencia claramente mayoritaria? Justificar la respuesta a partir de los datos presentados en la tabla.
+
+:::solution
+En la columna `G`, los mayores porcentajes de CFT son los de Magallanes (`G14`, 57,33%) y Aysén (`G7`, 56,86%). Para medir cuánto le sacan al segundo tipo, en la lista de cálculos de apoyo (captura de la actividad 1c):
+
+| Celda | Fórmula | Resultado |
+| --- | --- | --- |
+| `B37` | `=G14-H14` | 30,67% (Magallanes: CFT menos IP) |
+| `B38` | `=G7-I7` | 33,33% (Aysén: CFT menos Universidades) |
+
+**Respuesta.** Sí: el **CFT** en **Magallanes** (57,33%) y **Aysén** (56,86%). En ambas, más de la mitad de las carreras son de CFT y le sacan más de 30 puntos porcentuales al segundo tipo. En Arica y Parinacota, Biobío y Metropolitana el CFT también supera la mitad, pero por poco.
+:::
+
+**c.** ¿En qué regiones la oferta académica de INACAP parece estar más equilibrada entre sus tres tipos de instituciones? Explicar la respuesta usando como referencia la tabla construida.
+
+::::solution
+Una región está más equilibrada cuanto menor es la diferencia entre su porcentaje mayor y su porcentaje menor.
+
+1. En `K3` escribir el encabezado `Diferencia` y en `K4` la fórmula; copiarla hasta `K19`:
+
+```
+=MAX(G4:I4)-MIN(G4:I4)
+```
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm21-diferencia.jpg"
+	alt="Celda K4 con la fórmula =MAX(G4:I4)-MIN(G4:I4) en edición; G4:I4 marcado en azul"
+	caption="Diferencia entre el porcentaje mayor y el menor de cada región"
+/>
+
+2. Para ordenar las diferencias de menor a mayor sin mover la tabla, se usa `K.ESIMO.MENOR` ([Valor según su posición](/inacap/cvet01/laboratorio#m5-4)). En `J22:J26` escribir los números 1 a 5, y en `K22` la fórmula; copiarla hasta `K26`:
+
+```
+=K.ESIMO.MENOR(K$4:K$19;$J22)
+```
+
+3. Para el otro extremo, en `J29:J30` escribir 1 y 2, y en `K29` la fórmula; copiarla a `K30`:
+
+```
+=K.ESIMO.MAYOR($K$4:$K$19;J29)
+```
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm21-k-esimo-menor.jpg"
+	alt="Celda K22 con la fórmula =K.ESIMO.MENOR(K$4:K$19;$J22) en edición; debajo, 20,53%, 25,58%, 25,93% y 26,05%, y en K29:K30 las dos mayores, 41,33% y 37,25%"
+	caption="Las diferencias más pequeñas y las más grandes"
+/>
+
+| k | Diferencia menor | Región (se busca en la columna `K`) |
+| --- | --- | --- |
+| 1 | 19,71% | Tarapacá (`K18`) |
+| 2 | 20,53% | Antofagasta (`K4`) |
+| 3 | 25,58% | Maule (`K15`) |
+| 4 | 25,93% | Atacama (`K6`) |
+
+**Respuesta.** **Tarapacá** y **Antofagasta** son las más equilibradas: el CFT no llega al 44% y la Universidad supera el 21%. Las menos equilibradas son Magallanes (41,33%) y Aysén (37,25%).
+::::
+
+## Actividad 3
+
+**a.** A partir de una tabla construida, elaborar un gráfico que permita observar cómo se distribuye la oferta académica en función de dos variables. Describir qué tipo de gráfico se usó y qué información permite visualizar.
+
+::::solution
+1. Clic en una celda de la tabla dinámica de la actividad 1 (por ejemplo, `B4`).
+2. **Insertar →** galería de gráficos **→ Columna agrupada** ([Gráfico de columnas agrupadas](/inacap/cvet01/laboratorio#m6-3)). Excel crea un gráfico dinámico: las regiones van al eje horizontal y cada tipo de institución es una serie, sin los totales.
+3. En **Gráfico → Formato → Título del gráfico**, escribir el título.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm21-galeria.jpg"
+	alt="Galería de gráficos abierta sobre la tabla dinámica, con el puntero sobre Columna agrupada"
+	caption="Insertar → galería → Columna agrupada"
+/>
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm21-grafico-region.jpg"
+	alt="Columnas agrupadas por región: en todas, la columna de CFT es la más alta; Metropolitana sobresale con 402, 264 y 134"
+	caption="Oferta académica INACAP 2025 por región y tipo de institución"
+/>
+
+**Respuesta.** Es un gráfico de **columnas agrupadas**. Relaciona dos variables cualitativas: la **región** (eje horizontal) y el **tipo de institución** (un color por tipo). La altura de cada columna es el número de carreras, así que se ve a la vez cuánta oferta tiene cada región y cómo se reparte entre CFT, IP y Universidad.
+::::
+
+**b.** ¿Qué patrones o relaciones se pueden identificar en el gráfico elaborado? Explicar el análisis en función de lo que se observa visualmente.
+
+:::solution
+- **El mismo orden en casi todas las regiones:** la columna azul (CFT) es la más alta, la naranja (IP) va al medio y la verde (Universidades) es la más baja. Solo en Aysén la verde supera a la naranja.
+- **La Región Metropolitana domina:** sus columnas son mucho más altas que las del resto. Tiene 800 de las 2700 carreras (`=E16/E20` da 29,63%).
+- **Biobío es la segunda región,** con 289 carreras, seguida por Los Lagos y Maule.
+- **Las regiones extremas tienen poca oferta:** Aysén, Atacama, Arica y Parinacota y Magallanes tienen las columnas más bajas.
+:::
+
+**c.** ¿Qué conclusiones se pueden obtener si se compara este gráfico con la tabla usada como base? Indicar si el gráfico aporta una visión más clara o complementaria respecto de la tabla.
+
+:::solution
+Son **complementarios**:
+
+- **El gráfico** muestra de un vistazo el patrón general (CFT > IP > Universidad en casi todas partes) y el peso de la Región Metropolitana. En la tabla, eso obliga a comparar 48 números.
+- **La tabla** entrega los valores exactos y permite calcular porcentajes. En el gráfico, la escala la fija la Región Metropolitana: las regiones pequeñas quedan aplastadas y cuesta comparar, por ejemplo, Aysén con Atacama.
+
+Para presentar conclusiones conviene el gráfico; para fundamentarlas con cifras, la tabla.
+:::
+
+## Actividad 4
+
+**a.** Elaborar dos gráficos diferentes que representen relaciones entre dos variables de la base de datos. Indicar brevemente qué variables se relacionaron en cada uno y qué tipo de gráfico se utilizó.
+
+::::solution
+**Gráfico 1: Modalidad y Tipo de institución, columnas agrupadas.**
+
+1. Nueva tabla dinámica desde la base (igual que en la actividad 1), con **Modalidad** en Filas, **Tipo Institución** en Columnas y **Tipo Institución** en Valores.
+2. Clic en la tabla → **Insertar → Gráfico de columnas → Columna agrupada**.
+3. En `B9` escribir `=E5/E7` (la parte presencial, que se usa en la actividad 4b).
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm21-modalidad.jpg"
+	alt="Tabla dinámica de modalidad por tipo de institución con B9 en edición (=E5/E7) y, a la derecha, el gráfico de columnas agrupadas: Presencial domina con 1309, 811 y 439"
+	caption="Modalidad × Tipo de institución: tabla, B9 y gráfico"
+/>
+
+**Gráfico 2: Área del conocimiento y Tipo de institución, columnas apiladas.**
+
+1. Nueva tabla dinámica con **Área del conocimiento** en Filas, **Tipo Institución** en Columnas y **Tipo Institución** en Valores.
+2. Clic en la tabla → **Insertar** → flecha **Más gráficos** (a la derecha de los íconos de gráficos) → **Columnas → Columna apilada**. La altura de cada columna es la oferta del área, y los colores muestran qué tipo de institución la imparte.
+3. En `B15:B17` escribir `=E12/E13`, `=E4/E13` y `=(E4+E12)/E13`, que se usan en la actividad 4b.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm21-area.jpg"
+	alt="Tabla dinámica de área por tipo de institución con B15 en edición (=E12/E13) y, a la derecha, columnas apiladas: Tecnología con 1545 carreras y Administración y Comercio con 772 dominan"
+	caption="Área del conocimiento × Tipo de institución: tabla, B15 y gráfico"
+/>
+::::
+
+**b.** ¿Qué diferencias se observan entre ambos gráficos en cuanto a la información que entregan? Explicar cómo se complementan o qué aspectos destacan de forma distinta.
+
+:::solution
+- **El gráfico 1 muestra cómo se estudia.** La oferta es casi toda **presencial**: 2559 carreras, el 94,78% (`B9`). La modalidad no presencial está casi solo en el IP (57) y la Universidad (45); el CFT tiene apenas 3 carreras no presenciales.
+- **El gráfico 2 muestra qué se estudia.** **Tecnología** tiene el 57,22% de las carreras (`B15`) y **Administración y Comercio**, el 28,59% (`B16`): juntas suman el 85,81% (`B17`). Además, cada tipo de institución cubre áreas distintas: Educación y Humanidades solo las imparte la Universidad, y Agropecuaria, Arte y Arquitectura y Ciencias Básicas, solo CFT e IP.
+
+Se complementan: el primero sirve para decidir el formato de estudio y el segundo, el área y el tipo de institución que la ofrece.
+:::
+
+**c.** Si hubiera que presentar uno de estos gráficos a una persona que busca orientación para elegir carrera, ¿cuál se elegiría? Justificar la decisión considerando la claridad, pertinencia y utilidad del gráfico.
+
+:::solution
+El **gráfico 2 (área × tipo de institución)**:
+
+- **Pertinencia:** responde la primera pregunta de quien elige carrera, qué área estudiar, y además en qué tipo de institución se ofrece.
+- **Utilidad:** muestra restricciones concretas, por ejemplo que para estudiar Educación hay que ir a la Universidad, y que Tecnología se ofrece en los tres tipos.
+- **Claridad:** cada columna es un área y los colores son siempre los mismos tres tipos.
+
+El gráfico 1 orienta menos: casi toda la oferta es presencial, así que la modalidad no diferencia mucho las opciones.
+:::
+
+## Actividad 5 (actividad de cierre)
+
+**a.** Se asesora a una persona que quiere estudiar en una región donde exista una oferta académica diversa entre los tres tipos de institución (CFT, IP y Universidad), pero que al mismo tiempo tenga una cantidad razonable de carreras disponibles. ¿Qué región se le recomendaría? Justificar la respuesta utilizando la información obtenida de las tablas y gráficos trabajados.
+
+:::solution
+Se combinan dos resultados ya calculados:
+
+- **Diversidad:** la columna `K` de la actividad 2c. Antofagasta tiene la segunda menor diferencia (20,53%), solo detrás de Tarapacá (19,71%). Además, `H22` (`=MAX(H4:H19)`) da 35,76%, el valor de Antofagasta: es la región con mayor proporción de IP.
+- **Cantidad:** la columna `E`. Antofagasta tiene 151 carreras, la quinta región con más (`B34`), y más que Tarapacá (137).
+
+**Respuesta.** **Antofagasta**: es la segunda región más equilibrada (42,38% CFT, 35,76% IP y 21,85% Universidades) y tiene una cantidad razonable de carreras (151). Metropolitana y Biobío tienen mucha más oferta (800 y 289), pero la mitad es de CFT y solo entre el 15% y el 17% es universitaria. Si importara más la cantidad que el equilibrio, **Los Lagos** sería la alternativa: 176 carreras, con 48,30%, 29,55% y 22,16%.
+:::
+
+**b.** Ahora se considera a una persona que desea estudiar en un lugar donde la mayoría de las carreras sean técnicas de nivel superior. ¿Qué región se le sugeriría en ese caso? Fundamentar la recomendación en los datos.
+
+:::solution
+La base no tiene una variable que diga si una carrera es técnica de nivel superior. Los **CFT** solo imparten carreras técnicas de nivel superior, así que el porcentaje de CFT (columna `G`) sirve como indicador; es un valor mínimo, porque los IP también imparten algunas.
+
+| Celda | Fórmula | Resultado |
+| --- | --- | --- |
+| `G22` | `=MAX(G4:G19)` | 57,33%, el valor de `G14` (Magallanes) |
+| `B39` | `=K.ESIMO.MAYOR(G4:G19;2)` | 56,86%, el valor de `G7` (Aysén) |
+
+**Respuesta.** **Magallanes**: es la región con mayor proporción de carreras de CFT, el 57,33% (43 de 75). Le sigue Aysén (56,86%). Si además se buscara variedad, Metropolitana (402 carreras de CFT, 50,25%) y Biobío (147, 50,87%) también tienen mayoría técnica, con muchas más opciones en números absolutos.
+:::
+
+**c.** Finalmente, si una persona aún no define si desea estudiar en un CFT o en un IP, pero desea contar con una oferta balanceada entre ambos subniveles, ¿qué región se le recomendaría? Fundamentar la respuesta en base a los datos analizados.
+
+::::solution
+Se compara solo CFT con IP: qué parte de la suma de ambos corresponde al CFT. Cuanto más cerca del 50%, más balanceada.
+
+1. En `L3` escribir el encabezado `CFT / (CFT + IP)` y en `L4` la fórmula; copiarla hasta `L19` con formato de porcentaje:
+
+```
+=B4/(B4+C4)
+```
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm21-cft-ip.jpg"
+	alt="Celda L4 con la fórmula =B4/(B4+C4) en edición; B4 (64) en azul y C4 (54) en rojo"
+	caption="Parte del CFT dentro de CFT + IP en cada región"
+/>
+
+2. En todas las regiones el CFT supera al IP, así que el valor más bajo de la columna es el más cercano al 50%. La fórmula de `K22` (actividad 2c), copiada hacia la derecha, ya calcula los menores de la columna `L` en `L22:L26`:
+
+```
+=K.ESIMO.MENOR(L$4:L$19;$J22)
+```
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm21-l-k-esimo-menor.jpg"
+	alt="Celda L22 con la fórmula =K.ESIMO.MENOR(L$4:L$19;$J22) en edición; debajo, 56,19%, 57,00%, 57,69% y 58,82%"
+	caption="Las regiones con la oferta más balanceada entre CFT e IP"
+/>
+
+| k | CFT dentro de CFT + IP | Región |
+| --- | --- | --- |
+| 1 | 54,24% | Antofagasta (`L4`) |
+| 2 | 56,19% | Tarapacá (`L18`) |
+| 3 | 57,00% | La Araucanía (`L10`) |
+| 4 | 57,69% | Lib. Gral. B. O'Higgins (`L11`) |
+| 5 | 58,82% | Maule (`L15`) |
+
+**Respuesta.** **Antofagasta**: 64 carreras de CFT y 54 de IP, el reparto más parejo del país. En el otro extremo, Aysén tiene casi tres carreras de CFT por cada una de IP (`B40`: `=B7/C7` da 2,90).
+::::

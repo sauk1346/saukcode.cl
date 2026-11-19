@@ -1,0 +1,500 @@
+# Situación de Modelación 2: ¿Cómo se reparte y se comporta el mercado?
+
+**Material:**
+- [SM2.pdf](/inacap/cvet01/docs/unit02-sm02.pdf)
+- [Estadísticas de empresas por tramo según ventas (5 tramos) y región.xlsx](/inacap/cvet01/docs/unit02-empresas-tramo-ventas-region(SM2).xlsx)
+
+El mercado chileno está compuesto por empresas de distintos tamaños distribuidas a lo largo del país. Comprender cómo se reparten en las distintas regiones y cómo varían sus ventas permite analizar con datos reales las dinámicas económicas que influyen en el desarrollo del país.
+
+El Servicio de Impuestos Internos (SII) publica anualmente estadísticas oficiales sobre las empresas registradas en Chile, clasificándolas según su tamaño, de acuerdo a sus ventas anuales, y su ubicación regional. Esta información permite analizar cómo se distribuyen las empresas a lo largo del país y cómo varían sus características económicas. Este panorama ofrece una visión general de la actividad productiva y sus diferencias entre territorios.
+
+Según el SII, el tamaño de una empresa se clasifica en cinco tramos, de acuerdo con sus ventas anuales expresadas en UF:
+
+- **Sin ventas:** No es posible estimar un monto de ventas con la información disponible.
+- **Microempresa:** Desde 0,01 UF hasta 2400 UF
+- **Pequeña empresa:** Desde 2400,01 UF hasta 25000 UF
+- **Mediana empresa:** Desde 25000,01 UF hasta 100000 UF
+- **Gran empresa:** Más de 100000,01 UF
+
+:::callout[Error en el PDF]{type="warning"}
+El PDF escribe los decimales con punto (0.01, 2400.01…). En español y en Excel configurado en español se usa coma: 0,01, 2400,01…
+:::
+
+En todas las actividades de esta situación de modelación se trabaja con la base de datos disponible en el archivo «Estadísticas de empresas por tramo según ventas (5 tramos) y región.xlsx».
+
+Las capturas de esta página son de Excel para la web; las funciones y las tablas dinámicas son las mismas en Excel de escritorio.
+
+## Actividad 1 (actividad generadora)
+
+**a.** Considerar las variables Región y Tramo de ventas en el año 2023 y crear una tabla dinámica de doble entrada que muestre la cantidad total de empresas.
+
+::::solution
+**Los datos.** La base está en la hoja **Datos** y tiene 1 604 filas (`A2:E1605`). Cada fila es **un año, un tramo y una región**, entre 2005 y 2023:
+
+| Columna | Variable |
+| --- | --- |
+| `A` | Año comercial |
+| `B` | Tramo según ventas (5 tramos) |
+| `C` | Región del domicilio o casa matriz (16 regiones y «Sin información») |
+| `D` | Número de empresas |
+| `E` | Ventas anuales en UF: el total vendido por las empresas de ese tramo en esa región |
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm22-datos.jpg"
+	alt="Hoja Datos con las columnas Año comercial, Tramo según ventas, Región del domicilio o casa matriz, Número de empresas y Ventas anuales en UF; la fila 16 tiene un asterisco en las ventas"
+	caption="Cada fila ya trae una cantidad de empresas"
+/>
+
+Algunas ventas aparecen como `*`: son cifras que el SII reserva. Las funciones no las consideran. En 2023 no hay ninguna.
+
+**El concepto.** Una **tabla de doble entrada** cruza dos variables: cada celda muestra lo que cumple las dos condiciones a la vez, por ejemplo, «Antofagasta y Grande». Como cada fila de la base ya trae un **número de empresas**, la tabla tiene que **sumar** esa columna, no contar filas ([Tabla de doble entrada](/inacap/cvet01/laboratorio#m6-1)).
+
+**Paso 1. Crear la tabla dinámica.** Clic en una celda de la base → **Insertar → Tabla dinámica**, rango `Datos!A1:E1605`, hoja nueva. En el panel **Campos de tabla dinámica**:
+
+| Área | Campo | Configuración |
+| --- | --- | --- |
+| Filtros | Año comercial | Se elige **2023** en la flecha de `B1` |
+| Filas | Región del domicilio o casa matriz | |
+| Columnas | Tramo según ventas (5 tramos) | |
+| Valores | Número de empresas | **Suma** (Excel la pone sola, porque la columna es numérica) |
+
+**Paso 2. Filtrar el año.** En la flecha de `B1`, desmarcar **Seleccionar todo**, buscar 2023, marcarlo y **Aplicar**.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm22-filtro-2023.jpg"
+	alt="Filtro de Año comercial abierto con solo 2023 marcado y, a la derecha, el panel con Año comercial en Filtros, Región en Filas, Tramo en Columnas y Suma de Número de empresas en Valores"
+	caption="Filtro 2023 y configuración de la tabla dinámica"
+/>
+
+**Resultado.** Excel ordena las regiones y los tramos alfabéticamente. Las regiones quedan en `A5:A21` y el Total general en la fila 22. Los tramos quedan en las columnas `B` (Grande), `C` (Mediana), `D` (Micro), `E` (Pequeña) y `F` (Sin Ventas/Sin Información), con el Total general en `G`:
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm22-tabla-region-tramo.jpg"
+	alt="Tabla dinámica de 2023 con las regiones en A5:A21, los cinco tramos en B:F y el Total general en G; total del país 1.503.813 empresas"
+	caption="Empresas por región y tramo de ventas, 2023"
+/>
+
+| Fila | Región | `B` Grande | `C` Mediana | `D` Micro | `E` Pequeña | `F` Sin ventas | `G` Total |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 5 | Antofagasta | 381 | 1 133 | 24 731 | 8 314 | 7 785 | 42 344 |
+| 6 | Arica y Parinacota | 50 | 219 | 11 953 | 2 233 | 2 773 | 17 228 |
+| 7 | Atacama | 124 | 387 | 13 407 | 3 306 | 4 012 | 21 236 |
+| 8 | Aysén | 18 | 178 | 8 524 | 1 601 | 2 079 | 12 400 |
+| 9 | Coquimbo | 286 | 899 | 38 208 | 8 115 | 10 774 | 58 282 |
+| 10 | La Araucanía | 355 | 1 198 | 48 188 | 10 677 | 14 492 | 74 910 |
+| 11 | Los Lagos | 620 | 1 624 | 50 327 | 13 023 | 14 728 | 80 322 |
+| 12 | Los Ríos | 139 | 461 | 21 301 | 4 545 | 6 157 | 32 603 |
+| 13 | Magallanes | 148 | 336 | 10 613 | 2 910 | 2 910 | 16 917 |
+| 14 | Ñuble | 179 | 588 | 25 495 | 5 443 | 7 100 | 38 805 |
+| 15 | Tarapacá | 465 | 855 | 14 928 | 4 207 | 4 451 | 24 906 |
+| 16 | Valparaíso | 1 144 | 2 978 | 89 689 | 23 003 | 29 324 | 146 138 |
+| 17 | Biobío | 756 | 2 165 | 68 349 | 17 625 | 21 879 | 110 774 |
+| 18 | Lib. Gral. Bernardo O'Higgins | 590 | 1 449 | 49 738 | 12 443 | 14 854 | 79 074 |
+| 19 | Maule | 535 | 1 640 | 63 486 | 14 024 | 18 830 | 98 515 |
+| 20 | Metropolitana de Santiago | 11 551 | 21 156 | 366 583 | 120 000 | 129 829 | 649 119 |
+| 21 | Sin información | | 13 | 116 | 46 | 65 | 240 |
+| 22 | **Total general** | **17 341** | **37 279** | **905 636** | **251 515** | **292 042** | **1 503 813** |
+
+El orden de las regiones es el alfabético de su nombre completo en el archivo: primero las «Región de…», luego las «Región del…» y al final «Región Metropolitana de Santiago» y «Sin información».
+
+**Con fórmula, sin tabla dinámica.** La misma tabla sale con `SUMAR.SI.CONJUNTO`, que suma la columna `D` de las filas que cumplen las tres condiciones. Con los nombres de las regiones en `A5:A21` y los de los tramos en `B4:F4`, escritos como en la base, en `B5`:
+
+```
+=SUMAR.SI.CONJUNTO(Datos!$D$2:$D$1605;Datos!$A$2:$A$1605;2023;Datos!$C$2:$C$1605;$A5;Datos!$B$2:$B$1605;B$4)
+```
+
+Se copia hasta `F21`. Los `$` dejan fijos los rangos de la base, la columna de la región y la fila del tramo.
+::::
+
+**b.** ¿Cuántas grandes empresas hay en la región de residencia?
+
+:::solution
+Se lee en la columna `B` (Grande) de la tabla anterior, en la fila de la región. Por ejemplo:
+
+- **Región Metropolitana:** `B20`, 11 551 grandes empresas. Son el 66,61% de las grandes empresas del país: `=B20/B22` (actividad 5a, celda `B25`).
+- **Valparaíso:** `B16`, 1 144.
+- **Biobío:** `B17`, 756.
+:::
+
+**c.** Construir un gráfico de anillos que represente la distribución porcentual por tramo de ventas a nivel nacional e indicar cuál es el tramo de ventas que concentra más empresas.
+
+::::solution
+**Paso 1. Tabla dinámica nueva** con el filtro **Año comercial = 2023**, **Tramo según ventas** en Filas y **Suma de Número de empresas** en Valores. Los tramos quedan en `A4:A8` y el Total general en `B9`.
+
+**Paso 2. Porcentaje de cada tramo.** El porcentaje es la parte dividida por el total. En `C4`, con el signo `$` para que el total quede fijo al copiar ([Frecuencia porcentual](/inacap/cvet01/laboratorio#m1-2)):
+
+```
+=B4/$B$9
+```
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm22-porcentaje-tramo.jpg"
+	alt="Celda C4 con la fórmula =B4/$B$9 en edición; B4 marcado en azul y B9 en rojo"
+	caption="Cada tramo dividido por el total fijo"
+/>
+
+Se copia hasta `C9` y se le da formato de porcentaje con dos decimales:
+
+| Fila | Tramo | `B` Número de empresas | `C` Porcentaje |
+| --- | --- | --- | --- |
+| 4 | Grande | 17 341 | 1,15% |
+| 5 | Mediana | 37 279 | 2,48% |
+| 6 | Micro | 905 636 | 60,22% |
+| 7 | Pequeña | 251 515 | 16,73% |
+| 8 | Sin Ventas/Sin Información | 292 042 | 19,42% |
+| 9 | **Total general** | **1 503 813** | **100,00%** |
+
+**Paso 3. El gráfico.** Con una celda de la tabla dinámica seleccionada, **Insertar →** galería de gráficos **→ Circular → Anillos** ([Gráfico circular](/inacap/cvet01/laboratorio#m2-2)).
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm22-galeria-anillos.jpg"
+	alt="Galería de gráficos abierta con el puntero sobre Anillos, en la sección Circular"
+	caption="Insertar → galería → Anillos"
+/>
+
+En **Gráfico → Formato**: en **Título del gráfico**, escribir el título; en **Serie "Total" → Etiquetas de datos**, activarlas, marcar **Porcentaje** y desmarcar **Valor**.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm22-anillos.jpg"
+	alt="Tabla de tramos con porcentajes y, a la derecha, el gráfico de anillos: Micro 60%, Sin ventas 19%, Pequeña 17%, Mediana 2% y Grande 1%"
+	caption="Empresas en Chile según tramo de ventas, 2023"
+/>
+
+**Resultado.** El tramo **Micro** concentra más empresas: 905 636, el **60,22%** del total nacional (`C6`), más de la mitad del anillo. Las medianas y grandes juntas no llegan al 4% (`=C4+C5`, 3,63%).
+::::
+
+## Actividad 2
+
+**a.** Calcular el promedio y la desviación estándar muestral de las ventas anuales en UF para cada uno de los cinco tramos en el año 2023.
+
+::::solution
+**El concepto.** El **promedio** dice cuánto vende, en general, un tramo en una región. La **desviación estándar** dice cuánto se alejan las regiones de ese promedio: si es grande, las ventas regionales son muy distintas entre sí ([Promedio y desviación estándar por grupo](/inacap/cvet01/laboratorio#m7-2)).
+
+**Paso 1. Tabla dinámica nueva** con Año comercial en Filtros, Tramo en Filas y **Ventas anuales en UF dos veces** en Valores.
+
+**Paso 2. Cambiar el cálculo.** La columna de ventas tiene asteriscos en algunos años, así que Excel la trata como texto y pone **Cuenta**. Se cambia en **Valores → flecha del campo → Configuración de campo de valor → Resumir valores por**: el primero a **Promedio** y el segundo a **Desvest** (desviación estándar muestral; en Excel para la web aparece como **StdDev**).
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm22-stddev.jpg"
+	alt="Ventana Configuración de campo de valor con StdDev seleccionado en Resumir valores por; a la izquierda, la columna Promedio de Ventas anuales en UF ya calculada"
+	caption="El segundo campo de ventas: Resumir valores por → StdDev"
+/>
+
+**Paso 3. Filtrar 2023** en la flecha de `B1`, igual que en la actividad 1.
+
+Cada fila de la base es el total vendido por un tramo en **una región**, así que el promedio es el de las ventas de las regiones (17 valores por tramo; 16 en Grande, que no tiene fila «Sin información» en 2023).
+
+| Fila | Tramo | `B` Promedio de ventas (UF) | `C` Desviación estándar (UF) |
+| --- | --- | --- | --- |
+| 4 | Grande | 1 786 586 283,24 | 5 876 023 921,02 |
+| 5 | Mediana | 104 023 475,47 | 238 281 259,39 |
+| 6 | Micro | 28 280 850,92 | 47 625 371,07 |
+| 7 | Pequeña | 108 337 954,79 | 209 993 224,69 |
+| 8 | Sin Ventas/Sin Información | 0 | 0 |
+
+**Con fórmulas.** El mismo resultado sale con `PROMEDIO` y `DESVEST.M` con un `SI` anidado que elige el año y el tramo ([Media de un solo grupo](/inacap/cvet01/laboratorio#m3-4), [Dispersión de un solo grupo](/inacap/cvet01/laboratorio#m4-6)). Junto a la tabla, tomando el nombre del tramo de la columna `A`:
+
+```
+=PROMEDIO(SI(Datos!$A$2:$A$1605=2023;SI(Datos!$B$2:$B$1605=$A4;Datos!$E$2:$E$1605)))
+=DESVEST.M(SI(Datos!$A$2:$A$1605=2023;SI(Datos!$B$2:$B$1605=$A4;Datos!$E$2:$E$1605)))
+```
+
+Se copian hasta la fila 8. En Excel 2019 o anterior, cada fórmula se confirma con **Ctrl + Mayús + Enter**.
+::::
+
+**b.** ¿Qué tramo presenta mayor dispersión relativa en sus ventas? Justificar la respuesta usando el coeficiente de variación.
+
+::::solution
+**El concepto.** Una desviación de 5 000 millones de UF no se puede comparar con una de 47 millones si los promedios son tan distintos. El **coeficiente de variación** (CV) divide la desviación estándar por el promedio: dice qué tan grande es la dispersión **en relación con** el promedio, y permite comparar tramos de distinto tamaño ([Coeficiente de variación por grupo](/inacap/cvet01/laboratorio#m7-3)).
+
+**En Excel.** En `D4` de la tabla anterior:
+
+```
+=C4/B4
+```
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm22-cv.jpg"
+	alt="Celda D4 con la fórmula =C4/B4 en edición; C4, la desviación estándar, en azul y B4, el promedio, en rojo"
+	caption="CV = desviación estándar / promedio"
+/>
+
+Se copia hasta `D8` con formato de porcentaje:
+
+| Fila | Tramo | `B` Promedio (UF) | `C` Desviación estándar (UF) | `D` CV |
+| --- | --- | --- | --- | --- |
+| 4 | Grande | 1 786 586 283,24 | 5 876 023 921,02 | 328,90% |
+| 5 | Mediana | 104 023 475,47 | 238 281 259,39 | 229,06% |
+| 6 | Micro | 28 280 850,92 | 47 625 371,07 | 168,40% |
+| 7 | Pequeña | 108 337 954,79 | 209 993 224,69 | 193,83% |
+| 8 | Sin Ventas/Sin Información | 0 | 0 | `#¡DIV/0!` |
+
+**Resultado.** El tramo **Grande** tiene la mayor dispersión relativa: su desviación estándar es 3,29 veces su promedio. Las ventas de las grandes empresas son muy distintas de una región a otra, porque la Región Metropolitana concentra el 83,22% de ellas (actividad 5c).
+
+En todos los tramos el CV supera el 100%: la diferencia entre la Región Metropolitana y las demás regiones hace muy heterogéneas las ventas regionales en cualquier tamaño de empresa. El CV crece con el tamaño de la empresa.
+::::
+
+**c.** ¿Cuál es el tramo más homogéneo en cuanto al monto de ventas? Explicar por qué.
+
+:::solution
+El tramo **Micro**, con el menor coeficiente de variación: `=MIN(D4:D7)` da 168,40% (`D6`). Sus ventas regionales son las que menos se alejan de su promedio en términos relativos. Las microempresas están más repartidas por el país: la Región Metropolitana concentra el 42,91% de sus ventas, contra el 83,22% en las grandes (actividad 5c).
+
+El tramo Sin ventas no cuenta: todas sus ventas son 0, así que no tiene dispersión, pero tampoco ventas que comparar, y su CV no se puede calcular (`#¡DIV/0!` en `D8`, porque divide por un promedio 0).
+:::
+
+## Actividad 3
+
+**a.** Calcular la mediana del monto de ventas anuales en UF para cada uno de los cinco tramos en el año 2023.
+
+::::solution
+**El concepto.** La **mediana** es la venta de la región del centro cuando se ordenan de menor a mayor: la mitad de las regiones vende menos y la otra mitad, más. A diferencia del promedio, no se mueve si una región vende muchísimo ([Mediana](/inacap/cvet01/laboratorio#m3-2)).
+
+**En Excel.** Las tablas dinámicas no calculan medianas: se usa `MEDIANA` con un `SI` anidado que elige el año y el tramo ([Posición dentro de un solo grupo](/inacap/cvet01/laboratorio#m5-7)). En la hoja de la actividad 2, en `E4`, tomando el nombre del tramo de `A4`:
+
+```
+=MEDIANA(SI(Datos!$A$2:$A$1605=2023;SI(Datos!$B$2:$B$1605=$A4;Datos!$E$2:$E$1605)))
+```
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm22-mediana.jpg"
+	alt="Celda E4 con la fórmula MEDIANA con dos SI anidados en edición; A4 (Grande) marcado en azul"
+	caption="La condición toma el año 2023 y el tramo de A4"
+/>
+
+Se copia hasta `E8`. Para un solo tramo, se puede escribir el nombre entre comillas, exactamente como en la base:
+
+```
+=MEDIANA(SI(Datos!A2:A1605=2023;SI(Datos!B2:B1605="Micro";Datos!E2:E1605)))
+```
+
+En Excel 2019 o anterior, la fórmula se confirma con **Ctrl + Mayús + Enter**.
+
+**Comparar con el promedio.** En `F4` la diferencia y en `G4` cuántas veces el promedio contiene a la mediana, ambas copiadas hasta la fila 8:
+
+```
+=B4-E4
+=B4/E4
+```
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm22-medidas.jpg"
+	alt="Tabla con promedio, desviación estándar, CV, mediana, promedio menos mediana y promedio dividido por la mediana para cada tramo"
+	caption="Todas las medidas de las actividades 2 y 3 en la misma hoja"
+/>
+
+| Fila | Tramo | `E` Mediana (UF) | `B` Promedio (UF) | `F` Promedio − mediana (UF) | `G` Promedio / mediana |
+| --- | --- | --- | --- | --- | --- |
+| 4 | Grande | 206 021 993,76 | 1 786 586 283,24 | 1 580 564 289,48 | 8,67 |
+| 5 | Mediana | 41 812 931,09 | 104 023 475,47 | 62 210 544,38 | 2,49 |
+| 6 | Micro | 14 041 027,74 | 28 280 850,92 | 14 239 823,18 | 2,01 |
+| 7 | Pequeña | 57 420 976,24 | 108 337 954,79 | 50 916 978,55 | 1,89 |
+| 8 | Sin Ventas/Sin Información | 0 | 0 | 0 | `#¡DIV/0!` |
+::::
+
+**b.** ¿En qué tramo la mediana es más cercana al promedio? ¿Qué sugiere esto sobre la distribución de los datos en ese tramo?
+
+:::solution
+En el tramo **Micro**: `=MIN(F4:F7)` da 14 239 823,18 UF (`F6`), la menor diferencia de los tramos con ventas. En términos relativos (columna `G`) queda casi igual que Pequeña: en Micro el promedio es 2,01 veces la mediana (`G6`), y en Pequeña, 1,89 veces (`G7`).
+
+Aun así, el promedio duplica a la mediana: la distribución es **asimétrica hacia la derecha**. La mayoría de las regiones vende poco, y unas pocas, sobre todo la Región Metropolitana, venden mucho más y tiran el promedio hacia arriba. En Micro esa asimetría es la más moderada. En el tramo Sin ventas, promedio y mediana coinciden (0) porque todos los valores son iguales.
+:::
+
+**c.** ¿Qué tramo presenta mayor diferencia entre la mediana y el promedio? ¿Qué se podría inferir a partir de esta diferencia?
+
+:::solution
+El tramo **Grande**: `=MAX(F4:F7)` da 1 580 564 289,48 UF (`F4`). Su promedio (1 786 586 283,24 UF, `B4`) es 8,67 veces su mediana (206 021 993,76 UF, `E4`).
+
+Se infiere una **asimetría extrema** causada por un valor muy alejado del resto. Las dos regiones que más venden en el tramo Grande se obtienen con `K.ESIMO.MAYOR` ([Valor según su posición](/inacap/cvet01/laboratorio#m5-4)):
+
+```
+=K.ESIMO.MAYOR(SI(Datos!A2:A1605=2023;SI(Datos!B2:B1605="Grande";Datos!E2:E1605));1)
+=K.ESIMO.MAYOR(SI(Datos!A2:A1605=2023;SI(Datos!B2:B1605="Grande";Datos!E2:E1605));2)
+```
+
+La primera da 23 787 562 060,08 UF (Región Metropolitana) y la segunda, 1 183 790 895,62 UF (Valparaíso): la Región Metropolitana vende 20 veces más. El promedio no representa a una región típica; la mediana, que no se ve afectada por ese valor extremo, describe mejor lo que vende el tramo en una región común.
+:::
+
+## Actividad 4
+
+**a.** Construir un gráfico de líneas que muestre cómo ha cambiado la cantidad de empresas en cada uno de los cinco tramos de ventas entre los años 2005 y 2023.
+
+::::solution
+**Paso 1. Tabla dinámica nueva, sin filtro de año:**
+
+| Área | Campo | Configuración |
+| --- | --- | --- |
+| Filas | Año comercial | |
+| Columnas | Tramo según ventas (5 tramos) | |
+| Valores | Número de empresas | **Suma** |
+
+Sin filtro, Excel para la web pone la tabla desde la fila 2: los años quedan en `A4:A22` (2005 en la fila 4, 2019 en la 18 y 2023 en la 22) y el Total general en la fila 23. En Excel de escritorio la tabla empieza en la fila 3 y todas las filas bajan una. Las columnas son las mismas de la actividad 1: `B` Grande, `C` Mediana, `D` Micro, `E` Pequeña, `F` Sin ventas y `G` Total.
+
+**Paso 2. El gráfico.** Para mostrar cómo cambia algo en el tiempo se usa un **gráfico de líneas**: los años van en el eje horizontal y cada tramo es una línea ([Gráfico de líneas](/inacap/cvet01/laboratorio#m2-4)). Con una celda de la tabla dinámica seleccionada, **Insertar →** galería **→ Línea con marcadores**.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm22-galeria-lineas.jpg"
+	alt="Galería de gráficos abierta con el puntero sobre Línea con marcadores"
+	caption="Insertar → galería → Línea con marcadores"
+/>
+
+Luego se escribe el título en **Gráfico → Formato → Título del gráfico** y se agranda el gráfico arrastrando una esquina.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm22-lineas.jpg"
+	alt="Tabla de años por tramo y, a la derecha, el gráfico de líneas: Micro sube de 577.814 a 905.636; Sin ventas salta desde 2017; Pequeña crece de forma sostenida; Mediana y Grande quedan cerca de cero en esta escala"
+	caption="Número de empresas por tramo de ventas, de 2005 a 2023"
+/>
+
+**Lectura.** La línea de **Micro** está muy por encima del resto y sube casi todos los años. **Pequeña** crece de forma sostenida. **Sin ventas** da un salto desde 2017. **Mediana** y **Grande** se ven casi planas, pero no porque no crezcan: sus cantidades son tan pequeñas al lado de Micro que en esta escala quedan pegadas al cero.
+::::
+
+**b.** Calcular la variación porcentual en la cantidad de empresas para el tramo Microempresa, comparando los años 2019 y 2023.
+
+::::solution
+**El concepto.** La **variación porcentual** compara el valor nuevo con el antiguo: cuánto cambió, dividido por lo que había al principio.
+
+**En Excel.** En la tabla anterior, columna `D` (Micro): 765 490 empresas en 2019 (`D18`) y 905 636 en 2023 (`D22`). En `D25`, con formato de porcentaje:
+
+```
+=(D22-D18)/D18
+```
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm22-variacion.jpg"
+	alt="Celda D25 con la fórmula =(D22-D18)/D18 en edición; D22 (905.636) en azul y D18 (765.490) en rojo"
+	caption="Variación de Micro entre 2019 (D18) y 2023 (D22)"
+/>
+
+$$
+\frac{905\,636 - 765\,490}{765\,490} \cdot 100 = \frac{140\,146}{765\,490} \cdot 100 = 18{,}31\%
+$$
+
+Entre 2019 y 2023, el número de microempresas aumentó un **18,31%**.
+::::
+
+**c.** ¿Qué conclusiones se pueden obtener sobre el comportamiento de los distintos tramos entre 2019 y 2023? ¿Cómo podrían influir estos cambios en decisiones futuras sobre apoyo o fiscalización a empresas?
+
+:::solution
+La misma fórmula para todos los tramos: en `B25`, copiada hasta `G25`, con formato de porcentaje. Para el aumento en cantidad de empresas, en `B26`, copiada hasta `G26`:
+
+```
+=(B22-B18)/B18
+=B22-B18
+```
+
+| Tramo | 2019 (fila 18) | 2023 (fila 22) | Fila 25: variación | Fila 26: aumento |
+| --- | --- | --- | --- | --- |
+| `B` Grande | 14 812 | 17 341 | 17,07% | 2 529 |
+| `C` Mediana | 29 415 | 37 279 | 26,73% | 7 864 |
+| `D` Micro | 765 490 | 905 636 | 18,31% | 140 146 |
+| `E` Pequeña | 207 379 | 251 515 | 21,28% | 44 136 |
+| `F` Sin Ventas/Sin Información | 299 582 | 292 042 | −2,52% | −7 540 |
+| `G` **Total** | **1 316 678** | **1 503 813** | **14,21%** | **187 135** |
+
+**Conclusiones**
+
+- Todos los tramos con ventas crecieron. La **Mediana** fue la que más creció en proporción (26,73%), y la **Micro**, la que más sumó en cantidad (140 146 empresas nuevas).
+- El tramo **Sin ventas** bajó levemente (−2,52%).
+- En 2021 hubo un salto en todos los tramos: el total pasó de 1 333 363 (`G19`) a 1 448 556 (`G20`). En 2023 casi todos bajaron un poco respecto de 2022 (fila 21), excepto Micro.
+
+**Decisiones**
+
+- **Apoyo:** las microempresas siguen siendo seis de cada diez y aumentan cada año. Los programas de apoyo y formalización tienen cada vez más destinatarios.
+- **Fiscalización:** el crecimiento de las medianas y grandes empresas, que concentran el grueso de las ventas, justifica reforzar la fiscalización tributaria en esos tramos. El tramo Sin ventas, cerca de 300 mil empresas sin ventas informadas, también merece seguimiento.
+:::
+
+## Actividad 5 (actividad de cierre)
+
+Una entidad gubernamental busca diseñar políticas de apoyo diferenciadas para empresas que presenten:
+
+- Alta concentración territorial (en pocas regiones)
+- Alta dispersión en sus ventas
+- Alta representatividad en el total de empresas
+
+**a.** ¿Qué tramo de ventas convendría priorizar en estas políticas? Justificar la decisión con base en los datos analizados (porcentaje de empresas, dispersión y posición de ventas).
+
+::::solution
+**Un indicador por criterio**, con datos de 2023. Los de concentración y representatividad se calculan bajo la tabla dinámica de la actividad 1, en las filas 24 a 26, copiando cada fórmula desde `B` hasta `G`, con formato de porcentaje:
+
+- **Concentración territorial:** porcentaje de las empresas del tramo que está en las tres regiones con más empresas: Valparaíso (fila 16), Biobío (fila 17) y Metropolitana (fila 20).
+- **Solo Región Metropolitana:** la misma idea con una sola región.
+- **Representatividad:** porcentaje del total de empresas.
+
+```
+=(B16+B17+B20)/B22
+=B20/B22
+=B22/$G$22
+```
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm22-indicadores.jpg"
+	alt="Filas 24 a 26 bajo la tabla dinámica: concentración en tres regiones, peso de la Región Metropolitana y porcentaje del total, para cada tramo"
+	caption="Los tres indicadores, de B24 a G26"
+/>
+
+La **dispersión** es el coeficiente de variación de las ventas (actividad 2b, columna `D`).
+
+| Tramo | Fila 24: concentración (3 regiones) | Fila 25: solo Región Metropolitana | CV de las ventas | Fila 26: % del total de empresas |
+| --- | --- | --- | --- | --- |
+| `B` Grande | 77,57% | 66,61% | 328,90% | 1,15% |
+| `C` Mediana | 70,55% | 56,75% | 229,06% | 2,48% |
+| `D` Micro | 57,93% | 40,48% | 168,40% | 60,22% |
+| `E` Pequeña | 63,86% | 47,71% | 193,83% | 16,73% |
+| `F` Sin Ventas/Sin Información | 61,99% | 44,46% | — | 19,42% |
+
+Los criterios apuntan en direcciones opuestas: la concentración y la dispersión **aumentan** con el tamaño de la empresa, y la representatividad **disminuye**. Ningún tramo cumple los tres.
+
+Se propone priorizar el tramo **Grande**: es el primero en concentración territorial (dos de cada tres grandes empresas están en la Región Metropolitana) y en dispersión (CV de 328,90%, con una mediana de ventas muy por debajo del promedio). Falla en representatividad (1,15%), pero cumple los otros dos criterios con mucha diferencia.
+
+Si la entidad diera más peso a la representatividad, la alternativa sería **Micro** (60,22% de las empresas), aunque es el tramo menos concentrado y menos disperso. **Pequeña** queda en una posición intermedia en los tres criterios.
+::::
+
+**b.** ¿Qué regiones concentrarían la implementación inicial de estas políticas, y por qué? Usar argumentos apoyados en la distribución de las empresas.
+
+::::solution
+**Región Metropolitana, Valparaíso y Biobío**, en ese orden. Son las tres regiones con más empresas en **todos** los tramos. En la columna `G` (Total) de la tabla de la actividad 1, las tres mayores se obtienen con `K.ESIMO.MAYOR` en `B28:B30` ([Valor según su posición](/inacap/cvet01/laboratorio#m5-4)), sin contar el Total general de la fila 22:
+
+```
+=K.ESIMO.MAYOR(G5:G21;1)
+=K.ESIMO.MAYOR(G5:G21;2)
+=K.ESIMO.MAYOR(G5:G21;3)
+```
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm22-k-esimo-mayor.jpg"
+	alt="Celda B28 con la fórmula =K.ESIMO.MAYOR(G5:G21;1) en edición; la columna G de la tabla marcada en azul"
+	caption="K.ESIMO.MAYOR sobre los totales por región"
+/>
+
+Dan 649 119 (Metropolitana), 146 138 (Valparaíso) y 110 774 (Biobío). Su peso en el total:
+
+- La **Región Metropolitana** tiene el 43,16% de todas las empresas del país (`G25`, `=G20/G22`) y el 66,61% de las grandes (`B25`).
+- **Valparaíso** tiene el 9,72% (`=G16/G22`) y **Biobío**, el 7,37% (`=G17/G22`).
+
+Entre las tres reúnen el 60,25% de las empresas (`G24`) y el 77,57% de las grandes (`B24`). Empezar por ellas permite llegar a la mayor cantidad de empresas con el menor despliegue territorial.
+::::
+
+**c.** ¿Qué conclusiones se pueden extraer sobre la relación entre el tamaño de empresa y su presencia territorial en Chile?
+
+::::solution
+**Las ventas por región.** Se crea una tabla dinámica igual a la de la actividad 1 (filtro 2023, Región en Filas, Tramo en Columnas), pero con **Ventas anuales en UF** en Valores, cambiada a **Suma** en **Configuración de campo de valor** (por los asteriscos, Excel pone Cuenta). La Región Metropolitana queda en la fila 20 y el Total general en la 22, así que en `B25`, copiada hasta `E25`:
+
+```
+=B20/B22
+```
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm22-ventas-rm.jpg"
+	alt="Tabla dinámica de suma de ventas por región y tramo; B25 con la fórmula =B20/B22 en edición y C25:E25 con 57,55%, 42,91% y 49,12%"
+	caption="Parte de las ventas de cada tramo que está en la Región Metropolitana"
+/>
+
+| Tramo | Empresas en la Región Metropolitana (actividad 5a, fila 25) | Ventas en la Región Metropolitana (fila 25 de la tabla de ventas) |
+| --- | --- | --- |
+| `B` Grande | 66,61% | 83,22% |
+| `C` Mediana | 56,75% | 57,55% |
+| `D` Micro | 40,48% | 42,91% |
+| `E` Pequeña | 47,71% | 49,12% |
+
+**Cuanto más grande es la empresa, más concentrada está en la Región Metropolitana.** Las microempresas están más repartidas por el país; las grandes se concentran en la capital, donde están las casas matrices. Por eso las ventas de las grandes empresas son tan dispersas entre regiones: una sola región explica más del 80% de lo que venden. Hay que considerar que la base clasifica cada empresa por la región de su **domicilio o casa matriz**, no por donde opera, así que la concentración de las grandes puede estar sobrestimada.
+::::
