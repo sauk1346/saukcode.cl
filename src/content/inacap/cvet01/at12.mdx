@@ -1,0 +1,213 @@
+# Actividad Tecnológica 2: Gráficos en Excel
+
+**Material:**
+- [AT2.pdf](/inacap/cvet01/docs/unit01-at02.pdf)
+- [Gráficos en Excel.xlsx](/inacap/cvet01/docs/graficos-en-excel(AT2).xlsx)
+
+Esta actividad tiene por objetivo familiarizar a los estudiantes, mediante la incorporación de Excel, con la construcción de gráficos a partir de un conjunto de datos univariados.
+
+Las capturas de esta página son de Excel para la web. En Excel de escritorio los menús tienen los mismos nombres, salvo donde se indica.
+
+## Actividad 1: Iniciar el trabajo con Excel
+
+Abrir el archivo «Gráficos en Excel.xlsx» entregado por la docente. Este archivo contiene cuatro hojas, cada una con un conjunto de datos distinto, que se utilizan para construir diferentes tipos de gráficos en Excel.
+
+:::solution
+Las cuatro hojas y el gráfico que corresponde a cada una:
+
+| Hoja | Variable | Tipo de variable | Gráfico |
+| --- | --- | --- | --- |
+| Circular | Comuna de residencia | Cualitativa nominal | Circular |
+| Columnas | Número de hermanos | Cuantitativa discreta | Columnas |
+| Líneas | Temperatura (°C), medida cada día | Cuantitativa continua, en el tiempo | Líneas |
+| Histograma | Peso del producto (g) | Cuantitativa continua | Histograma |
+
+El tipo de variable decide qué gráfico corresponde ([¿Qué gráfico usar?](/inacap/cvet01/laboratorio#m2-1)). En las tres primeras hojas los datos ya vienen resumidos en una tabla de frecuencias o de valores; en la hoja «Histograma» vienen los 100 pesos sin agrupar.
+:::
+
+## Actividad 2: Construir un gráfico circular
+
+Para construir un gráfico circular para la variable cualitativa nominal «Comuna de residencia», seguir estos pasos:
+
+1. Ir a la hoja «Circular».
+2. Seleccionar la tabla completa, incluyendo los encabezados Comuna de residencia y Frecuencia.
+3. En la pestaña **Insertar**, hacer clic en el ícono de **Gráfico circular** y seleccionar el diseño simple.
+4. Personalizar el gráfico:
+   - Mover el gráfico a una hoja nueva (recomendable).
+   - Agregar un título representativo.
+   - Ajustar los colores, si se considera necesario.
+   - Mostrar las etiquetas con los porcentajes de cada categoría.
+
+Con esto, se obtiene el gráfico circular que representa la distribución de la variable.
+
+::::solution
+**Los datos.** La hoja «Circular» tiene la frecuencia de cada comuna: cuántos estudiantes viven en ella. Son 50 estudiantes en total. Un gráfico circular muestra **qué parte del total** representa cada categoría: cada sector es proporcional a su frecuencia ([Gráfico circular](/inacap/cvet01/laboratorio#m2-2)).
+
+**Paso 1. Seleccionar e insertar.** Seleccionar `A1:B6`, con los encabezados, para que Excel use los nombres de las comunas en la leyenda. Luego **Insertar → Gráfico circular**.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at12-circular-seleccion.jpg"
+	alt="Tabla A1:B6 seleccionada en la hoja Circular y pestaña Insertar abierta, con el ícono de gráfico circular en la cinta"
+	caption="La tabla completa seleccionada y la pestaña Insertar"
+/>
+
+**Paso 2. Etiquetas con porcentaje.** Con el gráfico seleccionado: **Gráfico → Formato → Serie "Frecuencia" → Etiquetas de datos**. Marcar **Porcentaje** y desmarcar **Valor**. Excel calcula el porcentaje de cada sector sin que haga falta una fórmula.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at12-circular-etiquetas.jpg"
+	alt="Gráfico circular con etiquetas de porcentaje y, a la derecha, el panel Gráfico con la opción Porcentaje marcada en Etiquetas de datos"
+	caption="Etiquetas de datos con porcentaje"
+/>
+
+**Paso 3. Título.** En el mismo panel, **Título del gráfico** → escribir un título que diga qué muestra el gráfico, por ejemplo «Estudiantes según comuna de residencia». Mover el gráfico a una hoja nueva es opcional: en Excel de escritorio se hace con clic derecho → **Mover gráfico**.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at12-circular-final.jpg"
+	alt="Gráfico circular terminado: La Florida 26%, Maipú, Ñuñoa y Providencia 20% cada una, Santiago 14%"
+	caption="Estudiantes según comuna de residencia"
+/>
+
+**¿Qué muestra el gráfico?** La Florida es la comuna con más estudiantes (26%) y Santiago, la que tiene menos (14%). Maipú, Ñuñoa y Providencia tienen la misma proporción (20% cada una).
+::::
+
+## Actividad 3: Construir un gráfico de columnas
+
+Para construir un gráfico de columnas para la variable cuantitativa discreta «Número de hermanos», seguir estos pasos:
+
+1. Ir a la hoja «Columnas».
+2. Seleccionar únicamente los valores de la columna Frecuencia.
+3. En la pestaña **Insertar**, hacer clic en **Gráfico de columnas** y seleccionar la opción **Columnas agrupadas**.
+4. Una vez insertado el gráfico:
+   - Hacer clic derecho sobre el gráfico y seleccionar **Seleccionar datos**.
+   - En el apartado **Etiquetas del eje horizontal (categorías)**, hacer clic en **Editar** y seleccionar los valores correspondientes a «Número de hermanos».
+5. Personalizar el gráfico:
+   - Agregar un título representativo.
+   - Rotular el eje horizontal con «Número de hermanos».
+   - Rotular el eje vertical con «Frecuencia».
+
+Con esto, se obtiene el gráfico de columnas que representa la distribución de la variable.
+
+::::solution
+**Los datos.** La columna `A` tiene los valores de la variable (0 a 5 hermanos) y la `B`, cuántos estudiantes tienen cada valor. En un gráfico de columnas, la altura de cada columna es la frecuencia ([Gráfico de columnas](/inacap/cvet01/laboratorio#m2-3)).
+
+**¿Por qué se seleccionan solo las frecuencias?** Si se seleccionan las dos columnas, Excel trata «Número de hermanos» como otra serie de números y dibuja columnas también para 0, 1, 2… Por eso se selecciona solo `B2:B7`.
+
+**Paso 1. Insertar.** Seleccionar `B2:B7` → **Insertar → Gráfico de columnas → Columna agrupada**. El eje horizontal aparece con 1, 2, 3… 6: son las posiciones de las filas, no el número de hermanos.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at12-columnas-eje-inicial.jpg"
+	alt="Gráfico de columnas recién insertado: el eje horizontal muestra 1 a 6 en vez de 0 a 5"
+	caption="El eje todavía no muestra los valores de la variable"
+/>
+
+**Paso 2. Corregir el eje.** **Gráfico → Seleccionar datos** → **Etiquetas de eje horizontal → Agregar campo**, y escribir el rango de los valores, `=Columnas!$A$2:$A$7`. En Excel de escritorio, el mismo paso es clic derecho → **Seleccionar datos** → **Etiquetas del eje horizontal (categorías) → Editar**.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at12-columnas-seleccionar-datos.jpg"
+	alt="Panel Gráfico, pestaña Datos: en Etiquetas de eje horizontal se escribe el rango =Columnas!$A$2:$A$7"
+	caption="Etiquetas del eje horizontal: el rango del número de hermanos"
+/>
+
+**Paso 3. Títulos.** **Títulos del eje → Título de eje horizontal primario → Editar** → «Número de hermanos»; lo mismo en el vertical → «Frecuencia». Agregar el título del gráfico. La leyenda («Series1») no aporta información con una sola serie, así que se quita en **Leyenda → Ninguno**.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at12-columnas-final.jpg"
+	alt="Gráfico de columnas terminado con el eje de 0 a 5 hermanos; la columna más alta es la de 3 hermanos, con 14"
+	caption="Estudiantes según número de hermanos"
+/>
+
+**¿Qué muestra el gráfico?** Lo más frecuente es tener 3 hermanos (14 estudiantes) y lo menos frecuente, 2 hermanos (6). Tener 0 o 1 hermano es igual de frecuente (11 cada uno).
+::::
+
+## Actividad 4: Construir un gráfico de líneas
+
+Para construir un gráfico de líneas para la variable cuantitativa continua «Temperatura (°C)», medida diariamente, seguir estos pasos:
+
+1. Ir a la hoja «Líneas».
+2. Seleccionar ambas columnas, incluyendo los encabezados Fecha y Temperatura (°C).
+3. En la pestaña **Insertar**, hacer clic en el ícono de **Gráfico de líneas** y seleccionar la opción **Línea con marcadores**.
+4. Personalizar el gráfico:
+   - Agregar un título representativo.
+   - Asegurarse de que el eje horizontal muestre correctamente las fechas.
+   - Rotular el eje vertical con «Temperatura (°C)».
+
+Con esto, se obtiene el gráfico de líneas que representa la evolución de la temperatura a lo largo de los días.
+
+::::solution
+**Los datos.** La hoja tiene la temperatura de 14 días seguidos, del 1 al 14 de abril de 2025. Cuando una variable se mide **a lo largo del tiempo**, el gráfico de líneas muestra cómo cambia de un día al siguiente: cada punto es un día y la línea los une en orden ([Gráfico de líneas](/inacap/cvet01/laboratorio#m2-4)).
+
+**Paso 1. Seleccionar e insertar.** Seleccionar `A1:B15`, las dos columnas con encabezados, para que las fechas queden en el eje horizontal. Luego **Insertar → Gráfico de líneas → Línea con marcadores**.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at12-lineas-seleccion.jpg"
+	alt="Columnas Fecha y Temperatura seleccionadas (A1:B15) y pestaña Insertar con el ícono de gráfico de líneas"
+	caption="Las dos columnas seleccionadas, con sus encabezados"
+/>
+
+En Excel para la web, el ícono de líneas inserta una línea **sin** marcadores. Para cambiarla: con el gráfico seleccionado, abrir la galería de gráficos de la pestaña **Gráfico** (flecha a la derecha de los íconos) → **Líneas → Línea con marcadores**.
+
+**Paso 2. Títulos.** **Títulos del eje → Título de eje vertical primario → Editar** → «Temperatura (°C)». El eje horizontal ya muestra las fechas, porque vienen de la columna `A`. Agregar el título del gráfico y quitar la leyenda.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at12-lineas-final.jpg"
+	alt="Gráfico de líneas con marcadores de la temperatura diaria del 1 al 14 de abril de 2025; los valores van de 17,6 a 23,1 °C"
+	caption="Temperatura diaria, abril de 2025"
+/>
+
+**¿Qué muestra el gráfico?** La temperatura osciló entre 17,6 °C (6 de abril) y 23,1 °C (14 de abril), sin una tendencia sostenida, hasta el alza de los últimos dos días.
+::::
+
+## Actividad 5: Construir un histograma
+
+Para construir un histograma para la variable cuantitativa continua «Peso del producto (g)», seguir estos pasos:
+
+1. Ir a la hoja «Histograma».
+2. Seleccionar únicamente la columna Peso del producto (g), sin incluir el encabezado.
+3. En la pestaña **Insertar**, hacer clic en el ícono de **Insertar gráfico estadístico** y seleccionar la opción **Histograma**.
+4. Personalizar el gráfico:
+   - Agregar un título representativo.
+   - Ajustar los intervalos (ancho de clase), si es necesario: hacer clic derecho sobre el eje horizontal, seleccionar **Dar formato al eje** y, en el panel lateral, modificar el valor de **Ancho del intervalo** para definir cuántos gramos incluye cada barra.
+   - Verificar que los ejes estén correctamente etiquetados.
+
+Con esto, se obtiene un histograma que representa la distribución del peso de los productos en gramos.
+
+::::solution
+**Los datos.** La hoja tiene el peso de 100 productos, uno por fila, sin agrupar. Como el peso es una variable **continua**, casi no hay dos valores iguales: contar cuántas veces se repite cada peso no sirve. El histograma agrupa los pesos en **intervalos** y dibuja una barra por intervalo, con altura igual a la cantidad de productos que caen en él ([Histograma](/inacap/cvet01/laboratorio#m2-5)). No hace falta construir antes la tabla de frecuencias: Excel la calcula.
+
+**Paso 1. Insertar.** Seleccionar `A2:A101`, solo los pesos, sin el encabezado. Luego **Insertar →** flecha **Más gráficos → Estadística → Histograma**.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at12-histograma-menu.jpg"
+	alt="Galería de gráficos abierta en la pestaña Insertar, con la opción Histograma de la sección Estadística destacada"
+	caption="Insertar → Estadística → Histograma"
+/>
+
+**Paso 2. El ancho del intervalo.** Excel elige los intervalos de forma automática: aquí, 5 intervalos de 22 g a partir de 450,7 g, el peso menor. Para verlo o cambiarlo en Excel para la web: **Gráfico → Formato → Serie 1 → Rangos → Ancho del rango**. En Excel de escritorio está en clic derecho sobre el eje horizontal → **Dar formato al eje → Ancho del intervalo**.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at12-histograma-ancho.jpg"
+	alt="Histograma con 5 barras y el panel Gráfico: en Serie 1, Rangos está en Ancho del rango con el valor 22"
+	caption="Rangos → Ancho del rango: 22 g por barra"
+/>
+
+En la notación del eje, `(472,7, 494,7]` significa «más de 472,7 g y hasta 494,7 g»: el paréntesis excluye el extremo y el corchete lo incluye. El primer intervalo, `[450,7, 472,7]`, incluye ambos extremos para no dejar fuera el peso menor.
+
+**Paso 3. Títulos.** Agregar el título del gráfico y los títulos de los ejes: «Peso del producto (g)» y «Frecuencia».
+
+<SmartFigure
+	src="/inacap/cvet01/images/at12-histograma-final.jpg"
+	alt="Histograma terminado: barras de 22, 26, 22, 17 y 13 productos en los intervalos de 450,7 a 560,7 g"
+	caption="Peso de los productos"
+/>
+
+| Intervalo (g) | Productos |
+| --- | --- |
+| 450,7 a 472,7 | 22 |
+| más de 472,7 a 494,7 | 26 |
+| más de 494,7 a 516,7 | 22 |
+| más de 516,7 a 538,7 | 17 |
+| más de 538,7 a 560,7 | 13 |
+| **Total** | **100** |
+
+**¿Qué muestra el gráfico?** El intervalo con más productos es el de 472,7 g a 494,7 g (26). Desde ahí, la frecuencia baja hacia los pesos más altos: hay menos productos pesados que livianos.
+::::

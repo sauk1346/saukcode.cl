@@ -1,0 +1,161 @@
+# Actividad Tecnológica 3: Medidas de tendencia central en Excel
+
+**Material:**
+- [AT3.pdf](/inacap/cvet01/docs/unit01-at03.pdf)
+- [Medidas.xlsx](/inacap/cvet01/docs/medidas(AT3-AT4-AT5).xlsx)
+
+Esta actividad tiene por objetivo familiarizar a los estudiantes, mediante la incorporación de Excel, con el cálculo de las principales medidas de tendencia central.
+
+Las capturas de esta página son de Excel para la web; las funciones son las mismas en Excel de escritorio.
+
+## Actividad 1: Iniciar el trabajo con Excel
+
+Abrir el archivo «Medidas.xlsx» entregado por la docente. Este archivo contiene tres hojas, cada una con un conjunto de datos distinto, que se utilizan para calcular las medidas de tendencia central en Excel.
+
+:::solution
+| Hoja | Contenido | Se usa en |
+| --- | --- | --- |
+| Una muestra | 15 datos en `A2:A16` | Actividades 2, 3 y 4 |
+| Dos muestras | Dos columnas de 15 datos | AT4 (medidas de dispersión) |
+| Condicional | Tipo de material (A o B) en `A2:A16` y peso en `B2:B16` | Actividad 5 |
+
+Las **medidas de tendencia central** resumen un conjunto de datos en un solo valor «típico»: la media, la mediana y la moda ([Media, mediana y moda](/inacap/cvet01/laboratorio#t3-1)).
+:::
+
+## Actividad 2: Calcular la media de un conjunto de datos
+
+Para calcular la media de un conjunto de datos ubicado en las celdas `A2:A16`, ir a la hoja «Una muestra» y escribir en la barra de fórmulas:
+
+```
+=PROMEDIO(A2:A16)
+```
+
+y presionar **Enter**.
+
+::::solution
+**El concepto.** La **media** (o promedio) es la suma de todos los datos dividida por la cantidad de datos. Excel la calcula con `PROMEDIO`; dentro del paréntesis va el rango donde están los datos ([Media](/inacap/cvet01/laboratorio#m3-1)).
+
+**En Excel.** En una celda libre (aquí `D2`, con la etiqueta «Media» en `C2`) escribir la fórmula. Mientras se escribe, Excel marca en azul el rango `A2:A16` que está usando.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at13-promedio-escribiendo.jpg"
+	alt="Celda D2 con la fórmula =PROMEDIO(A2:A16) en edición; el rango A2:A16 aparece marcado en azul"
+	caption="=PROMEDIO(A2:A16): Excel marca el rango que usa"
+/>
+
+**Resultado.** Al presionar **Enter**, `D2` muestra **16,9333**: en promedio, los datos valen cerca de 17.
+::::
+
+## Actividad 3: Calcular la mediana de un conjunto de datos
+
+Para calcular la mediana del mismo conjunto de datos (`A2:A16`), en la hoja «Una muestra», escribir en la barra de fórmulas:
+
+```
+=MEDIANA(A2:A16)
+```
+
+y presionar **Enter**.
+
+::::solution
+**El concepto.** La **mediana** es el valor del centro cuando los datos se ordenan de menor a mayor: la mitad de los datos queda por debajo y la otra mitad por encima. Con 15 datos, es el que ocupa el lugar 8. Excel ordena los datos por su cuenta: no hace falta ordenarlos en la hoja ([Mediana](/inacap/cvet01/laboratorio#m3-2)).
+
+<SmartFigure
+	src="/inacap/cvet01/images/at13-mediana-escribiendo.jpg"
+	alt="Celda D3 con la fórmula =MEDIANA(A2:A16) en edición; D2 ya muestra la media 16,9333"
+	caption="=MEDIANA(A2:A16) en D3"
+/>
+
+**Resultado.** `D3` muestra **16**: la mitad de los datos vale 16 o menos. La media (16,93) y la mediana (16) son parecidas, lo que indica que no hay valores extremos que tiren la media hacia un lado.
+::::
+
+## Actividad 4: Calcular la moda de un conjunto de datos
+
+Para calcular la moda del mismo conjunto de datos (`A2:A16`), en la hoja «Una muestra», escribir en la barra de fórmulas:
+
+```
+=MODA.UNO(A2:A16)
+```
+
+y presionar **Enter**.
+
+Cuando un conjunto de datos tiene más de una moda, es decir, es multimodal, la función `MODA.UNO` muestra solo una: la primera que aparece en los datos. En este caso hay cuatro modas y `MODA.UNO` entrega el 12.
+
+:::callout[Error en el PDF]{type="warning"}
+El PDF original dice que `MODA.UNO` muestra «la de menor valor». En realidad muestra la moda que aparece primero en el rango; en estos datos coincide con la menor porque el 12 está en `A2`.
+:::
+
+Para ver todas las modas del conjunto, se usa la función `MODA.VARIOS`. Los resultados se despliegan automáticamente en celdas consecutivas hacia abajo, a partir de la celda donde se escribe la fórmula:
+
+```
+=MODA.VARIOS(A2:A16)
+```
+
+Si no hay datos repetidos (no existe moda), `MODA.UNO` y `MODA.VARIOS` no pueden devolver un resultado válido y aparece el error `#N/D` (no disponible). En algunas versiones, `MODA.VARIOS` puede mostrar una celda vacía. Ambos resultados son esperables cuando ningún valor se repite.
+
+::::solution
+**El concepto.** La **moda** es el valor que más se repite. Un conjunto puede tener una moda, varias o ninguna ([Moda](/inacap/cvet01/laboratorio#m3-3)).
+
+**En Excel.** En `D4` se escribe `=MODA.UNO(A2:A16)` y en `D5`, `=MODA.VARIOS(A2:A16)`. `MODA.VARIOS` ocupa tantas celdas hacia abajo como modas haya, así que las celdas de abajo deben estar vacías.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at13-modas.jpg"
+	alt="Columna D con la media 16,9333, la mediana 16, MODA.UNO 12 y MODA.VARIOS desplegada en D5:D8 con 12, 14, 15 y 16"
+	caption="MODA.VARIOS se despliega en D5:D8"
+/>
+
+**Resultado.** Los valores 12, 14, 15 y 16 aparecen dos veces cada uno; los demás, una sola vez. El conjunto es **multimodal**, con cuatro modas. `MODA.UNO` solo muestra la primera (12), por eso conviene usar `MODA.VARIOS` cuando puede haber más de una.
+::::
+
+## Actividad 5: Calcular la media, la mediana y la moda condicional de un conjunto de datos
+
+Para calcular la media, la mediana y la moda condicional de un conjunto de datos ubicado en las celdas `A2:B16`, ir a la hoja «Condicional» y escribir en la barra de fórmulas:
+
+```
+=PROMEDIO(SI(A2:A16="A";B2:B16))
+=MEDIANA(SI(A2:A16="A";B2:B16))
+=MODA.VARIOS(SI(A2:A16="A";B2:B16))
+```
+
+y presionar **Enter** después de cada una.
+
+**Resumen de funciones estadísticas en Excel**
+
+| Medida | Función en Excel | Ejemplo de uso |
+| --- | --- | --- |
+| Media | `=PROMEDIO(rango)` | `=PROMEDIO(A2:A16)` |
+| Mediana | `=MEDIANA(rango)` | `=MEDIANA(A2:A16)` |
+| Moda | `=MODA.UNO(rango)` | `=MODA.UNO(A2:A16)` |
+| | `=MODA.VARIOS(rango)` | `=MODA.VARIOS(A2:A16)` |
+
+**Resumen de funciones estadísticas condicionales en Excel**
+
+| Medida | Función en Excel | Ejemplo de uso |
+| --- | --- | --- |
+| Media | `=PROMEDIO(SI(valor_lógico;rango))` | `=PROMEDIO(SI(A2:A16="A";B2:B16))` |
+| Mediana | `=MEDIANA(SI(valor_lógico;rango))` | `=MEDIANA(SI(A2:A16="A";B2:B16))` |
+| Moda | `=MODA.UNO(SI(valor_lógico;rango))` | `=MODA.UNO(SI(A2:A16="A";B2:B16))` |
+| | `=MODA.VARIOS(SI(valor_lógico;rango))` | `=MODA.VARIOS(SI(A2:A16="A";B2:B16))` |
+
+Si los datos correspondieran a toda la población y no a una muestra, la media, la mediana y la moda se calcularían con las mismas funciones, ya que estas no cambian según el tipo de datos.
+
+::::solution
+**Los datos.** La hoja «Condicional» mezcla dos tipos de material: la columna `A` dice si es A o B, y la `B` tiene el peso. Si se calcula `=PROMEDIO(B2:B16)`, se promedian los dos materiales juntos. Para calcular la medida de **un solo grupo**, hay que decirle a Excel qué filas usar ([Media, mediana y moda de un solo grupo](/inacap/cvet01/laboratorio#m3-4)).
+
+**Cómo funciona `SI` dentro de la fórmula.** `SI(A2:A16="A";B2:B16)` revisa fila por fila: si la columna `A` dice «A», entrega el peso de esa fila; si no, la deja fuera. Luego `PROMEDIO`, `MEDIANA` o `MODA.VARIOS` trabajan solo con los pesos que quedaron, los del material A.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at13-promedio-si-escribiendo.jpg"
+	alt="Celda E2 con la fórmula =PROMEDIO(SI(A2:A16=&quot;A&quot;;B2:B16)) en edición; A2:A16 marcado en azul y B2:B16 en rojo"
+	caption="La condición mira la columna A (azul) y toma los pesos de la columna B (rojo)"
+/>
+
+En Microsoft 365, incluido Excel para la web, basta con presionar **Enter**. En Excel 2019 o anterior, estas fórmulas se confirman con **Ctrl + Mayús + Enter**; si no, dan un resultado incorrecto.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at13-condicional-resultados.jpg"
+	alt="Etiquetas Media de A, Mediana de A y Moda de A en D2:D4 con los resultados 18,2857, 19 y 15 en E2:E4"
+	caption="Medidas del material A"
+/>
+
+**Resultado.** Para el material A (7 piezas): media **18,2857**, mediana **19** y moda **15**. Para el material B se cambia `"A"` por `"B"` en las tres fórmulas.
+::::

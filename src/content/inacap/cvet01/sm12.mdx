@@ -1,0 +1,351 @@
+# Situación de Modelación 2: ¿Dónde abrir la nueva sucursal?
+
+**Material:**
+- [SM2.pdf](/inacap/cvet01/docs/unit01-sm02.pdf)
+- [Datos de cafeterías en Santiago.xlsx](/inacap/cvet01/docs/datos-cafeterias-santiago(SM2).xlsx)
+
+Las capturas de esta página son de Excel para la web; las fórmulas son las mismas en Excel de escritorio.
+
+La elección de la ubicación para una nueva sucursal es una decisión estratégica que puede determinar el éxito o fracaso de un negocio. Un análisis estadístico detallado permite comprender patrones de consumo, identificar oportunidades y minimizar riesgos. Al fundamentar la expansión en datos concretos, las empresas pueden optimizar recursos y maximizar su rentabilidad.
+
+Una cadena de cafeterías con presencia en Santiago evalúa abrir una nueva sucursal en Ñuñoa, La Florida o Providencia. Para ello, se recopilaron durante 30 días datos sobre el número de clientes diarios y el gasto promedio diario por cliente en locales ya existentes de esas comunas.
+
+La gerencia busca maximizar los ingresos y, al mismo tiempo, reducir el riesgo asociado a la variabilidad observada en los datos, por lo que solicita un análisis estadístico que apoye la toma de decisión.
+
+Para desarrollar las actividades se usa el archivo «Datos de cafeterías en Santiago.xlsx», que contiene la información diaria de asistencia de clientes y gasto promedio por cliente durante 30 días en las comunas de Ñuñoa, La Florida y Providencia.
+
+## Actividad 1 (actividad generadora)
+
+**a.** Clasificar las variables como cualitativas o cuantitativas. En el caso de las variables cuantitativas, indicar si son discretas o continuas. Justificar la clasificación.
+
+::::solution
+**Datos en el archivo.** La columna `A` es el día (1 a 30) y los datos van en las filas 2 a 31:
+
+| Comuna | Número de clientes | Gasto promedio por cliente (\$) |
+| --- | --- | --- |
+| Ñuñoa | `B2:B31` | `C2:C31` |
+| La Florida | `D2:D31` | `E2:E31` |
+| Providencia | `F2:F31` | `G2:G31` |
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm12-datos.jpg"
+	alt="Hoja Datos de cafeterías en Santiago: día en la columna A y, para cada comuna, número de clientes y gasto promedio por cliente"
+	caption="Los datos de las tres comunas"
+/>
+
+| Variable | Clasificación | Justificación |
+| --- | --- | --- |
+| Comuna | Cualitativa nominal | Ñuñoa, La Florida y Providencia son categorías sin orden. En el archivo no es una columna: va en el nombre de cada columna. |
+| Día | Cuantitativa discreta | Toma valores enteros del 1 al 30. Sirve para ordenar las observaciones en el tiempo. |
+| Número de clientes | Cuantitativa discreta | Se obtiene contando personas: solo toma valores enteros. |
+| Gasto promedio por cliente (\$) | Cuantitativa continua | Es un monto de dinero que resulta de un promedio, así que puede tomar cualquier valor dentro de un intervalo. |
+
+Más información en [Tipos de variable](/inacap/cvet01/laboratorio#t1-2).
+::::
+
+**b.** Observando los datos, ¿cuál de las tres comunas parece tener una mayor cantidad diaria de clientes?
+
+::::solution
+**Ñuñoa.** Para verlo de un vistazo se grafica el número de clientes de cada día con un gráfico de líneas ([Gráfico de líneas](/inacap/cvet01/laboratorio#m2-4)).
+
+**Paso 1. Insertar.** Seleccionar `B1:G31`, con encabezados, e ir a **Insertar →** galería de gráficos **→ Línea con marcadores**. En Excel de escritorio se pueden seleccionar solo las columnas de clientes con **Ctrl** (`B1:B31`, `D1:D31` y `F1:F31`); en Excel para la web no se puede, así que se seleccionan las seis columnas y luego se quitan las de gasto.
+
+**Paso 2. Quitar las series de gasto.** El gasto (alrededor de \$10.000) aplasta a los clientes (alrededor de 100) contra el eje. En **Gráfico → Seleccionar datos → Valores de línea**, eliminar con la papelera las tres series «Gasto promedio por cliente».
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm12-quitar-gasto.jpg"
+	alt="Gráfico con las seis series y el panel Seleccionar datos; el puntero está sobre la papelera de la serie Gasto promedio por cliente Providencia"
+	caption="Las series de gasto se quitan con la papelera"
+/>
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm12-lineas.jpg"
+	alt="Gráfico de líneas del número de clientes diarios: la línea de Ñuñoa va casi siempre por encima de La Florida y Providencia"
+	caption="Número de clientes diarios por comuna"
+/>
+
+La línea de Ñuñoa va por encima de las otras dos en casi todos los días: la mayoría de sus días tiene entre 120 y 190 clientes, mientras que La Florida se mueve entre 83 y 125 y Providencia, entre 65 y 122.
+::::
+
+**c.** Observando los datos, ¿en cuál comuna el número de clientes se mantiene más estable durante los 30 días?
+
+::::solution
+**La Florida.** Su línea es la más plana del gráfico anterior. Para confirmarlo se calcula el **rango**, la diferencia entre el día con más y el día con menos clientes ([Rango](/inacap/cvet01/laboratorio#m4-1)). Bajo los datos, en la tabla que empieza en la fila 33 (comunas en `B34:B36`), la columna `G`:
+
+| Celda | Comuna | Fórmula | Rango |
+| --- | --- | --- | --- |
+| `G34` | Ñuñoa | `=MAX(B2:B31)-MIN(B2:B31)` | 87 |
+| `G35` | La Florida | `=MAX(D2:D31)-MIN(D2:D31)` | 42 |
+| `G36` | Providencia | `=MAX(F2:F31)-MIN(F2:F31)` | 57 |
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm12-rango.jpg"
+	alt="Celda G34 con la fórmula =MAX(B2:B31)-MIN(B2:B31) en edición; el rango B2:B31 marcado en azul"
+	caption="Rango de clientes de Ñuñoa en G34"
+/>
+
+La Florida tiene el menor rango: su número de clientes es el que menos cambia de un día a otro.
+::::
+
+## Actividad 2
+
+**a.** Para cada una de las comunas, determinar la media y la mediana del número de clientes y del gasto promedio por cliente. Los valores se pueden disponer en la siguiente tabla:
+
+| Comuna | Número de clientes: media | Número de clientes: mediana | Gasto promedio por cliente: media | Gasto promedio por cliente: mediana |
+| --- | --- | --- | --- | --- |
+| Ñuñoa | | | | |
+| La Florida | | | | |
+| Providencia | | | | |
+
+En el caso de la media del gasto promedio por cliente, usar un promedio ponderado con «número de clientes» como ponderador.
+
+::::solution
+**Número de clientes** ([Media](/inacap/cvet01/laboratorio#m3-1), [Mediana](/inacap/cvet01/laboratorio#m3-2)). En la tabla de la fila 33, la media va en la columna `C` y la mediana, en la `D`:
+
+| Celda | Fórmula | Celda | Fórmula |
+| --- | --- | --- | --- |
+| `C34` | `=PROMEDIO(B2:B31)` | `D34` | `=MEDIANA(B2:B31)` |
+| `C35` | `=PROMEDIO(D2:D31)` | `D35` | `=MEDIANA(D2:D31)` |
+| `C36` | `=PROMEDIO(F2:F31)` | `D36` | `=MEDIANA(F2:F31)` |
+
+**Media ponderada del gasto.** Cada valor de gasto es el promedio de un día, y no todos los días tuvieron la misma cantidad de clientes: un día con 189 clientes debe pesar más que uno con 102. Por eso cada gasto se multiplica por su número de clientes, y la suma se divide por el total de clientes:
+
+$$
+\bar{x}_{\text{ponderada}} = \frac{\sum (\text{clientes} \cdot \text{gasto})}{\sum \text{clientes}}
+$$
+
+**Paso 1. Columna auxiliar.** El producto clientes × gasto es lo que gastaron todos los clientes ese día. Se agregan tres columnas: `H` (Ñuñoa), `I` (La Florida) y `J` (Providencia), con un encabezado en la fila 1 y, en la fila 2:
+
+```
+=B2*C2    =D2*E2    =F2*G2
+```
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm12-ingreso-formula.jpg"
+	alt="Celda J2 con la fórmula =F2*G2 en edición; H2 y I2 ya muestran 1826874 y 1108590"
+	caption="Una columna auxiliar por comuna: clientes por gasto"
+/>
+
+Luego se selecciona `H2:J31` y se presiona **Ctrl + D** para copiar las fórmulas hasta la fila 31.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm12-ingresos.jpg"
+	alt="Columnas H, I y J con el producto de clientes por gasto de cada día, por ejemplo 2076412 en H3"
+	caption="Las tres columnas auxiliares copiadas hasta la fila 31"
+/>
+
+**Paso 2. Media ponderada y mediana del gasto.** En la columna `E`, la suma de la columna auxiliar dividida por la suma de los clientes; en la `F`, la mediana del gasto:
+
+| Celda | Fórmula | Celda | Fórmula |
+| --- | --- | --- | --- |
+| `E34` | `=SUMA(H2:H31)/SUMA(B2:B31)` | `F34` | `=MEDIANA(C2:C31)` |
+| `E35` | `=SUMA(I2:I31)/SUMA(D2:D31)` | `F35` | `=MEDIANA(E2:E31)` |
+| `E36` | `=SUMA(J2:J31)/SUMA(F2:F31)` | `F36` | `=MEDIANA(G2:G31)` |
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm12-media-ponderada.jpg"
+	alt="Celda E34 con la fórmula =SUMA(H2:H31)/SUMA(B2:B31) en edición; H2:H31 marcado en azul y B2:B31 en rojo"
+	caption="Media ponderada del gasto de Ñuñoa"
+/>
+
+**Resultado.** Con formato **Número** y dos decimales (**Inicio →** lista de formatos **→ Número** y **Aumentar decimales**):
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm12-tabla-medidas.jpg"
+	alt="Tabla de la fila 33 con medias, medianas, media ponderada del gasto, mediana del gasto y rango de las tres comunas, y debajo las modas de clientes con los días en que se observaron"
+	caption="Medidas de clientes y gasto (filas 33 a 36) y modas (filas 38 a 44)"
+/>
+
+| Comuna | Número de clientes: media | Número de clientes: mediana | Gasto promedio por cliente: media ponderada | Gasto promedio por cliente: mediana |
+| --- | --- | --- | --- | --- |
+| Ñuñoa | 144,83 | 144 | \$11.870,29 | \$11.922 |
+| La Florida | 109,63 | 109,5 | \$10.480,50 | \$10.481,5 |
+| Providencia | 88,10 | 91 | \$13.859,33 | \$13.927 |
+
+Sin ponderar (`=PROMEDIO(C2:C31)`, `=PROMEDIO(E2:E31)` y `=PROMEDIO(G2:G31)`), las medias del gasto serían \$11.854,07, \$10.487,33 y \$13.917,67: la diferencia es pequeña porque el número de clientes no cambia tanto de un día a otro.
+::::
+
+**b.** Con base en lo anterior, ¿cuál medida describe mejor el valor típico en esas variables? Justificar la respuesta.
+
+:::solution
+En las seis columnas, la media y la mediana son **muy parecidas**. La mayor diferencia relativa está en los clientes de Providencia: 88,10 contra 91, apenas un 3%. Esto indica que los datos no tienen valores extremos que tiren la media hacia un lado, y que su distribución es bastante simétrica.
+
+En ese caso, la **media** describe bien el valor típico y además usa todos los datos. La mediana sería preferible si hubiera días atípicos, por ejemplo un feriado con muy pocos clientes ([¿Cuál representa mejor a los datos?](/inacap/cvet01/laboratorio#t3-2)).
+:::
+
+**c.** Si hubiera que describir ahora el número de clientes más habitual en cada comuna, ¿cuál medida se utilizaría? Entregar el valor e indicar cuántos días se observó.
+
+::::solution
+La **moda**, que es el valor que más se repite. Como puede haber varias, conviene `MODA.VARIOS` ([Moda](/inacap/cvet01/laboratorio#m3-3)). En la fila 38 van los encabezados y, en la fila 39, una fórmula por comuna; `MODA.VARIOS` se despliega hacia abajo si hay más de una moda:
+
+| Celda | Fórmula | Se despliega en |
+| --- | --- | --- |
+| `B39` | `=MODA.VARIOS(B2:B31)` | `B39:B40` |
+| `D39` | `=MODA.VARIOS(D2:D31)` | `D39` |
+| `F39` | `=MODA.VARIOS(F2:F31)` | `F39:F44` |
+
+**Cuántos días.** La forma vista en el curso es una tabla dinámica con el número de clientes en **Filas** y en **Valores** ([Frecuencia absoluta con tabla dinámica](/inacap/cvet01/laboratorio#m1-1)). Una alternativa más corta, que no aparece en las AT, es `CONTAR.SI`, que cuenta las celdas iguales a un valor. Junto a cada moda: `C39` `=CONTAR.SI(B$2:B$31;B39)`, `E39` `=CONTAR.SI(D$2:D$31;D39)` y `G39` `=CONTAR.SI(F$2:F$31;F39)`, copiadas hacia abajo. Los `$` dejan fijas las filas del rango al copiar.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm12-moda.jpg"
+	alt="Celda C39 con la fórmula =CONTAR.SI(B$2:B$31;B39) en edición; B39 muestra 144 y B40 138; F39:F44 muestran las seis modas de Providencia"
+	caption="MODA.VARIOS y CONTAR.SI para las modas y sus días"
+/>
+
+| Comuna | Moda del número de clientes | Días observados |
+| --- | --- | --- |
+| Ñuñoa | 144 y 138 (bimodal) | 3 días cada una |
+| La Florida | 113 | 4 días |
+| Providencia | 101, 76, 91, 97, 71 y 93 (multimodal) | 2 días cada una |
+
+En Ñuñoa, `MODA.UNO` solo mostraría 144, la primera moda que aparece en el rango. En Providencia, seis valores se repiten solo dos veces cada uno: la moda no representa bien un «valor habitual» en esa comuna.
+::::
+
+## Actividad 3
+
+Se considera ahora una nueva variable llamada «Ingreso diario estimado».
+
+**a.** Para cada una de las comunas, determinar la media, la mediana y la desviación estándar del ingreso diario estimado. Los valores se pueden disponer en la siguiente tabla:
+
+| Comuna | Media | Mediana | Desviación estándar |
+| --- | --- | --- | --- |
+| Ñuñoa | | | |
+| La Florida | | | |
+| Providencia | | | |
+
+::::solution
+El ingreso diario estimado es lo que recauda el local en un día:
+
+$$
+\text{Ingreso diario estimado} = \text{número de clientes} \cdot \text{gasto promedio por cliente}
+$$
+
+Son las mismas columnas auxiliares de la actividad anterior: `H` (Ñuñoa), `I` (La Florida) y `J` (Providencia). En una tabla nueva desde la fila 46 (comunas en `B47:B49`):
+
+| Celda | Fórmula | Celda | Fórmula | Celda | Fórmula |
+| --- | --- | --- | --- | --- | --- |
+| `C47` | `=PROMEDIO(H2:H31)` | `D47` | `=MEDIANA(H2:H31)` | `E47` | `=DESVEST.M(H2:H31)` |
+| `C48` | `=PROMEDIO(I2:I31)` | `D48` | `=MEDIANA(I2:I31)` | `E48` | `=DESVEST.M(I2:I31)` |
+| `C49` | `=PROMEDIO(J2:J31)` | `D49` | `=MEDIANA(J2:J31)` | `E49` | `=DESVEST.M(J2:J31)` |
+
+Se usa la desviación **muestral** porque los 30 días son una muestra del funcionamiento de cada local, no todos sus días ([Desviación estándar](/inacap/cvet01/laboratorio#m4-3)).
+
+| Comuna | Media | Mediana | Desviación estándar |
+| --- | --- | --- | --- |
+| Ñuñoa | \$1.719.213,23 | \$1.733.752,5 | \$317.699,23 |
+| La Florida | \$1.149.012,60 | \$1.167.866,5 | \$111.604,14 |
+| Providencia | \$1.221.006,67 | \$1.206.173 | \$213.028,99 |
+::::
+
+**b.** Si hubiera que elegir una comuna con comportamiento más estable en el ingreso diario estimado, ¿cuál se escogería? Justificar la respuesta.
+
+:::solution
+**La Florida.** Su desviación estándar (\$111.604,14) es la menor: cerca de la mitad de la de Providencia y un tercio de la de Ñuñoa. Sus ingresos diarios se alejan menos de su promedio.
+
+Como las medias no son iguales, conviene confirmarlo con el coeficiente de variación (actividad 4). La Florida también tiene el menor, así que es la más estable en términos absolutos y relativos.
+:::
+
+**c.** Si hubiera que justificar por qué no elegir una de las comunas, ¿cuál sería y por qué?
+
+::::solution
+**Providencia.** No destaca en ninguno de los dos objetivos de la gerencia:
+
+- **Ingresos:** su media (\$1.221.006,67) es solo un 6,27% mayor que la de La Florida y un 28,98% menor que la de Ñuñoa.
+- **Riesgo:** su desviación estándar (\$213.028,99) es 1,91 veces la de La Florida.
+
+Las comparaciones usan las celdas de la tabla de la fila 46 (medias en `C47:C49` y desviaciones en `E47:E49`). Van bajo la tabla, con la descripción en la columna `B` y el resultado en la `F`:
+
+| Celda | Comparación | Fórmula | Resultado |
+| --- | --- | --- | --- |
+| `F51` | Media de Providencia frente a La Florida | `=C49/C48-1` | 6,27% |
+| `F52` | Media de Providencia frente a Ñuñoa (cuánto menos) | `=1-C49/C47` | 28,98% |
+| `F53` | Desviación de Providencia frente a La Florida | `=E49/E48` | 1,91 veces |
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm12-comparaciones.jpg"
+	alt="Tabla del ingreso diario con media, mediana, desviación estándar y coeficiente de variación por comuna y, debajo, las comparaciones de las filas 51 a 60"
+	caption="Ingreso diario por comuna (filas 46 a 49) y comparaciones (filas 51 a 60)"
+/>
+
+`F51`, `F52`, `F55` y `F56` llevan formato de porcentaje. Frente a La Florida, Providencia gana muy poco en ingresos a cambio de mucha más variabilidad; frente a Ñuñoa, tiene una variabilidad relativa parecida (ver actividad 4) con ingresos bastante menores.
+::::
+
+## Actividad 4
+
+**a.** ¿Qué medida permite comparar la variabilidad entre comunas, aunque los promedios sean distintos?
+
+:::solution
+El **coeficiente de variación** (CV): la desviación estándar expresada como porcentaje de la media.
+
+$$
+CV = \frac{s}{\bar{x}} \cdot 100
+$$
+
+La desviación estándar está en pesos y crece con el tamaño de los datos: una comuna que vende más tiende a tener desviaciones más grandes en pesos. El CV mide la variabilidad **en relación con** el promedio, por eso permite comparar comunas con medias distintas ([Coeficiente de variación](/inacap/cvet01/laboratorio#m4-4)).
+:::
+
+**b.** ¿En cuál comuna el comportamiento de los clientes presenta mayor riesgo desde el punto de vista de la variabilidad en la variable ingreso diario estimado?
+
+::::solution
+En la tabla de la fila 46, la columna `F` es el coeficiente de variación: en `F47`, `=E47/C47`, y lo mismo en `F48` (`=E48/C48`) y `F49` (`=E49/C49`), con formato de porcentaje y dos decimales.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm12-cv.jpg"
+	alt="Celda F47 con la fórmula =E47/C47 en edición; E47 (desviación 317699,2321) marcada en azul y C47 (media 1719213,233) en rojo"
+	caption="Coeficiente de variación: desviación dividida por media"
+/>
+
+| Comuna | Media | Desviación estándar | CV |
+| --- | --- | --- | --- |
+| Ñuñoa | \$1.719.213,23 | \$317.699,23 | 18,48% |
+| La Florida | \$1.149.012,60 | \$111.604,14 | 9,71% |
+| Providencia | \$1.221.006,67 | \$213.028,99 | 17,45% |
+
+**Ñuñoa** presenta el mayor riesgo: la desviación estándar de su ingreso diario equivale al 18,48% de su media. Providencia queda muy cerca (17,45%) y La Florida tiene casi la mitad (9,71%).
+::::
+
+**c.** ¿Qué medida o medidas parecen más útiles para tomar una decisión comercial fundamentada? Justificar la elección.
+
+:::solution
+Se necesitan dos medidas, una por cada objetivo de la gerencia:
+
+- **La media del ingreso diario**, para el objetivo de maximizar ingresos: indica cuánto se recauda en un día típico. En estos datos la mediana dice lo mismo, porque son casi iguales.
+- **El coeficiente de variación**, para el objetivo de reducir el riesgo: compara la variabilidad entre comunas con distinto nivel de ingresos.
+
+La desviación estándar por sí sola puede engañar. La de Ñuñoa es casi tres veces la de La Florida (`F54` `=E47/E48` da 2,85), pero en términos relativos su riesgo es menos del doble: 18,48% / 9,71% = 1,90.
+:::
+
+## Actividad 5 (actividad de cierre)
+
+**a.** ¿En qué comuna se recomendaría abrir la nueva sucursal? Fundamentar la decisión considerando los datos analizados de la variable ingreso diario estimado.
+
+:::solution
+**Ñuñoa.**
+
+- **Ingresos:** su media diaria (\$1.719.213) es un 49,63% mayor que la de La Florida y un 40,80% mayor que la de Providencia. En un mes de 30 días son unos \$17 millones más que en La Florida.
+- **Riesgo:** es la de mayor CV (18,48%), pero la ventaja en ingresos compensa esa variabilidad. Un día «malo» típico de Ñuñoa (media menos una desviación estándar: \$1.401.514) sigue siendo mejor que un día «bueno» típico de La Florida (media más una desviación estándar: \$1.260.617). Incluso su peor día de los 30 (\$1.083.850) queda cerca del promedio de La Florida.
+- **Providencia** se descarta: tiene un riesgo relativo casi igual al de Ñuñoa con ingresos mucho menores.
+
+**La Florida** sería la alternativa solo si la gerencia priorizara la estabilidad por sobre los ingresos: es la más predecible (CV de 9,71%), pero la que menos recauda.
+
+Fórmulas de los valores anteriores, en la columna `F` bajo la tabla del ingreso:
+
+| Celda | Valor | Fórmula | Resultado |
+| --- | --- | --- | --- |
+| `F55` | Ñuñoa frente a La Florida | `=C47/C48-1` | 49,63% |
+| `F56` | Ñuñoa frente a Providencia | `=C47/C49-1` | 40,80% |
+| `F57` | Diferencia en 30 días con La Florida | `=30*(C47-C48)` | \$17.106.019 |
+| `F58` | Día «malo» típico de Ñuñoa | `=C47-E47` | \$1.401.514 |
+| `F59` | Día «bueno» típico de La Florida | `=C48+E48` | \$1.260.617 |
+| `F60` | Peor día de Ñuñoa | `=MIN(H2:H31)` | \$1.083.850 |
+:::
+
+**b.** ¿Qué otros aspectos fuera del análisis estadístico convendría considerar antes de tomar la decisión final? Explicar por qué.
+
+:::solution
+- **Costos:** el arriendo, los sueldos y los permisos cambian según la comuna. Un ingreso mayor no garantiza una utilidad mayor.
+- **Canibalización:** los datos son de locales que ya existen en esas comunas. Una sucursal nueva en Ñuñoa podría quitarle clientes al local actual en vez de atraer clientes nuevos.
+- **Competencia:** cuántas cafeterías hay cerca de la ubicación concreta y a qué precios.
+- **Ubicación específica:** flujo de peatones, cercanía a oficinas, universidades o al metro, y estacionamiento.
+- **Representatividad de los datos:** 30 días pueden no reflejar la estacionalidad, como las vacaciones o el invierno.
+:::

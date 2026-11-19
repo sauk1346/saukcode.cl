@@ -1,0 +1,204 @@
+# Actividad Tecnológica 4: Medidas de dispersión en Excel
+
+**Material:**
+- [AT4.pdf](/inacap/cvet01/docs/unit01-at04.pdf)
+- [Medidas.xlsx](/inacap/cvet01/docs/medidas(AT3-AT4-AT5).xlsx)
+
+Esta actividad tiene por objetivo familiarizar a los estudiantes, mediante la incorporación de Excel, con el cálculo de las principales medidas de dispersión.
+
+Las capturas de esta página son de Excel para la web; las funciones son las mismas en Excel de escritorio.
+
+## Actividad 1: Iniciar el trabajo con Excel
+
+Abrir el archivo «Medidas.xlsx» entregado por la docente. Este archivo contiene tres hojas, cada una con un conjunto de datos distinto, que se utilizan para calcular las medidas de dispersión en Excel.
+
+:::callout[Error en el PDF]{type="warning"}
+El PDF original dice que el archivo contiene «dos hojas». Tiene tres: «Una muestra» (actividades 2 a 6), «Dos muestras» y «Condicional» (actividad 7).
+:::
+
+:::solution
+Las **medidas de dispersión** indican cuánto se alejan los datos entre sí o de su promedio. Dos conjuntos pueden tener la misma media y ser muy distintos: uno con datos parecidos y otro con datos muy separados ([Dispersión](/inacap/cvet01/laboratorio#t4-1)).
+
+Esta página usa los mismos 15 datos de la AT3 (hoja «Una muestra», `A2:A16`), cuya media es 16,93. Los resultados van en la columna `D`, con su nombre en la columna `C`, en este orden: rango (`D2`), varianza (`D3`), desviación estándar (`D4`), coeficiente de variación (`D5`) y rango intercuartílico (`D6`). Ese orden importa en la actividad 5.
+:::
+
+## Actividad 2: Calcular el rango de un conjunto de datos
+
+Para calcular el rango de un conjunto de datos ubicado en las celdas `A2:A16`, ir a la hoja «Una muestra» y escribir en la barra de fórmulas:
+
+```
+=MAX(A2:A16)-MIN(A2:A16)
+```
+
+y presionar **Enter**.
+
+::::solution
+**El concepto.** El **rango** es la distancia entre el dato mayor y el menor. Excel no tiene una función «rango»: se calcula restando el mínimo (`MIN`) al máximo (`MAX`) ([Rango](/inacap/cvet01/laboratorio#m4-1)).
+
+<SmartFigure
+	src="/inacap/cvet01/images/at14-rango.jpg"
+	alt="Celda D2 con la fórmula =MAX(A2:A16)-MIN(A2:A16) en edición; las dos funciones usan el mismo rango, marcado en azul"
+	caption="=MAX(A2:A16)-MIN(A2:A16) en D2"
+/>
+
+**Resultado.** El rango es **11**: el dato mayor (23) y el menor (12) están a 11 unidades. Es fácil de calcular, pero solo mira dos datos: si uno de ellos es extremo, el rango lo exagera.
+::::
+
+## Actividad 3: Calcular la varianza muestral de un conjunto de datos
+
+Para calcular la varianza muestral del mismo conjunto de datos, en la hoja «Una muestra», escribir en la barra de fórmulas:
+
+```
+=VAR.S(A2:A16)
+```
+
+y presionar **Enter**.
+
+Si se quisiera calcular la varianza considerando que los datos corresponden a toda la población, y no a una muestra, la función `VAR.S` se reemplaza por `VAR.P`.
+
+::::solution
+**El concepto.** La **varianza** mide cuánto se alejan los datos de la media, usando todos los datos. Su resultado queda en **unidades al cuadrado**, por eso cuesta interpretarla directamente ([Varianza](/inacap/cvet01/laboratorio#m4-2)).
+
+**¿Muestra o población?** `VAR.S` es para una **muestra** (una parte de un grupo mayor) y `VAR.P`, para la **población** completa. Estos 15 datos son una muestra, por eso se usa `VAR.S`.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at14-varianza.jpg"
+	alt="Celda D3 con la fórmula =VAR.S(A2:A16) en edición; D2 muestra el rango 11"
+	caption="=VAR.S(A2:A16) en D3"
+/>
+
+**Resultado.** La varianza muestral es **12,0667** (en unidades al cuadrado).
+::::
+
+## Actividad 4: Calcular la desviación estándar muestral de un conjunto de datos
+
+Para calcular la desviación estándar muestral del mismo conjunto de datos, en la hoja «Una muestra», escribir en la barra de fórmulas:
+
+```
+=DESVEST.M(A2:A16)
+```
+
+y presionar **Enter**.
+
+Si se quisiera calcular la desviación estándar considerando que los datos corresponden a toda la población, y no a una muestra, la función `DESVEST.M` se reemplaza por `DESVEST.P`.
+
+:::solution
+**El concepto.** La **desviación estándar** es la raíz cuadrada de la varianza, así que vuelve a quedar en las mismas unidades que los datos. Indica cuánto se alejan los datos de la media, en promedio ([Desviación estándar](/inacap/cvet01/laboratorio#m4-3)). `DESVEST.M` es la muestral y `DESVEST.P`, la poblacional.
+
+**En Excel.** En `D4`: `=DESVEST.M(A2:A16)`.
+
+**Resultado.** La desviación estándar muestral es **3,47371**: los datos se alejan de la media (16,93) en unas 3,5 unidades, en promedio.
+:::
+
+## Actividad 5: Calcular el coeficiente de variación muestral de un conjunto de datos
+
+Para calcular el coeficiente de variación muestral del mismo conjunto de datos, en la hoja «Una muestra», escribir en la barra de fórmulas:
+
+```
+=D4/PROMEDIO(A2:A16)
+```
+
+y presionar **Enter**. Una vez calculado, el coeficiente de variación debe expresarse en formato de porcentaje.
+
+Para calcular el coeficiente de variación muestral, se divide directamente la desviación estándar muestral por la media del conjunto de datos. Alternativamente, se puede calcular primero la media en otra celda y luego dividir la desviación estándar muestral por ese valor.
+
+Si se quisiera calcular el coeficiente de variación considerando que los datos corresponden a toda la población, y no a una muestra, la función `DESVEST.M` del cociente se reemplaza por `DESVEST.P`.
+
+::::solution
+**El concepto.** El **coeficiente de variación** (CV) es la desviación estándar dividida por la media, expresada en porcentaje. Sirve para **comparar** la dispersión de conjuntos con medias distintas: una desviación de 3,5 es mucha si la media es 10, y poca si la media es 1000 ([Coeficiente de variación](/inacap/cvet01/laboratorio#m4-4)).
+
+**¿Por qué `D4`?** La fórmula del PDF divide `D4` por la media. `D4` es la celda donde quedó la desviación estándar en la actividad 4; si la desviación estuviera en otra celda, habría que cambiar `D4` por esa celda. La versión que no depende de dónde esté la desviación es `=DESVEST.M(A2:A16)/PROMEDIO(A2:A16)`.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at14-cv.jpg"
+	alt="Celda D5 con la fórmula =D4/PROMEDIO(A2:A16) en edición; D4 (desviación 3,47371) aparece marcada en azul y A2:A16 en rojo"
+	caption="=D4/PROMEDIO(A2:A16): D4 es la desviación estándar"
+/>
+
+**Formato de porcentaje.** El resultado aparece como 0,20514. Con `D5` seleccionada: **Inicio →** lista de formatos (**General**) **→ Porcentaje** y dos veces **Aumentar decimales**.
+
+**Resultado.** El CV es **20,51%**: la desviación estándar equivale a un 20,51% de la media.
+::::
+
+## Actividad 6: Calcular el rango intercuartílico de un conjunto de datos
+
+Para calcular el rango intercuartílico del mismo conjunto de datos, en la hoja «Una muestra», escribir en la barra de fórmulas:
+
+```
+=CUARTIL.INC(A2:A16;3)-CUARTIL.INC(A2:A16;1)
+```
+
+y presionar **Enter**.
+
+::::solution
+**El concepto.** El **rango intercuartílico** (RIC) es la distancia entre el tercer cuartil (Q<sub>3</sub>) y el primero (Q<sub>1</sub>): el ancho del 50% central de los datos. A diferencia del rango, no lo afectan los valores extremos ([Rango intercuartílico](/inacap/cvet01/laboratorio#m4-5)). `CUARTIL.INC(rango;3)` calcula Q<sub>3</sub> y `CUARTIL.INC(rango;1)`, Q<sub>1</sub>; los cuartiles se ven en detalle en la AT5.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at14-resultados.jpg"
+	alt="Columna D con las cinco medidas de dispersión: rango 11, varianza 12,0667, desviación estándar 3,47371, coeficiente de variación 20,51% y rango intercuartílico 5"
+	caption="Las cinco medidas de dispersión de la muestra"
+/>
+
+**Resultado.** El RIC es **5**: el 50% central de los datos está en un tramo de 5 unidades (entre 14,5 y 19,5).
+::::
+
+## Actividad 7: Calcular el rango, la varianza muestral, la desviación estándar muestral y el rango intercuartílico condicional de un conjunto de datos
+
+Para calcular el rango, la varianza muestral, la desviación estándar muestral y el rango intercuartílico condicional de un conjunto de datos ubicado en las celdas `A2:B16`, ir a la hoja «Condicional» y escribir en la barra de fórmulas:
+
+```
+=MAX(SI(A2:A16="A";B2:B16))-MIN(SI(A2:A16="A";B2:B16))
+=VAR.S(SI(A2:A16="A";B2:B16))
+=DESVEST.M(SI(A2:A16="A";B2:B16))
+=CUARTIL.INC(SI(A2:A16="A";B2:B16);3)-CUARTIL.INC(SI(A2:A16="A";B2:B16);1)
+```
+
+y presionar **Enter** después de cada una.
+
+De manera similar, es posible calcular la varianza y la desviación estándar poblacional, así como el coeficiente de variación, tanto en su versión poblacional como muestral.
+
+**Resumen de funciones estadísticas en Excel**
+
+| Medida | Función en Excel | Ejemplo de uso |
+| --- | --- | --- |
+| Rango | `=MAX(rango)-MIN(rango)` | `=MAX(A2:A16)-MIN(A2:A16)` |
+| Varianza muestral | `=VAR.S(rango)` | `=VAR.S(A2:A16)` |
+| Varianza poblacional | `=VAR.P(rango)` | `=VAR.P(A2:A16)` |
+| Desviación estándar muestral | `=DESVEST.M(rango)` | `=DESVEST.M(A2:A16)` |
+| Desviación estándar poblacional | `=DESVEST.P(rango)` | `=DESVEST.P(A2:A16)` |
+| Coeficiente de variación muestral | `=DESVEST.M(rango)/PROMEDIO(rango)` | `=DESVEST.M(A2:A16)/PROMEDIO(A2:A16)` |
+| Coeficiente de variación poblacional | `=DESVEST.P(rango)/PROMEDIO(rango)` | `=DESVEST.P(A2:A16)/PROMEDIO(A2:A16)` |
+| Rango intercuartílico | `=CUARTIL.INC(rango;3)-CUARTIL.INC(rango;1)` | `=CUARTIL.INC(A2:A16;3)-CUARTIL.INC(A2:A16;1)` |
+
+**Resumen de funciones estadísticas condicionales en Excel**
+
+| Medida | Función en Excel | Ejemplo de uso |
+| --- | --- | --- |
+| Rango | `=MAX(SI(valor_lógico;rango))-MIN(SI(valor_lógico;rango))` | `=MAX(SI(A2:A16="A";B2:B16))-MIN(SI(A2:A16="A";B2:B16))` |
+| Varianza muestral | `=VAR.S(SI(valor_lógico;rango))` | `=VAR.S(SI(A2:A16="A";B2:B16))` |
+| Desviación estándar muestral | `=DESVEST.M(SI(valor_lógico;rango))` | `=DESVEST.M(SI(A2:A16="A";B2:B16))` |
+| Rango intercuartílico | `=CUARTIL.INC(SI(valor_lógico;rango);3)-CUARTIL.INC(SI(valor_lógico;rango);1)` | `=CUARTIL.INC(SI(A2:A16="A";B2:B16);3)-CUARTIL.INC(SI(A2:A16="A";B2:B16);1)` |
+
+Si se quisiera calcular la varianza y la desviación estándar considerando que los datos corresponden a toda la población, y no a una muestra, las funciones `VAR.S` y `DESVEST.M` se reemplazan por `VAR.P` y `DESVEST.P`, respectivamente.
+
+::::solution
+**Los datos.** La hoja «Condicional» mezcla dos materiales: la columna `A` dice el tipo (A o B) y la `B`, el peso. Igual que en la AT3, `SI(A2:A16="A";B2:B16)` deja solo los pesos del material A, y la función de afuera trabaja con ellos ([Dispersión de un solo grupo](/inacap/cvet01/laboratorio#m4-6)).
+
+En el rango y en el rango intercuartílico, el `SI` aparece **dos veces**, una dentro de cada función, porque cada parte de la resta necesita su propio grupo filtrado.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at14-ric-condicional.jpg"
+	alt="Celda E5 con la fórmula del rango intercuartílico condicional en edición: dos CUARTIL.INC, cada uno con su SI(A2:A16=&quot;A&quot;;B2:B16)"
+	caption="Rango intercuartílico del material A: el SI se repite en cada CUARTIL.INC"
+/>
+
+En Microsoft 365, incluido Excel para la web, basta con presionar **Enter**. En Excel 2019 o anterior, estas fórmulas se confirman con **Ctrl + Mayús + Enter**.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at14-condicional-resultados.jpg"
+	alt="Medidas de dispersión del material A en E2:E5: rango 10, varianza 13,9048, desviación estándar 3,72891 y rango intercuartílico 5,5"
+	caption="Medidas de dispersión del material A"
+/>
+
+**Resultado.** Para el material A: rango **10**, varianza muestral **13,9048**, desviación estándar muestral **3,72891** y rango intercuartílico **5,5**. Para el material B se cambia `"A"` por `"B"`. El coeficiente de variación del material A se obtendría dividiendo su desviación por su media (18,29, de la AT3): `=DESVEST.M(SI(A2:A16="A";B2:B16))/PROMEDIO(SI(A2:A16="A";B2:B16))`.
+::::

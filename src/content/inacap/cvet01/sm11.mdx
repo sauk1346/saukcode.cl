@@ -1,0 +1,378 @@
+# Situación de Modelación 1: Radiografía de la matrícula en la educación superior chilena
+
+**Material:**
+- [SM1.pdf](/inacap/cvet01/docs/unit01-sm01.pdf)
+- [Matrícula pregrado 2024.xlsx](/inacap/cvet01/docs/matricula-pregrado-2024(SM1).xlsx)
+- [Evolución matrícula pregrado 2020-2024.xlsx](/inacap/cvet01/docs/evolucion-matricula-pregrado-2020-2024(SM1).xlsx)
+
+Las capturas de esta página son de Excel para la web; las fórmulas son las mismas en Excel de escritorio.
+
+El análisis detallado de la matrícula en educación superior es esencial para comprender las tendencias del sistema educativo chileno. Esta información fundamenta la toma de decisiones informadas y la formulación de políticas públicas que promuevan una educación más equitativa y de calidad para todos.
+
+Cada año, miles de estudiantes en Chile se matriculan en instituciones de educación superior que ofrecen una amplia gama de programas en Centros de Formación Técnica (CFT), Institutos Profesionales (IP) y Universidades. Estos datos de matrícula permiten observar cómo evoluciona la educación superior en el país, identificar preferencias estudiantiles y analizar posibles desigualdades o tendencias en el acceso.
+
+En el año 2024, el Ministerio de Educación, a través del Servicio de Información de Educación Superior (SIES), publicó los datos oficiales de matrícula en pregrado, desglosados por tipo de institución, género y otros factores relevantes. Este conjunto de datos es una fuente valiosa para realizar análisis estadísticos univariados que permitan describir, resumir y representar visualmente la información educativa del país.
+
+## Actividad 1 (actividad generadora)
+
+A partir de las tablas de matrícula total de pregrado 2024 en educación superior, disponibles en el archivo «Matrícula pregrado 2024.xlsx», responder las siguientes preguntas:
+
+**a.** ¿Cuáles de las variables presentes en el conjunto de datos son cualitativas? Clasificarlas como nominales u ordinales y justificar la clasificación.
+
+:::solution
+El archivo trae seis tablas de matrícula 2024, cada una cruzada con el tipo de institución. Sus variables cualitativas son:
+
+| Variable | Clasificación | Justificación |
+| --- | --- | --- |
+| Tipo de institución | Nominal | CFT, IP y Universidad son categorías sin un orden natural. |
+| Sexo | Nominal | Mujer, Hombre y No binario no se pueden ordenar. |
+| Tipo de carrera | Nominal | Técnico de nivel superior, profesional sin licenciatura, bachillerato, etc. son tipos de programa, no niveles de una escala. |
+| Área | Nominal | Administración y Comercio, Salud, Tecnología… solo nombran el área. |
+| Jornada | Nominal | Diurno, Vespertino, Semipresencial, A Distancia y Otro no siguen un orden. |
+| Región | Nominal | Cada región es una categoría; el orden norte-sur es geográfico, no una jerarquía de la variable. |
+| Rango de edad | Ordinal | Las categorías (15 a 19, 20 a 24, …, 40 y más) tienen un orden claro de menor a mayor. |
+
+Más información en [Tipos de variable](/inacap/cvet01/laboratorio#t1-2).
+:::
+
+**b.** ¿Cuáles de las variables presentes en el conjunto de datos son cuantitativas? Clasificarlas como discretas o continuas y justificar la clasificación.
+
+:::solution
+| Variable | Clasificación | Justificación |
+| --- | --- | --- |
+| Matrícula (número de estudiantes) | Discreta | Se obtiene contando personas: solo toma valores enteros (145 225, 426 075…). |
+| Promedio de edad | Continua | La edad se mide en el tiempo y puede tomar cualquier valor dentro de un intervalo; por eso su promedio tiene decimales (26,39 años en los CFT). |
+
+El rango de edad agrupa una variable continua (la edad) en intervalos. Escrito como intervalos se trata como cualitativa ordinal, que es como aparece en la tabla.
+:::
+
+**c.** ¿Qué ventajas tiene clasificar las variables antes de representarlas o analizarlas?
+
+:::solution
+- **Indica qué medidas se pueden calcular.** En una variable nominal solo tiene sentido la frecuencia y la moda; la media o la mediana exigen una variable cuantitativa (la mediana, al menos ordinal).
+- **Indica qué gráfico corresponde.** Circular o de columnas para cualitativas y discretas, histograma para continuas y líneas para variables en el tiempo ([¿Qué gráfico usar?](/inacap/cvet01/laboratorio#m2-1)).
+- **Indica cómo construir la tabla de frecuencias.** Una variable ordinal necesita sus categorías ordenadas antes de acumular; una continua necesita intervalos.
+- **Evita errores de interpretación,** como promediar códigos de una variable nominal o acumular frecuencias de categorías sin orden.
+:::
+
+## Actividad 2
+
+A partir de las tablas de matrícula total de pregrado 2024 en educación superior, disponibles en el archivo «Matrícula pregrado 2024.xlsx», desarrollar los puntos que se indican a continuación:
+
+**a.** Construir una tabla de frecuencias que incluya: frecuencia absoluta y frecuencia porcentual para cada tipo de institución (CFT, IP y Universidad), en relación con el total de estudiantes matriculados.
+
+::::solution
+**Los datos.** El archivo trae seis tablas, y todas cruzan una variable con el tipo de institución. La fila 9, «Matrícula Total Pregrado», ya tiene la **frecuencia absoluta** de cada tipo: cuántos estudiantes hay en CFT (`B9`), IP (`C9`) y Universidades (`D9`), con el total en `E9`. Como los datos vienen resumidos, no hace falta una tabla dinámica: la **frecuencia porcentual** sale de dividir cada valor por el total ([Frecuencia porcentual](/inacap/cvet01/laboratorio#m1-2)).
+
+**Paso 1. La fórmula.** En la fila 10, con la etiqueta «Frecuencia porcentual» en `A10`, escribir en `B10`:
+
+```
+=B9/$E$9
+```
+
+Los `$` dejan fijo el total: al copiar la fórmula hacia la derecha, `B9` cambia a `C9`, `D9` y `E9`, pero `$E$9` sigue apuntando al total.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm11-b10.jpg"
+	alt="Celda B10 con la fórmula =B9/$E$9 en edición; B9 marcada en azul y E9 en rojo"
+	caption="=B9/$E$9: cada matrícula dividida por el total"
+/>
+
+**Paso 2. Copiar y dar formato.** Arrastrar el controlador de relleno de `B10` hasta `E10`. Con `B10:E10` seleccionado: **Inicio →** lista de formatos **→ Porcentaje** y dos veces **Aumentar decimales**. `E10` debe dar 100%.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm11-frecuencias.jpg"
+	alt="Tabla por sexo y tipo de institución con la fila 10 de frecuencias porcentuales: 11,37%, 33,36%, 55,27% y 100,00%; a la derecha, los cálculos de las preguntas b, c y d en la columna G"
+	caption="Fila 10: frecuencia porcentual; columna G: cálculos de las preguntas siguientes"
+/>
+
+| Tipo de institución | Fila 9: frecuencia absoluta | Fila 10: frecuencia porcentual |
+| --- | --- | --- |
+| `B` Centros de Formación Técnica | 145.225 | 11,37% |
+| `C` Institutos Profesionales | 426.075 | 33,36% |
+| `D` Universidades | 706.040 | 55,27% |
+| `E` **Total** | **1.277.340** | **100,00%** |
+::::
+
+**b.** ¿Qué tipo de institución concentra la mayor cantidad de estudiantes? Justificar la respuesta a partir de los datos.
+
+:::solution
+Las **Universidades**, con 706.040 estudiantes: el 55,27% de la matrícula de pregrado 2024. Más de la mitad del total está en ellas, y superan a CFT e IP juntos. Con la etiqueta «CFT + IP» en `G5`, en `G6`:
+
+```
+=B9+C9
+```
+
+da 571.300, menos que los 706.040 de las Universidades.
+:::
+
+**c.** ¿Cuál es la diferencia porcentual entre las matrículas de IP y Universidades? Indicar los datos usados y cómo se realizó el cálculo.
+
+:::solution
+Se restan las frecuencias porcentuales de la fila 10. Con la etiqueta en `G7`, en `G8` (con formato de porcentaje):
+
+```
+=D10-C10
+```
+
+Da **21,92%**: las Universidades concentran 21,92 puntos porcentuales más de la matrícula total que los IP (55,27% − 33,36%). En estudiantes, con la etiqueta en `G9`, en `G10`: `=D9-C9` da **279.965** estudiantes más.
+:::
+
+**d.** ¿Qué información permite interpretar la frecuencia relativa en términos porcentuales que no es evidente en la frecuencia absoluta? Justificar la respuesta.
+
+:::solution
+La frecuencia porcentual muestra **el peso de cada categoría dentro del total**. Que haya 145 225 estudiantes en CFT no dice, por sí solo, si es mucho o poco; saber que son el 11,37% muestra que es aproximadamente uno de cada nueve matriculados.
+
+Además, los porcentajes permiten **comparar conjuntos de distinto tamaño**: por ejemplo, la distribución de 2024 con la de 2020, o la de una región con la del país, aunque los totales sean distintos.
+:::
+
+## Actividad 3
+
+La tabla de frecuencias construida en la actividad anterior servirá ahora como base para representar visualmente la distribución de la matrícula y analizarla desde otra perspectiva. Desarrollar los puntos que se indican a continuación:
+
+**a.** Construir un gráfico de columnas que represente el número de estudiantes matriculados según tipo de institución (CFT, IP y Universidad).
+
+::::solution
+**Por qué columnas.** El tipo de institución es una variable cualitativa con tres categorías; el gráfico de columnas compara sus cantidades por la altura de cada barra ([Gráfico de columnas](/inacap/cvet01/laboratorio#m2-3)).
+
+**Paso 1. Insertar.** Seleccionar la matrícula de cada tipo, `B9:D9`, e ir a **Insertar →** galería de gráficos **→ Columna agrupada**.
+
+**Paso 2. Nombres en el eje.** Como solo se seleccionaron números, el eje muestra 1, 2 y 3. Para poner los nombres: **Gráfico → Seleccionar datos → Etiquetas de eje horizontal → Agregar campo → Agregar nuevo campo** y escribir `=B5:D5`, la fila con los nombres de los tipos de institución.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm11-etiquetas-eje.jpg"
+	alt="Panel Seleccionar datos con el campo de etiquetas del eje horizontal en edición con =B5:D5; el eje del gráfico aún muestra 1, 2 y 3"
+	caption="Etiquetas del eje horizontal: =B5:D5"
+/>
+
+En Excel de escritorio se puede seleccionar `B5:D5` y, manteniendo **Ctrl** presionado, `B9:D9` antes de insertar; así los nombres quedan en el eje desde el principio. Excel para la web no permite esa selección doble.
+
+**Paso 3. Título y etiquetas.** Cambiar el título en **Formato → Título del gráfico**, quitar la leyenda (una sola serie no la necesita) y agregar **Etiquetas de datos → Extremo externo**.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm11-columnas.jpg"
+	alt="Gráfico de columnas: 145.225 estudiantes en CFT, 426.075 en IP y 706.040 en Universidades"
+	caption="Matrícula de pregrado 2024 según tipo de institución"
+/>
+::::
+
+**b.** Construir un gráfico circular con la misma información.
+
+::::solution
+**Por qué circular.** El circular muestra **qué parte del total** representa cada categoría: cada sector es proporcional a su matrícula ([Gráfico circular](/inacap/cvet01/laboratorio#m2-2)).
+
+**En Excel.** Con la misma selección (`B9:D9`): **Insertar →** galería **→ Gráfico circular**, y las etiquetas con `=B5:D5`, igual que en el gráfico anterior. Luego **Etiquetas de datos → Extremo externo** y, en **Formato → Series 1 → Etiquetas de datos**, marcar **Porcentaje** y desmarcar **Valor**. Excel calcula el porcentaje de cada sector sin que haga falta una fórmula.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm11-circular-porcentaje.jpg"
+	alt="Gráfico circular con etiquetas de 12%, 33% y 55%; a la derecha, el panel Formato con Porcentaje marcado y Valor desmarcado en Etiquetas de datos"
+	caption="Etiquetas de datos con porcentaje"
+/>
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm11-circular.jpg"
+	alt="Gráfico circular: Universidades 55%, Institutos Profesionales 33% y Centros de Formación Técnica 12%"
+	caption="Matrícula de pregrado 2024 según tipo de institución"
+/>
+::::
+
+**c.** Si hubiera que presentar esta información en una reunión de equipo directivo de la institución, ¿por cuál de los dos gráficos convendría inclinarse? Justificar la elección considerando a quién va dirigido el gráfico y qué se desea destacar.
+
+:::solution
+Depende de lo que se quiera destacar:
+
+- **Gráfico circular**, si el mensaje es la **participación** de cada tipo de institución en el total. Un equipo directivo capta de inmediato que las Universidades son más de la mitad de la matrícula y los CFT, poco más de una décima parte. Funciona bien porque son solo tres categorías.
+- **Gráfico de columnas**, si el mensaje es la **cantidad** de estudiantes y la comparación entre tipos: se lee directamente que las Universidades tienen unos 280 mil estudiantes más que los IP.
+
+Para una reunión directiva, donde interesa mostrar la posición relativa de la institución en el sistema, el circular es la mejor opción: comunica proporciones con un solo vistazo.
+:::
+
+**d.** ¿Qué conclusiones generales se pueden extraer sobre la distribución de la matrícula a partir de los gráficos construidos? Mencionar al menos dos observaciones que no serían tan evidentes al ver solo la tabla de frecuencias.
+
+:::solution
+Las cifras se calculan en la columna `G`, con su etiqueta en la celda de arriba:
+
+| Celda | Fórmula | Resultado |
+| --- | --- | --- |
+| `G13` | `=B10+C10` | 44,73% (CFT + IP) |
+| `G15` | `=C9/B9` | 2,93 (IP por cada CFT) |
+
+- **Las Universidades por sí solas superan a CFT e IP juntos.** En el circular, su sector ocupa más de la mitad del círculo.
+- **La matrícula técnico-profesional (CFT + IP) es cercana a la mitad:** 44,73%. En el circular, los sectores de CFT e IP juntos son casi tan grandes como el de las Universidades.
+- **Los IP tienen casi el triple de estudiantes que los CFT:** 2,93 veces (426.075 contra 145.225). En el gráfico de columnas, la columna de IP es unas tres veces más alta.
+- **El orden es creciente:** CFT < IP < Universidades, con saltos grandes entre cada tipo.
+:::
+
+## Actividad 4
+
+A partir de la tabla de matrícula total de pregrado entre los años 2020 y 2024 en educación superior, disponible en el archivo «Evolución matrícula pregrado 2020-2024.xlsx», desarrollar los puntos que se indican a continuación:
+
+**a.** Construir un gráfico de columnas apiladas que muestre la evolución de la matrícula entre los años 2020 y 2024, diferenciando por tipo de institución (CFT, IP y Universidad).
+
+::::solution
+**Los datos.** El archivo «Evolución matrícula pregrado 2020-2024.xlsx» tiene la matrícula de cada tipo de institución (filas 6 a 8) para cada año de 2020 a 2024 (columnas `B` a `F`), y el total en la fila 9.
+
+**Paso 1. Insertar.** Seleccionar `A5:F8`, con encabezados y **sin** la fila «Total general», que se apilaría encima de las demás. Ir a **Insertar →** galería **→ Columna apilada**.
+
+**Paso 2. Corregir los datos del gráfico.** Como los años son números, Excel los toma como una serie más («Tipo de institución») y pone 1 a 5 en el eje. En **Gráfico → Seleccionar datos**:
+
+- **Etiquetas de eje horizontal → Agregar campo →** elegir «Tipo de institución». El eje pasa a mostrar los años.
+- En **Valores de columna**, eliminar la serie «Tipo de institución» con el ícono de papelera.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm11-quitar-serie.jpg"
+	alt="Panel Seleccionar datos con los años ya en el eje y el puntero sobre la papelera de la serie Tipo de institución en Valores de columna"
+	caption="Los años van al eje y se quita la serie sobrante"
+/>
+
+Luego, el título del gráfico.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm11-apiladas.jpg"
+	alt="Columnas apiladas de 2020 a 2024 por tipo de institución; la altura total crece de 1.151.834 a 1.277.340"
+	caption="Evolución de la matrícula de pregrado, 2020 a 2024"
+/>
+::::
+
+**b.** Construir un gráfico de líneas (también llamado gráfico de tendencia) que represente la evolución de la matrícula total entre los años 2020 y 2024, diferenciando por tipo de institución.
+
+::::solution
+Con la misma selección (`A5:F8`), **Insertar →** galería **→ Línea con marcadores** ([Gráfico de líneas](/inacap/cvet01/laboratorio#m2-4)). Se corrige igual que el anterior: los años como etiquetas del eje horizontal y fuera la serie «Tipo de institución». Cada tipo de institución queda como una línea.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm11-lineas.jpg"
+	alt="Tres líneas de 2020 a 2024: Universidades cerca de 700 mil, IP subiendo de 361 mil a 426 mil y CFT cerca de 140 mil"
+	caption="Evolución de la matrícula de pregrado, 2020 a 2024"
+/>
+::::
+
+**c.** ¿Qué tipo de gráfico es más adecuado para observar los cambios en el tiempo? Justificar la respuesta.
+
+:::solution
+El **gráfico de líneas**. La pendiente de cada tramo muestra si la matrícula subió o bajó de un año al siguiente y cuánto. Por ejemplo, se ve que los IP crecen todos los años y que CFT y Universidades bajan en 2022.
+
+En las columnas apiladas solo la primera serie (CFT) parte desde cero; las demás «flotan» sobre las anteriores, y es difícil ver si cambiaron. Ese gráfico sirve más para ver la evolución del **total** y la composición de cada año.
+:::
+
+**d.** Calcular la variación porcentual en la matrícula total entre los años 2020 y 2024. ¿El aumento ha sido constante cada año? Explicar brevemente.
+
+::::solution
+**La fórmula.** La variación porcentual compara el valor final con el inicial:
+
+$$
+\text{Variación porcentual} = \frac{\text{valor final} - \text{valor inicial}}{\text{valor inicial}}
+$$
+
+**En Excel.** La fila «Total general» es la 9, con 2020 en `B9` y 2024 en `F9`. Con la etiqueta «Variación 2020 a 2024» en `A16`, en `B16` (con formato de porcentaje):
+
+```
+=(F9-B9)/B9
+```
+
+Los paréntesis hacen que Excel reste antes de dividir. La matrícula total creció un **10,90%** entre 2020 y 2024.
+
+**¿Fue constante?** Se calcula el cambio de cada año respecto del anterior. Con las etiquetas en `A13` y `A14`, en `C13` el aumento de estudiantes y en `C14` la variación porcentual (con formato de porcentaje):
+
+```
+=C9-B9
+=(C9-B9)/B9
+```
+
+Luego se seleccionan `C13:C14` y se arrastra el controlador de relleno hasta la columna `F`: en `D13` queda `=D9-C9`, y así sucesivamente.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm11-c14.jpg"
+	alt="Celda C14 con la fórmula =(C9-B9)/B9 en edición; C13 ya muestra 52.540 y B16 la variación 10,90%"
+	caption="=(C9-B9)/B9: variación de 2020 a 2021"
+/>
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm11-variaciones.jpg"
+	alt="Filas 13 y 14 con los aumentos 52.540, 9.622, 35.401 y 27.943 y las variaciones 4,56%, 0,80%, 2,92% y 2,24%; en B16, 10,90%"
+	caption="Aumento y variación de cada año"
+/>
+
+| Período | Fila 13: aumento de estudiantes | Fila 14: variación porcentual |
+| --- | --- | --- |
+| `C` 2020 → 2021 | 52.540 | 4,56% |
+| `D` 2021 → 2022 | 9.622 | 0,80% |
+| `E` 2022 → 2023 | 35.401 | 2,92% |
+| `F` 2023 → 2024 | 27.943 | 2,24% |
+
+El aumento **no fue constante**: la matrícula subió todos los años, pero con ritmos muy distintos. El mayor alza fue en 2021 y casi se estancó en 2022, cuando CFT y Universidades bajaron y solo los IP siguieron creciendo.
+::::
+
+## Actividad 5 (actividad de cierre)
+
+Utilizar el archivo «Matrícula pregrado 2024.xlsx» y desarrollar los puntos que se indican a continuación:
+
+**a.** Crear un informe visual que incluya al menos dos gráficos distintos que se consideren representativos de los datos de matrícula. Los gráficos deben mostrar diferentes aspectos o categorías y deben ser coherentes con el tipo de variable representada.
+
+::::solution
+Hay muchas combinaciones válidas. Una opción, con un gráfico distinto para cada tipo de variable:
+
+**1. Rango de edad (cualitativa ordinal): columnas.** Las columnas respetan el orden de los rangos, de menor a mayor. Seleccionar la matrícula total de los rangos, `E13:E18` (sin «Sin información», 10 estudiantes), e insertar **Columna agrupada**. Etiquetas del eje: `=A13:A18`. Luego, título y etiquetas de datos.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm11-columnas-edad.jpg"
+	alt="Tabla por rango de edad y gráfico de columnas: el rango de 20 a 24 años tiene 605.618 estudiantes, casi la mitad del total"
+	caption="Matrícula de pregrado 2024 según rango de edad"
+/>
+
+**2. Área del conocimiento (cualitativa nominal con diez categorías): barras.** Con tantas categorías un circular sería ilegible, y las barras horizontales dejan leer los nombres largos. Seleccionar `E34:E43`, insertar **Barra agrupada** y poner las etiquetas del eje con `=A34:A43`.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm11-barras-area.jpg"
+	alt="Tabla por área y gráfico de barras: Tecnología 346.568, Salud 242.033, Administración y Comercio 232.162 y Humanidades 8.862, la menor"
+	caption="Matrícula de pregrado 2024 según área"
+/>
+::::
+
+**b.** Redactar un breve informe (5 a 8 líneas) que explique lo que revelan los gráficos construidos. El informe debe incluir al menos una comparación y una conclusión general.
+
+::::solution
+**Los porcentajes del informe.** Junto a cada tabla se agrega una columna `F` con el porcentaje de cada fila (con formato de porcentaje), copiada hacia abajo:
+
+- **Por edad:** en `F13`, copiada hasta `F19`: `=E13/$E$20`.
+- **Por área:** en `F34`, copiada hasta `F43`: `=E34/$E$44`.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm11-edad-porcentajes.jpg"
+	alt="Columna F con el porcentaje de cada rango de edad (17,98%, 47,41%, 14,35%, 7,78%, 5,40%, 7,08% y 0,00%) y, en la columna G, los cálculos de 30 años o más y de 15 a 19 más 25 a 29 años"
+	caption="Porcentajes por edad (columna F) y cifras del informe (columna G)"
+/>
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm11-area-porcentajes.jpg"
+	alt="Columna F con el porcentaje de cada área y, en la columna G, la suma de Tecnología, Salud y Administración (64,26%), Humanidades más Ciencias Básicas (2,52%) y Tecnología dividido por Humanidades (39,11)"
+	caption="Porcentajes por área (columna F) y cifras del informe (columna G)"
+/>
+
+| Dato del informe | Celda | Fórmula | Resultado |
+| --- | --- | --- | --- |
+| Tecnología, Salud y Administración y Comercio | `G35` | `=F43+F42+F34` | 64,26% |
+| Humanidades y Ciencias Básicas | `G37` | `=F37+F41` | 2,52% |
+| Tecnología frente a Humanidades | `G39` | `=E43/E41` | 39,11 |
+| 20 a 24 años | `F14` | `=E14/$E$20` | 47,41% |
+| 30 años o más | `G17` | `=SUMA(F16:F18)` | 20,26% |
+| 15 a 19 y 25 a 29 años, juntos | `G19` | `=E13+E15` | 412.945 |
+
+**Informe**
+
+En 2024, la matrícula de pregrado se concentra en tres áreas: **Tecnología** (346.568 estudiantes, 27,13%), **Salud** (18,95%) y **Administración y Comercio** (18,18%), que suman casi dos tercios del total (64,26%). En el otro extremo, Humanidades y Ciencias Básicas suman apenas el 2,52%: Tecnología tiene unas 39 veces más estudiantes que Humanidades.
+
+Por edad, el rango de **20 a 24 años** reúne 605.618 estudiantes (47,41%), más que los rangos de 15 a 19 y de 25 a 29 juntos (412.945). Aun así, un 20,26% tiene 30 años o más, lo que muestra una presencia importante de estudiantes adultos.
+
+En conclusión, la matrícula está dominada por estudiantes jóvenes en áreas aplicadas, con un grupo relevante de adultos que vuelve a estudiar.
+::::
+
+**c.** ¿Qué otra variable convendría incluir en los gráficos para entender mejor la matrícula en educación superior? Explicar por qué.
+
+:::solution
+Respuesta abierta. Algunas opciones:
+
+- **Edad cruzada con jornada:** para verificar si los estudiantes de 30 años o más se concentran en jornada vespertina o a distancia, lo que ayudaría a diseñar la oferta para adultos que trabajan.
+- **Matrícula de primer año** (nuevos estudiantes): distingue el interés actual por cada área del arrastre de cohortes anteriores.
+- **Tasa de retención o titulación por área:** muestra no solo cuántos entran, sino cuántos terminan.
+- **Nivel socioeconómico o dependencia del colegio de origen:** permite analizar las desigualdades en el acceso que menciona el enunciado.
+:::

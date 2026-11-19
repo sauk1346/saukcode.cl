@@ -1,0 +1,271 @@
+# Situación de Modelación 3: ¿Dónde se espera menos para ser atendido?
+
+**Material:**
+- [SM3.pdf](/inacap/cvet01/docs/unit01-sm03.pdf)
+- [Tiempos de espera en centros médicos.xlsx](/inacap/cvet01/docs/tiempos-espera-centros-medicos(SM3).xlsx)
+
+Las capturas de esta página son de Excel para la web; las fórmulas son las mismas en Excel de escritorio.
+
+En los servicios de salud, el tiempo que una persona debe esperar para ser atendida es un indicador clave de calidad. Conocer y analizar estos tiempos permite identificar oportunidades de mejora en la atención, tomar decisiones informadas y diseñar estrategias que beneficien tanto a los pacientes como al personal médico.
+
+El Departamento de Salud de la comuna de Santiago ha recolectado información sobre los tiempos de espera en minutos que experimentan los pacientes desde que llegan a un centro médico hasta que son atendidos por un profesional. El objetivo es evaluar la calidad del servicio en tres centros médicos: el Centro Médico A, el Centro Médico B y el Centro Médico C.
+
+El análisis de estos datos permitirá identificar cuál de estos centros ofrece un mejor servicio desde la perspectiva de la rapidez en la atención, considerando no sólo los tiempos promedios, sino también la variabilidad y la presencia de esperas excesivas.
+
+Para desarrollar las actividades se usa el archivo «Tiempos de espera en centros médicos.xlsx», que contiene los datos diarios de tiempo de espera (en minutos) de 30 pacientes en cada uno de los tres centros médicos mencionados.
+
+## Actividad 1 (actividad generadora)
+
+**a.** Clasificar las variables como cualitativas o cuantitativas. En el caso de las variables cuantitativas, indicar si son discretas o continuas. Justificar la clasificación.
+
+:::solution
+| Variable | Clasificación | Justificación |
+| --- | --- | --- |
+| Centro médico | Cualitativa nominal | A, B y C solo identifican el centro; no tienen orden. En el archivo va en el nombre de cada columna. |
+| Paciente | Cuantitativa discreta | Toma valores enteros del 1 al 30. En la práctica solo identifica cada observación. |
+| Tiempo de espera (min) | Cuantitativa continua | Es una medición de tiempo: puede tomar cualquier valor dentro de un intervalo (19,3; 43,5…). |
+:::
+
+**b.** ¿Qué centro médico parece atender más rápido a la mayoría de sus pacientes?
+
+::::solution
+**Datos en el archivo.** Los tiempos del Centro Médico A están en `B2:B31`, los del B en `C2:C31` y los del C en `D2:D31`.
+
+**Tabla de medidas de posición.** Todas las respuestas de esta situación se apoyan en una misma tabla, armada al lado de los datos: los nombres de las medidas en la columna `F` y un centro por columna, `G` (A), `H` (B) e `I` (C) ([Percentil](/inacap/cvet01/laboratorio#m5-1), [Cuartil](/inacap/cvet01/laboratorio#m5-3)). Las fórmulas se escriben en la columna `G` y luego se copian hacia `H` e `I` con el controlador de relleno: como las referencias son relativas, en `H` el rango pasa a `C2:C31` y en `I`, a `D2:D31`.
+
+| Fila | Medida | Fórmula en `G` | `G` Centro A | `H` Centro B | `I` Centro C |
+| --- | --- | --- | --- | --- | --- |
+| 2 | Mínimo | `=MIN(B2:B31)` | 10,4 | 5,4 | 20 |
+| 3 | Q<sub>1</sub> (percentil 25) | `=CUARTIL.INC(B2:B31;1)` | 17,05 | 17,9 | 33,85 |
+| 4 | Mediana (Q<sub>2</sub>) | `=CUARTIL.INC(B2:B31;2)` | 18,8 | 24,35 | 40,3 |
+| 5 | Q<sub>3</sub> (percentil 75) | `=CUARTIL.INC(B2:B31;3)` | 21,825 | 30,425 | 48,9 |
+| 6 | Percentil 80 | `=PERCENTIL.INC(B2:B31;0,8)` | 22,54 | 32,56 | 50,12 |
+| 7 | Percentil 85 | `=PERCENTIL.INC(B2:B31;0,85)` | 23,025 | 33,915 | 51,65 |
+| 8 | Percentil 90 | `=PERCENTIL.INC(B2:B31;0,9)` | 24,15 | 34,85 | 56,44 |
+| 9 | Máximo | `=MAX(B2:B31)` | 27,9 | 43,5 | 58,8 |
+| 10 | Rango intercuartílico | `=G5-G3` | 4,775 | 12,525 | 15,05 |
+| 11 | Segundo valor más alto | `=K.ESIMO.MAYOR(B2:B31;2)` | 27,6 | 35,6 | 58,5 |
+| 12 | Límite de atípicos | `=G5+1,5*G10` | 28,9875 | 49,2125 | 71,475 |
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm13-cuartil.jpg"
+	alt="Celda G3 con la fórmula =CUARTIL.INC(B2:B31;1) en edición; G2 ya muestra el mínimo 10,4"
+	caption="Primer cuartil del Centro A en G3"
+/>
+
+**Contar pacientes.** Algunas respuestas cuentan cuántos pacientes cumplen una condición. La forma más corta es `CONTAR.SI`, con la condición entre comillas; esta función no aparece en las AT, pero se usa igual en las tres columnas. Bajo la tabla, en las filas 14 a 19 y también copiadas hacia `H` e `I`:
+
+| Fila | Etiqueta en `F` | Fórmula en `G` | A | B | C |
+| --- | --- | --- | --- | --- | --- |
+| 14 | Pacientes con menos de 30 min | `=CONTAR.SI(B2:B31;"<30")` | 30 | 22 | 4 |
+| 15 | Pacientes con más de 41 min | `=CONTAR.SI(B2:B31;">41")` | 0 | 1 | 14 |
+| 16 | Pacientes con 21 min o menos | `=CONTAR.SI(B2:B31;"<=21")` | 20 | 11 | 2 |
+| 17 | Pacientes con menos de 28 min | `=CONTAR.SI(B2:B31;"<28")` | 30 | 19 | 4 |
+| 18 | Pacientes con 35 min o menos | `=CONTAR.SI(B2:B31;"<=35")` | 30 | 27 | 10 |
+| 19 | Pacientes con 34 min o menos | `=CONTAR.SI(B2:B31;"<=34")` | 30 | 25 | 9 |
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm13-contar.jpg"
+	alt="Celda G14 con la fórmula =CONTAR.SI(B2:B31;&quot;<30&quot;) en edición, bajo la columna G ya calculada"
+	caption="CONTAR.SI con la condición entre comillas"
+/>
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm13-medidas.jpg"
+	alt="Datos de los tres centros en A:D y, a la derecha, la tabla de medidas de posición de G2 a I12 y los conteos de G14 a I19"
+	caption="La tabla completa, copiada hacia H e I"
+/>
+
+**Respuesta.** El **Centro Médico A**. Todos sus tiempos están entre 10,4 y 27,9 minutos, y su mediana es 18,8: la mitad de sus pacientes es atendida en menos de 19 minutos. En el B, 8 pacientes esperan 30 minutos o más (30 − 22, fila 14), y en el C, 26 de 30.
+::::
+
+**c.** ¿Qué diferencias se notan entre los tres centros médicos al observar los tiempos de espera?
+
+:::solution
+- **Centro A:** tiempos bajos y parecidos entre sí, de 10,4 a 27,9 minutos. Su rango intercuartílico es el menor (4,775).
+- **Centro B:** tiempos muy dispersos, desde 5,4 minutos (la espera más corta de los tres centros) hasta 43,5. Hay pacientes atendidos casi de inmediato y otros que esperan bastante.
+- **Centro C:** tiempos altos, de 20 a 58,8 minutos. Su mediana (40,3) ya supera el máximo del A, y varios pacientes esperan cerca de una hora.
+:::
+
+## Actividad 2
+
+**a.** En uno de los centros médicos se propone que el 75% de los pacientes debería ser atendido antes de los 30 minutos. ¿Cuál de los tres centros médicos cumple con este criterio? Justificar la respuesta.
+
+:::solution
+El valor bajo el cual queda el 75% de los pacientes es el **tercer cuartil**: la fila 5 de la tabla (`G5` `=CUARTIL.INC(B2:B31;3)`, copiada a `H5` e `I5`).
+
+| | `G5` Centro A | `H5` Centro B | `I5` Centro C |
+| --- | --- | --- | --- |
+| Q<sub>3</sub> (min) | 21,825 | 30,425 | 48,9 |
+
+Solo el **Centro Médico A** cumple: el 75% de sus pacientes espera 21,825 minutos o menos, bastante antes de los 30. El B queda justo por encima (30,425): 22 de sus 30 pacientes (73,33%) esperan menos de 30 minutos (`H14`). El C está muy lejos.
+:::
+
+**b.** Si un paciente esperó 41 minutos en el Centro Médico B, ¿esa espera es habitual o excepcional? ¿Qué información podría usarse para respaldar esa opinión?
+
+:::solution
+Es una espera **excepcional**. Para respaldarlo se compara 41 con las medidas de posición del Centro B (columna `H`):
+
+- Q<sub>3</sub> = 30,425 (`H5`): el 75% de los pacientes espera menos de unos 30 minutos.
+- Percentil 90 = 34,85 (`H8`): el 90% espera menos de 35 minutos.
+- El máximo es 43,5 (`H9`) y el segundo mayor, 35,6 (`H11`). Solo 1 de los 30 pacientes (3,33%) esperó más de 41 minutos (`H15`).
+
+En cambio, no sería un **valor atípico** en el sentido del boxplot: el límite para eso es Q<sub>3</sub> + 1,5 · RIC = 30,425 + 1,5 · 12,525 = 49,21 minutos (`H12` `=H5+1,5*H10`). Es una espera muy larga para el Centro B, pero no anómala.
+:::
+
+**c.** Se quiere definir un tiempo de espera «razonable» como aquel que no supere el que esperan el 90% de los pacientes. Estimar ese valor para cada centro médico y comentar si parecen razonables o no.
+
+::::solution
+Es el **percentil 90**: la fila 8 de la tabla (`G8` `=PERCENTIL.INC(B2:B31;0,9)`). El segundo argumento va con coma decimal: `0,9`.
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm13-percentil90.jpg"
+	alt="Celda G8 con la fórmula =PERCENTIL.INC(B2:B31;0,9) en edición; arriba, el mínimo, los cuartiles y los percentiles 80 y 85 del Centro A"
+	caption="Percentil 90 del Centro A en G8"
+/>
+
+| | `G8` Centro A | `H8` Centro B | `I8` Centro C |
+| --- | --- | --- | --- |
+| Percentil 90 (min) | 24,15 | 34,85 | 56,44 |
+
+- **Centro A:** unos 24 minutos. Es razonable para una atención médica.
+- **Centro B:** unos 35 minutos. Es aceptable, aunque más de media hora ya es una espera larga.
+- **Centro C:** unos 56 minutos. No parece razonable: si el «tiempo razonable» es casi una hora, el estándar pierde sentido. El Centro C necesita mejorar su atención.
+::::
+
+## Actividad 3
+
+**a.** Si una paciente fue atendida en 21 minutos, ¿en qué centro médico esa espera corresponde a un tiempo mejor que el del 75% de los demás pacientes? Justificar la elección.
+
+:::solution
+Una espera es mejor que la del 75% de los pacientes si queda en el 25% más rápido, es decir, si es menor o igual al **primer cuartil** (fila 3 de la tabla).
+
+| | `G3` Centro A | `H3` Centro B | `I3` Centro C |
+| --- | --- | --- | --- |
+| Q<sub>1</sub> (min) | 17,05 | 17,9 | 33,85 |
+
+Solo en el **Centro Médico C** 21 minutos es menor que Q<sub>1</sub>: allí, solo 2 de los 30 pacientes esperaron 21 minutos o menos (`I16`). En los centros A y B, 21 minutos está por encima de Q<sub>1</sub>, así que no alcanza a estar en el 25% más rápido.
+:::
+
+**b.** ¿Qué centro médico tiene una mayor diferencia entre el tiempo que espera el 25% más rápido y el 25% más lento? ¿Qué información se usa para sostener esa respuesta?
+
+:::solution
+Esa diferencia es el **rango intercuartílico**, Q<sub>3</sub> − Q<sub>1</sub>: el ancho del 50% central de los datos ([Rango intercuartílico](/inacap/cvet01/laboratorio#m4-5)). En la tabla es la fila 10: `G10` `=G5-G3`, copiada a `H10` e `I10`.
+
+| | Centro A | Centro B | Centro C |
+| --- | --- | --- | --- |
+| Q<sub>1</sub> (fila 3) | 17,05 | 17,9 | 33,85 |
+| Q<sub>3</sub> (fila 5) | 21,825 | 30,425 | 48,9 |
+| RIC (fila 10) | 4,775 | 12,525 | 15,05 |
+
+El **Centro Médico C** tiene la mayor diferencia: 15,05 minutos entre el límite del 25% más rápido (33,85) y el del 25% más lento (48,9). El B le sigue de cerca (12,525). El A es, por lejos, el más homogéneo (4,775).
+:::
+
+**c.** Si alguien tuvo que esperar 28 minutos, ¿sería una buena atención si eso ocurrió en el Centro Médico A? ¿Y si ocurrió en el C? Explicar la respuesta considerando la posición relativa del valor.
+
+:::solution
+- **En el Centro A, sería una mala atención.** El máximo del Centro A es 27,9 minutos (`G9`): 28 minutos supera la espera de **todos** sus pacientes (`G17`: los 30 esperaron menos de 28). Además, está muy por encima de Q<sub>3</sub> (21,825).
+- **En el Centro C, sería una buena atención.** Está por debajo de Q<sub>1</sub> (33,85), es decir, dentro del 25% más rápido. Solo 4 de los 30 pacientes esperaron menos (`I17`): sería más rápida que la del 86,67% de los pacientes del C.
+
+El mismo valor se interpreta distinto según el centro: lo que importa es su **posición** dentro de la distribución de cada uno.
+:::
+
+## Actividad 4
+
+Construir un boxplot para cada uno de los tres centros médicos usando los datos disponibles. Luego, responder:
+
+::::solution
+**Paso 1. Insertar.** Seleccionar las tres columnas con sus encabezados (`B1:D31`) e ir a **Insertar →** galería de gráficos **→ Estadística → Cajas y bigotes**. Cada columna queda como una caja ([Comparar dos muestras con boxplot](/inacap/cvet01/laboratorio#m5-6)).
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm13-galeria.jpg"
+	alt="Galería de gráficos de Excel para la web con el puntero sobre Cuadros y bigotes; B1:D31 seleccionado"
+	caption="Insertar → galería → Estadística → Cajas y bigotes"
+/>
+
+**Paso 2. Etiquetas, título y leyenda.** **Gráfico → Etiquetas de datos → Derecha**. En **Formato**, el título del gráfico, activar la **Leyenda** y, en cada serie, cambiar el **Nombre de la serie** por «Centro A», «Centro B» y «Centro C».
+
+**Paso 3. Cálculo del cuartil.** Por defecto, el gráfico usa **Mediana exclusiva**, que en el Centro A daría una caja de 16,6 a 22,1. Para que coincida con `CUARTIL.INC` y con la tabla, en **Formato →** cada serie **→ Cálculo del cuartil** se elige **Mediana inclusiva** (lo mismo que en la AT5).
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm13-calculo-cuartil.jpg"
+	alt="Panel Formato de la serie Centro C con las casillas de cajas y bigotes y la lista Cálculo del cuartil"
+	caption="Formato → serie → Cálculo del cuartil"
+/>
+
+<SmartFigure
+	src="/inacap/cvet01/images/sm13-boxplot.jpg"
+	alt="Boxplot de los tres centros: A con caja de 17,1 a 21,8 y mediana 18,8; B con caja de 17,9 a 30,4 y bigote hasta 43,5; C con caja de 33,9 a 48,9 y mediana 40,3"
+	caption="Tiempos de espera por centro médico, con Mediana inclusiva"
+/>
+::::
+
+**a.** ¿Cuál de los centros médicos tiene la mediana más baja? ¿Qué indica eso respecto de la atención que reciben la mayoría de los pacientes?
+
+:::solution
+El **Centro Médico A**, con una mediana de 18,8 minutos (la línea dentro de la caja). La mitad de sus pacientes es atendida en menos de 19 minutos. En el B la mitad espera más de 24,35 minutos, y en el C, más de 40,3.
+:::
+
+**b.** ¿En cuál de los centros médicos se concentran más pacientes con tiempos de espera similares? ¿Qué parte del gráfico se usa para argumentar la respuesta?
+
+:::solution
+En el **Centro Médico A**. Se argumenta con la **altura de la caja**, que contiene el 50% central de los pacientes: la del A es la más baja (de 17,05 a 21,825), así que la mitad de sus pacientes espera tiempos que difieren en menos de 5 minutos. Sus bigotes también son los más cortos. Las cajas de B y C son entre dos veces y media y tres veces más altas: su rango intercuartílico es 12,525 y 15,05 (fila 10).
+:::
+
+**c.** ¿Cuál centro médico muestra señales de tener pacientes que esperan mucho más que los demás pacientes de ese mismo centro? ¿Cómo se representa eso en el boxplot?
+
+:::solution
+En un boxplot, los pacientes que esperan mucho más que el resto aparecen como **puntos sueltos sobre el bigote superior**: los valores atípicos, que superan el límite Q<sub>3</sub> + 1,5 · RIC (fila 12 de la tabla). En estos datos **ningún centro tiene valores atípicos**: los máximos (fila 9) están bajo los límites (28,99, 49,21 y 71,48), y los tres bigotes llegan hasta el máximo.
+
+La señal más clara la da el **Centro Médico B**, con el **bigote superior más largo**: va de 30,425 (Q<sub>3</sub>) a 43,5 minutos, unos 13 minutos. Además, ese máximo queda separado del resto: el siguiente tiempo más alto es 35,6 (`H11`). En el C el bigote superior mide unos 10 minutos (de 48,9 a 58,8), y en el A, unos 6 (de 21,825 a 27,9).
+:::
+
+## Actividad 5 (actividad de cierre)
+
+**a.** Se quiere establecer un estándar común para todos los centros médicos: al menos el 85% de los pacientes debe ser atendido antes de cierto tiempo máximo. ¿Qué valor se propondría como tiempo máximo razonable, considerando los tres centros médicos? Justificar la decisión.
+
+:::solution
+El tiempo bajo el cual queda el 85% de los pacientes es el **percentil 85**: la fila 7 de la tabla (`G7` `=PERCENTIL.INC(B2:B31;0,85)`).
+
+| | `G7` Centro A | `H7` Centro B | `I7` Centro C |
+| --- | --- | --- | --- |
+| Percentil 85 (min) | 23,025 | 33,915 | 51,65 |
+
+Una propuesta es **35 minutos**:
+
+- Lo cumplen el **Centro A** (todos sus pacientes esperan menos de 28 minutos, `G9` = 27,9) y el **Centro B**: 27 de sus 30 pacientes (90%) esperan 35 minutos o menos (`H18`). Con 34 minutos, el B quedaría justo por debajo del estándar (`H19`: 25 de 30, 83,33%), porque su percentil 85 es 33,915.
+- El **Centro C** no lo cumple: solo 10 de sus 30 pacientes (33,33%) esperan 35 minutos o menos (`I18`). El estándar le exige reducir sus tiempos de forma importante.
+
+Fijar el estándar en 52 minutos, para que los tres centros lo cumplan, sería aceptar como «razonable» una espera de casi una hora. El objetivo es que el estándar empuje a mejorar al centro más lento, no que se adapte a él.
+:::
+
+**b.** En uno de los centros médicos se detectó que el 20% de los pacientes con esperas más largas se concentran sobre un cierto umbral. Identificar ese valor en cada centro y señalar cuál debería ser priorizado para una intervención.
+
+:::solution
+Si el 20% con esperas más largas queda sobre el umbral, el 80% queda bajo él: es el **percentil 80**, la fila 6 de la tabla (`G6` `=PERCENTIL.INC(B2:B31;0,8)`).
+
+| | `G6` Centro A | `H6` Centro B | `I6` Centro C |
+| --- | --- | --- | --- |
+| Percentil 80 (min) | 22,54 | 32,56 | 50,12 |
+
+Se debería priorizar el **Centro Médico C**: su 20% más lento espera más de 50 minutos, más del doble que en el A. En el B ese grupo espera más de 32,56 minutos.
+:::
+
+**c.** Si hubiera que elegir un centro médico para atenderse, ¿cuál se elegiría y por qué? Usar al menos dos medidas de posición distintas para sustentar la decisión.
+
+:::solution
+El **Centro Médico A**. Tiene el valor más bajo de los tres centros en todas las medidas de posición de la tabla:
+
+| Medida | Fila | Centro A | Centro B | Centro C |
+| --- | --- | --- | --- | --- |
+| Q<sub>1</sub> | 3 | 17,05 | 17,9 | 33,85 |
+| Mediana | 4 | 18,8 | 24,35 | 40,3 |
+| Q<sub>3</sub> | 5 | 21,825 | 30,425 | 48,9 |
+| Percentil 90 | 8 | 24,15 | 34,85 | 56,44 |
+
+- **Mediana:** la mitad de los pacientes espera menos de 19 minutos.
+- **Percentil 90:** incluso en un mal caso, 9 de cada 10 pacientes son atendidos antes de 25 minutos.
+- **Rango intercuartílico** (4,775): la espera es predecible.
+
+El B tiene la espera más corta registrada (5,4 minutos), pero también es mucho más irregular: con él, la espera es más incierta.
+:::

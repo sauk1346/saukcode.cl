@@ -1,0 +1,284 @@
+# Actividad Tecnológica 5: Medidas de posición en Excel
+
+**Material:**
+- [AT5.pdf](/inacap/cvet01/docs/unit01-at05.pdf)
+- [Medidas.xlsx](/inacap/cvet01/docs/medidas(AT3-AT4-AT5).xlsx)
+
+Esta actividad tiene por objetivo familiarizar a los estudiantes, mediante la incorporación de Excel, con el cálculo de las principales medidas de posición.
+
+Las capturas de esta página son de Excel para la web; las funciones son las mismas en Excel de escritorio.
+
+:::callout[Errores en el PDF]{type="warning"}
+- El PDF escribe los decimales con punto (`0.27`, `0.4`). Con la configuración regional en español, Excel usa coma decimal y punto y coma como separador: con punto, Excel no reconoce la fórmula y la deja como texto. En esta página los decimales van con coma (`0,27`).
+- Las fórmulas de la actividad 5 separan los argumentos con coma (`A2:A16,3`); van con punto y coma (`A2:A16;3`), como en el resto de la guía.
+- La tabla de equivalencias de cuartiles titula su primera columna «Quintil»; corresponde a «Cuartil».
+- El PDF dice que el archivo contiene «dos hojas». Tiene tres: «Una muestra», «Dos muestras» y «Condicional».
+:::
+
+## Actividad 1: Iniciar el trabajo con Excel
+
+Abrir el archivo «Medidas.xlsx» entregado por la docente. Este archivo contiene tres hojas, cada una con un conjunto de datos distinto, que se utilizan para calcular las medidas de posición en Excel.
+
+:::solution
+| Hoja | Contenido | Se usa en |
+| --- | --- | --- |
+| Una muestra | 15 datos en `A2:A16` | Actividades 2 a 6 |
+| Dos muestras | Muestra 1 en `A2:A16` y Muestra 2 en `B2:B16` | Actividad 7 |
+| Condicional | Tipo de material (A o B) en `A2:A16` y peso en `B2:B16` | Actividad 8 |
+
+Las **medidas de posición** indican qué lugar ocupa un valor dentro de los datos ordenados de menor a mayor: por ejemplo, bajo qué valor queda el 27% de los datos ([Posición](/inacap/cvet01/laboratorio#t5-1)). Son los mismos 15 datos de la AT3 y la AT4. Ordenados, quedan así: 12, 12, 14, 14, 15, 15, 16, 16, 17, 18, 19, 20, 21, 22, 23.
+:::
+
+## Actividad 2: Calcular el percentil de un conjunto de datos
+
+Para calcular el percentil 27 de un conjunto de datos ubicado en las celdas `A2:A16`, ir a la hoja «Una muestra» y escribir en la barra de fórmulas:
+
+```
+=PERCENTIL.INC(A2:A16;0,27)
+```
+
+y presionar **Enter**.
+
+::::solution
+**El concepto.** El **percentil k** es el valor bajo el cual queda el k% de los datos. El percentil 27 deja el 27% de los datos por debajo y el 73% por encima. En `PERCENTIL.INC`, el segundo argumento es el porcentaje escrito como decimal: 27% es `0,27` ([Percentil](/inacap/cvet01/laboratorio#m5-1)).
+
+**En Excel.** En `D2`, con la etiqueta «Percentil 27» en `C2`, escribir la fórmula. Excel ordena los datos por su cuenta: no hace falta ordenarlos en la hoja.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at15-percentil.jpg"
+	alt="Celda D2 con la fórmula =PERCENTIL.INC(A2:A16;0,27) en edición; el rango A2:A16 aparece marcado en azul"
+	caption="=PERCENTIL.INC(A2:A16;0,27) en D2"
+/>
+
+**Con punto decimal no funciona.** Si se escribe `0.27`, como en el PDF, Excel no reconoce la fórmula y la deja como texto en la celda.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at15-punto-error.jpg"
+	alt="Celda D2 que muestra el texto de la fórmula con 0.27 en lugar de un resultado"
+	caption="Con 0.27, la fórmula queda como texto"
+/>
+
+**Resultado.** El percentil 27 es **14,78**: el 27% de los datos vale 14,78 o menos. No tiene que ser uno de los datos: Excel lo calcula entre el 14 y el 15.
+::::
+
+## Actividad 3: Calcular el decil de un conjunto de datos
+
+Para calcular el decil 4 de un conjunto de datos ubicado en las celdas `A2:A16`, ir a la hoja «Una muestra» y escribir en la barra de fórmulas:
+
+```
+=PERCENTIL.INC(A2:A16;0,4)
+```
+
+y presionar **Enter**.
+
+Excel no cuenta con una función específica para calcular deciles, por lo que se utiliza la función `PERCENTIL.INC`. Los deciles dividen un conjunto de datos en 10 partes iguales, mientras que los percentiles lo hacen en 100. Por eso, cada decil equivale a un percentil múltiplo de 10.
+
+**Tabla de equivalencias entre deciles y percentiles**
+
+| Decil | Equivale al percentil | Fórmula en Excel |
+| --- | --- | --- |
+| D1 | Percentil 10 (P10) | `=PERCENTIL.INC(rango;0,1)` |
+| D2 | Percentil 20 (P20) | `=PERCENTIL.INC(rango;0,2)` |
+| D3 | Percentil 30 (P30) | `=PERCENTIL.INC(rango;0,3)` |
+| D4 | Percentil 40 (P40) | `=PERCENTIL.INC(rango;0,4)` |
+| D5 | Percentil 50 (P50) | `=PERCENTIL.INC(rango;0,5)` |
+| D6 | Percentil 60 (P60) | `=PERCENTIL.INC(rango;0,6)` |
+| D7 | Percentil 70 (P70) | `=PERCENTIL.INC(rango;0,7)` |
+| D8 | Percentil 80 (P80) | `=PERCENTIL.INC(rango;0,8)` |
+| D9 | Percentil 90 (P90) | `=PERCENTIL.INC(rango;0,9)` |
+
+:::solution
+**El concepto.** El **decil 4** deja el 40% de los datos por debajo, igual que el percentil 40. Por eso se calcula con `PERCENTIL.INC` y `0,4` ([Decil](/inacap/cvet01/laboratorio#m5-2)).
+
+**En Excel.** En `D3`: `=PERCENTIL.INC(A2:A16;0,4)`.
+
+**Resultado.** El decil 4 es **15,6**: el 40% de los datos vale 15,6 o menos.
+:::
+
+## Actividad 4: Calcular el cuartil de un conjunto de datos
+
+Para calcular el cuartil 2 de un conjunto de datos ubicado en las celdas `A2:A16`, ir a la hoja «Una muestra» y escribir en la barra de fórmulas:
+
+```
+=CUARTIL.INC(A2:A16;2)
+```
+
+y presionar **Enter**.
+
+Aunque Excel cuenta con una función específica para calcular cuartiles, también se puede utilizar la función `PERCENTIL.INC`. Los cuartiles dividen un conjunto de datos en cuatro partes iguales, mientras que los percentiles lo hacen en 100. Por eso, cada cuartil equivale a un percentil múltiplo de 25.
+
+**Tabla de equivalencias entre cuartiles y percentiles**
+
+| Cuartil | Equivale al percentil | Fórmula en Excel |
+| --- | --- | --- |
+| Q1 | Percentil 25 (P25) | `=PERCENTIL.INC(rango;0,25)` |
+| Q2 (mediana) | Percentil 50 (P50) | `=PERCENTIL.INC(rango;0,50)` |
+| Q3 | Percentil 75 (P75) | `=PERCENTIL.INC(rango;0,75)` |
+
+:::solution
+**El concepto.** Los **cuartiles** cortan los datos ordenados en cuatro partes con la misma cantidad de datos. El cuartil 2 deja la mitad por debajo: es la **mediana** ([Cuartil](/inacap/cvet01/laboratorio#m5-3)). En `CUARTIL.INC`, el segundo argumento es el número del cuartil (1, 2 o 3), no un decimal.
+
+**En Excel.** En `D4`: `=CUARTIL.INC(A2:A16;2)`.
+
+**Resultado.** El cuartil 2 es **16**, el mismo valor que dio `MEDIANA` en la AT3.
+:::
+
+## Actividad 5: Encontrar un valor según su posición en el conjunto de datos
+
+Para encontrar el tercer valor más alto y el cuarto valor más bajo del conjunto de datos ubicado en las celdas `A2:A16`, ir a la hoja «Una muestra» y escribir en la barra de fórmulas:
+
+```
+=K.ESIMO.MAYOR(A2:A16;3)
+```
+
+y, posteriormente,
+
+```
+=K.ESIMO.MENOR(A2:A16;4)
+```
+
+::::solution
+**El concepto.** `K.ESIMO.MAYOR(rango;k)` entrega el valor que queda en el lugar k contando desde el más alto, y `K.ESIMO.MENOR(rango;k)`, contando desde el más bajo ([El k-ésimo valor](/inacap/cvet01/laboratorio#m5-4)). Con k = 1 se obtienen el máximo y el mínimo.
+
+**En Excel.** En `D5`: `=K.ESIMO.MAYOR(A2:A16;3)` y en `D6`: `=K.ESIMO.MENOR(A2:A16;4)`.
+
+**Resultado.** El tercer valor más alto es **21** (después de 23 y 22). El cuarto más bajo es **14**: los datos repetidos cuentan cada uno, así que el orden es 12, 12, 14, 14.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at15-resultados.jpg"
+	alt="Columna D con las cinco medidas de posición: percentil 27 14,78, decil 4 15,6, cuartil 2 16, tercer valor más alto 21 y cuarto valor más bajo 14"
+	caption="Las cinco medidas de posición de la muestra"
+/>
+::::
+
+## Actividad 6: Construir un gráfico boxplot a partir de un conjunto de datos
+
+Para construir un gráfico boxplot a partir de un conjunto de datos ubicado en las celdas `A2:A16`, ir a la hoja «Una muestra» y seguir estos pasos:
+
+1. Seleccionar los datos (incluir solo los números, sin encabezados por ahora).
+2. Insertar el gráfico:
+   - Ir a la pestaña **Insertar** en la cinta superior.
+   - Hacer clic en el ícono de gráficos etiquetado como «Estadísticas».
+   - Seleccionar «Cajas y bigotes».
+3. Personalizar el gráfico (opcional):
+   - Se puede agregar un título, etiquetas y cambiar el diseño desde las herramientas del gráfico.
+   - Para ver los valores exactos (mediana, cuartiles, etc.), hacer clic derecho sobre el gráfico y seleccionar «Agregar etiquetas de datos».
+
+El valor que se encuentra dentro de la caja, a la derecha de la «x», representa la media del conjunto de datos. Los otros valores, de abajo hacia arriba, corresponden a los cinco indicadores utilizados en la construcción de un boxplot: mínimo, primer cuartil (Q1), segundo cuartil o mediana (Q2), tercer cuartil (Q3) y máximo.
+
+::::solution
+**El concepto.** El **boxplot** (diagrama de cajas y bigotes) resume los datos con cinco valores: los bigotes van del mínimo al máximo, la caja va de Q<sub>1</sub> a Q<sub>3</sub> y la línea dentro de la caja es la mediana. La caja contiene el 50% central de los datos; la «x» marca la media ([Boxplot](/inacap/cvet01/laboratorio#m5-5)).
+
+**Paso 1. Seleccionar e insertar.** Seleccionar `A2:A16` y abrir **Insertar →** la flecha de la galería de gráficos **→ Estadística → Cajas y bigotes**. En Excel para la web, el grupo de íconos de gráficos tiene una flecha al final que abre la galería completa.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at15-galeria.jpg"
+	alt="Galería de gráficos de Excel para la web abierta, con el puntero sobre Cuadros y bigotes en la sección Estadística"
+	caption="Insertar → galería → Estadística → Cajas y bigotes"
+/>
+
+**Paso 2. Etiquetas de datos.** Con el gráfico seleccionado, en la pestaña **Gráfico**, abrir **Etiquetas de datos → Derecha**. En Excel de escritorio, también se puede hacer con clic derecho sobre la caja **→ Agregar etiquetas de datos**. El título se cambia en **Formato → Título del gráfico** (aquí, «Muestra 1»).
+
+<SmartFigure
+	src="/inacap/cvet01/images/at15-etiquetas-menu.jpg"
+	alt="Menú Etiquetas de datos de la pestaña Gráfico con las opciones Ninguno, Abajo, Derecha, Izquierda y Encima; el puntero está sobre Derecha"
+	caption="Etiquetas de datos → Derecha"
+/>
+
+<SmartFigure
+	src="/inacap/cvet01/images/at15-boxplot.jpg"
+	alt="Boxplot de la Muestra 1 con etiquetas: mínimo 12, primer cuartil 14, mediana 16, tercer cuartil 20, máximo 23 y media 16,93333333"
+	caption="Boxplot de la muestra con sus etiquetas"
+/>
+
+**Lectura.** De abajo hacia arriba: mínimo **12**, Q<sub>1</sub> **14**, mediana **16**, Q<sub>3</sub> **20** y máximo **23**; la media, junto a la «x», es **16,93**. La mediana está más cerca de Q<sub>1</sub> que de Q<sub>3</sub>: los datos de la mitad superior están más repartidos.
+
+**¿Por qué Q<sub>1</sub> = 14 y no 14,5?** `CUARTIL.INC(A2:A16;1)` da 14,5 y `CUARTIL.INC(A2:A16;3)`, 19,5 (son los cuartiles del rango intercuartílico de la AT4). El boxplot usa por defecto otro método, **mediana exclusiva**, que da 14 y 20. Se puede cambiar en **Formato → Serie 1 → Cálculo del cuartil → Mediana inclusiva**, y así el gráfico coincide con `CUARTIL.INC`.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at15-calculo-cuartil.jpg"
+	alt="Panel Formato del gráfico con Serie 1 expandida: casillas de cajas y bigotes y la lista Cálculo del cuartil con Mediana exclusiva"
+	caption="Formato → Serie 1 → Cálculo del cuartil"
+/>
+::::
+
+## Actividad 7: Construir un gráfico boxplot múltiple a partir de varios conjuntos de datos
+
+Para construir un gráfico boxplot múltiple a partir de dos conjuntos de datos ubicados en las celdas `A2:A16` y `B2:B16`, respectivamente, ir a la hoja «Dos muestras» y realizar los mismos pasos de la actividad anterior.
+
+::::solution
+**Para qué sirve.** Dos boxplots en el mismo gráfico, con la misma escala, permiten **comparar** dos grupos de un vistazo: dónde está el centro de cada uno y cuánto se dispersan ([Comparar dos muestras con boxplot](/inacap/cvet01/laboratorio#m5-6)).
+
+**En Excel.** Seleccionar `A2:B16` (las dos columnas, sin encabezados) e insertar **Cajas y bigotes**, con etiquetas a la derecha. Como no se seleccionaron los encabezados, la leyenda dice «Series1» y «Series2»; se renombran en **Formato → Serie 1 → Nombre de la serie** (y lo mismo con la Serie 2). Para activar la leyenda: **Formato → Leyenda**.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at15-boxplot-doble.jpg"
+	alt="Dos boxplots lado a lado: Muestra 1 (azul) con 12, 14, 16, 20 y 23, y Muestra 2 (rojo) con 13, 15, 19, 21 y 25; medias 16,93 y 18,33"
+	caption="Muestra 1 y Muestra 2 con la misma escala"
+/>
+
+**Lectura.**
+
+| | Mínimo | Q<sub>1</sub> | Mediana | Q<sub>3</sub> | Máximo | Media |
+| --- | --- | --- | --- | --- | --- | --- |
+| Muestra 1 | 12 | 14 | 16 | 20 | 23 | 16,93 |
+| Muestra 2 | 13 | 15 | 19 | 21 | 25 | 18,33 |
+
+La caja de la Muestra 2 está más arriba: sus valores son, en general, mayores (mediana 19 contra 16). Las dos cajas miden casi lo mismo (6 unidades en ambos casos), así que el 50% central de cada muestra tiene una dispersión parecida.
+::::
+
+## Actividad 8: Calcular el percentil, el decil, el cuartil y el valor según su posición condicional de un conjunto de datos
+
+Para calcular el percentil 27, el decil 4, el cuartil 2, el tercer valor más alto y el cuarto valor más bajo condicional de un conjunto de datos ubicado en las celdas `A2:B16`, ir a la hoja «Condicional» y escribir en la barra de fórmulas:
+
+```
+=PERCENTIL.INC(SI(A2:A16="A";B2:B16);0,27)
+=PERCENTIL.INC(SI(A2:A16="A";B2:B16);0,4)
+=CUARTIL.INC(SI(A2:A16="A";B2:B16);2)
+=K.ESIMO.MAYOR(SI(A2:A16="A";B2:B16);3)
+=K.ESIMO.MENOR(SI(A2:A16="A";B2:B16);4)
+```
+
+y presionar **Enter** después de cada una.
+
+**Resumen de funciones estadísticas en Excel**
+
+| Medida | Función en Excel | Ejemplo de uso |
+| --- | --- | --- |
+| Percentil | `=PERCENTIL.INC(rango;k)` | `=PERCENTIL.INC(A1:A15;0,27)` |
+| Decil | `=PERCENTIL.INC(rango;k)` | `=PERCENTIL.INC(A1:A15;0,4)` |
+| Cuartil | `=CUARTIL.INC(rango;k)` | `=CUARTIL.INC(A1:A15;2)` |
+| Posición de un dato | `=K.ESIMO.MAYOR(rango;k)` | `=K.ESIMO.MAYOR(A1:A15;3)` |
+| | `=K.ESIMO.MENOR(rango;k)` | `=K.ESIMO.MENOR(A1:A15;4)` |
+
+**Resumen de funciones condicionales estadísticas en Excel**
+
+| Medida | Función en Excel | Ejemplo de uso |
+| --- | --- | --- |
+| Percentil | `=PERCENTIL.INC(SI(valor_lógico;rango);k)` | `=PERCENTIL.INC(SI(A2:A16="A";B2:B16);0,27)` |
+| Decil | `=PERCENTIL.INC(SI(valor_lógico;rango);k)` | `=PERCENTIL.INC(SI(A2:A16="A";B2:B16);0,4)` |
+| Cuartil | `=CUARTIL.INC(SI(valor_lógico;rango);k)` | `=CUARTIL.INC(SI(A2:A16="A";B2:B16);2)` |
+| Posición de un dato | `=K.ESIMO.MAYOR(SI(valor_lógico;rango);k)` | `=K.ESIMO.MAYOR(SI(A2:A16="A";B2:B16);3)` |
+| | `=K.ESIMO.MENOR(SI(valor_lógico;rango);k)` | `=K.ESIMO.MENOR(SI(A2:A16="A";B2:B16);4)` |
+
+::::solution
+**Los datos.** La hoja «Condicional» mezcla dos materiales: la columna `A` dice el tipo y la `B`, el peso. Igual que en la AT3 y la AT4, `SI(A2:A16="A";B2:B16)` deja solo los pesos del material A y la función de afuera trabaja con ellos ([Posición de un solo grupo](/inacap/cvet01/laboratorio#m5-7)). El material A tiene 7 pesos; ordenados: 14, 15, 15, 19, 20, 21, 24.
+
+**En Excel.** Las etiquetas van en `D2:D6` y las fórmulas, en `E2:E6`. El último argumento (`0,27`, `0,4`, `2`, `3` o `4`) va después del paréntesis que cierra el `SI`.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at15-percentil-si.jpg"
+	alt="Celda E2 con la fórmula =PERCENTIL.INC(SI(A2:A16=&quot;A&quot;;B2:B16);0,27) en edición; A2:A16 marcado en azul y B2:B16 en rojo"
+	caption="Percentil 27 del material A: el 0,27 va fuera del SI"
+/>
+
+En Microsoft 365, incluido Excel para la web, basta con presionar **Enter**. En Excel 2019 o anterior, estas fórmulas se confirman con **Ctrl + Mayús + Enter**.
+
+<SmartFigure
+	src="/inacap/cvet01/images/at15-condicional-resultados.jpg"
+	alt="Medidas de posición del material A en E2:E6: percentil 27 15, decil 4 16,6, cuartil 2 19, tercer valor más alto 20 y cuarto valor más bajo 19"
+	caption="Medidas de posición del material A"
+/>
+
+**Resultado.** Para el material A: percentil 27 **15**, decil 4 **16,6**, cuartil 2 **19** (la misma mediana de la AT3), tercer valor más alto **20** y cuarto valor más bajo **19**. Con 7 datos, el cuarto más bajo es justo el del centro, por eso coincide con la mediana. Para el material B se cambia `"A"` por `"B"`.
+::::

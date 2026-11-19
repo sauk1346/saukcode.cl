@@ -1,0 +1,115 @@
+# ARPA 1: Selección de personal
+
+**Material:** [ARPA1.pdf](/inacap/cvet01/docs/unit01-arpa01.pdf)
+
+Las capturas de esta página son de Excel para la web; las fórmulas son las mismas en Excel de escritorio.
+
+Una gran compañía ha inaugurado una nueva fábrica, generando 250 puestos de trabajo en las áreas de compras, montaje y almacén.
+
+A continuación, se presenta una tabla con el número de aspirantes y aceptados en cada área:
+
+| Área | Vacantes | Aspirantes hombres | Aspirantes mujeres | Aceptados hombres | Aceptadas mujeres |
+| --- | --- | --- | --- | --- | --- |
+| Compras | 30 | 25 | 100 | 5 | 25 |
+| Montaje | 200 | 250 | 25 | 180 | 20 |
+| Almacén | 20 | 80 | 200 | 5 | 15 |
+| **Total** | **250** | **355** | **325** | **190** | **60** |
+
+En total, se presentaron 355 hombres y 325 mujeres, de los cuales fueron aceptados 190 hombres y 60 mujeres. Se ha verificado que el nivel de preparación de los aspirantes es similar en cada área.
+
+**¿Se puede afirmar que ha habido discriminación hacia las mujeres en el proceso de selección?**
+
+::::solution
+**Los datos.** Para cada área, la tabla da cuántos hombres y cuántas mujeres postularon (aspirantes) y cuántos de ellos quedaron (aceptados). Hombres y mujeres no postularon en la misma cantidad, así que comparar 190 aceptados contra 60 no sirve: hay que comparar **qué porcentaje de cada grupo fue aceptado** ([Frecuencia porcentual](/inacap/cvet01/laboratorio#m1-2)).
+
+**Datos en el archivo.** La tabla se copia en Excel desde `A1`: el área en `A`, las vacantes en `B`, los aspirantes en `C` (hombres) y `D` (mujeres), y los aceptados en `E` (hombres) y `F` (mujeres). Las filas 2 a 4 son las áreas y la fila 5, el total. Las columnas `G`, `H` e `I` quedan para los cálculos.
+
+<SmartFigure
+	src="/inacap/cvet01/images/arpa11-datos.jpg"
+	alt="Tabla del enunciado en A1:F5 de Excel, con los encabezados de G1:I1 para los porcentajes y esas columnas vacías"
+	caption="La tabla del enunciado en Excel"
+/>
+
+**Paso 1. Porcentaje de aceptación.** Es la cantidad de aceptados dividida por la cantidad de aspirantes del mismo grupo y la misma área:
+
+| Celda | Fórmula | Qué calcula |
+| --- | --- | --- |
+| `G2` | `=E2/C2` | Hombres aceptados en Compras ÷ hombres que postularon a Compras |
+| `H2` | `=F2/D2` | Mujeres aceptadas en Compras ÷ mujeres que postularon a Compras |
+| `I2` | `=D2/(C2+D2)` | Mujeres que postularon a Compras ÷ total de aspirantes de Compras |
+
+La columna `I` no responde la pregunta directamente, pero sirve para explicar el resultado: muestra qué parte de los aspirantes de cada área eran mujeres.
+
+<SmartFigure
+	src="/inacap/cvet01/images/arpa11-formula-g2.jpg"
+	alt="Celda G2 con la fórmula =E2/C2 en edición"
+	caption="=E2/C2: aceptados entre aspirantes, hombres de Compras"
+/>
+
+<SmartFigure
+	src="/inacap/cvet01/images/arpa11-formula-i2.jpg"
+	alt="Celda I2 con la fórmula =D2/(C2+D2) en edición; C2 marcada en rojo y D2 en azul; G2 y H2 ya muestran 0,2 y 0,25"
+	caption="=D2/(C2+D2): los paréntesis suman primero hombres y mujeres"
+/>
+
+**Paso 2. Copiar hacia abajo.** Seleccionar `G2:I5` y presionar **Ctrl + D** (o arrastrar el controlador de relleno de `G2:I2` hasta la fila 5). Las referencias cambian solas: en la fila 3, `G3` queda `=E3/C3`; en la fila 5, `G5` queda `=E5/C5`, con los totales.
+
+<SmartFigure
+	src="/inacap/cvet01/images/arpa11-relleno.jpg"
+	alt="Rango G2:I5 con los resultados en formato decimal, por ejemplo 0,72 y 0,8 en la fila de Montaje"
+	caption="Fórmulas copiadas hasta la fila 5"
+/>
+
+**Paso 3. Formato de porcentaje.** Con `G2:I5` seleccionado: **Inicio →** lista de formatos (**General**) **→ Porcentaje** y dos veces **Aumentar decimales**.
+
+<SmartFigure
+	src="/inacap/cvet01/images/arpa11-formato.jpg"
+	alt="Lista de formatos de número abierta en la pestaña Inicio, con el puntero sobre Porcentaje"
+	caption="Inicio → General → Porcentaje"
+/>
+
+| Fila | Área | `G` Aceptación de hombres | `H` Aceptación de mujeres | `I` Mujeres entre los aspirantes |
+| --- | --- | --- | --- | --- |
+| 2 | Compras | 20,00% | 25,00% | 80,00% |
+| 3 | Montaje | 72,00% | 80,00% | 9,09% |
+| 4 | Almacén | 6,25% | 7,50% | 71,43% |
+| 5 | **Total** | **53,52%** | **18,46%** | **47,79%** |
+
+**Mirando solo el total (fila 5).** Se aceptó al 53,52% de los hombres y al 18,46% de las mujeres. A primera vista parece que sí hubo discriminación.
+
+**Mirando cada área (filas 2 a 4).** En **las tres áreas** el porcentaje de aceptación de las mujeres es **mayor** que el de los hombres: 25% contra 20% en Compras, 80% contra 72% en Montaje y 7,5% contra 6,25% en Almacén.
+
+**Paso 4. ¿Por qué el total dice lo contrario?** Hay que ver a qué área postuló cada grupo. Con los datos de la columna `A` como etiqueta:
+
+| Celda | Etiqueta (en `A`) | Fórmula | Resultado |
+| --- | --- | --- | --- |
+| `G7` | Mujeres que postularon a Compras o Almacén | `=(D2+D4)/D5` | 92,31% |
+| `G8` | Hombres que postularon a Montaje | `=C3/C5` | 70,42% |
+
+<SmartFigure
+	src="/inacap/cvet01/images/arpa11-indicadores.jpg"
+	alt="Celda G7 con la fórmula =(D2+D4)/D5 en edición; D2 en azul, D4 en rojo y D5 en morado"
+	caption="=(D2+D4)/D5: mujeres de Compras y Almacén entre el total de mujeres"
+/>
+
+- El 92,31% de las mujeres postuló a **Compras** o **Almacén**. Esas áreas tienen pocas vacantes (50 entre las dos) y muchos aspirantes, así que en ellas casi todos quedan fuera, hombres y mujeres.
+- El 70,42% de los hombres postuló a **Montaje**, el área con 200 vacantes, donde se acepta a la mayoría.
+
+**Paso 5. Gráfico.** Un gráfico de columnas agrupadas muestra la comparación de un vistazo ([Gráfico de columnas](/inacap/cvet01/laboratorio#m2-3)). Seleccionar `G1:H5` e ir a **Insertar →** galería de gráficos **→ Columna agrupada**. El eje sale con 1, 2, 3 y 4: para poner los nombres de las áreas, **Gráfico → Seleccionar datos → Etiquetas de eje horizontal → Agregar campo → Agregar nuevo campo** y escribir `=A2:A5`. Luego, el título y **Etiquetas de datos → Extremo externo**.
+
+<SmartFigure
+	src="/inacap/cvet01/images/arpa11-etiquetas-eje.jpg"
+	alt="Panel Seleccionar datos con el campo de etiquetas del eje horizontal en edición con =A2:A5; el eje del gráfico aún muestra 1, 2, 3 y 4"
+	caption="Etiquetas del eje horizontal: =A2:A5"
+/>
+
+<SmartFigure
+	src="/inacap/cvet01/images/arpa11-final.jpg"
+	alt="Tabla con los porcentajes y gráfico de columnas: en Compras, Montaje y Almacén la columna roja de mujeres es más alta que la azul de hombres; en Total la azul (53,52%) es mucho más alta que la roja (18,46%)"
+	caption="En cada área gana la columna de mujeres; en el total, la de hombres"
+/>
+
+**Interpretación.** El porcentaje total mezcla áreas muy distintas: refleja **a qué área postuló cada grupo**, no cómo se trató a hombres y mujeres dentro de cada área. Cuando una tendencia que aparece en cada grupo se invierte al juntar los datos, se habla de **paradoja de Simpson**.
+
+**Respuesta:** no se puede afirmar que hubo discriminación hacia las mujeres. Comparando dentro de cada área, donde compiten aspirantes con preparación similar por las mismas vacantes, las mujeres tuvieron un porcentaje de aceptación mayor que el de los hombres en las tres. La diferencia del total se explica porque el 92,31% de las mujeres postuló a las dos áreas con menos vacantes.
+::::
