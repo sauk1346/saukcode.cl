@@ -98,8 +98,16 @@ const courseData = {
           href: 'at12'
         },
         {
+          text: 'AT02: Gráficos en Excel',
+          href: 'https://youtu.be/Jl4cK-N6ANs'
+        },
+        {
           text: 'ARPA01: Selección de Personal',
           href: 'arpa11'
+        },
+        {
+          text: 'ARPA01: Selección de Personal',
+          href: 'https://youtu.be/GN7j9GYGbkI'
         },
       ]
     },
@@ -113,8 +121,16 @@ const courseData = {
           href: 'at13'
         },
         {
+          text: 'AT03: Medidas de tendencia central en Excel',
+          href: 'https://youtu.be/jgBq48YDWPY'
+        },
+        {
           text: 'SM01: Radiografía de la matrícula en la educación superior chilena',
           href: 'sm11'
+        },
+        {
+          text: 'SM01: Radiografía de la matrícula en la educación superior chilena',
+          href: 'https://youtu.be/205mwBZaTMc'
         },
                 
       ]
@@ -130,8 +146,16 @@ const courseData = {
           href: 'at14'
         },
         {
+          text: 'AT04: Medidas de dispersión en Excel',
+          href: 'https://youtu.be/Aw0diFrxgrg'
+        },
+        {
           text: 'SM02: ¿Dónde abrir la nueva sucursal?',
           href: 'sm12'
+        },
+        {
+          text: 'SM02: ¿Dónde abrir la nueva sucursal?',
+          href: 'https://youtu.be/LztPlHT0guo'
         },
       ]
     },
@@ -145,8 +169,16 @@ const courseData = {
           href: 'at15'
         },
         {
+          text: 'AT05: Medidas de posición en Excel',
+          href: 'https://youtu.be/4ZoRUklmffY'
+        },
+        {
           text: 'SM03: ¿Dónde se espera menos para ser atendido?',
           href: 'sm13'
+        },
+        {
+          text: 'SM03: ¿Dónde se espera menos para ser atendido?',
+          href: 'https://youtu.be/Jzx6SUmkPC4'
         },
       ]
     },
@@ -171,12 +203,24 @@ const courseData = {
           href: 'at21'
         },
         {
+          text: 'AT01: Tablas y gráficos bivariados en Excel',
+          href: 'https://youtu.be/IEc2I7_FloA'
+        },
+        {
           text: 'ARPA01: Encuesta regional de escolaridad',
           href: 'arpa21'
         },
         {
+          text: 'ARPA01: Encuesta regional de escolaridad',
+          href: 'https://youtu.be/nbjVTcdguxU'
+        },
+        {
           text: 'SM01: Explorando la oferta académica 2025',
           href: 'sm21'
+        },
+        {
+          text: 'SM01: Explorando la oferta académica 2025',
+          href: 'https://youtu.be/b3jIOx_JNIA'
         },
       ]
     },
@@ -192,6 +236,10 @@ const courseData = {
         {
           text: 'SM02: ¿Cómo se reparte y se comporta el mercado?',
           href: 'sm22'
+        },
+        {
+          text: 'SM02: ¿Cómo se reparte y se comporta el mercado?',
+          href: 'https://youtu.be/fRh5tvj0JM4'
         },
       ]
     },
