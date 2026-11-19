@@ -53,6 +53,7 @@ const CourseDetails = ({
   evaluationsData,
   classData = [],
   lectureData = [],
+  labData = [],
 }) => {
   
   // Helper function para renderizar un elemento individual de contenido
@@ -135,6 +136,8 @@ const CourseDetails = ({
   // Determinamos qué pestañas están disponibles
   const hasClasses = Array.isArray(classData) && classData.length > 0;
   const hasLectures = Array.isArray(lectureData) && lectureData.length > 0;
+  // Laboratorio: material de repaso que condensa el ramo (no pertenece a una clase)
+  const hasLabs = Array.isArray(labData) && labData.length > 0;
   
   // Configuramos la pestaña activa inicial
   const [activeTab, setActiveTab] = useState('general');
@@ -147,7 +150,10 @@ const CourseDetails = ({
     if (activeTab === 'lecturas' && !hasLectures) {
       setActiveTab('general');
     }
-  }, [activeTab, hasClasses, hasLectures]);
+    if (activeTab === 'laboratorio' && !hasLabs) {
+      setActiveTab('general');
+    }
+  }, [activeTab, hasClasses, hasLectures, hasLabs]);
 
   // Semana en curso (calculada tras montar: la fecha es del visitante,
   // no del build estático)
@@ -223,6 +229,7 @@ const CourseDetails = ({
             { id: 'evaluaciones', label: 'Evaluaciones' },
             ...(hasClasses ? [{ id: 'clases', label: 'Clases' }] : []),
             ...(hasLectures ? [{ id: 'lecturas', label: 'Lecturas' }] : []),
+            ...(hasLabs ? [{ id: 'laboratorio', label: 'Laboratorio' }] : []),
           ].map((tab) => (
             <button
               key={tab.id}
@@ -408,6 +415,36 @@ const CourseDetails = ({
                     </div>
                   </div>
                 ))}
+            </div>
+          </div>
+        )}
+
+        {/* Pestaña Laboratorio: una tarjeta por recurso */}
+        {activeTab === 'laboratorio' && hasLabs && (
+          <div className={styles.tabContent}>
+            <h2 className={styles.sectionTitle}>Laboratorio</h2>
+            <div className={styles.twoColumnContainer}>
+              {labData.map((lab, idx) => {
+                const href =
+                  lab.href.startsWith('/') || lab.href.startsWith('http')
+                    ? lab.href
+                    : buildCourseResourceLink('inacap', courseCode.toLowerCase(), lab.href);
+                return (
+                  <a
+                    key={idx}
+                    href={href}
+                    className={`pixel-box pixel-press ${styles.labCard}`}
+                    {...(lab.newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  >
+                    {lab.meta && <span className={styles.labMeta}>{lab.meta}</span>}
+                    <h3 className={styles.labTitle}>{lab.title}</h3>
+                    {lab.description && <p className={styles.labDescription}>{lab.description}</p>}
+                    <span className={styles.labGo} aria-hidden="true">
+                      Abrir {lab.newTab ? '↗' : '→'}
+                    </span>
+                  </a>
+                );
+              })}
             </div>
           </div>
         )}

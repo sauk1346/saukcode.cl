@@ -67,6 +67,23 @@ const courseData = {
         
     },
   ],
+  // Pestaña «Laboratorio»: material interactivo del profesor (páginas independientes)
+  labData: [
+    {
+      title: 'Laboratorio interactivo',
+      href: 'laboratorio',
+      meta: '19 módulos · 85 laboratorios',
+      description: 'Material interactivo del profesor, un módulo por página.',
+      newTab: true,
+    },
+    {
+      title: 'Banco de preguntas',
+      href: 'banco-preguntas',
+      meta: '182 preguntas · 15 temas',
+      description: 'Preguntas de repaso del profesor, un tema por página.',
+      newTab: true,
+    },
+  ],
   classData: [
     { 
       week: '01', 
@@ -126,16 +143,6 @@ const courseData = {
         {
           text: 'Reforzamiento Unidad I',
           href: 'docs/clase04a.pdf'
-        },
-        {
-          text: 'Laboratorio interactivo',
-          href: 'laboratorio',
-          newTab: true
-        },
-        {
-          text: 'Banco de preguntas',
-          href: 'banco-preguntas',
-          newTab: true
         },
       ]
     },
