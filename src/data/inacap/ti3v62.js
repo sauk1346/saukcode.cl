@@ -175,8 +175,8 @@ const courseData = {
       date: 'Mar 17, Nov 2026', 
       description: [
         {
-          text: '',
-          href: ''
+          text: 'no asistí',
+          strikethrough: true
         }
       ]
     },
