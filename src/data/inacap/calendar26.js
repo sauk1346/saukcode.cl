@@ -847,7 +847,7 @@ export const calendar26 = [
   },
   {
     id: 143,
-    fecha: "2026-11-26",
+    fecha: "2026-11-30",
     titulo: "[TI3V61] Evaluación 02",
     description: "Minería de Datos"
   },
@@ -903,7 +903,7 @@ export const calendar26 = [
   },
   {
     id: 152,
-    fecha: "2026-11-23",
+    fecha: "2026-11-30",
     titulo: "[TI3V62] Evaluación 02",
     description: "Gestión de Seguridad de la Información"
   },

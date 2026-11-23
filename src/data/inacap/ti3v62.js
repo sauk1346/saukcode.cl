@@ -23,7 +23,7 @@ const courseData = {
   evaluationsData: [
     {
       evaluationNumber: 1,
-      date: 'Mar 03, Nov 2026',
+      date: '',
       weighting: '15%',
       description: [
         {
@@ -38,7 +38,7 @@ const courseData = {
     },
     {
       evaluationNumber: 2,
-      date: 'Mar 17, Nov 2026',
+      date: '',
       weighting: '35%',
       description: {
         text: '',
@@ -47,7 +47,7 @@ const courseData = {
     },
     {
       evaluationNumber: 3,
-      date: 'Sáb 28, Nov 2026',
+      date: '',
       weighting: '35%',
       description:[ 
         {
@@ -208,7 +208,7 @@ const courseData = {
       date: 'Lun 30, Nov 2026', 
       description: [
         {
-          text: '',
+          text: 'Evaluación 02',
           href: ''
         }
       ]
