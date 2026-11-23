@@ -1,0 +1,310 @@
+# R como aliado: tus primeros pasos en estadística, y media, mediana y más
+
+Para construir una casa, lo primero que necesitas no es pintura ni muebles, sino conocer tus herramientas de trabajo y saber usarlas con seguridad. El análisis de datos funciona de manera muy similar. **R** es la herramienta central de este recorrido y, como cualquier herramienta potente, requiere que primero comprendas su lógica interna antes de sacarle todo el provecho.
+
+En la primera parte explorarás el entorno **RStudio** y las estructuras de datos básicas de R: vectores, matrices, *data frames*, listas y factores. Estas estructuras son los contenedores sobre los que se realizan todos los análisis posteriores; dominarlas es indispensable para limpiar datos, calcular estadísticas y construir modelos (Main Yaque et al., 2019). También revisarás la sintaxis fundamental del lenguaje: asignación de variables, indexación de elementos, aplicación de funciones y lectura de mensajes de error.
+
+En la segunda parte aplicarás esas bases al análisis estadístico con las funciones `mean()`, `median()`, `sd()`, `var()`, `range()`, `table()` y `summary()`, y aprenderás no solo a calcular resultados, sino a interpretarlos según el contexto de los datos.
+
+No se requieren conocimientos previos de programación, pero sí una actitud de experimentación y tolerancia al error: en R, como en cualquier lenguaje, equivocarse y corregir es parte natural del aprendizaje. Si te bloqueas con la instalación o la configuración del entorno, consulta a tu docente: sin un entorno funcional no es posible seguir las actividades.
+
+## 1. El entorno R y RStudio
+
+**R** es un lenguaje de programación y entorno estadístico de código abierto, desarrollado originalmente por Ross Ihaka y Robert Gentleman en la Universidad de Auckland en 1993. Hoy lo mantiene el R Core Team y está disponible gratuitamente en [cran.r-project.org](https://cran.r-project.org). Su fortaleza radica en la amplitud de sus paquetes estadísticos, la calidad de sus visualizaciones y su capacidad para reproducir análisis de forma exacta (Main Yaque et al., 2019).
+
+**RStudio** es el entorno de desarrollo integrado (IDE) más utilizado para trabajar con R. Organiza la sesión en cuatro paneles principales.
+
+:::table{#tabla01 caption="Paneles de RStudio" layout="mixed" widths="220px,auto"}
+| Panel | Función |
+| --- | --- |
+| **Editor de scripts** | Donde escribes y guardas el código R. Es el cuaderno de trabajo donde documentas cada paso del análisis |
+| **Consola** | Donde R ejecuta el código y muestra los resultados inmediatos. Útil para pruebas rápidas |
+| **Entorno** (*Environment*) | Lista de todos los objetos creados en la sesión activa: variables, *datasets*, funciones |
+| **Archivos / Gráficos / Ayuda** | Navegador de archivos del proyecto, visualización de gráficos y documentación de funciones |
+:::
+
+:::callout[Buena práctica profesional]{type="tip"}
+Trabaja siempre con proyectos de RStudio (**File > New Project**). Un proyecto fija el directorio de trabajo y hace que tu código sea portable: otra persona puede abrir el proyecto en su computador y las rutas relativas funcionarán sin modificaciones.
+:::
+
+## 2. Tipos de objetos en R
+
+R es un lenguaje orientado a **objetos vectorizados**: casi toda operación se aplica sobre vectores de datos, no sobre un valor individual. Comprender los tipos de objetos es el primer paso para manipular datos eficientemente (Main Yaque et al., 2019).
+
+:::table{#tabla02 caption="Tipos de objetos en R" layout="mixed" widths="130px,260px,auto"}
+| Objeto | Características | Ejemplo de uso |
+| --- | --- | --- |
+| **Vector** | Secuencia de elementos del mismo tipo | `c(5.5, 6.0, 4.8)`: notas de un estudiante |
+| **Factor** | Variable categórica con niveles definidos | `factor(c("Norte","Centro","Sur"))`: región de Chile |
+| **Matriz** | Bidimensional, un solo tipo de dato | `matrix(1:12, nrow=3)`: álgebra lineal |
+| **Data frame** | Tabla de base de datos: columnas de tipos distintos | `data.frame(id, nombre, ventas)`: *dataset* de clientes |
+| **Lista** | Contenedor flexible: cualquier tipo y tamaño | `list(modelo, datos, fecha)`: resultados de un proyecto |
+:::
+
+Así se crean algunos de estos objetos:
+
+```r
+# Vector numérico
+notas <- c(5.5, 6.0, 4.8, 7.0, 5.9)
+
+# Factor (variable categórica)
+región <- factor(c("Norte", "Centro", "Sur", "Centro", "Norte"))
+levels(región) # muestra: "Centro" "Norte" "Sur"
+
+# Data frame (estructura más usada en análisis)
+clientes <- data.frame(
+  id     = 1:3,
+  nombre = c("Ana", "Luis", "María"),
+  ventas = c(150000, 230000, 89000)
+)
+```
+
+## 3. Operaciones fundamentales: asignación, indexación y funciones básicas
+
+### Asignación
+
+En R, el operador de asignación es `<-` (aunque también funciona `=`). La convención de la comunidad es usar `<-` para variables y `=` solo dentro de los argumentos de funciones:
+
+```r
+precio_promedio <- 45000       # correcto
+resultado <- mean(x = ventas)  # = dentro del argumento
+```
+
+### Indexación
+
+La **indexación** permite acceder a elementos específicos de un objeto con corchetes. Una diferencia clave respecto de Python o JavaScript es que el índice en R **comienza en 1, no en 0** (Wickham & Grolemund, 2023).
+
+```r
+notas[1]        # primer elemento del vector
+clientes[2, ]   # segunda fila del data frame (todos los campos)
+clientes[ , 3]  # tercera columna (todos los registros)
+clientes$ventas # columna "ventas" por nombre (más legible)
+```
+
+### Funciones diagnósticas
+
+Al cargar cualquier *dataset*, estas funciones deben ejecutarse antes que cualquier análisis:
+
+:::table{#tabla03 caption="Funciones diagnósticas" layout="mixed" widths="200px,auto"}
+| Función | ¿Qué informa? |
+| --- | --- |
+| `str(df)` | Estructura del objeto: tipo de cada columna, primeros valores, dimensiones |
+| `class(x)` | Clase del objeto: `numeric`, `character`, `factor`, `data.frame`, etc. |
+| `length(x)` | Número de elementos de un vector; en un *data frame*, número de columnas |
+| `nrow(df)` / `ncol(df)` | Número de filas y de columnas de un *data frame* |
+| `head(df)` / `tail(df)` | Primeras o últimas 6 filas del *data frame* (ajustable con `n=`) |
+| `summary(df)` | Resumen estadístico por columna: mínimo, máximo, media, mediana, cuartiles y NA |
+:::
+
+## 4. Lectura de datos externos
+
+En la práctica profesional, los datos rara vez se escriben directamente en el *script*: lo habitual es **cargarlos desde archivos externos** (Wickham & Grolemund, 2023).
+
+```r
+# Estándar internacional (coma como separador)
+df <- read.csv("archivo.csv")
+
+# Exportación chilena de Excel (punto y coma como separador)
+df <- read.csv2("archivo.csv") # equivalente a sep=";" y dec=","
+df <- read.csv("archivo.csv", sep=";", dec=",") # explícito
+
+# Archivo Excel directamente
+library(readxl)
+df <- read_excel("archivo.xlsx")
+```
+
+:::callout[Importante: CSV con configuración regional chilena]{type="warning"}
+En muchas configuraciones en Chile, Excel exporta CSV con punto y coma (`;`) como separador y coma (`,`) como decimal. Usar `read.csv()` sin ajustar el separador genera un *data frame* con **una sola columna**. Para archivos exportados desde Excel en configuración regional chilena, usa siempre `read.csv2()` o `read.csv(sep=";", dec=",")`.
+:::
+
+## 5. Medidas de tendencia central en R
+
+:::callout[Ejemplo: más allá del promedio]{type="note"}
+Imagina que eres jefe de operaciones en una empresa de distribución de gas y quieres saber si el tiempo promedio de atención de reclamos es aceptable. Calculas la media y obtienes 3,2 días. Pero al revisar los datos descubres que el 90 % de los reclamos se resuelve en 1 o 2 días, y que hay 5 casos que tardaron 30 días o más por problemas legales especiales. La media de 3,2 días no refleja la experiencia real de la mayoría de tus clientes: una medida estadística bien o mal aplicada cambia por completo la interpretación.
+:::
+
+En esta segunda parte usarás las funciones estadísticas básicas de R: medidas de tendencia central (`mean`, `median`), medidas de dispersión (`sd`, `var`, `range`), frecuencias (`table`) y el resumen estadístico completo (`summary`). La idea es interpretar cada resultado en contexto, identificar cuándo una medida es apropiada y cuándo puede ser engañosa, y construir un primer análisis estadístico documentado en un *script* de R.
+
+Estas funciones operan principalmente sobre vectores y columnas de *data frames*. Si tienes claro cómo indexar y acceder a esas estructuras con `$`, `[ ]` o `[[ ]]`, ya tienes la mitad del camino recorrido; si no, conviene repasar la indexación antes de seguir.
+
+Las **medidas de tendencia central** buscan identificar el valor más representativo o típico de una distribución de datos (Arevalillo & Navarro Veguillas, 2011).
+
+:::table{#tabla04 caption="Medidas de tendencia central en R" layout="mixed" widths="150px,260px,auto"}
+| Medida | Función R | Consideraciones clave |
+| --- | --- | --- |
+| **Media aritmética** | `mean(x, na.rm=FALSE)` | Se ve afectada por valores atípicos. Si hay NA y no se especifica `na.rm=TRUE`, retorna NA |
+| **Mediana** | `median(x, na.rm=FALSE)` | Valor que separa el 50 % superior del 50 % inferior. Robusta ante atípicos extremos |
+| **Moda** | `names(which.max(table(x)))` | R no tiene una función para la moda estadística: `mode()` retorna el tipo del objeto. Se usa `which.max(table(x))` |
+:::
+
+Un ejemplo con datos de rendimiento académico:
+
+```r
+notas <- c(4.5, 5.2, 6.1, 3.8, 5.6, 6.7, 2.9, 5.1, 4.8, 5.2)
+mean(notas)
+median(notas)
+names(which.max(table(notas))) # moda
+```
+
+```terminal
+[1] 4.99
+[1] 5.15
+[1] "5.2"
+```
+
+La media (4,99) es levemente menor que la mediana (5,15), lo que sugiere una leve asimetría negativa: hay notas bajas (como el 2,9) que tiran el promedio hacia abajo. La moda es 5,2, la única nota que se repite.
+
+:::callout[Regla diagnóstica: media frente a mediana]{type="info"}
+- **Media > mediana:** distribución con cola a la derecha (valores altos extremos).
+- **Media < mediana:** distribución con cola a la izquierda (valores bajos extremos).
+- **Media ≈ mediana:** distribución aproximadamente simétrica.
+
+Este diagnóstico es el primer paso antes de elegir qué medida de tendencia central reportar (Arevalillo & Navarro Veguillas, 2011). Solo **sugiere** asimetría: esta debe confirmarse con gráficos o medidas adicionales.
+:::
+
+## 6. Medidas de dispersión en R
+
+La tendencia central sola es insuficiente: dos *datasets* con la misma media pueden ser completamente diferentes en su variabilidad. Las **medidas de dispersión** cuantifican esa variabilidad (Arevalillo & Navarro Veguillas, 2011).
+
+:::table{#tabla05 caption="Medidas de dispersión en R" layout="mixed" widths="140px,220px,120px,auto"}
+| Medida | Función R | Sensible a atípicos | Cuándo usar |
+| --- | --- | --- | --- |
+| **Varianza** | `var(x)` | Sí | Comparaciones matemáticas; poco intuitiva |
+| **Desviación estándar** | `sd(x)` | Sí | Reporte general; mismas unidades que los datos |
+| **Rango** | `range(x)` / `diff(range(x))` | Mucho | Solo como referencia inicial; muy sensible a extremos |
+| **IQR** (rango intercuartílico) | `IQR(x)` | No | Cuando hay atípicos; resume el 50 % central |
+| **Percentiles** | `quantile(x, probs=...)` | No | Análisis de la distribución completa; SLA (acuerdos de nivel de servicio) |
+:::
+
+### Coeficiente de variación
+
+El **coeficiente de variación** (CV) permite comparar la variabilidad entre variables con distintas unidades o escalas. Es la desviación estándar expresada como porcentaje de la media:
+
+$$
+CV = \frac{s}{\bar{x}} \times 100
+$$
+
+R no trae una función para el CV, así que se calcula manualmente:
+
+```r
+cv <- sd(x) / mean(x) * 100 # en porcentaje
+# CV < 15%: baja variabilidad relativa
+# CV > 50%: alta variabilidad relativa
+```
+
+Los umbrales del código anterior son **referencias orientativas**, no criterios universales: dependen del dominio de aplicación.
+
+## 7. La función summary() y su interpretación
+
+`summary(df)` es probablemente la función de diagnóstico más útil de R para un analista de datos. Aplicada sobre un *data frame*, genera un resumen estadístico de cada columna adaptado al tipo de variable (Wickham & Grolemund, 2023):
+
+- **Variables numéricas:** mínimo (`Min.`), primer cuartil (`1st Qu.`, Q1), mediana (`Median`), media (`Mean`), tercer cuartil (`3rd Qu.`, Q3), máximo (`Max.`) y, si hay NA, el recuento de NA (`NA's`).
+- **Variables de tipo factor o character:** frecuencia de cada nivel en los factores y de algunas variables categóricas.
+
+Por ejemplo, este es el resultado de `summary()` para una variable de ingresos:
+
+```terminal
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's
+ 180000  420000  650000  890000  980000 8500000      23
+```
+
+Lectura diagnóstica del resultado:
+
+- La media (890.000) es muy superior a la mediana (650.000) → **asimetría positiva severa**, causada por valores altos extremos.
+- Hay 23 valores faltantes → deben **tratarse antes del análisis**.
+- El máximo de 8.500.000 es sospechosamente alto → hay que **revisarlo** como posible atípico o error de captura.
+
+## 8. Estadísticas agrupadas con tapply()
+
+Para calcular estadísticos por grupos se usa `tapply()`, que aplica una función a subconjuntos de un vector definidos por un factor:
+
+```r
+# Mediana de tiempo de entrega por región
+tapply(pedidos$tiempo_entrega, pedidos$region, median)
+
+# Alternativa con dplyr (semana 8):
+pedidos %>% group_by(region) %>% summarise(mediana = median(tiempo_entrega))
+```
+
+## Preguntas de reflexión
+
+### Primeros pasos en estadística
+
+- Un colega te entrega un *script* de R que carga un archivo CSV con `read.csv()`, pero todos los datos aparecen en una sola columna. ¿Cuál sería tu diagnóstico y qué cambio exacto le recomendarías?
+- Tienes un *data frame* con 50.000 registros de clientes de una empresa de seguros. La columna `rut` es de tipo `numeric` y `fecha_contrato` es `character`. ¿Qué implicancias tiene esto para el análisis posterior?
+- En R, los factores conservan los niveles aunque se eliminen observaciones. Si filtras un *data frame* con las 15 regiones de Chile para quedarte solo con las de la Zona Norte, el factor sigue mostrando las 15 regiones originales. ¿Podría ser un problema en un análisis descriptivo?
+- Un vector en R solo puede contener elementos del mismo tipo. Sin embargo, si intentas crear `c(1, 2, "tres")`, R no genera un error, sino que convierte todos los elementos a `character`. ¿Por qué crees que R hace eso? ¿En qué situación real este comportamiento silencioso podría generar un error difícil de detectar?
+- Piensa en tu experiencia con datos en contextos académicos o laborales. ¿Usabas Excel, SPSS u otra herramienta? ¿Qué ventajas tiene R para este tipo de análisis?
+
+### Media, mediana y más
+
+- El Ministerio de Hacienda reporta que el ingreso mensual promedio de los trabajadores formales chilenos es de \$850.000. Un analista sindical argumenta que la mediana, de \$480.000, representa mejor la realidad. ¿Quién tiene razón? ¿En qué situaciones es correcto reportar la media y en cuáles es mejor la mediana?
+- Dos grupos de estudiantes tienen la misma media de notas (5,5), pero el grupo A tiene `sd = 0.3` y el grupo B, `sd = 1.8`. Como docente, ¿qué interpretación harías de cada grupo y qué decisiones pedagógicas distintas tomarías?
+- Al ejecutar `summary(df_clientes)` sobre el *dataset* de una financiera, la columna `tasa_interes` muestra un máximo de 285 %, cuando la tasa máxima convencional vigente en Chile era de 46,21 % anual. ¿Qué conclusiones sacas y qué pasos seguirías?
+- R no tiene una función incorporada para la moda. ¿Por qué crees que la moda se usa menos que la media y la mediana? ¿En qué tipo de datos o contextos es la medida más útil?
+- El CV de la variable «tiempo de procesamiento de pedidos» en un centro de distribución es de 95 %. ¿Qué te dice esto sobre el proceso y qué preguntas le harías al negocio antes de proponer mejoras basadas solo en la media?
+
+## Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "Andrea importa «ventas_2023.csv», exportado desde el ERP de su empresa con configuración regional chilena, usando read.csv(\"ventas_2023.csv\"). Al ejecutar ncol(df) obtiene 1, aunque el archivo debería tener 12 columnas.",
+		questionItems: [],
+		questionSuffix: "¿Cuál es la causa más probable?",
+		options: [
+			"El archivo usa punto y coma como separador; read.csv() asume coma y trata cada fila como un único campo.",
+			"El ERP omitió los delimitadores al exportar y concatenó todos los campos en una sola columna continua de texto sin separación visible.",
+			"ncol() retorna 1 cuando todas las columnas del archivo tienen el mismo tipo de dato, independientemente del número real de columnas.",
+			"read.csv() requiere el argumento sep.max=12 para procesar correctamente archivos con más de diez columnas separadas.",
+		],
+		correctIndex: 0
+	},
+	{
+		question: "El área de RRHH entrega un data frame donde la columna «turno» (con valores «Mañana», «Tarde» y «Noche») es de tipo character.",
+		questionItems: [],
+		questionSuffix: "¿Por qué conviene convertirla a factor antes de iniciar el análisis estadístico?",
+		options: [
+			"Porque R no admite columnas character en summary() ni en las funciones de estadística descriptiva estándar de la base del lenguaje.",
+			"Porque el factor indica a R que la variable es categórica, lo que afecta correctamente frecuencias, modelos y gráficos.",
+			"Porque los factores almacenan los valores como índices enteros en memoria, reduciendo significativamente el tamaño del dataset en RAM.",
+			"Porque as.factor() compara cada valor con los niveles esperados y descarta automáticamente los registros con valores no reconocidos.",
+		],
+		correctIndex: 1
+	},
+	{
+		question: "Camila trabaja con un data frame llamado «encuesta» de 800 filas. Necesita obtener el valor de la columna «edad» para la persona en la fila 15.",
+		questionItems: [],
+		questionSuffix: "¿Cuál de las siguientes expresiones es correcta y más idiomática en R?",
+		options: [
+			"encuesta[15] — accede a la columna 15 del data frame, no a la fila 15.",
+			"encuesta[edad, 15] — usa el nombre de la columna como índice de fila y 15 como índice de columna.",
+			"encuesta(15, \"edad\") — intenta llamar al data frame como si fuera una función, lo que genera un error.",
+			"encuesta$edad[15] — selecciona la columna «edad» por nombre y accede al elemento 15.",
+		],
+		correctIndex: 3
+	},
+	{
+		question: "Una estudiante ejecuta sd(c(5, 5, 5, 5, 5)) y var(c(5, 5, 5, 5, 5)). En ambos casos el resultado es 0.",
+		questionItems: [],
+		questionSuffix: "¿Qué significa esto estadísticamente?",
+		options: [
+			"El vector contiene NA que anulan el cálculo; se deben eliminar primero con na.rm=TRUE en ambas funciones.",
+			"sd() y var() requieren más de cinco elementos para operar correctamente; con exactamente cinco siempre retornan cero.",
+			"Hay un error en las funciones de R; la desviación estándar de cinco valores idénticos debería ser igual a esos valores, no cero.",
+			"La variable es constante: como todos los valores son iguales a la media, cada diferencia es 0; por ello var=0 y sd=0.",
+		],
+		correctIndex: 3
+	},
+	{
+		question: "Una analista necesita calcular la mediana del tiempo de entrega de pedidos agrupada por región. La columna «region» es un factor con 15 niveles.",
+		questionItems: [],
+		questionSuffix: "¿Cuál es la forma correcta y eficiente en R?",
+		options: [
+			"tapply(pedidos$tiempo_entrega, pedidos$region, median) aplica la función a cada nivel del factor en una sola llamada.",
+			"Ejecutar median(pedidos$tiempo_entrega) quince veces, cambiando manualmente el nombre de la región en cada llamada a la función.",
+			"aggregate(tiempo_entrega ~ region, data=pedidos, FUN=mean); R recalcula internamente la mediana para columnas de tipo factor.",
+			"Usar un loop for que filtre el data frame por región, calcule median() en cada iteración y almacene cada resultado en un vector separado.",
+		],
+		correctIndex: 0
+	},
+]} />

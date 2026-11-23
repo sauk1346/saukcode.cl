@@ -1,0 +1,439 @@
+# Datos sucios, problemas reales y de lo crudo a lo útil
+
+:::callout[Analogía: el médico de los datos]{type="info"}
+Un médico no operaría a un paciente sin antes revisar sus exámenes y asegurarse de que el expediente clínico está completo y correcto. Un piloto no despegaría sin completar la lista de chequeo previa al vuelo. En análisis de datos, la **limpieza de datos** cumple ese mismo rol: es el proceso sistemático de detectar y corregir los problemas de calidad que harían que cualquier análisis posterior fuera incorrecto o inútil. Se trata de convertirse en ese «médico de los datos», capaz de diagnosticar y tratar los problemas más frecuentes.
+:::
+
+En R hay funciones para abordar los tres problemas principales de calidad de datos: **valores faltantes** (NA), con `is.na()`, `na.omit()` y `complete.cases()`; **registros duplicados**, con `duplicated()` y `unique()`; y **errores de tipo y formato**, con funciones de conversión como `as.numeric()`, `as.factor()` y `as.Date()`, y de limpieza de texto como `trimws()` y `gsub()`. Después viene el paquete **dplyr**, parte del ecosistema tidyverse y estándar moderno para manipular datos en R: sus cinco verbos principales (`filter()`, `select()`, `mutate()`, `summarise()` y `arrange()`) se conectan mediante el operador pipe `%>%`. A eso se suman técnicas de normalización y recodificación de variables.
+
+Con `str()` se lee la estructura de los datos y con `summary()` se detectan NA y rangos anómalos; ahora corresponde pasar **del diagnóstico a la acción correctiva**. Toda técnica de limpieza que se aplique debe estar justificada y documentada en el *script*, porque es parte de la trazabilidad metodológica del análisis. La secuencia **limpieza → transformación → validación** es el flujo estándar de preprocesamiento de datos en cualquier proyecto profesional.
+
+## 1. Valores faltantes (NA)
+
+En R, los valores faltantes se representan como `NA` (*Not Available*) para datos generales, `NaN` (*Not a Number*) para resultados matemáticamente indefinidos (como 0/0), e `Inf` y `-Inf` para infinitos (López Porrero & Pérez Vázquez, 2009).
+
+:::table{#tabla01 caption="Tipos de valores especiales en R" layout="mixed" widths="120px,auto,auto"}
+| Tipo | Descripción | Ejemplo |
+| --- | --- | --- |
+| `NA` | Dato ausente o no disponible (el más común) | Campo vacío al importar un CSV |
+| `NaN` | Resultado matemáticamente indefinido | `0/0`, `sqrt(-1)` |
+| `Inf` / `-Inf` | Resultado infinito positivo o negativo | `1/0`, `log(0)` |
+:::
+
+Cada uno requiere un tratamiento diferente. Para los `NA`, el flujo habitual es diagnosticar cuántos hay, medir cuántos datos se perderían al eliminarlos y decidir entre eliminar o imputar:
+
+```r
+# Diagnóstico de NA
+sum(is.na(df))            # total de NA en el data frame
+colSums(is.na(df))        # NA por columna (muy útil para priorizar)
+
+# Eliminación (usar con cautela)
+df_limpio <- df[complete.cases(df), ]   # filas sin ningún NA
+df_limpio <- na.omit(df)                # equivalente
+
+# Antes de eliminar: ¿cuántos datos pierdo?
+nrow(na.omit(df)) / nrow(df) * 100 # porcentaje de datos retenidos
+
+# Imputación simple: reemplazar NA por la mediana
+df$ventas[is.na(df$ventas)] <- median(df$ventas, na.rm=TRUE)
+```
+
+:::table{#tabla02 caption="Regla de decisión recomendada para NA" layout="mixed" widths="200px,auto"}
+| Porcentaje de NA en una columna | Qué hacer |
+| --- | --- |
+| **Menos del 5 %** | Eliminar filas con `na.omit()` es razonablemente seguro |
+| **Entre 5 % y 20 %** | Evaluar el patrón (¿son aleatorios o sistemáticos?) y considerar imputación |
+| **Más del 20 %** | Considerar eliminar la columna completa o una imputación avanzada |
+:::
+
+### Actividad: diagnosticar y corregir
+
+Un *data frame* de clientes llega con esta forma:
+
+:::table{#tabla03 caption="Data frame de clientes con valores faltantes" layout="mixed" widths="auto,auto,auto,auto"}
+| id_cliente | nombre | edad | ingreso |
+| --- | --- | --- | --- |
+| 101 | Ana | 34 | 850000 |
+| 102 | Luis | NA | 720000 |
+| 103 | María | 41 | 910000 |
+| 104 | Pedro | NA | 680000 |
+:::
+
+La función adecuada para diagnosticar el problema es `colSums(is.na(df))`, que muestra en qué columna están los faltantes, y el porcentaje de filas que sobrevivirían a `na.omit()` indica cuánto costaría eliminarlas:
+
+```r
+colSums(is.na(df))
+nrow(na.omit(df)) / nrow(df) * 100
+```
+
+```terminal
+id_cliente     nombre       edad    ingreso 
+         0          0          2          0 
+[1] 50
+```
+
+Eliminar las filas con NA descartaría la mitad de los clientes. Una corrección simple es imputar la edad faltante con la mediana de las edades conocidas, que es $(34 + 41)/2 = 37{,}5$:
+
+```r
+df$edad[is.na(df$edad)] <- median(df$edad, na.rm=TRUE)
+df
+```
+
+```terminal
+  id_cliente nombre edad ingreso
+1        101    Ana 34.0  850000
+2        102   Luis 37.5  720000
+3        103  María 41.0  910000
+4        104  Pedro 37.5  680000
+```
+
+:::callout[Imputar también es una decisión]{type="warning"}
+Con un 50 % de NA en `edad`, la regla de decisión recomienda evaluar si conviene eliminar la columna o usar una imputación más avanzada. En un conjunto tan pequeño la mediana sirve para ilustrar la técnica, pero en un proyecto real la decisión debe justificarse y quedar documentada en el *script*.
+:::
+
+## 2. Duplicados
+
+`duplicated(x)` es la función base de R para detectar duplicados. Retorna `TRUE` para la segunda y siguientes ocurrencias de una fila idéntica; la primera ocurrencia siempre retorna `FALSE`:
+
+```r
+sum(duplicated(df))                  # cuántos duplicados exactos hay
+df_sin_dup <- df[!duplicated(df), ]  # eliminar duplicados
+df_sin_dup <- unique(df)             # alternativa equivalente
+```
+
+Para detectar duplicados basados solo en ciertas columnas (por ejemplo, identificar clientes duplicados por RUT aunque tengan distinto ID de registro):
+
+```r
+# Duplicados basados solo en ciertas columnas (ej: RUT)
+dup_rut <- df[duplicated(df$rut) | duplicated(df$rut, fromLast=TRUE), ]
+# fromLast=TRUE incluye también la PRIMERA ocurrencia del duplicado
+```
+
+:::callout[El argumento fromLast]{type="info"}
+`fromLast=TRUE` recorre el vector desde el final, de modo que marca como duplicadas todas las ocurrencias salvo la última, **incluida la primera**. Al combinar ambas búsquedas con `|`, quedan marcados **todos** los registros involucrados en una duplicación, no solo los segundos.
+:::
+
+Con un vector pequeño se ve qué marca cada búsqueda:
+
+```r
+x <- c("A", "B", "A", "C", "B")
+duplicated(x)
+duplicated(x, fromLast=TRUE)
+duplicated(x) | duplicated(x, fromLast=TRUE)
+```
+
+```terminal
+[1] FALSE FALSE  TRUE FALSE  TRUE
+[1]  TRUE  TRUE FALSE FALSE FALSE
+[1]  TRUE  TRUE  TRUE FALSE  TRUE
+```
+
+## 3. Conversión de tipos y limpieza de texto
+
+Uno de los problemas más frecuentes al importar datos es la **discrepancia de tipos**: variables que deberían ser numéricas llegan como *character*, fechas importadas como texto o categorías codificadas como números (López Porrero & Pérez Vázquez, 2009).
+
+:::table{#tabla04 caption="Funciones de conversión de tipos" layout="mixed" widths="220px,160px,auto"}
+| Función | Convierte a… | Nota importante |
+| --- | --- | --- |
+| `as.numeric(x)` | Numérico | Los valores no convertibles quedan como NA, con advertencia |
+| `as.integer(x)` | Entero | Trunca los decimales sin redondear |
+| `as.character(x)` | Texto | La conversión siempre es exitosa |
+| `as.factor(x)` | Factor categórico | Los niveles se crean a partir de los valores únicos |
+| `as.Date(x, format=...)` | Fecha | Hay que especificar el formato exacto: `"%d/%m/%Y"` |
+:::
+
+Los datos de texto, además, suelen tener espacios extra, mayúsculas y minúsculas inconsistentes o caracteres especiales:
+
+:::table{#tabla05 caption="Funciones de limpieza de texto" layout="mixed" widths="220px,auto"}
+| Función | Qué hace |
+| --- | --- |
+| `trimws(x)` | Elimina los espacios al inicio y al final del *string* |
+| `tolower(x)` / `toupper(x)` | Estandariza a minúsculas o mayúsculas |
+| `gsub(patrón, rep, x)` | Reemplaza patrones de texto (expresiones regulares) |
+:::
+
+Ejemplo de limpieza de fechas en formato chileno:
+
+```r
+# Fecha como character "15/03/2023" → tipo Date
+df$fecha_solicitud <- as.Date(df$fecha_solicitud, format="%d/%m/%Y")
+
+# Calcular días transcurridos desde cada solicitud hasta hoy
+df$dias_transcurridos <- as.numeric(Sys.Date() - df$fecha_solicitud)
+```
+
+:::callout[Separadores de miles y decimales]{type="warning"}
+Un monto como `"1.500.000"` no se puede convertir directamente: `as.numeric()` devuelve NA porque R usa el punto como separador decimal. Primero hay que quitar los puntos de miles. En `gsub()` el punto es un comodín de las expresiones regulares (equivale a «cualquier carácter»), por lo que se usa `fixed=TRUE` para tratarlo como texto literal:
+
+```r
+as.numeric("1.500.000")
+as.numeric(gsub(".", "", "1.500.000", fixed=TRUE))
+```
+
+```terminal
+[1] NA
+Warning message:
+NAs introduced by coercion 
+[1] 1500000
+```
+
+Antes de reemplazar comas o puntos, conviene verificar si cumplen el rol de separador decimal o de miles en esos datos.
+:::
+
+## 4. El ecosistema tidyverse y el operador pipe
+
+Diagnosticar y corregir los problemas básicos (NA, duplicados, tipos incorrectos) es solo el primer paso; luego viene la **transformación**: dar forma útil a los datos. No basta con tener datos limpios en el sentido de «sin errores»: a veces los datos están técnicamente correctos, pero en un formato o escala que los hace inutilizables para el análisis. Por ejemplo, se puede tener correctamente el ingreso mensual en pesos y la altura en metros, pero si no se escalan de forma comparable, algoritmos como k-means o la regresión los tratarán de forma desigual. Los datos ya limpios (sin NA, sin duplicados y con tipos correctos) son el punto de partida de estas transformaciones.
+
+El operador **pipe** (`%>%`) del paquete magrittr pasa el resultado de la expresión de la izquierda como primer argumento de la función de la derecha. Así se encadenan operaciones de forma legible: el código se lee como una receta de pasos sucesivos en lugar de una función anidada (Betancourt Uscátegui & Iryopogu, 2021).
+
+```r
+# Sin pipe (lectura de adentro hacia afuera — difícil de seguir)
+result <- summarise(filter(df, region == "RM"), media = mean(ventas))
+
+# Con pipe (lectura de arriba hacia abajo — natural y legible)
+result <- df %>%
+  filter(region == "RM") %>%
+  summarise(media = mean(ventas))
+```
+
+:::callout[Pipe nativo de R]{type="note"}
+Desde R 4.1.0, R base incorpora su propio operador pipe nativo: `|>`. Su comportamiento es casi idéntico al `%>%` de magrittr en la mayoría de los casos. En esta asignatura se usa `%>%` por ser el más documentado en los recursos bibliográficos disponibles.
+:::
+
+## 5. Los cinco verbos de dplyr
+
+dplyr implementa una **gramática de manipulación de datos**: cada verbo realiza una operación bien definida sobre un *data frame* y devuelve un *data frame*, lo que facilita componer transformaciones complejas (Wickham & Grolemund, 2023).
+
+:::table{#tabla06 caption="Verbos de dplyr" layout="mixed" widths="240px,auto"}
+| Verbo | Qué hace |
+| --- | --- |
+| `filter()` | Selecciona las filas que cumplen una condición |
+| `select()` | Selecciona o excluye columnas |
+| `mutate()` | Crea o modifica columnas |
+| `arrange()` | Ordena las filas |
+| `summarise()` + `group_by()` | Calcula estadísticos por grupo |
+:::
+
+```r
+# filter(): selecciona filas que cumplen una condición
+df %>% filter(region == "Antofagasta" & ventas > 500000)
+
+# select(): selecciona o excluye columnas
+df %>% select(id, nombre, ventas)    # conservar estas columnas
+df %>% select(-id_temporal)          # excluir esta columna
+
+# mutate(): crea o modifica columnas
+df %>% mutate(
+  ventas_miles = ventas / 1000,
+  es_premium   = ventas > quantile(ventas, 0.9)
+)
+
+# arrange(): ordena las filas
+df %>% arrange(desc(ventas))    # de mayor a menor
+
+# summarise() + group_by(): calcula estadísticos por grupo
+df %>%
+  group_by(region) %>%
+  summarise(ventas_total = sum(ventas), n_clientes = n())
+```
+
+### Actividad: del requerimiento al código
+
+Una empresa necesita analizar sus ventas para identificar clientes con alto desempeño comercial. El requerimiento es: identificar las ventas realizadas en la Región Metropolitana por montos superiores a \$500.000, conservar únicamente las columnas `id_cliente`, `region` y `ventas`, crear una nueva variable llamada `ventas_miles` y calcular el promedio final de ventas en miles de pesos.
+
+:::table{#tabla07 caption="Dataset inicial de ventas" layout="mixed" widths="auto,auto,auto,auto,auto"}
+| id_cliente | nombre | region | ventas | canal |
+| --- | --- | --- | --- | --- |
+| 101 | Ana | RM | 850000 | Web |
+| 102 | Luis | Biobío | 420000 | Tienda |
+| 103 | María | RM | 720000 | Web |
+| 104 | Pedro | RM | 310000 | Tienda |
+| 105 | Carla | Valparaíso | 950000 | Web |
+:::
+
+:::solution[Pipeline resuelto]
+Cada parte del requerimiento corresponde a un verbo, en este orden: `filter()` → `select()` → `mutate()` → `summarise()`.
+
+```r
+df %>%
+  filter(region == "RM" & ventas > 500000) %>%
+  select(id_cliente, region, ventas) %>%
+  mutate(ventas_miles = ventas / 1000) %>%
+  summarise(promedio_miles = mean(ventas_miles))
+```
+
+```terminal
+  promedio_miles
+1            785
+```
+
+El filtro conserva solo a Ana (850.000) y María (720.000): Pedro es de la RM, pero vende menos de \$500.000, y Luis y Carla son de otras regiones. En miles de pesos, el promedio es $(850 + 720)/2 = 785$.
+:::
+
+## 6. Normalización y recodificación de variables
+
+La **normalización** (o escalado) es el proceso de transformar variables numéricas a una escala estándar para hacerlas comparables entre sí (Roig et al., 2017). Las dos técnicas más comunes son Min-Max y Z-score:
+
+$$
+x' = \frac{x - \min}{\max - \min} \qquad\qquad x' = \frac{x - \text{media}}{sd}
+$$
+
+:::table{#tabla08 caption="Técnicas de normalización" layout="mixed" widths="120px,auto,auto"}
+| Técnica | Función en R | Cuándo usarla |
+| --- | --- | --- |
+| **Min-Max** | `mutate(x_norm = (x - min(x)) / (max(x) - min(x)))` | Cuando se requiere el rango [0, 1]. Es sensible a los atípicos |
+| **Z-score** | `mutate(x_std = as.numeric(scale(x)))` | Es más robusta ante atípicos. Requiere una distribución aproximadamente normal |
+:::
+
+:::callout[scale() retorna una matriz]{type="warning"}
+La función `scale()` retorna una matriz (clase *matrix/array*) aunque sea de una sola columna. Al usarla con `mutate()`, envuelve siempre el resultado con `as.numeric()`: `mutate(x_std = as.numeric(scale(x)))`. Así el resultado se almacena como un vector numérico simple en el *data frame*.
+:::
+
+:::callout[Datos nuevos fuera del rango]{type="info"}
+Los registros nuevos se normalizan con los parámetros (mínimo y máximo) del entrenamiento. Si un valor nuevo cae fuera de ese rango, su valor Min-Max queda fuera de [0, 1]: con edades de entrenamiento entre 18 y 75 años, una edad de 95 da $(95 - 18)/(75 - 18) = 77/57 \approx 1{,}35$. Esto puede afectar a modelos que asumen el rango [0, 1], como las redes neuronales con activación sigmoide; Z-score no tiene esa restricción de rango.
+:::
+
+La **recodificación** cambia los valores de una variable a una escala diferente o la categoriza. En dplyr, `case_when()` es el equivalente del `CASE WHEN` de SQL (Wickham & Grolemund, 2023):
+
+```r
+df %>% mutate(tramo_edad = case_when(
+  edad < 30              ~ "Joven",
+  edad >= 30 & edad < 60 ~ "Adulto",
+  edad >= 60             ~ "Adulto mayor",
+  TRUE                   ~ NA_character_ # cláusula "else"
+))
+```
+
+## 7. Caso aplicado: gestión de pacientes en un servicio de salud regional
+
+Un analista de datos de un Servicio de Salud regional recibe una base con información de más de 50.000 pacientes. El equipo médico desea identificar a los pacientes con mayor riesgo de hospitalización para planificar recursos y reducir los tiempos de espera. Las columnas son `id_paciente`, `edad`, `comuna`, `diagnostico_principal`, `cantidad_consultas`, `dias_hospitalizacion` y `fecha_ultima_atencion`.
+
+Antes de construir cualquier análisis descriptivo o modelo predictivo, hay que preparar los datos con las herramientas de transformación:
+
+```r
+library(dplyr)
+
+pacientes_limpios <- pacientes %>%
+  filter(!is.na(edad)) %>%
+  mutate(
+    grupo_etario = case_when(
+      edad < 18 ~ "Menor de edad",
+      edad < 65 ~ "Adulto",
+      TRUE ~ "Adulto mayor"
+    )
+  ) %>%
+  group_by(comuna, grupo_etario) %>%
+  summarise(
+    promedio_hospitalizacion = mean(dias_hospitalizacion),
+    total_pacientes = n()
+  )
+```
+
+Gracias a esta transformación, el equipo puede identificar las comunas con mayores niveles de hospitalización y priorizar los recursos sanitarios.
+
+Sin embargo, antes de confiar en los resultados hay que **validar** los datos: verificar si existen registros duplicados de pacientes, edades imposibles (por ejemplo, 150 años), fechas de atención futuras, diagnósticos escritos de manera inconsistente o valores faltantes en variables críticas, entre otros. Una mala calidad de datos puede conducir a conclusiones incorrectas y afectar decisiones clínicas relevantes.
+
+### Privacidad y protección de datos
+
+Los datos de salud son especialmente sensibles. Durante el proceso analítico se deben aplicar medidas como:
+
+- Evitar compartir nombres, RUT o direcciones completas.
+- Trabajar con identificadores anonimizados.
+- Limitar el acceso a la información según los perfiles autorizados.
+- Resguardar los datos conforme a la normativa vigente y las políticas institucionales.
+
+El objetivo es proteger la confidencialidad de las personas y minimizar los riesgos de exposición de información personal.
+
+### Riesgos para la toma de decisiones
+
+Si los datos contienen errores o sesgos, las conclusiones pueden ser incorrectas:
+
+- Sobreestimar la demanda hospitalaria de una comuna.
+- Asignar recursos médicos donde no son necesarios.
+- Omitir grupos de pacientes vulnerables por problemas de calidad de datos.
+- Construir modelos predictivos poco confiables.
+
+Por esta razón, toda transformación realizada con dplyr debe documentarse y justificarse como parte del proceso analítico.
+
+## Preguntas de reflexión
+
+### Limpieza en R
+
+- Un *dataset* de 20.000 registros de clientes da, con `colSums(is.na(df))`: nombre = 0, rut = 0, edad = 850, ingreso = 3200 y region = 0. Si se eliminan todas las filas con NA usando `na.omit()`, ¿cuántos registros se perderían aproximadamente? ¿Es la estrategia correcta o hay una mejor opción?
+- Una columna «monto» de tipo *character* tiene valores como `"1.500.000"`. Al aplicar `as.numeric(df$monto)`, todos los resultados son NA. ¿Por qué? ¿Qué pasos exactos permitirían convertirla correctamente a numérico?
+- `sum(duplicated(df_clientes))` da 0, pero hay dos filas con el mismo RUT y distinto ID de cliente. ¿Es un duplicado según `duplicated()`? ¿Cómo se detectaría y qué decisión se tomaría?
+- El 35 % de los valores de una variable clave está en NA. ¿Qué análisis haría falta antes de decidir entre eliminar esos registros o imputar? ¿Qué información del contexto del negocio se necesitaría?
+- ¿Por qué documentar cada paso de limpieza en el *script* de R (con comentarios) es una práctica profesional y ética importante? ¿Qué podría pasar si un análisis que influye en una decisión pública no tiene documentados sus pasos de limpieza?
+
+### Transformación y validación
+
+- Un *dataset* tiene sueldos de trabajadores del sector público (de \$350.000 a \$4.500.000) y años de experiencia (de 0 a 35). ¿Qué tipo de normalización conviene aplicar antes de k-means y por qué? ¿Qué pasaría si no se normaliza?
+- ¿Cómo sería, en palabras y en código con pipe, un *pipeline* de dplyr que filtre los clientes con ventas mayores a \$1.000.000, calcule su ticket promedio por región y ordene de mayor a menor ticket?
+- Tras normalizar el sueldo con Min-Max, llega un registro de \$6.500.000, superior al máximo del entrenamiento, y su valor normalizado resulta mayor que 1. ¿Es un problema? ¿Cómo se maneja?
+- Con una variable «nota» de 1 a 7, ¿cómo se usaría `case_when()` para crear «resultado»: «Reprobado» (`nota < 4`), «Aprobado» (`4 <= nota < 5.5`), «Bueno» (`5.5 <= nota < 6.5`) y «Excelente» (`nota >= 6.5`)?
+- En el proceso completo de limpieza y transformación, ¿qué decisiones son las más difíciles de justificar? ¿Qué relación hay entre la calidad de los datos y la confiabilidad de los resultados?
+
+## Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "Un analista del SERNAC trabaja con 15.000 reclamos. La variable «monto_reclamado» tiene 4.200 valores NA (28 %). Un colega propone usar na.omit(df).",
+		questionItems: [],
+		questionSuffix: "¿Es una decisión adecuada?",
+		options: [
+			"No; se debe analizar los NA antes de eliminar datos.",
+			"Sí; es el procedimiento estándar en cualquier base con NA.",
+			"Sí; los registros sin monto no son útiles para análisis.",
+			"No; na.omit() no se usa en bases grandes de datos.",
+		],
+		correctIndex: 0
+	},
+	{
+		question: "La variable «fecha_solicitud» llega como texto en formato «15/03/2023». Se requiere calcular los días transcurridos hasta hoy.",
+		questionItems: [],
+		questionSuffix: "¿Cuál es la secuencia correcta en R?",
+		options: [
+			"Convertir a Date con as.Date() y luego calcular la diferencia con Sys.Date() para obtener los días.",
+			"Usar as.numeric() directamente sobre la columna de texto para obtener los días transcurridos.",
+			"Aplicar difftime() directamente sin convertir la variable a formato fecha.",
+			"Definir la columna como Date desde la importación del archivo y evitar conversiones posteriores.",
+		],
+		correctIndex: 0
+	},
+	{
+		question: "Un analista reemplaza comas por puntos en precios usando gsub(\",\", \".\", df$precio). Valores como «1,500» se transforman en 1.5.",
+		questionItems: [],
+		questionSuffix: "¿Qué problema ocurrió?",
+		options: [
+			"gsub() no es adecuada y debe reemplazarse por funciones de limpieza especializadas.",
+			"Debió usarse sub() en lugar de gsub() para evitar múltiples reemplazos.",
+			"No se verificó si la coma era separador decimal o de miles antes de aplicar la transformación.",
+			"La transformación es correcta y corresponde a la convención numérica estándar.",
+		],
+		correctIndex: 2
+	},
+	{
+		question: "Una analista necesita filtrar embarques del puerto de Valparaíso con tonelaje > 5.000 t, seleccionar las columnas id/puerto/tonelaje/fecha y ordenar por tonelaje descendente.",
+		questionItems: [],
+		questionSuffix: "¿Cuál es el pipeline dplyr correcto?",
+		options: [
+			"embarques %>% select(id,puerto,tonelaje,fecha) %>% filter(puerto==\"Valparaíso\", tonelaje>5000) %>% arrange(tonelaje)",
+			"embarques %>% filter(puerto==\"Valparaíso\" & tonelaje>5000) %>% select(id,puerto,tonelaje,fecha) %>% arrange(desc(tonelaje))",
+			"arrange(desc(tonelaje), filter(embarques, puerto==\"Valparaíso\"), select(id,puerto))",
+			"embarques %>% summarise() %>% filter(tonelaje>5000) %>% select(puerto,fecha)",
+		],
+		correctIndex: 1
+	},
+	{
+		question: "Un data scientist aplica normalización Min-Max a «edad» (rango 18-75 años).",
+		questionItems: [],
+		questionSuffix: "Al procesar nuevos registros con edades hasta 95 años, ¿qué valores normalizados tendrán?",
+		options: [
+			"Valor normalizado exactamente 1,0 para todos los registros con edad > 75; Min-Max aplica un clampeo automático al máximo del rango de entrenamiento.",
+			"Los registros con edad > 75 son automáticamente excluidos del análisis por estar fuera del rango de entrenamiento de la normalización.",
+			"La normalización Min-Max se recalcula automáticamente al detectar nuevos valores fuera del rango original del entrenamiento.",
+			"Valores normalizados mayores que 1 (hasta ~1,35 para 95 años), violando el rango [0,1] y potencialmente afectando modelos que asumen ese rango.",
+		],
+		correctIndex: 3
+	},
+]} />

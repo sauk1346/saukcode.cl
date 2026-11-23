@@ -1,0 +1,336 @@
+# Describir para comprender y patrones ocultos
+
+Hasta ahora has aprendido a manejar R, calcular estadísticas básicas, limpiar y transformar datos. Llega el momento en que los datos comienzan a contar su historia. El **análisis estadístico descriptivo** es el proceso sistemático de caracterizar un conjunto de datos mediante medidas numéricas y visualizaciones, con el objetivo de comprender su estructura, identificar patrones y generar hipótesis. No es el paso final: es el puente entre los datos depurados y los modelos predictivos que vienen más adelante.
+
+En esta lectura aplicarás técnicas de análisis **univariado** (una variable a la vez), **bivariado** (pares de variables) y **multivariado** (varias variables en conjunto). Usarás `table()`, `hist()`, `quantile()`, `boxplot()` y `barplot()` para describir variables de forma individual, y `cor()`, `plot()` y `pairs()` para explorar relaciones, construir matrices de correlación e interpretar cómo se comportan distintas variables en conjunto. También aprenderás a seleccionar la visualización adecuada según el tipo de variable y a distinguir entre **correlación y causalidad**, para evitar conclusiones erróneas en contextos de negocio o del entorno local.
+
+Los datos ya limpios y transformados son el *input* (la entrada) de estas técnicas. Un análisis descriptivo sobre datos sin limpiar produce resultados distorsionados: si durante la exploración encuentras anomalías que no detectaste antes (por ejemplo, una distribución bimodal inexplicable, valores atípicos o relaciones poco coherentes), debes volver a revisar la limpieza antes de avanzar. Comprender bien estos patrones te permitirá seleccionar las variables más relevantes para los futuros modelos predictivos.
+
+## 1. Distribución de frecuencias y medidas de posición
+
+### Distribución de frecuencias
+
+La **distribución de frecuencias** muestra cuántas veces ocurre cada valor o rango de valores en un *dataset* (conjunto de datos). En R:
+
+:::table{#tabla01 caption="Funciones para distribuciones de frecuencia" layout="mixed" widths="200px,170px,auto"}
+| Función | Tipo de variable | Descripción |
+| --- | --- | --- |
+| `table(x)` | Categórica / discreta | Frecuencias absolutas. Para variables con pocos valores únicos |
+| `prop.table(table(x))` | Categórica / discreta | Frecuencias relativas (proporciones). Multiplicar ×100 para obtener porcentajes |
+| `hist(x, breaks=20)` | Numérica continua | Histograma. El argumento `breaks` controla el número de intervalos |
+:::
+
+### Medidas de posición
+
+Las **medidas de posición** van más allá de la media y la mediana: los **cuartiles** y **percentiles** permiten caracterizar la distribución completa.
+
+:::table{#tabla02 caption="Funciones para medidas de posición" layout="mixed" widths="200px,170px,auto"}
+| Función | Tipo de variable | Descripción |
+| --- | --- | --- |
+| `quantile(x, probs=...)` | Numérica continua | Calcula percentiles específicos, por ejemplo 0.10, 0.25, 0.50, 0.75 y 0.90 |
+| `boxplot(x)` | Numérica | Diagrama de caja: Q1, mediana, Q3, bigotes y atípicos en un solo gráfico |
+| `boxplot(y ~ grupo, data=df)` | Numérica vs. categórica | *Boxplot* comparativo por grupo. Ideal para análisis bivariado |
+:::
+
+### Ejemplo aplicado: tiempo de espera en urgencias
+
+Análisis del tiempo de espera en urgencias de un hospital chileno:
+
+```r
+# Distribución de frecuencias por tipo de atención
+table(df$tipo_atencion)
+prop.table(table(df$tipo_atencion)) * 100   # porcentajes
+
+# Distribución de tiempo de espera (variable continua)
+hist(df$tiempo_espera_min, breaks=30,
+     main="Distribución del tiempo de espera",
+     xlab="Minutos", col="steelblue")
+
+# Percentiles clave para SLA de atención
+quantile(df$tiempo_espera_min, probs=c(0.25, 0.50, 0.75, 0.90, 0.95))
+
+# Boxplot comparativo por tipo de atención
+boxplot(tiempo_espera_min ~ tipo_atencion, data=df,
+        main="Tiempo de espera por tipo de atención",
+        col=c("steelblue","tomato","forestgreen"))
+```
+
+Para ver qué entregan las funciones numéricas, puedes aplicarlas a un `df` pequeño de cinco pacientes:
+
+```r
+df <- data.frame(
+  tipo_atencion = c("Urgencia", "Consulta general", "Urgencia",
+                    "Especialidad", "Consulta general"),
+  tiempo_espera_min = c(25, 42, 18, 65, 38)
+)
+
+table(df$tipo_atencion)
+prop.table(table(df$tipo_atencion)) * 100
+quantile(df$tiempo_espera_min, probs=c(0.25, 0.50, 0.75, 0.90, 0.95))
+```
+
+```terminal
+
+Consulta general     Especialidad         Urgencia 
+               2                1                2 
+
+Consulta general     Especialidad         Urgencia 
+              40               20               40 
+ 25%  50%  75%  90%  95% 
+25.0 38.0 42.0 55.8 60.4 
+```
+
+`table()` ordena las categorías alfabéticamente; `prop.table()` divide cada frecuencia por el total (5), y `quantile()` indica, por ejemplo, que el 90 % de los pacientes esperó 55,8 minutos o menos.
+
+## 2. Gráficos según el tipo de variable
+
+La elección del tipo de gráfico es una **decisión metodológica, no estética**. Usar el gráfico equivocado oculta información en lugar de revelarla.
+
+:::table{#tabla03 caption="Qué gráfico usar en cada situación" layout="mixed" widths="220px,180px,auto"}
+| Situación | Función R | Por qué es la correcta |
+| --- | --- | --- |
+| Variable numérica continua | `hist(x)` | Muestra la forma completa de la distribución y permite detectar asimetría y modas |
+| Variable numérica discreta (pocos valores) | `barplot(table(x))` | Las barras discretas representan cada valor entero mejor que un histograma |
+| Variable categórica (menos de 8 categorías) | `barplot(table(x))` | Permite comparar frecuencias entre categorías con facilidad |
+| Distribución numérica entre grupos | `boxplot(y ~ grupo)` | Muestra mediana, IQR, simetría y atípicos de cada grupo en la misma escala |
+| Relación entre dos variables numéricas | `plot(x, y)` | El gráfico de dispersión (*scatter plot*) permite visualizar dirección, forma y fuerza de la relación |
+| Proporciones de pocas categorías (2 a 4) | `pie(table(x))` | Solo es útil con muy pocas categorías y diferencias claras. Evitarlo en general |
+:::
+
+:::callout[Sobre los gráficos de torta]{type="warning"}
+Los gráficos de torta (*pie charts*) son difíciles de interpretar con más de 4 o 5 categorías y cuando las diferencias entre proporciones son pequeñas. El cerebro humano compara longitudes con mucha mayor precisión que ángulos. Para 5 o más categorías, prefiere siempre un `barplot` ordenado de mayor a menor frecuencia.
+:::
+
+### Actividad: un objetivo, un gráfico
+
+Un hospital necesita analizar el tiempo de espera de 500 pacientes atendidos durante el último mes. Sus primeras filas son:
+
+:::table{#tabla04 caption="Dataset de tiempos de espera (primeras filas)" layout="mixed" widths="auto,auto,auto"}
+| id_paciente | tipo_atencion | tiempo_espera_min |
+| --- | --- | --- |
+| 1001 | Urgencia | 25 |
+| 1002 | Consulta general | 42 |
+| 1003 | Urgencia | 18 |
+| 1004 | Especialidad | 65 |
+| 1005 | Consulta general | 38 |
+| … | … | … |
+:::
+
+**Objetivo de análisis:** conocer cómo se distribuyen los tiempos de espera e identificar si existen asimetrías o valores especialmente altos.
+
+:::callout[Resolución]{type="note"}
+`tiempo_espera_min` es una variable numérica continua, así que el gráfico adecuado es el **histograma**, que se genera con `hist(df$tiempo_espera_min)`. Muestra la forma completa de la distribución: si la mayoría de los pacientes espera poco y unos pocos esperan mucho, aparecerá una cola larga hacia la derecha (asimetría positiva), donde se ubican los valores especialmente altos.
+:::
+
+## 3. Tablas de contingencia y análisis bivariado básico
+
+Una **tabla de contingencia** cruza dos variables categóricas y muestra la frecuencia conjunta de sus combinaciones. Aquí se usa con un propósito descriptivo: reconocer qué categorías concentran más casos y comparar distribuciones mediante frecuencias absolutas y proporciones por fila o por columna (Arevalillo y Navarro Veguillas, 2011).
+
+```r
+# Crear tabla de contingencia
+tabla <- table(df$region, df$tipo_cliente)
+tabla
+
+# Proporciones por fila (¿cómo se distribuye cada región entre tipos de cliente?)
+prop.table(tabla, margin=1) * 100
+
+# Proporciones por columna (¿cómo se distribuye cada tipo de cliente entre regiones?)
+prop.table(tabla, margin=2) * 100
+```
+
+En `table(a, b)`, la primera variable forma las filas y la segunda, las columnas. Con `margin=1` cada fila suma 100 %; con `margin=2`, cada columna.
+
+:::callout[Para profundizar]{type="info"}
+Si quieres profundizar en la selección de gráficos para variables categóricas o en visualizaciones con ggplot2, consulta con tu docente. Las pruebas de hipótesis para variables categóricas se abordarán formalmente más adelante.
+:::
+
+## 4. Correlación de Pearson en R
+
+Ya describiste cada variable de forma individual; ahora avanzas hacia la dimensión más rica del análisis descriptivo: las **relaciones entre variables**. En el mundo real, los fenómenos rara vez se explican por una sola variable: el precio de una propiedad depende de su superficie, ubicación, años de antigüedad y más; la tasa de deserción escolar se relaciona con el nivel socioeconómico, la distancia al establecimiento y la situación laboral del hogar. Descubrir esas relaciones es el objetivo del análisis bivariado y multivariado descriptivo, y una buena comprensión de las correlaciones te ayudará a seleccionar las variables más relevantes para los modelos predictivos.
+
+El **coeficiente de correlación de Pearson** ($r$) mide la fuerza y la dirección de la relación **lineal** entre dos variables numéricas. Toma valores entre $-1$ y $1$: el signo indica la dirección (positiva o inversa) y el valor absoluto, la fuerza. Un p-valor significativo confirma que la correlación no es atribuible al azar, pero **no establece causalidad** (Díaz Rodríguez, 2013).
+
+:::table{#tabla05 caption="Interpretación del coeficiente de Pearson" layout="mixed" widths="140px,220px,auto"}
+| Valor de $\lvert r \rvert$ | Interpretación | Ejemplo en contexto |
+| --- | --- | --- |
+| > 0,70 | Correlación fuerte | Temperatura de un reactor vs. presión interna en una planta industrial |
+| 0,40 – 0,70 | Correlación moderada | Horas de estudio vs. nota final en educación superior |
+| 0,20 – 0,40 | Correlación débil | Publicidad en radio vs. ventas en *retail* (comercio minorista) |
+| ≤ 0,20 | Correlación muy débil o ausente | Color de ojos vs. ingreso mensual |
+:::
+
+```r
+# Correlación entre dos variables
+cor(df$superficie, df$precio_arriendo)
+
+# Matriz de correlación de todas las variables numéricas
+cor(df_numerico, use="complete.obs")           # excluye filas con NA
+cor(df_numerico, use="pairwise.complete.obs")  # maximiza datos por par
+
+# Prueba de significancia estadística
+cor.test(df$publicidad, df$ventas)
+# Retorna: r, t, gl, p-value, intervalo de confianza al 95%
+```
+
+### Diferencia entre `complete.obs` y `pairwise.complete.obs`
+
+:::table{#tabla06 caption="Opciones del argumento use de cor()" layout="mixed" widths="240px,auto"}
+| Opción | Cómo funciona |
+| --- | --- |
+| `use="complete.obs"` | :li[Usa solo las filas sin ningún NA en ninguna variable.] :li[Misma muestra para toda la matriz.] :li[Puede reducir mucho los datos si los NA están distribuidos entre columnas.] |
+| `use="pairwise.complete.obs"` | :li[Usa el máximo de pares disponibles para cada correlación específica.] :li[Distintos tamaños de muestra por par.] :li[Puede generar matrices de correlación no definidas positivamente.] |
+:::
+
+:::callout[Recomendación práctica]{type="tip"}
+Usa `"complete.obs"` para mayor consistencia, salvo que los NA sean muy pocos y aleatorios.
+:::
+
+## 5. Gráficos de dispersión y matrices de pares
+
+Los coeficientes de correlación siempre deben complementarse con visualizaciones. El **cuarteto de Anscombe** es el ejemplo clásico: cuatro *datasets* con el mismo $r = 0{,}816$, pero con relaciones visualmente muy distintas (lineal, cuadrática, con un valor atípico, etc.).
+
+```r
+# Scatter plot básico
+plot(df$superficie, df$precio_arriendo,
+     main="Precio vs. Superficie",
+     xlab="m²", ylab="Precio arriendo ($)",
+     pch=19, col="steelblue")
+
+# Agregar una tercera variable como color (bivariado → trivariado)
+plot(df$superficie, df$precio,
+     col=as.factor(df$tipo_propiedad),
+     pch=19, main="Precio vs. Superficie por tipo de propiedad")
+legend("topleft", legend=levels(df$tipo_propiedad),
+       col=1:nlevels(df$tipo_propiedad), pch=19)
+
+# Matriz de scatter plots (todas las combinaciones de variables numéricas)
+pairs(df[ , c("precio","superficie","habitaciones","ano_construccion")],
+      main="Matriz de dispersión — variables de arriendos")
+```
+
+`pairs()` dibuja un gráfico de dispersión por cada par de variables: una nube compacta y diagonal indica una correlación lineal fuerte, y una nube dispersa sin forma, ausencia de relación lineal.
+
+## 6. Correlación espuria y variables de confusión
+
+Una **correlación espuria** es estadísticamente real pero causalmente sin sentido. Generalmente la causa una **variable de confusión** que afecta a ambas variables observadas al mismo tiempo (Díaz Rodríguez, 2013). Reconocer este patrón es una de las habilidades más importantes del analista de datos.
+
+:::table{#tabla07 caption="Ejemplos de correlaciones espurias" layout="mixed" widths="auto,200px,auto"}
+| Correlación observada | Variable de confusión | Por qué no es causal |
+| --- | --- | --- |
+| Consumo de helado y tasa de ahogamiento en playas | Temperatura del verano | El calor aumenta ambas simultáneamente |
+| Número de bomberos en un incendio y daño económico | Magnitud del incendio | A mayor incendio, más bomberos **y** más daño |
+| Acceso a internet y esperanza de vida entre países | Desarrollo económico | Los países más ricos tienen ambos |
+| Panaderías artesanales por comuna y precio de la vivienda | Nivel socioeconómico de la comuna | Las comunas ABC1 tienen ambos por su poder adquisitivo |
+:::
+
+:::callout[Responsabilidad profesional]{type="warning"}
+En contextos de política pública o decisiones de negocio, afirmar causalidad donde solo existe correlación puede llevar a invertir en la variable correlacionada (en lugar de la causal), con resultados nulos o perjudiciales. **Explicita siempre esta limitación en los informes y reportes.**
+:::
+
+### Actividad: ¿relación plausible o correlación espuria?
+
+:::table{#tabla08 caption="Clasificación de cada afirmación" layout="mixed" widths="auto,150px,auto"}
+| Afirmación | Clasificación | Justificación |
+| --- | --- | --- |
+| Los países con mayor acceso a internet presentan una esperanza de vida más alta | Espuria | El desarrollo económico explica ambas variables |
+| A mayor superficie de una vivienda, mayor tiende a ser su precio de arriendo | Plausible | Más metros cuadrados aportan más valor a la vivienda |
+| A mayor temperatura interna de un reactor, mayor tiende a ser su presión | Plausible | En un recipiente cerrado, el calor aumenta la presión del gas |
+| A mayor cantidad de horas de estudio, mayor tiende a ser la nota final | Plausible | Estudiar más contribuye directamente al aprendizaje evaluado |
+| Las ciudades con mayor cantidad de hospitales registran más enfermedades | Espuria | El tamaño de la población hace crecer ambas: más habitantes implican más hospitales y más casos |
+:::
+
+## 7. Limitaciones del coeficiente de Pearson
+
+Pearson mide **exclusivamente relaciones lineales**. Cuando la relación entre dos variables no es lineal, $r$ puede ser cercano a 0 aunque la relación sea visualmente clara; el cuarteto de Anscombe muestra justamente cuatro *datasets* con $r$ idéntico y relaciones completamente distintas (Díaz Rodríguez, 2013).
+
+:::table{#tabla09 caption="Qué hacer según el tipo de relación" layout="mixed" widths="200px,180px,auto"}
+| Tipo de relación | r de Pearson | Alternativa recomendada |
+| --- | --- | --- |
+| Lineal positiva o negativa | Detecta y cuantifica bien | Usar Pearson directamente |
+| Cuadrática (en U) | ~0 aunque la relación sea clara | Incluir un término cuadrático en la regresión: `lm(y ~ x + I(x^2))` |
+| Monótona no lineal (sube o baja siempre) | Puede subestimar | Correlación de Spearman: `cor(x, y, method="spearman")` |
+| Sigmoide o exponencial | Subestima severamente | Transformar logarítmicamente las variables antes de correlacionar |
+:::
+
+## Preguntas de reflexión
+
+### Análisis descriptivo en R
+
+- Un *dataset* de reclamos al SERNAC tiene la variable `monto_reclamado`. Su histograma es extremadamente asimétrico a la derecha: casi todos los valores están entre \$0 y \$100.000, con una cola hasta \$50.000.000. ¿Qué medida de tendencia central reportarías y qué transformación logarítmica aplicarías al histograma para visualizar mejor la distribución?
+- Con `boxplot(tiempo_espera ~ tipo_atencion, data=df_hospital)` observas que el bigote superior de «Urgencias» llega a 180 minutos, mientras que la mediana es de solo 25 minutos. ¿Qué interpretación clínica y estadística haces?
+- La variable `tipo_reclamo` tiene 12 categorías y, al ejecutar `barplot(table(df$tipo_reclamo))`, las etiquetas se superponen. ¿Qué ajustes harías para mejorar la legibilidad sin eliminar información? ¿Por qué un gráfico de torta no sería una buena alternativa?
+- Un colega usa siempre gráficos de torta para mostrar las ventas por categoría. ¿En qué situaciones son informativos y en cuáles engañosos? ¿Qué alternativa le recomendarías para 12 categorías?
+- El 70 % de las transacciones de tu proyecto corresponde a una sola categoría. ¿Cómo manejas este desbalance en el informe descriptivo y qué implicancias tendría para un análisis predictivo posterior?
+
+### Visualización y correlación
+
+- Con `cor(df_produccion, use="complete.obs")` encuentras que la temperatura del reactor y la presión interna tienen $r = 0{,}97$. ¿Significa que aumentar la temperatura necesariamente aumentará la presión? ¿Qué análisis adicional necesitas para establecer causalidad?
+- Un gráfico de dispersión de `horas_estudio` vs. `nota_final` muestra una nube dispersa con $r = 0{,}31$. ¿Significa que estudiar más no mejora las notas? ¿Qué factores podrían estar enmascarando una correlación más alta?
+- Con `pairs()` sobre 8 variables de ventas identificas un par con relación en U, aunque su $r$ de Pearson es cercano a 0. ¿Por qué Pearson da 0 para una relación visualmente clara? ¿Qué coeficiente alternativo usarías?
+- Una consultora reporta una «fuerte correlación ($r = 0{,}82$) entre presupuesto de marketing digital y ventas», y el cliente quiere triplicar el presupuesto. ¿Qué advertencias éticas y metodológicas debería incluir el reporte?
+- Dos variables predictoras de tu proyecto tienen $r = 0{,}95$ entre sí. Si vas a usar regresión lineal múltiple, ¿qué problema puede generar incluir ambas en el mismo modelo? ¿Qué decisión tomarías?
+
+## Actividad de Práctica
+
+<Quiz questions={[
+	{
+		question: "Sofía analiza los puntajes SIMCE de matemática de 45.000 estudiantes del Biobío y quiere visualizar la distribución completa de los puntajes.",
+		questionItems: [],
+		questionSuffix: "¿Qué función de R es la más adecuada?",
+		options: [
+			"hist(); permite visualizar la distribución completa de una variable numérica continua, incluyendo forma, simetría y presencia de modas.",
+			"barplot(); es la función estándar de R para cualquier variable cuantitativa, independientemente de si es continua o discreta.",
+			"pie(); descompone los puntajes en proporciones y permite comparar visualmente los distintos rangos de rendimiento.",
+			"table(); genera una lista exhaustiva de las frecuencias de cada puntaje, que funciona como representación equivalente a un gráfico.",
+		],
+		correctIndex: 0
+	},
+	{
+		question: "Una analista aplica prop.table(table(df$tipo_cliente, df$region), margin=1). En la fila «Empresa», el 85 % de los valores corresponde a la Región Metropolitana.",
+		questionItems: [],
+		questionSuffix: "¿Qué representa cada fila?",
+		options: [
+			"Cada fila es una región; margin=1 calcula cuántos clientes de cada tipo tiene esa región sobre el total de clientes del país.",
+			"margin=1 calcula proporciones sobre el total del dataset completo; las filas y columnas no tienen significado propio en ese cálculo.",
+			"Cada fila representa un cruce único entre tipo_cliente y región; prop.table() los ordena por frecuencia de mayor a menor.",
+			"Cada fila es un tipo de cliente; la proporción muestra cómo ese tipo se distribuye geográficamente entre las regiones.",
+		],
+		correctIndex: 3
+	},
+	{
+		question: "Una empresa quiere comparar visualmente la distribución del tiempo de entrega para cinco regiones.",
+		questionItems: [],
+		questionSuffix: "¿Qué función de R produce la visualización más informativa?",
+		options: [
+			"hist(df$tiempo_entrega, breaks=5); un histograma único para todo el dataset es más claro que múltiples gráficos separados por región.",
+			"boxplot(tiempo_entrega ~ region, data=df); genera un boxplot por región que muestra mediana, IQR, simetría y atípicos en la misma escala para comparación directa.",
+			"barplot(table(df$region)); compara el volumen de entregas por región, que es la métrica más relevante para distribución logística.",
+			"pie(tapply(df$tiempo_entrega, df$region, mean)); una torta de tiempos medios por región permite comparar la proporción de tiempo relativo.",
+		],
+		correctIndex: 1
+	},
+	{
+		question: "Una analista del Banco Central calcula la correlación de Pearson entre la tasa de desempleo mensual y el índice de consumo de hogares de los últimos 10 años. Obtiene r = −0,74.",
+		questionItems: [],
+		questionSuffix: "¿Cómo interpreta este resultado?",
+		options: [
+			"Correlación negativa moderada-fuerte: cuando el desempleo aumenta, el consumo tiende a disminuir. La magnitud indica una tendencia consistente, pero no perfecta ni causal.",
+			"No existe relación entre desempleo y consumo; el signo negativo indica que las dos series se cancelan mutuamente y la correlación real es cero.",
+			"El consumo es la variable que causa el desempleo; la correlación negativa indica que más consumo produce menos desempleo directamente.",
+			"r = −0,74 indica correlación baja; para hablar de correlación significativa en series macroeconómicas se necesitan valores inferiores a −0,80.",
+		],
+		correctIndex: 0
+	},
+	{
+		question: "pairs(df_financiero) muestra que «utilidad_neta vs. flujo_caja» tiene una nube compacta y diagonal, mientras que «precio_acción vs. volatilidad» tiene una nube dispersa sin forma.",
+		questionItems: [],
+		questionSuffix: "¿Qué se puede concluir?",
+		options: [
+			"La nube compacta de utilidad vs. flujo indica que los datos tienen muy poca variabilidad y necesitan más observaciones para ser estadísticamente útiles.",
+			"La nube dispersa del par precio-volatilidad indica errores de medición sistemáticos que deben corregirse antes de calcular correlaciones.",
+			"pairs() visualiza solo correlaciones negativas; las nubes diagonales ascendentes son artefactos visuales del algoritmo de graficación de R.",
+			"La nube compacta y diagonal indica correlación positiva fuerte entre utilidad y flujo de caja; la nube dispersa indica ausencia de relación lineal entre precio y volatilidad.",
+		],
+		correctIndex: 3
+	},
+]} />
