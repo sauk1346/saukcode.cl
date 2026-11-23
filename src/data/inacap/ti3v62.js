@@ -164,8 +164,8 @@ const courseData = {
       date: 'Lun 16, Nov 2026', 
       description: [
         {
-          text: '',
-          href: ''
+          text: 'Respaldo y replicación de datos',
+          href: 'clase09'
         }
       ]
     },
@@ -329,13 +329,22 @@ const courseData = {
       lecture: '07', 
       date: 'Sáb 21, Nov 2026', 
       description: {
+          text: 'Seguridad en infraestructura de red',
+          href: 'docs/lectura07.pdf'
+      }
+    },
+    { 
+      week: '05', 
+      lecture: '08', 
+      date: 'Sáb 21, Nov 2026', 
+      description: {
           text: 'Cada dispositivo puede convertirse en una vulnerabilidad',
-          href: ''
+          href: 'lectura08'
       }
     },
     { 
       week: '06', 
-      lecture: '08', 
+      lecture: '09', 
       date: 'Sáb 28, Nov 2026', 
       description: {
           text: 'Cada conexión deja una señal en la red',

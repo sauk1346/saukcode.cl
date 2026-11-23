@@ -1,0 +1,178 @@
+# Cada dispositivo puede convertirse en una vulnerabilidad
+
+La seguridad de la infraestructura de red es un componente esencial para **proteger la información** y garantizar la **continuidad de los servicios** tecnológicos en las organizaciones. Los dispositivos de red pueden convertirse en puntos críticos de seguridad; para protegerlos se analizan y gestionan sus vulnerabilidades y se aplican prácticas de *hardening*, es decir, configuraciones seguras con medidas de protección física y lógica.
+
+## 1. Seguridad de dispositivos de red
+
+Las organizaciones dependen de una amplia variedad de dispositivos de red para que usuarios, aplicaciones y servicios se comuniquen de forma continua. *Routers*, *switches*, *firewalls*, balanceadores de carga y puntos de acceso inalámbrico forman parte de una **infraestructura crítica** para el funcionamiento de los procesos digitales.
+
+Sin embargo, estos dispositivos también son **objetivos atractivos** para los atacantes. Una configuración incorrecta, credenciales débiles o una vulnerabilidad sin corregir pueden convertirse en una **puerta de entrada** hacia sistemas críticos e información sensible. Por eso, proteger los dispositivos de red constituye una de las **primeras líneas de defensa** de cualquier estrategia de ciberseguridad.
+
+### ¿Qué son los dispositivos de red?
+
+Los **dispositivos de red** son componentes especializados que permiten la **transmisión, control y administración** del tráfico de datos. Entre los más utilizados se encuentran:
+
+- ***Routers*:** conectan distintas redes y dirigen el tráfico hacia su destino.
+- ***Switches*:** comunican los dispositivos dentro de una misma red local.
+- ***Firewalls*:** controlan el tráfico de entrada y salida mediante políticas de seguridad.
+- ***Access points*:** proporcionan conectividad inalámbrica a dispositivos móviles y estaciones de trabajo.
+
+Cada uno cumple una función crítica dentro de la infraestructura y requiere **controles específicos** de protección:
+
+:::table{#tabla01 caption="Dispositivos de red: riesgos y controles de seguridad" layout="mixed" widths="130px,auto,auto,auto"}
+| Dispositivo | Función principal | Riesgo frecuente | Control recomendado |
+| --- | --- | --- | --- |
+| ***Router*** | Interconectar redes y dirigir el tráfico hacia su destino | Accesos administrativos no autorizados o rutas mal configuradas | Restricción del acceso administrativo, autenticación multifactor y revisión periódica de rutas |
+| ***Switch*** | Conectar dispositivos dentro de una red local y gestionar la comunicación interna | VLAN mal configuradas, puertos activos sin uso o acceso físico no controlado | Segmentación mediante VLAN, deshabilitación de puertos no utilizados y control de acceso físico |
+| ***Firewall*** | Controlar el tráfico entrante y saliente mediante políticas de seguridad | Reglas demasiado permisivas o configuraciones sin revisión periódica | Revisión de reglas, aplicación del principio de mínimo privilegio y monitoreo de eventos |
+| ***Access point*** | Proporcionar conectividad inalámbrica a usuarios y dispositivos móviles | Cifrado débil, credenciales compartidas o redes inalámbricas sin aislamiento | Uso de WPA2/WPA3, autenticación segura y segmentación de la red inalámbrica |
+:::
+
+### Principales amenazas
+
+Los atacantes buscan comprometer la infraestructura mediante diversas técnicas. Las más frecuentes:
+
+- Robo de **credenciales administrativas**.
+- **Configuraciones inseguras**.
+- Explotación de **vulnerabilidades conocidas**.
+- Ataques de **denegación de servicio** (DoS).
+- **Accesos remotos** no autorizados.
+- ***Malware*** dirigido a dispositivos de red.
+
+Según Barría Huidobro (2021), muchas brechas de seguridad comienzan con el aprovechamiento de **configuraciones deficientes** o **credenciales comprometidas**.
+
+### Controles de seguridad
+
+:::table{#tabla02 caption="Controles de seguridad para dispositivos de red" layout="mixed" widths="220px,auto"}
+| Control | Descripción |
+| --- | --- |
+| **Gestión segura de credenciales** | Contraseñas robustas, autenticación multifactor (MFA) y renovación periódica de las credenciales administrativas |
+| **Restricción de acceso administrativo** | La administración se realiza solo desde redes o estaciones autorizadas, con protocolos seguros como **SSH** o **HTTPS**. Se evitan protocolos inseguros como **Telnet** o **HTTP**, que pueden exponer credenciales o información sensible |
+| **Actualización de *firmware*** | Mantener versiones actualizadas reduce la exposición frente a vulnerabilidades conocidas |
+| **Registro y auditoría** | Permite supervisar los cambios realizados sobre configuraciones críticas |
+| **Segmentación de red** | Divide la infraestructura en segmentos independientes |
+:::
+
+La **segmentación** es una de las prácticas más efectivas para reducir riesgos. Permite:
+
+- Limitar los **movimientos laterales**.
+- Reducir el **impacto** de los incidentes.
+- Mejorar el **control de accesos**.
+- Facilitar el **monitoreo**.
+
+Así, un incidente en un segmento no necesariamente compromete toda la infraestructura.
+
+:::callout[Ejemplo]{type="info"}
+Los usuarios finales se ubican en una **VLAN de usuarios**, los servidores en una **VLAN de servicios**, los equipos administrativos en una **VLAN de gestión** y los sistemas críticos en un **segmento restringido**. Esta separación permite aplicar reglas de acceso diferenciadas y limitar el movimiento lateral ante un incidente.
+:::
+
+## 2. Análisis de vulnerabilidades
+
+Una **vulnerabilidad** es una **debilidad presente** en un sistema, aplicación, dispositivo o proceso que puede ser explotada por una amenaza para comprometer la seguridad de la información. Puede originarse por:
+
+- Errores de configuración.
+- *Software* desactualizado.
+- Servicios innecesarios habilitados.
+- Contraseñas débiles.
+- Deficiencias en los controles de acceso.
+- Fallas de diseño.
+
+Según Chicano Tejada (2023), la **identificación temprana** de vulnerabilidades es uno de los mecanismos más eficaces para prevenir incidentes y reducir la exposición frente a ataques.
+
+### Tipos de vulnerabilidades en infraestructura de red
+
+:::table{#tabla03 caption="Tipos de vulnerabilidades" layout="mixed" widths="170px,auto,auto"}
+| Tipo | Origen | Ejemplos |
+| --- | --- | --- |
+| **De configuración** | Dispositivos o servicios implementados con configuraciones inseguras | :li[Credenciales predeterminadas] :li[Accesos remotos abiertos] :li[Protocolos inseguros habilitados] :li[Permisos excesivos] |
+| **De *software*** | Errores o fallas en aplicaciones y sistemas operativos | :li[*Software* sin actualizaciones] :li[Versiones obsoletas] :li[Fallas conocidas publicadas por fabricantes] |
+| **De red** | Arquitectura o diseño de la infraestructura | :li[Segmentación insuficiente] :li[Puertos innecesarios abiertos] :li[Falta de filtrado de tráfico] |
+| **Humanas** | Comportamientos inseguros de los usuarios | :li[Compartir credenciales] :li[Falta de capacitación] :li[Ingeniería social] |
+:::
+
+### Gestión de vulnerabilidades
+
+Identificar una vulnerabilidad es solo el primer paso. La **gestión de vulnerabilidades** es un **proceso continuo y sistemático** orientado a identificar, evaluar y corregir debilidades de seguridad. No termina con la detección: también requiere **priorizar según el riesgo**, **asignar responsables**, **definir plazos** de remediación, **verificar** la corrección aplicada y **mantener evidencia** del tratamiento realizado. Sus etapas:
+
+```
+Identificación
+      │
+  Evaluación
+      │
+ Priorización
+      │
+ Remediación
+      │
+ Verificación
+```
+
+:::table{#tabla04 caption="Etapas de la gestión de vulnerabilidades" layout="mixed" widths="160px,auto"}
+| Etapa | Qué se hace |
+| --- | --- |
+| **1. Identificación** | Descubrir las vulnerabilidades existentes mediante revisiones técnicas y herramientas especializadas |
+| **2. Evaluación** | Determinar el nivel de criticidad, la probabilidad de explotación y el impacto potencial |
+| **3. Priorización** | Concentrar los esfuerzos en las vulnerabilidades que representan mayor riesgo para la organización |
+| **4. Remediación** | Aplicar acciones correctivas: actualizaciones, cambios de configuración e implementación de controles adicionales |
+| **5. Verificación** | Confirmar que la vulnerabilidad fue efectivamente corregida |
+:::
+
+### Herramientas de análisis de vulnerabilidades
+
+Para automatizar la identificación de debilidades se utilizan herramientas especializadas:
+
+- **Nessus**.
+- **OpenVAS**.
+- **Qualys**.
+- **Rapid7 InsightVM**.
+- **Microsoft Defender Vulnerability Management**.
+
+Detectan *software* vulnerable, configuraciones inseguras, servicios expuestos y problemas de cumplimiento. Sin embargo, sus resultados deben ser **interpretados por profesionales**, porque no todas las vulnerabilidades presentan el mismo nivel de riesgo. Una herramienta identifica una vulnerabilidad técnica, pero el **riesgo real depende del contexto**:
+
+- La **exposición** del activo.
+- La **criticidad** del servicio.
+- La existencia de **controles compensatorios**.
+- La **facilidad de explotación**.
+- El posible **impacto** para la organización.
+
+### Evaluación mediante CVSS
+
+Para priorizar las vulnerabilidades, muchas organizaciones utilizan el **CVSS** (*Common Vulnerability Scoring System*), un estándar que asigna **puntajes de criticidad** considerando factores como:
+
+- Facilidad de explotación.
+- Complejidad técnica.
+- Impacto sobre la **confidencialidad**.
+- Impacto sobre la **integridad**.
+- Impacto sobre la **disponibilidad**.
+
+CVSS entrega una **referencia común de severidad**, pero **no reemplaza la evaluación de riesgo organizacional**: la decisión final considera la importancia del activo, su nivel de exposición y el posible impacto.
+
+:::callout[Ejemplo]{type="info"}
+Una vulnerabilidad con **puntaje alto** puede tener menor prioridad si el activo **no está expuesto**, mientras que una de **puntaje medio** puede ser crítica si afecta un **servicio esencial** o información sensible.
+:::
+
+## 3. Endurecimiento de equipamiento de red
+
+La seguridad de una infraestructura no depende únicamente de identificar vulnerabilidades, sino también de **reducir las oportunidades** que un atacante puede aprovechar. Para ello se aplican procesos de ***hardening*** o endurecimiento, orientados a fortalecer dispositivos y servicios mediante configuraciones seguras y la eliminación de componentes innecesarios.
+
+### ¿Qué es el *hardening*?
+
+El ***hardening*** es el **proceso de fortalecimiento** de sistemas, dispositivos y servicios tecnológicos para **reducir su superficie de ataque**. Según Calder (2019), busca minimizar las posibilidades de explotación mediante la **eliminación de funcionalidades innecesarias** y la aplicación de configuraciones alineadas con buenas prácticas de seguridad.
+
+En términos simples: **mientras menos servicios expuestos y menos funciones innecesarias** tenga un dispositivo, menor será la probabilidad de que una amenaza logre comprometerlo.
+
+:::table{#tabla05 caption="Prácticas de hardening en dispositivos de red" layout="mixed" widths="200px,auto,auto"}
+| Práctica de *hardening* | Riesgo que reduce | Evidencia esperada |
+| --- | --- | --- |
+| **Deshabilitar servicios innecesarios** | Exposición de servicios que podrían ser explotados | Listado de servicios activos o configuración del dispositivo |
+| **Usar protocolos seguros** | Captura de credenciales o administración insegura | Configuración de SSH, HTTPS o SNMPv3 |
+| **Cambiar credenciales predeterminadas** | Acceso no autorizado por credenciales conocidas | Política de credenciales y evidencia de cambio |
+| **Actualizar *firmware* o sistema operativo** | Explotación de vulnerabilidades conocidas | Versión instalada y registro de actualización |
+| **Restringir acceso administrativo** | Administración desde redes no autorizadas | ACL, reglas de *firewall* o configuración de acceso |
+| **Registrar eventos** | Falta de trazabilidad ante cambios o incidentes | *Logs*, configuración de *syslog* o integración SIEM |
+:::
+
+Estas prácticas forman parte de los **controles básicos** recomendados para proteger dispositivos de red. Su aplicación sistemática reduce vulnerabilidades conocidas, limita accesos no autorizados y fortalece la capacidad de **monitoreo y respuesta** frente a incidentes.
+
+:::callout[Para reflexionar]{type="tip"}
+La protección de una infraestructura de red combina **controles técnicos**, **buenas prácticas operativas** y una **gestión continua de los riesgos**. Comprender el funcionamiento de los dispositivos, identificar sus vulnerabilidades y aplicar medidas de endurecimiento reduce las oportunidades de explotación y protege la disponibilidad, integridad y confidencialidad de la información. La revisión periódica de configuraciones, la gestión de vulnerabilidades y los controles de acceso son actividades esenciales para mantener infraestructuras seguras y resilientes. Piensa en cómo una configuración aparentemente simple podría convertirse en una vulnerabilidad crítica.
+:::

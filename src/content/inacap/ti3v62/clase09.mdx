@@ -1,0 +1,124 @@
+# Respaldo y replicación de datos
+
+Los **activos críticos** de una organización necesitan **respaldo** (*backup*). Para protegerlos se decide cómo copiarlos sin detener la operación, si se respaldan o se replican, qué tipo de respaldo conviene y dónde se almacenan.
+
+Temas: los activos críticos y los sistemas *legacy*, cómo respaldar una base de datos en producción, respaldo frente a replicación, el marco legal y el presupuesto, los tipos de respaldo, el almacenamiento y el método 4-3-2-1.
+
+## 1. Activos críticos y sistemas *legacy*
+
+Los **activos críticos** se respaldan siempre. Un caso típico es una base de datos de un sistema ***legacy*** (heredado, antiguo pero todavía en uso):
+
+- Es la base de datos **maestra**.
+- Acumula **10 años** de registros.
+- Contiene **información muy valorizada** de la compañía.
+- Por eso, **es necesario respaldarla**.
+
+## 2. Respaldar una base de datos en producción
+
+La base de datos **está en producción**: ¿se puede copiar?
+
+**En caliente**, con las operaciones abiertas, **no se puede** copiar directamente. Las opciones son:
+
+1. **Hora de cierre:** se detienen los procesos (*kill*) a una hora fija y se copia. El costo es la **interrupción de los servicios**.
+2. **Software agente:** un agente instalado en el servidor permite el **respaldo en caliente**, sin detener la base de datos. Los datos se copian a una **SAN** (*Storage Area Network*, red de almacenamiento).
+   - **Problema:** el **rendimiento**, porque el respaldo compite con el tráfico normal de la red.
+   - **Solución:** una **LAN dedicada** para el almacenamiento.
+3. **Almacenamiento en la nube:** los datos se guardan en la nube, por ejemplo en **AWS**, replicados entre regiones:
+
+```
+   São Paulo ──────── México
+          \            /
+           \          /
+          Este de EE. UU.
+```
+
+## 3. Respaldo o replicación
+
+:::table{#tabla01 caption="Respaldar frente a replicar" layout="mixed" widths="160px,auto"}
+| Opción | Característica |
+| --- | --- |
+| **Respaldar** | Está **condicionado por la ventana de tiempo** disponible para copiar. El tamaño de esa ventana **depende del apetito de riesgo** de la organización |
+| **Replicar** | Se **gana resiliencia**: si un sitio falla, los datos siguen disponibles en otro |
+:::
+
+### Marco legal
+
+En Chile, la **LPDP** (Ley de Protección de Datos Personales) entra en vigencia el **1 de diciembre de 2026**. Las leyes de protección de datos personales varían de un país a otro:
+
+:::table{#tabla02 caption="Leyes de protección de datos personales" layout="mixed" widths="160px,auto"}
+| País | Nivel de exigencia |
+| --- | --- |
+| **Brasil** | Muy estricto |
+| **Estados Unidos** | Medio |
+| **México** | Vago |
+:::
+
+### Presupuesto
+
+Con independencia del tipo de respaldo, la decisión depende del **presupuesto**. Por ejemplo: «la operación del sistema de protección vale *X*». Si no se paga, el riesgo queda como **riesgo asumido**.
+
+### Compresión
+
+Para ahorrar espacio se aplica la técnica de **compresión**, que tiene problemas:
+
+- Exige **mayor capacidad de lectura**.
+- ¿Qué pasa si falla? **Se corrompen los datos.**
+
+## 4. Tipos de respaldo
+
+:::table{#tabla03 caption="Tipos de respaldo" layout="mixed" widths="160px,auto"}
+| Tipo | Qué copia |
+| --- | --- |
+| **Full** (completo) | Todos los datos. Su problema es el **costo** ($) |
+| **Incremental** | Solo lo que cambió desde el **último respaldo**, sea full o incremental |
+| **Diferencial** | Todo lo que cambió desde el **último full** |
+:::
+
+Ejemplo: un full cada domingo y, durante la semana, estos cambios diarios en los datos:
+
+:::table{#tabla04 caption="Tamaño de cada respaldo durante la semana (MB)" layout="mixed"}
+| Día | Cambio del día | Incremental | Diferencial |
+| --- | ---: | ---: | ---: |
+| Domingo | — | Full | Full |
+| Lunes | 100 | 100 | 100 |
+| Martes | 200 | 200 | 300 |
+| Miércoles | 300 | 300 | 600 |
+| Jueves | 400 | 400 | 1.000 |
+| Viernes | 500 | 500 | 1.500 |
+| Sábado | 600 | 600 | 2.100 |
+| Domingo | — | Full | Full |
+| **Total semana** | | **2.100** | **5.600** |
+:::
+
+- El **incremental** copia cada día solo el cambio de ese día.
+- El **diferencial** acumula todos los cambios desde el domingo, así que crece cada día.
+
+¿Por qué importa la diferencia? Por el **costo del tráfico**: cada MB copiado, sobre todo a la nube, se paga. Las preguntas al elegir son **¿cuál decidir?** y **¿cuál es más caro?**
+
+## 5. Almacenamiento
+
+- **NAS** (*Network Attached Storage*, almacenamiento conectado a la red): un **contenedor de discos duros** conectado a la red.
+- **Storage:** un sistema de almacenamiento formado por **muchos NAS**.
+- **Exadata:** la plataforma de Oracle diseñada para bases de datos.
+
+### Destrucción de discos
+
+Un **perito** puede **recuperar datos** de un disco aunque se hayan borrado. Por eso, los **discos que se dan de baja se destruyen**.
+
+## 6. Método 4-3-2-1
+
+El **4-3-2-1** es un **método** de respaldo:
+
+- **4** copias de los datos.
+- **3** lugares distintos.
+- **2** copias disponibles.
+- **1** copia inmutable: no se puede modificar ni borrar.
+
+:::callout[Para recordar]{type="tip"}
+- Los **activos críticos**, como la base de datos maestra de un sistema *legacy*, se respaldan siempre.
+- Una base de datos en producción se respalda con **hora de cierre**, con un **agente** en caliente (sobre una SAN con LAN dedicada) o en la **nube**.
+- **Respaldar** depende de la ventana de tiempo y del apetito de riesgo; **replicar** da resiliencia.
+- La **LPDP** chilena rige desde el **1 de diciembre de 2026**.
+- **Full** copia todo; **incremental**, lo cambiado desde el último respaldo; **diferencial**, lo cambiado desde el último full.
+- Método **4-3-2-1**: 4 copias, 3 lugares, 2 disponibles, 1 inmutable.
+:::
