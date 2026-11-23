@@ -526,14 +526,11 @@
   border: 1px solid var(--border-color);
 }
 
-/* La punta del medidor late con el reloj global: barra "cargándose" */
-:global(html[data-blink='1']) .weightTip,
-:global(html[data-blink='3']) .weightTip {
-  opacity: 0.7;
-}
-
-:global(html[data-blink='2']) .weightTip {
-  opacity: 0.4;
+/* La punta del medidor parpadea con el reloj global: barra "cargándose".
+   En la fase apagada vuelve a verse como celda vacía (sin hueco) */
+:global(html[data-blink='1']) .weightTip {
+  background-color: var(--surface);
+  border-color: var(--border-color);
 }
 
 /* Nivel de amenaza: verde ≤15%, ámbar 20-30%, rojo ≥35% */
@@ -758,24 +755,20 @@
   }
 }
 
-/* Semana en curso: título teñido y anillo latiendo alrededor de la
+/* Semana en curso: título teñido y anillo parpadeando alrededor de la
    card completa — señala toda la pieza sin hacer parpadear el contenido
-   legible de adentro */
+   legible de adentro. El título no se apaga: cambia al color secundario
+   de la paleta (palette swap), así sigue legible */
 .currentWeekCard .cardTitle {
   color: var(--course-accent, var(--primary));
 }
 
-:global(html[data-blink='1']) .currentWeekCard .cardTitle,
-:global(html[data-blink='3']) .currentWeekCard .cardTitle {
-  opacity: 0.7;
+:global(html[data-blink='1']) .currentWeekCard .cardTitle {
+  color: var(--secondary);
 }
 
-:global(html[data-blink='2']) .currentWeekCard .cardTitle {
-  opacity: 0.45;
-}
-
-/* El borde propio de la card late: capa de tinte sobre el contorno del
-   sprite (misma silueta vía chaflanes de máscara), pulsando en 3 fases */
+/* El borde propio de la card parpadea: capa de tinte sobre el contorno
+   del sprite (misma silueta vía chaflanes de máscara), encendida/apagada */
 .currentWeekCard {
   position: relative;
 }
@@ -800,11 +793,6 @@
   mask-composite: exclude;
 }
 
-:global(html[data-blink='1']) .currentWeekCard::after,
-:global(html[data-blink='3']) .currentWeekCard::after {
-  opacity: 0.55;
-}
-
-:global(html[data-blink='2']) .currentWeekCard::after {
-  opacity: 0.2;
+:global(html[data-blink='1']) .currentWeekCard::after {
+  opacity: 0;
 }

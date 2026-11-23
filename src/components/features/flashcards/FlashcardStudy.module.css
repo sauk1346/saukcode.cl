@@ -131,13 +131,10 @@
   background-color: var(--success);
 }
 
-:global(html[data-blink='1']) .cellCurrent,
-:global(html[data-blink='3']) .cellCurrent {
-  opacity: 0.7;
-}
-
-:global(html[data-blink='2']) .cellCurrent {
-  opacity: 0.4;
+/* La celda actual parpadea con el reloj global: en la fase apagada
+   vuelve a verse vacía */
+:global(html[data-blink='1']) .cellCurrent {
+  background-color: color-mix(in srgb, var(--secondary) 22%, transparent);
 }
 
 /* Carta con flip: giro fluido (imita un naipe físico — los steps son

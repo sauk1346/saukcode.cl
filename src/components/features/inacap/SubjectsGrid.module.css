@@ -142,14 +142,11 @@
     color: var(--background);
   }
 
-  /* Intermitente sincronizado al reloj global (BaseLayout) */
-  :global(html[data-blink='1']) .statusBadge.current,
-  :global(html[data-blink='3']) .statusBadge.current {
-    opacity: 0.72;
-  }
-
-  :global(html[data-blink='2']) .statusBadge.current {
-    opacity: 0.45;
+  /* Intermitente sincronizado al reloj global (BaseLayout): en la fase
+     apagada se invierte el video, así la etiqueta sigue legible */
+  :global(html[data-blink='1']) .statusBadge.current {
+    background: var(--surface);
+    color: var(--primary);
   }
   
   .statusBadge.pending {

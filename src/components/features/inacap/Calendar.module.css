@@ -170,14 +170,17 @@
   color: var(--background);
 }
 
-/* Hoy late con el reloj global: es el día "en juego" */
-:global(html[data-blink='1']) .today:not(.selected),
-:global(html[data-blink='3']) .today:not(.selected) {
-  opacity: 0.8;
+/* Hoy parpadea con el reloj global: es el día "en juego". En la fase
+   apagada se invierte el video (fondo de superficie, texto de acento),
+   así el número y los eventos siguen legibles */
+:global(html[data-blink='1']) .today:not(.selected) {
+  background: var(--surface);
 }
 
-:global(html[data-blink='2']) .today:not(.selected) {
-  opacity: 0.6;
+:global(html[data-blink='1']) .today:not(.selected) .calendarioDayHeader,
+:global(html[data-blink='1']) .today:not(.selected) .calendarioEvents,
+:global(html[data-blink='1']) .today:not(.selected) .calendarioEvent {
+  color: var(--primary);
 }
 
 .today .calendarioDayHeader,

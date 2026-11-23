@@ -18,7 +18,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <style>
   /* Botón PRESS START: ficha biselada en octágono que late con el reloj
-     global px-blink, como los "INSERT COIN / PRESS START" de arcade */
+     global px-blink, como los "INSERT COIN / PRESS START" de arcade. No se
+     apaga (es un botón): en la fase apagada se invierte el video */
   .press-start {
     background-color: var(--primary);
     color: var(--background);
@@ -33,13 +34,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     filter: drop-shadow(3px 3px 0 var(--shadow-hard));
   }
 
-  :global(html[data-blink='1']) .press-start,
-  :global(html[data-blink='3']) .press-start {
-    opacity: 0.8;
-  }
-
-  :global(html[data-blink='2']) .press-start {
-    opacity: 0.6;
+  :global(html[data-blink='1']) .press-start {
+    background-color: var(--surface);
+    color: var(--primary);
   }
 
   .press-start:active {

@@ -31,14 +31,11 @@
   border-color: var(--primary);
 }
 
-/* Intermitente sincronizado al reloj global (BaseLayout) */
-:global(html[data-blink='1']) .xpCell.current,
-:global(html[data-blink='3']) .xpCell.current {
-  opacity: 0.72;
-}
-
-:global(html[data-blink='2']) .xpCell.current {
-  opacity: 0.45;
+/* Intermitente sincronizado al reloj global (BaseLayout): en la fase
+   apagada la celda vuelve a verse vacía */
+:global(html[data-blink='1']) .xpCell.current {
+  background: var(--surface);
+  border-color: var(--border-color);
 }
 
 .statsText {

@@ -55,14 +55,11 @@
   color: var(--background);
 }
 
-/* Intermitente sincronizado al reloj global (BaseLayout) */
-:global(html[data-blink='1']) .tab.current,
-:global(html[data-blink='3']) .tab.current {
-  opacity: 0.75;
-}
-
-:global(html[data-blink='2']) .tab.current {
-  opacity: 0.55;
+/* Intermitente sincronizado al reloj global (BaseLayout): en la fase
+   apagada se invierte el video, así la etiqueta sigue legible */
+:global(html[data-blink='1']) .tab.current {
+  background-color: var(--surface);
+  color: var(--primary);
 }
 
 /* Bloqueado: ficha inerte, sin bisel ni relieve */

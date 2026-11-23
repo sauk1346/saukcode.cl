@@ -91,14 +91,10 @@ const { title, description } = Astro.props;
     background-color: var(--success);
   }
 
-  /* La punta late con el reloj global */
-  html[data-blink='1'] #reading-progress span.tip,
-  html[data-blink='3'] #reading-progress span.tip {
-    opacity: 0.7;
-  }
-
-  html[data-blink='2'] #reading-progress span.tip {
-    opacity: 0.4;
+  /* La punta parpadea con el reloj global: en la fase apagada vuelve a
+     verse como celda vacía (sin hueco) */
+  html[data-blink='1'] #reading-progress span.tip {
+    background-color: color-mix(in srgb, var(--secondary) 22%, transparent);
   }
 </style>
 

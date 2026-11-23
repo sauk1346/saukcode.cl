@@ -46,15 +46,17 @@ const {
     <Footer />
     <SearchModal />
     <script is:inline>
-      // Reloj global de parpadeo en 3 fases (plena → media → tenue →
-      // media): todos los intermitentes laten al mismo tic. Apagado con
-      // prefers-reduced-motion.
+      // Reloj global de parpadeo retro: dos estados con corte seco
+      // (0 = encendido, 1 = apagado), 500 ms cada uno, como el atributo
+      // blink del modo texto o un PRESS START de arcade. Todos los
+      // intermitentes laten al mismo tic. Apagado con prefers-reduced-motion
+      // (sin atributo, todo queda encendido).
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         var blinkPhase = 0;
         setInterval(function () {
-          blinkPhase = (blinkPhase + 1) % 4;
+          blinkPhase = 1 - blinkPhase;
           document.documentElement.dataset.blink = String(blinkPhase);
-        }, 350);
+        }, 500);
       }
     </script>
     <script>
